@@ -54,10 +54,11 @@ body {
   max-width: 640px;
   margin-inline: auto;
 }
-/* Side-by-side form sections: top-aligned, with room for PDS floating labels between fields. */
+/* Side-by-side form sections: each FieldGroup stretches to match its tallest sibling (grid's
+   own default), so a section with fewer fields doesn't leave a short card floating above empty
+   page space next to a taller one. */
 .tax-form-sections > .pds-form-layout__fields {
   gap: var(--pds-space-6);
-  align-items: start;
 }
 .tax-form-sections .pds-field-group {
   align-content: start;
