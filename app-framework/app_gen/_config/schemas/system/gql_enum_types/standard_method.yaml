@@ -1,0 +1,8 @@
+- name: StandardMethod
+  items: 
+  - value: FindById
+  - value: GetAll
+  - value: Query
+  - value: Create
+  - value: Update
+  - value: Delete

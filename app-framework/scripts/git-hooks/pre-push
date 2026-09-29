@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+remote_name="${1:-}"
+remote_url="${2:-}"
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+updates_file="$(mktemp "${TMPDIR:-/tmp}/appfw-pre-push.XXXXXX")"
+trap 'rm -f "$updates_file"' EXIT
+cat >"$updates_file"
+
+branch_update_count=0
+main_branch_push=false
+current_head_ref="$(git -C "$repo_root" symbolic-ref -q HEAD || true)"
+current_head_sha="$(git -C "$repo_root" rev-parse HEAD)"
+pushed_local_ref=""
+pushed_local_sha=""
+pushed_remote_ref=""
+pushed_remote_sha=""
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [[ -n "${local_ref:-}" ]] || continue
+  [[ "$remote_ref" == refs/heads/* ]] || continue
+  [[ ! "$local_sha" =~ ^0+$ ]] || continue
+  [[ "$local_sha" != "$remote_sha" ]] || continue
+
+  branch_update_count=$((branch_update_count + 1))
+  pushed_local_ref="$local_ref"
+  pushed_local_sha="$local_sha"
+  pushed_remote_ref="$remote_ref"
+  pushed_remote_sha="$remote_sha"
+  if [[ "$remote_ref" == "refs/heads/main" ]]; then
+    main_branch_push=true
+  fi
+done <"$updates_file"
+
+if [[ "$branch_update_count" -eq 0 ]]; then
+  exit 0
+fi
+
+if [[ "$branch_update_count" -ne 1 ]]; then
+  echo "Push blocked: Framework PR Review Agent standing approval covers one reviewed branch update at a time." >&2
+  echo "Push branches separately so the guard validates the exact branch being updated." >&2
+  exit 1
+fi
+
+if [[ -z "$current_head_ref" || "$pushed_local_ref" != "$current_head_ref" ]]; then
+  echo "Push blocked: pre-push review guard can only validate the currently checked-out branch." >&2
+  echo "Current branch: ${current_head_ref:-detached HEAD}" >&2
+  echo "Pushed branch: $pushed_local_ref" >&2
+  echo "Check out the branch being pushed, refresh handoff/review evidence, then push again." >&2
+  exit 1
+fi
+
+if [[ "$pushed_local_sha" != "$current_head_sha" ]]; then
+  echo "Push blocked: pre-push review guard evidence is tied to the current HEAD SHA." >&2
+  echo "Current HEAD: $current_head_sha" >&2
+  echo "Pushed SHA:   $pushed_local_sha" >&2
+  echo "Refresh the checked-out branch and review evidence before pushing." >&2
+  exit 1
+fi
+
+if [[ "$main_branch_push" == "true" && -z "${APPFW_PRE_PUSH_ALLOW_MAIN_BRANCH_REASON:-}" ]]; then
+  echo "Push blocked: direct pushes to main are outside the standing approval policy." >&2
+  echo "Use a PR/merge workflow, or set APPFW_PRE_PUSH_ALLOW_MAIN_BRANCH_REASON with explicit human approval." >&2
+  exit 1
+fi
+
+export APPFW_PRE_PUSH_REMOTE_NAME="$remote_name"
+export APPFW_PRE_PUSH_REMOTE_URL="$remote_url"
+export APPFW_PRE_PUSH_BRANCH_UPDATE_COUNT="$branch_update_count"
+export APPFW_PRE_PUSH_LOCAL_REF="$pushed_local_ref"
+export APPFW_PRE_PUSH_LOCAL_SHA="$pushed_local_sha"
+export APPFW_PRE_PUSH_REMOTE_REF="$pushed_remote_ref"
+export APPFW_PRE_PUSH_REMOTE_SHA="$pushed_remote_sha"
+
+exec "$repo_root/scripts/ci/pre-push-review-guard.sh"

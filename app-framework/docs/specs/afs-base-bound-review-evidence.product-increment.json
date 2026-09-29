@@ -1,0 +1,142 @@
+{
+  "$schema": "../start/product-increment-plan.schema.json",
+  "schema": "appfw_product_increment_plan@1",
+  "program_id": "app-framework-and-nexus",
+  "product_increment": {
+    "id": "AFS-PI-BASE-BOUND-REVIEW-01",
+    "outcome_id": "AFS-OUTCOME-DELIVERY-FLOW",
+    "title": "Base-bound handoff and review evidence",
+    "intent": "Make one immutable accepted-main portfolio snapshot select the permissible plan, scope, base, branch, and write-root set, then require handoff, review-brief, independent review output, and the Framework pre-push guard to agree on that Git-backed authority and exact changed-surface identity.",
+    "owner": "Program Product Manager",
+    "planning_posture": "held",
+    "stage": "prototype",
+    "acceptance_criteria": [
+      "Planned work accepts only a full immutable accepted-main SHA supplied after external Program Flow admission, resolves the canonical portfolio blob at that commit, takes plan_ref only from the named source-admissible portfolio entry, validates that exact plan blob, and never trusts a producer-HEAD plan or caller-selected plan path.",
+      "Planned leaf handoff derives base, branch, and roots only from the accepted-main lane record; planned integration handoff derives them only from its accepted-main integration record; the unplanned/default route alone resolves merge-base origin/main HEAD.",
+      "An optional --base is an equality assertion against the externally derived base, never a selector; HEAD/equal-base and later-intermediate-ancestor narrowing cannot satisfy pre-push, and the authorized base must be a strict ancestor of the pushed head.",
+      "Handoff and no-write snapshot retain one versioned binding containing accepted-main SHA, portfolio and plan blob IDs/digests, Product Increment/scope identity, authorized branch/base/write-root digest, head, and content-bound surface digests.",
+      "Review-brief revalidates the retained accepted-main portfolio authority and fails closed when its authority, base, roots, head, changed-surface signatures, state fingerprints, or review-scope binding differ from the handoff artifact.",
+      "Independent review output names the exact reviewed authority digest, base, head, and review-scope binding, and the parser rejects otherwise complete or fresh review text when any value is missing or mismatched.",
+      "The pre-push guard re-reads the retained accepted-main portfolio and registered plan blobs rather than accepting a producer-local plan, caller-selected ancestor, or moving origin/main scope; current-main divergence remains a separate merge-readiness condition.",
+      "Program Flow assignment identity, exclusive-lease ownership, and assignment currency remain externally enforced source-admission prerequisites; this capability neither accepts a caller assignment UUID nor claims to verify a live or superseded assignment.",
+      "This plan, its governing spec, Product-authorized portfolio registration, and spec index land on accepted main through an independently reviewed planning/control PR that is separate from the future implementation lane; any authority change requires a new planning PR and external Program Flow re-admission.",
+      "Handoff and review-brief report destination ref/SHA, observation freshness, merge base, and ahead/behind counts outside the checkpoint binding and explicitly deny that scope agreement establishes destination convergence or merge readiness.",
+      "Existing nested-product normalization, special-path handling, additions, deletions, renames, file modes, symlink targets, untracked files, backdated-byte detection, and non-UTF-8 failure behavior do not regress.",
+      "The exact assembled correction is routed explicitly through a comprehensive review brief and /framework-pr-review --comprehensive, then passes the normal guard without a bypass before any push; auto-depth focused classification alone cannot satisfy this plan.",
+      "No evidence from this increment grants push, merge, release, SRA/CAB, accepted-risk, trusted-reviewer-identity, IX Product acceptance, Nexus adoption, browser/device, live-provider, security, or production-readiness credit."
+    ]
+  },
+  "concurrency": {
+    "target_active_lanes": 1,
+    "maximum_active_lanes": 1
+  },
+  "integration": {
+    "strategy": "integration_branch",
+    "branch": "integrate/ix-eight-vignette-foundation-r1",
+    "destination_branch": "main",
+    "owner": "IX Evidence Scope Integration Branch Manager",
+    "independent_reviewer": "Independent Review Harness Aggregate Reviewer",
+    "base_ref": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+    "write_roots": [
+      "docs/reference/cli.md",
+      "scripts/check-doc-examples.sh"
+    ],
+    "economics_budget": {
+      "default_model_tier": "advanced-tier",
+      "allowed_model_tiers": [
+        "efficient-tier",
+        "advanced-tier"
+      ],
+      "max_elapsed_ms": 10800000,
+      "max_input_tokens": 450000,
+      "max_output_tokens": 80000,
+      "max_cost_usd": 50,
+      "max_retries": 1,
+      "max_corrections": 2,
+      "max_rework_cycles": 2
+    },
+    "leaf_ci_profile": "accelerated",
+    "integration_ci_profile": "full",
+    "release_ci_profile": "strict",
+    "merge_order": [
+      "AFS-L1-BASE-BOUND-REVIEW"
+    ],
+    "integration_checks": [
+      "Validate the Product Increment plan, portfolio-wide WIP, active-lane owner/root independence, and exact candidate diff before review.",
+      "Before source admission, prove the planning spec, executable plan, Product-authorized portfolio registration, and spec index were merged through an independently reviewed planning/control PR from accepted main and remained outside the future implementation lane; external Program Flow then records the resulting accepted-main SHA and exact portfolio/plan scope in its live assignment and exclusive lease.",
+      "Run a disposable divergent Git graph proving accepted-main-portfolio-authorized handoff, no-write snapshot, review brief, independent review binding, and pre-push guard all retain the same portfolio/plan/base/root/head/surface identity after origin/main advances.",
+      "Reject producer-local plan/spec edits, a caller-selected or unregistered plan, --base HEAD, an equal derived base, a later intermediate ancestor, authority/blob/root drift, branch/scope mismatch, and a caller base that differs from the accepted-main lane or integration base.",
+      "Reject valid-looking review documents with missing or mismatched reviewed authority, base, head, or review-scope binding, and prove no bypass establishes the green path.",
+      "Preserve the existing nested-product, special-path, content-state, symlink, mode, rename, deletion, untracked, backdated-byte, and non-UTF-8 regression corpus.",
+      "The Batch A convergence successor may carry the two approved owner-originated fixture repairs with separate commit provenance, but must preserve their assertions, reconcile the Nexus suite to exactly 36 tests, pass the full docs gate, and receive comprehensive independent review; aggregation does not authorize portfolio registration or the future implementation lane.",
+      "Reconcile CLI reference and docs-check examples only after the source lane is immutable, then run changed-only docs-check, generate-check, fast Framework tests, handoff, review-brief --comprehensive, and /framework-pr-review --comprehensive.",
+      "Refresh from current origin/main and rerun full candidate evidence before any merge-ready judgment; checkpoint scope binding does not waive destination convergence."
+    ],
+    "shared_path_owner": "IX Evidence Scope Integration Branch Manager"
+  },
+  "lanes": [
+    {
+      "id": "AFS-L1-BASE-BOUND-REVIEW",
+      "title": "Externally authorized handoff and review-scope binding",
+      "result": "Framework handoff, review-brief, review output, and the pre-push guard fail closed unless they refer to one immutable accepted-main portfolio/plan authority, its exact branch/base/roots, a strictly later head, and one content-bound changed-surface state; external Program Flow admission remains separate.",
+      "owner": "Framework Evidence Integrity Owner",
+      "technical_lead": "Framework CLI Architect",
+      "branch_owner": "Framework Review Harness Coding Agent",
+      "independent_reviewer": "Independent Framework Review Harness Reviewer",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "Framework delivery evidence integrity"
+      ],
+      "deliverables": [
+        "AFS-D-ACCEPTED-MAIN-PLAN-AUTHORITY",
+        "AFS-D-IMMUTABLE-HANDOFF-BASE",
+        "AFS-D-REVIEW-SCOPE-BINDING",
+        "AFS-D-PRE-PUSH-SCOPE-ENFORCEMENT"
+      ],
+      "branch": "fix/base-bound-handoff-review-r1",
+      "base_sha": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "destination_branch": "integrate/ix-eight-vignette-foundation-r1",
+      "write_roots": [
+        "app_gen/src/bin/appfw_introspect.rs",
+        "scripts/appfw",
+        "scripts/ci/pre-push-review-guard.sh",
+        "scripts/git-hooks/pre-push",
+        "scripts/cli-semantic-gates-test.sh",
+        "docs/start/pr-review-agent-harness.md",
+        "docs/start/agent-role-cards.md",
+        "agent_skills/framework-pr-review/SKILL.md"
+      ],
+      "economics_budget": {
+        "default_model_tier": "advanced-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 60000,
+        "max_cost_usd": 35,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "cargo test --manifest-path app_gen/Cargo.toml --bin appfw_introspect handoff",
+        "bash -n scripts/appfw scripts/ci/pre-push-review-guard.sh scripts/git-hooks/pre-push",
+        "bash scripts/cli-semantic-gates-test.sh",
+        "scripts/appfw framework handoff --authority-commit <externally-selected-accepted-main-SHA> --product-increment AFS-PI-BASE-BOUND-REVIEW-01 --lane AFS-L1-BASE-BOUND-REVIEW --base 1e919fafe783b68cef4abc65f99d585be482b4e7 --json",
+        "scripts/appfw framework review-brief --authority-commit <externally-selected-accepted-main-SHA> --product-increment AFS-PI-BASE-BOUND-REVIEW-01 --lane AFS-L1-BASE-BOUND-REVIEW --base 1e919fafe783b68cef4abc65f99d585be482b4e7 --head HEAD --comprehensive --json",
+        "git diff --check"
+      ],
+      "provides": [
+        {
+          "capability_id": "harness.base-bound-review-evidence",
+          "summary": "Versioned immutable base/head/surface agreement across handoff, review, and pre-push enforcement.",
+          "state": "planned"
+        }
+      ]
+    }
+  ],
+  "lane_links": []
+}

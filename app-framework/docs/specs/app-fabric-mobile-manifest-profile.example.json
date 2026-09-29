@@ -1,0 +1,134 @@
+{
+  "schema": "appfw_mobile_manifest_profile@1",
+  "lifecycle_stage": "prototype",
+  "maturity": "experimental",
+  "candidate_ready": false,
+  "release_ready": false,
+  "release_authority": "none",
+  "app_id": null,
+  "prototype_app_ref": "appfw.reference",
+  "prototype_identity_authority": "local-fixture-only",
+  "enabled": true,
+  "target": "react-native-expo",
+  "renderer_projections": [
+    "native-ios",
+    "native-android"
+  ],
+  "application_identity": {
+    "ios_bundle_identifier": "TBD.prototype.ios",
+    "android_package": "TBD.prototype.android",
+    "ownership_status": "prototype-placeholder"
+  },
+  "fabric_contracts": {
+    "registration_schema": {
+      "schema": "fabric_app_registration@1",
+      "path": "scripts/fabric-contracts/fabric-app-registration.v1.schema.json"
+    },
+    "component_snapshot_schema": {
+      "schema": "app_component_snapshot@1",
+      "path": "scripts/fabric-contracts/app-component-snapshot.v1.schema.json"
+    },
+    "observation_event_schema": {
+      "schema": "fabric_observation_event@1",
+      "path": "scripts/fabric-contracts/fabric-observation-event.v1.schema.json"
+    },
+    "registration_status": "pending",
+    "registration_record_ref": null,
+    "registration_surface": "native_mobile",
+    "registration_targets": [
+      "ios",
+      "android"
+    ],
+    "projection_to_snapshot_surface": {
+      "native-ios": "native_mobile_ios",
+      "native-android": "native_mobile_android"
+    }
+  },
+  "experience_contract": {
+    "path": "docs/specs/app-fabric-experience-contract.example.json",
+    "version": "0.1.0-prototype"
+  },
+  "api_contract": {
+    "path": "docs/specs/app-fabric-mobile-api-seam.md",
+    "version": "0.1.0-prototype"
+  },
+  "auth": {
+    "client_kind": "oidc-public-client",
+    "flow": "authorization-code-pkce",
+    "issuer_profile": "local-synthetic",
+    "embedded_secret": false,
+    "access_token_custody": "memory",
+    "renewal_material_custody": "none",
+    "server_profile": {
+      "path": "docs/specs/app-fabric-mobile-auth-profile.example.json",
+      "version": "0.1.0-prototype"
+    }
+  },
+  "capabilities": {
+    "deep_links": "prototype",
+    "push_notifications": "disabled",
+    "biometrics": "disabled",
+    "camera": "disabled",
+    "files": "disabled",
+    "offline_data": "disabled"
+  },
+  "data_policy": {
+    "prototype_data": "synthetic-only",
+    "offline_persistence": "disabled",
+    "push_payload": "identifier-only"
+  },
+  "build": {
+    "development_build": "required",
+    "expo_go_proof": "insufficient",
+    "custody_profile": "local-development-only",
+    "toolchain_lock_ref": "mobile/package-lock.json"
+  },
+  "update": {
+    "runtime_version_policy": "source-bound",
+    "ota_channel": "disabled",
+    "native_change_requires_binary": true,
+    "recovery_proof_required": true
+  },
+  "distribution": {
+    "ios": "development-only",
+    "android": "development-only",
+    "release_authority": "none"
+  },
+  "test_matrix": {
+    "local_smoke": [
+      "web-compact",
+      "ios-simulator",
+      "android-emulator"
+    ],
+    "candidate": [
+      "web-responsive",
+      "ios-release-build",
+      "android-release-build",
+      "ios-physical-or-testflight",
+      "android-physical-or-play-internal"
+    ],
+    "physical_device_capabilities": [
+      "deep-links",
+      "secure-storage",
+      "background-lifecycle"
+    ]
+  },
+  "ownership": {
+    "generated": [
+      "mobile/src/generated/",
+      "mobile/.appfw-mobile/ownership.json",
+      "mobile/.appfw-mobile/scaffold-manifest.json"
+    ],
+    "product_owned": [
+      "mobile/app/",
+      "mobile/src/features/",
+      "mobile/src/components/",
+      "mobile/src/lib/"
+    ],
+    "forbidden_inputs": [
+      "generated-web-typescript",
+      "prior-generated-mobile-output",
+      "product-specific-framework-fallbacks"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+.git
+.DS_Store
+target
+**/target
+**/node_modules
+**/dist
+**/build
+**/.next
+**/.cache
+**/coverage
+**/playwright-report
+**/test-results
+*.log

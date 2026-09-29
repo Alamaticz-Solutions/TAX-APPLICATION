@@ -1,0 +1,48 @@
+- id: 7e441000-0000-4000-8000-000000000019
+  name: Territory
+  is_table: true
+  indexes:
+  - business_unit_id
+  - code
+  - region
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Territory Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: region
+    caption: Region
+    data_type: String
+
+  - name: country
+    caption: Country
+    data_type: String
+
+  - name: state
+    caption: State
+    data_type: String
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required
+
+  - name: business_unit_id
+    caption: Business Unit
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: BusinessUnit

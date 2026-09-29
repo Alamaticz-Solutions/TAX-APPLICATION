@@ -1,0 +1,267 @@
+
+- name: Schema
+  id: ad6b0049-9126-4754-a831-a2d3e8d40e8f
+  is_table: true
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    fragment: property-string-caption
+
+  - name: description
+    is_required: true
+    fragment: property-string
+
+  - name: data_source_name
+    fragment: property-string-required
+
+
+
+      
+- name: EntityType
+  id: 758a3673-ccba-4258-84a2-c7ddd0a2df9b
+
+  custom_methods:
+  - name: get_schema_types
+    kind: Query
+    args:
+    - name: schema_name
+      arg_type: String
+    return_type: Vec<EntityType>
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+
+  # Local schema name field for convenience during bootstrapping.
+  - name: schema_name
+    fragment: property-string-required
+
+
+  - name: schema_id
+    data_type: Uuid
+    foreign_key:
+      type_name: Schema
+
+  - name: pascal_1
+    caption: Name
+    fragment: property-string-caption
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: pascal_1
+        sourceField: pascal_1
+
+  - name: pascal_n
+    caption: Plural Name
+    fragment: property-string-required
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: pascal_n
+        sourceField: pascal_1
+
+  - name: snake_1
+    caption: Instance Name
+    fragment: property-string-required
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: snake_1
+        sourceField: pascal_1
+
+  - name: snake_n
+    caption: Plural Instance Name
+    fragment: property-string-required
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: snake_n
+        sourceField: pascal_1
+
+  - name: caption_1
+    caption: Caption
+    fragment: property-string-required
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: caption_1
+        sourceField: pascal_1
+
+  - name: caption_n
+    caption: Plural Caption
+    fragment: property-string-required
+    computed: Inflection
+    meta: 
+      InflectionComputed:
+        inflector: caption_n
+        sourceField: pascal_1
+
+  - name: is_union
+    fragment: property-boolean-toggle-required
+
+  - name: base_type
+    fragment: property-string-stringmax-sm
+
+  - name: is_table
+    fragment: property-boolean-toggle-required
+
+  - name: facets
+    fragment: property-string-array
+
+  - name: meta
+    data_type: Json
+    meta:
+      lang: yaml
+
+  - name: execution
+    fragment: property-object
+    nested_entity_type:
+      type_name: DataAccessExecution
+
+  - name: standard_methods
+    fragment: property-enum-array
+    enum_type_name: StandardMethod
+
+  - name: custom_methods
+    fragment: property-object-array
+    nested_entity_type:
+      type_name: CustomMethod
+
+  - name: props
+    caption: Properties
+    fragment: property-object-array-required
+    nested_entity_type:
+      type_name: PropertyType
+
+
+- name: DataAccessExecution
+  id: 5b5dc2ab-3d68-4711-bf6a-68c30645a3f8
+  props:
+
+  - name: prepared_statements
+    fragment: property-boolean-toggle
+
+
+
+- name: ForeignKey
+  id: 9867d3d9-1623-4c37-8012-b2bb0132b30a
+  props: 
+
+  - name: schema_name
+    fragment: property-string-required
+
+  - name: type_name
+    fragment: property-string-required
+
+
+- name: NavByFkProperty
+  id: 7cd8ad72-991b-4282-be84-6021326622a1
+  props: 
+
+  - name: schema_name
+    fragment: property-string-required
+
+  - name: type_name
+    fragment: property-string-required
+
+  - name: prop_name
+    fragment: property-string-required
+
+  - name: filter
+    data_type: Json
+
+  - name: resolved
+    fragment: property-object-required
+    nested_entity_type:
+      type_name: ForeignKey
+
+
+
+- name: NestedEntityType
+  id: ec90395a-fda8-459e-82ce-900ca97f41b9
+  props: 
+
+  - name: schema_name
+    fragment: property-string-required
+
+  - name: type_name
+    fragment: property-string-required
+
+
+- name: PropertyType
+  id: 0a576b5b-10c0-469d-b3b4-7242f6e406c9
+
+  props:
+
+  - name: id
+    fragment: property-string-key
+
+  - name: name
+    is_key: true
+    fragment: property-string-caption
+
+  - name: caption
+    is_required: true
+    fragment: property-string-stringmax-sm
+
+  - name: is_key
+    fragment: property-boolean-toggle-required
+
+  - name: is_caption
+    fragment: property-boolean-toggle-required
+
+  - name: is_required
+    fragment: property-boolean-toggle-required
+
+  - name: is_read_only
+    fragment: property-boolean-toggle-required
+
+  - name: is_concurrency_control
+    fragment: property-boolean-toggle-required
+
+  - name: data_type
+    fragment: property-enum-required
+    enum_type_name: DataType
+
+
+
+  - name: computed
+    fragment: property-enum-required
+    enum_type_name: Computed
+
+  - name: default_value
+    data_type: Json
+
+  - name: foreign_key
+    fragment: property-object
+    nested_entity_type:
+      type_name: ForeignKey
+
+  - name: nav_by_fk_property
+    fragment: property-object
+    nested_entity_type:
+      type_name: NavByFkProperty
+
+  - name: many_to_many_property
+    fragment: property-object
+    nested_entity_type:
+      type_name: ManyToManyProperty
+
+  - name: nested_entity_type
+    fragment: property-object
+    nested_entity_type:
+      type_name: NestedEntityType
+
+  - name: enum_type_name
+    fragment: property-string
+
+  - name: meta
+    data_type: Json
+    meta:
+      lang: yaml

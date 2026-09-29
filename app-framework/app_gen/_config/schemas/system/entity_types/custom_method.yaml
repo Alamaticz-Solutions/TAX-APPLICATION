@@ -1,0 +1,33 @@
+- name: CustomMethod
+  id: ac5f4f56-89aa-43ef-93e3-f1c1eafc6fa3
+
+  props: 
+  
+  - name: name
+    is_caption: true
+    is_required: true
+    fragment: property-string-required
+
+  - name: kind
+    fragment: property-enum-required
+    enum_type_name: CustomMethodKind
+
+  - name: args
+    fragment: property-object-array-required
+    nested_entity_type:
+      type_name: TypeMethodArg
+
+  - name: return_type
+    fragment: property-string-required
+
+
+
+- name: TypeMethodArg
+  id: ff342a31-e5a2-42ef-88f6-ea4a384f1abb
+  props: 
+
+  - name: name
+    fragment: property-string-required
+
+  - name: arg_type
+    fragment: property-string-required

@@ -1,0 +1,31 @@
+- id: 5dcd2314-5fe3-406a-a433-450f4b480c2d
+  name: Team
+  is_table: true
+  indexes:
+  - tenant
+  - name
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.Team
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+  props:
+
+  - name: id
+    caption: Team ID
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: name
+    caption: Team Name
+    fragment: property-string-caption
+    is_read_only: true

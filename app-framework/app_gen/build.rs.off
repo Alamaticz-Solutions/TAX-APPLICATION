@@ -1,0 +1,145 @@
+use std::{fs, path::PathBuf};
+use std::env;
+use std::fs::{self};
+use serde_json::{Map, Value, json};
+use tera::*;
+
+
+// extern crate app_gen_utils;
+// use app_gen_utils::{ filters, templates };
+
+
+fn main() 
+{
+  println!("build.rs STARTED");
+
+  let curr_dir = env::current_dir().expect("could not get current dir");
+
+  let tera = &mut Tera::default();
+
+  register_filters(tera, &curr_dir).expect("register_filters error"); 
+  register_templates(tera, &curr_dir).expect("register_templates error"); 
+
+  let mut context = Context::new();
+
+  // Generate files
+  gen_app_serde_rs(&tera, &context);
+
+  println!("build.rs COMPLETED");
+}
+
+
+fn gen_app_serde_rs(tera: &Tera, context: &Context) 
+{
+  let schema_mod_rs = tera.render("config_serde", context).expect("tera.render config_serde failed");
+  fs::write("./src/app.rs", schema_mod_rs).unwrap();
+  println!("mod.rs generated");
+}
+
+
+
+fn register_filters(tera: &mut Tera, path: &PathBuf) -> Result<()> 
+{
+  let gen_config_serde_dir = path.join("1_gen_config_serde");
+  filters::register_type_def(tera, &gen_config_serde_dir).expect("register_type_def_filter failed");
+  filters::register_enum_def(tera, &gen_config_serde_dir).expect("register_enum_def_filter failed");
+  filters::register_inflector(tera, "camel").expect("register_inflector_filter failed");
+  Ok(())
+}
+
+fn register_templates(tera: &mut Tera, path: &PathBuf) -> Result<()> 
+{
+  let common_dir = path.join("0_common");
+  let gen_config_serde_dir = path.join("1_gen_config_serde");
+  println!("register_templates: path {:?}", gen_config_serde_dir);
+  templates::register_templates(tera, common_dir.as_path()).expect("register_templates common_dir failed");
+  templates::register_templates(tera, gen_config_serde_dir.as_path()).expect("register_templates gen_config_serde_dir failed");
+  Ok(())
+}
+
+
+
+
+
+
+
+pub fn create() -> Result<Context> 
+{
+  Ok(Context::new())
+}
+
+
+pub fn create_for_app(app_name: &str) -> Result<Context> 
+{
+  let mut context = Context::new();
+  context.insert("appName", &app_name);
+  Ok(context)
+}
+
+pub fn load_yaml(context: &mut Context, src_file: &PathBuf, ctx_name: &str)-> Result<()> 
+{
+  println!("    context::load_yaml: {:?}", src_file);
+  let res: Value = read_yaml(src_file).unwrap();
+  context.insert(ctx_name, &res);
+  Ok( () )
+}
+
+pub fn load_item_yaml(context: &mut Context, src_file: &PathBuf, ctx_name: &str)-> Result<()> 
+{
+  println!("    context::load_item_yaml: {:?}", src_file);
+  let res: Value = read_yaml(src_file).unwrap();
+  let item = res.as_array().unwrap().first().unwrap();
+  context.insert(ctx_name, &item);
+  Ok( () )
+}
+
+
+// pub fn read_yaml_items(src_file: &PathBuf)-> Result<Vec<Value>> 
+// {
+//   let res = read_yaml(src_file).unwrap();
+//   let items = res.as_array().unwrap().to_owned();
+//   Ok( items )
+// }
+
+pub fn read_yaml(src_file: &PathBuf)-> Result<Value> 
+{
+  println!("    context::read_yaml: {:?}", src_file);
+  let f = std::fs::File::open(src_file).expect("Could not open yaml file.");
+  let res: Value = serde_yaml::from_reader(f).expect("Could not read yaml values.");
+  Ok( res )
+}
+
+
+pub fn load_dir(context: &mut Context, src_dir: &PathBuf, ctx_name: &str)-> Result<()> 
+{
+  // println!("context::load_dir:: src_dir = {:?}, ctx_name = {:?}", src_dir, ctx_name);
+  let res = get_dir_value(src_dir).unwrap();
+  context.insert(ctx_name, &res);
+  Ok( () )
+}
+
+//
+// NOTE: ONLY CONSUMES FIRST LEVEL FILES
+//
+fn get_dir_value(dir_path: &PathBuf) -> Result<serde_yaml::Value> 
+{
+  // println!("");
+  // println!("get_dir_value: {:?}", dir_path);
+  let mut dir_items = serde_yaml::Sequence::new();
+  for entry in fs::read_dir(dir_path)? {
+    let path = entry?.path();
+    let file_name = path.file_stem().unwrap().to_str().unwrap();
+    let extension = path.extension().unwrap();
+    // Only yaml files and NOT the _res.yaml one.
+    if extension.eq_ignore_ascii_case("yaml") && file_name.ne("_res") {
+      println!("      get_file_value: {:?}", path);
+      let f = std::fs::File::open(path).expect("could not read yaml file");
+      let mut file_items: serde_yaml::Sequence = serde_yaml::from_reader(f).expect("could not deserialize yaml");
+      dir_items.append(&mut file_items);
+    }
+  }
+  let res: serde_yaml::Value = dir_items.into();
+  // println!("result:");
+  // println!("{:?}", res);
+  Ok(res)
+}

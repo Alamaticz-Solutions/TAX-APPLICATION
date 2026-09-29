@@ -1,0 +1,19 @@
+[package]
+name = "appfw-test"
+version = "0.1.1"
+edition = "2021"
+description = "Reusable App Framework API scenario, provider-certification, and policy-verifier test harness."
+publish = ["pds-app-framework-crates"]
+
+[lib]
+name = "appfw_test"
+path = "src/lib.rs"
+
+[dependencies]
+anyhow = { workspace = true }
+appfw_codegen = { package = "appfw-codegen", version = "0.1.1", path = "../app_gen", registry = "pds-app-framework-crates" }
+async-graphql = { workspace = true }
+regorus = "0.2"
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

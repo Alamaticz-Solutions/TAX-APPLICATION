@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/fabric-app-registration.v1.schema.json",
+  "title": "Fabric application registration: fabric-minted identity, origination, lifecycle, declared platform surfaces, and CMDB cross-reference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "app_id",
+    "name",
+    "purpose_summary",
+    "owner_group",
+    "origination_path",
+    "lifecycle_state",
+    "platform_surfaces",
+    "repository_ref",
+    "environment_refs",
+    "data_classification",
+    "support_contact",
+    "management_tier",
+    "cmdb_ci_ref",
+    "matriculated_at",
+    "registered_at",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "fabric_app_registration@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "purpose_summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "purpose_authority_ref": { "$ref": "#/$defs/reference" },
+    "owner_group": { "$ref": "#/$defs/reference" },
+    "origination_path": {
+      "enum": ["citizen", "product_management", "legacy_modernization", "engineering"]
+    },
+    "lifecycle_state": { "enum": ["idea", "planned", "active", "retired"] },
+    "platform_surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/platformSurface" }
+    },
+    "repository_ref": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/reference" }]
+    },
+    "environment_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/environmentRef" }
+    },
+    "data_classification": {
+      "enum": ["public", "internal", "confidential", "restricted", "phi"]
+    },
+    "support_contact": { "$ref": "#/$defs/reference" },
+    "management_tier": {
+      "enum": ["registered", "observed", "appfw_managed", "factory_managed"]
+    },
+    "cmdb_ci_ref": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/reference" }]
+    },
+    "matriculated_at": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/timestamp" }]
+    },
+    "registered_at": { "$ref": "#/$defs/timestamp" },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "platformSurface": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["surface"],
+          "properties": { "surface": { "const": "web" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["surface", "targets"],
+          "properties": {
+            "surface": { "const": "native_mobile" },
+            "targets": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "enum": ["ios", "android"] }
+            }
+          }
+        }
+      ]
+    },
+    "environmentRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment"],
+      "properties": {
+        "environment": { "enum": ["dev", "test", "stage", "production"] },
+        "url": { "$ref": "#/$defs/reference" }
+      }
+    }
+  }
+}

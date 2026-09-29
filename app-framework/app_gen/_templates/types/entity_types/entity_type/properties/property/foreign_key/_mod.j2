@@ -1,0 +1,4 @@
+{% macro print(fk) %}
+      schema_name: {% if fk.schema_name is defined %}{{ fk.schema_name }}{% else %}{{ schema.name }}{% endif %} 
+      type_name: {{ fk.type_name }}
+{%- endmacro print %}

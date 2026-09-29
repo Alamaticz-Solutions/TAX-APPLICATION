@@ -1,0 +1,74 @@
+# RequestField — the field catalogue. Every field on Client Info / Upload Documents is a row
+# here, describing its shape and where its value lives — not a new place to store the value
+# (storage_target = "column" fields keep their existing real column; only a future field with
+# no schema home yet would use "field_store"). See docs/architecture/dynamic-form-engine-design.md
+# section 3 and section 7 for why most fields stay "column".
+
+- id: 35b54ee6-3080-420b-a96e-0a788387c92d
+  name: RequestField
+  is_table: true
+  indexes:
+  - storage_target
+  facets:
+  - audited
+  constraints:
+  - uq_request_field_code UNIQUE (code)
+  - ck_request_field_answer_shape CHECK (answer_shape IN ('single','list','file','table'))
+  - ck_request_field_data_type CHECK (data_type IN ('string','int','decimal','boolean','date','uuid','file','enum'))
+  - ck_request_field_storage_target CHECK (storage_target IN ('column','field_store'))
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: label
+    caption: Label
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: help_text
+    caption: Help Text
+    is_required: false
+    data_type: String
+
+  - name: answer_shape
+    caption: Answer Shape
+    is_required: true
+    data_type: String
+    default_value: single
+
+  - name: data_type
+    caption: Data Type
+    is_required: true
+    data_type: String
+    default_value: string
+
+  - name: option_list_id
+    caption: Option List
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: FieldOptionList
+
+  - name: storage_target
+    caption: Storage Target
+    is_required: true
+    data_type: String
+    default_value: column
+
+  - name: promoted_column
+    caption: Promoted Column
+    is_required: false
+    data_type: String
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true

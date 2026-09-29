@@ -1,0 +1,46 @@
+- id: 474e50e4-c4a9-423f-91a9-937b57f23df8
+  name: IxProjectionCursor
+  is_table: true
+  indexes:
+  - tenant
+  - run_id
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  props:
+
+  - name: id
+    caption: Projection Dedup Key
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: run_id
+    caption: Run
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: IxRun
+
+  - name: command_id
+    caption: Command ID
+    fragment: property-string-readonly-required
+
+  - name: cursor
+    caption: Cursor
+    fragment: property-string-required
+
+  - name: projection_state
+    caption: Projection State
+    fragment: property-string-required
+
+  - name: updated_at
+    caption: Updated At
+    fragment: property-date-time-required

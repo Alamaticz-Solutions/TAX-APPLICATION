@@ -1,0 +1,21 @@
+# Opportunity - seeded entity coverage with Account and Stage navigation.
+
+- name: find_opportunity
+  description: find seeded opportunity by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findOpportunity
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"099c0000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,account_id,stage_id,account { id,name },stage { id,name }
+  expect:
+    data:
+      id: '099c0000-0000-4000-8000-100000000001'
+      name: 'Acme Dental - Enterprise Suite'
+      account_id: 'a0c00000-0000-4000-8000-100000000001'
+      stage_id: '0998a900-0000-4000-8000-100000000003'

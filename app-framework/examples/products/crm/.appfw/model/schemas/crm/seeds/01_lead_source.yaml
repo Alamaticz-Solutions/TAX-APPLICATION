@@ -1,0 +1,19 @@
+- entity_type: LeadSource
+  schema: crm
+  columns: [id, name, sort_order]
+  records:
+    - id: 1eadcc01-0000-4000-8000-100000000001
+      name: Web
+      sort_order: 10
+    - id: 1eadcc01-0000-4000-8000-100000000002
+      name: Phone Inquiry
+      sort_order: 20
+    - id: 1eadcc01-0000-4000-8000-100000000003
+      name: Partner Referral
+      sort_order: 30
+    - id: 1eadcc01-0000-4000-8000-100000000004
+      name: Trade Show
+      sort_order: 40
+    - id: 1eadcc01-0000-4000-8000-100000000005
+      name: Employee Referral
+      sort_order: 50

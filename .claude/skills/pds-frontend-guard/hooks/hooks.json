@@ -1,0 +1,30 @@
+{
+  "description": "PDS frontend guard: enable the git pre-push verification in every clone, and stop Claude from pushing an unverified commit.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/enable-git-hook.mjs"],
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/push-gate.mjs"],
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

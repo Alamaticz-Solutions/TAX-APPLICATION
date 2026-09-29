@@ -1,0 +1,192 @@
+is_table: true
+
+props:
+
+- name: audit_id
+  caption: Audit ID
+  is_key: true
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: occurred_at
+  caption: Occurred At
+  is_key: false
+  is_caption: true
+  is_required: true
+  is_read_only: true
+  data_type: DateTime
+  computed: None
+
+- name: tenant_id
+  caption: Tenant ID
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: actor_user_name
+  caption: Actor User Name
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: actor_roles
+  caption: Actor Roles
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: action
+  caption: Action
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: outcome
+  caption: Outcome
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: schema_name
+  caption: Schema Name
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: entity_name
+  caption: Entity Name
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: table_name
+  caption: Table Name
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: audit_table_name
+  caption: Audit Table Name
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: record_id
+  caption: Record ID
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: before_json
+  caption: Before JSON
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: after_json
+  caption: After JSON
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: diff_json
+  caption: Diff JSON
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: policy_json
+  caption: Policy JSON
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: redactions_json
+  caption: Redactions JSON
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: Json
+  computed: None
+
+- name: chain_scope
+  caption: Chain Scope
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: prev_hash
+  caption: Previous Hash
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: event_hash
+  caption: Event Hash
+  is_key: false
+  is_caption: false
+  is_required: true
+  is_read_only: true
+  data_type: String
+  computed: None
+
+- name: signature
+  caption: Signature
+  is_key: false
+  is_caption: false
+  is_required: false
+  is_read_only: true
+  data_type: String
+  computed: None

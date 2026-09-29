@@ -1,0 +1,6 @@
+{% macro print(entityType, nav) %}
+      schema_name: {% if nav.schema_name is defined %}{{ nav.schema_name }}{% else %}{{ schema.name }}{% endif %} 
+      type_name: {% if nav.type_name is defined %}{{ nav.type_name }}{% else %}{{ entityType.name }}{% endif %} 
+      prop_name: {{ nav.prop_name | snake_1 }}
+      filter: {% if nav.filter is defined %}{{ nav.filter | json_encode(pretty=false) | safe }}{% endif %} 
+{%- endmacro print %}

@@ -1,0 +1,22 @@
+- id: 1eadcc01-0000-4000-8000-000000000013
+  name: LeadSource
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Source Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    data_type: Int16

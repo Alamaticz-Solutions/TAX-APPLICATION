@@ -1,0 +1,4 @@
+id: ff252a31-08c1-41be-addb-9aab41082a2e
+name: system
+description: System schema
+data_source_name: pg_primary

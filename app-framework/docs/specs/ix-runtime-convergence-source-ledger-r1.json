@@ -1,0 +1,3704 @@
+{
+  "schema": "appfw.ix_runtime_convergence_source_ledger@1",
+  "authority": {
+    "packet_sha256": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+    "plan_commit": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+    "current_main_comparison_commit": "32160570b7d8d5b8e813e95da053918cba878af8",
+    "leaf_root_count": 69,
+    "leaf_root_ordered_sha256": "c606ad184f3b8a7fbfd1e6964189b538cb3a58bb1f60d41446f91d68e27d1a21",
+    "delivery_credit": "none"
+  },
+  "counts": {
+    "reviewed_source": 52,
+    "reviewed_planning": 7,
+    "dependency_closure": 45,
+    "historical_total": 104
+  },
+  "i2_overlay_receipt": {
+    "remote_ref": "refs/heads/integrate/ix-eight-vignette-foundation-r1",
+    "commit_oid": "bb9b8423bbd72003c050079c3f27a279c08d0fd5",
+    "sole_parent_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+    "tree_oid": "4bb816efd6112051ae49db317e933a227b5beeb7",
+    "changed_paths": [
+      "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+      "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "scripts/check-pds-ix-runtime-contract.mjs",
+      "scripts/check-pds-ix-runtime-contract.test.mjs"
+    ],
+    "reviewed_source_commit": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+    "integration_base_commit": "9ea26157a2bed29424e1052a909303985ba466bd",
+    "integration_relation": "history_preserving_cherry_pick_assembly",
+    "lineage_status": "reviewed_source_assembled",
+    "comprehensive_review": {
+      "range": "1e919fafe783b68cef4abc65f99d585be482b4e7..bb9b8423bbd72003c050079c3f27a279c08d0fd5",
+      "status": "GO WITH CONDITIONS",
+      "blocker": 0,
+      "critical": 0,
+      "important": 0,
+      "should_address": 0,
+      "nice_to_address": 0,
+      "artifact_path": "target/appfw/framework-pr-review.md",
+      "artifact_sha256": "84d0d9773b5858f0415949568e9353a4cf0be159668ce519b0099f7587aa4d48",
+      "conditions_resolution": "Human authorized the exact one-time non-main I2 push; no broader authority followed."
+    },
+    "authority_nonclaims": [
+      "No source admission, Product acceptance, merge, release, publication, deployment, security approval, or accepted risk."
+    ]
+  },
+  "reviewed_source_paths": [
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "9b4b2cd36a98bbda7a0a941da8a825a9a2674635",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+      "target_blob_oid": "f6b6a34d3c251142d58c20b995453ddfc7fef307",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+      "target_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "9312fb477ec2c5a29b154289838fc0307d04f053",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+      "target_blob_oid": "df29219f619638f0ed114956a1afa988b3f6c458",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none",
+      "i2_overlay": {
+        "i1_blob_oid": "9312fb477ec2c5a29b154289838fc0307d04f053",
+        "i2_blob_oid": "df29219f619638f0ed114956a1afa988b3f6c458",
+        "target_disposition": "byte_preserve",
+        "target_blob_oid": "df29219f619638f0ed114956a1afa988b3f6c458",
+        "review_receipt_sha256": "84d0d9773b5858f0415949568e9353a4cf0be159668ce519b0099f7587aa4d48"
+      }
+    },
+    {
+      "path": "appfw_runtime/src/ix/contract.rs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "5160bcb7d565e8966b4f03c508451b4c79dfc24c",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/src/ix/contract.rs",
+      "target_blob_oid": "757e3fc17f984fd4a9b876d5daa3df28b56f1193",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_runtime/src/ix/lifecycle.rs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "c54f9c8c7547fd729ac9001342ac153460d7a751",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/src/ix/lifecycle.rs",
+      "target_blob_oid": "24a7a538022acdba06b8e1d7fed3951f00a87a23",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_runtime/src/ix/mod.rs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "07321f055b7d4716e9146cbdfdb01c1fddea23df",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/src/ix/mod.rs",
+      "target_blob_oid": "8e5446550297e816e4989bb74f64912426079919",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_runtime/src/ix/recipe.rs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "205532dd4ad36c7751963a0e7be16868c482dc00",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_runtime/src/ix/recipe.rs",
+      "target_blob_oid": "205532dd4ad36c7751963a0e7be16868c482dc00",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/CHANGELOG.md",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "375f4fd2b47734f50a02697a1df7bfc89454d2c9",
+      "current_main_blob_oid": "1a1fef7873016d469cad9d774221966291abb4cc",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/CHANGELOG.md",
+      "target_blob_oid": "06da8321306cd763327063ced2c02756b6f177d9",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "9a4a20b09bebd30d6b174a10ef3ca9b8fdb75dd0",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+      "target_blob_oid": "6598d67cffab2da9716f431241e06363cc5f64cd",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "d2f4b3ff4856f1379e10e6fe723841f0253bd9bd",
+      "current_main_blob_oid": "05ebe0f4971d26ef4827c27a7307d1d23e4ee63c",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+      "target_blob_oid": "4894967cc39263ec5ce0e7bf228890b9e230d525",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "d6d407de6e89181a8683323c88d9d6d5283a900b",
+      "current_main_blob_oid": "d9cac41d77bf518610f94e8590c1289935030e9b",
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts",
+      "target_blob_oid": "d6d407de6e89181a8683323c88d9d6d5283a900b",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/README.md",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "6cb035f083a983e45511569c81775d7569f4fd89",
+      "current_main_blob_oid": "61c7aafc58d84b09525b2b693a823b04aa22573c",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/README.md",
+      "target_blob_oid": "a30e64f900472c1705b509f90aee5374a6a7b777",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/package-lock.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "3f03760a36ac5f15167fe81c52c1ce4899353fd7",
+      "current_main_blob_oid": "8ff436ddeba2178c357040146d3dee5d6ca5fe69",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/package-lock.json",
+      "target_blob_oid": "b0b2a45cb1ad3b0c3da7eda09cf09434a43ab9ea",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/package.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "e37f27e32361f2a42a07d0cf4dd7313a4b5b41ed",
+      "current_main_blob_oid": "8420c59e23743578083ca6932ee6c6fea34a6e01",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/package.json",
+      "target_blob_oid": "371fd62c36d8cf498e465ca9da227ec02d66d3de",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "76b06623a13abc58eebf9cc294bb48b990a227b3",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+      "target_blob_oid": "eaa1c5ea0ec21644f9618bc060d9f222f325a55f",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "a6e93a52c72a7cdb595c47caeb33102db2d3672a",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+      "target_blob_oid": "26b83395def652ff7785254d76b165909f331e71",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/catalog.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "7f4872e6a0886d22e55658add74f30c8cc7d8101",
+      "current_main_blob_oid": "1411d99a7191a5263d3d22eebb55e78a649510e9",
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/components/src/catalog.ts",
+      "target_blob_oid": "7f4872e6a0886d22e55658add74f30c8cc7d8101",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/index.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1ad23aa04e25ffc939637a01084467440a91a047",
+      "current_main_blob_oid": "05c526487402ab5325174213178650f390a0264a",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/src/index.ts",
+      "target_blob_oid": "05c526487402ab5325174213178650f390a0264a",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "832b256f79af51a7f05e0385c18dc3c970cc3181",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+      "target_blob_oid": "c1bca15dfcc9bdc17de95d892e3fcd425f357f27",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "8810fc79eaaca8699ccec1a6a2827d7316593f95",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+      "target_blob_oid": "afecfc2b887675cfc4051af92fac472d654f2f11",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/components/vite.config.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "3e55beeb766b47b51f8780b68b6526df4863ef32",
+      "current_main_blob_oid": "1fdada24ef29b728ce73b8b7967a7a32005f3bd5",
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/components/vite.config.mjs",
+      "target_blob_oid": "3e55beeb766b47b51f8780b68b6526df4863ef32",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/README.md",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1a7f8a0a93097c96c5f63d1b7615831aa518755c",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/README.md",
+      "target_blob_oid": "1a7f8a0a93097c96c5f63d1b7615831aa518755c",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "0de1d7f7ab2cf06a474540554e92208b86bcc2e5",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+      "target_blob_oid": "0de1d7f7ab2cf06a474540554e92208b86bcc2e5",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/package.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "40556e8b490c50a4b1fa9b505d8af69babfa1e7a",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/package.json",
+      "target_blob_oid": "40556e8b490c50a4b1fa9b505d8af69babfa1e7a",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+      "target_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "c8083c5aaa7c6e7779d68c733dd71a2c000f5d1b",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+      "target_blob_oid": "c8083c5aaa7c6e7779d68c733dd71a2c000f5d1b",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "4785e1969660b7dea2ce852d73da15a6b59ba538",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+      "target_blob_oid": "4785e1969660b7dea2ce852d73da15a6b59ba538",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "dfe0f788700a0ccb5d59dcc160c5c028e892d9e7",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+      "target_blob_oid": "dfe0f788700a0ccb5d59dcc160c5c028e892d9e7",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "c6753dd763b518b2c2e0bb8eeccfbf82f39689ed",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs",
+      "target_blob_oid": "c6753dd763b518b2c2e0bb8eeccfbf82f39689ed",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-types.fixture.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "a025660ae738e54b05fceb121fb7770bf3b972f0",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-types.fixture.ts",
+      "target_blob_oid": "a025660ae738e54b05fceb121fb7770bf3b972f0",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/index.d.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "326774c7d188c9524d37a1b07b7cd1a711a01153",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/src/index.d.ts",
+      "target_blob_oid": "326774c7d188c9524d37a1b07b7cd1a711a01153",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/index.js",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "2d771d28d7ed95d3277f84dc8ec2d2c0e1806146",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/src/index.js",
+      "target_blob_oid": "2e4318122849eda9f9f972120a3d45c3df47d933",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.d.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "56ba669e8ae9591b91ff03eee215e26a2c973696",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.d.ts",
+      "target_blob_oid": "56ba669e8ae9591b91ff03eee215e26a2c973696",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.js",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "eb32953c6532ae0e33dd7bee72e08c8b3c11a87f",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.js",
+      "target_blob_oid": "eb32953c6532ae0e33dd7bee72e08c8b3c11a87f",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/README.md",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "208c3676140fbc11237006effd1e11ae21c55f3b",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/native-components/README.md",
+      "target_blob_oid": "d2445b613067ff4da0377d046dc8cb96ccfcdd4e",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/package-lock.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "418ccfbebe85f5cd7a6a1e948788060d3b9828f6",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/package-lock.json",
+      "target_blob_oid": "418ccfbebe85f5cd7a6a1e948788060d3b9828f6",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/package.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "8767c0f19710cb5383eee59dda40014685032dda",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/native-components/package.json",
+      "target_blob_oid": "27183219852329e410dad853a332e15b06b2dc8a",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "f3e0d1f35b43cb16d9c4faf5c01b746d51bd59d2",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+      "target_blob_oid": "79ba6ede5c72c9fbdd21525f83d2a9195f07b214",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "20f1072492e9e34b1e8f57c78cf72342a9e14c6d",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+      "target_blob_oid": "20f1072492e9e34b1e8f57c78cf72342a9e14c6d",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "f32e2cf09cfc3d41127fe5f9169c3cbb9af08742",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+      "target_blob_oid": "f32e2cf09cfc3d41127fe5f9169c3cbb9af08742",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1ec2827c99da0d5a653d4335bd2ac5c199b8b761",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+      "target_blob_oid": "1ec2827c99da0d5a653d4335bd2ac5c199b8b761",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/index.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "68c54b0a4af2ddc89ab5186ca425d24cd2aa0efd",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/src/index.tsx",
+      "target_blob_oid": "68c54b0a4af2ddc89ab5186ca425d24cd2aa0efd",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/ix-recipe-projection.ts",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "2cb85433b9287bd13da30e5bcdbfcfb403f34e95",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/src/ix-recipe-projection.ts",
+      "target_blob_oid": "2cb85433b9287bd13da30e5bcdbfcfb403f34e95",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/ix-recipes.tsx",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1ab6a763e10c5531e82a32e8d28df61434b82257",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/src/ix-recipes.tsx",
+      "target_blob_oid": "1ab6a763e10c5531e82a32e8d28df61434b82257",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/vite.config.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "ff6903ddc56ce9df9ace2dcc775f180bce391764",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/vite.config.mjs",
+      "target_blob_oid": "ff6903ddc56ce9df9ace2dcc775f180bce391764",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/reference/catalog.json",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "fcd2068724340af3740a7e45d2d629e113b85d79",
+      "current_main_blob_oid": "82bfad41a507a7824887086b81266efcce8c8f54",
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/reference/catalog.json",
+      "target_blob_oid": "fcd2068724340af3740a7e45d2d629e113b85d79",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/reference/index.html",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "da8b0dfbd8353181a2a85ceda83b8b80abfaa2bb",
+      "current_main_blob_oid": "3d049ad1b93b495fe7df92736f7b083fc51bdfad",
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/reference/index.html",
+      "target_blob_oid": "da8b0dfbd8353181a2a85ceda83b8b80abfaa2bb",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "appfw_ui/pds_health/scripts/prove-native-packages-from-clean-checkout.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "48bb71f1fe0ec6008bc714476cb2aa07a539e301",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/scripts/prove-native-packages-from-clean-checkout.mjs",
+      "target_blob_oid": "8e5c1a9f71c52e8a18b24c516f6dbbf0c4ed4a73",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1f835fe77a5033dbb0c7e3144f04272b46ccb420",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "target_blob_oid": "f6c82e7af62fa9c60eec85c44959ea98965acb02",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [
+        "Historical base, admission, WIP, and in-progress execution guidance."
+      ],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none",
+      "i2_overlay": {
+        "i1_blob_oid": "1f835fe77a5033dbb0c7e3144f04272b46ccb420",
+        "i2_blob_oid": "527add52e45ab0cf72c64786a738bf168ebb2d4d",
+        "target_disposition": "reconcile",
+        "target_blob_oid": "f6c82e7af62fa9c60eec85c44959ea98965acb02",
+        "review_receipt_sha256": "84d0d9773b5858f0415949568e9353a4cf0be159668ce519b0099f7587aa4d48"
+      }
+    },
+    {
+      "path": "scripts/check-pds-components.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "8a43e6cb3bddea67fa4ccaa9173e39350b20c082",
+      "current_main_blob_oid": "4685e5bbffd5d247ef541a009fc337ba3d70ae63",
+      "disposition": "byte_preserve",
+      "target_path": "scripts/check-pds-components.mjs",
+      "target_blob_oid": "8a43e6cb3bddea67fa4ccaa9173e39350b20c082",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Exact reviewed or I2-overlay bytes are retained.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "scripts/check-pds-ix-runtime-contract.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "1d330cd32b1276134bad1882f7c1e532a2f3a549",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "scripts/check-pds-ix-runtime-contract.mjs",
+      "target_blob_oid": "f608f11006cb011963a6081e763346fd78527050",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none",
+      "i2_overlay": {
+        "i1_blob_oid": "1d330cd32b1276134bad1882f7c1e532a2f3a549",
+        "i2_blob_oid": "7f7813fba98e610ec5144a06efac4e8f0bd920e9",
+        "target_disposition": "reconcile",
+        "target_blob_oid": "f608f11006cb011963a6081e763346fd78527050",
+        "review_receipt_sha256": "84d0d9773b5858f0415949568e9353a4cf0be159668ce519b0099f7587aa4d48"
+      }
+    },
+    {
+      "path": "scripts/check-pds-ix-runtime-contract.test.mjs",
+      "source_kind": "reviewed_source",
+      "source_commit_oid": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+      "source_blob_oid": "fdd195c3f90e90be71a4dbfc47311d104e9340fa",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "scripts/check-pds-ix-runtime-contract.test.mjs",
+      "target_blob_oid": "2a4c84057ce84aabc48ea4ed2203793934c895f3",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main convergence strengthens behavior while retaining the reviewed obligation.",
+      "delivery_credit": "none",
+      "i2_overlay": {
+        "i1_blob_oid": "fdd195c3f90e90be71a4dbfc47311d104e9340fa",
+        "i2_blob_oid": "ec392772ac64e4484c1e394a4139af627f3b8ce5",
+        "target_disposition": "reconcile",
+        "target_blob_oid": "2a4c84057ce84aabc48ea4ed2203793934c895f3",
+        "review_receipt_sha256": "84d0d9773b5858f0415949568e9353a4cf0be159668ce519b0099f7587aa4d48"
+      }
+    }
+  ],
+  "reviewed_planning_paths": [
+    {
+      "path": "docs/release/app-fabric-master-implementation-plan.md",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "7973d2c5a39448bbf7ab1c0a7c8ce77e525a6fd8",
+      "current_main_blob_oid": "5e2e8db2fdc17a5d4c27a32b2b2dc51b23472f8e",
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/release/roadmap.md",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "a87dd4a88b0c93ddc576524a70684aaa805027a5",
+      "current_main_blob_oid": "b3b22e2ab420feafc1c123c1cab940aca2972085",
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/README.md",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "e075ef04e2e6fbc79366e4b883bff23514a6d8cf",
+      "current_main_blob_oid": "f5910d63a5617bf6539cf31e94f1caa2f6a05ab4",
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/ix-eight-vignette-cross-channel-r1.md",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "2555deb4196f7bec4f5371374c5681be352843ec",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "docs/specs/ix-eight-vignette-cross-channel-r1.md",
+      "target_blob_oid": "PENDING_INTEGRATION",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "integration_product_owner",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Integration and Product Owner retain the reviewed cross-channel outcome for reconciliation.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/ix-eight-vignette-shared-foundation.product-increment.json",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "0fb0224f515a01fe22187c5ca95135fb664e60f6",
+      "current_main_blob_oid": null,
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/nexus-pds-design-system-foundation-r1.md",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "cd3889f72c48f9c4d9f41c1dd7f708997bb39768",
+      "current_main_blob_oid": null,
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    },
+    {
+      "path": "docs/specs/product-increment-portfolio.json",
+      "source_kind": "reviewed_planning",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "49bde44ef9cc3381b8618a576cfc44bddb60fefe",
+      "current_main_blob_oid": "6d66e36a840d2a6d1fa5dbb8bad595389236362b",
+      "disposition": "reject_from_candidate",
+      "target_path": null,
+      "target_blob_oid": null,
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "current_main_governance",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Historical planning bytes are immutable evidence, not source-lane authority.",
+      "delivery_credit": "none"
+    }
+  ],
+  "dependency_closure_paths": [
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.schema.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "dc761be3f21c9ebc23b730a5d8d431cde52b5791",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.schema.json",
+      "target_blob_oid": "eebae750f4935df6685e60445cb55004cb3ee5e9",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/working-brief.presentation.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_runtime/contracts/pds_health/working-brief.presentation.json",
+      "target_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_runtime/src/ix/presentation.rs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "78e359b3397a08aa3ad6964ad71c6a4ba873dcff",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/src/ix/presentation.rs",
+      "target_blob_oid": "d90c73a677ed1a2411fd145514f007bea9ecfd81",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/ix-reference.html",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "6e36397615334e666c6e591d6da58b794c0a8628",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/ix-reference.html",
+      "target_blob_oid": "6e36397615334e666c6e591d6da58b794c0a8628",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveCompositionRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "22531006ee970a81352f74e9bc9b49de31e93f05",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveCompositionRecipe.tsx",
+      "target_blob_oid": "22531006ee970a81352f74e9bc9b49de31e93f05",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveInformationLensRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "ef2a3a805ba840b5fd50f2fccd1665de938a5d94",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveInformationLensRecipe.tsx",
+      "target_blob_oid": "ef2a3a805ba840b5fd50f2fccd1665de938a5d94",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AmbientAgentContinuityRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "4bdfadf4106c4d5dcc4e25a8653a38eae4d4c07c",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AmbientAgentContinuityRecipe.tsx",
+      "target_blob_oid": "4bdfadf4106c4d5dcc4e25a8653a38eae4d4c07c",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AnalyzeWhyRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "7725550ae3d2d79c9198a178feb97f409fbf670d",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AnalyzeWhyRecipe.tsx",
+      "target_blob_oid": "7725550ae3d2d79c9198a178feb97f409fbf670d",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AttentionStewardshipRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "8ffc3bec9168b3056c0d811718372896b98105eb",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AttentionStewardshipRecipe.tsx",
+      "target_blob_oid": "8ffc3bec9168b3056c0d811718372896b98105eb",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ContextualConversationRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "6a8962c3884d52cb9f0f7b8bd5a39fb73cede1e6",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ContextualConversationRecipe.tsx",
+      "target_blob_oid": "6a8962c3884d52cb9f0f7b8bd5a39fb73cede1e6",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/IxReferenceApp.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "cf32e972552486e7a9575082cfd4764e12a76bce",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/IxReferenceApp.tsx",
+      "target_blob_oid": "cf32e972552486e7a9575082cfd4764e12a76bce",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/SituationToStrategyRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "62c8086c653e9f381aba170d4b8e2a0df2d569d4",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/SituationToStrategyRecipe.tsx",
+      "target_blob_oid": "62c8086c653e9f381aba170d4b8e2a0df2d569d4",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/WorkingGoalPlanRecipe.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "c83442fbf45242920b6bcb7dd0e706fc058f218a",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/WorkingGoalPlanRecipe.tsx",
+      "target_blob_oid": "c83442fbf45242920b6bcb7dd0e706fc058f218a",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/components.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "db5c3da70ce4e3f8980383b0082322d3f69fa187",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/components.tsx",
+      "target_blob_oid": "6df77fd2e919c61f0d686409ae97db8a97051641",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/contract.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "859c3adc4e48de891f3f0e4faf339936a82979be",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/contract.ts",
+      "target_blob_oid": "a5d50dafb0672cf8b414e30481752f8ee277db97",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/fixtures.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "4f21a5ba7c4c3c8963aac4ce257d66db685e3a5e",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/fixtures.ts",
+      "target_blob_oid": "67feae26bba4cc3c1931a5d6df9e8e2febdad7c0",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ix-reference.css",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "5e72d1c16a85cec04229f6593926fe5473942915",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ix-reference.css",
+      "target_blob_oid": "5e72d1c16a85cec04229f6593926fe5473942915",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/main.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "aab9a310a170fd6b1e2b35f7a2a12d65424b5d81",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/main.tsx",
+      "target_blob_oid": "aab9a310a170fd6b1e2b35f7a2a12d65424b5d81",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/useFixtureRun.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "d8ddad9f03d442a47ee77ca0721d5b3d3d109bdb",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/useFixtureRun.ts",
+      "target_blob_oid": "d8ddad9f03d442a47ee77ca0721d5b3d3d109bdb",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "3360eaaf41b873f6963eb01c1e6486f6405d3ac6",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+      "target_blob_oid": "3360eaaf41b873f6963eb01c1e6486f6405d3ac6",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/.gitignore",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "c2658d7d1b31848c3b71960543cb0368e56cd4c7",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/.gitignore",
+      "target_blob_oid": "c2658d7d1b31848c3b71960543cb0368e56cd4c7",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/ix-presentation-contract/README.md",
+        "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+        "appfw_ui/pds_health/ix-presentation-contract/package.json",
+        "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/fixtures/working-brief.presentation.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/fixtures/working-brief.presentation.json",
+      "target_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/ix-presentation-contract/README.md",
+        "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+        "appfw_ui/pds_health/ix-presentation-contract/package.json",
+        "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.presentation.v1.schema.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "dc761be3f21c9ebc23b730a5d8d431cde52b5791",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.presentation.v1.schema.json",
+      "target_blob_oid": "eebae750f4935df6685e60445cb55004cb3ee5e9",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/ix-presentation-contract/README.md",
+        "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+        "appfw_ui/pds_health/ix-presentation-contract/package.json",
+        "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/contract.test.mjs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "e8b0c68542a0e24f5b70f20c47e096595a45c672",
+      "current_main_blob_oid": null,
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/contract.test.mjs",
+      "target_blob_oid": "b6874746312b9a45e7eb80c254c7b521a2e0b321",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/ix-presentation-contract/README.md",
+        "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+        "appfw_ui/pds_health/ix-presentation-contract/package.json",
+        "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+        "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/.gitignore",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "1eae0cf6700cebfee743504d0bdeaf642a11f012",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/.gitignore",
+      "target_blob_oid": "1eae0cf6700cebfee743504d0bdeaf642a11f012",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/babel.config.cjs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "74d25f7467c203d6b3815a75af86796fb881c558",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/babel.config.cjs",
+      "target_blob_oid": "74d25f7467c203d6b3815a75af86796fb881c558",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/native-components.rntl.test.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "df058edc662ff51e2959f3a0436f6907326e516c",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/native-components.rntl.test.tsx",
+      "target_blob_oid": "df058edc662ff51e2959f3a0436f6907326e516c",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/package-boundary.test.mjs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "656f4ae348249168fae79e68b3d3e474200264c9",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/scripts/package-boundary.test.mjs",
+      "target_blob_oid": "656f4ae348249168fae79e68b3d3e474200264c9",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/design-data.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "65e78dbb3472cc51d8a625b24a7a58c53810fa6a",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/src/design-data.ts",
+      "target_blob_oid": "65e78dbb3472cc51d8a625b24a7a58c53810fa6a",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/generated/pdsNativeDesignData.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/src/generated/pdsNativeDesignData.ts",
+      "target_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/tsconfig.build.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "f2f5af1ed960a8d1ad0035a69284366d218cb443",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/tsconfig.build.json",
+      "target_blob_oid": "f2f5af1ed960a8d1ad0035a69284366d218cb443",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/tsconfig.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "695e50d15187e742f53e7f0f17a95a96bfc83aa2",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/native-components/tsconfig.json",
+      "target_blob_oid": "695e50d15187e742f53e7f0f17a95a96bfc83aa2",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/generate-pds-native-design-data.mjs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "3be49865b23c067fbe684889f3359fedf8fccdbd",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/tokens/generate-pds-native-design-data.mjs",
+      "target_blob_oid": "3be49865b23c067fbe684889f3359fedf8fccdbd",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/native-components/README.md",
+        "appfw_ui/pds_health/native-components/package-lock.json",
+        "appfw_ui/pds_health/native-components/package.json",
+        "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+        "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+        "appfw_ui/pds_health/native-components/src/index.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pds-native-design-data.test.mjs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "6474d640a099603a972e428780b9484dfab489e2",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/tokens/pds-native-design-data.test.mjs",
+      "target_blob_oid": "6474d640a099603a972e428780b9484dfab489e2",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/native-components/README.md",
+        "appfw_ui/pds_health/native-components/package-lock.json",
+        "appfw_ui/pds_health/native-components/package.json",
+        "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+        "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+        "appfw_ui/pds_health/native-components/src/index.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "907634f80b8855e879c78597e5af9cee010d202d",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.json",
+      "target_blob_oid": "907634f80b8855e879c78597e5af9cee010d202d",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/native-components/README.md",
+        "appfw_ui/pds_health/native-components/package-lock.json",
+        "appfw_ui/pds_health/native-components/package.json",
+        "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+        "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+        "appfw_ui/pds_health/native-components/src/index.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "current_main_blob_oid": null,
+      "disposition": "byte_preserve",
+      "target_path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.ts",
+      "target_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Reviewed behavior depends on this current-main-absent closure path.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/native-components/README.md",
+        "appfw_ui/pds_health/native-components/package-lock.json",
+        "appfw_ui/pds_health/native-components/package.json",
+        "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+        "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+        "appfw_ui/pds_health/native-components/src/index.tsx"
+      ]
+    },
+    {
+      "path": "Cargo.lock",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "c93e6eaf25bd9fb1bdffb1dea0d3b37d62b0e28a",
+      "current_main_blob_oid": "7c63308c8f0191f4c4bb65ba4daf70767c29338e",
+      "disposition": "reconcile",
+      "target_path": "Cargo.lock",
+      "target_blob_oid": "PENDING_INTEGRATION",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "integration",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "The root lock is reconciled only after the immutable Leaf A handoff.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_runtime/Cargo.toml",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "758181a70441fc99b4cdb9895e94cec2c4abc413",
+      "current_main_blob_oid": "d6d86c2f72176e48eb48086d03ffe8dbdc7ecc3e",
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/Cargo.toml",
+      "target_blob_oid": "d897fd644be489366bb7b7864192ca1ab5e4cc67",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_runtime/src/lib.rs",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "cb8982577e09cb3992ff147e08a2718d41a3406b",
+      "current_main_blob_oid": "8dc9246a6c5e523108ab1409b640271a7d670254",
+      "disposition": "reconcile",
+      "target_path": "appfw_runtime/src/lib.rs",
+      "target_blob_oid": "79c6d1d468923be4bf2de62618c767c9e852ca6d",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/App.tsx",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "498537ba9b5e4e08c2b83da45bcd149c5065fc65",
+      "current_main_blob_oid": "1f0a5eeff1ec2f379398e1ed99a0e0b46fc1d339",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/App.tsx",
+      "target_blob_oid": "759e9171144cc7cab0a76ec2a3892ec9aa1da2f3",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/app.css",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "886fb1fc41ba9c0082169ace5ee856a46bed0d8a",
+      "current_main_blob_oid": "02f689084c60a339250d6406e131d21a49d49c50",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/src/app.css",
+      "target_blob_oid": "5e9d7fb8cdec971d12fdc464178309b364237480",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/vite.config.ts",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "2fa1163d3efe82ec545b5a05cf764d305fe97428",
+      "current_main_blob_oid": "a45d2d5213fd44485b70e764362a90ac6c04b249",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/catalog-app/vite.config.ts",
+      "target_blob_oid": "f85a6ddad63d0ebde3ded274b75c9edc51c03fa4",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+        "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+        "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/styles.css",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "c8b471c493ad5f4fb14fbeb29778d1239e4e6fbd",
+      "current_main_blob_oid": "77d93d9604ec862f8afea77e03c132b368083cb6",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/components/src/styles.css",
+      "target_blob_oid": "c8b471c493ad5f4fb14fbeb29778d1239e4e6fbd",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/components/README.md",
+        "appfw_ui/pds_health/components/package-lock.json",
+        "appfw_ui/pds_health/components/package.json",
+        "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+        "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+        "appfw_ui/pds_health/components/src/catalog.ts",
+        "appfw_ui/pds_health/components/src/index.ts",
+        "appfw_ui/pds_health/components/src/intelligence-presentation.tsx"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/tokens.dtcg.json",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+      "source_blob_oid": "ed2dd04fa69906593218f6c1a64b0916e8720c84",
+      "current_main_blob_oid": "45b09f444d28afa7bb5272d76c0ee6082e392933",
+      "disposition": "reconcile",
+      "target_path": "appfw_ui/pds_health/tokens/tokens.dtcg.json",
+      "target_blob_oid": "ed2dd04fa69906593218f6c1a64b0916e8720c84",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "Current-main bytes require an explicit equivalent-or-stronger reconciliation.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_ui/pds_health/native-components/README.md",
+        "appfw_ui/pds_health/native-components/package-lock.json",
+        "appfw_ui/pds_health/native-components/package.json",
+        "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+        "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+        "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+        "appfw_ui/pds_health/native-components/src/index.tsx"
+      ]
+    },
+    {
+      "path": "scripts/check_app_gen_backend_equivalence.sh",
+      "source_kind": "dependency_closure",
+      "source_commit_oid": "44770f43f61fa52c928b339d0677091f5b593aef",
+      "source_blob_oid": "6ee9d06d407a4d6c8039beb382a98f43d7fa19ad",
+      "current_main_blob_oid": "14c88e93ca315a0a22575e99a90dc623571d15a3",
+      "disposition": "byte_preserve",
+      "target_path": "scripts/check_app_gen_backend_equivalence.sh",
+      "target_blob_oid": "6ee9d06d407a4d6c8039beb382a98f43d7fa19ad",
+      "preserved_obligations": [
+        "Preserve the reviewed modular IX/PDS contract or prove equivalent-or-stronger reconciliation."
+      ],
+      "superseded_claims": [],
+      "custody": "leaf_a",
+      "decision_authority": "0fd733c8c156c86a37b6e47922f9ffc0abed3692aee6a6fa79e037d016607881",
+      "review_evidence": "07a364ee82fdba65d38d66bb3afe0038b305e9b8",
+      "rationale": "The reviewed one-line generator correction carries runtime contracts into backend-equivalence projections.",
+      "delivery_credit": "none",
+      "required_by_reviewed_paths": [
+        "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+        "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+        "appfw_runtime/src/ix/contract.rs",
+        "appfw_runtime/src/ix/lifecycle.rs",
+        "appfw_runtime/src/ix/mod.rs",
+        "appfw_runtime/src/ix/recipe.rs"
+      ]
+    }
+  ],
+  "candidate_diff_coverage": [
+    {
+      "path": "CHANGELOG.md",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "CHANGELOG.md",
+      "candidate_blob_oid": "d05a608e27d937c5345949d50436cc12fcbf826c",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_cli/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_cli/Cargo.toml",
+      "candidate_blob_oid": "27d1a5eafa1ecb4a44892c64d065fe7ef8bbd7da",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_provider_mongo/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_provider_mongo/Cargo.toml",
+      "candidate_blob_oid": "09245fc2bf07238227868b75c7d9eeda0032635c",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_provider_mssql/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_provider_mssql/Cargo.toml",
+      "candidate_blob_oid": "a38caaf3d12277768eeb552bc34b61e0641f9bb3",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_provider_neo4j/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_provider_neo4j/Cargo.toml",
+      "candidate_blob_oid": "398fca71dde972b2389b8afe5503af8215026cd4",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_provider_postgres/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_provider_postgres/Cargo.toml",
+      "candidate_blob_oid": "ef5a9bc060d1af37bed307be986cc92f80062414",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_provider_snowflake/Cargo.toml",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_provider_snowflake/Cargo.toml",
+      "candidate_blob_oid": "0702e99a1783f223100d8a155fa3023a5170d9a9",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/Cargo.toml",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_runtime/Cargo.toml",
+      "admitted_root": "appfw_runtime/Cargo.toml",
+      "candidate_blob_oid": "d897fd644be489366bb7b7864192ca1ab5e4cc67",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.provenance.json",
+      "admitted_root": "appfw_runtime/contracts/pds_health/**",
+      "candidate_blob_oid": "f6b6a34d3c251142d58c20b995453ddfc7fef307",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.schema.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.schema.json",
+      "admitted_root": "appfw_runtime/contracts/pds_health/**",
+      "candidate_blob_oid": "eebae750f4935df6685e60445cb55004cb3ee5e9",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+      "admitted_root": "appfw_runtime/contracts/pds_health/**",
+      "candidate_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.provenance.json",
+      "admitted_root": "appfw_runtime/contracts/pds_health/**",
+      "candidate_blob_oid": "df29219f619638f0ed114956a1afa988b3f6c458",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": true
+    },
+    {
+      "path": "appfw_runtime/contracts/pds_health/working-brief.presentation.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_runtime/contracts/pds_health/working-brief.presentation.json",
+      "admitted_root": "appfw_runtime/contracts/pds_health/**",
+      "candidate_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/auth.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/src/auth.rs",
+      "candidate_blob_oid": "b2cc1b11e613fc085618ccae27b13085ab33864a",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ingress.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/src/ingress.rs",
+      "candidate_blob_oid": "d76cf117e25e9ab49945b1b712108abf25dc03d1",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/contract.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/src/ix/contract.rs",
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "757e3fc17f984fd4a9b876d5daa3df28b56f1193",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/lifecycle.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/src/ix/lifecycle.rs",
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "24a7a538022acdba06b8e1d7fed3951f00a87a23",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/mod.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/src/ix/mod.rs",
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "8e5446550297e816e4989bb74f64912426079919",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/orchestration.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "6ea933fe51d5373110d84d839cdb779285e5fd3b",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/presentation.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_runtime/src/ix/presentation.rs",
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "d90c73a677ed1a2411fd145514f007bea9ecfd81",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/recipe.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_runtime/src/ix/recipe.rs",
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "205532dd4ad36c7751963a0e7be16868c482dc00",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/ix/transport.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/src/ix/**",
+      "candidate_blob_oid": "101e1d0b74751d0307f1165f3700cebb173d9e95",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/lib.rs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_runtime/src/lib.rs",
+      "admitted_root": "appfw_runtime/src/lib.rs",
+      "candidate_blob_oid": "79c6d1d468923be4bf2de62618c767c9e852ca6d",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/src/routing.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/src/routing.rs",
+      "candidate_blob_oid": "147b4409006bff55411925f44e3295bae1e803d3",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_actor_injection.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "15cb977a6591bd7203274fc501aba8ca06270211",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_clone.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "8bf396d1f9d3e3a6b1946c1c101566308948ebf4",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_fields.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "925dcfec034d22c9438b13fc5fb6b5e6c7ca4b26",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_legacy_assembly.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "aaa28676712422a3f1357ba35d5d8834d6c7a726",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_service_substitution.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "7a6c15212e8f20a9412c115f248a3d67ef229762",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_bad_verified_human.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "9b5ca8dbda377b96af6702f12aa0b85fa8da4d30",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/fixtures/ix/external_good.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/fixtures/ix/**",
+      "candidate_blob_oid": "6d9e2f5ad18e90c29c7fa38080da367e27176a82",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_runtime/tests/ix_transport_orchestration.rs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_runtime/tests/ix_transport_orchestration.rs",
+      "candidate_blob_oid": "f9f87cb25e7bd8e76ce6b8a97c87c12abac182bd",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/CHANGELOG.md",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/CHANGELOG.md",
+      "admitted_root": "appfw_ui/pds_health/CHANGELOG.md",
+      "candidate_blob_oid": "06da8321306cd763327063ced2c02756b6f177d9",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/ix-reference.html",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/ix-reference.html",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/ix-reference.html",
+      "candidate_blob_oid": "6e36397615334e666c6e591d6da58b794c0a8628",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/scripts/check-ix-reference.mjs",
+      "candidate_blob_oid": "6598d67cffab2da9716f431241e06363cc5f64cd",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/scripts/ix-reference-spec-source.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/catalog-app/scripts/ix-reference-spec-source.mjs",
+      "candidate_blob_oid": "ee7305eab1a3a03489025cdd59510cf393cfa683",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/scripts/ix-reference-spec-source.test.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/catalog-app/scripts/ix-reference-spec-source.test.mjs",
+      "candidate_blob_oid": "62835c435eeed649d571dfd5ed8980c23c6cd5c2",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/App.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/App.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/App.tsx",
+      "candidate_blob_oid": "759e9171144cc7cab0a76ec2a3892ec9aa1da2f3",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/app.css",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/app.css",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/app.css",
+      "candidate_blob_oid": "5e9d7fb8cdec971d12fdc464178309b364237480",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/examples.tsx",
+      "candidate_blob_oid": "4894967cc39263ec5ce0e7bf228890b9e230d525",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveCompositionRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveCompositionRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "22531006ee970a81352f74e9bc9b49de31e93f05",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveInformationLensRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AdaptiveInformationLensRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "ef2a3a805ba840b5fd50f2fccd1665de938a5d94",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AmbientAgentContinuityRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AmbientAgentContinuityRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "4bdfadf4106c4d5dcc4e25a8653a38eae4d4c07c",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AnalyzeWhyRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AnalyzeWhyRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "7725550ae3d2d79c9198a178feb97f409fbf670d",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AttentionStewardshipRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/AttentionStewardshipRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "8ffc3bec9168b3056c0d811718372896b98105eb",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ContextualConversationRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ContextualConversationRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "6a8962c3884d52cb9f0f7b8bd5a39fb73cede1e6",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/IxReferenceApp.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/IxReferenceApp.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "cf32e972552486e7a9575082cfd4764e12a76bce",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/SituationToStrategyRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/SituationToStrategyRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "62c8086c653e9f381aba170d4b8e2a0df2d569d4",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/WorkingGoalPlanRecipe.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/WorkingGoalPlanRecipe.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "c83442fbf45242920b6bcb7dd0e706fc058f218a",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/components.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/components.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "6df77fd2e919c61f0d686409ae97db8a97051641",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/contract.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/contract.ts",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "a5d50dafb0672cf8b414e30481752f8ee277db97",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/fixtures.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/fixtures.ts",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "67feae26bba4cc3c1931a5d6df9e8e2febdad7c0",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ix-reference.css",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/ix-reference.css",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "5e72d1c16a85cec04229f6593926fe5473942915",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/main.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/main.tsx",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "aab9a310a170fd6b1e2b35f7a2a12d65424b5d81",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/ix-reference/useFixtureRun.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/ix-reference/useFixtureRun.ts",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/ix-reference/**",
+      "candidate_blob_oid": "d8ddad9f03d442a47ee77ca0721d5b3d3d109bdb",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/src/lib/snippets.ts",
+      "candidate_blob_oid": "d6d407de6e89181a8683323c88d9d6d5283a900b",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/tsconfig.json",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/catalog-app/tsconfig.json",
+      "candidate_blob_oid": "eeb05e4b2f8f94112c9b213c02673594e8ffa41a",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/catalog-app/vite.config.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/catalog-app/vite.config.ts",
+      "admitted_root": "appfw_ui/pds_health/catalog-app/vite.config.ts",
+      "candidate_blob_oid": "f85a6ddad63d0ebde3ded274b75c9edc51c03fa4",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/README.md",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/README.md",
+      "admitted_root": "appfw_ui/pds_health/components/README.md",
+      "candidate_blob_oid": "a30e64f900472c1705b509f90aee5374a6a7b777",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/package-lock.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/package-lock.json",
+      "admitted_root": "appfw_ui/pds_health/components/package-lock.json",
+      "candidate_blob_oid": "b0b2a45cb1ad3b0c3da7eda09cf09434a43ab9ea",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/package.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/package.json",
+      "admitted_root": "appfw_ui/pds_health/components/package.json",
+      "candidate_blob_oid": "371fd62c36d8cf498e465ca9da227ec02d66d3de",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/scripts/check-package.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/components/scripts/check-package.mjs",
+      "candidate_blob_oid": "839652627360f57a32cf5d4769514d8c0e1e2be4",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/components/scripts/intelligence-presentation-contract.test.mjs",
+      "candidate_blob_oid": "eaa1c5ea0ec21644f9618bc060d9f222f325a55f",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/components/scripts/ix-recipes.test.mjs",
+      "candidate_blob_oid": "26b83395def652ff7785254d76b165909f331e71",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/catalog.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/src/catalog.ts",
+      "admitted_root": "appfw_ui/pds_health/components/src/catalog.ts",
+      "candidate_blob_oid": "7f4872e6a0886d22e55658add74f30c8cc7d8101",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+      "admitted_root": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+      "candidate_blob_oid": "3360eaaf41b873f6963eb01c1e6486f6405d3ac6",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+      "admitted_root": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+      "candidate_blob_oid": "c1bca15dfcc9bdc17de95d892e3fcd425f357f27",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+      "admitted_root": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+      "candidate_blob_oid": "afecfc2b887675cfc4051af92fac472d654f2f11",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/styles.css",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/components/src/styles.css",
+      "admitted_root": "appfw_ui/pds_health/components/src/styles.css",
+      "candidate_blob_oid": "c8b471c493ad5f4fb14fbeb29778d1239e4e6fbd",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/components/vite.config.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/components/vite.config.mjs",
+      "admitted_root": "appfw_ui/pds_health/components/vite.config.mjs",
+      "candidate_blob_oid": "3e55beeb766b47b51f8780b68b6526df4863ef32",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/.gitignore",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/.gitignore",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "c2658d7d1b31848c3b71960543cb0368e56cd4c7",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/README.md",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/README.md",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "1a7f8a0a93097c96c5f63d1b7615831aa518755c",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/fixtures/working-brief.presentation.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/fixtures/working-brief.presentation.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "94aeb48afb348f28e5eb5d5a534218ced9ed0017",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/package-lock.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "0de1d7f7ab2cf06a474540554e92208b86bcc2e5",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/package.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/package.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "40556e8b490c50a4b1fa9b505d8af69babfa1e7a",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "90cc5f4a2894aa1623a4248aaccd0c188e2b39c4",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.presentation.v1.schema.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.presentation.v1.schema.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "eebae750f4935df6685e60445cb55004cb3ee5e9",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registration.v1.schema.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "c8083c5aaa7c6e7779d68c733dd71a2c000f5d1b",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.recipe-registry.v1.schema.json",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "4785e1969660b7dea2ce852d73da15a6b59ba538",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/check-package.mjs",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "dfe0f788700a0ccb5d59dcc160c5c028e892d9e7",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/contract.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/contract.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "b6874746312b9a45e7eb80c254c7b521a2e0b321",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-contract.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "c6753dd763b518b2c2e0bb8eeccfbf82f39689ed",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-types.fixture.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/scripts/recipe-types.fixture.ts",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "a025660ae738e54b05fceb121fb7770bf3b972f0",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/index.d.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/src/index.d.ts",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "326774c7d188c9524d37a1b07b7cd1a711a01153",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/index.js",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/src/index.js",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "2e4318122849eda9f9f972120a3d45c3df47d933",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.d.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.d.ts",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "56ba669e8ae9591b91ff03eee215e26a2c973696",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.js",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/ix-presentation-contract/src/recipes.js",
+      "admitted_root": "appfw_ui/pds_health/ix-presentation-contract/**",
+      "candidate_blob_oid": "eb32953c6532ae0e33dd7bee72e08c8b3c11a87f",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/.gitignore",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/.gitignore",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "1eae0cf6700cebfee743504d0bdeaf642a11f012",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/README.md",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/README.md",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "d2445b613067ff4da0377d046dc8cb96ccfcdd4e",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/babel.config.cjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/babel.config.cjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "74d25f7467c203d6b3815a75af86796fb881c558",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/package-lock.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/package-lock.json",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "418ccfbebe85f5cd7a6a1e948788060d3b9828f6",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/package.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/package.json",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "27183219852329e410dad853a332e15b06b2dc8a",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/check-package.mjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "79ba6ede5c72c9fbdd21525f83d2a9195f07b214",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/detached-consumer-proof.mjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "20f1072492e9e34b1e8f57c78cf72342a9e14c6d",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/ix-recipes-contract.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "f32e2cf09cfc3d41127fe5f9169c3cbb9af08742",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/ix-recipes.rntl.test.tsx",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "1ec2827c99da0d5a653d4335bd2ac5c199b8b761",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/native-components.rntl.test.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/native-components.rntl.test.tsx",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "df058edc662ff51e2959f3a0436f6907326e516c",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/scripts/package-boundary.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/scripts/package-boundary.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "656f4ae348249168fae79e68b3d3e474200264c9",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/design-data.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/src/design-data.ts",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "65e78dbb3472cc51d8a625b24a7a58c53810fa6a",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/generated/pdsNativeDesignData.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/src/generated/pdsNativeDesignData.ts",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/index.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/src/index.tsx",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "68c54b0a4af2ddc89ab5186ca425d24cd2aa0efd",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/ix-recipe-projection.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/src/ix-recipe-projection.ts",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "2cb85433b9287bd13da30e5bcdbfcfb403f34e95",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/src/ix-recipes.tsx",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/src/ix-recipes.tsx",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "1ab6a763e10c5531e82a32e8d28df61434b82257",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/tsconfig.build.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/tsconfig.build.json",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "f2f5af1ed960a8d1ad0035a69284366d218cb443",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/tsconfig.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/tsconfig.json",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "695e50d15187e742f53e7f0f17a95a96bfc83aa2",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/native-components/vite.config.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/native-components/vite.config.mjs",
+      "admitted_root": "appfw_ui/pds_health/native-components/**",
+      "candidate_blob_oid": "ff6903ddc56ce9df9ace2dcc775f180bce391764",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/reference/catalog.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/reference/catalog.json",
+      "admitted_root": "appfw_ui/pds_health/reference/catalog.json",
+      "candidate_blob_oid": "fcd2068724340af3740a7e45d2d629e113b85d79",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/reference/index.html",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/reference/index.html",
+      "admitted_root": "appfw_ui/pds_health/reference/index.html",
+      "candidate_blob_oid": "da8b0dfbd8353181a2a85ceda83b8b80abfaa2bb",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/scripts/compare-ix-package-archives.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/scripts/compare-ix-package-archives.mjs",
+      "candidate_blob_oid": "e2965f60e948fd7a9b90a35467f74a9374e3510c",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/scripts/compare-ix-package-archives.test.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "appfw_ui/pds_health/scripts/compare-ix-package-archives.test.mjs",
+      "candidate_blob_oid": "b59acb6b6e1c641c601ecc05158898b0fcc229c3",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/scripts/prove-native-packages-from-clean-checkout.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "appfw_ui/pds_health/scripts/prove-native-packages-from-clean-checkout.mjs",
+      "admitted_root": "appfw_ui/pds_health/scripts/prove-native-packages-from-clean-checkout.mjs",
+      "candidate_blob_oid": "8e5c1a9f71c52e8a18b24c516f6dbbf0c4ed4a73",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/generate-pds-native-design-data.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/tokens/generate-pds-native-design-data.mjs",
+      "admitted_root": "appfw_ui/pds_health/tokens/generate-pds-native-design-data.mjs",
+      "candidate_blob_oid": "3be49865b23c067fbe684889f3359fedf8fccdbd",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pds-native-design-data.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/tokens/pds-native-design-data.test.mjs",
+      "admitted_root": "appfw_ui/pds_health/tokens/pds-native-design-data.test.mjs",
+      "candidate_blob_oid": "6474d640a099603a972e428780b9484dfab489e2",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.json",
+      "admitted_root": "appfw_ui/pds_health/tokens/pdsNativeDesignData.json",
+      "candidate_blob_oid": "907634f80b8855e879c78597e5af9cee010d202d",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.ts",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/tokens/pdsNativeDesignData.ts",
+      "admitted_root": "appfw_ui/pds_health/tokens/pdsNativeDesignData.ts",
+      "candidate_blob_oid": "7720c8a3269b86dd24df5bbe8c317be521f82eae",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "appfw_ui/pds_health/tokens/tokens.dtcg.json",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "appfw_ui/pds_health/tokens/tokens.dtcg.json",
+      "admitted_root": "appfw_ui/pds_health/tokens/tokens.dtcg.json",
+      "candidate_blob_oid": "ed2dd04fa69906593218f6c1a64b0916e8720c84",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "docs/frontend/pds-health-design-system.md",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "docs/frontend/pds-health-design-system.md",
+      "candidate_blob_oid": "2d02d8792909ac149837a1ac9f1c84940b55883d",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "admitted_root": "docs/specs/ix-eight-vignette-shared-foundation-r1.md",
+      "candidate_blob_oid": "f6c82e7af62fa9c60eec85c44959ea98965acb02",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": true
+    },
+    {
+      "path": "docs/specs/ix-runtime-convergence-source-ledger-r1.json",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "docs/specs/ix-runtime-convergence-source-ledger-r1.json",
+      "candidate_blob_oid": "SELF_REFERENTIAL_LEDGER",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-appfw-proget-collisions.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-appfw-proget-collisions.mjs",
+      "candidate_blob_oid": "1ede174e102f91b96b07a2f09e04b13d2593b74b",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-appfw-proget-collisions.test.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-appfw-proget-collisions.test.mjs",
+      "candidate_blob_oid": "2b096eaf79fee11a5afc70c2cab033ce0cd6a3db",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-ix-runtime-consumers.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-ix-runtime-consumers.mjs",
+      "candidate_blob_oid": "c6e906abc83e325f13a35b2fec138048771259d6",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-ix-runtime-consumers.test.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-ix-runtime-consumers.test.mjs",
+      "candidate_blob_oid": "fd62cf3ae53526535146c7bb310de6ed17e38306",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-ix-runtime-convergence-source-ledger.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-ix-runtime-convergence-source-ledger.mjs",
+      "candidate_blob_oid": "282384c48b8e714e65a5b34ef4c43cfe2b197849",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-ix-runtime-convergence-source-ledger.test.mjs",
+      "coverage_kind": "lane_only_change",
+      "historical_collection": null,
+      "historical_path": null,
+      "admitted_root": "scripts/check-ix-runtime-convergence-source-ledger.test.mjs",
+      "candidate_blob_oid": "b001754ce6c70d89b0994b647048f86f19733510",
+      "rationale": "New current-main convergence implementation or proof output within an exact admitted root.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-pds-components.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "scripts/check-pds-components.mjs",
+      "admitted_root": "scripts/check-pds-components.mjs",
+      "candidate_blob_oid": "8a43e6cb3bddea67fa4ccaa9173e39350b20c082",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    },
+    {
+      "path": "scripts/check-pds-ix-runtime-contract.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "scripts/check-pds-ix-runtime-contract.mjs",
+      "admitted_root": "scripts/check-pds-ix-runtime-contract.mjs",
+      "candidate_blob_oid": "f608f11006cb011963a6081e763346fd78527050",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": true
+    },
+    {
+      "path": "scripts/check-pds-ix-runtime-contract.test.mjs",
+      "coverage_kind": "historical_record",
+      "historical_collection": "reviewed_source_paths",
+      "historical_path": "scripts/check-pds-ix-runtime-contract.test.mjs",
+      "admitted_root": "scripts/check-pds-ix-runtime-contract.test.mjs",
+      "candidate_blob_oid": "2a4c84057ce84aabc48ea4ed2203793934c895f3",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": true
+    },
+    {
+      "path": "scripts/check_app_gen_backend_equivalence.sh",
+      "coverage_kind": "historical_record",
+      "historical_collection": "dependency_closure_paths",
+      "historical_path": "scripts/check_app_gen_backend_equivalence.sh",
+      "admitted_root": "scripts/check_app_gen_backend_equivalence.sh",
+      "candidate_blob_oid": "6ee9d06d407a4d6c8039beb382a98f43d7fa19ad",
+      "rationale": "Candidate bytes are classified by the named historical record.",
+      "i2_overlay": false
+    }
+  ],
+  "nonclaims": [
+    "This ledger records a local reviewed working-base candidate only.",
+    "It grants no push, PR, merge, Product acceptance, package publication, release, deployment, live-provider, security, SRA/CAB, accepted-risk, native-device, hosted-durability, multi-replica, or production-readiness claim."
+  ]
+}

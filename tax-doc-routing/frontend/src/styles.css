@@ -1,0 +1,313 @@
+/* Product styles for Tax Document Routing. Everything visual comes from PDS: components and
+   `--pds-*` tokens. This file only holds layout composition the PDS catalog has no primitive for
+   (grids, stacks, small spacing helpers) and the sidebar brand. No raw colours, no product tokens. */
+@import '@appfw/pds-health-components/tokens.css';
+@import '@appfw/pds-health-components/styles.css';
+
+/* ---- base: overlays (dialogs, popovers) render in a portal outside the shell, so the base
+   font and colour must be set on the body, as in the other PDS products ---- */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--pds-color-surface-page);
+  color: var(--pds-color-text-default);
+  font-family: var(--pds-font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* digits line up in every table, KPI and chart label */
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- generic layout helpers ---- */
+.tax-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-4);
+}
+.tax-narrow {
+  max-width: 820px;
+  margin-inline: auto;
+}
+.tax-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pds-space-2);
+}
+.tax-wrap {
+  flex-wrap: wrap;
+}
+.tax-spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pds-space-3);
+}
+.tax-actions {
+  margin-block-start: var(--pds-space-2);
+}
+.tax-error-boundary {
+  padding: var(--pds-space-6);
+  max-width: 640px;
+  margin-inline: auto;
+}
+/* Stepper spans the full page width: the last step sits at the right edge instead of
+   leaving an empty column, so the progress line runs edge to edge. */
+.tax-stepper-wide .pds-process-stepper[data-orientation='horizontal'] {
+  grid-template-columns: repeat(calc(var(--pds-process-step-count) - 1), minmax(0, 1fr)) auto;
+}
+.tax-stepper-wide .pds-process-stepper__step:last-child {
+  justify-items: end;
+  text-align: end;
+}
+
+/* Side-by-side form sections: top-aligned, with room for PDS floating labels between fields. */
+.tax-form-sections > .pds-form-layout__fields {
+  gap: var(--pds-space-6);
+  align-items: start;
+}
+.tax-form-sections .pds-field-group {
+  align-content: start;
+  gap: var(--pds-space-5);
+}
+.tax-form-sections .pds-field-group__body {
+  padding-block-start: var(--pds-space-3);
+}
+.tax-form-sections .pds-field-group .pds-form-layout__fields {
+  gap: var(--pds-space-6);
+}
+
+.tax-muted {
+  color: var(--pds-color-text-muted);
+}
+.tax-subtle {
+  color: var(--pds-color-text-quiet);
+}
+.tax-mono {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.tax-section-title {
+  margin: 0;
+  font-size: var(--pds-font-size-lg);
+  font-weight: var(--pds-font-weight-semibold);
+}
+
+.tax-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--pds-space-4);
+  align-items: start;
+}
+.tax-two-col.tax-equal {
+  align-items: stretch;
+}
+.tax-two-col.tax-wide-left {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+.tax-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--pds-space-4);
+}
+.tax-filters {
+  display: grid;
+  /* Selects put their label above the box, the search field inside it: align the boxes. */
+  align-items: end;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--pds-space-4);
+  padding-block-end: var(--pds-space-4);
+}
+.tax-filters.tax-filters-3 {
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+}
+.tax-dialog-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--pds-space-5);
+  margin-block-start: var(--pds-space-3);
+}
+
+/* ---- lists ---- */
+.tax-plain-list {
+  list-style: none;
+  margin: 0 0 var(--pds-space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-2);
+}
+.tax-plan-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-3);
+}
+.tax-plan-list > li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-1);
+  padding: var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-surface-panel-soft);
+}
+.tax-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tax-history-list > li {
+  display: grid;
+  grid-template-columns: 170px 1fr auto;
+  gap: var(--pds-space-4);
+  padding-block: var(--pds-space-2);
+  border-block-end: 1px solid var(--pds-color-border-hairline);
+}
+.tax-history-list > li:last-child {
+  border-block-end: 0;
+}
+
+/* ---- definition list ---- */
+.tax-definition-list {
+  margin: 0;
+  display: grid;
+  gap: var(--pds-space-3) var(--pds-space-5);
+}
+.tax-definition-list[data-columns='1'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.tax-definition-list[data-columns='2'] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.tax-definition-list[data-columns='3'] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.tax-definition-list dt {
+  font-size: var(--pds-font-size-sm);
+  font-weight: var(--pds-font-weight-semibold);
+  color: var(--pds-color-text-muted);
+}
+.tax-definition-list dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---- AI panel and success hero ---- */
+.tax-ai-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-2);
+  padding: var(--pds-space-3) var(--pds-space-4);
+  border: 1px solid var(--pds-color-border-accent);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-state-accent-soft);
+}
+.tax-ai-panel h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--pds-space-2);
+  margin: 0;
+  font-size: var(--pds-font-size-md);
+}
+.tax-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pds-space-1);
+  text-align: center;
+  color: var(--pds-color-state-success);
+}
+.tax-success h2 {
+  margin: 0;
+  color: var(--pds-color-text-default);
+}
+
+/* ---- status badge ---- */
+.tax-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pds-space-1);
+  white-space: nowrap;
+}
+.tax-spin {
+  animation: tax-spin 0.9s linear infinite;
+}
+@keyframes tax-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tax-spin {
+    animation: none;
+  }
+}
+
+/* ---- sidebar ---- */
+.tax-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--pds-space-3);
+}
+.tax-sidebar-logo {
+  width: 32px;
+  height: 32px;
+}
+.tax-sidebar-brand-title {
+  font-weight: var(--pds-font-weight-bold);
+  font-size: var(--pds-font-size-md);
+}
+.tax-sidebar-nav-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-4);
+}
+.tax-sidebar-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-1);
+}
+.tax-sidebar-section-label {
+  padding: 0 var(--pds-space-3) var(--pds-space-1);
+  font-size: var(--pds-font-size-xs);
+  font-weight: var(--pds-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pds-color-text-quiet);
+}
+.tax-topbar-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pds-space-2);
+}
+
+@media (max-width: 1100px) {
+  .tax-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tax-two-col,
+  .tax-two-col.tax-wide-left,
+  .tax-dialog-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .tax-kpi-grid,
+  .tax-filters,
+  .tax-filters.tax-filters-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tax-history-list > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--pds-space-1);
+  }
+}

@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:appfw:planning:app-fabric-mobile-manifest-profile:v1",
+  "$comment": "Draft 2020-12 validation is necessary but not sufficient. A source-owned App Framework semantic checker must enforce capability/test-matrix consistency, exact Fabric registration binding, path ownership, and referenced-contract identity.",
+  "title": "App Fabric Mobile Manifest Profile",
+  "description": "Fail-closed M0 Prototype planning contract for an opt-in React Native and Expo application surface. Candidate and release values require a future versioned schema after their authority decisions; this schema is not yet part of the executable app-manifest contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "lifecycle_stage",
+    "maturity",
+    "candidate_ready",
+    "release_ready",
+    "release_authority",
+    "app_id",
+    "prototype_app_ref",
+    "prototype_identity_authority",
+    "enabled",
+    "target",
+    "renderer_projections",
+    "application_identity",
+    "fabric_contracts",
+    "experience_contract",
+    "api_contract",
+    "auth",
+    "capabilities",
+    "data_policy",
+    "build",
+    "update",
+    "distribution",
+    "test_matrix",
+    "ownership"
+  ],
+  "properties": {
+    "schema": {
+      "const": "appfw_mobile_manifest_profile@1"
+    },
+    "lifecycle_stage": {
+      "const": "prototype"
+    },
+    "maturity": {
+      "const": "experimental"
+    },
+    "candidate_ready": {
+      "const": false
+    },
+    "release_ready": {
+      "const": false
+    },
+    "release_authority": {
+      "const": "none"
+    },
+    "app_id": {
+      "type": "null",
+      "description": "Pending-registration Prototype profiles have no durable app_id. Only the Fabric registry may mint it under a future versioned contract."
+    },
+    "prototype_app_ref": {
+      "$ref": "#/$defs/stableId",
+      "description": "Namespaced local fixture identity only; never valid as fleet identity or an observation app_id."
+    },
+    "prototype_identity_authority": {
+      "const": "local-fixture-only"
+    },
+    "enabled": {
+      "const": true
+    },
+    "target": {
+      "const": "react-native-expo"
+    },
+    "renderer_projections": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "native-ios",
+          "native-android"
+        ]
+      }
+    },
+    "application_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ios_bundle_identifier",
+        "android_package",
+        "ownership_status"
+      ],
+      "properties": {
+        "ios_bundle_identifier": {
+          "$ref": "#/$defs/nonSecretValue"
+        },
+        "android_package": {
+          "$ref": "#/$defs/nonSecretValue"
+        },
+        "ownership_status": {
+          "enum": [
+            "prototype-placeholder",
+            "organization-owned"
+          ]
+        }
+      }
+    },
+    "fabric_contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registration_schema",
+        "component_snapshot_schema",
+        "observation_event_schema",
+        "registration_status",
+        "registration_record_ref",
+        "registration_surface",
+        "registration_targets",
+        "projection_to_snapshot_surface"
+      ],
+      "properties": {
+        "registration_schema": {
+          "$ref": "#/$defs/fabricRegistrationRef"
+        },
+        "component_snapshot_schema": {
+          "$ref": "#/$defs/componentSnapshotRef"
+        },
+        "observation_event_schema": {
+          "$ref": "#/$defs/observationEventRef"
+        },
+        "registration_status": {
+          "const": "pending"
+        },
+        "registration_record_ref": {
+          "type": "null"
+        },
+        "registration_surface": {
+          "const": "native_mobile"
+        },
+        "registration_targets": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "ios",
+              "android"
+            ]
+          }
+        },
+        "projection_to_snapshot_surface": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "native-ios",
+            "native-android"
+          ],
+          "properties": {
+            "native-ios": {
+              "const": "native_mobile_ios"
+            },
+            "native-android": {
+              "const": "native_mobile_android"
+            }
+          }
+        }
+      }
+    },
+    "experience_contract": {
+      "$ref": "#/$defs/versionedRef"
+    },
+    "api_contract": {
+      "$ref": "#/$defs/versionedRef"
+    },
+    "auth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "client_kind",
+        "flow",
+        "issuer_profile",
+        "embedded_secret",
+        "access_token_custody",
+        "renewal_material_custody",
+        "server_profile"
+      ],
+      "properties": {
+        "client_kind": {
+          "const": "oidc-public-client"
+        },
+        "flow": {
+          "const": "authorization-code-pkce"
+        },
+        "issuer_profile": {
+          "const": "local-synthetic"
+        },
+        "embedded_secret": {
+          "const": false
+        },
+        "access_token_custody": {
+          "const": "memory"
+        },
+        "renewal_material_custody": {
+          "const": "none"
+        },
+        "server_profile": {
+          "$ref": "#/$defs/versionedRef"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deep_links",
+        "push_notifications",
+        "biometrics",
+        "camera",
+        "files",
+        "offline_data"
+      ],
+      "properties": {
+        "deep_links": {
+          "$ref": "#/$defs/capabilityState"
+        },
+        "push_notifications": {
+          "$ref": "#/$defs/capabilityState"
+        },
+        "biometrics": {
+          "$ref": "#/$defs/capabilityState"
+        },
+        "camera": {
+          "$ref": "#/$defs/capabilityState"
+        },
+        "files": {
+          "$ref": "#/$defs/capabilityState"
+        },
+        "offline_data": {
+          "$ref": "#/$defs/capabilityState"
+        }
+      }
+    },
+    "data_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prototype_data",
+        "offline_persistence",
+        "push_payload"
+      ],
+      "properties": {
+        "prototype_data": {
+          "const": "synthetic-only"
+        },
+        "offline_persistence": {
+          "const": "disabled"
+        },
+        "push_payload": {
+          "const": "identifier-only"
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "development_build",
+        "expo_go_proof",
+        "custody_profile",
+        "toolchain_lock_ref"
+      ],
+      "properties": {
+        "development_build": {
+          "const": "required"
+        },
+        "expo_go_proof": {
+          "const": "insufficient"
+        },
+        "custody_profile": {
+          "const": "local-development-only"
+        },
+        "toolchain_lock_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "update": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_version_policy",
+        "ota_channel",
+        "native_change_requires_binary",
+        "recovery_proof_required"
+      ],
+      "properties": {
+        "runtime_version_policy": {
+          "const": "source-bound"
+        },
+        "ota_channel": {
+          "enum": [
+            "disabled",
+            "development"
+          ]
+        },
+        "native_change_requires_binary": {
+          "const": true
+        },
+        "recovery_proof_required": {
+          "const": true
+        }
+      }
+    },
+    "distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ios",
+        "android",
+        "release_authority"
+      ],
+      "properties": {
+        "ios": {
+          "$ref": "#/$defs/distributionState"
+        },
+        "android": {
+          "$ref": "#/$defs/distributionState"
+        },
+        "release_authority": {
+          "const": "none"
+        }
+      }
+    },
+    "test_matrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_smoke",
+        "candidate",
+        "physical_device_capabilities"
+      ],
+      "properties": {
+        "local_smoke": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "web-compact",
+              "ios-simulator",
+              "android-emulator"
+            ]
+          }
+        },
+        "candidate": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "web-responsive",
+              "ios-release-build",
+              "android-release-build",
+              "ios-physical-or-testflight",
+              "android-physical-or-play-internal"
+            ]
+          }
+        },
+        "physical_device_capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Planned candidate physical-device checks. A semantic checker must reject a capability-specific entry when that capability is disabled and require it when the capability is selected.",
+          "items": {
+            "enum": [
+              "push-notifications",
+              "biometrics",
+              "deep-links",
+              "secure-storage",
+              "background-lifecycle",
+              "camera-files",
+              "managed-device-posture"
+            ]
+          }
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generated",
+        "product_owned",
+        "forbidden_inputs"
+      ],
+      "properties": {
+        "generated": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "product_owned": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_inputs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "generated-web-typescript",
+              "prior-generated-mobile-output",
+              "product-specific-framework-fallbacks"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+    },
+    "nonSecretValue": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier only. Secrets and signing material are prohibited."
+    },
+    "versionedRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "version"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "fabricRegistrationRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "path"
+      ],
+      "properties": {
+        "schema": {
+          "const": "fabric_app_registration@1"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "componentSnapshotRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "path"
+      ],
+      "properties": {
+        "schema": {
+          "const": "app_component_snapshot@1"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "observationEventRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "path"
+      ],
+      "properties": {
+        "schema": {
+          "const": "fabric_observation_event@1"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "capabilityState": {
+      "enum": [
+        "disabled",
+        "prototype"
+      ]
+    },
+    "distributionState": {
+      "const": "development-only"
+    }
+  }
+}

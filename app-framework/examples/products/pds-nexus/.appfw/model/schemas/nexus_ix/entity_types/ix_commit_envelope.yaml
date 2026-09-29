@@ -1,0 +1,44 @@
+- id: fe6709fc-5894-4c8c-bcd1-f45c1ec19fe3
+  name: IxCommitEnvelope
+  is_table: true
+  indexes:
+  - run_id
+  - sequence
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  props:
+
+  - name: id
+    caption: Envelope Key
+    fragment: property-primary-key-string
+
+  - name: run_id
+    caption: Run
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: IxRun
+
+  - name: sequence
+    caption: Sequence
+    fragment: property-int-lg-required
+    is_read_only: true
+
+  - name: event_kind
+    caption: Event Kind
+    fragment: property-string-readonly-required
+
+  - name: envelope
+    caption: Canonical Envelope
+    fragment: property-json-required
+
+  - name: committed_at
+    caption: Committed At
+    fragment: property-date-time-required
+    is_read_only: true

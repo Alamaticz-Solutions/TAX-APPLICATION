@@ -1,0 +1,71 @@
+local.file_match "backend_logs" {
+  path_targets = [{
+    "__path__"    = "/var/log/app-framework/backend.log",
+    "job"         = "app-framework/backend",
+    "service"     = "backend",
+    "environment" = "compose",
+  }]
+}
+
+loki.source.file "backend_logs" {
+  targets    = local.file_match.backend_logs.targets
+  forward_to = [loki.process.backend.receiver]
+}
+
+loki.process "backend" {
+  forward_to = [loki.write.local.receiver]
+
+  // Defense in depth only: regulated data should be removed before logging.
+  stage.replace {
+    expression = "\\b[0-9]{3}-[0-9]{2}-[0-9]{4}\\b"
+    replace    = "[REDACTED_SSN]"
+  }
+
+  stage.replace {
+    expression = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+    replace    = "[REDACTED_EMAIL]"
+  }
+
+  stage.replace {
+    expression = "\\b(?:\\+?1[-. ]?)?\\(?[0-9]{3}\\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}\\b"
+    replace    = "[REDACTED_PHONE]"
+  }
+
+  stage.luhn {
+    replacement = "[REDACTED_LUHN]"
+  }
+
+  stage.json {
+    drop_malformed = false
+    expressions = {
+      "level"          = "level",
+      "target"         = "target",
+      "message"        = "fields.message",
+      "request_id"     = "fields.\"http.request_id\"",
+      "correlation_id" = "fields.\"app.correlation_id\"",
+      "route"          = "fields.\"http.route\"",
+    }
+  }
+
+  stage.labels {
+    values = {
+      "level" = "",
+    }
+  }
+
+  stage.structured_metadata {
+    values = {
+      "target"         = "",
+      "route"          = "",
+      "request_id"     = "",
+      "correlation_id" = "",
+    }
+  }
+}
+
+loki.write "local" {
+  endpoint {
+    url       = "http://loki:3100/loki/api/v1/push"
+    tenant_id = "app-framework-local"
+  }
+}

@@ -1,0 +1,474 @@
+[
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app",
+    "name": "Framework Local App",
+    "kind": "application",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "active",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:application",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "framework-app-web", "relationship": "contains" },
+      { "component_id": "framework-app-mobile", "relationship": "contains" },
+      { "component_id": "framework-app-service", "relationship": "contains" },
+      { "component_id": "framework-app-store", "relationship": "contains" },
+      { "component_id": "framework-app-ai-adapter", "relationship": "contains" },
+      { "component_id": "system-a-integration", "relationship": "depends_on" },
+      { "component_id": "system-b-integration", "relationship": "depends_on" },
+      { "component_id": "shared-ai", "relationship": "depends_on" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.contract",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:framework-app:contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app-web",
+    "name": "Framework App Web Interface",
+    "kind": "user_interface",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "active",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:web",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "framework-app-service", "relationship": "invokes" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.web",
+        "kind": "test",
+        "posture": "declared",
+        "uri": "fixture:framework-app:web",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app-mobile",
+    "name": "Framework App Mobile Interface",
+    "kind": "user_interface",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:mobile",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "framework-app-service", "relationship": "invokes" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.mobile",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:framework-app:mobile",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app-service",
+    "name": "Framework App Service",
+    "kind": "service",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "active",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:backend",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "framework-app-store", "relationship": "reads_from" },
+      { "component_id": "framework-app-store", "relationship": "writes_to" },
+      { "component_id": "system-a-store", "relationship": "reads_from" },
+      { "component_id": "system-b-store", "relationship": "reads_from" },
+      { "component_id": "system-a-topic", "relationship": "consumes_from" },
+      { "component_id": "system-b-topic", "relationship": "consumes_from" },
+      { "component_id": "system-a-integration", "relationship": "invokes" },
+      { "component_id": "system-b-integration", "relationship": "invokes" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.backend",
+        "kind": "test",
+        "posture": "declared",
+        "uri": "fixture:framework-app:backend",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app-store",
+    "name": "Framework App Store",
+    "kind": "database",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "active",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:data-store-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.data-store",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:framework-app:data-store-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "framework-app-ai-adapter",
+    "name": "Framework App AI Adapter",
+    "kind": "integration",
+    "owner_id": "product-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.framework-app",
+      "source_ref": "fixture:framework-app:ai-adapter",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "shared-ai", "relationship": "invokes" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.framework-app.ai-adapter",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:framework-app:ai-adapter",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-a-store",
+    "name": "System A Data Store",
+    "kind": "database",
+    "owner_id": "enterprise-data-platform",
+    "version": "fixture-schema-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-a",
+      "source_ref": "fixture:system-a:data-store-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-a.data-store",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-a:data-store-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-b-store",
+    "name": "System B Data Store",
+    "kind": "database",
+    "owner_id": "enterprise-data-platform",
+    "version": "fixture-schema-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-b",
+      "source_ref": "fixture:system-b:data-store-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-b.data-store",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-b:data-store-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-a-topic",
+    "name": "System A Domain Event Topic",
+    "kind": "event_topic",
+    "owner_id": "enterprise-data-platform",
+    "version": "fixture-schema-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-a",
+      "source_ref": "fixture:system-a:event-topic-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-a.topic",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-a:event-topic-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-b-topic",
+    "name": "System B Domain Event Topic",
+    "kind": "event_topic",
+    "owner_id": "enterprise-data-platform",
+    "version": "fixture-schema-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-b",
+      "source_ref": "fixture:system-b:event-topic-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-b.topic",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-b:event-topic-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-a-integration",
+    "name": "System A Integration Adapter",
+    "kind": "integration",
+    "owner_id": "integration-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-a",
+      "source_ref": "fixture:system-a:integration",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "system-a-store", "relationship": "writes_to" },
+      { "component_id": "system-a-topic", "relationship": "publishes_to" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-a.integration",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-a:integration",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "system-b-integration",
+    "name": "System B Integration Adapter",
+    "kind": "integration",
+    "owner_id": "integration-engineering",
+    "version": "fixture-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "internal",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.system-b",
+      "source_ref": "fixture:system-b:integration",
+      "sha256": null
+    },
+    "dependencies": [
+      { "component_id": "system-b-store", "relationship": "writes_to" },
+      { "component_id": "system-b-topic", "relationship": "publishes_to" }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "fixture.system-b.integration",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:system-b:integration",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  },
+  {
+    "schema_version": "appfw.fabric.component@1",
+    "component_id": "shared-ai",
+    "name": "Shared AI Service",
+    "kind": "artificial_intelligence_service",
+    "owner_id": "ai-platform",
+    "version": "fixture-contract-1",
+    "revision": 1,
+    "environment": "local",
+    "classification": "restricted",
+    "lifecycle": "registered",
+    "provenance": {
+      "source": "local_fixture",
+      "authority_id": "fixture.shared-ai",
+      "source_ref": "fixture:shared-ai:service-contract",
+      "sha256": null
+    },
+    "dependencies": [],
+    "evidence": [
+      {
+        "evidence_id": "fixture.shared-ai.contract",
+        "kind": "contract",
+        "posture": "declared",
+        "uri": "fixture:shared-ai:service-contract",
+        "sha256": null
+      }
+    ],
+    "health": {
+      "health": "unknown",
+      "availability": "unknown",
+      "source": "local_fixture",
+      "evidence_id": null
+    }
+  }
+]

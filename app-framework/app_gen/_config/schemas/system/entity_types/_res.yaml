@@ -1,0 +1,2311 @@
+- id: 686cfa84-19e4-4d28-b841-ed22c1997d54
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: ConcatenateComputed
+  pascal_n: ConcatenateComputeds
+  snake_1: concatenate_computed
+  snake_n: concatenate_computeds
+  caption_1: Concatenate Computed
+  caption_n: Concatenate Computeds
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 910636435f5cd018
+    name: prop_names
+    caption: Prop Names
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      allowNewItems: true
+  - id: bae8d66549e86711
+    name: delimiter
+    caption: Delimiter
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: 0233d643-809d-4160-b879-82fb7d1c2eb4
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: FormatComputed
+  pascal_n: FormatComputeds
+  snake_1: format_computed
+  snake_n: format_computeds
+  caption_1: Format Computed
+  caption_n: Format Computeds
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: f550c3b29bb2ba06
+    name: prop_names
+    caption: Prop Names
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      allowNewItems: true
+  - id: e3ffb5bde12d5683
+    name: template
+    caption: Template
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: f33c10e4-bcdc-4ce7-8200-9160f4e968ad
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: WordComputed
+  pascal_n: WordComputeds
+  snake_1: word_computed
+  snake_n: word_computeds
+  caption_1: Word Computed
+  caption_n: Word Computeds
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 2e8f00b38731ae63
+    name: source_field
+    caption: Source Field
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: ece2a11d-86b4-45af-aec0-89958fc8b4fd
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: InflectionComputed
+  pascal_n: InflectionComputeds
+  snake_1: inflection_computed
+  snake_n: inflection_computeds
+  caption_1: Inflection Computed
+  caption_n: Inflection Computeds
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: b654adf665c40059
+    name: inflector
+    caption: Inflector
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ecf8cd139bccb1d1
+    name: source_field
+    caption: Source Field
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: ac5f4f56-89aa-43ef-93e3-f1c1eafc6fa3
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: CustomMethod
+  pascal_n: CustomMethods
+  snake_1: custom_method
+  snake_n: custom_methods
+  caption_1: Custom Method
+  caption_n: Custom Methods
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 5b4bfc8a4c000a82
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d9c53413719f2862
+    name: kind
+    caption: Kind
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: CustomMethodKind
+    meta: {}
+  - id: 5a323983cc73a7b8
+    name: args
+    caption: Args
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ObjectArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: TypeMethodArg
+    enum_type_name: null
+    meta: {}
+  - id: f5c0e4c16e8cb73c
+    name: return_type
+    caption: Return Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: ff342a31-e5a2-42ef-88f6-ea4a384f1abb
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: TypeMethodArg
+  pascal_n: TypeMethodArgs
+  snake_1: type_method_arg
+  snake_n: type_method_args
+  caption_1: Type Method Arg
+  caption_n: Type Method Args
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: a172896af78eed21
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f3e19aee829328d
+    name: arg_type
+    caption: Arg Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: 8f71ffae-b253-4e37-95c9-912a131e4a42
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: DataSourceEnvironment
+  pascal_n: DataSourceEnvironments
+  snake_1: data_source_environment
+  snake_n: data_source_environments
+  caption_1: Data Source Environment
+  caption_n: Data Source Environments
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: d10a7ce5c6ce488b
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 28567565c5e2c53b
+    name: db_host
+    caption: Db Host
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ae5f1948f0bb7d4d
+    name: db_name
+    caption: Db Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a17ca4ddd1d78317
+    name: db_port
+    caption: Db Port
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b34caed7802a1309
+    name: security_profile
+    caption: Security Profile
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b0869b3175aeb919
+    name: tls_mode
+    caption: Tls Mode
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b06cbba8aa92c0a1
+    name: service_account_name
+    caption: Service Account Name
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5a1c1c183b1e934a
+    name: service_account_password
+    caption: Service Account Password
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: e35f4b14-fd0f-41d5-b635-a6ebd50304ac
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: DataSource
+  pascal_n: DataSources
+  snake_1: data_source
+  snake_n: data_sources
+  caption_1: Data Source
+  caption_n: Data Sources
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: e714b9a5694ca6da
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: abe99b64362794fe
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 77a90d4df863ceea
+    name: data_source_type
+    caption: Data Source Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: DataSourceType
+    meta: {}
+  - id: 69319178c67b4139
+    name: is_system_schema_host
+    caption: Is System Schema Host
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 34404fd4650d646b
+    name: environments
+    caption: Environments
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ObjectArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: DataSourceEnvironment
+    enum_type_name: null
+    meta: {}
+- id: ad6b0049-9126-4754-a831-a2d3e8d40e8f
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: Schema
+  pascal_n: Schemas
+  snake_1: schema
+  snake_n: schemas
+  caption_1: Schema
+  caption_n: Schemas
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 59f1261aa08b6921
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f53dacfd6e39ee2
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 97edb5544f4d6bf2
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aaf037a392339528
+    name: data_source_name
+    caption: Data Source Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8434b442190eb3dc
+    name: entity_types
+    caption: Entity Types
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: system
+      type_name: EntityType
+      prop_name: schema_id
+      filter: null
+      resolved:
+        schema_name: system
+        type_name: EntityType
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: schema_entity_types
+        kind: OneToMany
+        source_schema: system
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 758a3673-ccba-4258-84a2-c7ddd0a2df9b
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: EntityType
+  pascal_n: EntityTypes
+  snake_1: entity_type
+  snake_n: entity_types
+  caption_1: Entity Type
+  caption_n: Entity Types
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods:
+  - name: get_schema_types
+    kind: Query
+    args:
+    - name: schema_name
+      arg_type: String
+    return_type: Vec<EntityType>
+    mcp_enabled: false
+  props:
+  - id: 7318582bb0d43a5d
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 231fab511c0388a3
+    name: schema_name
+    caption: Schema Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 16788696ab24df00
+    name: schema_id
+    caption: Schema Id
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: system
+      type_name: Schema
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 44c6fdfc0608f69c
+    name: pascal_1
+    caption: Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: pascal_1
+        sourceField: pascal_1
+  - id: 7852568c23bec4ec
+    name: pascal_n
+    caption: Plural Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: pascal_n
+        sourceField: pascal_1
+  - id: 5c4de13ed3d2289c
+    name: snake_1
+    caption: Instance Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: snake_1
+        sourceField: pascal_1
+  - id: c5f6662e0be5b0c8
+    name: snake_n
+    caption: Plural Instance Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: snake_n
+        sourceField: pascal_1
+  - id: 88da91e6f62c5de7
+    name: caption_1
+    caption: Caption
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: caption_1
+        sourceField: pascal_1
+  - id: 61228c9dd8baa45e
+    name: caption_n
+    caption: Plural Caption
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: Inflection
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      InflectionComputed:
+        inflector: caption_n
+        sourceField: pascal_1
+  - id: e5ad6efadabe4170
+    name: is_union
+    caption: Is Union
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7c7be5f3e5ce247e
+    name: base_type
+    caption: Base Type
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+  - id: 8469a0517f0b6626
+    name: is_table
+    caption: Is Table
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: adc4faf8cebeb171
+    name: facets
+    caption: Facets
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 65c1d412dcb3d9ac
+    name: meta
+    caption: Meta
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: yaml
+  - id: 101586b95707b2a1
+    name: standard_methods
+    caption: Standard Methods
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: EnumArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: StandardMethod
+    meta: {}
+  - id: bfbf022df0bd12a9
+    name: custom_methods
+    caption: Custom Methods
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ObjectArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: CustomMethod
+    enum_type_name: null
+    meta: {}
+  - id: fee3977fc9ce4442
+    name: props
+    caption: Properties
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ObjectArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: PropertyType
+    enum_type_name: null
+    meta: {}
+  - id: 5355f9064dd9e8c8
+    name: schema
+    caption: Schema
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: system
+      type_name: EntityType
+      prop_name: schema_id
+      filter: null
+      resolved:
+        schema_name: system
+        type_name: Schema
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: schema_entity_types
+        kind: OneToMany
+        source_schema: system
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 9867d3d9-1623-4c37-8012-b2bb0132b30a
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: ForeignKey
+  pascal_n: ForeignKeys
+  snake_1: foreign_key
+  snake_n: foreign_keys
+  caption_1: Foreign Key
+  caption_n: Foreign Keys
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: bfb29091b4d4256d
+    name: schema_name
+    caption: Schema Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6f59fa95ea2dd5ba
+    name: type_name
+    caption: Type Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: 7cd8ad72-991b-4282-be84-6021326622a1
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: NavByFkProperty
+  pascal_n: NavByFkProperties
+  snake_1: nav_by_fk_property
+  snake_n: nav_by_fk_properties
+  caption_1: Nav By Fk Property
+  caption_n: Properties
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 6c7e822a5cce53f
+    name: schema_name
+    caption: Schema Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 93ab962234a0233a
+    name: type_name
+    caption: Type Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 208e35b15011b0b2
+    name: prop_name
+    caption: Prop Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b8f31fdbe32855e6
+    name: filter
+    caption: Filter
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 96dd4c358747b3dd
+    name: resolved
+    caption: Resolved
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Object
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: ForeignKey
+    enum_type_name: null
+    meta: {}
+- id: ec90395a-fda8-459e-82ce-900ca97f41b9
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: NestedEntityType
+  pascal_n: NestedEntityTypes
+  snake_1: nested_entity_type
+  snake_n: nested_entity_types
+  caption_1: Nested Entity Type
+  caption_n: Nested Entity Types
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: f54dfc344ac981f5
+    name: schema_name
+    caption: Schema Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 25811093cc93b884
+    name: type_name
+    caption: Type Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: 0a576b5b-10c0-469d-b3b4-7242f6e406c9
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: PropertyType
+  pascal_n: PropertyTypes
+  snake_1: property_type
+  snake_n: property_types
+  caption_1: Property Type
+  caption_n: Property Types
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 306b23d12a02edfa
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 184033a11863b21
+    name: name
+    caption: Name
+    is_key: true
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 68070fb7f9ddd96d
+    name: caption
+    caption: Caption
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+  - id: a6e1708be085aacf
+    name: is_key
+    caption: Is Key
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a1edbc3191726e04
+    name: is_caption
+    caption: Is Caption
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a5d8337011c6a474
+    name: is_required
+    caption: Is Required
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f7dcb52765dec7ae
+    name: is_read_only
+    caption: Is Read Only
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c7c3dbe1cba4251d
+    name: is_concurrency_control
+    caption: Is Concurrency Control
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ffd4854063ab585c
+    name: data_type
+    caption: Data Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: DataType
+    meta: {}
+  - id: af342e132fb24c80
+    name: computed
+    caption: Computed
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: Computed
+    meta: {}
+  - id: 5fcfc9d6abfc437a
+    name: default_value
+    caption: Default Value
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 74ddcca7597d7227
+    name: foreign_key
+    caption: Foreign Key
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Object
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: ForeignKey
+    enum_type_name: null
+    meta: {}
+  - id: 820716e0759e8211
+    name: nav_by_fk_property
+    caption: Nav By Fk Property
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Object
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: NavByFkProperty
+    enum_type_name: null
+    meta: {}
+  - id: 3784d8668b25be98
+    name: many_to_many_property
+    caption: Many To Many Property
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Object
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: ManyToManyProperty
+    enum_type_name: null
+    meta: {}
+  - id: 68d37fe50ff5ca00
+    name: nested_entity_type
+    caption: Nested Entity Type
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Object
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type:
+      schema_name: system
+      type_name: NestedEntityType
+    enum_type_name: null
+    meta: {}
+  - id: 993a9611afb3bb94
+    name: enum_type_name
+    caption: Enum Type Name
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4663d8a09bf36542
+    name: meta
+    caption: Meta
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: yaml
+- id: 979b6d21-38e1-46cb-baed-5ea1067a3cc8
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: ManyToManyProperty
+  pascal_n: ManyToManyProperties
+  snake_1: many_to_many_property
+  snake_n: many_to_many_properties
+  caption_1: Many-to-Many Property
+  caption_n: Many-to-Many Properties
+  is_union: false
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 1bc8d1b1e2a3cd43
+    name: junction_table
+    caption: Junction Table
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c1f39915229c4a21
+    name: junction_schema
+    caption: Junction Schema
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5a190ed1ab61dc8b
+    name: local_key
+    caption: Local Key
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 23f484dba526bccf
+    name: foreign_key
+    caption: Foreign Key
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4169b06da141eddc
+    name: target_schema
+    caption: Target Schema
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3d3bedc542ecb0b3
+    name: target_type
+    caption: Target Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: 5d5fa716-246f-4b11-8068-1442d3d51da3
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: Validator
+  pascal_n: Validators
+  snake_1: validator
+  snake_n: validators
+  caption_1: Validator
+  caption_n: Validators
+  is_union: true
+  base_type: null
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 81593b368e62e22
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: db7a7e30-a3fb-4b0f-afc1-5ff44f82fcce
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: ValueRangeValidator
+  pascal_n: ValueRangeValidators
+  snake_1: value_range_validator
+  snake_n: value_range_validators
+  caption_1: Value Range Validator
+  caption_n: Value Range Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 2fac6de64e5a5ae6
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: ValueRange
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2df9a8eb4a07815b
+    name: min
+    caption: Min
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2dd84673d00e7669
+    name: min_source
+    caption: Min Source
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: FieldValueSource
+    meta: {}
+  - id: e66879afb98ab2a3
+    name: max
+    caption: Max
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: cbba4813a98128df
+    name: max_source
+    caption: Max Source
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Enum
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: FieldValueSource
+    meta: {}
+  - id: 4e075e5efdd1c1b
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+- id: c16fac99-f7be-49ff-9b87-57599c8f9ea4
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: ArrayLengthValidator
+  pascal_n: ArrayLengthValidators
+  snake_1: array_length_validator
+  snake_n: array_length_validators
+  caption_1: Array Length Validator
+  caption_n: Array Length Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 5a877269b70309fa
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: ArrayLength
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2b79ae2dcc7add97
+    name: min
+    caption: Min
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5fd458f0094b3a16
+    name: max
+    caption: Max
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a7f640b178fac19
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+- id: 84663866-0fd0-4c9b-aef5-0b5b83c6e7a3
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: StringLengthValidator
+  pascal_n: StringLengthValidators
+  snake_1: string_length_validator
+  snake_n: string_length_validators
+  caption_1: String Length Validator
+  caption_n: String Length Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 36ef703438701ebb
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: StringLength
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 97a2f010c6edf30c
+    name: min
+    caption: Min
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 14833b008ecd2fee
+    name: max
+    caption: Max
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bf59c6ae5d197530
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+- id: dea2a83a-8024-40bc-8696-d07822de1ccc
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: StringPatternValidator
+  pascal_n: StringPatternValidators
+  snake_1: string_pattern_validator
+  snake_n: string_pattern_validators
+  caption_1: String Pattern Validator
+  caption_n: String Pattern Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 7bfe87b70d6a224b
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: StringPattern
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ecf4306ef9fdf67f
+    name: pattern
+    caption: Pattern
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: regex
+  - id: 7aa4f1195634c888
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+- id: 0225374e-e22b-4b19-99d8-5b0378799fe1
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: UniquenessValidator
+  pascal_n: UniquenessValidators
+  snake_1: uniqueness_validator
+  snake_n: uniqueness_validators
+  caption_1: Uniqueness Validator
+  caption_n: Uniqueness Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: d457316efb9e3573
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: Uniqueness
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5ab768ca58a979e8
+    name: filter
+    caption: Filter
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: json
+  - id: 42c6b9964c90b406
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100
+- id: 51995f4d-7d84-4c92-a30e-a4373d1fe610
+  schema_name: system
+  schema_id: ff252a31-08c1-41be-addb-9aab41082a2e
+  pascal_1: FunctionValidator
+  pascal_n: FunctionValidators
+  snake_1: function_validator
+  snake_n: function_validators
+  caption_1: Function Validator
+  caption_n: Function Validators
+  is_union: false
+  base_type: Validator
+  is_table: false
+  facets: []
+  indexes: []
+  constraints: []
+  meta: null
+  standard_methods: null
+  custom_methods: null
+  props:
+  - id: 8cf9e126dda6b1e7
+    name: name
+    caption: Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: Function
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6c38f8fbd152e8fa
+    name: func
+    caption: Func
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: python
+  - id: da8dbeb443816940
+    name: message
+    caption: Message
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      validators:
+      - name: StringLength
+        max: 100

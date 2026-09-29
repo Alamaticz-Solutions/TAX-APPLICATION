@@ -1,0 +1,78 @@
+# Account - entity with a foreign key (industry_id) and concurrency control.
+# FK references the Healthcare industry seeded at 10100070-0000-4000-8000-100000000001.
+#
+# NOTE: see industries.yaml for the two omitted-test categories and reasons.
+
+- name: create_account
+  description: create account as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: mutation
+    name: createAccount
+    variables:
+    - name: input
+      type: InputAccount!
+      yaml_value:
+        name: 'Test Account'
+        website: 'https://test-account.example.com'
+        phone: '555-0100'
+        email: 'info@test-account.example.com'
+        billing_city: 'Irvine'
+        billing_state: 'CA'
+        billing_country: 'USA'
+        annual_revenue: 1500000.00
+        number_of_employees: 25
+        industry_id: '10100070-0000-4000-8000-100000000001'
+        version: 0
+    select: |
+      id,name,website,phone,email,billing_city,billing_state,annual_revenue,number_of_employees,industry_id,version
+  expect:
+    data:
+      name: 'Test Account'
+      website: 'https://test-account.example.com'
+      billing_state: 'CA'
+      industry_id: '10100070-0000-4000-8000-100000000001'
+  result_object_name: create_account_result
+
+
+
+- name: find_account
+  description: find account with NavToOne industry
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findAccount
+    variables:
+    - name: id
+      type: String!
+      reference_value_property: create_account_result.id
+    select: |
+      id,name,industry_id,industry { id,name },version
+  expect:
+    data:
+      name: 'Test Account'
+      industry_id: '10100070-0000-4000-8000-100000000001'
+  result_object_name: find_account_result
+
+
+
+- name: update_account_with_invalid_version
+  description: stale version is rejected
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: mutation
+    name: updateAccount
+    variables:
+    - name: input
+      type: InputAccount!
+      reference_value: create_account_result
+      overwrite:
+        phone: '555-9999'
+        version: 1
+    select: |
+      id,name,phone,version
+  expect:
+    error: { "message":"invalid key or version", "path":["updateAccount"] }

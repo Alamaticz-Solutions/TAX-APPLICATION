@@ -1,0 +1,9 @@
+[package]
+name = "appfw-provider-workday"
+version = "0.1.1"
+edition = "2021"
+description = "Workday Human Resources WWS provider implementation skeleton for App Framework."
+publish = ["pds-app-framework-crates"]
+
+[dependencies]
+appfw-saas-core = { version = "0.1.1", path = "../appfw_saas_core", registry = "pds-app-framework-crates" }

@@ -1,0 +1,513 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/product-increment-evidence.schema.json",
+  "title": "App Framework Product Increment delivery evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "product_increment_id",
+    "outcome_id",
+    "scope",
+    "candidate_sha",
+    "base_sha",
+    "proof",
+    "economics",
+    "destination_verification",
+    "review",
+    "lane_acceptance",
+    "product_acceptance"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "appfw_product_increment_evidence@1"
+    },
+    "product_increment_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+    },
+    "outcome_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "candidate_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "proof": {
+      "$ref": "#/$defs/proof"
+    },
+    "economics": {
+      "$ref": "#/$defs/economics"
+    },
+    "destination_verification": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/destinationVerification"
+        }
+      ]
+    },
+    "review": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/review"
+        }
+      ]
+    },
+    "lane_acceptance": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/acceptance"
+        }
+      ]
+    },
+    "product_acceptance": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/acceptance"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentRef": {
+      "type": "string",
+      "pattern": "^document:(?!target/)(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "delivery_lane",
+            "product_increment_integration",
+            "direct_main_candidate"
+          ]
+        },
+        "lane_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "delivery_lane"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "lane_id"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "lane_id"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "result",
+        "output_sha256"
+      ],
+      "properties": {
+        "command": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "result": {
+          "const": "passed"
+        },
+        "output_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "output_ref": {
+          "$ref": "#/$defs/documentRef"
+        }
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "profile",
+        "status",
+        "completed_at",
+        "checks"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "prototype",
+            "integration_candidate",
+            "release_candidate"
+          ]
+        },
+        "profile": {
+          "enum": [
+            "accelerated",
+            "full",
+            "strict"
+          ]
+        },
+        "status": {
+          "const": "passed"
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/check"
+          }
+        }
+      }
+    },
+    "economics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measurement_state",
+        "outcome",
+        "retries",
+        "corrections",
+        "rework_cycles"
+      ],
+      "properties": {
+        "measurement_state": {
+          "enum": [
+            "measured",
+            "unavailable",
+            "not_applicable"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "candidate",
+            "implemented",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "planned_model": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "actual_model": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reasoning_effort": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "routing_basis": {
+          "enum": [
+            "lowest_capable",
+            "escalated_novel_synthesis",
+            "escalated_independent_review"
+          ]
+        },
+        "routing_justification": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "metering_receipt_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "metering_receipt_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "elapsed_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "retries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corrections": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rework_cycles": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "context_source_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "delegation_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "measurement_state": {
+                "const": "measured"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "planned_model",
+              "actual_model",
+              "reasoning_effort",
+              "routing_basis",
+              "metering_receipt_ref",
+              "metering_receipt_sha256",
+              "elapsed_ms",
+              "input_tokens",
+              "output_tokens",
+              "cost_usd",
+              "context_source_count",
+              "delegation_depth"
+            ],
+            "not": {
+              "required": [
+                "reason"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "reason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "routing_basis"
+            ],
+            "properties": {
+              "routing_basis": {
+                "enum": [
+                  "escalated_novel_synthesis",
+                  "escalated_independent_review"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "routing_justification"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "routing_justification"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "findingCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker",
+        "critical",
+        "important",
+        "should_address",
+        "nice_to_address"
+      ],
+      "properties": {
+        "blocker": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critical": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "important": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "should_address": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nice_to_address": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer",
+        "reviewed_sha",
+        "disposition",
+        "completed_at",
+        "findings",
+        "evidence_ref",
+        "evidence_sha256"
+      ],
+      "properties": {
+        "reviewer": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reviewed_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "disposition": {
+          "enum": [
+            "go",
+            "go_with_conditions",
+            "no_go"
+          ]
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "findings": {
+          "$ref": "#/$defs/findingCounts"
+        },
+        "evidence_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "evidence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "destinationVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "destination_branch",
+        "candidate_sha",
+        "verified_at",
+        "evidence_ref",
+        "evidence_sha256"
+      ],
+      "properties": {
+        "destination_branch": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "candidate_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "evidence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "decision",
+        "accepted_sha",
+        "decided_at",
+        "evidence_ref",
+        "evidence_sha256"
+      ],
+      "properties": {
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "decision": {
+          "const": "accepted"
+        },
+        "accepted_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "evidence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

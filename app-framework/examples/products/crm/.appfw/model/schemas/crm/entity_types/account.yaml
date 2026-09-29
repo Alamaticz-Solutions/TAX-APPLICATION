@@ -1,0 +1,150 @@
+- id: a0c00000-0000-4000-8000-000000000001
+  name: Account
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - audited
+  - concurrency
+  execution:
+    prepared_statements: true
+
+  custom_methods:
+  - name: account_health
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: account_id
+      arg_type: String
+    return_type: serde_json::Value
+  - name: account_health_provider_function
+    kind: Query
+    mcp_enabled: false
+    args:
+    - name: account_id
+      arg_type: String
+    return_type: serde_json::Value
+    provider_routine:
+      kind: Function
+      returns: One
+      schema: crm
+      name: account_health_provider_function
+  - name: refresh_account_health_stored_procedure
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: account_id
+      arg_type: String
+    - name: health_score
+      arg_type: f64
+    return_type: serde_json::Value
+    provider_routine:
+      kind: Procedure
+      returns: One
+      schema: crm
+      name: refresh_account_health_stored_procedure
+  # Neo4j graph read model (neo4j_graph data source): relationship intelligence
+  # backed by the governed graph read/write providers (handlers in account.rs).
+  - name: account_relationship_graph
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: account
+      arg_type: String
+    return_type: serde_json::Value
+  # Governed graph writes stay off the remote MCP tool surface until a live
+  # write-safety test lane exists; they remain available as GraphQL mutations.
+  - name: link_account_referral
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: from_account
+      arg_type: String
+    - name: to_account
+      arg_type: String
+    return_type: serde_json::Value
+  - name: unlink_account_referral
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: from_account
+      arg_type: String
+    - name: to_account
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Account Name
+    fragment: property-string-caption
+
+  - name: website
+    caption: Website
+    data_type: String
+
+  - name: phone
+    caption: Phone
+    data_type: String
+
+  - name: email
+    caption: Email
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  - name: tags
+    caption: Tags
+    data_type: StringArray
+    meta:
+      allowNewItems: true
+
+  - name: billing_street
+    caption: Billing Street
+    data_type: String
+
+  - name: billing_city
+    caption: Billing City
+    data_type: String
+
+  - name: billing_state
+    caption: Billing State
+    data_type: String
+
+  - name: billing_postal_code
+    caption: Billing Postal Code
+    data_type: String
+
+  - name: billing_country
+    caption: Billing Country
+    data_type: String
+
+  - name: annual_revenue
+    caption: Annual Revenue
+    data_type: Float64
+
+  - name: health_score
+    caption: Account Health Score
+    data_type: Float64
+
+  - name: health_last_refreshed_at
+    caption: Health Last Refreshed At
+    data_type: DateTime
+
+  - name: number_of_employees
+    caption: Number of Employees
+    data_type: Int32
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: industry_id
+    caption: Industry
+    data_type: Uuid
+    foreign_key:
+      type_name: Industry

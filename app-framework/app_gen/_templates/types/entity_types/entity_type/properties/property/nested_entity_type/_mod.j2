@@ -1,0 +1,4 @@
+{% macro print(nested) %}
+      schema_name: {% if nested.schema_name is defined %}{{ nested.schema_name }}{% else %}{{ schema.name }}{% endif %} 
+      type_name: {{ nested.type_name }}
+{%- endmacro print %}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "provenance": "synthetic",
+  "app": "pds-nexus",
+  "source_kind": "de_novo_tracker_fixture",
+  "generated_for": "Wave 3 W3-C local-proven pilot",
+  "freshness": {
+    "watermark": "2026-07-02T00:00:00Z",
+    "label": "Synthetic fixture snapshot",
+    "source_file": ".appfw/source-evidence/nexus-denovo-synthetic.json",
+    "lineage_status": "local_fixture_retained",
+    "live_reconciliation": "required_before_servicenow_targeting"
+  },
+  "lineage": [
+    {
+      "stage": "synthetic_fixture",
+      "owner": "App Framework Product Manager",
+      "evidence": ".appfw/source-evidence/nexus-denovo-synthetic.json",
+      "trust_boundary": "workspace_local"
+    },
+    {
+      "stage": "reviewed_projection_model",
+      "owner": "App Framework Product Manager",
+      "evidence": ".appfw/model-proposal.yaml",
+      "trust_boundary": "accepted_for_local_config"
+    },
+    {
+      "stage": "generated_contract_evidence",
+      "owner": "App Framework generator",
+      "evidence": ".appfw/target/appfw/artifacts.json",
+      "trust_boundary": "generated_from_local_model"
+    }
+  ],
+  "not_connected_to": [
+    "ServiceNow",
+    "live tenant data",
+    "production users"
+  ],
+  "shape": {
+    "task_count": 176,
+    "team_count": 20,
+    "tenant_count": 2,
+    "primary_tenant": "tenant_a",
+    "stalled_threshold_days": 5
+  },
+  "projection_model": {
+    "entities": [
+      {
+        "name": "DeNovoTask",
+        "storage": "read_only_projection",
+        "source": "servicenow_denovo_projection",
+        "caption_field": "task_name"
+      },
+      {
+        "name": "Workstream",
+        "storage": "read_only_projection",
+        "source": "servicenow_denovo_projection",
+        "caption_field": "name"
+      },
+      {
+        "name": "Team",
+        "storage": "read_only_projection",
+        "source": "servicenow_denovo_projection",
+        "caption_field": "name"
+      }
+    ],
+    "relationships": [
+      {
+        "from": "DeNovoTask",
+        "kind": "NavToOne",
+        "to": "Workstream"
+      },
+      {
+        "from": "DeNovoTask",
+        "kind": "NavToOne",
+        "to": "Team"
+      }
+    ]
+  },
+  "sample_records": [
+    {
+      "id": "rl_11111111111111111111111111111111",
+      "tenant": "tenant_a",
+      "type": "DeNovoTask",
+      "task_name": "Credentialing packet",
+      "owner_team": "Provider onboarding",
+      "phase": "Licensing",
+      "risk": "High",
+      "days_stalled": 8,
+      "freshness_watermark": "2026-07-02T00:00:00Z"
+    },
+    {
+      "id": "rl_22222222222222222222222222222222",
+      "tenant": "tenant_a",
+      "type": "DeNovoTask",
+      "task_name": "Equipment approval",
+      "owner_team": "Clinical operations",
+      "phase": "Buildout",
+      "risk": "Medium",
+      "days_stalled": 6,
+      "freshness_watermark": "2026-07-02T00:00:00Z"
+    },
+    {
+      "id": "rl_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "tenant": "tenant_b",
+      "type": "DeNovoTask",
+      "task_name": "Do not expose tenant B task",
+      "owner_team": "Tenant B sentinel",
+      "phase": "Policy guard",
+      "risk": "High",
+      "days_stalled": 9,
+      "freshness_watermark": "2026-07-02T00:00:00Z"
+    }
+  ],
+  "governance": {
+    "read_posture": "tenant_scoped_synthetic_fixture",
+    "write_posture": "intent_preview_only",
+    "write_execution": "disabled_until_g1_delegated_auth_and_unit_a_servicenow_export",
+    "agentic_ux": {
+      "generated_views": "allowed_from_resolved_refs",
+      "recommendations": "must_open_intent_preview",
+      "ai_attribution": "required_for_model_derived_surfaces"
+    }
+  }
+}

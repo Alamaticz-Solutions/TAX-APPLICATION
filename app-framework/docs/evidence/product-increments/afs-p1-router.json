@@ -1,0 +1,41 @@
+{
+  "$schema": "../../start/product-increment-evidence.schema.json",
+  "schema": "appfw_product_increment_evidence@1",
+  "product_increment_id": "AFS-PI-P1",
+  "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+  "scope": {
+    "kind": "direct_main_candidate"
+  },
+  "candidate_sha": "7096321ca304439cf28069360d01e60de8fcb30d",
+  "base_sha": "db9bb89ab392b75806d59ff535c1babc42cece76",
+  "proof": {
+    "stage": "prototype",
+    "profile": "full",
+    "status": "passed",
+    "completed_at": "2026-07-23T18:52:31Z",
+    "checks": [
+      {
+        "command": "node scripts/agent-routing/appfw-model-route.test.mjs",
+        "result": "passed",
+        "output_sha256": "93a49a6f1371011e8b8e16d45faa42d3f34302005fbf540e6f9c3d6016e48df2"
+      },
+      {
+        "command": "scripts/appfw framework test --fast --json",
+        "result": "passed",
+        "output_sha256": "e6ffd91a4caabe777e72ad837c1b8e8e9eab7bdbcc5c4dd7c6e7f296635df02e"
+      }
+    ]
+  },
+  "economics": {
+    "measurement_state": "unavailable",
+    "outcome": "rejected",
+    "retries": 0,
+    "corrections": 5,
+    "rework_cycles": 5,
+    "reason": "The prototype exceeded its declared correction and rework limits before it retained trustworthy end-to-end model usage and cost telemetry. The checkpoint is rejected, grants no delivery credit, and must be replanned from accepted main."
+  },
+  "destination_verification": null,
+  "review": null,
+  "lane_acceptance": null,
+  "product_acceptance": null
+}

@@ -1,0 +1,190 @@
+{% macro print(entityType, methodName, kind) %}
+{%- if kind == "Query" %}
+{%- if methodName == "FindById" %}
+  async fn find_{{ entityType.snake_1 }}(
+    &self, 
+    ctx: &Context<'_>, 
+    id: String
+  ) -> FieldResult<Option<{{ entityType.pascal_1 }}Projection>> 
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+   
+    let res = {{ entityType.snake_1 }}::find_impl(
+      user, &data_access, &entity_type, selections, id
+    ).await;
+
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+
+  async fn find_{{ entityType.snake_1 }}_by_locator(
+    &self,
+    ctx: &Context<'_>,
+    locator: String
+  ) -> FieldResult<Option<{{ entityType.pascal_1 }}Projection>>
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+    let res = {{ entityType.snake_1 }}::find_by_locator_impl(
+      user, &data_access, &entity_type, selections, locator
+    ).await;
+
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- elif methodName == "GetAll" %}
+  async fn get_{{ entityType.snake_n }}(
+    &self, 
+    ctx: &Context<'_>
+  ) -> FieldResult<Vec<{{ entityType.pascal_1 }}Projection>> 
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+    
+    let res = {{ entityType.snake_1 }}::get_impl(
+      user, &data_access, &entity_type, selections
+    ).await;
+    
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- elif methodName == "Query" %}
+  async fn query_{{ entityType.snake_n }}(
+    &self, 
+    ctx: &Context<'_>, 
+    filter: Option<JsonValue>,
+    sort: Option<JsonValue>,
+    skip: Option<i32>,
+    limit: Option<i32>,
+    after: Option<String>,
+  ) -> FieldResult<{{ entityType.pascal_1 }}QueryResult> 
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+    let (skip, limit) = pagination_args(skip, limit)?;
+ 
+    let res = {{ entityType.snake_1 }}::query_impl(
+      user, &data_access, &entity_type, selections, filter, sort, skip, limit, after
+    ).await;
+    
+    match res {
+      Ok(res) => Ok(
+        {{ entityType.pascal_1 }}QueryResult {
+          date_time: res.date_time,
+          request_duration: res.request_duration,
+          skip: res.skip,
+          limit: res.limit,
+          page_count: res.page_count,
+          page_index: res.page_index,
+          query_count: res.query_count,
+          next_cursor: res.next_cursor,
+          previous_cursor: res.previous_cursor,
+          items: res.items,
+        }
+      ),
+      Err(e) => Err(e.into()),
+    }
+  }
+  async fn aggregate_{{ entityType.snake_n }}(
+    &self,
+    ctx: &Context<'_>,
+    filter: Option<JsonValue>,
+    group_by: Option<JsonValue>,
+    metrics: Option<JsonValue>,
+    having: Option<JsonValue>,
+    sort: Option<JsonValue>,
+    skip: Option<i32>,
+    limit: Option<i32>,
+  ) -> FieldResult<AggregateResult>
+  {
+    let handler_context = from_context_without_selections(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, _) = handler_context.into_handler_parts();
+    let (skip, limit) = pagination_args(skip, limit)?;
+
+    let res = data_access.aggregate_items(
+      entity_type,
+      filter,
+      group_by,
+      metrics,
+      having,
+      sort,
+      skip,
+      limit,
+      user,
+    ).await;
+
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- endif %}
+{%- elif kind == "Mutation" %}
+{%- if methodName == "Create" %}
+  async fn create_{{ entityType.snake_1 }}(
+    &self,
+    ctx: &Context<'_>,
+    input: Input{{ entityType.pascal_1 }},
+  ) -> FieldResult<{{ entityType.pascal_1 }}Projection> 
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+    let res = {{ entityType.snake_1 }}::create_impl(
+      user, &data_access, &entity_type, selections, input
+    ).await;
+    
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- elif methodName == "Update" %}
+  async fn update_{{ entityType.snake_1 }}(
+    &self,
+    ctx: &Context<'_>,
+    input: Input{{ entityType.pascal_1 }},
+  ) -> FieldResult<{{ entityType.pascal_1 }}Projection> 
+  {
+    let handler_context = from_context(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+    let res = {{ entityType.snake_1 }}::update_impl(
+      user, &data_access, &entity_type, selections, input
+    ).await;
+    
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- elif methodName == "Delete" %}
+  pub async fn delete_{{ entityType.snake_1 }}(
+    &self,
+    ctx: &Context<'_>,
+    input: Input{{ entityType.pascal_1 }},
+  ) -> FieldResult<i64> 
+  {
+    let handler_context = from_context_without_selections(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, _) = handler_context.into_handler_parts();
+    
+    let res = {{ entityType.snake_1 }}::delete_impl(
+      user, &data_access, &entity_type, input
+    ).await;    
+    
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- endif %}
+{%- endif %}
+{% endmacro print %}

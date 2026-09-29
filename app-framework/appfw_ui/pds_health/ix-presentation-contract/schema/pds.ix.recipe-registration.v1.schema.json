@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfw.pdshealth.com/schemas/pds.ix.recipe-registration.v1.schema.json",
+  "title": "PDS Intelligent Experience recipe registration version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recipeId",
+    "intentKey",
+    "artifactType",
+    "contentSchemaVersion",
+    "rendererKey",
+    "requiredCapabilities"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "pds.ix.recipe_registration@1" },
+    "recipeId": {
+      "enum": [
+        "analyze-why",
+        "contextual-conversation",
+        "adaptive-composition",
+        "working-goal-plan",
+        "adaptive-information-lens",
+        "situation-to-strategy",
+        "attention-stewardship",
+        "ambient-agent-continuity"
+      ]
+    },
+    "intentKey": { "type": "string" },
+    "artifactType": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9._:@/-]+$"
+    },
+    "contentSchemaVersion": { "const": "pds.ix.presentation@1" },
+    "rendererKey": { "type": "string" },
+    "requiredCapabilities": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "recipeId": { "const": "analyze-why" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.analyze-why@1" },
+          "rendererKey": { "const": "pds.ix.recipe.analyze-why@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.causal-explanation@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "contextual-conversation" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.contextual-conversation@1" },
+          "rendererKey": { "const": "pds.ix.recipe.contextual-conversation@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.contextual-follow-up@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "adaptive-composition" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.adaptive-composition@1" },
+          "rendererKey": { "const": "pds.ix.recipe.adaptive-composition@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.composition-change-explanation@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "working-goal-plan" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.working-goal-plan@1" },
+          "rendererKey": { "const": "pds.ix.recipe.working-goal-plan@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.goal-plan-revision@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "adaptive-information-lens" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.adaptive-information-lens@1" },
+          "rendererKey": { "const": "pds.ix.recipe.adaptive-information-lens@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.full-record-fallback@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "situation-to-strategy" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.situation-to-strategy@1" },
+          "rendererKey": { "const": "pds.ix.recipe.situation-to-strategy@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.strategy-challenge@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "attention-stewardship" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.attention-stewardship@1" },
+          "rendererKey": { "const": "pds.ix.recipe.attention-stewardship@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.attention-correction@1"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "recipeId": { "const": "ambient-agent-continuity" } } },
+      "then": {
+        "properties": {
+          "intentKey": { "const": "pds.ix.intent.ambient-agent-continuity@1" },
+          "rendererKey": { "const": "pds.ix.recipe.ambient-agent-continuity@1" },
+          "requiredCapabilities": {
+            "const": [
+              "pds.ix.capability.focus-context@1",
+              "pds.ix.capability.progressive-presentation@1",
+              "pds.ix.capability.evidence-disclosure@1",
+              "pds.ix.capability.human-control@1",
+              "pds.ix.capability.ambient-work-continuity@1"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

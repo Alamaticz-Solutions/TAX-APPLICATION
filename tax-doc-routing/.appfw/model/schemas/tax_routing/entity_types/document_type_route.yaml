@@ -1,0 +1,73 @@
+- id: 59034310-ab8e-4759-859c-f0f246f32a02
+  name: DocumentTypeRoute
+  is_table: true
+  indexes:
+  - document_type
+  facets:
+  - concurrency
+
+  props:
+
+  # Synthetic PK: the spec's field list has no id/PK, but every is_table
+  # entity in this framework needs one for FindById/Update/Delete.
+  - name: id
+    fragment: property-primary-key-uuid
+
+  # Matched by value against TaxDocument.document_type; deliberately not
+  # a foreign_key/relationship per the spec.
+  - name: document_type
+    caption: Document Type
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: business_name
+    caption: Business Name
+    is_required: true
+    data_type: String
+
+  - name: external_folder
+    caption: External Folder
+    is_required: true
+    data_type: String
+
+  - name: internal_folder
+    caption: Internal Folder
+    is_required: false
+    data_type: String
+
+  - name: note
+    caption: Note
+    is_required: false
+    data_type: String
+
+  # Requirement flags (docs/architecture/dynamic-form-engine-design.md section 3). These are
+  # what "the available document types and their requirements" table on the Upload Documents
+  # screen shows, and what ConditionClause rows with subject_kind = "document_type_attribute"
+  # test — moved here from the hardcoded `base`/per-row overrides in
+  # frontend/src/features/shared/config/documentTypes.ts so a new document type (with its own
+  # requirement flags) is a data row, not a frontend code change.
+  - name: allows_entity
+    caption: Allows Entity
+    fragment: property-boolean-toggle-required
+    default_value: true
+
+  - name: requires_k1_attachments
+    caption: Requires K-1 Attachments
+    fragment: property-boolean-toggle-required
+    default_value: false
+
+  - name: requires_form_8308_attachments
+    caption: Requires Form 8308 Attachments
+    fragment: property-boolean-toggle-required
+    default_value: false
+
+  - name: supports_password_protection
+    caption: Supports Password Protection
+    fragment: property-boolean-toggle-required
+    default_value: true
+
+  - name: is_external_only
+    caption: External Only
+    fragment: property-boolean-toggle-required
+    default_value: false

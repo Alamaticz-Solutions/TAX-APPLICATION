@@ -1,0 +1,19 @@
+- entity_type: Industry
+  schema: crm
+  columns: [id, name, sort_order]
+  records:
+    - id: 10100070-0000-4000-8000-100000000001
+      name: Healthcare
+      sort_order: 10
+    - id: 10100070-0000-4000-8000-100000000002
+      name: Technology
+      sort_order: 20
+    - id: 10100070-0000-4000-8000-100000000003
+      name: Financial Services
+      sort_order: 30
+    - id: 10100070-0000-4000-8000-100000000004
+      name: Manufacturing
+      sort_order: 40
+    - id: 10100070-0000-4000-8000-100000000005
+      name: Retail
+      sort_order: 50

@@ -1,0 +1,82 @@
+- entity_type: Activity
+  schema: crm
+  columns:
+  - id
+  - subject
+  - description
+  - activity_date
+  - due_date
+  - is_closed
+  - priority
+  - status
+  - type_id
+  - account_id
+  - contact_id
+  - opportunity_id
+  - lead_id
+  records:
+  - id: ac710007-0000-4000-8000-100000000001
+    subject: Discovery Call - Acme Dental
+    description: Initial discovery call to understand requirements
+    activity_date: '2026-05-01'
+    due_date: '2026-05-01'
+    is_closed: true
+    priority: High
+    status: Completed
+    type_id: ac71ec00-0000-4000-8000-100000000002
+    account_id: a0c00000-0000-4000-8000-100000000001
+    contact_id: c0c00000-0000-4000-8000-100000000001
+    opportunity_id: '099c0000-0000-4000-8000-100000000001'
+    lead_id:
+  - id: ac710007-0000-4000-8000-100000000002
+    subject: Demo - TechBridge Platform
+    description: Full product demonstration for expansion proposal
+    activity_date: '2026-05-10'
+    due_date: '2026-05-10'
+    is_closed: true
+    priority: High
+    status: Completed
+    type_id: ac71ec00-0000-4000-8000-100000000003
+    account_id: a0c00000-0000-4000-8000-100000000002
+    contact_id: c0c00000-0000-4000-8000-100000000002
+    opportunity_id: '099c0000-0000-4000-8000-100000000002'
+    lead_id:
+  - id: ac710007-0000-4000-8000-100000000003
+    subject: Follow-up Email - CapStone Analytics
+    description: Sent ROI analysis and case studies
+    activity_date: '2026-05-12'
+    due_date: '2026-05-12'
+    is_closed: true
+    priority: Normal
+    status: Completed
+    type_id: ac71ec00-0000-4000-8000-100000000001
+    account_id: a0c00000-0000-4000-8000-100000000003
+    contact_id: c0c00000-0000-4000-8000-100000000003
+    opportunity_id: '099c0000-0000-4000-8000-100000000003'
+    lead_id:
+  - id: ac710007-0000-4000-8000-100000000004
+    subject: Intro Call - MediSystems
+    description: First contact, qualify needs and budget
+    activity_date: '2026-05-19'
+    due_date: '2026-05-19'
+    is_closed: false
+    priority: Normal
+    status: Planned
+    type_id: ac71ec00-0000-4000-8000-100000000002
+    account_id: a0c00000-0000-4000-8000-100000000004
+    contact_id: c0c00000-0000-4000-8000-100000000004
+    opportunity_id: '099c0000-0000-4000-8000-100000000004'
+    lead_id:
+  - id: ac710007-0000-4000-8000-100000000005
+    subject: Proposal Review Meeting - RetailPlus
+    description: Walk through the services bundle proposal
+    activity_date: '2026-05-28'
+    due_date: '2026-05-28'
+    is_closed: false
+    priority: Normal
+    status: Planned
+    type_id: ac71ec00-0000-4000-8000-100000000003
+    account_id: a0c00000-0000-4000-8000-100000000005
+    contact_id: c0c00000-0000-4000-8000-100000000005
+    opportunity_id: '099c0000-0000-4000-8000-100000000005'
+    lead_id:

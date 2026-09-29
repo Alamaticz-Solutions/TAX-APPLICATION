@@ -1,0 +1,75 @@
+- id: ac710007-0000-4000-8000-000000000009
+  name: Activity
+  is_table: true
+  indexes:
+  - account_id
+  - contact_id
+  - opportunity_id
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: subject
+    caption: Subject
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: activity_date
+    caption: Activity Date
+    data_type: Date
+
+  - name: due_date
+    caption: Due Date
+    data_type: Date
+
+  - name: is_closed
+    caption: Is Closed
+    fragment: property-boolean-toggle-required
+
+  - name: priority
+    caption: Priority
+    data_type: String
+
+  - name: status
+    caption: Status
+    data_type: String
+
+  - name: type_id
+    caption: Activity Type
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: ActivityType
+
+  - name: account_id
+    caption: Account
+    data_type: Uuid
+    foreign_key:
+      type_name: Account
+
+  - name: contact_id
+    caption: Contact
+    data_type: Uuid
+    foreign_key:
+      type_name: Contact
+
+  - name: opportunity_id
+    caption: Opportunity
+    data_type: Uuid
+    foreign_key:
+      type_name: Opportunity
+
+  - name: lead_id
+    caption: Lead
+    data_type: Uuid
+    foreign_key:
+      type_name: Lead

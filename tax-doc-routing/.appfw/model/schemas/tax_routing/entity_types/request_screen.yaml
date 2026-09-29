@@ -1,0 +1,53 @@
+# RequestScreen — one data-entry form (Client Info, Upload Documents). Processing and Completed
+# are system-rendered displays with no fields to catalogue, so they are deliberately not modeled
+# here — see docs/architecture/dynamic-form-engine-design.md section 6.
+
+- id: 7cb878c2-b170-4d6b-8447-c0876cc7151a
+  name: RequestScreen
+  is_table: true
+  facets:
+  - audited
+  constraints:
+  - uq_request_screen_code UNIQUE (code)
+
+  custom_methods:
+  # The condition evaluator (docs/architecture/dynamic-form-engine-design.md section 8): returns
+  # which fields this screen shows, in what order, mandatory or not, for the given context — so
+  # the frontend never evaluates a Condition/ConditionClause itself, the same way it never
+  # evaluates an RBAC grant itself. `document_type_code` is optional context (empty string when
+  # not applicable) used by document-type-conditional fields on the Upload Documents screen.
+  - name: resolve_screen_fields
+    kind: Query
+    mcp_enabled: false
+    args:
+    - name: screen_code
+      arg_type: String
+    - name: document_type_code
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    is_required: false
+    data_type: Int32
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true

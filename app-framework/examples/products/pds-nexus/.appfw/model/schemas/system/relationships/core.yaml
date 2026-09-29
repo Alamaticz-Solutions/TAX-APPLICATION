@@ -1,0 +1,12 @@
+- name: schema_entity_types
+  kind: OneToMany
+  one:
+    entity: Schema
+    field: entity_types
+  many:
+    entity: EntityType
+    field: schema
+  storage:
+    type: ForeignKey
+    owner: EntityType
+    field: schema_id

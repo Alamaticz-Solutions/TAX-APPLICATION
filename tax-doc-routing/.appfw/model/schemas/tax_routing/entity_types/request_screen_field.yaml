@@ -1,0 +1,57 @@
+# RequestScreenField — which fields appear on which screen, in what section, at what
+# requirement, gated by an optional condition. Direct analogue of project-governance's
+# ActivityDataPoint. See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 312308a2-c8f8-46e3-ae2e-d693363ff2c4
+  name: RequestScreenField
+  is_table: true
+  indexes:
+  - screen_id
+  - field_id
+  facets:
+  - audited
+  constraints:
+  - uq_request_screen_field UNIQUE (screen_id, field_id, section)
+  - ck_request_screen_field_requirement CHECK (requirement IN ('mandatory','optional','conditional','readonly'))
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: screen_id
+    caption: Screen
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestScreen
+
+  - name: field_id
+    caption: Field
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestField
+
+  - name: requirement
+    caption: Requirement
+    is_required: true
+    data_type: String
+    default_value: optional
+
+  - name: condition_id
+    caption: Condition
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: Condition
+
+  - name: section
+    caption: Section
+    is_required: true
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    is_required: false
+    data_type: Int32

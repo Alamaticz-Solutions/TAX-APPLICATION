@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "product": "crm",
+  "generator": "scripts/appfw product generate --target mobile-rn",
+  "generated_boundaries": [
+    {
+      "path": "mobile/src/generated/appfw-mobile-contract.ts",
+      "owner": "framework-generated-target",
+      "status": "generated-mobile-contract",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/src/generated/AppfwEntityScreen.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-screen-component",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/src/generated/AppfwMobileDataClient.ts",
+      "owner": "framework-generated-target",
+      "status": "generated-mobile-data-client",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/src/design/pdsNativeTokens.ts",
+      "owner": "framework-generated-target",
+      "status": "generated-native-token-bridge",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/.appfw-mobile/scaffold-manifest.json",
+      "owner": "framework-generated-target",
+      "status": "generated-mobile-scaffold-manifest",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/accounts.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/activities.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/activity_parties.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/activity_types.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/addresses.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/article_comments.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/business_units.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/contacts.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/industries.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/knowledge_articles.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/leads.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/lead_sources.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/lead_statuses.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/pipeline.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/opportunity_stages.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/pricebooks.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/products.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/queues.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/queue_items.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/quotes.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/quote_line_items.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/quote_statuses.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    },
+    {
+      "path": "mobile/app/entities/territories.tsx",
+      "owner": "framework-generated-target",
+      "status": "generated-entity-route-shell",
+      "preserve_by_default": false
+    }
+  ],
+  "human_owned": [
+    "mobile/app/** except mobile/app/entities/** generated entity route shells",
+    "mobile/src/features/**",
+    "mobile/src/components/**",
+    "mobile/src/lib/**",
+    "mobile/src/test/**"
+  ],
+  "notes": [
+    "Generated mobile surfaces are deterministic and checked by product generate --target mobile-rn --check.",
+    "Generated mobile data clients construct policy-aware GraphQL requests from the generated mobile contract; product code owns endpoint/auth wiring.",
+    "mobile/app/entities/** is reserved for generated entity route shells that provide stable navigation targets for every primary entity.",
+    "Product React Native feature screens, workflow composition, and native adapters remain human/agent owned outside mobile/app/entities/**."
+  ]
+}

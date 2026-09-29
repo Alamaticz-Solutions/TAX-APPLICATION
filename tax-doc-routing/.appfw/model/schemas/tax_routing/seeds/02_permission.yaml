@@ -1,0 +1,685 @@
+# The capability catalogue (business spec section 2.2). `resource` + `action` are the CRUD grant
+# a Rego policy matches on; `owner_field` is the column compared against the caller's AppUser id
+# when a role_permission row grants this at scope "own". A null resource/action is a capability
+# with no direct CRUD entity (a custom method, or a frontend-only affordance like "see the
+# Assigned To column"). See docs/architecture/rbac-design.md sections 3-4.
+- entity_type: Permission
+  schema: tax_routing
+  columns: [id, code, name, description, resource, action, owner_field]
+  records:
+
+  # Routing records
+  - id: fb82caa4-e91b-48f8-b696-9c219f0e61ee
+    code: routing_record.create
+    name: Create routing record
+    description: Create a new tax document routing record.
+    resource: tax_routing_record
+    action: create
+    owner_field: null
+  - id: a7b79a25-784f-4774-b8fa-85e25938c621
+    code: routing_record.read
+    name: Read routing records
+    description: View routing records (scope decides whether that is only your own or everyone's).
+    resource: tax_routing_record
+    action: read
+    owner_field: assigned_user_id
+  - id: a986327f-425e-4428-a8d1-ab10b839eb49
+    code: routing_record.update
+    name: Process routing records
+    description: Advance a routing record through the workflow.
+    resource: tax_routing_record
+    action: update
+    owner_field: assigned_user_id
+  - id: 5d168548-6f91-4cd3-874e-8d123c31b26e
+    code: routing_record.cancel
+    name: Cancel / withdraw a routing record
+    description: Permanently close a record (business spec 9.1). Checked in the cancel_record custom method, not by row filter.
+    resource: null
+    action: null
+    owner_field: null
+  - id: f398d344-3aa8-42cd-ba92-dae4f36ef697
+    code: routing_record.reassign
+    name: Reassign a routing record
+    description: Change which user a record is assigned to. Checked in the reassign_record custom method.
+    resource: null
+    action: null
+    owner_field: null
+  - id: b2ec1d44-3987-4c9c-9368-50ba0b93b43f
+    code: routing_record.bulk_resolve
+    name: Bulk-select and resolve records
+    description: Deferred capability (design doc section 3); reserved so the frontend can gate it once built.
+    resource: null
+    action: null
+    owner_field: null
+  - id: 544ec284-5695-4594-ac63-43e6bf6c0470
+    code: routing_record.view_assignee
+    name: See the Assigned To column
+    description: Frontend-only capability; the Assigned To column is shown when this is granted.
+    resource: null
+    action: null
+    owner_field: null
+
+  # Documents
+  - id: 8a484471-1290-4ace-b1a9-17dd00ea2b92
+    code: tax_document.create
+    name: Add a document
+    description: Attach a document to a routing record.
+    resource: tax_document
+    action: create
+    owner_field: null
+  - id: a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17
+    code: tax_document.read
+    name: Read documents
+    description: View the documents on a routing record.
+    resource: tax_document
+    action: read
+    owner_field: assigned_user_id
+  - id: 9c277bb6-69b0-4872-a2a7-93294bf3c41d
+    code: tax_document.update
+    name: Update documents
+    description: Change document metadata before it is filed.
+    resource: tax_document
+    action: update
+    owner_field: assigned_user_id
+  - id: 30ec3a74-77dd-48a6-8ab7-2cedcb8307ec
+    code: tax_document.delete
+    name: Remove a document
+    description: Remove a document from a routing record before it is filed.
+    resource: tax_document
+    action: delete
+    owner_field: assigned_user_id
+
+  # Exception queue (business spec 5.3: shared queue, everyone on the tax team reads all of it)
+  - id: 452c8f59-c9b5-4249-8730-e5a9e33b745c
+    code: exception_task.read
+    name: View exception queue
+    description: See every exception, regardless of who it is assigned to.
+    resource: exception_task
+    action: read
+    owner_field: null
+  - id: fbd5468c-7472-44be-9a00-2eace8bd633f
+    code: exception_task.create
+    name: Open an exception
+    description: Opened by the routing workflow on the caller's behalf.
+    resource: exception_task
+    action: create
+    owner_field: null
+  - id: 61578bb1-f74d-450b-9464-407f3361592c
+    code: exception_task.update
+    name: Work / resolve an exception
+    description: Retry or resolve an exception assigned to you.
+    resource: exception_task
+    action: update
+    owner_field: assigned_user_id
+
+  # Reference data (document routing table, taxpayer registry, entity list)
+  - id: 3c3c96d7-279b-4de9-8577-c4b4071368b2
+    code: document_type_route.read
+    name: Read the document routing table
+    description: Look up which folder a document type routes to.
+    resource: document_type_route
+    action: read
+    owner_field: null
+  - id: 183a5aac-366a-417e-a9f1-654b37cf2c8b
+    code: document_type_route.create
+    name: Add a routing rule
+    resource: document_type_route
+    action: create
+    owner_field: null
+  - id: cfd793f5-629b-4fac-aa12-c1acd2da4317
+    code: document_type_route.update
+    name: Change a routing rule
+    resource: document_type_route
+    action: update
+    owner_field: null
+  - id: 594b0e06-c18a-4243-87cf-f03669b489d8
+    code: document_type_route.delete
+    name: Remove a routing rule
+    resource: document_type_route
+    action: delete
+    owner_field: null
+  - id: b8acb30f-d62a-48e7-af39-e6b67e4b2591
+    code: tax_payer_ref_data.read
+    name: Read the taxpayer registry
+    description: Staff see active taxpayers only; Tax Admin sees all (scope decides which).
+    resource: tax_payer_ref_data
+    action: read
+    owner_field: null
+  - id: 9adbac11-9eca-4073-8d52-c061578d7379
+    code: tax_payer_ref_data.create
+    name: Add a taxpayer
+    resource: tax_payer_ref_data
+    action: create
+    owner_field: null
+  - id: 74e0a938-72cc-4132-a819-acebdf2cb350
+    code: tax_payer_ref_data.update
+    name: Update a taxpayer
+    resource: tax_payer_ref_data
+    action: update
+    owner_field: null
+  - id: 59fa9713-2d31-415b-a69b-a1f577fcb873
+    code: tax_payer_ref_data.delete
+    name: Remove a taxpayer
+    resource: tax_payer_ref_data
+    action: delete
+    owner_field: null
+  - id: d62e8989-88c1-44bf-8e4a-64beb3a03494
+    code: tax_entity_list.read
+    name: Read the entity list
+    description: Staff see active entities only; Tax Admin sees all (scope decides which).
+    resource: tax_entity_list
+    action: read
+    owner_field: null
+  - id: 1116500f-69bb-41dc-9a91-e24374124800
+    code: tax_entity_list.create
+    name: Add an entity
+    resource: tax_entity_list
+    action: create
+    owner_field: null
+  - id: cf729421-4776-4801-b1f9-7c54cba90b83
+    code: tax_entity_list.update
+    name: Update an entity
+    resource: tax_entity_list
+    action: update
+    owner_field: null
+  - id: 33fa821c-2e45-42a4-b6e7-105eb7281086
+    code: tax_entity_list.delete
+    name: Remove an entity
+    resource: tax_entity_list
+    action: delete
+    owner_field: null
+
+  # Audit trails (fixes the earlier "audit read needs the literal admin role" gap: audit access
+  # now needs this permission, granted only to Tax Admin, and nothing else).
+  - id: 9b98555c-7a7f-449a-abef-d70a5a636cd0
+    code: tax_routing_record_audit.read
+    name: Read routing record audit trail
+    resource: tax_routing_record_audit
+    action: read
+    owner_field: null
+  - id: 4b4d59eb-a2ee-4916-aeeb-508dedc18ad3
+    code: tax_document_audit.read
+    name: Read document audit trail
+    resource: tax_document_audit
+    action: read
+    owner_field: null
+  - id: d8d5ee86-9bb9-4220-b8d9-6d9d241131d1
+    code: tax_payer_ref_data_audit.read
+    name: Read taxpayer audit trail
+    resource: tax_payer_ref_data_audit
+    action: read
+    owner_field: null
+  - id: e5ef01ca-db19-42df-a3ca-495a43f10e8b
+    code: exception_task_audit.read
+    name: Read exception audit trail
+    resource: exception_task_audit
+    action: read
+    owner_field: null
+
+  # Administration
+  - id: 5cb154cf-e83b-46c4-ad1c-cdbb0dc46bd1
+    code: rbac.manage
+    name: Manage users, roles and permissions
+    description: Create/deactivate users, grant or revoke roles, edit the permission matrix.
+    resource: null
+    action: null
+    owner_field: null
+
+  # RBAC self-management. app_user.read is granted to both roles: every write to a record,
+  # document or exception task carries an assigned_user_id foreign key to AppUser, and the
+  # framework validates every foreign key with a read-access check against its target entity
+  # before the write is allowed — so without this, no Tax Staff write could ever pass FK
+  # validation. Everything else here (managing users, roles and the matrix itself) is Tax
+  # Admin only.
+  - id: 5524636a-fd77-42ea-81cc-c941015e8750
+    code: app_user.read
+    name: Read users
+    resource: app_user
+    action: read
+    owner_field: null
+  - id: ba06aa0b-1ab0-4cc4-a7f1-ee8ad68a1fc4
+    code: app_user.create
+    name: Create a user
+    resource: app_user
+    action: create
+    owner_field: null
+  - id: feb541e4-3c05-4e73-ae6f-ee3d8f3ebbf4
+    code: app_user.update
+    name: Update a user
+    resource: app_user
+    action: update
+    owner_field: null
+  - id: b717a3a3-68b4-4337-84b7-c4a406b4b043
+    code: app_user.delete
+    name: Remove a user
+    resource: app_user
+    action: delete
+    owner_field: null
+  - id: cea7c1af-ae9b-4d99-baf3-0a44359e27a3
+    code: role.read
+    name: Read roles
+    resource: role
+    action: read
+    owner_field: null
+  - id: ea4d76f0-8792-436f-ac89-ac0cfdfbd1d6
+    code: role.create
+    name: Create a role
+    resource: role
+    action: create
+    owner_field: null
+  - id: eac356f3-5bba-4086-ae2e-93d90707c5cb
+    code: role.update
+    name: Update a role
+    resource: role
+    action: update
+    owner_field: null
+  - id: 3722542b-e4f6-4570-af2c-756a618509e5
+    code: role.delete
+    name: Remove a role
+    resource: role
+    action: delete
+    owner_field: null
+  - id: 78ac37e5-5cac-42ca-9fc8-a731554099be
+    code: permission.read
+    name: Read the permission catalogue
+    resource: permission
+    action: read
+    owner_field: null
+  - id: 7b362477-344e-42cf-ace7-ed7b72d0a77a
+    code: role_permission.read
+    name: Read the permission matrix
+    resource: role_permission
+    action: read
+    owner_field: null
+  - id: c82fd48f-3fe4-4852-be0c-9a4c9e6beb30
+    code: role_permission.create
+    name: Grant a permission to a role
+    resource: role_permission
+    action: create
+    owner_field: null
+  - id: 9b74b7d0-e4ae-4c57-941b-2b23e52fe65c
+    code: role_permission.update
+    name: Change a role's grant scope
+    resource: role_permission
+    action: update
+    owner_field: null
+  - id: 1d0de8f4-846b-434b-9f59-098f116159f1
+    code: role_permission.delete
+    name: Revoke a permission from a role
+    resource: role_permission
+    action: delete
+    owner_field: null
+  - id: 781569b1-6eed-463e-8cef-6b3a785e1faf
+    code: user_role.read
+    name: Read user role assignments
+    resource: user_role
+    action: read
+    owner_field: null
+  - id: eca98571-56c4-469e-8cc6-157e7f728c34
+    code: user_role.create
+    name: Grant a role to a user
+    resource: user_role
+    action: create
+    owner_field: null
+  - id: bd9abc0a-8c89-4db2-9c53-f6470fe339fc
+    code: user_role.update
+    name: Change a user's role assignment
+    resource: user_role
+    action: update
+    owner_field: null
+  - id: 98cbfa99-2c8c-4a21-a0a6-9e9a786ad70e
+    code: user_role.delete
+    name: Revoke a role from a user
+    resource: user_role
+    action: delete
+    owner_field: null
+  - id: 5d247cb7-22d7-4ff8-a008-06d425dddda8
+    code: app_user_audit.read
+    name: Read user audit trail
+    resource: app_user_audit
+    action: read
+    owner_field: null
+  - id: 2b4f2ce4-4ddf-4336-8953-1a36c1c52bf9
+    code: role_audit.read
+    name: Read role audit trail
+    resource: role_audit
+    action: read
+    owner_field: null
+  - id: 141ff7ed-e22b-47f7-87a1-61ace3a03e3a
+    code: permission_audit.read
+    name: Read permission audit trail
+    resource: permission_audit
+    action: read
+    owner_field: null
+  - id: 495fa653-bc26-4837-b24e-7d0b86493ee6
+    code: role_permission_audit.read
+    name: Read permission-matrix audit trail
+    resource: role_permission_audit
+    action: read
+    owner_field: null
+  - id: 33ecd0de-ffc7-4de3-9096-c4d78f2f39a5
+    code: user_role_audit.read
+    name: Read role-assignment audit trail
+    resource: user_role_audit
+    action: read
+    owner_field: null
+
+  # Dynamic form/workflow engine (docs/architecture/dynamic-form-engine-design.md).
+  - id: dc8563ab-fdfe-4a1e-ba38-ae5c3339bd40
+    code: request_type.read
+    name: Request Type - Read
+    resource: request_type
+    action: read
+    owner_field: null
+  - id: 49277002-b8bb-44ef-98ae-a31119dcd89a
+    code: request_type.create
+    name: Request Type - Create
+    resource: request_type
+    action: create
+    owner_field: null
+  - id: 2e5dd3ec-bf9a-46c6-9695-c9abdcc65413
+    code: request_type.update
+    name: Request Type - Update
+    resource: request_type
+    action: update
+    owner_field: null
+  - id: 301c1b26-730c-4fe4-9ed0-02c94c226219
+    code: request_type.delete
+    name: Request Type - Delete
+    resource: request_type
+    action: delete
+    owner_field: null
+  - id: ecea19a9-4b74-404f-bb11-c0e256734d64
+    code: request_screen.read
+    name: Request Screen - Read
+    resource: request_screen
+    action: read
+    owner_field: null
+  - id: dbc4968f-511c-4920-8072-06af332478ae
+    code: request_screen.create
+    name: Request Screen - Create
+    resource: request_screen
+    action: create
+    owner_field: null
+  - id: d0127839-da72-42bb-a149-b4bbcb10a1d0
+    code: request_screen.update
+    name: Request Screen - Update
+    resource: request_screen
+    action: update
+    owner_field: null
+  - id: aeea58f6-5334-4e55-921d-08fafc2a1ee7
+    code: request_screen.delete
+    name: Request Screen - Delete
+    resource: request_screen
+    action: delete
+    owner_field: null
+  - id: 98712260-3383-4e8a-8797-07e504946393
+    code: request_type_screen.read
+    name: Request Type Screen - Read
+    resource: request_type_screen
+    action: read
+    owner_field: null
+  - id: 50b9423d-0a03-4763-93a2-4878d997319b
+    code: request_type_screen.create
+    name: Request Type Screen - Create
+    resource: request_type_screen
+    action: create
+    owner_field: null
+  - id: b09e5804-647d-4412-8c18-6547ea46a73e
+    code: request_type_screen.update
+    name: Request Type Screen - Update
+    resource: request_type_screen
+    action: update
+    owner_field: null
+  - id: b91ab276-4e55-412b-bdc6-22ce232a859c
+    code: request_type_screen.delete
+    name: Request Type Screen - Delete
+    resource: request_type_screen
+    action: delete
+    owner_field: null
+  - id: fd4ced68-b37e-4263-af38-d94e3ce50369
+    code: request_field.read
+    name: Request Field - Read
+    resource: request_field
+    action: read
+    owner_field: null
+  - id: 5fc6dbf7-4437-4374-a0b4-8fdd396c0190
+    code: request_field.create
+    name: Request Field - Create
+    resource: request_field
+    action: create
+    owner_field: null
+  - id: 16cebd7f-4c6e-4164-b384-56f844ae0b3b
+    code: request_field.update
+    name: Request Field - Update
+    resource: request_field
+    action: update
+    owner_field: null
+  - id: 4fcf2929-c96f-4527-9e30-f662751ddc3c
+    code: request_field.delete
+    name: Request Field - Delete
+    resource: request_field
+    action: delete
+    owner_field: null
+  - id: 1f4d037f-49f7-4b64-a2af-0721452653ac
+    code: request_screen_field.read
+    name: Request Screen Field - Read
+    resource: request_screen_field
+    action: read
+    owner_field: null
+  - id: c430b1e0-3e3d-4047-89d6-24687015d2e0
+    code: request_screen_field.create
+    name: Request Screen Field - Create
+    resource: request_screen_field
+    action: create
+    owner_field: null
+  - id: 6871452d-e2ba-42f3-9f63-9b8a86a66e5a
+    code: request_screen_field.update
+    name: Request Screen Field - Update
+    resource: request_screen_field
+    action: update
+    owner_field: null
+  - id: 3491f676-fb5a-40de-8c02-4ddaab3e6889
+    code: request_screen_field.delete
+    name: Request Screen Field - Delete
+    resource: request_screen_field
+    action: delete
+    owner_field: null
+  - id: 53b25f7f-85d3-45be-8493-602df3814caf
+    code: field_option_list.read
+    name: Field Option List - Read
+    resource: field_option_list
+    action: read
+    owner_field: null
+  - id: 159d8d39-e826-43a0-b436-0a5b78524693
+    code: field_option_list.create
+    name: Field Option List - Create
+    resource: field_option_list
+    action: create
+    owner_field: null
+  - id: 65fe2ae6-2c8e-468c-9c22-4cea2bf7bf3a
+    code: field_option_list.update
+    name: Field Option List - Update
+    resource: field_option_list
+    action: update
+    owner_field: null
+  - id: c18a43f0-5299-4ab6-8f03-cbb09a36cf2a
+    code: field_option_list.delete
+    name: Field Option List - Delete
+    resource: field_option_list
+    action: delete
+    owner_field: null
+  - id: 33cddff0-017c-4cf7-b852-d9dcdcf38ae0
+    code: field_option_value.read
+    name: Field Option Value - Read
+    resource: field_option_value
+    action: read
+    owner_field: null
+  - id: 8faad617-2a9f-4a5b-a791-4e5cf2eb1e4c
+    code: field_option_value.create
+    name: Field Option Value - Create
+    resource: field_option_value
+    action: create
+    owner_field: null
+  - id: b35c7ef4-412d-457c-9420-8ff8ca0fbd5d
+    code: field_option_value.update
+    name: Field Option Value - Update
+    resource: field_option_value
+    action: update
+    owner_field: null
+  - id: 7cb59402-d229-49e2-ab75-96a3f856f897
+    code: field_option_value.delete
+    name: Field Option Value - Delete
+    resource: field_option_value
+    action: delete
+    owner_field: null
+  - id: ef728ef8-4cbf-49d8-9194-70563e553c8a
+    code: condition.read
+    name: Condition - Read
+    resource: condition
+    action: read
+    owner_field: null
+  - id: 5110e5cc-c923-490d-a29e-30023430fa3a
+    code: condition.create
+    name: Condition - Create
+    resource: condition
+    action: create
+    owner_field: null
+  - id: 72608a55-0e50-4d11-8ed9-1ae985248aa5
+    code: condition.update
+    name: Condition - Update
+    resource: condition
+    action: update
+    owner_field: null
+  - id: 196e153e-3320-4bbb-9c35-df9a5b328593
+    code: condition.delete
+    name: Condition - Delete
+    resource: condition
+    action: delete
+    owner_field: null
+  - id: a208c167-37e1-4b87-83aa-1c1a3132a8de
+    code: condition_clause.read
+    name: Condition Clause - Read
+    resource: condition_clause
+    action: read
+    owner_field: null
+  - id: 1d04db41-5022-4dbb-83ea-97af84f43868
+    code: condition_clause.create
+    name: Condition Clause - Create
+    resource: condition_clause
+    action: create
+    owner_field: null
+  - id: 953615dd-0e71-4c73-9851-f58af0c64709
+    code: condition_clause.update
+    name: Condition Clause - Update
+    resource: condition_clause
+    action: update
+    owner_field: null
+  - id: 7cc80fd8-3146-44cc-82c7-b0d36745a9f1
+    code: condition_clause.delete
+    name: Condition Clause - Delete
+    resource: condition_clause
+    action: delete
+    owner_field: null
+  - id: 2a0ecf8d-29cc-4ed5-99f0-f8cbf2cd4618
+    code: request_screen_submission.read
+    name: Request Screen Submission - Read
+    resource: request_screen_submission
+    action: read
+    owner_field: null
+  - id: b00b99b2-328a-44d7-869f-1f293428d795
+    code: request_screen_submission.create
+    name: Request Screen Submission - Create
+    resource: request_screen_submission
+    action: create
+    owner_field: null
+  - id: c05dbe8f-eae1-44b2-b6e0-6a2da9e622fd
+    code: request_screen_submission.update
+    name: Request Screen Submission - Update
+    resource: request_screen_submission
+    action: update
+    owner_field: null
+  - id: 21c53624-b3c6-413c-802a-2cc3be5b6cea
+    code: request_field_value.read
+    name: Request Field Value - Read
+    resource: request_field_value
+    action: read
+    owner_field: null
+  - id: 2b231031-f011-45f4-9b5e-218b7e32890a
+    code: request_field_value.create
+    name: Request Field Value - Create
+    resource: request_field_value
+    action: create
+    owner_field: null
+  - id: e93507b2-d21b-4b36-84c7-771e699c8f71
+    code: request_field_value.update
+    name: Request Field Value - Update
+    resource: request_field_value
+    action: update
+    owner_field: null
+  - id: 9e577f25-52bf-42d9-bfbf-9de426eeec38
+    code: request_type_audit.read
+    name: Request Type Audit - Read
+    resource: request_type_audit
+    action: read
+    owner_field: null
+  - id: 941b760e-2099-4c0a-a582-25888d473952
+    code: request_screen_audit.read
+    name: Request Screen Audit - Read
+    resource: request_screen_audit
+    action: read
+    owner_field: null
+  - id: 2e7e30a4-a5cc-4dda-8d25-5bbe1a0261b6
+    code: request_type_screen_audit.read
+    name: Request Type Screen Audit - Read
+    resource: request_type_screen_audit
+    action: read
+    owner_field: null
+  - id: e1541021-a2be-418a-8342-cd4e153d7ad9
+    code: request_field_audit.read
+    name: Request Field Audit - Read
+    resource: request_field_audit
+    action: read
+    owner_field: null
+  - id: a8a1bb7e-1f1f-4792-b3d3-d87377637e06
+    code: request_screen_field_audit.read
+    name: Request Screen Field Audit - Read
+    resource: request_screen_field_audit
+    action: read
+    owner_field: null
+  - id: 4849e163-9843-4b91-9560-08ba2327e859
+    code: field_option_list_audit.read
+    name: Field Option List Audit - Read
+    resource: field_option_list_audit
+    action: read
+    owner_field: null
+  - id: e8ab0ba9-d938-4e9a-9169-86fc8bee215a
+    code: field_option_value_audit.read
+    name: Field Option Value Audit - Read
+    resource: field_option_value_audit
+    action: read
+    owner_field: null
+  - id: 2a0076c8-b207-4db4-ae59-a6591af39c66
+    code: condition_audit.read
+    name: Condition Audit - Read
+    resource: condition_audit
+    action: read
+    owner_field: null
+  - id: e60764b6-5e49-4b5d-81ec-75126ffe50bb
+    code: condition_clause_audit.read
+    name: Condition Clause Audit - Read
+    resource: condition_clause_audit
+    action: read
+    owner_field: null
+  - id: b1ad3a49-55f5-452c-8f25-037f878b1bf4
+    code: request_screen_submission_audit.read
+    name: Request Screen Submission Audit - Read
+    resource: request_screen_submission_audit
+    action: read
+    owner_field: null
+  - id: f2c599fc-337f-46c5-abcf-5fb76cc1dd56
+    code: request_field_value_audit.read
+    name: Request Field Value Audit - Read
+    resource: request_field_value_audit
+    action: read
+    owner_field: null

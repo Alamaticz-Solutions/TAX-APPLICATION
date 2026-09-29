@@ -1,0 +1,21 @@
+# Pricebook - seeded lookup coverage.
+
+- name: find_pricebook
+  description: find seeded pricebook by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findPricebook
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"97000b00-0000-4000-8000-100000000001"'
+    select: |
+      id,name,is_active,is_standard
+  expect:
+    data:
+      id: '97000b00-0000-4000-8000-100000000001'
+      name: 'Standard Price Book'
+      is_active: true
+      is_standard: true

@@ -1,0 +1,37 @@
+{%- import "foreign_key" as foreign_key -%}
+{%- import "nav_by_fk_property" as nav_by_fk_property -%}
+{%- import "many_to_many_property" as many_to_many_property -%}
+{%- import "nested_entity_type" as nested_entity_type -%}
+{% macro print(entityType, property) %}
+{% set p = property %}
+{%- if p.fragment is defined %}
+{% set f = p.fragment | fragment %}
+{%- endif %}
+  - id: {% if p.id is defined %}{{ p.id }}{% else %}{{ entityType.name ~ p.name | hash_string }}{% endif %} 
+    name: {{ p.name | snake_1 }}
+    caption: {% if p.caption %}{{ p.caption }}{% else %}{{ p.name | caption }}{% endif %}
+    is_caption: {% if f and f.is_caption and f.is_caption == true %}true{% elif p.is_caption and p.is_caption == true %}true{% else %}false{% endif %}
+{%- if p.type_variant is defined and p.type_variant == true %}
+    is_key: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {{ entityType.name }}
+{%- else %} {# In general: if fragment has the attr, apply it, else if prop has the attr, apply it, else default #}
+    is_key: {% if f and f.is_key and f.is_key == true %}true{% elif p.is_key and p.is_key == true %}true{% else %}false{% endif %}
+    is_required: {% if f and f.is_required and f.is_required == true %}true{% elif p.is_required and p.is_required == true %}true{% else %}false{% endif %}
+    is_read_only: {% if f and f.is_read_only and f.is_read_only == true %}true{% elif p.is_read_only and p.is_read_only == true %}true{% else %}false{% endif %}
+    is_concurrency_control: {% if f and f.is_concurrency_control and f.is_concurrency_control == true %}true{% elif p.is_concurrency_control and p.is_concurrency_control == true %}true{% else %}false{% endif %}
+    data_type: {% if f and f.data_type %}{{ f.data_type }}{% elif p.data_type %}{{ p.data_type }}{% else %}None{% endif %}
+    computed: {% if f and f.computed %}{{ f.computed }}{% elif p.computed %}{{ p.computed }}{% else %}None{% endif %}
+    foreign_key: {% if p.foreign_key %}{{ foreign_key::print(fk=p.foreign_key) }}{% else %}null{% endif %}
+    nav_by_fk_property: {% if p.nav_by_fk_property %}{{ nav_by_fk_property::print(entityType=entityType, nav=p.nav_by_fk_property) }}{% else %}null{% endif %}
+    many_to_many_property: {% if p.many_to_many_property %}{{ many_to_many_property::print(many_to_many=p.many_to_many_property) }}{% else %}null{% endif %}
+    nested_entity_type: {% if p.nested_entity_type %}{{ nested_entity_type::print(nested=p.nested_entity_type) }}{% else %}null{% endif %}
+    enum_type_name: {% if p.enum_type_name %}{{ p.enum_type_name }}{% else %}null{% endif %}
+    default_value: {% if f and f.default_value is defined %}{{ f.default_value | json_encode(pretty=false) | safe }}{% elif p.default_value is defined %}{{ p.default_value | json_encode(pretty=false) | safe }}{% else %}{}{% endif %}
+    meta: {% if f and f.meta %}{{ f.meta | json_encode(pretty=false) | safe }}{% elif p.meta %}{{ p.meta | json_encode(pretty=false) | safe }}{% else %}{}{% endif %}
+{%- endif %}
+{% endmacro print %}

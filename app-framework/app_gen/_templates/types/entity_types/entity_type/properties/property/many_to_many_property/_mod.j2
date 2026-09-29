@@ -1,0 +1,8 @@
+{% macro print(many_to_many) %}
+      junction_table: {{ many_to_many.junction_table }}
+      junction_schema: {% if many_to_many.junction_schema %}{{ many_to_many.junction_schema }}{% else %}null{% endif %}
+      local_key: {{ many_to_many.local_key }}
+      foreign_key: {{ many_to_many.foreign_key }}
+      target_schema: {{ many_to_many.target_schema }}
+      target_type: {{ many_to_many.target_type }}
+{%- endmacro print %}

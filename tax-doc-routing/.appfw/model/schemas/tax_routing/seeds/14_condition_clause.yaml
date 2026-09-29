@@ -1,0 +1,32 @@
+# Each clause tests the currently-selected document type's own requirement flag
+# (docs/architecture/dynamic-form-engine-design.md section 4) rather than naming document type
+# codes — a new document type with requires_k1_attachments = true gets the K-1 Attachments field
+# for free, with no edit here.
+- entity_type: ConditionClause
+  schema: tax_routing
+  columns: [id, condition_id, subject_kind, subject_field_id, subject_attribute, comparison, value, sort_order]
+  records:
+  - id: eabdca8f-8dc5-451e-83f2-56c200ed84ca
+    condition_id: 921e2478-10b0-41c7-bed0-588e4882f5f0
+    subject_kind: document_type_attribute
+    subject_field_id: null
+    subject_attribute: allows_entity
+    comparison: is
+    value: "true"
+    sort_order: 10
+  - id: 930f014d-79f9-4d78-9492-b6971e0a4939
+    condition_id: 064cb746-a408-4e37-9bc2-b1e2bcbce3d5
+    subject_kind: document_type_attribute
+    subject_field_id: null
+    subject_attribute: requires_k1_attachments
+    comparison: is
+    value: "true"
+    sort_order: 10
+  - id: 5b7942a7-2aa7-4810-a20b-5af65e8e6f46
+    condition_id: 9dc7f2a7-d6cc-4223-b58c-df0f6481f554
+    subject_kind: document_type_attribute
+    subject_field_id: null
+    subject_attribute: requires_form_8308_attachments
+    comparison: is
+    value: "true"
+    sort_order: 10

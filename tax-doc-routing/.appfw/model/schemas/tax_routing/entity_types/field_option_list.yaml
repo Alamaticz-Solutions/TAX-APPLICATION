@@ -1,0 +1,27 @@
+# FieldOptionList — a managed drop-down list (Document Type, Document Year, Entity Type).
+# Replaces the hardcoded arrays in frontend/src/features/shared/config/documentTypes.ts.
+# See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 9cc74ed4-3f47-48a2-aa2c-8eb5e94dc5f4
+  name: FieldOptionList
+  is_table: true
+  facets:
+  - audited
+  constraints:
+  - uq_field_option_list_name UNIQUE (name)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    is_required: false
+    data_type: String

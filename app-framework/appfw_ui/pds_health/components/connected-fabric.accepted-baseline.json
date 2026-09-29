@@ -1,0 +1,87 @@
+{
+  "contract_version": "connected-fabric/1.0.0",
+  "accepted_at": "2026-07-17",
+  "status": "protected",
+  "canonical_implementation": "appfw_ui/pds_health/components/src/connected-fabric.tsx",
+  "visual_language_contract": "appfw_ui/pds_health/components/connected-fabric-visual-language.md",
+  "browser_evidence_command": "node scripts/check-pds-catalog-evidence.mjs --json",
+  "change_policy": "product-owner-visual-review-and-retained-evidence",
+  "behavior": {
+    "geometry": {
+      "hex_radius": 54,
+      "rotation_degrees": 45,
+      "mesh_stroke_width": 1.44,
+      "topology_distortion": false
+    },
+    "pointer_response": {
+      "position_lag_base": 0.91,
+      "attack_ms": 500,
+      "idle_grace_ms": 120,
+      "decay_ms": 2500,
+      "focus_shade_enabled": false,
+      "panel_response_scale": 0.45
+    },
+    "routing": {
+      "ambient_visible_limit": 1,
+      "pointer_visible_limit": 4,
+      "ambient_delay_min_ms": 10000,
+      "ambient_delay_range_ms": 20000,
+      "pointer_delay_min_ms": 180,
+      "pointer_delay_range_ms": 280,
+      "route_edge_min": 5,
+      "route_edge_range": 4,
+      "route_build_attempts": 12,
+      "edge_policy": "shared-nodes-exclusive-edges"
+    },
+    "connection_sequence": {
+      "draw_easing": "easeInOutQuart",
+      "arrival_pause_ms": 160,
+      "acknowledgment_ms": 520,
+      "post_acknowledgment_hold_ms": 450,
+      "uniform_fade_ms": 1500,
+      "fade_easing": "smootherStep",
+      "source_ring": true,
+      "destination_ring": true,
+      "acknowledgment_return": true
+    },
+    "accessibility": {
+      "decorative": true,
+      "aria_hidden": true,
+      "pointer_events": "none",
+      "reduced_motion_static": true
+    }
+  },
+  "required_source_markers": [
+    "const HEX_RADIUS = 54;",
+    "const MESH_ROTATION = (45 * Math.PI) / 180;",
+    "const MESH_STROKE_WIDTH = 1.44;",
+    "const AMBIENT_SIGNAL_LIMIT = 1;",
+    "const HOVER_SIGNAL_LIMIT = 4;",
+    "const AMBIENT_SIGNAL_DELAY_MIN = 10000;",
+    "const AMBIENT_SIGNAL_DELAY_RANGE = 20000;",
+    "const HOVER_SIGNAL_DELAY_MIN = 180;",
+    "const HOVER_SIGNAL_DELAY_RANGE = 280;",
+    "const SIGNAL_ROUTE_EDGE_MIN = 5;",
+    "const SIGNAL_ROUTE_EDGE_RANGE = 4;",
+    "const SIGNAL_ROUTE_BUILD_ATTEMPTS = 12;",
+    "const SIGNAL_ARRIVAL_PAUSE_DURATION = 160;",
+    "const SIGNAL_REFLECTION_DURATION = 520;",
+    "const SIGNAL_POST_REFLECTION_DURATION = 450;",
+    "const SIGNAL_FADE_DURATION = 1500;",
+    "const HOVER_ATTACK_DURATION = 500;",
+    "const HOVER_IDLE_GRACE = 120;",
+    "const HOVER_DECAY_DURATION = 2500;",
+    "const FOCUS_SHADE_ENABLED = false;",
+    "const positionBlend = 1 - Math.pow(0.91, frameScale);",
+    "drawProximity(0.45);",
+    "function easeInOutQuart(value: number): number",
+    "function smootherStep(value: number): number",
+    "const occupiedEdges = new Set(",
+    "candidateEdgeCount !== candidateRoute.edgeKeys.length",
+    "intersectsVisibleEdge",
+    "data-pds-visual-language=\"connected-fabric\"",
+    "data-semantic-role=\"decorative\"",
+    "data-edge-policy=\"shared-nodes-exclusive-edges\"",
+    "data-edge-conflict-detected=\"false\""
+  ]
+}

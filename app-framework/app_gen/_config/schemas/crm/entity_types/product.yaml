@@ -1,0 +1,44 @@
+- id: 9700d000-0000-4000-8000-000000000007
+  name: Product
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Product Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: product_code
+    caption: Product Code
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: list_price
+    caption: List Price
+    data_type: Float64
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required
+
+  - name: family
+    caption: Product Family
+    data_type: String
+
+  - name: pricebook_id
+    caption: Pricebook
+    data_type: Uuid
+    foreign_key:
+      type_name: Pricebook

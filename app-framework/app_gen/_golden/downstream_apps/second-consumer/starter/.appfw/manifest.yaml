@@ -1,0 +1,28 @@
+version: 1
+app:
+  name: second-consumer
+  display_name: Second Consumer
+  description: Package-first isolated consumer fixture.
+topology:
+  data_sources:
+  - name: second_consumer_pg
+    provider: PostgreSQL
+    role: transactional
+    description: Local disposable consumer data source.
+  schemas:
+  - name: system
+    data_source_name: second_consumer_pg
+    role: framework
+    description: Runtime metadata schema.
+  - name: consumer
+    data_source_name: second_consumer_pg
+    role: product
+    description: Isolated second-consumer schema.
+  ingress:
+  - name: consumer-http
+    kind: http
+    enabled: true
+    schema: consumer
+    path: /consumer
+    consumers:
+    - service-api

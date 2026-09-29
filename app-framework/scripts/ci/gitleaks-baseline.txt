@@ -1,0 +1,81 @@
+# App Framework gitleaks baseline v1.
+#
+# This file intentionally stores only finding fingerprints, not secrets.
+# The release gate still scans git history and fails on any unbaselined
+# fingerprint. These entries cover historical test-token fixtures, local-dev
+# JWT examples, and already-redacted documentation/template examples that were
+# present before the release evidence gate was introduced.
+#
+# Reviewed: 2026-06-03
+
+f96a02351d373ece01255b643666ed64c8fa79de:examples/products/crm/api_tests/test_tokens/cc_tenant_user.txt:jwt:1
+f96a02351d373ece01255b643666ed64c8fa79de:examples/products/crm/api_tests/test_tokens/pdsh_admin.txt:jwt:1
+f96a02351d373ece01255b643666ed64c8fa79de:examples/products/crm/api_tests/test_tokens/pdsh_office_user.txt:jwt:1
+9ca1841850c9926069cc19eb5a0ebd559fffb2ab:frontend/src/api/GqlClient.ts:jwt:20
+fa2080a2d05d3daf0191ef3ad79e20e94f041522:backend/src/main.rs:generic-api-key:28
+fa2080a2d05d3daf0191ef3ad79e20e94f041522:frontend/src/services/api.ts:jwt:11
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/src/gql_client.rs:jwt:8
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/src/gql_client.rs:jwt:9
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/src/gql_client.rs:jwt:10
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/test_tokens/cc_tenant_user.txt:jwt:1
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/test_tokens/pdsh_office_user.txt:jwt:1
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:api-tests/test_tokens/pdsh_admin.txt:jwt:1
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:backend/src/auth.md:jwt:29
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:backend/src/auth.md:jwt:36
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:backend/src/handlers/python/system/utils/gql_client.py:jwt:11
+aaa8981b586336bbcc4bb1c07ecd7f5c417bcee1:backend/src/main.rs:generic-api-key:28
+547702e96f977d04ede749d28f144d9b7d0c044c:backend/src/main.rs:generic-api-key:28
+29faf3e79452d527892bf90c0c24767e75a07fdf:app_gen/_config/schemas/providers/README.md:curl-auth-header:4
+29faf3e79452d527892bf90c0c24767e75a07fdf:app_gen/_config/schemas/providers/README.md:curl-auth-header:11
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/test_tokens/pdsh_admin.txt:jwt:1
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/test_tokens/cc_tenant_user.txt:jwt:1
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/src/gql_client.rs:jwt:8
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/src/gql_client.rs:jwt:9
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/src/gql_client.rs:jwt:10
+0143da65baa9fcedd1554c3fd27ff2a11fa4f365:graphql-tests/test_tokens/pdsh_office_user.txt:jwt:1
+27ce518e98a5a2b91d5a929fd2a3b6d9bf7f1ef6:backend/src/auth.md:jwt:36
+42b2c2bd4467329e7522b02ef7cc5e5902f97bb5:backend/src/handlers/python/system/utils/gql_client.py:jwt:11
+720b324b947962904b5fa2ce03379330c9e1aa60:backend/src/auth.md:jwt:26
+720b324b947962904b5fa2ce03379330c9e1aa60:backend/src/auth.md:jwt:33
+720b324b947962904b5fa2ce03379330c9e1aa60:backend/src/main.rs:generic-api-key:28
+25a648d45d2d6d389300d3f2ff40bd96821b2ef5:database/_sql/schemas/sys/users.sql:generic-api-key:12
+766454d6654c2bd95fc1c9278e9660bb5c02d998:app_gen/_templates/database/upsert_users_sql/_mod.j2:generic-api-key:12
+74cb266f2ec1db59676205d78856924d412568e2:appfw_ui/pds_health/components/scripts/stage-source-package.mjs:generic-api-key:7
+7360958198c7aa6b48487861f509de6ac9d1ae02:appfw_ui/pds_health/components/scripts/stage-source-package.mjs:generic-api-key:27
+7360958198c7aa6b48487861f509de6ac9d1ae02:appfw_ui/pds_health/components/scripts/stage-source-package.mjs:generic-api-key:28
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/generate-pds-design-data.mjs:generic-api-key:17
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/generate-pds-design-data.mjs:generic-api-key:18
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/generate-pds-design-data.mjs:generic-api-key:19
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:docs/assessments/pds-ux-foundation-extraction-manifest.json:generic-api-key:52
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:docs/assessments/pds-ux-foundation-extraction-manifest.json:generic-api-key:53
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/tests/pds-design-data-generator.test.mjs:generic-api-key:19
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/tests/pds-design-data-generator.test.mjs:generic-api-key:20
+f3e6ae13e72452f404af20dd3ca5e7f4e4e567e0:scripts/tests/pds-design-data-generator.test.mjs:generic-api-key:21
+
+# AFS-008 transparent routing: synthetic secret-shaped fixtures used to test
+# that the routing privacy/PII detector rejects private-key- and PAT-shaped
+# strings (placeholder key bodies, e.g. "abc" or "A".repeat(N); sequential
+# ghp_123... is not a real GitHub token). Reviewed: 2026-07-24.
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:github-pat:720
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:474
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:475
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:476
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:477
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:478
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:479
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/appfw-model-route.test.mjs:private-key:53
+7096321ca304439cf28069360d01e60de8fcb30d:scripts/agent-routing/routing-cases.v1.json:private-key:363
+
+# Reviewed: 2026-07-26 — AFS product-increment delivery lanes (PR #445).
+# False positive: the gitleaks generic-api-key rule matched an uppercase
+# schema-constant identifier in check-nexus-workstreams.mjs (part of the
+# workstation_assignment@4 support). Not a secret; see the in-file line.
+# (Comment deliberately omits the literal identifier so this baseline file
+# does not itself trip the same rule.)
+# Keyed to the introducing commit; re-key if the branch is rebased before merge.
+2d474075eb54d89b02507a5bc59c243b27a99a20:scripts/check-nexus-workstreams.mjs:generic-api-key:954
+
+# Human-risk GO (2026-08-18): historical test-only PKCS#1 PEM from 272620942,
+# removed from tip 4a729b787 (runtime OpenSSL remint). Not a live secret and
+# not an ignore of RUSTSEC-2023-0071.
+272620942628900feb7b773bcdb23901e1d3b22d:appfw_runtime/test_fixtures/ix_rs256.rs:private-key:9

@@ -1,0 +1,58 @@
+# Lead - entity with multiple foreign keys (LeadStatus, LeadSource, Industry).
+#
+# NOTE: see industries.yaml for the two omitted-test categories and reasons.
+
+- name: create_lead
+  description: create lead with multiple FKs as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: mutation
+    name: createLead
+    variables:
+    - name: input
+      type: InputLead!
+      yaml_value:
+        first_name: 'Avery'
+        last_name: 'Lopez'
+        company: 'Test Lead Co.'
+        email: 'avery.lopez@example.com'
+        phone: '555-0210'
+        title: 'Director of IT'
+        is_converted: false
+        status_id: '1eadcc00-0000-4000-8000-100000000001'    # New
+        source_id: '1eadcc01-0000-4000-8000-100000000001'    # Web
+        industry_id: '10100070-0000-4000-8000-100000000002'  # Technology
+        version: 0
+    select: |
+      id,first_name,last_name,company,email,is_converted,status_id,source_id,industry_id,version
+  expect:
+    data:
+      first_name: 'Avery'
+      last_name: 'Lopez'
+      company: 'Test Lead Co.'
+      status_id: '1eadcc00-0000-4000-8000-100000000001'
+      source_id: '1eadcc01-0000-4000-8000-100000000001'
+      industry_id: '10100070-0000-4000-8000-100000000002'
+  result_object_name: create_lead_result
+
+
+
+- name: find_lead
+  description: find lead with NavToOne status and source
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findLead
+    variables:
+    - name: id
+      type: String!
+      reference_value_property: create_lead_result.id
+    select: |
+      id,first_name,last_name,status { id,name },source { id,name },industry { id,name },version
+  expect:
+    data:
+      first_name: 'Avery'
+      last_name: 'Lopez'
+  result_object_name: find_lead_result

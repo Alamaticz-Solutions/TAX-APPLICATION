@@ -1,0 +1,76 @@
+{
+  "name": "@appfw/pds-health-native",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "PDS-owned React Native renderers for channel-neutral PDS presentation data.",
+  "packageManager": "npm@10.8.2",
+  "engines": {
+    "node": "^20.19.4 || ^22.13.0 || ^24.3.0 || >=25.0.0",
+    "npm": "10.8.2"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./design-data": {
+      "types": "./dist/design-data.d.ts",
+      "import": "./dist/design-data.js",
+      "default": "./dist/design-data.js"
+    },
+    "./ix-recipes": {
+      "types": "./dist/ix-recipes.d.ts",
+      "import": "./dist/ix-recipes.js",
+      "default": "./dist/ix-recipes.js"
+    },
+    "./ix-recipe-projection": {
+      "types": "./dist/ix-recipe-projection.d.ts",
+      "import": "./dist/ix-recipe-projection.js",
+      "default": "./dist/ix-recipe-projection.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test scripts/*.test.mjs && jest --runInBand",
+    "check:package": "node scripts/check-package.mjs",
+    "proof:detached-consumer": "node ../scripts/prove-native-packages-from-clean-checkout.mjs"
+  },
+  "peerDependencies": {
+    "@appfw/pds-ix-presentation-contract": "0.2.0",
+    "react": ">=19.2.3 <20",
+    "react-native": ">=0.85.3 <0.86"
+  },
+  "devDependencies": {
+    "@react-native/babel-preset": "0.85.3",
+    "@react-native/jest-preset": "0.85.3",
+    "@testing-library/react-native": "13.2.0",
+    "@types/react": "~19.2.4",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
+    "react-test-renderer": "19.2.3",
+    "jest": "^29.7.0",
+    "typescript": "~6.0.3",
+    "vite": "^7.2.2"
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "roots": ["<rootDir>/scripts"],
+    "testMatch": ["**/*.rntl.test.tsx"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?|@appfw/pds-ix-presentation-contract)/)"
+    ]
+  }
+}

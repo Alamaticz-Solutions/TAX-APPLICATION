@@ -1,0 +1,331 @@
+- entity_type: BusinessUnit
+  schema: crm
+  columns: [id, name, code, description, region, is_active]
+  records:
+    - id: b0510000-0000-4000-8000-100000000001
+      name: West Commercial
+      code: WEST-COM
+      description: Commercial sales and service for western regional accounts
+      region: West
+      is_active: true
+    - id: b0510000-0000-4000-8000-100000000002
+      name: National Service
+      code: NAT-SVC
+      description: Shared service and knowledge operations
+      region: National
+      is_active: true
+
+- entity_type: Territory
+  schema: crm
+  columns: [id, name, code, region, country, state, is_active, business_unit_id]
+  records:
+    - id: 7e441000-0000-4000-8000-100000000001
+      name: Pacific Northwest
+      code: PNW
+      region: West
+      country: USA
+      state: WA
+      is_active: true
+      business_unit_id: b0510000-0000-4000-8000-100000000001
+    - id: 7e441000-0000-4000-8000-100000000002
+      name: California Enterprise
+      code: CA-ENT
+      region: West
+      country: USA
+      state: CA
+      is_active: true
+      business_unit_id: b0510000-0000-4000-8000-100000000001
+    - id: 7e441000-0000-4000-8000-100000000003
+      name: Remote Service Desk
+      code: RSD
+      region: National
+      country: USA
+      state: null
+      is_active: true
+      business_unit_id: b0510000-0000-4000-8000-100000000002
+
+- entity_type: Queue
+  schema: crm
+  columns: [id, name, queue_type, description, email, is_active, business_unit_id]
+  records:
+    - id: 9e0e0000-0000-4000-8000-100000000001
+      name: Enterprise Onboarding
+      queue_type: Sales
+      description: High-touch queue for new enterprise opportunities
+      email: enterprise-onboarding@example.com
+      is_active: true
+      business_unit_id: b0510000-0000-4000-8000-100000000001
+    - id: 9e0e0000-0000-4000-8000-100000000002
+      name: Knowledge Review
+      queue_type: Service
+      description: Review queue for externally visible knowledge articles
+      email: kb-review@example.com
+      is_active: true
+      business_unit_id: b0510000-0000-4000-8000-100000000002
+
+- entity_type: Address
+  schema: crm
+  columns: [id, name, address_type, street1, street2, city, state, postal_code, country, latitude, longitude, is_primary, account_id, contact_id]
+  records:
+    - id: add00000-0000-4000-8000-100000000001
+      name: Acme Dental Billing
+      address_type: Billing
+      street1: 415 Market St
+      street2: Suite 300
+      city: San Francisco
+      state: CA
+      postal_code: '94105'
+      country: USA
+      latitude: 37.7899
+      longitude: -122.3942
+      is_primary: true
+      account_id: a0c00000-0000-4000-8000-100000000001
+      contact_id: null
+    - id: add00000-0000-4000-8000-100000000002
+      name: Acme Dental Shipping
+      address_type: Shipping
+      street1: 220 Harbor Way
+      street2: null
+      city: Oakland
+      state: CA
+      postal_code: '94607'
+      country: USA
+      latitude: 37.7955
+      longitude: -122.2791
+      is_primary: false
+      account_id: a0c00000-0000-4000-8000-100000000001
+      contact_id: null
+    - id: add00000-0000-4000-8000-100000000003
+      name: Maya Johnson Mailing
+      address_type: Mailing
+      street1: 18 Pine Ave
+      street2: Apt 6C
+      city: Portland
+      state: OR
+      postal_code: '97205'
+      country: USA
+      latitude: 45.5202
+      longitude: -122.6742
+      is_primary: true
+      account_id: null
+      contact_id: c0c00000-0000-4000-8000-100000000001
+    - id: add00000-0000-4000-8000-100000000004
+      name: Northstar Supply Billing
+      address_type: Billing
+      street1: 780 Lakeview Dr
+      street2: null
+      city: Minneapolis
+      state: MN
+      postal_code: '55402'
+      country: USA
+      latitude: 44.9778
+      longitude: -93.2650
+      is_primary: true
+      account_id: a0c00000-0000-4000-8000-100000000002
+      contact_id: null
+    - id: add00000-0000-4000-8000-100000000005
+      name: Redwood Logistics Dock
+      address_type: Shipping
+      street1: 1000 Portside Rd
+      street2: Dock 12
+      city: Tacoma
+      state: WA
+      postal_code: '98421'
+      country: USA
+      latitude: 47.2529
+      longitude: -122.4443
+      is_primary: false
+      account_id: a0c00000-0000-4000-8000-100000000003
+      contact_id: null
+    - id: add00000-0000-4000-8000-100000000006
+      name: Jordan Lee Mailing
+      address_type: Mailing
+      street1: 501 Innovation Pkwy
+      street2: null
+      city: Austin
+      state: TX
+      postal_code: '78701'
+      country: USA
+      latitude: 30.2672
+      longitude: -97.7431
+      is_primary: true
+      account_id: null
+      contact_id: c0c00000-0000-4000-8000-100000000002
+
+- entity_type: ActivityParty
+  schema: crm
+  columns: [id, role, party_type, party_id, display_name, email, is_required, responded_status, activity_id]
+  records:
+    - id: ac71fa00-0000-4000-8000-100000000001
+      role: Organizer
+      party_type: User
+      party_id: pdsh_admin
+      display_name: Priya Admin
+      email: priya.admin@example.com
+      is_required: true
+      responded_status: Accepted
+      activity_id: ac710007-0000-4000-8000-100000000001
+    - id: ac71fa00-0000-4000-8000-100000000002
+      role: Required Attendee
+      party_type: Contact
+      party_id: c0c00000-0000-4000-8000-100000000001
+      display_name: Maya Johnson
+      email: maya.johnson@example.com
+      is_required: true
+      responded_status: Accepted
+      activity_id: ac710007-0000-4000-8000-100000000001
+    - id: ac71fa00-0000-4000-8000-100000000003
+      role: Optional Attendee
+      party_type: Account
+      party_id: a0c00000-0000-4000-8000-100000000001
+      display_name: Acme Dental
+      email: info@acme-dental.example.com
+      is_required: false
+      responded_status: Tentative
+      activity_id: ac710007-0000-4000-8000-100000000002
+    - id: ac71fa00-0000-4000-8000-100000000004
+      role: Regarding
+      party_type: Opportunity
+      party_id: 099c0000-0000-4000-8000-100000000002
+      display_name: Northstar Renewal
+      email: null
+      is_required: false
+      responded_status: NotRequired
+      activity_id: ac710007-0000-4000-8000-100000000003
+    - id: ac71fa00-0000-4000-8000-100000000005
+      role: Sender
+      party_type: User
+      party_id: pdsh_ops
+      display_name: Morgan Ops
+      email: morgan.ops@example.com
+      is_required: true
+      responded_status: Sent
+      activity_id: ac710007-0000-4000-8000-100000000004
+
+- entity_type: KnowledgeArticle
+  schema: crm
+  columns: [id, title, slug, summary, body, language, status, publish_date, view_count, is_public, tags]
+  records:
+    - id: a471c1e0-0000-4000-8000-100000000001
+      title: Enterprise Onboarding Checklist
+      slug: enterprise-onboarding-checklist
+      summary: Checklist used by implementation teams before go-live.
+      body: Confirm stakeholders, environments, data load, access review, and support handoff.
+      language: en-US
+      status: Published
+      publish_date: '2026-01-08'
+      view_count: 312
+      is_public: true
+      tags: [onboarding, enterprise, implementation]
+    - id: a471c1e0-0000-4000-8000-100000000002
+      title: Quote Discount Approval Guide
+      slug: quote-discount-approval-guide
+      summary: Internal guide for discount thresholds and finance approval.
+      body: Discounts above standard guardrails require finance review and attached business justification.
+      language: en-US
+      status: Draft
+      publish_date: null
+      view_count: 47
+      is_public: false
+      tags: [quote, finance, approvals]
+    - id: a471c1e0-0000-4000-8000-100000000003
+      title: Data Import Troubleshooting
+      slug: data-import-troubleshooting
+      summary: Common validation and mapping fixes for imported CRM data.
+      body: Review required fields, duplicate keys, invalid references, and provider-specific type mappings.
+      language: en-US
+      status: Published
+      publish_date: '2026-02-14'
+      view_count: 1289
+      is_public: true
+      tags: [data-import, validation, support]
+
+- entity_type: ArticleComment
+  schema: crm
+  columns: [id, subject, body, author_name, sentiment, is_internal, created_at, article_id]
+  records:
+    - id: a471c0de-0000-4000-8000-100000000001
+      subject: Add security handoff step
+      body: Include evidence that admin access was reviewed before production handoff.
+      author_name: Priya Admin
+      sentiment: Positive
+      is_internal: true
+      created_at: '2026-01-09T16:30:00Z'
+      article_id: a471c1e0-0000-4000-8000-100000000001
+    - id: a471c0de-0000-4000-8000-100000000002
+      subject: Finance example needed
+      body: Add one worked example for a multi-year discount approval.
+      author_name: Iris Finance
+      sentiment: Neutral
+      is_internal: true
+      created_at: '2026-01-12T19:10:00Z'
+      article_id: a471c1e0-0000-4000-8000-100000000002
+    - id: a471c0de-0000-4000-8000-100000000003
+      subject: Helpful import notes
+      body: The duplicate key guidance reduced support back-and-forth on the last migration.
+      author_name: Morgan Ops
+      sentiment: Positive
+      is_internal: false
+      created_at: '2026-02-17T11:45:00Z'
+      article_id: a471c1e0-0000-4000-8000-100000000003
+    - id: a471c0de-0000-4000-8000-100000000004
+      subject: Clarify lookup failures
+      body: We should distinguish missing foreign keys from invalid UUID syntax.
+      author_name: Rowan Support
+      sentiment: Neutral
+      is_internal: true
+      created_at: '2026-02-18T14:05:00Z'
+      article_id: a471c1e0-0000-4000-8000-100000000003
+
+- entity_type: QueueItem
+  schema: crm
+  columns: [id, title, item_type, object_id, status, priority, entered_at, due_at, queue_id, account_id, activity_id, knowledge_article_id]
+  records:
+    - id: 9e0e1700-0000-4000-8000-100000000001
+      title: Prepare Acme onboarding workspace
+      item_type: Account
+      object_id: a0c00000-0000-4000-8000-100000000001
+      status: Open
+      priority: 1
+      entered_at: '2026-01-10T09:00:00Z'
+      due_at: '2026-01-12T17:00:00Z'
+      queue_id: 9e0e0000-0000-4000-8000-100000000001
+      account_id: a0c00000-0000-4000-8000-100000000001
+      activity_id: null
+      knowledge_article_id: null
+    - id: 9e0e1700-0000-4000-8000-100000000002
+      title: Review onboarding checklist
+      item_type: KnowledgeArticle
+      object_id: a471c1e0-0000-4000-8000-100000000001
+      status: InReview
+      priority: 2
+      entered_at: '2026-01-11T15:20:00Z'
+      due_at: '2026-01-15T17:00:00Z'
+      queue_id: 9e0e0000-0000-4000-8000-100000000002
+      account_id: null
+      activity_id: null
+      knowledge_article_id: a471c1e0-0000-4000-8000-100000000001
+    - id: 9e0e1700-0000-4000-8000-100000000003
+      title: Follow up on Northstar renewal
+      item_type: Activity
+      object_id: ac710007-0000-4000-8000-100000000003
+      status: Open
+      priority: 2
+      entered_at: '2026-01-12T18:00:00Z'
+      due_at: '2026-01-13T22:00:00Z'
+      queue_id: 9e0e0000-0000-4000-8000-100000000001
+      account_id: a0c00000-0000-4000-8000-100000000002
+      activity_id: ac710007-0000-4000-8000-100000000003
+      knowledge_article_id: null
+    - id: 9e0e1700-0000-4000-8000-100000000004
+      title: Publish data import troubleshooting
+      item_type: KnowledgeArticle
+      object_id: a471c1e0-0000-4000-8000-100000000003
+      status: Done
+      priority: 3
+      entered_at: '2026-02-15T10:30:00Z'
+      due_at: '2026-02-18T17:00:00Z'
+      queue_id: 9e0e0000-0000-4000-8000-100000000002
+      account_id: null
+      activity_id: null
+      knowledge_article_id: a471c1e0-0000-4000-8000-100000000003

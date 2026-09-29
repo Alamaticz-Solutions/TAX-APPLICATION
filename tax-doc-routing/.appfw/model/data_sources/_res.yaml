@@ -1,0 +1,17 @@
+- name: pg_primary
+  data_source_type: PostgreSQL
+  is_system_schema_host: true
+  description: Primary transactional database.
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: tax_routing
+    db_port: 5434
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: postgres
+    db_name: tax_routing
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled

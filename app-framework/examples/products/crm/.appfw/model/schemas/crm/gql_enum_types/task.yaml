@@ -1,0 +1,14 @@
+
+- name: TaskStatus
+  items:
+  - value: Active
+  - value: Disabled
+  - value: Deleted
+
+
+- name: TaskPriority
+  items:
+  - value: Urgent
+  - value: Important
+  - value: NiceToHave
+  - value: Low

@@ -1,0 +1,25 @@
+- name: denovo_task_workstream
+  kind: OneToMany
+  one:
+    entity: Workstream
+    field: tasks
+  many:
+    entity: DeNovoTask
+    field: workstream
+  storage:
+    type: ForeignKey
+    owner: DeNovoTask
+    field: workstream_id
+
+- name: denovo_task_team
+  kind: OneToMany
+  one:
+    entity: Team
+    field: tasks
+  many:
+    entity: DeNovoTask
+    field: team
+  storage:
+    type: ForeignKey
+    owner: DeNovoTask
+    field: team_id

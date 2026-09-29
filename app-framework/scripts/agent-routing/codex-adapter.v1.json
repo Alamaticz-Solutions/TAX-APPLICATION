@@ -1,0 +1,18 @@
+{
+  "schema": "appfw_model_adapter@1",
+  "adapter_id": "codex-local@1",
+  "adapter_version": "1.0.0",
+  "provider": "codex",
+  "consumes_semantic_range": ">=1.0.0 <2.0.0",
+  "effective_at": "2026-07-22T00:00:00Z",
+  "unsupported_conditions": ["provider unavailable", "profile absent", "required execution target unsupported"],
+  "profiles": {
+    "bounded_read@1": { "model": "gpt-5.4-mini", "effort": "medium", "execution_targets": ["local", "approved_cloud"], "capabilities": ["source_discovery", "evidence_normalization"], "fallback_profile": null },
+    "routine_delivery@1": { "model": "gpt-5.4", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "coordination_projection"], "fallback_profile": null },
+    "complex_delivery@1": { "model": "gpt-5.5", "effort": "xhigh", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "signature_experience", "sensitive_boundary"], "fallback_profile": null },
+    "consequential_decision@1": { "model": "gpt-5.5", "effort": "xhigh", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "signature_experience", "sensitive_boundary", "strategic_challenge", "architecture_decision"], "fallback_profile": null },
+    "focused_independent_review@1": { "model": "gpt-5.4", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review"], "fallback_profile": null },
+    "comprehensive_independent_review@1": { "model": "gpt-5.5", "effort": "xhigh", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review", "strategic_challenge"], "fallback_profile": null },
+    "adversarial_independent_review@1": { "model": "gpt-5.5", "effort": "xhigh", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review", "sensitive_boundary", "strategic_challenge"], "fallback_profile": null }
+  }
+}

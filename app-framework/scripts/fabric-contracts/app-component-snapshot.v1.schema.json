@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/app-component-snapshot.v1.schema.json",
+  "title": "Platform-qualified four-state composition snapshot: desired, built, deployed, running — never one ambiguous application version",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "snapshot_id",
+    "app_id",
+    "platform_surface",
+    "captured_at",
+    "desired",
+    "built",
+    "deployed",
+    "running",
+    "freshness",
+    "source_refs",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "app_component_snapshot@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "snapshot_id": { "$ref": "#/$defs/reference" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "platform_surface": {
+      "enum": ["web", "native_mobile_ios", "native_mobile_android"]
+    },
+    "captured_at": { "$ref": "#/$defs/timestamp" },
+    "desired": { "$ref": "#/$defs/desiredState" },
+    "built": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/builtState" }] },
+    "deployed": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/deployedWeb" },
+        { "$ref": "#/$defs/deployedStoreRelease" }
+      ]
+    },
+    "running": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/runningWeb" },
+        { "$ref": "#/$defs/runningMobile" }
+      ]
+    },
+    "freshness": { "enum": ["fresh", "stale", "unknown"] },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/sourceRef" }
+    },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+    "imageDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "componentVersion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "kind", "version"],
+      "properties": {
+        "name": { "$ref": "#/$defs/reference" },
+        "kind": {
+          "enum": [
+            "framework",
+            "package",
+            "generator",
+            "runtime",
+            "design_tokens",
+            "component_catalog",
+            "provider",
+            "contract_schema",
+            "scaffold",
+            "sdk",
+            "base_image",
+            "agent_runtime"
+          ]
+        },
+        "version": { "$ref": "#/$defs/reference" }
+      }
+    },
+    "desiredState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_sha", "components"],
+      "properties": {
+        "source_sha": { "$ref": "#/$defs/gitSha" },
+        "manifest_ref": { "$ref": "#/$defs/reference" },
+        "lock_digest": { "$ref": "#/$defs/sha256" },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/componentVersion" }
+        }
+      }
+    },
+    "builtState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signed"],
+      "properties": {
+        "image_digest": { "$ref": "#/$defs/imageDigest" },
+        "store_build": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["build_number", "artifact_hash"],
+          "properties": {
+            "build_number": { "$ref": "#/$defs/reference" },
+            "artifact_hash": { "$ref": "#/$defs/sha256" },
+            "ota_bundle_id": { "$ref": "#/$defs/reference" }
+          }
+        },
+        "sbom_ref": { "$ref": "#/$defs/reference" },
+        "provenance_ref": { "$ref": "#/$defs/reference" },
+        "signed": { "type": "boolean" }
+      }
+    },
+    "deployedWeb": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment", "gitops_revision", "digest"],
+      "properties": {
+        "environment": { "enum": ["dev", "test", "stage", "production"] },
+        "gitops_revision": { "$ref": "#/$defs/reference" },
+        "digest": { "$ref": "#/$defs/imageDigest" }
+      }
+    },
+    "deployedStoreRelease": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store_track", "review_status", "staged_rollout_percent"],
+      "properties": {
+        "store_track": { "enum": ["internal", "testflight", "beta", "production"] },
+        "review_status": { "enum": ["not_submitted", "in_review", "approved", "rejected"] },
+        "staged_rollout_percent": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "runningWeb": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_digest", "health", "observed_at"],
+      "properties": {
+        "observed_digest": { "$ref": "#/$defs/imageDigest" },
+        "health": { "enum": ["healthy", "degraded", "unhealthy", "unknown"] },
+        "observed_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "runningMobile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version_distribution", "observed_at"],
+      "properties": {
+        "version_distribution": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["version", "share"],
+            "properties": {
+              "version": { "$ref": "#/$defs/reference" },
+              "share": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "crash_free_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "os_spread": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["os_version", "share"],
+            "properties": {
+              "os_version": { "$ref": "#/$defs/reference" },
+              "share": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "observed_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "observed_at"],
+      "properties": {
+        "authority": { "$ref": "#/$defs/reference" },
+        "source_id": { "$ref": "#/$defs/reference" },
+        "integrity_ref": { "$ref": "#/$defs/reference" },
+        "observed_at": { "$ref": "#/$defs/timestamp" }
+      }
+    }
+  }
+}

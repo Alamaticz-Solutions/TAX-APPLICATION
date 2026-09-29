@@ -1,0 +1,169 @@
+{
+  "$schema": "../start/product-increment-plan.schema.json",
+  "schema": "appfw_product_increment_plan@1",
+  "program_id": "app-framework",
+  "product_increment": {
+    "id": "AF-M01.4",
+    "outcome_id": "AF-OG01",
+    "title": "Reusable accessible web and bounded mobile read",
+    "intent": "Give an authorized user one truthful, accessible read experience across responsive web, iOS, and Android through shared semantics and separate channel projections, with correlated errors, audit, and telemetry and without implying candidate or release readiness.",
+    "owner": "App Framework Product Owner",
+    "planning_posture": "active",
+    "stage": "prototype",
+    "acceptance_criteria": [
+      "Destination-current Integration accepts the M0-05 false-readiness containment on an exact assembled SHA; candidate_ready and release_ready remain false and no legacy or synthetic artifact can create authoritative mobile readiness.",
+      "M0-02 retains a source-owned executable GraphQL document test against the real generated backend schema and exposes the current mobile wire mismatch without hiding it behind mocks.",
+      "A canonical operation transport IR emits web and native projections without consuming generated web TypeScript or prior generated mobile output, and the M0-02 real-schema proof becomes green.",
+      "One representative read journey renders through responsive web plus authentic iOS and Android projections with the full loading, empty, error, denied, offline, stale, and success vocabulary and correlated audit and telemetry.",
+      "The web, iOS, and Android evidence includes channel-appropriate accessibility, navigation, lifecycle, and performance proof; a phone-shaped DOM preview never counts as native evidence.",
+      "Independent comprehensive review finds no blocker, critical, or important correctness issue on the assembled Product Increment candidate, while candidate, distribution, release, production identity, and accepted-risk decisions remain separate human gates."
+    ]
+  },
+  "concurrency": {
+    "target_active_lanes": 1,
+    "maximum_active_lanes": 1,
+    "below_target_reason": "Only the already reviewed M0 seam-truth carrier is registered now. M0-02 is the next ready technical card but is not WIP-admitted; later lanes are added only when their exact base, owner, write roots, reviewer, and stop rule are assigned."
+  },
+  "integration": {
+    "strategy": "integration_branch",
+    "branch": "integrate/app-fabric-mobile-m0",
+    "destination_branch": "main",
+    "owner": "Integration Branch Manager",
+    "independent_reviewer": "Independent Framework Implementation Reviewer",
+    "base_ref": "750a58b1ff78f9cd76f7992ca5dd04a0bde6dc3e",
+    "write_roots": [
+      "docs/specs/app-fabric-mobile-ux-master-plan.md",
+      "docs/start/app-fabric-mobile-operating-context.md",
+      "docs/start/app-fabric-mobile-operating-context.json",
+      "docs/start/app-fabric-mobile-operating-context.schema.json",
+      "docs/specs/app-fabric-mobile-m0-seam-freeze.md",
+      "docs/specs/af-m01.4-mobile-read.product-increment.json",
+      "docs/specs/product-increment-portfolio.json",
+      "scripts/check-doc-examples.sh",
+      "scripts/check-product-increment-portfolio.test.mjs"
+    ],
+    "economics_budget": {
+      "default_model_tier": "advanced-tier",
+      "allowed_model_tiers": [
+        "efficient-tier",
+        "advanced-tier"
+      ],
+      "max_elapsed_ms": 14400000,
+      "max_input_tokens": 500000,
+      "max_output_tokens": 100000,
+      "max_cost_usd": 60,
+      "max_retries": 1,
+      "max_corrections": 2,
+      "max_rework_cycles": 2
+    },
+    "leaf_ci_profile": "accelerated",
+    "integration_ci_profile": "full",
+    "release_ci_profile": "strict",
+    "merge_order": [
+      "AF-M01.4-L1-SEAM-TRUTH"
+    ],
+    "integration_checks": [
+      "Use authorized PFC Assignment PR #464 comment 835555085, Amendment r2 comment 835556572, and isolation-only Amendment r3 comment 835574654: begin at exact accepted main 750a58b1ff78f9cd76f7992ca5dd04a0bde6dc3e and assemble exact immutable producer a28bee04cb660ab1fff0b2ab25b26b17607b7044 followed by exact descendant a6f87c38c97fd564b09a4a4c4617dca3245b8132 history-preservingly.",
+      "Reconcile only the nine named Integration roots against accepted PR #464 authority; limit the amended portfolio-test root to its exact frozen-NOW advancement; record that scripts/check-doc-examples.sh originated in immutable producer history while current mutation custody transfers to Integration only under isolation-only Amendment r3 comment 835574654; limit that root to backup/restore fixture isolation for tracked examples/products/crm/mobile/.appfw-mobile/device-tooling-evidence.json around the unchanged existing device-preflight example, preserving its command, assertions, coverage, and gate identity; prove the deleted activation-plan and D15 claims are absent; and preserve isolated PDS expected-failure artifacts before evaluating mobile evidence.",
+      "Run the Product Increment plan and portfolio validators, the focused M0-05 adversarial regression, framework validation, full documentation proof, generated-drift proof, framework tests, and dependency/security checks required by the Class D surface.",
+      "Retain a destination-current framework handoff and independent comprehensive review bound to the exact assembled SHA.",
+      "Confirm candidate_ready and release_ready remain false and route the exact SHA, proof, conditions, and human main-merge decision without creating candidate, distribution, release, or accepted-risk authority."
+    ],
+    "shared_path_owner": "Integration Branch Manager"
+  },
+  "lanes": [
+    {
+      "id": "AF-M01.4-L1-SEAM-TRUTH",
+      "title": "Mobile M0 seam truth and delivery context",
+      "result": "The preserved mobile architecture package and false-readiness containment have one reviewed, machine-valid progress record and one immutable source lineage for destination-current Integration.",
+      "owner": "Mobile Architect",
+      "technical_lead": "Fabric Architect",
+      "branch_owner": "Mobile Architect / Coding Agent",
+      "independent_reviewer": "Framework PR Review Agent",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "Mobile architecture",
+        "Framework generator and runtime",
+        "PDS experience system",
+        "Delivery evidence"
+      ],
+      "deliverables": [
+        "AF-M01.4-D1-MOBILE-SEAM-TRUTH",
+        "AF-M01.4-D2-FALSE-READINESS-CONTAINMENT",
+        "AF-M01.4-D3-HUMAN-AGENT-PROGRESS-CONTEXT"
+      ],
+      "branch": "docs/app-fabric-mobile-delivery-loop",
+      "base_sha": "2de105e001ab8029eb21bce4691eded49e48ff81",
+      "destination_branch": "integrate/app-fabric-mobile-m0",
+      "write_roots": [
+        "agent_skills/product-mobile-react-native/SKILL.md",
+        "app_gen/src/bin/appfw_introspect.rs",
+        "docs/README.md",
+        "docs/architecture/adr/0017-web-native-experience-projection-boundary.md",
+        "docs/architecture/adr/README.md",
+        "docs/architecture/concerns/maintainability.md",
+        "docs/architecture/concerns/north-star-wave-0-specs.md",
+        "docs/architecture/concerns/north-star-wave-0.md",
+        "docs/frontend/mobile-react-native.md",
+        "docs/reference/cli.md",
+        "docs/release/deployment-reference.md",
+        "docs/release/roadmap.md",
+        "docs/specs/README.md",
+        "docs/specs/app-fabric-experience-contract.example.json",
+        "docs/specs/app-fabric-experience-contract.schema.json",
+        "docs/specs/app-fabric-mobile-api-compatibility.graphql",
+        "docs/specs/app-fabric-mobile-api-seam.md",
+        "docs/specs/app-fabric-mobile-auth-profile.example.json",
+        "docs/specs/app-fabric-mobile-auth-profile.schema.json",
+        "docs/specs/app-fabric-mobile-build-custody-decision.md",
+        "docs/specs/app-fabric-mobile-manifest-profile.example.json",
+        "docs/specs/app-fabric-mobile-manifest-profile.schema.json",
+        "docs/specs/app-fabric-mobile-technology-evaluation-brief.md",
+        "docs/start/branch-integration-model.md",
+        "docs/strategy/app-framework-product-management-strategy.md",
+        "docs/strategy/product-development-north-star.md",
+        "examples/products/crm/mobile/.appfw-mobile/device-evidence.json",
+        "examples/products/crm/mobile/.appfw-mobile/store-track-evidence.json",
+        "examples/products/crm/mobile/__tests__/mobile-contract.test.ts",
+        "scripts/appfw",
+        "scripts/check-nexus-workstreams.test.mjs",
+        "scripts/ci/release-evidence-check.sh",
+        "scripts/dependency-check.py",
+        "scripts/mobile-readiness-containment.test.py"
+      ],
+      "economics_budget": {
+        "default_model_tier": "advanced-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 14400000,
+        "max_input_tokens": 500000,
+        "max_output_tokens": 100000,
+        "max_cost_usd": 60,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "python3 scripts/mobile-readiness-containment.test.py",
+        "node scripts/check-product-increment-plan.mjs --plan docs/specs/af-m01.4-mobile-read.product-increment.json --current-diff AF-M01.4-L1-SEAM-TRUTH --json",
+        "node scripts/check-product-increment-portfolio.mjs --portfolio docs/specs/product-increment-portfolio.json --id AF-M01.4 --json",
+        "scripts/appfw framework docs-check --fast --subcheck product-increment-delivery --json",
+        "scripts/appfw framework validate --json",
+        "scripts/appfw framework generate --check --json",
+        "scripts/appfw framework test --fast --json",
+        "git diff --check"
+      ],
+      "provides": [
+        {
+          "capability_id": "appfabric.mobile.readiness-truth",
+          "summary": "Fail-closed mobile readiness evidence and a source-bound seam from which the bounded accessible web/iOS/Android read can be implemented.",
+          "state": "planned"
+        }
+      ]
+    }
+  ],
+  "lane_links": []
+}

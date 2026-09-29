@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/fabric-command-proposal.v1.schema.json",
+  "title": "Typed, context-bound change proposal with authority, idempotency, and disposition — chat text is never executable authority",
+  "description": "A priority_proposal disposition records the owning Product Owner's ratification of a priority suggestion; it is not admission, which remains a separate Program Flow Controller decision. A dedicated propose_priorities routing may split from this record at AF-D08.2a.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "proposal_id",
+    "app_id",
+    "proposed_by",
+    "context_ref",
+    "intended_effect",
+    "idempotency_key",
+    "submitted_at",
+    "disposition",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "fabric_command_proposal@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "proposal_id": { "$ref": "#/$defs/reference" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "proposed_by": { "$ref": "#/$defs/reference" },
+    "on_behalf_of": { "$ref": "#/$defs/reference" },
+    "context_ref": { "$ref": "#/$defs/reference" },
+    "intended_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "summary"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "copy_change",
+            "style_change",
+            "model_change",
+            "seed_change",
+            "docs_change",
+            "priority_proposal",
+            "other"
+          ]
+        },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "write_surface_paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/reference" }
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/reference" }
+    },
+    "idempotency_key": { "$ref": "#/$defs/reference" },
+    "submitted_at": { "$ref": "#/$defs/timestamp" },
+    "disposition": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state"],
+          "properties": {
+            "state": {
+              "enum": ["submitted", "admitted", "deferred", "rejected", "superseded", "executed"]
+            },
+            "decided_by": { "$ref": "#/$defs/reference" },
+            "decided_at": { "$ref": "#/$defs/timestamp" },
+            "reason": { "type": "string", "minLength": 1, "maxLength": 2000 }
+          }
+        }
+      ]
+    },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

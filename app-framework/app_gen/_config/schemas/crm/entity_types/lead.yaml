@@ -1,0 +1,95 @@
+- id: 1eadc000-0000-4000-8000-000000000003
+  name: Lead
+  is_table: true
+  indexes:
+  - email
+  facets:
+  - concurrency
+
+  custom_methods:
+  - name: convert_lead
+    kind: Mutation
+    mcp_enabled: true
+    args:
+    - name: lead_id
+      arg_type: String
+    - name: target_account_id
+      arg_type: Option<String>
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: first_name
+    caption: First Name
+    is_required: true
+    data_type: String
+
+  - name: last_name
+    caption: Last Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: email
+    caption: Email
+    data_type: String
+
+  - name: phone
+    caption: Phone
+    data_type: String
+
+  - name: company
+    caption: Company
+    is_required: true
+    data_type: String
+
+  - name: title
+    caption: Title
+    data_type: String
+
+  - name: website
+    caption: Website
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: annual_revenue
+    caption: Annual Revenue
+    data_type: Float64
+
+  - name: number_of_employees
+    caption: Number of Employees
+    data_type: Int32
+
+  - name: is_converted
+    caption: Is Converted
+    fragment: property-boolean-toggle-required
+
+  - name: converted_account_id
+    caption: Converted Account
+    data_type: Uuid
+    foreign_key:
+      type_name: Account
+
+  - name: status_id
+    caption: Status
+    data_type: Uuid
+    foreign_key:
+      type_name: LeadStatus
+
+  - name: source_id
+    caption: Source
+    data_type: Uuid
+    foreign_key:
+      type_name: LeadSource
+
+  - name: industry_id
+    caption: Industry
+    data_type: Uuid
+    foreign_key:
+      type_name: Industry

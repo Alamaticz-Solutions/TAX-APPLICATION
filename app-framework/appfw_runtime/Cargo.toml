@@ -1,0 +1,60 @@
+[package]
+name = "appfw-runtime"
+version = "0.2.0"
+edition = "2021"
+description = "Shared App Framework runtime contracts used by generated products and tooling."
+publish = ["pds-app-framework-crates"]
+
+[features]
+default = ["http", "mcp"]
+chat = ["http", "dep:futures-util"]
+http = [
+    "dep:async-graphql-axum",
+    "dep:axum",
+    "dep:tower",
+    "dep:tower-http",
+]
+kafka = []
+mcp = []
+sync = []
+
+[dependencies]
+anyhow = "1.0"
+appfw-saas-core = { version = "0.1.1", path = "../appfw_saas_core", registry = "pds-app-framework-crates" }
+async-trait = "0.1"
+base64 = "0.22"
+async-graphql = { version = "6", features = ["bson", "chrono", "dynamic-schema"] }
+async-graphql-axum = { version = "6", optional = true }
+axum = { version = "0.6", features = ["macros"], optional = true }
+chrono = { version = "0.4", features = ["serde"] }
+chrono-tz = "0.10"
+futures-util = { version = "0.3", optional = true }
+governor = "0.10"
+hmac = "0.12"
+Inflector = "0.11"
+jsonschema = { version = "0.26.2", default-features = false }
+okta-jwt-verifier = "0.9.1"
+opentelemetry = { version = "0.32", features = ["metrics", "trace"] }
+opentelemetry-otlp = { version = "0.32", default-features = false, features = ["http-proto", "metrics", "reqwest-blocking-client", "trace"] }
+opentelemetry_sdk = { version = "0.32", features = ["metrics", "rt-tokio", "trace"] }
+regex = "1"
+# okta-jwt-verifier disables reqwest defaults and does not expose a TLS
+# feature. Keep a direct dependency so Cargo feature unification enables HTTPS
+# JWKS fetches for Okta issuers in deployed runtimes.
+reqwest = { workspace = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+sha2 = "0.10"
+strfmt = "0.2.2"
+thiserror = "2.0.12"
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0.4", features = ["util"], optional = true }
+tower-http = { version = "0.4", features = ["catch-panic", "cors", "fs", "request-id", "set-header", "timeout", "trace"], optional = true }
+tracing = "0.1"
+tracing-opentelemetry = "0.33"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1", features = ["serde", "v4"] }
+
+[dev-dependencies]
+jsonwebtoken = "9.3.1"

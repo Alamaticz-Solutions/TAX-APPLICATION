@@ -1,0 +1,5 @@
+name: audit_records
+caption: Audit Records
+data_type: NavToMany
+nav_by_fk_property: 
+  prop_name: record_id

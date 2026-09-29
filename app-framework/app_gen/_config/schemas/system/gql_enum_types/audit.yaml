@@ -1,0 +1,7 @@
+- name: AuditAction
+  items: 
+  - value: Create
+  - value: Read
+  - value: Update
+  - value: Delete
+

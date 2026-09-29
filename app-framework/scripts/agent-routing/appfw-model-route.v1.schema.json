@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/appfw-model-route.v1.schema.json",
+  "title": "Provider-neutral agent route and telemetry record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "record_state",
+    "route_decision_id",
+    "subject",
+    "task_shape",
+    "routing_context",
+    "instruction_selection",
+    "route_plan",
+    "adapter_resolution",
+    "actual_run",
+    "privacy",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "appfw_model_route@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "record_state": { "enum": ["planned", "running", "completed", "failed"] },
+    "route_decision_id": { "$ref": "#/$defs/routeReference" },
+    "subject": { "$ref": "#/$defs/subject" },
+    "task_shape": { "$ref": "#/$defs/taskShape" },
+    "routing_context": { "$ref": "#/$defs/routingContext" },
+    "instruction_selection": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/instructionReference" }
+    },
+    "route_plan": { "$ref": "#/$defs/routePlan" },
+    "adapter_resolution": { "$ref": "#/$defs/adapterResolution" },
+    "actual_run": { "$ref": "#/$defs/actualRun" },
+    "privacy": { "$ref": "#/$defs/privacy" },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "businessReference": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "workstreamReference": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "roleCardReference": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "instructionId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "policyId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "profileId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "capabilityId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "toolId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "adapterId": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "failureCode": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@-]{0,79}$" },
+    "actorReference": { "type": "string", "pattern": "^actor:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "assignmentReference": { "type": "string", "pattern": "^assignment:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "runReference": { "type": "string", "pattern": "^run:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "taskReference": { "type": "string", "pattern": "^task:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "routeReference": { "type": "string", "pattern": "^route:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "evidenceReference": { "type": "string", "pattern": "^evidence:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nullableNonNegativeInteger": { "type": ["integer", "null"], "minimum": 0 },
+    "instructionIdArray": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/instructionId" } },
+    "policyIdArray": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/policyId" } },
+    "capabilityIdArray": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/capabilityId" } },
+    "toolIdArray": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/toolId" } },
+    "evidenceReferenceArray": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/evidenceReference" } },
+    "repositoryRootArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300,
+        "pattern": "^(?!\\.\\.?$)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome_id", "product_increment_id", "deliverable_id", "task_id", "role_card_id", "stage"],
+      "properties": {
+        "outcome_id": { "$ref": "#/$defs/businessReference" },
+        "product_increment_id": { "$ref": "#/$defs/businessReference" },
+        "deliverable_id": { "$ref": "#/$defs/businessReference" },
+        "task_id": { "$ref": "#/$defs/taskReference" },
+        "assignment_id": { "oneOf": [{ "$ref": "#/$defs/assignmentReference" }, { "type": "null" }] },
+        "workstream_id": { "oneOf": [{ "$ref": "#/$defs/workstreamReference" }, { "type": "null" }] },
+        "role_card_id": { "$ref": "#/$defs/roleCardReference" },
+        "stage": { "enum": ["prototype", "integration_candidate", "release_candidate"] },
+        "parent_run_id": { "oneOf": [{ "$ref": "#/$defs/runReference" }, { "type": "null" }] }
+      }
+    },
+    "taskShape": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "read_roots", "write_roots", "allowed_tools", "network_posture", "data_classification", "change_class", "change_class_status", "ambiguity", "consequence", "sensitive_surfaces", "signature_significance", "delegation_depth", "delegation_type", "execution_target", "material_child", "requested_capabilities"],
+      "properties": {
+        "role": { "enum": ["researcher", "product", "architecture", "coordination", "implementer", "reviewer", "integration"] },
+        "read_roots": { "$ref": "#/$defs/repositoryRootArray" },
+        "write_roots": { "$ref": "#/$defs/repositoryRootArray" },
+        "allowed_tools": { "$ref": "#/$defs/toolIdArray" },
+        "network_posture": { "enum": ["none", "restricted", "approved"] },
+        "data_classification": { "enum": ["public", "internal", "confidential", "restricted", "phi"] },
+        "change_class": { "enum": ["A", "B", "C", "D"] },
+        "change_class_status": { "enum": ["provisional", "exact"] },
+        "ambiguity": { "enum": ["low", "medium", "high"] },
+        "consequence": { "enum": ["low", "medium", "high", "irreversible"] },
+        "sensitive_surfaces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["tenant", "auth", "runtime", "provider", "generated", "security", "privacy", "financial", "clinical"] }
+        },
+        "signature_significance": { "type": "boolean" },
+        "delegation_depth": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "delegation_type": { "enum": ["none", "direct_child"] },
+        "execution_target": { "enum": ["local", "approved_cloud"] },
+        "material_child": { "type": "boolean" },
+        "requested_capabilities": { "$ref": "#/$defs/capabilityIdArray" }
+      }
+    },
+    "actorRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignment_id", "actor_id", "run_id"],
+      "properties": {
+        "assignment_id": { "$ref": "#/$defs/assignmentReference" },
+        "actor_id": { "$ref": "#/$defs/actorReference" },
+        "run_id": { "$ref": "#/$defs/runReference" }
+      }
+    },
+    "routingContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementer", "reviewer", "reviewer_required", "provider_available", "required_instruction_ids", "authorized_read_roots", "authorized_write_roots", "authorized_tools", "authorized_network_posture", "strategic_decision", "human_decision_id"],
+      "properties": {
+        "implementer": { "$ref": "#/$defs/actorRoute" },
+        "reviewer": { "oneOf": [{ "$ref": "#/$defs/actorRoute" }, { "type": "null" }] },
+        "reviewer_required": { "type": "boolean" },
+        "provider_available": { "type": "boolean" },
+        "required_instruction_ids": { "$ref": "#/$defs/instructionIdArray" },
+        "authorized_read_roots": { "$ref": "#/$defs/repositoryRootArray" },
+        "authorized_write_roots": { "$ref": "#/$defs/repositoryRootArray" },
+        "authorized_tools": { "$ref": "#/$defs/toolIdArray" },
+        "authorized_network_posture": { "enum": ["none", "restricted", "approved"] },
+        "strategic_decision": { "type": "boolean" },
+        "human_decision_id": { "oneOf": [{ "$ref": "#/$defs/evidenceReference" }, { "type": "null" }] }
+      }
+    },
+    "taskRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "subject", "task_shape", "routing_context", "privacy"],
+      "properties": {
+        "schema": { "const": "appfw_model_route@1" },
+        "subject": { "$ref": "#/$defs/subject" },
+        "task_shape": { "$ref": "#/$defs/taskShape" },
+        "routing_context": { "$ref": "#/$defs/routingContext" },
+        "privacy": { "$ref": "#/$defs/privacy" }
+      }
+    },
+    "instructionReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "heading", "source_commit", "source_blob", "required", "precedence", "rationale_code"],
+      "properties": {
+        "id": { "$ref": "#/$defs/instructionId" },
+        "path": { "type": "string", "minLength": 1, "pattern": "^(?!\\.\\.?$)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$" },
+        "heading": { "type": "string", "minLength": 1 },
+        "source_commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "source_blob": { "type": "string", "pattern": "^[a-f0-9]{40,64}$" },
+        "required": { "type": "boolean" },
+        "precedence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "rationale_code": { "$ref": "#/$defs/policyId" }
+      }
+    },
+    "routePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_version", "policy_digest", "rule_id", "matched_rule_ids", "implementer_profile", "reviewer_profile", "rationale_codes", "escalation_owner", "approved_fallback_profile", "max_delegation_depth", "requires_human_decision", "assignment_digest"],
+      "properties": {
+        "policy_version": { "const": "1.0.0" },
+        "policy_digest": { "$ref": "#/$defs/sha256" },
+        "rule_id": { "$ref": "#/$defs/policyId" },
+        "matched_rule_ids": { "$ref": "#/$defs/policyIdArray" },
+        "implementer_profile": { "$ref": "#/$defs/profileId" },
+        "reviewer_profile": { "oneOf": [{ "$ref": "#/$defs/profileId" }, { "type": "null" }] },
+        "rationale_codes": { "$ref": "#/$defs/policyIdArray" },
+        "escalation_owner": { "$ref": "#/$defs/policyId" },
+        "approved_fallback_profile": { "oneOf": [{ "$ref": "#/$defs/profileId" }, { "type": "null" }] },
+        "max_delegation_depth": { "const": 1 },
+        "requires_human_decision": { "type": "boolean" },
+        "assignment_digest": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "authorityRoutePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_version", "policy_digest", "rule_id", "matched_rule_ids", "implementer_profile", "reviewer_profile", "rationale_codes", "escalation_owner", "approved_fallback_profile", "max_delegation_depth", "requires_human_decision"],
+      "properties": {
+        "policy_version": { "const": "1.0.0" },
+        "policy_digest": { "$ref": "#/$defs/sha256" },
+        "rule_id": { "$ref": "#/$defs/policyId" },
+        "matched_rule_ids": { "$ref": "#/$defs/policyIdArray" },
+        "implementer_profile": { "$ref": "#/$defs/profileId" },
+        "reviewer_profile": { "oneOf": [{ "$ref": "#/$defs/profileId" }, { "type": "null" }] },
+        "rationale_codes": { "$ref": "#/$defs/policyIdArray" },
+        "escalation_owner": { "$ref": "#/$defs/policyId" },
+        "approved_fallback_profile": { "oneOf": [{ "$ref": "#/$defs/profileId" }, { "type": "null" }] },
+        "max_delegation_depth": { "const": 1 },
+        "requires_human_decision": { "type": "boolean" }
+      }
+    },
+    "resolvedProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "model", "effort", "capabilities"],
+      "properties": {
+        "profile": { "$ref": "#/$defs/profileId" },
+        "model": { "type": "string", "minLength": 1, "pattern": "^(?:gpt-[a-z0-9]+(?:[.-][a-z0-9]+)*|claude-(?:haiku|sonnet|opus)-[a-z0-9]+(?:-[a-z0-9]+)*)$" },
+        "effort": { "enum": ["low", "medium", "high", "xhigh"] },
+        "capabilities": { "$ref": "#/$defs/capabilityIdArray" }
+      }
+    },
+    "adapterResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requested_provider", "adapter_id", "adapter_version", "adapter_digest", "status", "implementer", "reviewer", "fallback_deviation", "failure_code"],
+      "properties": {
+        "requested_provider": { "enum": ["codex", "claude"] },
+        "adapter_id": { "$ref": "#/$defs/adapterId" },
+        "adapter_version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+        "adapter_digest": { "$ref": "#/$defs/sha256" },
+        "status": { "enum": ["supported", "unavailable"] },
+        "implementer": { "oneOf": [{ "$ref": "#/$defs/resolvedProfile" }, { "type": "null" }] },
+        "reviewer": { "oneOf": [{ "$ref": "#/$defs/resolvedProfile" }, { "type": "null" }] },
+        "fallback_deviation": { "oneOf": [{ "type": "string" }, { "type": "null" }] },
+        "failure_code": { "oneOf": [{ "$ref": "#/$defs/failureCode" }, { "type": "null" }] }
+      }
+    },
+    "assignmentAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "semantic_version", "route_decision_id", "authorized_request", "instruction_selection", "route_plan", "adapter_resolution"],
+      "properties": {
+        "schema": { "const": "assignment_authority@1" },
+        "semantic_version": { "const": "1.0.0" },
+        "route_decision_id": { "$ref": "#/$defs/routeReference" },
+        "authorized_request": { "$ref": "#/$defs/taskRequest" },
+        "instruction_selection": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/instructionReference" }
+        },
+        "route_plan": { "$ref": "#/$defs/authorityRoutePlan" },
+        "adapter_resolution": { "$ref": "#/$defs/adapterResolution" }
+      }
+    },
+    "findings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["blocker", "critical", "important", "should_address", "nice_to_address"],
+      "properties": {
+        "blocker": { "type": "integer", "minimum": 0 },
+        "critical": { "type": "integer", "minimum": 0 },
+        "important": { "type": "integer", "minimum": 0 },
+        "should_address": { "type": "integer", "minimum": 0 },
+        "nice_to_address": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "currency", "measurement_source", "quality", "measured_at"],
+      "properties": {
+        "amount": { "type": ["number", "null"], "minimum": 0 },
+        "currency": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$" },
+        "measurement_source": {
+          "type": ["string", "null"],
+          "pattern": "^(?:provider_measurement:pm_|declared_rate:dr_)[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "quality": { "enum": ["actual", "estimated", "unavailable"] },
+        "measured_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "actualRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "actual_provider", "actual_model", "actual_effort", "started_at", "completed_at", "input_tokens", "output_tokens", "context_bytes", "always_loaded_bytes", "startup_to_first_correct_action_ms", "elapsed_ms", "review_wait_ms", "retries", "material_human_corrections", "rework_events", "findings", "cost", "implemented_evidence_refs", "accepted_evidence_refs", "escaped_defect_count", "telemetry_complete", "value_claim"],
+      "properties": {
+        "status": { "enum": ["not_started", "running", "completed", "failed"] },
+        "actual_provider": { "type": ["string", "null"] },
+        "actual_model": { "type": ["string", "null"] },
+        "actual_effort": { "type": ["string", "null"] },
+        "started_at": { "type": ["string", "null"], "format": "date-time" },
+        "completed_at": { "type": ["string", "null"], "format": "date-time" },
+        "input_tokens": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "output_tokens": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "context_bytes": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "always_loaded_bytes": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "startup_to_first_correct_action_ms": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "elapsed_ms": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "review_wait_ms": { "$ref": "#/$defs/nullableNonNegativeInteger" },
+        "retries": { "type": "integer", "minimum": 0 },
+        "material_human_corrections": { "type": "integer", "minimum": 0 },
+        "rework_events": { "type": "integer", "minimum": 0 },
+        "findings": { "$ref": "#/$defs/findings" },
+        "cost": { "$ref": "#/$defs/cost" },
+        "implemented_evidence_refs": { "$ref": "#/$defs/evidenceReferenceArray" },
+        "accepted_evidence_refs": { "$ref": "#/$defs/evidenceReferenceArray" },
+        "escaped_defect_count": { "type": "integer", "minimum": 0 },
+        "telemetry_complete": { "type": "boolean" },
+        "value_claim": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["claimed", "metric", "improvement_percent", "baseline_evidence_refs"],
+          "properties": {
+            "claimed": { "type": "boolean" },
+            "metric": { "enum": [null, "startup_to_first_correct_action", "elapsed_time", "cost_per_accepted_outcome", "retry_rework_findings"] },
+            "improvement_percent": { "type": ["number", "null"], "minimum": 0 },
+            "baseline_evidence_refs": { "$ref": "#/$defs/evidenceReferenceArray" }
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_classification", "redaction_posture", "retained_field_allowlist_version", "prompt_content_retained", "secret_content_retained"],
+      "properties": {
+        "data_classification": { "enum": ["public", "internal", "confidential", "restricted", "phi"] },
+        "redaction_posture": { "enum": ["strict", "metadata_only"] },
+        "retained_field_allowlist_version": { "const": "appfw_route_telemetry_allowlist@1" },
+        "prompt_content_retained": { "const": false },
+        "secret_content_retained": { "const": false }
+      }
+    }
+  }
+}

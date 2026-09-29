@@ -1,0 +1,1 @@
+-- DDL skipped: schema `denovo_workflow` is configured as external read-only storage.

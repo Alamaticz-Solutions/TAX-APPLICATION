@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "PDS CRM",
+    "slug": "pds-crm",
+    "scheme": "pdscrm",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.pds.appframework.crm",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.pds.appframework.crm",
+      "adaptiveIcon": {
+        "backgroundColor": "#0077a8"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "extra": {
+      "appFramework": {
+        "product": "crm",
+        "contract": "mobile/src/generated/appfw-mobile-contract.ts"
+      }
+    }
+  }
+}

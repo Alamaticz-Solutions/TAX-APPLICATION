@@ -1,0 +1,6 @@
+[package]
+name = "appfw-provider-servicenow"
+version = "0.1.1"
+edition = "2021"
+description = "ServiceNow evidence-gated provider skeleton for App Framework."
+publish = ["pds-app-framework-crates"]

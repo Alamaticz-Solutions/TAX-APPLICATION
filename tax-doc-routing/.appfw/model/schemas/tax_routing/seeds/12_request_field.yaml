@@ -1,0 +1,233 @@
+# The field catalogue for Client Info (business spec 5.4) and Upload Documents (business spec
+# 3.3/5.5). Every field here has storage_target = "column": each is already a real column on
+# TaxRoutingRecord or TaxDocument (docs/architecture/dynamic-form-engine-design.md section 7) —
+# this catalogue controls where each field appears and whether it's required, not where its
+# value is stored.
+- entity_type: RequestField
+  schema: tax_routing
+  columns: [id, code, label, help_text, answer_shape, data_type, option_list_id, storage_target, promoted_column, is_active]
+  records:
+
+  # --- Client Info (TaxRoutingRecord columns) ---
+  - id: 383af50f-0888-4f63-b609-32ae0d159992
+    code: client_reference_id
+    label: Client
+    help_text: Search the taxpayer reference database by name or ID.
+    answer_shape: single
+    data_type: uuid
+    option_list_id: null
+    storage_target: column
+    promoted_column: client_reference_id
+    is_active: true
+  - id: 42cef28a-3428-401f-91a4-dbe1f1783a53
+    code: client_first_name
+    label: First Name
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: client_first_name
+    is_active: true
+  - id: 86ba1535-dabb-4c4a-a568-779135232775
+    code: client_last_name
+    label: Last Name
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: client_last_name
+    is_active: true
+  - id: 84f66f82-604d-4a04-b36f-e3802d493bfd
+    code: office_location
+    label: Office Location
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: office_location
+    is_active: true
+  - id: 3d1b2f61-8bd8-41f3-b3fe-42e1eabb5613
+    code: pds_email
+    label: Client PDS Email
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: pds_email
+    is_active: true
+  - id: 131c89c7-9dfe-49d9-8531-664690e7ff43
+    code: personal_email
+    label: Client Personal Email
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: personal_email
+    is_active: true
+  - id: 5d8fab7b-a19b-4572-8138-43dd76a8765a
+    code: additional_email
+    label: Additional Email
+    help_text: Optional third email for notifications.
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: additional_email
+    is_active: true
+  - id: 48db384c-c916-48a3-9bf9-ef0a56f97082
+    code: notification_flag
+    label: Send Notification?
+    help_text: Emails the client when routing completes.
+    answer_shape: single
+    data_type: boolean
+    option_list_id: null
+    storage_target: column
+    promoted_column: notification_flag
+    is_active: true
+  - id: ae42c92e-b06a-45fb-91c7-e690602b32db
+    code: internal_folder
+    label: Internal Folder
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: internal_folder
+    is_active: true
+  - id: 585c4e7c-daeb-45bd-b051-bf205f4dc736
+    code: folder_name
+    label: Client Folder
+    help_text: null
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: folder_name
+    is_active: true
+  - id: d728bd8b-add7-4955-9a98-8a819b951339
+    code: read_write_password
+    label: Read Write Password
+    help_text: Password on file. Never displayed; only used to protect PDFs when required.
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: read_write_password
+    is_active: true
+
+  # --- Upload Documents, per document row (TaxDocument columns) ---
+  - id: 5bfed36c-e4c9-40d2-895b-ac6e163afe7c
+    code: document_type
+    label: Document Type
+    help_text: Drives routing and conditional fields.
+    answer_shape: single
+    data_type: enum
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    storage_target: column
+    promoted_column: document_type_route_id
+    is_active: true
+  - id: bbd6d423-5b9d-42a8-8824-003ed9e01fe3
+    code: document_year
+    label: Year
+    help_text: null
+    answer_shape: single
+    data_type: enum
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    storage_target: column
+    promoted_column: document_year
+    is_active: true
+  - id: eda662fe-a617-4561-9874-3be703386176
+    code: document_name
+    label: Document Name
+    help_text: e.g. K1_2024.pdf
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: document_name
+    is_active: true
+  - id: 8d32f2c0-8d70-455f-a496-9188978ebe31
+    code: entity_type
+    label: Entity Type
+    help_text: Required when this document belongs to an entity.
+    answer_shape: single
+    data_type: enum
+    option_list_id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
+    storage_target: column
+    promoted_column: entity_type
+    is_active: true
+  - id: 5cbb8b04-b586-4f4f-ae30-49a126164b37
+    code: entity_name
+    label: Entity Name
+    help_text: From the entity reference list.
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: entity_name
+    is_active: true
+  - id: fce6a649-7110-4fd6-b1d6-502f03536f79
+    code: entity_oracle_id
+    label: Entity Number
+    help_text: Auto-populated from the selected entity.
+    answer_shape: single
+    data_type: string
+    option_list_id: null
+    storage_target: column
+    promoted_column: entity_oracle_id
+    is_active: true
+  - id: 035fa518-e0a6-44b1-b348-e23819a2c9fd
+    code: is_password_protected
+    label: Password Protect Client Copies
+    help_text: The PDF is encrypted with the client's password.
+    answer_shape: single
+    data_type: boolean
+    option_list_id: null
+    storage_target: column
+    promoted_column: is_password_protected
+    is_active: true
+  - id: 51030b74-a679-4ae9-95f2-237ba01937ab
+    code: attachment_file
+    label: Attachment
+    help_text: The document file to upload.
+    answer_shape: file
+    data_type: file
+    option_list_id: null
+    storage_target: column
+    promoted_column: attachment_file
+    is_active: true
+  - id: e1f6ccb6-06cd-40af-83c5-e9fb3bee31e7
+    code: k1_attachments
+    label: K-1 Attachments
+    help_text: Additional K-1 files.
+    answer_shape: list
+    data_type: file
+    option_list_id: null
+    storage_target: column
+    promoted_column: k1_attachments
+    is_active: true
+  - id: 0298e5f6-a3db-45a2-8fdb-0246808fa3b7
+    code: form_8308_attachments
+    label: Form 8308 Attachments
+    help_text: Additional Form 8308 files.
+    answer_shape: list
+    data_type: file
+    option_list_id: null
+    storage_target: column
+    promoted_column: form_8308_attachments
+    is_active: true
+  - id: c1d3f2d3-00c1-4a44-b466-624ad531a1d9
+    code: amended_documents
+    label: Amended Documents
+    help_text: Amended versions of documents.
+    answer_shape: list
+    data_type: file
+    option_list_id: null
+    storage_target: column
+    promoted_column: amended_documents
+    is_active: true

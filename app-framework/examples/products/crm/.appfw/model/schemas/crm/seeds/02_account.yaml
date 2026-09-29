@@ -1,0 +1,118 @@
+- entity_type: Account
+  schema: crm
+  columns:
+  - id
+  - name
+  - website
+  - phone
+  - email
+  - tags
+  - billing_street
+  - billing_city
+  - billing_state
+  - billing_postal_code
+  - billing_country
+  - annual_revenue
+  - number_of_employees
+  - description
+  - industry_id
+  records:
+  - id: a0c00000-0000-4000-8000-100000000001
+    name: Acme Dental Group
+    website: https://acmedental.com
+    phone: 555-0100
+    email: info@acmedental.com
+    tags:
+    - baseline
+    - healthcare
+    - south
+    - mid-market
+    billing_street: 101 Congress Ave
+    billing_city: Austin
+    billing_state: TX
+    billing_postal_code: '78701'
+    billing_country: US
+    annual_revenue: 12000000
+    number_of_employees: 85
+    description: Regional dental services group expanding patient engagement and back-office
+      automation.
+    industry_id: 10100070-0000-4000-8000-100000000001
+  - id: a0c00000-0000-4000-8000-100000000002
+    name: TechBridge Solutions
+    website: https://techbridge.io
+    phone: 555-0200
+    email: hello@techbridge.io
+    tags:
+    - baseline
+    - technology
+    - west
+    - mid-market
+    billing_street: 500 Market St
+    billing_city: San Francisco
+    billing_state: CA
+    billing_postal_code: '94105'
+    billing_country: US
+    annual_revenue: 45000000
+    number_of_employees: 220
+    description: Cloud integration consultancy standardizing customer success operations.
+    industry_id: 10100070-0000-4000-8000-100000000002
+  - id: a0c00000-0000-4000-8000-100000000003
+    name: CapStone Financial
+    website: https://capstone-fin.com
+    phone: 555-0300
+    email: contact@capstone-fin.com
+    tags:
+    - baseline
+    - financial-services
+    - northeast
+    - enterprise
+    billing_street: 75 Broad St
+    billing_city: New York
+    billing_state: NY
+    billing_postal_code: '10004'
+    billing_country: US
+    annual_revenue: 90000000
+    number_of_employees: 450
+    description: Wealth management firm evaluating analytics and compliance reporting
+      capabilities.
+    industry_id: 10100070-0000-4000-8000-100000000003
+  - id: a0c00000-0000-4000-8000-100000000004
+    name: MediSystems Inc
+    website: https://medisystems.com
+    phone: 555-0400
+    email: info@medisystems.com
+    tags:
+    - baseline
+    - healthcare
+    - midwest
+    - mid-market
+    billing_street: 233 W Wacker Dr
+    billing_city: Chicago
+    billing_state: IL
+    billing_postal_code: '60606'
+    billing_country: US
+    annual_revenue: 22000000
+    number_of_employees: 130
+    description: Healthcare technology provider modernizing account management and
+      field operations.
+    industry_id: 10100070-0000-4000-8000-100000000001
+  - id: a0c00000-0000-4000-8000-100000000005
+    name: RetailPlus Corp
+    website: https://retailplus.com
+    phone: 555-0500
+    email: sales@retailplus.com
+    tags:
+    - baseline
+    - retail
+    - south
+    - mid-market
+    billing_street: 1720 Commerce St
+    billing_city: Dallas
+    billing_state: TX
+    billing_postal_code: '75201'
+    billing_country: US
+    annual_revenue: 18000000
+    number_of_employees: 110
+    description: Regional retailer piloting service workflows across store operations
+      and procurement.
+    industry_id: 10100070-0000-4000-8000-100000000005

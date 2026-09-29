@@ -1,0 +1,7 @@
+{%- import "data_type" as data_type -%}
+{% macro print(objectKind, entityType, prop, isOptional, entityTypes) -%}
+  #[graphql(name = "{{ prop.name }}")]
+  pub {{ prop.name }}: {% if isOptional -%}Option<{% endif -%}
+  {{ data_type::print(objectKind=objectKind, entityType=entityType, prop=prop, entityTypes=entityTypes) }}
+  {%- if isOptional -%}>{% endif -%},
+{%- endmacro print %},

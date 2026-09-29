@@ -1,0 +1,44 @@
+# UserRole — which roles a user holds. A user's resolved grants are the union of every active
+# role's role_permission rows. See docs/architecture/rbac-design.md.
+
+- id: 64fdd770-f9a7-4374-a10c-ef0bcc0f4b10
+  name: UserRole
+  is_table: true
+  indexes:
+  - user_id
+  - role_id
+  facets:
+  - audited
+  constraints:
+  - uq_user_role UNIQUE (user_id, role_id)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: user_id
+    caption: User
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: AppUser
+
+  - name: role_id
+    caption: Role
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Role
+
+  - name: granted_by_user_id
+    caption: Granted By
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: AppUser
+
+  - name: granted_at
+    caption: Granted At
+    is_required: true
+    data_type: DateTime

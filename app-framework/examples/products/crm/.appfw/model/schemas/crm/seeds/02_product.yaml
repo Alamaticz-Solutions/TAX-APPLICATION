@@ -1,0 +1,100 @@
+- entity_type: Product
+  schema: crm
+  columns: [id, name, product_code, description, list_price, is_active, family, pricebook_id]
+  records:
+    - id: 9700d000-0000-4000-8000-100000000001
+      name: Enterprise Suite
+      product_code: ENT-001
+      description: Full-featured enterprise platform license
+      list_price: 75000.00
+      is_active: true
+      family: Software
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000002
+      name: Professional Edition
+      product_code: PRO-001
+      description: Mid-market platform license
+      list_price: 25000.00
+      is_active: true
+      family: Software
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000003
+      name: Implementation Services
+      product_code: SVC-001
+      description: Professional services for deployment
+      list_price: 15000.00
+      is_active: true
+      family: Services
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000004
+      name: Annual Support
+      product_code: SUP-001
+      description: Yearly support and maintenance contract
+      list_price: 7500.00
+      is_active: true
+      family: Support
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000005
+      name: Training Package
+      product_code: TRN-001
+      description: User and admin training bundle
+      list_price: 5000.00
+      is_active: true
+      family: Services
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000006
+      name: Data Migration Accelerator
+      product_code: SVC-002
+      description: Fixed-scope migration package for legacy CRM and ERP data
+      list_price: 18000.00
+      is_active: true
+      family: Services
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000007
+      name: Customer Portal Add-On
+      product_code: ADD-001
+      description: Customer self-service portal and branded access layer
+      list_price: 32000.00
+      is_active: true
+      family: Software
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000008
+      name: Compliance Reporting Pack
+      product_code: REP-001
+      description: Regulated reporting dashboards and export templates
+      list_price: 12000.00
+      is_active: true
+      family: Reporting
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000009
+      name: Partner Enablement Kit
+      product_code: PRT-001
+      description: Partner onboarding workshops, playbooks, and co-selling assets
+      list_price: 8500.00
+      is_active: true
+      family: Services
+      pricebook_id: 97000b00-0000-4000-8000-100000000002
+    - id: 9700d000-0000-4000-8000-100000000010
+      name: Sandbox Environment
+      product_code: SBOX-001
+      description: Isolated non-production environment for testing and training
+      list_price: 6000.00
+      is_active: true
+      family: Software
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000011
+      name: Legacy Connector Pack
+      product_code: INT-001
+      description: Connector bundle for file drops, SFTP, and legacy API synchronization
+      list_price: 14000.00
+      is_active: true
+      family: Integrations
+      pricebook_id: 97000b00-0000-4000-8000-100000000001
+    - id: 9700d000-0000-4000-8000-100000000012
+      name: Retired On-Prem Connector
+      product_code: INT-LEGACY
+      description: Inactive connector retained to exercise inactive product filtering
+      list_price: 9500.00
+      is_active: false
+      family: Integrations
+      pricebook_id: 97000b00-0000-4000-8000-100000000002

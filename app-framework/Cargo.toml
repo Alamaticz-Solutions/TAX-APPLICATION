@@ -1,0 +1,34 @@
+[workspace]
+members = [
+  "api_tests",
+  "app_gen",
+  "appfw_provider_anaplan",
+  "appfw_provider_ai_search",
+  "appfw_provider_icims",
+  "appfw_provider_oracle_financials",
+  "appfw_provider_servicenow",
+  "appfw_saas_core",
+  "appfw_cli",
+  "appfw_provider_mongo",
+  "appfw_mssql_auth",
+  "appfw_provider_mssql",
+  "appfw_provider_neo4j",
+  "appfw_provider_postgres",
+  "appfw_provider_salesforce",
+  "appfw_provider_snowflake",
+  "appfw_provider_workday",
+  "appfw_runtime",
+  "appfw_saas_testkit",
+  "appfw_test",
+  "database",
+  "rego_test",
+]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1.0"
+async-graphql = "6"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }

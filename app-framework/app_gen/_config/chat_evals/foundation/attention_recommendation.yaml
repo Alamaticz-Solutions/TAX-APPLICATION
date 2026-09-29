@@ -1,0 +1,50 @@
+{
+  "name": "provider_neutral_attention_recommendation",
+  "description": "Synthetic fixture-only provider-neutral recommendation with no action authority.",
+  "auth_token": "west_sales_rep",
+  "provenance": "synthetic",
+  "query": "What needs my attention, why, and what is the safest permitted next step?",
+  "context": { "app": "fixture-only", "surface": "evaluation", "tenant": "tenant_a", "mode": "local-fixture" },
+  "registry": { "operations": [{ "name": "fixture.attention_read", "args_schema": "registry", "kind": "read" }] },
+  "fixture_store": {
+    "records": [{ "id": "rl_55555555555555555555555555555555", "tenant": "tenant_a", "type": "AttentionItem", "caption": "Synthetic review threshold reached" }],
+    "cross_tenant_seeded_ids": []
+  },
+  "transcript": [
+    { "type": "message", "role": "user", "content": "What needs my attention, why, and what is the safest permitted next step?" },
+    { "type": "tool_call", "name": "fixture.attention_read", "args_schema": "registry", "args": { "tenant": "tenant_a", "mode": "local-fixture" } },
+    { "type": "tool_result", "name": "fixture.attention_read", "refs": ["rl_55555555555555555555555555555555"] },
+    { "type": "answer_envelope", "schema": "chat_transcript_jsonl@1", "payload": { "type": "data-answer-envelope", "data": {
+      "version": "answer_envelope@1",
+      "refs": [{ "kind": "fixture.AttentionItem", "record_locator": "rl_55555555555555555555555555555555", "caption": "Synthetic review threshold reached", "source": "synthetic-fixture-store", "provenance": "synthetic", "freshness_watermark": "2026-07-18T00:00:00Z" }],
+      "citations": [{ "source": "synthetic-fixture-store", "record_locator": "rl_55555555555555555555555555555555", "provenance": "synthetic", "freshness_watermark": "2026-07-18T00:00:00Z" }],
+      "fallback_view": "list", "view_hint": "card", "confidence": 0.76
+    } } }
+  ],
+  "replay_transcript": [
+    { "type": "message", "role": "user", "content": "What needs my attention, why, and what is the safest permitted next step?" },
+    { "type": "tool_call", "name": "fixture.attention_read", "args_schema": "registry", "args": { "tenant": "tenant_a", "mode": "local-fixture" } },
+    { "type": "tool_result", "name": "fixture.attention_read", "refs": ["rl_55555555555555555555555555555555"] },
+    { "type": "answer_envelope", "schema": "chat_transcript_jsonl@1", "payload": { "type": "data-answer-envelope", "data": {
+      "version": "answer_envelope@1",
+      "refs": [{ "kind": "fixture.AttentionItem", "record_locator": "rl_55555555555555555555555555555555", "caption": "Synthetic review threshold reached", "source": "synthetic-fixture-store", "provenance": "synthetic", "freshness_watermark": "2026-07-18T00:00:00Z" }],
+      "citations": [{ "source": "synthetic-fixture-store", "record_locator": "rl_55555555555555555555555555555555", "provenance": "synthetic", "freshness_watermark": "2026-07-18T00:00:00Z" }],
+      "fallback_view": "list", "view_hint": "card", "confidence": 0.76
+    } } }
+  ],
+  "answer_envelope": {
+    "version": "answer_envelope@1",
+    "refs": [{ "uri": "appfw://fixtures/entities/AttentionItem", "ids": ["rl_55555555555555555555555555555555"], "idKind": "record_locator" }],
+    "view_hint": "card", "fallback_view": "list",
+    "citations": [{ "ref_uri": "rl_55555555555555555555555555555555", "source": "synthetic-fixture-store", "freshness_watermark": "2026-07-18T00:00:00Z" }],
+    "confidence": { "score": 0.76, "basis": "synthetic fixture" },
+    "provenance": { "mode": "local-fixture", "source": "synthetic-fixture-store" },
+    "recommendation": { "version": "recommendation@1", "why_now": "The synthetic freshness threshold was reached.", "safest_permitted_next_step": "Review the fixture evidence; no action is executed or authorized.", "preview_only": true }
+  },
+  "expect": {
+    "tool_calls": [{ "name": "fixture.attention_read", "args_schema": "registry" }],
+    "citations": "resolvable",
+    "evaluation": { "version": "ai_evaluation@1", "mode": "local-fixture", "provenance": "synthetic", "release_ready": false, "live_ready": false, "replay_structural_diff": [] },
+    "policy": { "tenant_visibility": "tenant_a_only", "write_operations": "forbidden" }
+  }
+}

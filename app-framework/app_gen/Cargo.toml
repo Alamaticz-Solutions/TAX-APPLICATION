@@ -1,0 +1,58 @@
+[package]
+name = "appfw-codegen"
+version = "0.1.1"
+edition = "2021" 
+rust-version = "1.80.1"
+description = "App Framework code generation, topology validation, and workflow CLI compatibility binaries."
+publish = ["pds-app-framework-crates"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "appfw_codegen"
+path = "src/lib.rs"
+
+[[bin]]
+name = "app_gen"
+path = "src/main.rs"
+
+[[bin]]
+name = "appfw"
+path = "src/bin/appfw.rs"
+
+[[bin]]
+name = "appfw_introspect"
+path = "src/bin/appfw_introspect.rs"
+
+[dependencies]
+# For this project only
+dircpy = "0.3.13"
+lazy_static = "1.4"
+libc = "0.2"
+serde_derive = "1.0"
+env_logger = "0.10.0"
+tera = "1"
+
+# Shared dependencies with backend Cargo.toml
+anyhow = "1.0"
+appfw_cli = { package = "appfw-cli", version = "0.1.1", path = "../appfw_cli", registry = "pds-app-framework-crates" }
+appfw_mssql_auth = { package = "appfw-mssql-auth", version = "0.1.1", path = "../appfw_mssql_auth", registry = "pds-app-framework-crates" }
+bson = "2.4"
+bytes = "1.7"
+# chrono = { version = "0.4", features = ["clock", "serde"] }          # previous
+chrono = { version = "0.4.23", features = ["serde"] }                  # change
+chrono-tz = "0.10"
+dotenv = "0.15"
+Inflector = "*"
+serde = {version = "1.0", features = ["derive"] }
+# serde = "1.0"
+serde_json = "1.0"
+serde_yaml = "0.9"
+sha2 = "0.10"
+syn = { version = "2", features = ["full", "visit"] }
+thiserror = "2.0.12"
+tokio = { version = "1", features = ["full"] }
+toml_edit = "0.19.15"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["serde", "v4"] }

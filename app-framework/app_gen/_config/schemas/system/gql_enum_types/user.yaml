@@ -1,0 +1,7 @@
+
+- name: UserStatus
+  items: 
+  - value: Active
+  - value: Disabled
+  - value: Deleted
+

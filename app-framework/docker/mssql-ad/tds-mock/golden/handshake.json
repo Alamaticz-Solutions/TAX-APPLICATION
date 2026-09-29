@@ -1,0 +1,6 @@
+{
+  "description": "Default golden vector for tds-mock self-test (lab defaults). Replace via golden capture from a real Windows SQL Server.",
+  "challenge_flags": null,
+  "target_info_hex": null,
+  "token_sequence": ["prelogin", "login7", "sspi_challenge", "sspi_auth", "loginack", "sql_batch"]
+}

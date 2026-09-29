@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "react": ["./node_modules/@types/react"],
+      "react/jsx-runtime": ["./node_modules/@types/react/jsx-runtime"],
+      "react-dom": ["./node_modules/@types/react-dom"],
+      "@appfw/pds-health-components": ["../components/src/index.ts"],
+      "@appfw/pds-health-components/intelligence-presentation": ["../components/src/intelligence-presentation.tsx"],
+      "@appfw/pds-health-components/intelligence-presentation-model": ["../components/src/intelligence-presentation-model.ts"],
+      "@appfw/pds-health-components/ix-recipes": ["../components/src/ix-recipes.tsx"],
+      "@appfw/pds-ix-presentation-contract": ["../ix-presentation-contract/src/index.d.ts"],
+      "@appfw/pds-health-components/styles.css": ["../components/src/styles.css"]
+    },
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

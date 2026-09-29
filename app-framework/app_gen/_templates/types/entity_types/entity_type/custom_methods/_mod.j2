@@ -1,0 +1,16 @@
+{% macro print(entityType) %}
+{%- if entityType.custom_methods -%}
+{%- for method in entityType.custom_methods %}
+  - name: {{ method.name }}
+    kind: {{ method.kind }}
+    mcp_enabled: {% if method.mcp_enabled %}true{% else %}false{% endif %}
+    args: {% if method.args and method.args | length > 0 %}{% for arg in method.args %}
+    - name: {{ arg.name }}
+      arg_type: {{ arg.arg_type }}
+{% endfor %}{% else %}[]{% endif %}
+    return_type: {{ method.return_type }}
+{% if method.provider_routine %}    provider_routine: {{ method.provider_routine | json_encode(pretty=false) | safe }}
+{% endif %}
+{% endfor -%}
+{%- endif -%}
+{% endmacro print %}

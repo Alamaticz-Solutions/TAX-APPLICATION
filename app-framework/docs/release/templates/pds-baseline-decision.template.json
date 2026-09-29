@@ -1,0 +1,108 @@
+{
+  "ok": false,
+  "release_ready": false,
+  "template_only": true,
+  "baseline": {
+    "version": "r4.5"
+  },
+  "release_authority": {
+    "owner": "TODO: release owner or team",
+    "approver": "TODO: security or release approver",
+    "approved_at_utc": "TODO: YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "work_items": [
+    {
+      "id": "LIVE-015",
+      "baseline_sections": [
+        "Exceptions and risk acceptance"
+      ],
+      "status": "todo",
+      "summary": "Retain PDS Security Baseline r4.5 traceability for production-readiness claims.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-015-release-authority.json"
+      ]
+    },
+    {
+      "id": "LIVE-016",
+      "baseline_sections": [
+        "Human IAM and SSO",
+        "User lifecycle management",
+        "Authorization / least privilege",
+        "Non-human identities and service accounts",
+        "API security",
+        "Cloud controls"
+      ],
+      "status": "todo",
+      "summary": "Prove PDS IAM, Okta, MFA, and user-lifecycle posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-016-iam-okta-mfa-lifecycle.json"
+      ]
+    },
+    {
+      "id": "LIVE-017",
+      "baseline_sections": [
+        "Secrets management",
+        "Non-human identities and service accounts"
+      ],
+      "status": "todo",
+      "summary": "Prove PDS secrets-management posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-017-secrets-management.json"
+      ]
+    },
+    {
+      "id": "LIVE-018",
+      "baseline_sections": [
+        "Encryption in transit and at rest",
+        "Internet-facing service gateway",
+        "Application security scanning",
+        "API security"
+      ],
+      "status": "todo",
+      "summary": "Prove PDS internet-facing API and gateway posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-018-api-gateway-waf-tls-scanning.json"
+      ]
+    },
+    {
+      "id": "LIVE-019",
+      "baseline_sections": [
+        "Lower-environment data",
+        "Backup and restore",
+        "Database security",
+        "Encryption in transit and at rest"
+      ],
+      "status": "todo",
+      "summary": "Prove lower-environment data, backup, restore, and DR posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-019-lower-env-backup-dr.json"
+      ]
+    },
+    {
+      "id": "LIVE-020",
+      "baseline_sections": [
+        "Host, endpoint, and patch posture",
+        "Cloud controls",
+        "Database security",
+        "Encryption in transit and at rest"
+      ],
+      "status": "todo",
+      "summary": "Prove host, cloud, network, and database hardening posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-020-platform-network-db-hardening.json"
+      ]
+    },
+    {
+      "id": "LIVE-021",
+      "baseline_sections": [
+        "Security monitoring and SIEM",
+        "Cloud controls"
+      ],
+      "status": "todo",
+      "summary": "Prove PDS SIEM, monitoring, and access-review posture.",
+      "expected_evidence": [
+        "target/appfw/pds-baseline/live-021-siem-monitoring-access-review.json"
+      ]
+    }
+  ]
+}

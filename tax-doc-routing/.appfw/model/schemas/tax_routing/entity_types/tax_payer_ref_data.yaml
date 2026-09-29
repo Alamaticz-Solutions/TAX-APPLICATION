@@ -1,0 +1,109 @@
+- id: f78f319b-2bcd-4ad5-acea-acc2727ebe82
+  name: TaxPayerRefData
+  is_table: true
+  indexes:
+  - is_active
+  facets:
+  - audited
+  - concurrency
+
+  custom_methods:
+  - name: list_active_taxpayers
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: search
+      arg_type: Option<String>
+    - name: limit
+      arg_type: i32
+    - name: offset
+      arg_type: i32
+    return_type: serde_json::Value
+  # Writes stay off the remote MCP tool surface, same caution as the CRM
+  # example's governed graph writes.
+  - name: update_taxpayer_reference
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: taxpayer_id
+      arg_type: String
+    - name: external_folder_id
+      arg_type: Option<String>
+    - name: internal_folder_path
+      arg_type: Option<String>
+    - name: read_write_password
+      arg_type: Option<String>
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: first_name
+    caption: First Name
+    is_required: true
+    data_type: String
+
+  - name: last_name
+    caption: Last Name
+    is_required: true
+    data_type: String
+
+  - name: full_name
+    caption: Full Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: personal_email
+    caption: Personal Email
+    is_required: true
+    fragment: property-string-email
+
+  - name: pds_email
+    caption: PDS Email
+    is_required: true
+    fragment: property-string-email
+
+  # Added for the ClientSearch/Client Info screen (business spec 5.4), which needs these two
+  # displayed alongside the Box-specific fields below; docs/architecture/dynamic-form-engine-design.md
+  # section "1a" flagged this table as the real source ClientSearch.tsx wasn't yet wired to.
+  - name: office_location
+    caption: Office Location
+    is_required: true
+    data_type: String
+
+  - name: folder_name
+    caption: Folder Name
+    is_required: true
+    data_type: String
+
+  - name: external_folder_id
+    caption: External Folder ID
+    is_required: true
+    data_type: String
+
+  - name: internal_folder_path
+    caption: Internal Folder Path
+    is_required: true
+    data_type: String
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required
+
+  - name: read_write_password
+    caption: Read/Write Password
+    is_required: true
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  # PROVISIONAL: modeled as plain String pending a confirmed value list;
+  # convert to a true Enum once the authoritative values are known.
+  - name: entity_type
+    caption: Entity Type
+    is_required: false
+    data_type: String

@@ -1,0 +1,23 @@
+# Quote - seeded entity coverage with Opportunity, Account, and Status navigation.
+
+- name: find_quote
+  description: find seeded quote by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQuote
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9407e000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,quote_number,opportunity_id,account_id,status_id,opportunity { id,name },account { id,name },status { id,name }
+  expect:
+    data:
+      id: '9407e000-0000-4000-8000-100000000001'
+      name: 'Q-2026-001 Acme Enterprise'
+      quote_number: 'Q-2026-001'
+      opportunity_id: '099c0000-0000-4000-8000-100000000001'
+      account_id: 'a0c00000-0000-4000-8000-100000000001'
+      status_id: '9407ec00-0000-4000-8000-100000000003'

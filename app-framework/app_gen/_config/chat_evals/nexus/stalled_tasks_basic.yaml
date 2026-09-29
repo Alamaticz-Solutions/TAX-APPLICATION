@@ -1,0 +1,211 @@
+{
+  "name": "stalled_tasks_basic",
+  "description": "Tenant-scoped stalled-task answer resolves Task refs without cross-tenant leakage.",
+  "auth_token": "west_sales_rep",
+  "provenance": "synthetic",
+  "query": "what tasks are stalled?",
+  "context": {
+    "app": "nexus",
+    "surface": "chat_panel",
+    "tenant": "tenant_a"
+  },
+  "registry": {
+    "operations": [
+      {
+        "name": "nexus.task_search",
+        "args_schema": "registry",
+        "kind": "read"
+      }
+    ]
+  },
+  "fixture_store": {
+    "records": [
+      {
+        "id": "rl_11111111111111111111111111111111",
+        "tenant": "tenant_a",
+        "type": "Task",
+        "caption": "Credentialing packet stalled"
+      },
+      {
+        "id": "rl_22222222222222222222222222222222",
+        "tenant": "tenant_a",
+        "type": "Task",
+        "caption": "Equipment approval waiting"
+      },
+      {
+        "id": "rl_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "tenant": "tenant_b",
+        "type": "Task",
+        "caption": "Do not expose tenant B task"
+      }
+    ],
+    "cross_tenant_seeded_ids": ["rl_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"]
+  },
+  "transcript": [
+    {
+      "type": "message",
+      "role": "user",
+      "content": "what tasks are stalled?"
+    },
+    {
+      "type": "tool_call",
+      "name": "nexus.task_search",
+      "args_schema": "registry",
+      "args": {
+        "status": "stalled",
+        "tenant": "tenant_a"
+      }
+    },
+    {
+      "type": "tool_result",
+      "name": "nexus.task_search",
+      "refs": ["rl_11111111111111111111111111111111", "rl_22222222222222222222222222222222"]
+    },
+    {
+      "type": "card",
+      "kind": "EntityRefCard",
+      "refs": ["rl_11111111111111111111111111111111", "rl_22222222222222222222222222222222"]
+    },
+    {
+      "type": "citation",
+      "ref": "rl_11111111111111111111111111111111",
+      "freshness_watermark": "2026-07-02T00:00:00Z"
+    },
+    {
+      "type": "answer_envelope",
+      "schema": "chat_transcript_jsonl@1",
+      "payload": {
+        "type": "data-answer-envelope",
+        "data": {
+          "version": "answer_envelope@1",
+          "refs": [
+            {
+              "kind": "nexus.Task",
+              "record_locator": "rl_11111111111111111111111111111111",
+              "caption": "Permit review stalled",
+              "source": "fixture-store",
+              "provenance": "synthetic",
+              "freshness_watermark": "2026-07-02T00:00:00Z"
+            }
+          ],
+          "citations": [
+            {
+              "source": "fixture-store",
+              "record_locator": "rl_11111111111111111111111111111111",
+              "provenance": "synthetic",
+              "freshness_watermark": "2026-07-02T00:00:00Z"
+            }
+          ],
+          "fallback_view": "list",
+          "view_hint": "flow-graph",
+          "confidence": 0.82
+        }
+      }
+    }
+  ],
+  "replay_transcript": [
+    {
+      "type": "message",
+      "role": "user",
+      "content": "what tasks are stalled?"
+    },
+    {
+      "type": "tool_call",
+      "name": "nexus.task_search",
+      "args_schema": "registry",
+      "args": {
+        "status": "stalled",
+        "tenant": "tenant_a"
+      }
+    },
+    {
+      "type": "tool_result",
+      "name": "nexus.task_search",
+      "refs": ["rl_11111111111111111111111111111111", "rl_22222222222222222222222222222222"]
+    },
+    {
+      "type": "card",
+      "kind": "EntityRefCard",
+      "refs": ["rl_11111111111111111111111111111111", "rl_22222222222222222222222222222222"]
+    },
+    {
+      "type": "citation",
+      "ref": "rl_11111111111111111111111111111111",
+      "freshness_watermark": "2026-07-02T00:00:00Z"
+    },
+    {
+      "type": "answer_envelope",
+      "schema": "chat_transcript_jsonl@1",
+      "payload": {
+        "type": "data-answer-envelope",
+        "data": {
+          "version": "answer_envelope@1",
+          "refs": [
+            {
+              "kind": "nexus.Task",
+              "record_locator": "rl_11111111111111111111111111111111",
+              "caption": "Permit review stalled",
+              "source": "fixture-store",
+              "provenance": "synthetic",
+              "freshness_watermark": "2026-07-02T00:00:00Z"
+            }
+          ],
+          "citations": [
+            {
+              "source": "fixture-store",
+              "record_locator": "rl_11111111111111111111111111111111",
+              "provenance": "synthetic",
+              "freshness_watermark": "2026-07-02T00:00:00Z"
+            }
+          ],
+          "fallback_view": "list",
+          "view_hint": "flow-graph",
+          "confidence": 0.82
+        }
+      }
+    }
+  ],
+  "answer_envelope": {
+    "version": "answer_envelope@1",
+    "correlation_id": "chat-eval-stalled-tasks-basic",
+    "as_of": "2026-07-02T00:00:00Z",
+    "refs": [
+      {
+        "uri": "appfw://schemas/nexus/entities/Task",
+        "entity": { "schemaName": "nexus", "typeName": "Task" },
+        "ids": ["rl_11111111111111111111111111111111", "rl_22222222222222222222222222222222"],
+        "idKind": "record_locator"
+      }
+    ],
+    "view_hint": "flow-graph",
+    "fallback_view": "list",
+    "citations": [
+      {
+        "ref_uri": "rl_11111111111111111111111111111111",
+        "freshness_watermark": "2026-07-02T00:00:00Z"
+      }
+    ],
+    "confidence": { "score": 0.82, "basis": "synthetic fixture" },
+    "provenance": { "model": "fixture", "search_backend": "fixture-store" }
+  },
+  "expect": {
+    "tool_calls": [
+      { "name": "nexus.task_search", "args_schema": "registry" }
+    ],
+    "entity_refs": [
+      { "type": "Task", "source": "servicenow_denovo_projection", "min_count": 1 }
+    ],
+    "artifacts": [
+      { "kind": "answer_envelope", "schema": "answer_envelope@1" }
+    ],
+    "citations": "resolvable",
+    "policy": {
+      "tenant_visibility": "tenant_a_only",
+      "write_operations": "forbidden",
+      "forbidden_scopes": ["servicenow.incident.write"],
+      "leak_check": {
+        "must_not_appear": ["rl_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"]
+      }
+    }
+  }
+}

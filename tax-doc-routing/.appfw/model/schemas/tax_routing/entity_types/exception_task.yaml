@@ -1,0 +1,63 @@
+- id: 1a4ee7b0-71eb-4b3f-9564-a627a65bf6e8
+  name: ExceptionTask
+  is_table: true
+  indexes:
+  - routing_record_id
+  facets:
+  - audited
+  - concurrency
+
+  custom_methods:
+  # mcp_enabled not stated in spec; defaulting to false to keep this
+  # side-effecting retry mutation off the remote MCP tool surface,
+  # matching the majority precedent for write mutations in this repo.
+  - name: retry_failed_step
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: exception_task_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: routing_record_id
+    caption: Routing Record
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: TaxRoutingRecord
+
+  - name: failure_reason
+    caption: Failure Reason
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  # PROVISIONAL: modeled as plain String — spec gives only non-exhaustive
+  # examples (temp_folder_creation, pdf_processing, cleanup), not a
+  # confirmed closed value list.
+  - name: failed_step
+    caption: Failed Step
+    is_required: true
+    data_type: String
+
+  - name: opened_at
+    caption: Opened At
+    is_required: true
+    data_type: DateTime
+
+  - name: resolved_at
+    caption: Resolved At
+    is_required: false
+    data_type: DateTime
+
+  - name: assigned_user_id
+    caption: Assigned To
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: AppUser

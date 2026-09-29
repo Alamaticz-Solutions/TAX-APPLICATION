@@ -1,0 +1,9 @@
+{% macro print(objectKind, entityType, manyToMany, entityTypes) -%}
+{%- if objectKind == "base" -%}{{ manyToMany.target_type }}
+{%- elif objectKind == "input"  -%}i64
+{%- elif objectKind == "create" -%}i64
+{%- elif objectKind == "update" -%}i64
+{%- elif objectKind == "projection" -%}{{ manyToMany.target_type }}Projection
+{%- else -%}// property_type/data_type/many_to_many_type/_mod.j2: {{ entityType.pascal_1 }} objectKind {{ objectKind }} not_handled
+{%- endif -%}
+{%- endmacro print %} 

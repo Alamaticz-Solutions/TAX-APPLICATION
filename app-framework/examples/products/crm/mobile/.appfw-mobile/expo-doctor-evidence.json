@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "doctor"
+  ],
+  "cwd": "mobile",
+  "duration_ms": 14084,
+  "exit_code": 0,
+  "generated_at": "2026-07-02T18:31:09Z",
+  "lane": "U5",
+  "name": "expo-doctor",
+  "ok": true,
+  "status": "passed",
+  "stderr_tail": "Unexpected error while running 'Check Expo config (app.json/ app.config.js) schema' check:\nTypeError: fetch failed\nError: getaddrinfo ENOTFOUND exp.host\nThis check requires a connection to the Expo API. Ensure your network connection is stable.\nEXPO_DOCTOR_WARN_ON_NETWORK_ERRORS is enabled. Ignoring network error for this check.\nOne or more checks failed due to network errors, but EXPO_DOCTOR_WARN_ON_NETWORK_ERRORS is enabled, so these errors will not fail Doctor. Run Doctor to retry these checks once the network is available.\n",
+  "stdout_tail": "\n> @pds/app-framework-crm-mobile@0.1.0 doctor\n> EXPO_NO_TELEMETRY=1 EXPO_DOCTOR_WARN_ON_NETWORK_ERRORS=1 EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK=0 npx expo-doctor\n\nRunning 19 checks on your project...\n",
+  "version": 1
+}

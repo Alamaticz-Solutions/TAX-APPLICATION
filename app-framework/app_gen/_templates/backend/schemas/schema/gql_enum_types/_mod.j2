@@ -1,0 +1,14 @@
+{% macro print(gqlEnumTypes) %}
+
+{% for e in gqlEnumTypes %}
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Enum)]
+#[graphql(rename_items = "PascalCase")]
+pub enum {{e.name}} 
+{
+  {%- for item in e.items %}
+  {{ item.value }},
+  {%- endfor %}
+}
+{% endfor %}
+
+{% endmacro print %}

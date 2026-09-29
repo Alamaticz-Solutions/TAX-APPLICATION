@@ -1,0 +1,35 @@
+# Role grants for the bootstrap users in 04_app_user.yaml.
+- entity_type: UserRole
+  schema: tax_routing
+  columns: [id, user_id, role_id, granted_by_user_id, granted_at]
+  records:
+  - id: 45b4feb3-6f9d-40db-858f-f0ae374cdef6
+    user_id: 945fa771-0def-4f99-bd28-e77acec8014d   # local-dev
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7    # TAX_ADMIN
+    granted_by_user_id: null
+    granted_at: "2026-01-01T00:00:00Z"
+  - id: f224d10a-fb5b-40b3-bf89-7f1d9cdd8159
+    user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad   # alex
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e    # TAX_STAFF
+    granted_by_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    granted_at: "2026-01-01T00:00:00Z"
+  - id: 6b0d8ccf-fc0b-496f-bea7-8f5f7a706e20
+    user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b   # dana
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7    # TAX_ADMIN
+    granted_by_user_id: null
+    granted_at: "2026-01-01T00:00:00Z"
+  - id: c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e01
+    user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01   # sarah
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e    # TAX_STAFF
+    granted_by_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    granted_at: "2026-01-01T00:00:00Z"
+  - id: c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e02
+    user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02   # mike
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e    # TAX_STAFF
+    granted_by_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    granted_at: "2026-01-01T00:00:00Z"
+  - id: c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e03
+    user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03   # lisa
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e    # TAX_STAFF
+    granted_by_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    granted_at: "2026-01-01T00:00:00Z"

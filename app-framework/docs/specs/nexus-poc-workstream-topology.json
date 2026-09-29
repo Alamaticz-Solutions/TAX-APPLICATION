@@ -1,0 +1,555 @@
+{
+  "schema": "appfw_multi_workstation_topology@2",
+  "program_id": "nexus-poc",
+  "title": "Nexus PoC multi-workstation topology",
+  "updated_on": "2026-07-18",
+  "authority": {
+    "stable_topology": "docs/specs/nexus-poc-workstream-topology.json",
+    "dynamic_coordination_after_acceptance": "program/registry",
+    "projection_only": [
+      "target/appfw",
+      "tools/product-dashboard"
+    ]
+  },
+  "poc_product_boundary": {
+    "experience": "Nexus My Requests and My Tasks with status, approvals, notifications, recovery, and adverse states",
+    "first_journey_systems": [
+      "ServiceNow",
+      "Workday",
+      "PDS Health AI"
+    ],
+    "required_channels": [
+      "responsive web",
+      "native mobile"
+    ],
+    "initial_behavior": "Primarily read, status, and deep link with explicitly selected governed actions",
+    "target_population": {
+      "potential_users": 17000,
+      "locations": 1100
+    },
+    "operating_posture": "Enterprise production support and healthcare-grade identity, authorization, privacy, audit, observability, resilience, and recovery",
+    "sequencing_rule": "A Workday-first thin vertical slice proves integration mechanics but cannot reduce the full PoC acceptance boundary"
+  },
+  "authority_model": {
+    "legacy_xo_status": "superseded",
+    "program_product_manager": "Owns program outcomes, priority, value, and product-acceptance recommendations",
+    "app_framework_chief_architect": "Owns cross-workstream architecture, frozen contracts, shared seams, and technical standards",
+    "program_flow_controller": "Owns admission, WIP, dependency flow, assignments, escalation routing, and sole dashboard projection; material control turns require same-turn atomic projection and validation without product, architecture, source, merge, release, or risk authority",
+    "integration_branch_manager": "Owns integration order, conflicts, PR and CI evidence, accepted-base freshness, and worktree disposition",
+    "workstream_lead_outcome_owner": "Owns one bounded outcome, local priority, acceptance interpretation, dependencies, and escalation",
+    "workstream_technical_lead": "Owns workstream design, implementation plan, contract compliance, and focused proof",
+    "branch_owner": "Is the sole source writer for one assigned branch and worktree",
+    "independent_reviewer": "Reviews without source authorship",
+    "human_sponsor": "Owns strategic ratification, material scope, sensitive risk, release, and production authority"
+  },
+  "dashboard_projection_policy": {
+    "schema": "appfw_dashboard_projection_policy@1",
+    "path": "target/appfw/nexus-control-dashboard/status.json",
+    "sole_writer": "program_flow_controller",
+    "other_roles": "verified_facts_only_no_projection_writes",
+    "material_change_completion_required": true,
+    "same_control_turn": true,
+    "atomic_write_and_reread_validation": true,
+    "bootstrap_required": true,
+    "material_change_triggers": [
+      "producer_wip_admission_and_slot_state",
+      "control_and_workstream_identity_assignment_and_lease",
+      "dependency_activation_blocker_and_eligibility",
+      "authority_decision_non_acceptance_and_supersession",
+      "checkpoint_proof_review_push_and_no_consume",
+      "integration_base_collision_pr_ci_promotion_and_remote_train",
+      "worktree_ownership_protection_cleanup_and_disposition",
+      "dashboard_authority_contract_source_and_health"
+    ],
+    "validation_categories": [
+      "json_and_declared_schema",
+      "task_role_and_assignment_identity",
+      "producer_wip_arithmetic",
+      "exact_sha_hash_ref_pr_ci_and_evidence_identity",
+      "contradiction_and_staleness_scan",
+      "timestamps_and_attributable_source_facts"
+    ],
+    "failure_posture": "visible_stale_or_unavailable_never_silent_defer",
+    "authority_non_claim": "projection_records_verified_state_and_grants_no_product_architecture_source_integration_merge_release_production_security_exception_or_risk_authority"
+  },
+  "transition_policy": {
+    "fresh_control_agents_required": true,
+    "legacy_agents_may_dispatch": false,
+    "legacy_handoff_required_before_archive": true,
+    "active_source_checkpoint_may_finish": true,
+    "successor_dispatch_requires_fresh_admission": true
+  },
+  "product_increment_delivery": {
+    "schema": "appfw_product_increment_plan@1",
+    "governing_model": "docs/start/product-increment-delivery-model.md",
+    "portfolio": "docs/specs/product-increment-portfolio.json",
+    "portfolio_validator": "node scripts/check-product-increment-portfolio.mjs --portfolio docs/specs/product-increment-portfolio.json --json",
+    "workstream_semantics": "capability_suppliers_not_standing_queues",
+    "assignment_schema": "appfw_workstation_assignment@4",
+    "assignment_plan_selection": "portfolio_by_product_increment_id",
+    "assignment_write_scope": "validated_product_increment_lane",
+    "assignment_lease_mode": "shared_live_required_for_source_authority",
+    "admission_authority": "Program Flow Controller",
+    "target_active_lanes": 3,
+    "minimum_concurrent_capacity": 2,
+    "maximum_active_lanes": 4,
+    "integration_branch_rule": "required_for_multi_lane_or_cross_domain",
+    "leaf_destination": "product_increment_integration_branch",
+    "main_destination": "product_increment_integration_pr_only",
+    "cross_lane_links": [
+      "requires",
+      "benefits_from"
+    ],
+    "proof_boundaries": {
+      "leaf": "accelerated",
+      "integration_to_main": "full",
+      "release": "strict",
+      "sensitive_change": "fail_closed_to_full_or_strict"
+    }
+  },
+  "priority_order": [
+    "WS-01",
+    "WS-02",
+    "WS-03",
+    "WS-04",
+    "WS-05",
+    "WS-06",
+    "WS-07",
+    "WS-08"
+  ],
+  "wip_policy": {
+    "initial_active_producer_limit": 3,
+    "minimum_concurrent_delivery_lanes": 2,
+    "maximum_active_delivery_lanes": 4,
+    "integration_authority_slots": 1,
+    "scale_increment": 1,
+    "queue_semantics": "pull-independent-delivery-lanes-from-active-product-increment",
+    "scale_up_gates": [
+      "No expanding human-review queue",
+      "No repeated conflicts across declared write roots",
+      "No more than two merge-ready branches waiting for integration",
+      "Two consecutive integration cycles retain attributable green evidence"
+    ],
+    "scale_down_triggers": [
+      "Two active producers require the same write root",
+      "A shared contract changes without one owner and freeze SHA",
+      "CI failures cannot be attributed to one producer branch",
+      "Products consume another worktree's source or local output"
+    ]
+  },
+  "worktree_policy": {
+    "one_active_worktree_per_assignment": true,
+    "assignment_schema": "docs/start/workstation-assignment.schema.json",
+    "base_ref": "origin/main",
+    "base_max_age_hours_at_activation": 24,
+    "stale_owner_review_hours": 72,
+    "clean_merged_cleanup_hours": 24,
+    "never_auto_delete": true
+  },
+  "context_policy": {
+    "max_required_sources_per_workstream": 8,
+    "source_links_only": true,
+    "focused_checks_in_inner_loop": true,
+    "full_checks_at": [
+      "handoff",
+      "integration"
+    ]
+  },
+  "integration_only_paths": [
+    "Cargo.toml",
+    "Cargo.lock",
+    "bitbucket-pipelines.yml",
+    "scripts/appfw",
+    "scripts/check-doc-examples.sh",
+    "program/**",
+    "appfw_saas_core/**",
+    "appfw_saas_testkit/**",
+    "appfw_runtime/src/chat.rs",
+    "appfw_runtime/src/security.rs",
+    "app_gen/_templates/**",
+    "examples/products/pds-nexus/.appfw/model/**",
+    "docs/release/roadmap.md"
+  ],
+  "baseline_obligations": [
+    "Preserve tenant, user, delegated-agent, request, and correlation identity",
+    "Keep authorization and governed-write enforcement server-side",
+    "Emit auditable decisions without PHI, secrets, or prompt payloads in logs",
+    "Expose OpenTelemetry-compatible traces, metrics, and structured events",
+    "Provide accessible keyboard, focus, reduced-motion, and screen-reader behavior",
+    "Fail safely when providers, intelligence, or network dependencies are unavailable"
+  ],
+  "workstreams": [
+    {
+      "id": "WS-01",
+      "priority": 1,
+      "slug": "pds-experience-system",
+      "name": "PDS Experience System",
+      "owns": "F0/F1 tokens, typography, motion, layout, dimensions, React Aria adapters, components, and catalog",
+      "delivers": "Versioned self-contained PDS web package and catalog evidence",
+      "depends_on": [],
+      "activation_gates": [
+        "Ratified PDS experience dimensions and visual-language decisions are on the branch base",
+        "Connected Fabric baseline is preserved before component migration",
+        "Package consumption contract forbids product source aliases"
+      ],
+      "write_roots": [
+        "appfw_ui/pds_health/**",
+        "docs/frontend/pds-health-design-system.md",
+        "docs/frontend/agentic-ux.md",
+        "docs/architecture/adr/0014-pds-signature-visual-language.md",
+        "docs/architecture/adr/0015-pds-experience-system-dimensions.md",
+        "docs/architecture/adr/0016-pds-web-interaction-substrate.md"
+      ],
+      "forbidden_roots": [
+        "examples/products/pds-nexus/frontend/**",
+        "appfw_provider_*/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/frontend/pds-health-design-system.md",
+        "docs/frontend/agentic-ux.md",
+        "docs/frontend/product-frontend.md",
+        "appfw_ui/pds_health/README.md"
+      ],
+      "publishes": [
+        "Installable PDS component package with explicit version",
+        "Web and native tokens plus adaptation contracts",
+        "Catalog build, accessibility, interaction, and visual evidence"
+      ],
+      "inner_loop": [
+        "node scripts/check-pds-tokens.mjs --json",
+        "node scripts/check-pds-components.mjs --json",
+        "npm --prefix appfw_ui/pds_health/catalog-app run build"
+      ],
+      "handoff_checks": [
+        "node scripts/check-pds-catalog-evidence.mjs --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-02",
+      "priority": 2,
+      "slug": "pds-health-ai-agentic-intelligence",
+      "name": "PDS Health AI and Agentic Intelligence",
+      "owns": "Provider adapter, answer envelope, contextual chat, generated views, recommendations, evaluation, and fallback semantics",
+      "delivers": "Deterministic adapter plus live-ready integration package without UI component ownership",
+      "depends_on": [],
+      "activation_gates": [
+        "answer_envelope@1 and identity metadata are frozen",
+        "Generated-view metadata is provider-neutral",
+        "UI rendering remains owned by WS-01 and consuming products"
+      ],
+      "write_roots": [
+        "appfw_provider_ai_search/**",
+        "app_gen/_config/chat_evals/**",
+        "docs/runtime/ai-chat-search.md",
+        "docs/architecture/concerns/chat-eval-spec.md",
+        "docs/specs/wave4-ch2-answer-envelope-contract.md"
+      ],
+      "forbidden_roots": [
+        "appfw_ui/**",
+        "examples/products/pds-nexus/frontend/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/runtime/ai-chat-search.md",
+        "docs/architecture/concerns/chat-eval-spec.md",
+        "docs/specs/wave4-ch2-answer-envelope-contract.md",
+        "appfw_provider_ai_search/docs/vendor-contract.md"
+      ],
+      "publishes": [
+        "Provider package and deterministic contract fixtures",
+        "answer_envelope@1 compatibility evidence",
+        "Evaluation, fallback, provenance, and error semantics"
+      ],
+      "inner_loop": [
+        "cargo test --locked -p appfw-provider-ai-search",
+        "node --check scripts/check-chat-eval.mjs"
+      ],
+      "handoff_checks": [
+        "scripts/appfw framework test --fast --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-03",
+      "priority": 3,
+      "slug": "workday-integration",
+      "name": "Workday Integration",
+      "owns": "Bounded Workday status, read, and deep-link projection for the flagship journey",
+      "delivers": "Independent provider package and representative fixtures",
+      "depends_on": [],
+      "activation_gates": [
+        "Nexus journey operation list is bounded",
+        "Representative sanitized Workday fixtures are approved",
+        "Authentication and pagination contracts remain provider-package local"
+      ],
+      "write_roots": [
+        "appfw_provider_workday/**"
+      ],
+      "forbidden_roots": [
+        "examples/products/pds-nexus/frontend/**",
+        "appfw_saas_core/**",
+        "appfw_saas_testkit/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/runtime/saas-connectors.md",
+        "docs/runtime/provider-certification.md",
+        "appfw_provider_workday/docs/vendor-contract.md"
+      ],
+      "publishes": [
+        "Workday provider package",
+        "Representative response, pagination, and fault fixtures",
+        "Read, status, and deep-link certification evidence"
+      ],
+      "inner_loop": [
+        "cargo test --locked -p appfw-provider-workday"
+      ],
+      "handoff_checks": [
+        "scripts/appfw framework test --fast --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-04",
+      "priority": 4,
+      "slug": "native-mobile",
+      "name": "Native Mobile",
+      "owns": "Expo and React Native task list/detail, approval, notifications, deep links, and interruption behavior",
+      "delivers": "Native application consuming shared semantics and tokens rather than web components",
+      "depends_on": [
+        "WS-01"
+      ],
+      "activation_gates": [
+        "PDS native token projection and channel-neutral work contracts are frozen",
+        "Web layout is not treated as the mobile interaction contract",
+        "Offline and secure-storage posture is decided"
+      ],
+      "write_roots": [
+        "examples/products/pds-nexus/mobile/**",
+        "docs/frontend/mobile-react-native.md"
+      ],
+      "forbidden_roots": [
+        "appfw_ui/pds_health/components/**",
+        "examples/products/pds-nexus/frontend/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/frontend/mobile-react-native.md",
+        "docs/frontend/pds-health-design-system.md",
+        "docs/frontend/agentic-ux.md",
+        "agent_skills/product-mobile-react-native/SKILL.md"
+      ],
+      "publishes": [
+        "Nexus native application artifact",
+        "Shared semantic-contract compatibility evidence",
+        "Device, interruption, notification, deep-link, and accessibility evidence"
+      ],
+      "inner_loop": [
+        "npm --prefix examples/products/pds-nexus/mobile run typecheck",
+        "npm --prefix examples/products/pds-nexus/mobile test"
+      ],
+      "handoff_checks": [
+        "examples/products/pds-nexus/scripts/appfw product validate --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-05",
+      "priority": 5,
+      "slug": "servicenow-integration",
+      "name": "ServiceNow Integration",
+      "owns": "Nexus-specific ServiceNow reads, status, deep links, approval/task projections, and one selected governed action",
+      "delivers": "Provider package, contract fixtures, and certification evidence",
+      "depends_on": [],
+      "activation_gates": [
+        "Nexus journey operation list is bounded",
+        "Governed action has explicit intent-preview and evidence requirements",
+        "Representative sanitized ServiceNow fixtures are approved"
+      ],
+      "write_roots": [
+        "appfw_provider_servicenow/**"
+      ],
+      "forbidden_roots": [
+        "examples/products/pds-nexus/frontend/**",
+        "appfw_saas_core/**",
+        "appfw_saas_testkit/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/runtime/saas-connectors.md",
+        "docs/runtime/provider-certification.md",
+        "appfw_provider_servicenow/docs/vendor-contract.md"
+      ],
+      "publishes": [
+        "ServiceNow provider package",
+        "Representative task, approval, status, and deep-link fixtures",
+        "Selected governed-action certification evidence"
+      ],
+      "inner_loop": [
+        "cargo test --locked -p appfw-provider-servicenow"
+      ],
+      "handoff_checks": [
+        "scripts/appfw framework test --fast --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-06",
+      "priority": 6,
+      "slug": "product-evidence-poc-readiness",
+      "name": "Product Evidence and PoC Readiness",
+      "owns": "Journey definition, representative data, usability, accessibility, outcome baseline, demo choreography, and support/runbook evidence",
+      "delivers": "Acceptance pack and independent evidence without framework source ownership",
+      "depends_on": [],
+      "activation_gates": [
+        "Flagship journey and measurable outcomes are approved",
+        "Evidence uses representative sanitized data",
+        "The lane remains independent from implementation ownership"
+      ],
+      "write_roots": [
+        "docs/specs/nexus-poc-acceptance/**",
+        "examples/products/pds-nexus/.appfw/source-evidence/**",
+        "examples/products/pds-nexus/evidence/**"
+      ],
+      "forbidden_roots": [
+        "appfw_runtime/**",
+        "appfw_provider_*/**",
+        "appfw_ui/**",
+        "examples/products/pds-nexus/frontend/src/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/lifecycle/application-lifecycle.md",
+        "docs/frontend/agentic-ux.md",
+        "examples/products/pds-nexus/README.md",
+        "examples/products/pds-nexus/.appfw/source-evidence/nexus-pilot-contract.yaml"
+      ],
+      "publishes": [
+        "Approved journey and representative-data contract",
+        "Usability, accessibility, performance, and outcome evidence",
+        "Demo, support, recovery, and residual-risk pack"
+      ],
+      "inner_loop": [
+        "examples/products/pds-nexus/scripts/appfw product validate --json",
+        "npm --prefix examples/products/pds-nexus/frontend run appfw:ux-metrics"
+      ],
+      "handoff_checks": [
+        "npm --prefix examples/products/pds-nexus/frontend run appfw:evidence",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    },
+    {
+      "id": "WS-07",
+      "priority": 7,
+      "slug": "nexus-web-product",
+      "name": "Nexus Web Product",
+      "owns": "My Work shell, queue/detail, navigation, status, approvals, notifications, search, and responsive states",
+      "delivers": "Fixture-backed Nexus web application consuming only installable PDS packages",
+      "depends_on": [
+        "WS-01",
+        "WS-02",
+        "WS-03",
+        "WS-05",
+        "WS-06"
+      ],
+      "activation_gates": [
+        "PDS package is installable without a source alias",
+        "AI, Workday, and ServiceNow fixtures are versioned",
+        "Journey acceptance contract is approved"
+      ],
+      "write_roots": [
+        "examples/products/pds-nexus/frontend/**",
+        "examples/products/pds-nexus/README.md"
+      ],
+      "forbidden_roots": [
+        "appfw_ui/pds_health/**",
+        "appfw_provider_*/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/frontend/product-frontend.md",
+        "docs/frontend/pds-health-design-system.md",
+        "docs/frontend/agentic-ux.md",
+        "examples/products/pds-nexus/README.md",
+        "examples/products/pds-nexus/frontend/README.md"
+      ],
+      "publishes": [
+        "Built Nexus web artifact",
+        "Package and fixture compatibility lock",
+        "Responsive, accessibility, interaction, and visual evidence"
+      ],
+      "inner_loop": [
+        "npm --prefix examples/products/pds-nexus/frontend run typecheck",
+        "npm --prefix examples/products/pds-nexus/frontend run appfw:check"
+      ],
+      "handoff_checks": [
+        "npm --prefix examples/products/pds-nexus/frontend run build",
+        "npm --prefix examples/products/pds-nexus/frontend run appfw:evidence",
+        "examples/products/pds-nexus/scripts/appfw product validate --json"
+      ]
+    },
+    {
+      "id": "WS-08",
+      "priority": 8,
+      "slug": "trust-runtime-operations-observability",
+      "name": "Trust, Runtime Operations, and Observability",
+      "owns": "Agent identity, delegated identity, audit, kill switch, OpenTelemetry, SIEM integration, resilience, and deployment evidence",
+      "delivers": "Operational overlay, dashboards, security evidence, and recovery drills",
+      "depends_on": [
+        "WS-01",
+        "WS-02",
+        "WS-03",
+        "WS-04",
+        "WS-05",
+        "WS-06",
+        "WS-07"
+      ],
+      "activation_gates": [
+        "Baseline trust obligations are already present in producer contracts",
+        "Aggregate deployment topology is frozen",
+        "Operational evidence can be bound to exact build artifacts"
+      ],
+      "write_roots": [
+        "observability/**",
+        "appfw_runtime/src/observability/**",
+        "docs/runtime/observability.md"
+      ],
+      "forbidden_roots": [
+        "examples/products/pds-nexus/frontend/src/**",
+        "appfw_ui/**",
+        "appfw_provider_*/src/**"
+      ],
+      "required_context": [
+        "docs/specs/nexus-poc-multi-workstation-delivery.md",
+        "docs/start/branch-integration-model.md",
+        "docs/runtime/observability.md",
+        "docs/architecture/concerns/agentic-threat-model.md",
+        "docs/architecture/concerns/threat-model.md",
+        "docs/release/deployment-reference.md",
+        "observability/README.md"
+      ],
+      "publishes": [
+        "Operational dashboards and alert routes",
+        "Identity, audit, kill-switch, privacy, and SIEM evidence",
+        "Load, dependency-failure, recovery, and rollback drills"
+      ],
+      "inner_loop": [
+        "cargo test --locked -p appfw-runtime",
+        "scripts/appfw framework validate --json"
+      ],
+      "handoff_checks": [
+        "scripts/appfw framework test --fast --json",
+        "scripts/appfw framework docs-check --changed-only --json"
+      ]
+    }
+  ]
+}

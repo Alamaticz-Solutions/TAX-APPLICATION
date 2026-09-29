@@ -1,0 +1,10 @@
+[package]
+name = "appfw-mssql-auth"
+version = "0.1.1"
+edition = "2021"
+description = "Shared MS SQL Server / Fabric SQL authentication mode metadata and registry (no ODBC dependency)."
+publish = ["pds-app-framework-crates"]
+
+[dependencies]
+
+[dev-dependencies]

@@ -1,0 +1,81 @@
+# RequestScreenSubmission — one filled-in screen instance for one routing record. Analogue of
+# project-governance's ActivitySubmission; save_screen turns a JSON payload into RequestFieldValue
+# rows the same way save_stage does there. See docs/architecture/dynamic-form-engine-design.md.
+
+- id: eef42d6e-20d1-485d-9dd0-3506f9ffb8c3
+  name: RequestScreenSubmission
+  is_table: true
+  indexes:
+  - routing_record_id
+  - screen_id
+  facets:
+  - audited
+  - concurrency
+  constraints:
+  - uq_request_screen_submission UNIQUE (routing_record_id, screen_id, attempt_no)
+  - ck_request_screen_submission_status CHECK (status IN ('in_progress','submitted'))
+
+  custom_methods:
+  # Field-store-only writes (docs/architecture/dynamic-form-engine-design.md section 7): most
+  # fields are still real columns on TaxRoutingRecord/TaxDocument and are written through their
+  # own entities' normal update — this only persists answers to storage_target = "field_store"
+  # fields, which is empty at launch and exists so a later field never needs a migration.
+  - name: save_screen
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: routing_record_id
+      arg_type: String
+    - name: screen_code
+      arg_type: String
+    - name: payload
+      arg_type: serde_json::Value
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: routing_record_id
+    caption: Routing Record
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: TaxRoutingRecord
+
+  - name: screen_id
+    caption: Screen
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestScreen
+
+  - name: attempt_no
+    caption: Attempt No
+    is_required: true
+    data_type: Int32
+    default_value: 1
+
+  - name: status
+    caption: Status
+    is_required: true
+    data_type: String
+    default_value: in_progress
+
+  - name: submitted_by_user_id
+    caption: Submitted By
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: AppUser
+
+  - name: submitted_at
+    caption: Submitted At
+    is_required: false
+    data_type: DateTime
+
+  - name: catalogue_version
+    caption: Catalogue Version
+    is_required: false
+    data_type: Int32

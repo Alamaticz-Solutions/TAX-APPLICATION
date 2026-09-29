@@ -1,0 +1,16 @@
+{
+  "name": "second-consumer",
+  "description": "Isolated engineering proof for package-first downstream lifecycle consumption.",
+  "template": "app_gen/_golden/downstream_apps/second-consumer/starter",
+  "overlay": "overlay",
+  "copy_framework_model_seeds": true,
+  "verification": [
+    "scripts/appfw product validate --json",
+    "scripts/appfw product harness-check --json",
+    "scripts/appfw product generate",
+    "scripts/appfw product generate --check --json",
+    "scripts/appfw product test --fast",
+    "scripts/appfw product compat-verify --json",
+    "scripts/appfw product handoff --json"
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "$schema": "../start/product-increment-portfolio.schema.json",
+  "schema": "appfw_product_increment_portfolio@1",
+  "portfolio_id": "app-framework-and-nexus",
+  "title": "App Framework and Nexus Product Increment portfolio",
+  "last_reconciled_at": "2026-08-04T22:51:50Z",
+  "catalog_state": "migration_required",
+  "operating_capacity": {
+    "target_active_lanes": 3,
+    "maximum_active_lanes": 4,
+    "current_active_lanes": 1,
+    "current_review_lanes": 0,
+    "below_target_reason": "The delivery-control correction Delivery Lane remains the sole counted active Delivery Lane. AF-M01.4 has one separately admitted Integration lane under PFC Assignment comment 835555085 and Amendment r2 comment 835556572; M0-02 remains ready but not WIP-admitted. Nexus lanes still wait for the delivery-control contract to be accepted, and existing PDS Experience System work still needs one canonical increment plan."
+  },
+  "economics_control": {
+    "context_capsule_max_controlling_records": 4,
+    "default_max_delegation_depth": 1,
+    "correction_cycles_before_replan": 2,
+    "idle_agent_policy": "unload",
+    "model_routing_policy": "lowest_capable_then_escalate",
+    "evidence_measurement_required": true,
+    "primary_metrics": [
+      "accepted_lead_time",
+      "cost_per_accepted_deliverable",
+      "tokens_per_accepted_deliverable",
+      "review_queue_age",
+      "rework_rate"
+    ]
+  },
+  "product_increments": [
+    {
+      "id": "NXP-PI-ADD-PROVIDER-01",
+      "outcome_id": "NXP-ADD-PROVIDER",
+      "title": "Connected Add Provider proof",
+      "plain_language_summary": "Prove one polished end-to-end Nexus journey across responsive web, native mobile, ServiceNow case state, a governed Workday change, and grounded assistance.",
+      "owner": "Nexus Product Owner",
+      "lifecycle_state": "blocked",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "The four independent lanes and their fixture seams are defined. Source admission is held until the executable delivery-control contract is accepted; no implementation or acceptance credit is claimed.",
+      "next_action": "Admit two or three disjoint lanes after the delivery-model change is accepted, beginning with experience, ServiceNow projection, and Workday contract work.",
+      "plan_ref": "nexus-add-provider.product-increment.json",
+      "integration_strategy": "integration_branch",
+      "routing": {
+        "current_maturity": "manual_explicit",
+        "minimum_maturity": "manual_explicit",
+        "fallback": "Use a human-approved route and named independent reviewer until transparent routing is accepted."
+      },
+      "provides": [
+        {
+          "capability_id": "nexus.add-provider.experience",
+          "summary": "The integrated web and native user journey.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "nexus.add-provider.connected-proof",
+          "summary": "A coherent web and mobile proof of the Add Provider journey across enterprise boundaries.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "servicenow.case-projection",
+          "summary": "Typed authoritative case and task state for Nexus.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "workday.add-provider-location",
+          "summary": "Governed preview and execution of the named Workday operation.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "intelligence.grounded-assistance",
+          "summary": "Provider-neutral grounded explanation and recommendation metadata.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-DELIVERY-CONTROL-01",
+          "capability_id": "harness.product-increment-delivery-control",
+          "required_state": "accepted",
+          "reason": "Nexus parallel source admission needs the accepted lane, dependency, integration, and stage-rigor control rather than another conversational queue.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [
+        {
+          "from_product_increment_id": "AFS-PI-P1",
+          "capability_id": "harness.transparent-routing",
+          "expected_benefit": "Nexus delivery can use cheaper bounded workers where appropriate while keeping route choice, review independence, and outcome economics visible.",
+          "adoption_trigger": "AFS-PI-P1 reaches accepted and the five-task canary shows no quality regression."
+        },
+        {
+          "from_product_increment_id": "AFS-PI-FAST-LANES-01",
+          "capability_id": "harness.operational-parallel-lanes",
+          "expected_benefit": "Two to four Nexus lanes can progress on separate workstations without duplicate source ownership or repeating main-level CI on every leaf branch.",
+          "adoption_trigger": "The shared lease adapter and destination-aware accelerated CI profile are implemented and independently proven."
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/specs/nexus-add-provider.product-increment.json",
+          "summary": "Executable four-lane Product Increment plan with cross-lane contracts and integration checks."
+        }
+      ]
+    },
+    {
+      "id": "AFS-PI-DELIVERY-CONTROL-01",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-FLOW",
+      "title": "Executable Product Increment delivery control",
+      "plain_language_summary": "Give humans and agents one current, queryable operating system for major batches, parallel lanes, dependencies, integration branches, proof depth, and accepted progress.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "active",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-28T01:57:15Z",
+      "current_status": "The operating contract was merged through PR #445 but remains unaccepted. PR #454 pipeline #349 exposed a correction within that same increment: the 317-path changed-surface selector spent 39.800 seconds spawning per-path classifiers while its 71 documentation examples passed in 5.648 seconds. One active correction lane now batches classification without raising the 20 second fast budget, preserves fail-closed routing, and carries no delivery credit. The prior merged commit remains historical evidence; this branch does not claim live multi-workstation operation, Implemented credit, Accepted credit, or release readiness.",
+      "next_action": "Complete exact-branch plan validation, representative 317-path timing proof, full framework evidence, comprehensive independent review, and the pre-push guard. If eligible, open a correction PR; after human merge and exact-main CI success, rerun PR #454 to prove its unchanged source SHA in the fast lane.",
+      "plan_ref": "afs-product-increment-delivery-control.product-increment.json",
+      "integration_strategy": "direct_main",
+      "routing": {
+        "current_maturity": "manual_explicit",
+        "minimum_maturity": "manual_explicit",
+        "fallback": "Use explicit human-approved assignments and named independent review; the unaccepted router is optional."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.product-increment-delivery-control",
+          "summary": "Executable portfolio, lane, dependency, router-maturity, integration, and delivery-credit governance.",
+          "state": "planned"
+        }
+      ],
+      "requires": [],
+      "benefits_from": [],
+      "evidence": [
+        {
+          "kind": "git",
+          "ref": "9d470fdf14edf19f4b8e0fa779cf3078284a051d",
+          "summary": "Delivery-control increment work, merged to main via PR #445 (durable commit; source branch closed on merge)."
+        },
+        {
+          "kind": "document",
+          "ref": "docs/specs/afs-product-increment-delivery-control.product-increment.json",
+          "summary": "The current Product Increment contract owns its status, proof obligations, exact write scope, and next acceptance boundary; transient review history is not treated as delivery evidence."
+        }
+      ]
+    },
+    {
+      "id": "AFS-PI-FAST-LANES-01",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-FLOW",
+      "title": "Operational parallel delivery lanes",
+      "plain_language_summary": "Turn the Product Increment model into a genuinely fast multi-workstation loop with one shared live source lease and destination- and risk-aware CI.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "planned",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T20:59:00Z",
+      "current_status": "The governing contract and local readiness checks are being completed. This capability is not operational yet: the current Bitbucket pipeline still runs main-level proof on leaf PRs, source exclusivity still depends on external Program Flow coordination, durable authority has no trusted Bitbucket receipt verifier, and dispatch has no trusted usage meter that can stop spend at the assigned budget.",
+      "next_action": "Immediately after the delivery-control increment is accepted, activate two disjoint lanes: one for shared live leases plus trusted authority and metering adapters with runtime budget enforcement, and one for destination-aware accelerated CI. Prove duplicate-writer rejection, rejection of self-authored credit, pre-dispatch and runtime spend control, a fast leaf pipeline, and one-time aggregate proof.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "manual_explicit",
+        "minimum_maturity": "manual_explicit",
+        "fallback": "Continue with one explicitly human-directed source lane and focused local proof; do not claim multi-workstation source authority or accelerated remote CI."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.operational-parallel-lanes",
+          "summary": "Verified shared source leases plus destination-aware leaf, integration, and release CI profiles.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "harness.trusted-delivery-receipts",
+          "summary": "Externally verified authority and usage receipts that prevent self-authored delivery credit and economics.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "harness.enforced-delivery-economics",
+          "summary": "Pre-dispatch budgets and trusted runtime metering that stop or escalate work before spend exceeds the assignment.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-DELIVERY-CONTROL-01",
+          "capability_id": "harness.product-increment-delivery-control",
+          "required_state": "accepted",
+          "reason": "The live lease and CI routing must implement the accepted lane, authority, stage, and proof-boundary contract.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [
+        {
+          "from_product_increment_id": "AFS-PI-P1",
+          "capability_id": "harness.transparent-routing",
+          "expected_benefit": "The lane service can disclose and measure task-appropriate model routes without giving the router admission authority.",
+          "adoption_trigger": "AFS-PI-P1 reaches accepted; otherwise retain explicit manual model selection."
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/start/product-increment-delivery-model.md",
+          "summary": "The accepted target contract separates local leaf, integration, main, and release proof and requires a shared live lease for source authority."
+        }
+      ]
+    },
+    {
+      "id": "PDS-PI-EXPERIENCE-FOUNDATION-01",
+      "outcome_id": "PDS-OUTCOME-WORLD-CLASS-EXPERIENCE",
+      "title": "World-class PDS Experience System foundation",
+      "plain_language_summary": "Provide the packaged design system, themes, behaviors, catalog, compositions, and native adaptation contracts that Nexus and future App Framework products consume.",
+      "owner": "PDS Experience System Outcome Owner",
+      "lifecycle_state": "needs_reconciliation",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "Useful implementation exists across protected catalog work and several isolated branches, but no single Product Increment plan currently reconciles its scope, implementation credit, acceptance evidence, and integration order.",
+      "next_action": "Inventory the current design-system branches once, retain valuable checkpoints, and publish one canonical multi-lane plan before admitting more source work.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "manual_explicit",
+        "minimum_maturity": "manual_explicit",
+        "fallback": "Use explicit role, scope, and reviewer assignments while the router remains unaccepted."
+      },
+      "provides": [
+        {
+          "capability_id": "pds.experience-system.foundation",
+          "summary": "Versioned PDS design data, adapters, components, catalog evidence, and product-consumption contracts.",
+          "state": "planned"
+        }
+      ],
+      "requires": [],
+      "benefits_from": [
+        {
+          "from_product_increment_id": "AFS-PI-P1",
+          "capability_id": "harness.transparent-routing",
+          "expected_benefit": "Design-system producers can use task-appropriate models while preserving exact scope and independent craft review.",
+          "adoption_trigger": "AFS-PI-P1 reaches accepted and its route profiles include design-system implementation and visual review."
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/frontend/pds-health-design-system.md",
+          "summary": "Current design-system operating contract and maturity requirements."
+        },
+        {
+          "kind": "git",
+          "ref": "e619b88f230540582032c818ed5903107819abb1",
+          "summary": "One merged DTCG token-source implementation (durable commit; branch closed on merge) that must be reconciled into the canonical plan."
+        },
+        {
+          "kind": "git",
+          "ref": "3f42095e6889c3907bb8064ec356c57a02aa71dd",
+          "summary": "One merged visual-signature reference implementation (durable commit; branch closed on merge) that must be reconciled into the canonical plan."
+        }
+      ]
+    },
+    {
+      "id": "AFS-PI-P1",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+      "title": "Transparent model routing and delivery telemetry",
+      "plain_language_summary": "Make model and instruction routing visible, bounded, provider-neutral, independently reviewed, and measurable per accepted outcome.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "held",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "The router prototype exceeded its declared correction and rework limits before it produced durable telemetry. Its latest checkpoint is retained as rejected evidence only; no code is accepted, and P2 through P5 remain held.",
+      "next_action": "Run a Product and Architecture replan from current accepted main. Split the next smallest testable routing outcome before admitting another source lane; do not continue the exhausted correction train.",
+      "plan_ref": "afs-transparent-routing.product-increment.json",
+      "integration_strategy": "direct_main",
+      "routing": {
+        "current_maturity": "transparent_candidate",
+        "minimum_maturity": "transparent_candidate",
+        "fallback": "The router never admits work. Until accepted, Program Flow uses explicit manual routing and records the chosen route."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.transparent-routing",
+          "summary": "Provider-neutral route selection, instruction disclosure, authority validation, independent review routing, and privacy-safe outcome telemetry.",
+          "state": "planned"
+        }
+      ],
+      "requires": [],
+      "benefits_from": [],
+      "evidence": [
+        {
+          "kind": "git",
+          "ref": "7096321ca304439cf28069360d01e60de8fcb30d",
+          "summary": "Clean implementation checkpoint with exactly eight changed paths and accepted base db9bb89a as its sole parent. Rebased and merged to main as PR #446 (originally e1fc8e3d2aa91e05c3e9e798b5297219046928fb before rebase)."
+        }
+      ]
+    },
+    {
+      "id": "AFS-PI-P2",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+      "title": "Deterministic source-bound context",
+      "plain_language_summary": "Give contributors a small, reproducible context pack that points back to accepted Git truth instead of creating another authority store.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "held",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "Product and Architecture have shaped the outcome and proof bars, but source work is intentionally held until P1 is accepted.",
+      "next_action": "After P1 acceptance, define the smallest AFS-007 vertical from current accepted main and create its one-to-four-lane execution plan.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "transparent_candidate",
+        "minimum_maturity": "transparent_accepted",
+        "fallback": "No source admission; deterministic design work may continue without model execution."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.source-bound-context",
+          "summary": "Reproducible, source-cited context packs with bounded size and deterministic retrieval.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-P1",
+          "capability_id": "harness.transparent-routing",
+          "required_state": "accepted",
+          "reason": "P2 must measure context economics through an accepted transparent route rather than an unreviewed routing candidate.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [],
+      "evidence": []
+    },
+    {
+      "id": "AFS-PI-P3",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+      "title": "Governed reusable learning",
+      "plain_language_summary": "Make reusable learning cited, scoped, reviewable, expiring, deletable, and unable to steer work until a human disposition gives it authority.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "held",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "The value and safety contract is shaped, but no source implementation is admitted.",
+      "next_action": "Wait for P2 acceptance, then define a proposal-only learning record and negative lifecycle proof as a new Product Increment plan.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "transparent_candidate",
+        "minimum_maturity": "transparent_accepted",
+        "fallback": "No learning has steering effect; retain useful observations only as cited human-readable research."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.governed-learning",
+          "summary": "Cited, scoped, expiring, reversible learning proposals linked to accepted decisions.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-P2",
+          "capability_id": "harness.source-bound-context",
+          "required_state": "accepted",
+          "reason": "Learning must cite deterministic source-bound context before it can be evaluated for reuse.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [],
+      "evidence": []
+    },
+    {
+      "id": "AFS-PI-P4",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+      "title": "Deterministic change lineage",
+      "plain_language_summary": "Let a contributor follow exact commit, file, contract, evidence, task, decision, and accepted-state links to understand why a change exists.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "held",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "The outcome is envisioned and measured, but no source implementation is admitted.",
+      "next_action": "Wait for governed learning acceptance, then plan deterministic metadata first and model summarization only if a measured retrieval gap remains.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "transparent_candidate",
+        "minimum_maturity": "transparent_accepted",
+        "fallback": "Use commit history and human-authored decision records directly."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.change-lineage",
+          "summary": "Source-SHA-bound intent, contract, evidence, and decision lineage.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-P3",
+          "capability_id": "harness.governed-learning",
+          "required_state": "accepted",
+          "reason": "Lineage must distinguish accepted decisions from undisposed observations and generated summaries.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [],
+      "evidence": []
+    },
+    {
+      "id": "AFS-PI-P5",
+      "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+      "title": "Measured build and test cache optimization",
+      "plain_language_summary": "Shorten reproducible build and test loops only where retained measurements show that caching removes more time and cost than it adds.",
+      "owner": "Program Product Manager",
+      "lifecycle_state": "held",
+      "stage": "prototype",
+      "status_updated_at": "2026-07-23T15:33:10Z",
+      "current_status": "No cache mechanism is selected or admitted. The program intentionally waits for measured clean and warm build evidence.",
+      "next_action": "Begin read-only timing and cache-hit baselines during P2; after P4 acceptance, trial only the smallest cache change justified by that evidence.",
+      "integration_strategy": "not_yet_planned",
+      "routing": {
+        "current_maturity": "transparent_candidate",
+        "minimum_maturity": "transparent_accepted",
+        "fallback": "Use clean reproducible builds and existing local caches; do not create a warm-worktree or snapshot fleet."
+      },
+      "provides": [
+        {
+          "capability_id": "harness.measured-cache-optimization",
+          "summary": "Evidence-backed build and test caching with reproducibility and stale-result protection.",
+          "state": "planned"
+        }
+      ],
+      "requires": [
+        {
+          "from_product_increment_id": "AFS-PI-P4",
+          "capability_id": "harness.change-lineage",
+          "required_state": "accepted",
+          "reason": "Cache evidence must retain deterministic change and evidence lineage before optimization can claim accepted-outcome value.",
+          "decoupling": "none"
+        }
+      ],
+      "benefits_from": [
+        {
+          "from_product_increment_id": "AFS-PI-P2",
+          "capability_id": "harness.source-bound-context",
+          "expected_benefit": "P2 measurements provide the clean and warm timing baseline needed to select or reject a cache mechanism.",
+          "adoption_trigger": "P2 begins its retained read-only performance baseline."
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/assessments/agentic-coding-systems-research-2026-07-21.md",
+          "summary": "Research recommendation to measure cache economics before selecting sccache or any warm execution fleet."
+        }
+      ]
+    },
+    {
+      "id": "AF-M01.4",
+      "outcome_id": "AF-OG01",
+      "title": "Reusable accessible web and bounded mobile read",
+      "plain_language_summary": "Prove one truthful, accessible read experience through shared semantics and authentic responsive-web, iOS, and Android projections, with correlated errors, audit, and telemetry.",
+      "owner": "App Framework Product Owner",
+      "lifecycle_state": "active",
+      "stage": "prototype",
+      "status_updated_at": "2026-08-04T22:51:50Z",
+      "current_status": "PFC Assignment comment 835555085, Amendment r2 comment 835556572, and isolation-only Amendment r3 comment 835574654 admit exactly one M0-05 Integration lane. Amendment r3 adds the ninth Integration-authored root only for device-tooling fixture backup/restore isolation. Integration assembled accepted main 750a58b1ff78f9cd76f7992ca5dd04a0bde6dc3e, immutable producer a28bee04cb660ab1fff0b2ab25b26b17607b7044, and reviewed descendant a6f87c38c97fd564b09a4a4c4617dca3245b8132 history-preservingly on integrate/app-fabric-mobile-m0; authority reconciliation and full Class D proof are active. The branch is unpushed with no PR. No authentic mobile journey, Implemented credit, Accepted credit, candidate readiness, or release readiness is claimed.",
+      "next_action": "Complete the exact nine-root reconciliation, full Class D assembled-SHA proof, handoff, manifest, comprehensive independent review, and repository guard. If eligible, push the Integration branch and open its main PR for Wayne's decision; do not merge main. M0-02 remains ready but not WIP-admitted.",
+      "plan_ref": "af-m01.4-mobile-read.product-increment.json",
+      "integration_strategy": "integration_branch",
+      "routing": {
+        "current_maturity": "manual_explicit",
+        "minimum_maturity": "manual_explicit",
+        "fallback": "Use explicit human-directed Assignments, named independent review, and Branch Manager custody; the Product Increment record never admits source work or grants promotion authority."
+      },
+      "provides": [
+        {
+          "capability_id": "appfabric.mobile.readiness-truth",
+          "summary": "Fail-closed mobile readiness evidence and a source-bound seam from which the bounded accessible web/iOS/Android read can be implemented.",
+          "state": "planned"
+        }
+      ],
+      "requires": [],
+      "benefits_from": [],
+      "evidence": [
+        {
+          "kind": "git",
+          "ref": "a28bee04cb660ab1fff0b2ab25b26b17607b7044",
+          "summary": "Immutable pushed M0-05 producer; exact comprehensive review returned GO WITH CONDITIONS pending destination-current Integration proof."
+        },
+        {
+          "kind": "document",
+          "ref": "docs/specs/af-m01.4-mobile-read.product-increment.json",
+          "summary": "Canonical machine-valid lane, integration, proof, and next-admission contract for AF-M01.4."
+        },
+        {
+          "kind": "document",
+          "ref": "docs/start/app-fabric-mobile-operating-context.md",
+          "summary": "Durable human continuation guide, technical decisions, blockers, hard stops, and live-status routing."
+        }
+      ]
+    }
+  ],
+  "known_unregistered_work": [
+    "Legacy roadmap batches and open branches created before this contract still require a one-time classification as a Product Increment, a bounded maintenance increment, or retired residue. Their omission from this bootstrap catalog does not authorize continued work."
+  ]
+}

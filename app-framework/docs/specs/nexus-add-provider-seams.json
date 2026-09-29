@@ -1,0 +1,46 @@
+{
+  "schema": "nexus_add_provider_seams@1",
+  "product_increment_id": "NXP-PI-ADD-PROVIDER-01",
+  "purpose": "Frozen prototype contracts that let Nexus lanes progress independently without implying a live or accepted provider.",
+  "seams": [
+    {
+      "capability_id": "servicenow.case-projection",
+      "contract": "Typed case, child-task, status, permission, stale-state, pagination, timeout, correlation, and audit envelope.",
+      "fixture_cases": [
+        "authorized_case_with_child_tasks",
+        "permission_denied",
+        "stale_projection",
+        "pagination_continuation",
+        "provider_timeout"
+      ],
+      "replacement_rule": "Integration replaces only the adapter; the consumer contract and observable states remain unchanged."
+    },
+    {
+      "capability_id": "workday.add-provider-location",
+      "contract": "Named operation preview, confirmation, delegated authorization, idempotency, reconciliation, conflict, and failure envelope.",
+      "fixture_cases": [
+        "preview_ready",
+        "confirmation_required",
+        "successful_change",
+        "idempotent_replay",
+        "business_conflict",
+        "provider_failure"
+      ],
+      "replacement_rule": "The live MuleSoft-backed operation cannot bypass preview, confirmation, policy, or reconciliation."
+    },
+    {
+      "capability_id": "intelligence.grounded-assistance",
+      "contract": "Provider-neutral answer, citation, recommendation, generated-view metadata, permission filter, timeout, malformed response, and fallback envelope.",
+      "fixture_cases": [
+        "grounded_answer",
+        "generated_view",
+        "recommended_next_action",
+        "permission_filtered_context",
+        "provider_timeout",
+        "malformed_response",
+        "deterministic_fallback"
+      ],
+      "replacement_rule": "Gemma may explain and recommend but cannot authorize or execute ServiceNow or Workday transactions."
+    }
+  ]
+}

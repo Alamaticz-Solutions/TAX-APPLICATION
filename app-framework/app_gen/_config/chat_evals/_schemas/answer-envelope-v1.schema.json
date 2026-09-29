@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.local/schemas/answer-envelope-v1.schema.json",
+  "title": "App Framework Answer Envelope v1",
+  "description": "Governed conversational answer metadata. AI providers emit references and hints, never UI.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "refs", "citations", "fallback_view"],
+  "properties": {
+    "version": {
+      "const": "answer_envelope@1"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/citation"
+      }
+    },
+    "fallback_view": {
+      "type": "string",
+      "minLength": 1
+    },
+    "view_hint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "record_locator", "caption", "source", "provenance", "freshness_watermark"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record_locator": {
+          "type": "string",
+          "pattern": "^rl_[0-9a-f]{32}$"
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": { "type": "string", "minLength": 1 },
+        "provenance": { "type": "string", "minLength": 1 },
+        "freshness_watermark": { "type": "string", "format": "date-time" },
+        "view_hint": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "record_locator", "provenance", "freshness_watermark"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record_locator": {
+          "type": "string",
+          "pattern": "^rl_[0-9a-f]{32}$"
+        },
+        "provenance": { "type": "string", "minLength": 1 },
+        "freshness_watermark": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

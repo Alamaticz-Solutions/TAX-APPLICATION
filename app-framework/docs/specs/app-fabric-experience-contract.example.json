@@ -1,0 +1,174 @@
+{
+  "schema": "app_fabric_experience_contract@1",
+  "contract_id": "appfw.reference.attention-review",
+  "contract_version": "0.1.0-prototype",
+  "lifecycle_stage": "prototype",
+  "maturity": "experimental",
+  "candidate_ready": false,
+  "release_ready": false,
+  "release_authority": "none",
+  "app_id": null,
+  "prototype_app_ref": "appfw.reference",
+  "prototype_identity_authority": "local-fixture-only",
+  "source": {
+    "product_model_ref": ".appfw/model",
+    "manifest_ref": ".appfw/manifest.yaml",
+    "api_contract_ref": "docs/specs/app-fabric-mobile-api-seam.md",
+    "pds_contract_ref": "docs/architecture/adr/0017-web-native-experience-projection-boundary.md",
+    "source_sha": "TBD"
+  },
+  "renderer_profiles": {
+    "web-dom": {
+      "applicability": "supported",
+      "readiness": "not-qualified",
+      "size_classes": [
+        "compact",
+        "medium",
+        "expanded"
+      ],
+      "evidence_ref": null
+    },
+    "native-ios": {
+      "applicability": "adapted",
+      "readiness": "not-qualified",
+      "size_classes": [
+        "compact",
+        "expanded"
+      ],
+      "evidence_ref": null
+    },
+    "native-android": {
+      "applicability": "adapted",
+      "readiness": "not-qualified",
+      "size_classes": [
+        "compact",
+        "expanded"
+      ],
+      "evidence_ref": null
+    }
+  },
+  "journeys": [
+    {
+      "id": "attention-review",
+      "purpose": "Review why an item needs attention and obtain a governed preview receipt without executing an external write.",
+      "outcome_owner_ref": "TBD:M0-business-outcome-owner",
+      "service_owner_ref": "TBD:M0-service-owner",
+      "channel_disposition": "web-and-native",
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "not-qualified",
+          "size_classes": [
+            "compact",
+            "medium",
+            "expanded"
+          ],
+          "evidence_ref": null,
+          "intentional_differences": [
+            "Expanded web may use queue-detail composition."
+          ]
+        },
+        "native-ios": {
+          "applicability": "adapted",
+          "readiness": "not-qualified",
+          "size_classes": [
+            "compact",
+            "expanded"
+          ],
+          "evidence_ref": null,
+          "intentional_differences": [
+            "Native uses stack detail, platform back behavior, and an action preview sheet."
+          ]
+        },
+        "native-android": {
+          "applicability": "adapted",
+          "readiness": "not-qualified",
+          "size_classes": [
+            "compact",
+            "expanded"
+          ],
+          "evidence_ref": null,
+          "intentional_differences": [
+            "Native uses stack detail, system back behavior, and an action preview sheet."
+          ]
+        }
+      },
+      "tasks": [
+        {
+          "id": "review-attention-item",
+          "intent": "Understand an assigned item and preview the governed next action.",
+          "operation_refs": [
+            "query-accounts",
+            "find-account",
+            "account-health-preview"
+          ],
+          "actions": [
+            {
+              "id": "review-account-health-preview",
+              "kind": "preview",
+              "operation_ref": "account-health-preview",
+              "authorization_authority": "server",
+              "external_write": false,
+              "requires_preview": true,
+              "requires_confirmation": false,
+              "requires_receipt": true
+            }
+          ],
+          "required_states": [
+            "loading",
+            "empty",
+            "partial",
+            "stale",
+            "offline",
+            "policy-denied",
+            "validation-error",
+            "expired-session",
+            "conflict",
+            "success",
+            "unexpected-error"
+          ],
+          "accessibility": {
+            "semantic_role": "work-item-review",
+            "reading_order": [
+              "context",
+              "attention-reason",
+              "evidence",
+              "next-action"
+            ],
+            "announcement_events": [
+              "load-complete",
+              "policy-denied",
+              "preview-ready",
+              "unexpected-error"
+            ],
+            "text_scale": "required",
+            "reduced_motion": "required"
+          }
+        }
+      ],
+      "resumption": {
+        "checkpoint_id_field": "checkpoint-id",
+        "route_ref_field": "route-ref",
+        "correlation_id_field": "correlation-id",
+        "cross_renderer": true
+      },
+      "data_policy": {
+        "prototype_data": "synthetic-only",
+        "classifications": [
+          "internal"
+        ],
+        "fabric_registration_classification": "internal",
+        "offline_persistence": "disabled",
+        "notification_payload": "identifier-only",
+        "screenshot_policy": "redact-sensitive",
+        "clipboard_policy": "redact-sensitive"
+      },
+      "telemetry": {
+        "journey_event_prefix": "appfw.attention-review",
+        "request_id": "required",
+        "correlation_id": "required",
+        "sensitive_field_logging": "prohibited"
+      }
+    }
+  ]
+}

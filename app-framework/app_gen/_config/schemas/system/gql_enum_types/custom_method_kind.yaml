@@ -1,0 +1,7 @@
+- name: CustomMethodKind
+  items: 
+  - value: Query
+  - value: Mutation
+  - value: Command
+
+

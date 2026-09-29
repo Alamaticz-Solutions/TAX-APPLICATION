@@ -1,0 +1,22 @@
+# Contact - seeded entity coverage with Account navigation.
+
+- name: find_contact
+  description: find seeded contact by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findContact
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"c0c00000-0000-4000-8000-100000000001"'
+    select: |
+      id,first_name,last_name,email,account_id,account { id,name }
+  expect:
+    data:
+      id: 'c0c00000-0000-4000-8000-100000000001'
+      first_name: 'Sarah'
+      last_name: 'Mitchell'
+      email: 's.mitchell@acmedental.com'
+      account_id: 'a0c00000-0000-4000-8000-100000000001'

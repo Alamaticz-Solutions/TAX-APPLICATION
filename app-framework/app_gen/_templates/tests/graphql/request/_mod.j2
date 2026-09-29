@@ -1,0 +1,12 @@
+{% macro print(test) %}
+    let req = r#"
+      {{ test.graphql.type }}{%- if test.graphql.variables -%}
+            ({% for v in test.graphql.variables %}${{ v.name }}: {{ v.type }}{% if not loop.last %},{% endif %}{% endfor %})
+      {%- endif -%} {
+        {{ test.graphql.name }}{%- if test.graphql.variables -%}
+            ({% for v in test.graphql.variables %}{{ v.name }}: ${{ v.name }}{% if not loop.last %},{% endif %}{% endfor %})
+      {%- endif -%} {
+            {{test.graphql.select}}
+        }
+      }
+    "#;{% endmacro print %}

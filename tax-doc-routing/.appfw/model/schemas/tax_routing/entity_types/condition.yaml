@@ -1,0 +1,33 @@
+# Condition — a rule deciding when a field is visible/required. Reused unchanged from
+# project-governance's v6 catalogue layer (Condition/ConditionClause), which proved this exact
+# mechanism for exactly this purpose. See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 9e9da055-59df-4643-a60f-2f5de7fec9ce
+  name: Condition
+  is_table: true
+  facets:
+  - audited
+  constraints:
+  - ck_condition_join_kind CHECK (join_kind IN ('and','or'))
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: join_kind
+    caption: Join Kind
+    is_required: true
+    data_type: String
+    default_value: and
+
+  - name: description
+    caption: Description
+    is_required: false
+    data_type: String

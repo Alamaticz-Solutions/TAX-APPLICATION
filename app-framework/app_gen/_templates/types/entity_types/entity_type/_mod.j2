@@ -1,0 +1,40 @@
+{%- import "standard_methods" as standard_methods -%}
+{%- import "custom_methods" as custom_methods -%}
+{%- import "properties" as properties -%}
+{% macro print(entityType) %}
+{%- set t = entityType -%}
+{%- set typeName = t.name -%}
+{# Create EntityType #}
+- id: {% if t.id  %}{{ t.id }}{% else %}{{ typeName | uuid }}{% endif %}
+  schema_id: {{ schema.id }}
+  schema_name: {{ schema.name }}
+  pascal_1: {%  if t.pascal_1  %}{{ t.pascal_1  }}{% else %}{{ typeName | pascal_1  }}{% endif %}
+  pascal_n: {%  if t.pascal_n  %}{{ t.pascal_n  }}{% else %}{{ typeName | pascal_n  }}{% endif %}
+  snake_1: {%   if t.snake_1   %}{{ t.snake_1   }}{% else %}{{ typeName | snake_1   }}{% endif %}
+  snake_n: {%   if t.snake_n   %}{{ t.snake_n   }}{% else %}{{ typeName | snake_n   }}{% endif %}
+  caption_1: {% if t.caption_1 %}{{ t.caption_1 }}{% else %}{{ typeName | caption_1 }}{% endif %}
+  caption_n: {% if t.caption_n %}{{ t.caption_n }}{% else %}{{ typeName | caption_n }}{% endif %}
+  is_table: {%  if t.is_table  %}true{% else %}false{% endif %}
+  is_union: {%  if t.is_union  %}true{% else %}false{% endif %}
+  {% if t.base_type %}base_type: {{ t.base_type }}{% else %}{% endif %}
+  facets: {% if t.facets %}{{ t.facets | json_encode() | safe }}{% else %}[]{% endif %}
+  indexes: {% if t.indexes %}{{ t.indexes | json_encode() | safe }}{% else %}[]{% endif %}
+  constraints: {% if t.constraints %}{{ t.constraints | json_encode() | safe }}{% else %}[]{% endif %}
+  meta: {% if t.meta %}{{ t.meta | json_encode() | safe }}{% else %}{% endif %}
+  execution: {% if t.execution %}{{ t.execution | json_encode() | safe }}{% else %}{% endif %}
+  standard_methods:
+{{- standard_methods::print(entityType=t) }}
+  custom_methods: {# {% if t.custom_methods %}{{ t.custom_methods | json_encode() | safe }}{% else %}null{% endif %}  #}
+{{- custom_methods::print(entityType=t) }}
+  props: 
+{{- properties::print(entityType=t) }}
+{%- if t.facets and "concurrency" in t.facets %}
+{%- set versionProperty = t | version_property -%}
+{{ property::print(entityType=entityType, property=versionProperty) }}
+{%- endif %}
+{%- if t.facets and "soft-deleted" in t.facets %}
+{%- set softDeletedProperty = t | soft_deleted_property -%}
+{{ property::print(entityType=entityType, property=softDeletedProperty) }}
+{%- endif %}
+{# TODO: add other facet properties #}
+{% endmacro print %}

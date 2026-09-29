@@ -1,0 +1,7 @@
+- name: Facet
+  items: 
+  - value: Concurrency
+  - value: Audited
+  - value: SoftDelete
+
+

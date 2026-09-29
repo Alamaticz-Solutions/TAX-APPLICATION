@@ -1,0 +1,67 @@
+{% macro print(entityType, entityTypes) %}
+// {{entityType.pascal_1}} is_union: {{entityType.is_union}} ////////////////////////////////////////////////////////////
+
+{%- set has_variants = false -%}
+{%- for t0 in entityTypes -%}
+  {%- if t0.base_type and t0.base_type == entityType.pascal_1 -%}
+    {%- set has_variants = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if has_variants -%}
+#[derive(Union, Debug, Clone, Serialize, Deserialize)]
+pub enum {{entityType.pascal_1}}
+{
+{%- for t0 in entityTypes -%}
+  {%- if t0.base_type and t0.base_type == entityType.pascal_1 %}
+  {{ t0.pascal_1 }}({{ t0.pascal_1 }}),
+  {%- endif -%}
+{%- endfor %}
+}
+
+#[derive(Union, Debug, Clone, Serialize, Deserialize)]
+pub enum {{entityType.pascal_1}}Projection
+{
+{%- for t0 in entityTypes -%}
+  {%- if t0.base_type and t0.base_type == entityType.pascal_1 %}
+  {{ t0.pascal_1 }}({{ t0.pascal_1 }}Projection),
+  {%- endif -%}
+{%- endfor %}
+}
+
+#[derive(OneofObject, Debug, Clone, Serialize, Deserialize)]
+pub enum Input{{ entityType.pascal_1 }}
+{
+{%- for t0 in entityTypes -%}
+  {%- if t0.base_type and t0.base_type == entityType.pascal_1 %}
+  {{ t0.pascal_1 }}(Input{{ t0.pascal_1 }}),
+  {%- endif -%}
+{%- endfor %}
+}
+{%- else -%}
+// WARNING: Union type {{entityType.pascal_1}} has no variants - skipping generation
+// Add entity types with base_type: {{entityType.pascal_1}} to generate this union
+{%- endif -%}
+
+
+{%- if entityType.is_table %}
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct {{ entityType.pascal_1 }}QueryResult
+{
+  pub date_time: String,
+  pub request_duration: f64,
+  pub skip: i32,
+  pub limit: i32,
+  pub page_count: i32,
+  pub page_index: i32,
+  pub query_count: i64,
+  pub next_cursor: Option<String>,
+  pub previous_cursor: Option<String>,
+  pub items: Vec<{{ entityType.pascal_1 }}Projection>,
+}
+
+{%- endif %}
+
+{%- endmacro print %}

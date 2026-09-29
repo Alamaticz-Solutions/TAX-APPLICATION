@@ -1,0 +1,46 @@
+version: 1
+app:
+  name: pds-nexus
+  display_name: 'PDS Nexus'
+  description: Product intake scaffold generated from a citizen-developer PoC.
+topology:
+  data_sources:
+  - name: pg_primary
+    provider: PostgreSQL
+    role: transactional
+    description: Primary provider selected during product intake.
+  schemas:
+  - name: system
+    data_source_name: pg_primary
+    role: framework
+    description: Runtime metadata schema loaded from generated config.
+  - name: denovo_workflow
+    data_source_name: pg_primary
+    role: product
+    description: De Novo workflow bounded context inferred from reviewed synthetic projection evidence.
+  - name: nexus_ix
+    data_source_name: pg_primary
+    role: product
+    description: Product persistence and bounded-context adapter storage for the Framework Intelligent Experience runtime.
+  ingress:
+  - name: nexus-http
+    kind: http
+    enabled: true
+    schema: denovo_workflow
+    path: /denovo-workflow
+    consumers:
+    - browser
+    - service-api
+  - name: app-mcp
+    kind: mcp
+    enabled: false
+    path: /mcp
+    consumers:
+    - agent
+  - name: nexus-events
+    kind: kafka
+    enabled: false
+    schema: denovo_workflow
+    topic: nexus.events
+    consumer_group: nexus-events-worker
+    handler: services.nexus_events

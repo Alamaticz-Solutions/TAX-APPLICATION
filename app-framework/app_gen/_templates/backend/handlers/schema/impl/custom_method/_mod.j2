@@ -1,0 +1,17 @@
+{% macro print(method) %}
+{%- if not method.provider_routine %}
+#[allow(unused)]
+pub async fn {{ method.name }}_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue,
+{%- for arg in method.args %}
+  {{ arg.name }}: {{ arg.arg_type }},
+{%- endfor %}
+) -> HandlerResult<{{ method.return_type }}>
+{
+  Err(anyhow::anyhow!("custom method `{{ method.name }}` is not implemented yet"))
+}
+{%- endif %}
+{% endmacro print %}

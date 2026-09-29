@@ -1,0 +1,109 @@
+version: 1
+migrations:
+  - id: "202605210000"
+    name: crm_schema_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210000__crm_schema_baseline.expand.sql
+    description: Create the CRM schema before applying table DDL.
+
+  - id: "202605210001"
+    name: crm_tables_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210001__crm_tables_baseline.expand.sql
+    description: Baseline CRM tables, indexes, constraints, and junction tables.
+
+  - id: "202605210002"
+    name: crm_logs_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210002__crm_logs_baseline.expand.sql
+    description: Baseline CRM logger tables and indexes.
+
+  - id: "202605210003"
+    name: crm_seed_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: backfill
+    path: postgresql/202605210003__crm_seed_baseline.backfill.sql
+    description: Baseline CRM reference data.
+
+  - id: "202605230000"
+    name: crm_version_backfill
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: backfill
+    path: postgresql/202605230000__crm_version_backfill.backfill.sql
+    description: Backfill CRM optimistic-concurrency versions and enforce defaults.
+
+  - id: "202606050000"
+    name: crm_provider_routine_examples
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202606050000__crm_provider_routine_examples.expand.sql
+    description: Example CRM provider function and stored procedure bindings.
+
+  - id: "202605210000"
+    name: crm_schema_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: expand
+    path: mssql/202605210000__crm_schema_baseline.expand.sql
+    description: Create the CRM schema before applying table DDL.
+
+  - id: "202605210001"
+    name: crm_tables_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: expand
+    path: mssql/202605210001__crm_tables_baseline.expand.sql
+    description: Baseline CRM tables, indexes, constraints, and junction tables.
+
+  - id: "202605210003"
+    name: crm_seed_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: backfill
+    path: mssql/202605210003__crm_seed_baseline.backfill.sql
+    description: Baseline CRM reference data.
+
+  - id: "202605230000"
+    name: crm_version_backfill
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: backfill
+    path: mssql/202605230000__crm_version_backfill.backfill.sql
+    description: Backfill CRM optimistic-concurrency versions and enforce defaults.
+
+  - id: "202606050000"
+    name: crm_provider_routine_examples
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: expand
+    path: mssql/202606050000__crm_provider_routine_examples.expand.sql
+    description: Example CRM provider function and stored procedure bindings.
+
+  - id: "202606050000"
+    name: crm_provider_routine_examples
+    schema: crm
+    data_source: snowflake_primary
+    dialect: snowflake
+    phase: expand
+    path: snowflake/202606050000__crm_provider_routine_examples.expand.sql
+    description: Example CRM provider function and stored procedure bindings.

@@ -1,0 +1,15 @@
+# Managed drop-down lists, replacing the hardcoded arrays in
+# frontend/src/features/shared/config/documentTypes.ts.
+- entity_type: FieldOptionList
+  schema: tax_routing
+  columns: [id, name, description]
+  records:
+  - id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    name: document_type
+    description: Document types offered on the Upload Documents screen (business spec 3.4).
+  - id: f89ac428-0614-45c2-b07d-35c8230af50d
+    name: document_year
+    description: Tax years offered on the Upload Documents screen.
+  - id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
+    name: entity_type
+    description: Entity types a document can belong to (business spec 3.3).

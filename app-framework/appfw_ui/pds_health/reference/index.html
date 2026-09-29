@@ -1,0 +1,2097 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDS Component Catalog</title>
+    <link rel="stylesheet" href="../components/src/styles.css" />
+    <link rel="stylesheet" href="./reference.css" />
+  </head>
+  <body>
+    <div class="pds-app-shell pds-reference-shell">
+      <aside class="pds-app-shell__sidebar" aria-label="Primary navigation">
+        <div class="pds-app-shell__brand pds-reference-brand">
+          <span class="pds-reference-brand__mark" aria-hidden="true">PDS</span>
+          <span>
+            <strong>PDS Health</strong>
+            <small>Component catalog</small>
+          </span>
+        </div>
+        <nav class="pds-app-shell__nav pds-reference-nav" aria-label="Workspace">
+          <a href="#overview" aria-current="page">Overview</a>
+          <a href="#actions">Actions</a>
+          <a href="#forms">Forms</a>
+          <a href="#data-grid">Data Grid</a>
+          <a href="#overlays">Overlays</a>
+          <a href="#feedback">Feedback</a>
+          <a href="#navigation">Navigation</a>
+          <a href="#process">Process</a>
+          <a href="#analytics">Analytics</a>
+        </nav>
+        <div class="pds-app-shell__footer pds-reference-sidebar-footer">
+          <span class="pds-badge" data-tone="success">Ready</span>
+          <span>Token-backed reference</span>
+        </div>
+      </aside>
+
+      <div class="pds-app-shell__workspace">
+        <header class="pds-app-shell__topbar">
+          <span class="pds-badge" data-tone="accent">Design system</span>
+          <button class="pds-button" data-variant="quiet" type="button">Review</button>
+          <details class="pds-menu-button" data-align="end" data-size="sm">
+            <summary class="pds-menu-button__trigger pds-button" data-size="sm" data-variant="secondary" role="button" aria-haspopup="menu">
+              <span class="pds-button__label">Actions</span>
+              <span class="pds-menu-button__indicator" aria-hidden="true"></span>
+            </summary>
+            <div class="pds-menu-button__menu" role="menu" aria-label="Workbench actions">
+              <button class="pds-menu-button__item" type="button" role="menuitem">
+                <span class="pds-menu-button__item-icon" aria-hidden="true"></span>
+                <span class="pds-menu-button__item-copy">
+                  <strong>Export evidence</strong>
+                  <small>Retain a traceable workspace artifact</small>
+                </span>
+                <span class="pds-menu-button__item-badge">JSON</span>
+              </button>
+              <button class="pds-menu-button__item" type="button" role="menuitem" aria-disabled="true" disabled>
+                <span class="pds-menu-button__item-icon" aria-hidden="true"></span>
+                <span class="pds-menu-button__item-copy">
+                  <strong>Release certify</strong>
+                  <small>Requires passing validation evidence</small>
+                </span>
+              </button>
+              <button class="pds-menu-button__item" data-tone="danger" type="button" role="menuitem">
+                <span class="pds-menu-button__item-icon" aria-hidden="true"></span>
+                <span class="pds-menu-button__item-copy">
+                  <strong>Reset workspace</strong>
+                  <small>Clear local layout preferences</small>
+                </span>
+              </button>
+            </div>
+          </details>
+          <button class="pds-button" data-variant="primary" type="button">Create</button>
+        </header>
+
+        <main class="pds-app-shell__main pds-reference-main" id="overview">
+          <section class="pds-page-header">
+            <div class="pds-page-header__copy">
+              <p class="pds-page-header__eyebrow">PDS Health</p>
+              <h1 class="pds-page-header__title">PDS Component Catalog</h1>
+              <p class="pds-page-header__subtitle">
+                Product-neutral component families, states, density, themes,
+                accessibility notes, and usage examples for framework frontends.
+              </p>
+            </div>
+            <div class="pds-page-header__actions">
+              <button class="pds-button" data-variant="secondary" type="button">View contract</button>
+              <button class="pds-button" data-variant="primary" type="button">Run check</button>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-catalog-index" aria-labelledby="catalog-index-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-index-title">Catalog contract</h2>
+                <p class="pds-surface__subtitle">
+                  Every exported component must appear in this product-neutral
+                  catalog before the design-system check passes.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">CI covered</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-family-grid">
+              <section class="pds-reference-family-card" id="actions" data-pds-catalog-family="Actions" aria-labelledby="catalog-actions-title">
+                <span class="pds-badge" data-tone="accent">Actions</span>
+                <h3 id="catalog-actions-title">Actions</h3>
+                <p>Commands, primary actions, overflow menus, icon-only controls, and command search.</p>
+                <div class="pds-reference-component-list" aria-label="Action components">
+                  <span data-pds-component="Button">Button</span>
+                  <span data-pds-component="ButtonLink">ButtonLink</span>
+                  <span data-pds-component="ToggleButton">ToggleButton</span>
+                  <span data-pds-component="FloatingActionButton">FloatingActionButton</span>
+                  <span data-pds-component="ButtonGroup">ButtonGroup</span>
+                  <span data-pds-component="IconButton">IconButton</span>
+                  <span data-pds-component="MenuButton">MenuButton</span>
+                  <span data-pds-component="Toolbar">Toolbar</span>
+                  <span data-pds-component="IntentPreview">IntentPreview</span>
+                  <span data-pds-component="ActionAudit">ActionAudit</span>
+                  <span data-pds-component="UndoCompensationState">UndoCompensationState</span>
+                  <span data-pds-component="CommandBar">CommandBar</span>
+                  <span data-pds-component="CommandPalette">CommandPalette</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: default, quiet, secondary, primary, danger, loading, disabled, pending, approved, denied, undo available.</li>
+                  <li>Accessibility: named icon actions, grouped menu semantics, keyboard command access, named intent review, live undo status.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="forms" data-pds-catalog-family="Forms" aria-labelledby="catalog-forms-title">
+                <span class="pds-badge" data-tone="accent">Forms</span>
+                <h3 id="catalog-forms-title">Forms</h3>
+                <p>Generated field wrappers, native inputs, lookup controls, grouped fields, and validation evidence.</p>
+                <div class="pds-reference-component-list" aria-label="Form components">
+                  <span data-pds-component="Field">Field</span>
+                  <span data-pds-component="FieldMetadata">FieldMetadata</span>
+                  <span data-pds-component="FormLoadingPreview">FormLoadingPreview</span>
+                  <span data-pds-component="FieldGroup">FieldGroup</span>
+                  <span data-pds-component="FormLayout">FormLayout</span>
+                  <span data-pds-component="TextField">TextField</span>
+                  <span data-pds-component="ComboboxField">ComboboxField</span>
+                  <span data-pds-component="TextArea">TextArea</span>
+                  <span data-pds-component="SelectField">SelectField</span>
+                  <span data-pds-component="DateField">DateField</span>
+                  <span data-pds-component="TimeField">TimeField</span>
+                  <span data-pds-component="DateTimeField">DateTimeField</span>
+                  <span data-pds-component="DatePicker">DatePicker</span>
+                  <span data-pds-component="TimePicker">TimePicker</span>
+                  <span data-pds-component="InputGroup">InputGroup</span>
+                  <span data-pds-component="MultiSelect">MultiSelect</span>
+                  <span data-pds-component="FileUpload">FileUpload</span>
+                  <span data-pds-component="CheckboxField">CheckboxField</span>
+                  <span data-pds-component="SwitchField">SwitchField</span>
+                  <span data-pds-component="LookupSelect">LookupSelect</span>
+                  <span data-pds-component="ValidationSummary">ValidationSummary</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: invalid, hint, error, disabled, loading lookup, empty lookup.</li>
+                  <li>Usage: bind labels, hints, and errors to generated model metadata.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="data-grid" data-pds-catalog-family="Data Grid" aria-labelledby="catalog-data-grid-title">
+                <span class="pds-badge" data-tone="accent">Data Grid</span>
+                <h3 id="catalog-data-grid-title">Data Grid</h3>
+                <p>Dense records, server-side query controls, column customization, resizing, sort, and pagination.</p>
+                <div class="pds-reference-component-list" aria-label="Data grid components">
+                  <span data-pds-component="DataGrid">DataGrid</span>
+                  <span data-pds-component="DataGridShell">DataGridShell</span>
+                  <span data-pds-component="DataGridLoadingPreview">DataGridLoadingPreview</span>
+                  <span data-pds-component="DataGridToolbar">DataGridToolbar</span>
+                  <span data-pds-component="DataGridColumnChooser">DataGridColumnChooser</span>
+                  <span data-pds-component="DataGridColumnChooserTrigger">DataGridColumnChooserTrigger</span>
+                  <span data-pds-component="DataGridColumnResizeHandle">DataGridColumnResizeHandle</span>
+                  <span data-pds-component="DataGridControlPopover">DataGridControlPopover</span>
+                  <span data-pds-component="DataGridDensityControl">DataGridDensityControl</span>
+                  <span data-pds-component="DataGridFilterPanel">DataGridFilterPanel</span>
+                  <span data-pds-component="DataGridFilterGroup">DataGridFilterGroup</span>
+                  <span data-pds-component="DataGridFilterRule">DataGridFilterRule</span>
+                  <span data-pds-component="DataGridFilterEmpty">DataGridFilterEmpty</span>
+                  <span data-pds-component="DataGridFilterTrigger">DataGridFilterTrigger</span>
+                  <span data-pds-component="DataGridSortButton">DataGridSortButton</span>
+                  <span data-pds-component="DataGridPagination">DataGridPagination</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>Density: compact is the enterprise default; comfortable remains available.</li>
+                  <li>Accessibility: keyboard row activation, named toolbar, native fieldsets, named popovers.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="overlays" data-pds-catalog-family="Overlays" aria-labelledby="catalog-overlays-title">
+                <span class="pds-badge" data-tone="accent">Overlays</span>
+                <h3 id="catalog-overlays-title">Overlays</h3>
+                <p>Modal and contextual surfaces for review, focused editing, confirmation, and inline help.</p>
+                <div class="pds-reference-component-list" aria-label="Overlay components">
+                  <span data-pds-component="Dialog">Dialog</span>
+                  <span data-pds-component="Drawer">Drawer</span>
+                  <span data-pds-component="Popover">Popover</span>
+                  <span data-pds-component="PopoverTrigger">PopoverTrigger</span>
+                  <span data-pds-component="Tooltip">Tooltip</span>
+                  <span data-pds-component="ConfirmDialog">ConfirmDialog</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: open, closed, dismissible, destructive confirmation.</li>
+                  <li>Accessibility: focus trap, focus return, escape handling, explicit labels.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="feedback" data-pds-catalog-family="Feedback" aria-labelledby="catalog-feedback-title">
+                <span class="pds-badge" data-tone="accent">Feedback</span>
+                <h3 id="catalog-feedback-title">Feedback</h3>
+                <p>Blocking and non-blocking status surfaces, request metadata, skeletons, and notification regions.</p>
+                <div class="pds-reference-component-list" aria-label="Feedback components">
+                  <span data-pds-component="Alert">Alert</span>
+                  <span data-pds-component="Banner">Banner</span>
+                  <span data-pds-component="FeedbackState">FeedbackState</span>
+                  <span data-pds-component="OperationState">OperationState</span>
+                  <span data-pds-component="LoadingState">LoadingState</span>
+                  <span data-pds-component="ErrorState">ErrorState</span>
+                  <span data-pds-component="ForbiddenState">ForbiddenState</span>
+                  <span data-pds-component="InlineAlert">InlineAlert</span>
+                  <span data-pds-component="EmptyState">EmptyState</span>
+                  <span data-pds-component="Skeleton">Skeleton</span>
+                  <span data-pds-component="Toast">Toast</span>
+                  <span data-pds-component="ToastRegion">ToastRegion</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: idle, pending, loading, empty, denied, error, success, warning, info, cancelled.</li>
+                  <li>Accessibility: keyboard-reachable actions, live regions, reduced-motion pending cues, and request/correlation metadata stay close to the message.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="navigation" data-pds-catalog-family="Navigation" aria-labelledby="catalog-navigation-title">
+                <span class="pds-badge" data-tone="accent">Navigation</span>
+                <h3 id="catalog-navigation-title">Navigation</h3>
+                <p>Application chrome, document-scrolling narrative and object-exploration workspaces, page structure, tabs, segmented controls, surfaces, and status badges.</p>
+                <div class="pds-reference-component-list" aria-label="Navigation components">
+                  <span data-pds-component="AppShell">AppShell</span>
+                  <span data-pds-component="NarrativeWorkspace">NarrativeWorkspace</span>
+                  <span data-pds-component="ConnectedFabric">ConnectedFabric</span>
+                  <span data-pds-component="AppearanceProvider">AppearanceProvider</span>
+                  <span data-pds-component="PdsHealthLogo">PdsHealthLogo</span>
+                  <span data-pds-component="NavigationItem">NavigationItem</span>
+                  <span data-pds-component="IconSlot">IconSlot</span>
+                  <span data-pds-component="Avatar">Avatar</span>
+                  <span data-pds-component="IdentitySummary">IdentitySummary</span>
+                  <span data-pds-component="Breadcrumbs">Breadcrumbs</span>
+                  <span data-pds-component="PageHeader">PageHeader</span>
+                  <span data-pds-component="Surface">Surface</span>
+                  <span data-pds-component="InteractiveCard">InteractiveCard</span>
+                  <span data-pds-component="CardLink">CardLink</span>
+                  <span data-pds-component="WorkQueueItem">WorkQueueItem</span>
+                  <span data-pds-component="List">List</span>
+                  <span data-pds-component="ListItem">ListItem</span>
+                  <span data-pds-component="SearchBar">SearchBar</span>
+                  <span data-pds-component="ExplorationWorkspace">ExplorationWorkspace</span>
+                  <span data-pds-component="Tabs">Tabs</span>
+                  <span data-pds-component="SegmentedControl">SegmentedControl</span>
+                  <span data-pds-component="Badge">Badge</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>Themes: light and dark mode use the same `--pds-*` token names.</li>
+                  <li>Usage: product routes supply labels and identity; shell behavior stays shared.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="conversation" data-pds-catalog-family="Conversation" aria-labelledby="catalog-conversation-title">
+                <span class="pds-badge" data-tone="accent">Conversation</span>
+                <h3 id="catalog-conversation-title">Conversation</h3>
+                <p>Grounded answer review, message surfaces, citations, confidence, entity references, tool-call progress, timeline, and graph shells.</p>
+                <div class="pds-reference-component-list" aria-label="Conversation components">
+                  <span data-pds-component="ConversationWorkspace">ConversationWorkspace</span>
+                  <span data-pds-component="MessageThread">MessageThread</span>
+                  <span data-pds-component="Message">Message</span>
+                  <span data-pds-component="MessageComposer">MessageComposer</span>
+                  <span data-pds-component="StreamingText">StreamingText</span>
+                  <span data-pds-component="ToolCallStatus">ToolCallStatus</span>
+                  <span data-pds-component="EntityRefCard">EntityRefCard</span>
+                  <span data-pds-component="CitationList">CitationList</span>
+                  <span data-pds-component="ConfidenceSignal">ConfidenceSignal</span>
+                  <span data-pds-component="AgentTimeline">AgentTimeline</span>
+                  <span data-pds-component="FlowGraphShell">FlowGraphShell</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: user, assistant, tool, streaming, running, blocked, completed, failed, high confidence.</li>
+                  <li>Usage: products own prompts, retrieval, model calls, answer envelopes, and graph content.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="ambient-ai" data-pds-catalog-family="Ambient AI" aria-labelledby="catalog-ambient-ai-title">
+                <span class="pds-badge" data-tone="accent">Ambient AI</span>
+                <h3 id="catalog-ambient-ai-title">Ambient AI</h3>
+                <p>In-workflow generated views, recommendations, cues, evidence summaries, freshness, attribution, assist level, and visible memory controls.</p>
+                <div class="pds-reference-component-list" aria-label="Ambient AI components">
+                  <span data-pds-component="GeneratedViewShell">GeneratedViewShell</span>
+                  <span data-pds-component="SuggestedAction">SuggestedAction</span>
+                  <span data-pds-component="RecommendationCard">RecommendationCard</span>
+                  <span data-pds-component="EvidenceSummary">EvidenceSummary</span>
+                  <span data-pds-component="InsightSummary">InsightSummary</span>
+                  <span data-pds-component="FreshnessIndicator">FreshnessIndicator</span>
+                  <span data-pds-component="AttentionMarker">AttentionMarker</span>
+                  <span data-pds-component="AiAttributionAffordance">AiAttributionAffordance</span>
+                  <span data-pds-component="AssistLevelControl">AssistLevelControl</span>
+                  <span data-pds-component="MemoryChip">MemoryChip</span>
+                  <span data-pds-component="EvidenceDisclosure">EvidenceDisclosure</span>
+                  <span data-pds-component="ResolvedContextDisclosure">ResolvedContextDisclosure</span>
+                  <span data-pds-component="WorkStatus">WorkStatus</span>
+                  <span data-pds-component="ProgressiveResponse">ProgressiveResponse</span>
+                  <span data-pds-component="PdsIxRecipePresentation">PdsIxRecipePresentation</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: grounded, partial, ready, stale, failed, unverified, policy denied, current, low risk, medium risk, high risk, suggest, co-pilot, autopilot disabled, personalized.</li>
+                  <li>Usage: products own resolved refs, source values, policy, answer envelopes, lifecycle, memory storage/correction, assist behavior, and execution; PDS owns the accessible presentation anatomy, attribution, and cue chrome.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="process" data-pds-catalog-family="Process" aria-labelledby="catalog-process-title">
+                <span class="pds-badge" data-tone="accent">Process</span>
+                <h3 id="catalog-process-title">Process</h3>
+                <p>Step-by-step workflow progress, release gates, approvals, and compact mobile progress indicators.</p>
+                <div class="pds-reference-component-list" aria-label="Process components">
+                  <span data-pds-component="ProcessStepper">ProcessStepper</span>
+                  <span data-pds-component="ProcessProgress">ProcessProgress</span>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: complete, current, upcoming, warning, blocked, disabled.</li>
+                  <li>Accessibility: ordered steps, aria-current, aria-controls, and progressbar metadata.</li>
+                </ul>
+              </section>
+
+              <section class="pds-reference-family-card" id="analytics" data-pds-catalog-family="Analytics" aria-labelledby="catalog-analytics-title">
+                <span class="pds-badge" data-tone="accent">Analytics</span>
+                <h3 id="catalog-analytics-title">Analytics</h3>
+                <p>Operational metrics, trend indicators, chart containers, legends, relationship exploration, and presentational chart renderers (bar, line, area, donut).</p>
+                <div class="pds-reference-component-list" aria-label="Analytics components">
+                  <span data-pds-component="TimelineRangeSelector">TimelineRangeSelector</span>
+                  <span data-pds-component="RelationshipAtlas">RelationshipAtlas</span>
+                  <span data-pds-component="RelationshipAtlasTable">RelationshipAtlasTable</span>
+                  <span data-pds-component="RelationshipExplorer">RelationshipExplorer</span>
+                  <span data-pds-component="KpiTile">KpiTile</span>
+                  <span data-pds-component="MetricTrend">MetricTrend</span>
+                  <span data-pds-component="ChartShell">ChartShell</span>
+                  <span data-pds-component="ChartLegend">ChartLegend</span>
+                  <span data-pds-component="BarChart">BarChart</span>
+                  <span data-pds-component="LineChart">LineChart</span>
+                  <span data-pds-component="AreaChart">AreaChart</span>
+                  <span data-pds-component="DonutChart">DonutChart</span>
+                </div>
+                <div class="pds-reference-chart-previews" aria-hidden="true">
+                  <div class="pds-bar-chart">
+                    <div class="pds-bar-chart__plot">
+                      <div class="pds-bar-chart__col"><span class="pds-bar-chart__bar" data-tone="accent" style="height: 60%"></span></div>
+                      <div class="pds-bar-chart__col"><span class="pds-bar-chart__bar" data-tone="success" style="height: 85%"></span></div>
+                    </div>
+                  </div>
+                  <div class="pds-line-chart" data-tone="accent">
+                    <svg class="pds-line-chart__svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                      <polyline class="pds-line-chart__line" points="0,80 50,30 100,50"></polyline>
+                    </svg>
+                  </div>
+                  <div class="pds-area-chart" data-tone="accent">
+                    <svg class="pds-area-chart__svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                      <polygon class="pds-area-chart__fill" points="0,100 0,80 50,30 100,50 100,100"></polygon>
+                      <polyline class="pds-area-chart__line" points="0,80 50,30 100,50"></polyline>
+                    </svg>
+                  </div>
+                  <div class="pds-donut-chart">
+                    <svg class="pds-donut-chart__svg" viewBox="0 0 100 100" aria-hidden="true">
+                      <circle class="pds-donut-chart__track" cx="50" cy="50" r="40"></circle>
+                      <circle class="pds-donut-chart__segment" cx="50" cy="50" r="40" data-tone="accent" stroke-dasharray="150 101"></circle>
+                    </svg>
+                  </div>
+                </div>
+                <ul class="pds-reference-note-list">
+                  <li>States: positive, warning, danger, flat, loading, empty, error.</li>
+                  <li>Usage: renderers draw a provided series; products own data, calculations, thresholds, and interpretation.</li>
+                </ul>
+              </section>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-guidance" aria-labelledby="catalog-guidance-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-guidance-title">Usage guidance</h2>
+                <p class="pds-surface__subtitle">The catalog is product-neutral by design and should not include product routes, entities, or fixtures.</p>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-guidance-grid">
+              <div>
+                <strong>Theme</strong>
+                <span>Light and dark mode are driven by `data-theme` and canonical `--pds-*` tokens.</span>
+              </div>
+              <div>
+                <strong>Density</strong>
+                <span>Compact is the default for enterprise grids; comfortable is available for lower-density workflows.</span>
+              </div>
+              <div>
+                <strong>Accessibility</strong>
+                <span>Controls preserve native semantics, focus rings, keyboard operation, and screen-reader labels.</span>
+              </div>
+              <div>
+                <strong>Examples</strong>
+                <span>Examples use generic work queues, requests, evidence, and review language only.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-api-contract" aria-labelledby="catalog-api-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-api-title">API reference contract</h2>
+                <p class="pds-surface__subtitle">
+                  Enterprise-ready families must document API inputs, states,
+                  density and theme behavior, accessibility rules, usage, and
+                  verification evidence.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">Checker enforced</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-contract-grid">
+              <article class="pds-reference-contract-card" data-pds-catalog-section="Props">
+                <strong>Props</strong>
+                <span>Named inputs, variants, slots, callbacks, and generated metadata bindings stay visible to agents.</span>
+              </article>
+              <article class="pds-reference-contract-card" data-pds-catalog-section="States">
+                <strong>States</strong>
+                <span>Default, active, disabled, loading, invalid, empty, error, and selected states are documented by family.</span>
+              </article>
+              <article class="pds-reference-contract-card" data-pds-catalog-section="Density">
+                <strong>Density</strong>
+                <span>Compact enterprise defaults and comfortable variants are explicit where layout density matters.</span>
+              </article>
+              <article class="pds-reference-contract-card" data-pds-catalog-section="Accessibility">
+                <strong>Accessibility</strong>
+                <span>Keyboard behavior, semantic roles, focus return, live regions, and named controls are part of the contract.</span>
+              </article>
+              <article class="pds-reference-contract-card" data-pds-catalog-section="Usage">
+                <strong>Usage</strong>
+                <span>Examples explain where products provide copy, generated contracts, routes, and data semantics.</span>
+              </article>
+              <article class="pds-reference-contract-card" data-pds-catalog-section="Verification">
+                <strong>Verification</strong>
+                <span>Each family maps to checker evidence, frontend tests, or product scaffold proof.</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-api-map" aria-labelledby="catalog-api-map-title" data-pds-api-contract="source-map">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-api-map-title">Source API map</h2>
+                <p class="pds-surface__subtitle">
+                  The checker derives the component API inventory from these
+                  source files and fails when source exports drift from the
+                  manifest or visible catalog.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">Drift checked</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-api-map-grid">
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/catalog.ts">
+                <strong>catalog.ts</strong>
+                <span>Typed package catalog for component families, maturity levels, and agent decision recipes.</span>
+                <small>Generators and product agents can import this API before introducing local controls.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/primitives.tsx">
+                <strong>primitives.tsx</strong>
+                <span>Actions, feedback, and navigation primitives.</span>
+                <small>Exports must include matching component props types.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/forms.tsx">
+                <strong>forms.tsx</strong>
+                <span>Generated field controls, lookup controls, and form input states.</span>
+                <small>Products bind generated validation and model metadata through props.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/experience.tsx">
+                <strong>experience.tsx</strong>
+                <span>Material-aligned pickers, lists, dynamic search, and toolbars for web and mobile surfaces.</span>
+                <small>State emphasis preserves control geometry and accessible interaction contracts.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/exploration-workspace.tsx">
+                <strong>exploration-workspace.tsx</strong>
+                <span>Responsive named navigator, focus, inspector, controls, and evidence regions for object-oriented exploration.</span>
+                <small>Products own object semantics, access, selection, filtering, relationships, proof, and URL state.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/narrative-workspace.tsx">
+                <strong>narrative-workspace.tsx</strong>
+                <span>Persistent horizontal navigation and contextual controls over one document-scrolling narrative surface.</span>
+                <small>Products own mode semantics, active state, anchors, history, telemetry, and focus restoration.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/layout.tsx">
+                <strong>layout.tsx</strong>
+                <span>Application shell, command surfaces, tabs, dialogs, drawers, popovers, and tooltips.</span>
+                <small>Overlay focus and keyboard behavior stay framework-owned.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/foundation.tsx">
+                <strong>foundation.tsx</strong>
+                <span>Appearance state, fixed icon geometry, navigation items, avatars, and compact identity summaries.</span>
+                <small>Products own routes, labels, identity data, and appearance persistence policy.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/connected-fabric.tsx">
+                <strong>connected-fabric.tsx</strong>
+                <span>Protected decorative application-fabric canvas and motion contract.</span>
+                <small>Products own placement selectors; PDS owns geometry, timing, palette, and reduced-motion behavior.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/work-surfaces.tsx">
+                <strong>work-surfaces.tsx</strong>
+                <span>Semantic links, whole-card activation, and work-queue rows with independent trailing actions.</span>
+                <small>Products own destinations, labels, business state, and side effects.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/data.tsx">
+                <strong>data.tsx</strong>
+                <span>Data grid shell, toolbar, filters, density, columns, resizing, sort, and pagination.</span>
+                <small>Products own columns, row routes, and provider-backed query semantics.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/data-grid.tsx">
+                <strong>data-grid.tsx</strong>
+                <span>AG Grid Community mechanics behind one PDS-owned high-capability grid adapter.</span>
+                <small>Products consume PDS columns, rows, themes, and callbacks without AG Grid imports.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/conversation.tsx">
+                <strong>conversation.tsx</strong>
+                <span>Message threads, streaming text, tool status, entity refs, citations, confidence, agent timeline, and graph shell.</span>
+                <small>Products own prompts, retrieval, model calls, answer-envelope payloads, and graph content.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/conversation-workspace.tsx">
+                <strong>conversation-workspace.tsx</strong>
+                <span>Responsive assistant workspace composition with thread, suggestions, contextual actions, and composer.</span>
+                <small>Products own prompts, model calls, answer content, action routes, and persistence.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/ambient.tsx">
+                <strong>ambient.tsx</strong>
+                <span>Generated view shells, suggested actions, evidence summaries, freshness, attention cues, and AI attribution.</span>
+                <small>Products own resolved refs, policy, answer envelopes, assist level, and execution.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/intelligence-presentation-model.ts">
+                <strong>intelligence-presentation-model.ts</strong>
+                <span>React-free, JSON-serializable pds.ix.presentation@1 identity, context, evidence, status, and response models.</span>
+                <small>This is presentation data only; products and runtimes own authority, lifecycle, providers, and effects.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/intelligence-presentation.tsx">
+                <strong>intelligence-presentation.tsx</strong>
+                <span>Accessible web renderers for evidence, resolved context, work status, and progressive response regions.</span>
+                <small>No native renderer or cross-channel rendering readiness is claimed by this web package.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/ix-recipes.tsx">
+                <strong>ix-recipes.tsx</strong>
+                <span>Generic Web projection and composition for the closed eight-recipe PDS IX contract.</span>
+                <small>Products own domain data, language, policy, actions, and journey composition.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/process.tsx">
+                <strong>process.tsx</strong>
+                <span>Process steppers and compact progress indicators for guided workflows.</span>
+                <small>Products own branching rules, completion criteria, and transition side effects.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/timeline.tsx">
+                <strong>timeline.tsx</strong>
+                <span>Keyboard and pointer operable range-window selection with snapping and optional density marks.</span>
+                <small>Products own the time domain, density values, selected-window meaning, and data filtering.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/relationship-atlas.tsx">
+                <strong>relationship-atlas.tsx</strong>
+                <span>Keyboard-operable relationship maps, an equivalent table, and responsive map/table exploration.</span>
+                <small>Products own node and edge meaning, derivation, evidence, citations, and selected-state consequences.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/charts.tsx">
+                <strong>charts.tsx</strong>
+                <span>Presentational SVG chart renderers: bar, line, area, and donut.</span>
+                <small>Products own data series, calculations, thresholds, and interpretation.</small>
+              </article>
+              <article class="pds-reference-api-map-card" data-pds-api-source="appfw_ui/pds_health/components/src/surfaces.tsx">
+                <strong>surfaces.tsx</strong>
+                <span>Surfaces, analytics chrome, validation, empty/error/loading states, skeletons, and toasts.</span>
+                <small>Feedback can carry request and correlation evidence near the user-facing message.</small>
+              </article>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-agent-recipes" aria-labelledby="catalog-agent-recipes-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-agent-recipes-title">Agent decision guide</h2>
+                <p class="pds-surface__subtitle">
+                  Start with these shared component sets before creating
+                  product-local controls. Products own routes, data semantics,
+                  workflow rules, and user-facing copy.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">Recipe checked</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-agent-recipe-grid">
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="generated-entity-workspace">
+                <span class="pds-badge" data-tone="accent">Workspace</span>
+                <h3>Generated entity workspace</h3>
+                <p>Dense generated list with query controls, column control, density, loading, and pagination.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Generated entity workspace components">
+                  <span data-pds-agent-recipe-component="DataGrid">DataGrid</span>
+                  <span data-pds-agent-recipe-component="DataGridShell">DataGridShell</span>
+                  <span data-pds-agent-recipe-component="DataGridToolbar">DataGridToolbar</span>
+                  <span data-pds-agent-recipe-component="DataGridFilterTrigger">DataGridFilterTrigger</span>
+                  <span data-pds-agent-recipe-component="DataGridColumnChooserTrigger">DataGridColumnChooserTrigger</span>
+                  <span data-pds-agent-recipe-component="DataGridDensityControl">DataGridDensityControl</span>
+                  <span data-pds-agent-recipe-component="DataGridLoadingPreview">DataGridLoadingPreview</span>
+                  <span data-pds-agent-recipe-component="DataGridPagination">DataGridPagination</span>
+                </div>
+                <small>Products own columns, row routes, server query bindings, permissions, and preferences.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="generated-entity-form">
+                <span class="pds-badge" data-tone="accent">Form</span>
+                <h3>Generated entity form</h3>
+                <p>Create or edit form with labels, hints, validation, lookup choices, and stable loading rhythm.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Generated entity form components">
+                  <span data-pds-agent-recipe-component="FormLayout">FormLayout</span>
+                  <span data-pds-agent-recipe-component="FieldGroup">FieldGroup</span>
+                  <span data-pds-agent-recipe-component="FieldMetadata">FieldMetadata</span>
+                  <span data-pds-agent-recipe-component="TextField">TextField</span>
+                  <span data-pds-agent-recipe-component="SelectField">SelectField</span>
+                  <span data-pds-agent-recipe-component="LookupSelect">LookupSelect</span>
+                  <span data-pds-agent-recipe-component="ValidationSummary">ValidationSummary</span>
+                  <span data-pds-agent-recipe-component="FormLoadingPreview">FormLoadingPreview</span>
+                </div>
+                <small>Products own generated metadata, validation rules, submit behavior, and workflow-specific copy.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="governed-action">
+                <span class="pds-badge" data-tone="accent">Action</span>
+                <h3>Governed action</h3>
+                <p>Destructive, policy-sensitive, or release-relevant action with confirmation, traceable feedback, and G1/U2 write evidence before live execution.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Governed action components">
+                  <span data-pds-agent-recipe-component="Button">Button</span>
+                  <span data-pds-agent-recipe-component="IconButton">IconButton</span>
+                  <span data-pds-agent-recipe-component="MenuButton">MenuButton</span>
+                  <span data-pds-agent-recipe-component="IntentPreview">IntentPreview</span>
+                  <span data-pds-agent-recipe-component="ActionAudit">ActionAudit</span>
+                  <span data-pds-agent-recipe-component="UndoCompensationState">UndoCompensationState</span>
+                  <span data-pds-agent-recipe-component="ConfirmDialog">ConfirmDialog</span>
+                  <span data-pds-agent-recipe-component="InlineAlert">InlineAlert</span>
+                  <span data-pds-agent-recipe-component="ToastRegion">ToastRegion</span>
+                </div>
+                <small>Products own action labels, authorization results, confirmation copy, undo or compensation behavior, recovery paths, and the G1 governed-write evidence required before execution.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="decision-support-dashboard">
+                <span class="pds-badge" data-tone="accent">Dashboard</span>
+                <h3>Decision support dashboard</h3>
+                <p>Operational metrics, chart chrome, trends, empty states, and loading states.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Decision support dashboard components">
+                  <span data-pds-agent-recipe-component="TimelineRangeSelector">TimelineRangeSelector</span>
+                  <span data-pds-agent-recipe-component="KpiTile">KpiTile</span>
+                  <span data-pds-agent-recipe-component="MetricTrend">MetricTrend</span>
+                  <span data-pds-agent-recipe-component="ChartShell">ChartShell</span>
+                  <span data-pds-agent-recipe-component="ChartLegend">ChartLegend</span>
+                  <span data-pds-agent-recipe-component="EmptyState">EmptyState</span>
+                  <span data-pds-agent-recipe-component="Skeleton">Skeleton</span>
+                </div>
+                <small>Products own measures, calculations, chart renderer, thresholds, and interpretation.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="guided-process-flow">
+                <span class="pds-badge" data-tone="accent">Process</span>
+                <h3>Guided process flow</h3>
+                <p>Multi-step intake, approval, certification, or release workflows with visible progress and governed transitions.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Guided process flow components">
+                  <span data-pds-agent-recipe-component="ProcessStepper">ProcessStepper</span>
+                  <span data-pds-agent-recipe-component="ProcessProgress">ProcessProgress</span>
+                  <span data-pds-agent-recipe-component="Button">Button</span>
+                  <span data-pds-agent-recipe-component="InlineAlert">InlineAlert</span>
+                  <span data-pds-agent-recipe-component="FeedbackState">FeedbackState</span>
+                </div>
+                <small>Products own branching rules, completion criteria, authorization, and transition side effects.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="workspace-navigation">
+                <span class="pds-badge" data-tone="accent">Navigation</span>
+                <h3>Workspace navigation</h3>
+                <p>Product navigation, page context, command access, and view switching with predictable keyboard behavior.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Workspace navigation components">
+                  <span data-pds-agent-recipe-component="AppShell">AppShell</span>
+                  <span data-pds-agent-recipe-component="NarrativeWorkspace">NarrativeWorkspace</span>
+                  <span data-pds-agent-recipe-component="ConnectedFabric">ConnectedFabric</span>
+                  <span data-pds-agent-recipe-component="AppearanceProvider">AppearanceProvider</span>
+                  <span data-pds-agent-recipe-component="PdsHealthLogo">PdsHealthLogo</span>
+                  <span data-pds-agent-recipe-component="NavigationItem">NavigationItem</span>
+                  <span data-pds-agent-recipe-component="IconSlot">IconSlot</span>
+                  <span data-pds-agent-recipe-component="Avatar">Avatar</span>
+                  <span data-pds-agent-recipe-component="IdentitySummary">IdentitySummary</span>
+                  <span data-pds-agent-recipe-component="Breadcrumbs">Breadcrumbs</span>
+                  <span data-pds-agent-recipe-component="PageHeader">PageHeader</span>
+                  <span data-pds-agent-recipe-component="ButtonLink">ButtonLink</span>
+                  <span data-pds-agent-recipe-component="InteractiveCard">InteractiveCard</span>
+                  <span data-pds-agent-recipe-component="CardLink">CardLink</span>
+                  <span data-pds-agent-recipe-component="WorkQueueItem">WorkQueueItem</span>
+                  <span data-pds-agent-recipe-component="CommandBar">CommandBar</span>
+                  <span data-pds-agent-recipe-component="CommandPalette">CommandPalette</span>
+                  <span data-pds-agent-recipe-component="Tabs">Tabs</span>
+                  <span data-pds-agent-recipe-component="SegmentedControl">SegmentedControl</span>
+                  <span data-pds-agent-recipe-component="Badge">Badge</span>
+                </div>
+                <small>Products own route identity, labels, selected view, role-aware visibility, and URL behavior.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="conversational-answer">
+                <span class="pds-badge" data-tone="accent">Conversation</span>
+                <h3>Conversational answer</h3>
+                <p>Invoked AI answer surface with grounded messages, citations, confidence, tool status, entity refs, timeline, and graph context.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Conversational answer components">
+                  <span data-pds-agent-recipe-component="ConversationWorkspace">ConversationWorkspace</span>
+                  <span data-pds-agent-recipe-component="MessageThread">MessageThread</span>
+                  <span data-pds-agent-recipe-component="Message">Message</span>
+                  <span data-pds-agent-recipe-component="StreamingText">StreamingText</span>
+                  <span data-pds-agent-recipe-component="ToolCallStatus">ToolCallStatus</span>
+                  <span data-pds-agent-recipe-component="EntityRefCard">EntityRefCard</span>
+                  <span data-pds-agent-recipe-component="CitationList">CitationList</span>
+                  <span data-pds-agent-recipe-component="ConfidenceSignal">ConfidenceSignal</span>
+                  <span data-pds-agent-recipe-component="AgentTimeline">AgentTimeline</span>
+                  <span data-pds-agent-recipe-component="FlowGraphShell">FlowGraphShell</span>
+                  <span data-pds-agent-recipe-component="IntentPreview">IntentPreview</span>
+                </div>
+                <small>Products own prompts, model calls, answer-envelope data, retrieval policy, write-gate decisions, and graph content.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="ambient-assistance">
+                <span class="pds-badge" data-tone="accent">Ambient AI</span>
+                <h3>Ambient assistance</h3>
+                <p>In-workflow generated views, suggestions, cues, and summaries that are grounded, preview-gated, attributable, and non-disruptive.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Ambient assistance components">
+                  <span data-pds-agent-recipe-component="GeneratedViewShell">GeneratedViewShell</span>
+                  <span data-pds-agent-recipe-component="SuggestedAction">SuggestedAction</span>
+                  <span data-pds-agent-recipe-component="RecommendationCard">RecommendationCard</span>
+                  <span data-pds-agent-recipe-component="EvidenceSummary">EvidenceSummary</span>
+                  <span data-pds-agent-recipe-component="InsightSummary">InsightSummary</span>
+                  <span data-pds-agent-recipe-component="FreshnessIndicator">FreshnessIndicator</span>
+                  <span data-pds-agent-recipe-component="AttentionMarker">AttentionMarker</span>
+                  <span data-pds-agent-recipe-component="AiAttributionAffordance">AiAttributionAffordance</span>
+                  <span data-pds-agent-recipe-component="AssistLevelControl">AssistLevelControl</span>
+                  <span data-pds-agent-recipe-component="MemoryChip">MemoryChip</span>
+                  <span data-pds-agent-recipe-component="IntentPreview">IntentPreview</span>
+                </div>
+                <small>Products own resolved refs, view bindings, answer-envelope claims, policy decisions, assist behavior, memory storage/correction, and all execution.</small>
+              </article>
+
+              <article class="pds-reference-agent-recipe" data-pds-agent-recipe="service-feedback">
+                <span class="pds-badge" data-tone="accent">Feedback</span>
+                <h3>Service feedback</h3>
+                <p>Request-aware loading, empty, denied, error, success, warning, and retry feedback near the affected workflow.</p>
+                <div class="pds-reference-agent-recipe__components" aria-label="Service feedback components">
+                  <span data-pds-agent-recipe-component="FeedbackState">FeedbackState</span>
+                  <span data-pds-agent-recipe-component="OperationState">OperationState</span>
+                  <span data-pds-agent-recipe-component="LoadingState">LoadingState</span>
+                  <span data-pds-agent-recipe-component="ErrorState">ErrorState</span>
+                  <span data-pds-agent-recipe-component="ForbiddenState">ForbiddenState</span>
+                  <span data-pds-agent-recipe-component="Alert">Alert</span>
+                  <span data-pds-agent-recipe-component="Banner">Banner</span>
+                  <span data-pds-agent-recipe-component="Toast">Toast</span>
+                </div>
+                <small>Products own error categories, retry behavior, request evidence, and support paths.</small>
+              </article>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-family-contracts" aria-labelledby="catalog-family-contracts-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-family-contracts-title">Family readiness matrix</h2>
+                <p class="pds-surface__subtitle">
+                  These product-neutral rows are the design-system API promise
+                  for agents building generated and bespoke work surfaces.
+                </p>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-contract-table" role="table" aria-label="PDS component family readiness">
+              <div class="pds-reference-contract-row is-header" role="row">
+                <span role="columnheader">Family</span>
+                <span role="columnheader">Props</span>
+                <span role="columnheader">States</span>
+                <span role="columnheader">Density and theme</span>
+                <span role="columnheader">Accessibility</span>
+                <span role="columnheader">Usage</span>
+                <span role="columnheader">Verification</span>
+              </div>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Actions" role="row">
+                <strong role="cell">Actions</strong>
+                <span role="cell" data-pds-family-contract-part="props">variant, size, icon, loading, disabled, command items, intent changes, audit metadata, undo state</span>
+                <span role="cell" data-pds-family-contract-part="states">quiet, secondary, primary, danger, loading, disabled, pending, approved, denied, undo available, compensation blocked</span>
+                <span role="cell" data-pds-family-contract-part="density">small and medium controls use shared token sizing</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">named icon actions, menu roles, disabled semantics, named intent review, live undo status</span>
+                <span role="cell" data-pds-family-contract-part="usage">use for explicit commands and governed write previews; keep product copy outside shared APIs</span>
+                <span role="cell" data-pds-family-contract-part="verification">component checker, governed-action examples, consumer wiring</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Forms" role="row">
+                <strong role="cell">Forms</strong>
+                <span role="cell" data-pds-family-contract-part="props">label, hint, error, required, options, lookup state, field metadata</span>
+                <span role="cell" data-pds-family-contract-part="states">valid, invalid, disabled, loading lookup, empty lookup, dirty form</span>
+                <span role="cell" data-pds-family-contract-part="density">generated layouts use responsive fields and token spacing</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">labels, described-by, native inputs, alerts, switch roles</span>
+                <span role="cell" data-pds-family-contract-part="usage">bind controls to generated field and validation contracts</span>
+                <span role="cell" data-pds-family-contract-part="verification">form examples, generated frontend checks, browser form tests</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Data Grid" role="row">
+                <strong role="cell">Data Grid</strong>
+                <span role="cell" data-pds-family-contract-part="props">columns, rows, row key, density, query state, pagination, resize callbacks</span>
+                <span role="cell" data-pds-family-contract-part="states">selected, loading preview, empty, filtered, dirty query, sorted</span>
+                <span role="cell" data-pds-family-contract-part="density">compact is default; comfortable remains available</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">named region, toolbar, keyboard row activation, native fieldsets</span>
+                <span role="cell" data-pds-family-contract-part="usage">products provide columns, renderers, server query bindings, and row routes</span>
+                <span role="cell" data-pds-family-contract-part="verification">density policy, grid E2E, loading transition evidence</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Overlays" role="row">
+                <strong role="cell">Overlays</strong>
+                <span role="cell" data-pds-family-contract-part="props">open, title, description, size, side, tone, confirm actions</span>
+                <span role="cell" data-pds-family-contract-part="states">open, closed, destructive, dismissing, confirming</span>
+                <span role="cell" data-pds-family-contract-part="density">modal and drawer sizes are token-backed and responsive</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">focus trap, focus return, scroll body focus, escape handling</span>
+                <span role="cell" data-pds-family-contract-part="usage">use for focused review, contextual work, and destructive confirmation</span>
+                <span role="cell" data-pds-family-contract-part="verification">accessibility patterns and reference consumer wiring</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Feedback" role="row">
+                <strong role="cell">Feedback</strong>
+                <span role="cell" data-pds-family-contract-part="props">kind, title, detail, metadata, retry actions, toast items</span>
+                <span role="cell" data-pds-family-contract-part="states">loading, empty, denied, error, success, warning, info</span>
+                <span role="cell" data-pds-family-contract-part="density">inline and page-level feedback use shared rhythm</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">live regions, alert roles, status roles, request metadata near messages</span>
+                <span role="cell" data-pds-family-contract-part="usage">keep users near the failed or blocked action with traceable IDs</span>
+                <span role="cell" data-pds-family-contract-part="verification">feedback pattern checks and reference states</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Navigation" role="row">
+                <strong role="cell">Navigation</strong>
+                <span role="cell" data-pds-family-contract-part="props">brand, nav items, breadcrumb items, page title, tabs, selected segment, surface actions</span>
+                <span role="cell" data-pds-family-contract-part="states">current route, breadcrumb location, selected tab, selected segment, collapsed content</span>
+                <span role="cell" data-pds-family-contract-part="density">shell, header, tabs, and surfaces use shared spacing tokens</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">named navigation and breadcrumb landmarks, current-page semantics, tablist roles, pressed state, focus rings</span>
+                <span role="cell" data-pds-family-contract-part="usage">products supply route identity and app-specific labels</span>
+                <span role="cell" data-pds-family-contract-part="verification">catalog coverage, shell examples, scaffold residue checks</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Conversation" role="row">
+                <strong role="cell">Conversation</strong>
+                <span role="cell" data-pds-family-contract-part="props">messages, roles, streaming state, tool-call status, entity refs, citations, confidence, timeline items, graph nodes and edges</span>
+                <span role="cell" data-pds-family-contract-part="states">user, assistant, system, tool, streaming, queued, running, blocked, completed, failed, high confidence, policy warning</span>
+                <span role="cell" data-pds-family-contract-part="density">thread, cards, timeline, and graph shells fit side panels and generated workspaces without nested cards</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">named message regions, ordered messages, live streaming status, assertive blocked tool states, ordered citations, named timeline and graph regions</span>
+                <span role="cell" data-pds-family-contract-part="usage">use for invoked chat and grounded answer review; keep model calls, prompts, retrieval, and write gates product/runtime-owned</span>
+                <span role="cell" data-pds-family-contract-part="verification">component checker, answer-envelope contract, chat-eval posture, view registry contract, catalog examples</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Ambient AI" role="row">
+                <strong role="cell">Ambient AI</strong>
+                <span role="cell" data-pds-family-contract-part="props">title, reason, grounding, risk, freshness, attribution, claims, citations, preview slots, resolved view content</span>
+                <span role="cell" data-pds-family-contract-part="states">grounded, partial, unverified, policy denied, current, stale, low risk, medium risk, high risk</span>
+                <span role="cell" data-pds-family-contract-part="density">ambient surfaces fit generated workspaces, side panels, and inline cues without interruptive modals</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">named generated regions, polite attribution and freshness status, assertive high-risk cues, ordered grounded claims</span>
+                <span role="cell" data-pds-family-contract-part="usage">use for ambient AI influence; keep refs, policy, answer envelopes, action execution, and personalization product/runtime-owned</span>
+                <span role="cell" data-pds-family-contract-part="verification">component checker, agentic-ux grounding contract, answer-envelope contract, view registry contract, chat-eval posture, catalog examples</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Process" role="row">
+                <strong role="cell">Process</strong>
+                <span role="cell" data-pds-family-contract-part="props">steps, status, current step, optional state, disabled state, progress value</span>
+                <span role="cell" data-pds-family-contract-part="states">complete, current, upcoming, warning, blocked, disabled</span>
+                <span role="cell" data-pds-family-contract-part="density">horizontal, vertical, compact progress, and mobile dot variants</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">ordered steps, aria-current, aria-controls, disabled semantics, progressbar metadata</span>
+                <span role="cell" data-pds-family-contract-part="usage">PDS owns workflow progress presentation; products own transition logic and step meaning</span>
+                <span role="cell" data-pds-family-contract-part="verification">catalog coverage, accessibility patterns, component checker</span>
+              </article>
+              <article class="pds-reference-contract-row" data-pds-family-contract="Analytics" role="row">
+                <strong role="cell">Analytics</strong>
+                <span role="cell" data-pds-family-contract-part="props">label, value, trend, tone, chart title, legend items, footer</span>
+                <span role="cell" data-pds-family-contract-part="states">positive, warning, danger, flat, loading, empty, error</span>
+                <span role="cell" data-pds-family-contract-part="density">tiles and chart shells fit dense dashboards without nested cards</span>
+                <span role="cell" data-pds-family-contract-part="accessibility">legend list semantics and non-color trend direction</span>
+                <span role="cell" data-pds-family-contract-part="usage">PDS owns chrome; products own chart data semantics and calculations</span>
+                <span role="cell" data-pds-family-contract-part="verification">dashboard evidence, chart containment, component checker</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-readiness" aria-labelledby="catalog-readiness-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="catalog-readiness-title">Agent readiness ledger</h2>
+                <p class="pds-surface__subtitle">
+                  Family maturity and retained evidence requirements from the
+                  agent-readable catalog manifest.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">Manifest backed</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-readiness-grid">
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Actions" data-pds-readiness-level="release-gated">
+                <strong>Actions</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns controls, governed-action review surfaces, audit styling, and undo-state presentation; products own command meaning, labels, authorization, write execution, compensation semantics, and G1/U2 evidence.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Actions evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                  <span data-pds-readiness-evidence="g1-governed-write-posture">g1-governed-write-posture</span>
+                  <span data-pds-readiness-evidence="g1-governed-write-live-evidence">g1-governed-write-live-evidence</span>
+                  <span data-pds-readiness-evidence="u2-agent-harness-profile">u2-agent-harness-profile</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Forms" data-pds-readiness-level="release-gated">
+                <strong>Forms</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns control semantics, focus, and validation presentation; products own data shape and workflow rules.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Forms evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                  <span data-pds-readiness-evidence="scaffold-proof">scaffold-proof</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Data Grid" data-pds-readiness-level="release-gated">
+                <strong>Data Grid</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns workspace chrome and query-control ergonomics; products own provider-backed data semantics.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Data grid evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                  <span data-pds-readiness-evidence="scaffold-proof">scaffold-proof</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Overlays" data-pds-readiness-level="release-gated">
+                <strong>Overlays</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns overlay mechanics and accessibility; products own content, actions, and domain risk.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Overlay evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                  <span data-pds-readiness-evidence="scaffold-proof">scaffold-proof</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Feedback" data-pds-readiness-level="release-gated">
+                <strong>Feedback</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns feedback structure and live-region behavior; products own error categories and recovery actions.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Feedback evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Navigation" data-pds-readiness-level="release-gated">
+                <strong>Navigation</strong>
+                <span class="pds-badge" data-tone="success">release-gated</span>
+                <p>PDS owns navigation structure and selected-state treatment; products own routing and information architecture.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Navigation evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                  <span data-pds-readiness-evidence="scaffold-proof">scaffold-proof</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Conversation" data-pds-readiness-level="enterprise-ready">
+                <strong>Conversation</strong>
+                <span class="pds-badge" data-tone="accent">enterprise-ready</span>
+                <p>PDS owns conversation chrome, evidence presentation, timeline, confidence, citation, and graph shells; products own prompts, retrieval, model calls, and graph content.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Conversation evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="answer-envelope-contract">answer-envelope-contract</span>
+                  <span data-pds-readiness-evidence="view-registry-contract">view-registry-contract</span>
+                  <span data-pds-readiness-evidence="chat-eval-posture">chat-eval-posture</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Ambient AI" data-pds-readiness-level="enterprise-ready">
+                <strong>Ambient AI</strong>
+                <span class="pds-badge" data-tone="accent">enterprise-ready</span>
+                <p>PDS owns ambient AI presentation, attribution, freshness, attention, and summary shells; products own resolved refs, view bindings, assist-level behavior, policy decisions, and execution.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Ambient AI evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="agentic-ux-grounding">agentic-ux-grounding</span>
+                  <span data-pds-readiness-evidence="answer-envelope-contract">answer-envelope-contract</span>
+                  <span data-pds-readiness-evidence="view-registry-contract">view-registry-contract</span>
+                  <span data-pds-readiness-evidence="chat-eval-posture">chat-eval-posture</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Process" data-pds-readiness-level="enterprise-ready">
+                <strong>Process</strong>
+                <span class="pds-badge" data-tone="accent">enterprise-ready</span>
+                <p>PDS owns process visibility, state treatment, and progress semantics; products own step meaning and workflow execution.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Process evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                </div>
+              </article>
+              <article class="pds-reference-readiness-card" data-pds-readiness-family="Analytics" data-pds-readiness-level="enterprise-ready">
+                <strong>Analytics</strong>
+                <span class="pds-badge" data-tone="accent">enterprise-ready</span>
+                <p>PDS owns analytics chrome, status tone, and legend structure; products own measures and chart semantics.</p>
+                <div class="pds-reference-readiness-evidence" aria-label="Analytics evidence">
+                  <span data-pds-readiness-evidence="catalog-manifest">catalog-manifest</span>
+                  <span data-pds-readiness-evidence="visible-catalog">visible-catalog</span>
+                  <span data-pds-readiness-evidence="token-backed-css">token-backed-css</span>
+                  <span data-pds-readiness-evidence="accessibility-patterns">accessibility-patterns</span>
+                  <span data-pds-readiness-evidence="consumer-wiring">consumer-wiring</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="pds-surface" aria-labelledby="conversation-family-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="conversation-family-title">Conversation family</h2>
+                <p class="pds-surface__subtitle">
+                  Product-neutral primitives for grounded answer review. These
+                  components do not execute writes or call a model by
+                  themselves.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">CH5</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-component-cloud" aria-label="Conversation components">
+              <span class="pds-message-thread" data-pds-component="MessageThread">MessageThread</span>
+              <span class="pds-message" data-pds-component="Message">Message</span>
+              <span class="pds-message-composer" data-pds-component="MessageComposer">MessageComposer</span>
+              <span class="pds-streaming-text" data-pds-component="StreamingText">StreamingText</span>
+              <span class="pds-tool-call-status" data-pds-component="ToolCallStatus">ToolCallStatus</span>
+              <span class="pds-entity-ref-card" data-pds-component="EntityRefCard">EntityRefCard</span>
+              <span class="pds-citation-list" data-pds-component="CitationList">CitationList</span>
+              <span class="pds-confidence-signal" data-pds-component="ConfidenceSignal">ConfidenceSignal</span>
+              <span class="pds-agent-timeline" data-pds-component="AgentTimeline">AgentTimeline</span>
+              <span class="pds-flow-graph-shell" data-pds-component="FlowGraphShell">FlowGraphShell</span>
+            </div>
+          </section>
+
+          <section class="pds-surface" aria-labelledby="ambient-family-title">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title" id="ambient-family-title">Ambient AI family</h2>
+                <p class="pds-surface__subtitle">
+                  Product-neutral primitives for generated views, cues,
+                  summaries, suggestions, freshness, and attribution. These
+                  components render grounded assistance; they do not execute
+                  writes or resolve policy by themselves.
+                </p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">CH-AMBIENT</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-component-cloud" aria-label="Ambient AI components">
+              <span class="pds-generated-view-shell" data-pds-component="GeneratedViewShell">GeneratedViewShell</span>
+              <span class="pds-suggested-action" data-pds-component="SuggestedAction">SuggestedAction</span>
+              <span class="pds-recommendation-card" data-pds-component="RecommendationCard">RecommendationCard</span>
+              <span class="pds-evidence-summary" data-pds-component="EvidenceSummary">EvidenceSummary</span>
+              <span class="pds-insight-summary" data-pds-component="InsightSummary">InsightSummary</span>
+              <span class="pds-freshness-indicator" data-pds-component="FreshnessIndicator">FreshnessIndicator</span>
+              <span class="pds-attention-marker" data-pds-component="AttentionMarker">AttentionMarker</span>
+              <span class="pds-ai-attribution" data-pds-component="AiAttributionAffordance">AiAttributionAffordance</span>
+              <span class="pds-assist-level-control" data-pds-component="AssistLevelControl">AssistLevelControl</span>
+              <span class="pds-memory-chip" data-pds-component="MemoryChip">MemoryChip</span>
+              <span class="pds-evidence-disclosure" data-pds-component="EvidenceDisclosure">EvidenceDisclosure</span>
+              <span class="pds-resolved-context" data-pds-component="ResolvedContextDisclosure">ResolvedContextDisclosure</span>
+              <span class="pds-work-status" data-pds-component="WorkStatus">WorkStatus</span>
+              <span class="pds-progressive-response" data-pds-component="ProgressiveResponse">ProgressiveResponse</span>
+              <span class="pds-progressive-response" data-pds-component="PdsIxRecipePresentation">PdsIxRecipePresentation</span>
+            </div>
+          </section>
+
+          <div class="pds-inline-alert pds-banner" data-tone="accent" role="status" aria-live="polite">
+            <span class="pds-inline-alert__mark" aria-hidden="true"></span>
+            <span class="pds-inline-alert__copy">
+              <strong>Certification evidence retained</strong>
+              <span>Component, token, and scaffold checks are available for this workspace.</span>
+            </span>
+            <span class="pds-inline-alert__action">
+              <button class="pds-button" data-size="sm" data-variant="secondary" type="button">View evidence</button>
+              <button class="pds-banner__dismiss" type="button" aria-label="Dismiss notification">
+                <span aria-hidden="true">x</span>
+              </button>
+            </span>
+          </div>
+
+          <section class="pds-command-bar" aria-label="Workbench controls">
+            <div class="pds-command-bar__filters">
+              <label class="pds-reference-inline-field" for="status-filter">
+                <span>Status</span>
+                <select class="pds-input pds-select" id="status-filter">
+                  <option>All</option>
+                  <option>Needs review</option>
+                  <option>Approved</option>
+                </select>
+              </label>
+              <label class="pds-reference-inline-field" for="region-filter">
+                <span>Region</span>
+                <select class="pds-input pds-select" id="region-filter">
+                  <option>All regions</option>
+                  <option>Northwest</option>
+                  <option>Central</option>
+                </select>
+              </label>
+            </div>
+            <div class="pds-command-bar__summary">6 requests shown</div>
+            <div class="pds-command-bar__actions">
+              <div class="pds-segmented-control" role="group" aria-label="Review mode">
+                <button class="pds-segmented-control__option" data-selected="true" type="button" aria-pressed="true">Queue</button>
+                <button class="pds-segmented-control__option" type="button" aria-pressed="false">Mine</button>
+              </div>
+              <button class="pds-button" data-variant="quiet" type="button">Reset</button>
+              <button class="pds-button" data-variant="secondary" type="button">Filter</button>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-loading-surface">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Loading previews</h2>
+                <p class="pds-surface__subtitle">Grid and form previews reserve enterprise workspace rhythm while data and metadata arrive.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">Stable layout</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-loading-grid">
+              <div
+                class="pds-data-grid-loading-preview pds-reference-loading-preview"
+                data-density="compact"
+                style="--pds-data-grid-loading-columns: 4"
+                role="status"
+                aria-label="Loading record preview"
+                aria-busy="true"
+              >
+                <div class="pds-data-grid-loading-preview__header" aria-hidden="true">
+                  <span class="pds-data-grid-loading-preview__heading"></span>
+                  <span class="pds-data-grid-loading-preview__heading"></span>
+                  <span class="pds-data-grid-loading-preview__heading"></span>
+                  <span class="pds-data-grid-loading-preview__heading"></span>
+                </div>
+                <div class="pds-data-grid-loading-preview__rows" aria-hidden="true">
+                  <div class="pds-data-grid-loading-preview__row">
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="1"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="2"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                  </div>
+                  <div class="pds-data-grid-loading-preview__row">
+                    <span class="pds-data-grid-loading-preview__cell" data-length="1"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="2"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="1"></span>
+                  </div>
+                  <div class="pds-data-grid-loading-preview__row">
+                    <span class="pds-data-grid-loading-preview__cell" data-length="2"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="1"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="2"></span>
+                  </div>
+                  <div class="pds-data-grid-loading-preview__row">
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="1"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="2"></span>
+                    <span class="pds-data-grid-loading-preview__cell" data-length="0"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="pds-form-loading-preview pds-reference-loading-preview"
+                role="status"
+                aria-label="Loading form preview"
+                aria-busy="true"
+              >
+                <div class="pds-form-loading-preview__status" aria-hidden="true">
+                  <span class="pds-form-loading-preview__pill"></span>
+                  <span class="pds-form-loading-preview__pill" data-size="short"></span>
+                </div>
+                <div class="pds-form-loading-preview__fields" aria-hidden="true">
+                  <div class="pds-form-loading-preview__field">
+                    <span class="pds-form-loading-preview__line" data-shape="label"></span>
+                    <span class="pds-form-loading-preview__control"></span>
+                    <span class="pds-form-loading-preview__line" data-shape="hint"></span>
+                  </div>
+                  <div class="pds-form-loading-preview__field">
+                    <span class="pds-form-loading-preview__line" data-shape="label"></span>
+                    <span class="pds-form-loading-preview__control"></span>
+                    <span class="pds-form-loading-preview__line" data-shape="hint"></span>
+                  </div>
+                  <div class="pds-form-loading-preview__field">
+                    <span class="pds-form-loading-preview__line" data-shape="label"></span>
+                    <span class="pds-form-loading-preview__control"></span>
+                    <span class="pds-form-loading-preview__line" data-shape="hint"></span>
+                  </div>
+                  <div class="pds-form-loading-preview__field">
+                    <span class="pds-form-loading-preview__line" data-shape="label"></span>
+                    <span class="pds-form-loading-preview__control"></span>
+                    <span class="pds-form-loading-preview__line" data-shape="hint"></span>
+                  </div>
+                </div>
+                <div class="pds-form-loading-preview__actions" aria-hidden="true">
+                  <span class="pds-form-loading-preview__action" data-size="short"></span>
+                  <span class="pds-form-loading-preview__action"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-command-surface">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Command access</h2>
+                <p class="pds-surface__subtitle">Unified search keeps frequent actions close without crowding the workspace.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">Ctrl K</span>
+              </div>
+            </header>
+            <div class="pds-surface__body">
+              <div class="pds-command-palette pds-reference-command-demo">
+                <button
+                  class="pds-command-palette__trigger"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="reference-command-palette"
+                >
+                  <span class="pds-command-palette__trigger-label">
+                    <span>Search workspace</span>
+                  </span>
+                  <kbd class="pds-command-palette__shortcut">Ctrl K</kbd>
+                </button>
+                <div
+                  id="reference-command-palette"
+                  class="pds-command-palette__popover pds-reference-command-preview"
+                  data-open="true"
+                  role="dialog"
+                  aria-label="Search workspace commands"
+                >
+                  <div class="pds-command-palette__search">
+                    <input type="search" aria-label="Search workspace commands" value="review" readonly />
+                  </div>
+                  <div class="pds-command-palette__list">
+                    <a class="pds-command-palette__item" href="#queue">
+                      <span class="pds-command-palette__icon" aria-hidden="true"></span>
+                      <span class="pds-command-palette__copy">
+                        <strong>Open review queue</strong>
+                        <small>Inspect assigned work and status</small>
+                      </span>
+                      <em>Queue</em>
+                    </a>
+                    <a class="pds-command-palette__item" href="#request">
+                      <span class="pds-command-palette__icon" aria-hidden="true"></span>
+                      <span class="pds-command-palette__copy">
+                        <strong>Create service request</strong>
+                        <small>Start a governed workflow</small>
+                      </span>
+                      <em>Action</em>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-process-surface" id="process-demo">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Process flows</h2>
+                <p class="pds-surface__subtitle">Guided workflows expose current progress, blocked states, optional steps, and compact mobile progress.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">P2 foundation</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-stack">
+              <ol class="pds-process-stepper" data-orientation="horizontal" data-density="comfortable" aria-label="Reference process">
+                <li class="pds-process-stepper__step" data-status="complete">
+                  <span class="pds-process-stepper__marker" aria-hidden="true"><span>1</span></span>
+                  <span class="pds-process-stepper__connector" aria-hidden="true"></span>
+                  <span class="pds-process-stepper__trigger">
+                    <span class="pds-process-stepper__copy">
+                      <span class="pds-process-stepper__title-row"><strong>Intake</strong></span>
+                      <span class="pds-process-stepper__description">Collect inputs</span>
+                      <span class="pds-process-stepper__meta"><span>Complete</span></span>
+                    </span>
+                  </span>
+                </li>
+                <li class="pds-process-stepper__step" data-status="current">
+                  <span class="pds-process-stepper__marker" aria-hidden="true"><span>2</span></span>
+                  <span class="pds-process-stepper__connector" aria-hidden="true"></span>
+                  <button class="pds-process-stepper__trigger" type="button" aria-current="step" aria-controls="reference-process-current">
+                    <span class="pds-process-stepper__copy">
+                      <span class="pds-process-stepper__title-row"><strong>Verify</strong></span>
+                      <span class="pds-process-stepper__description">Run evidence checks</span>
+                      <span class="pds-process-stepper__meta"><span>Current</span></span>
+                    </span>
+                  </button>
+                </li>
+                <li class="pds-process-stepper__step" data-status="warning">
+                  <span class="pds-process-stepper__marker" aria-hidden="true"><span>3</span></span>
+                  <span class="pds-process-stepper__connector" aria-hidden="true"></span>
+                  <span class="pds-process-stepper__trigger">
+                    <span class="pds-process-stepper__copy">
+                      <span class="pds-process-stepper__title-row"><strong>Approval</strong><span class="pds-process-stepper__optional">Optional</span></span>
+                      <span class="pds-process-stepper__description">Human review</span>
+                      <span class="pds-process-stepper__meta"><span>Needs review</span></span>
+                    </span>
+                  </span>
+                </li>
+                <li class="pds-process-stepper__step" data-status="blocked">
+                  <span class="pds-process-stepper__marker" aria-hidden="true"><span>4</span></span>
+                  <span class="pds-process-stepper__connector" aria-hidden="true"></span>
+                  <span class="pds-process-stepper__trigger">
+                    <span class="pds-process-stepper__copy">
+                      <span class="pds-process-stepper__title-row"><strong>Certify</strong></span>
+                      <span class="pds-process-stepper__description">Evidence package</span>
+                      <span class="pds-process-stepper__meta"><span>Blocked</span></span>
+                    </span>
+                  </span>
+                </li>
+              </ol>
+              <div id="reference-process-current" class="pds-process-stepper__content">
+                Current-step content remains visibly tied to the active step for review.
+              </div>
+              <div class="pds-process-progress" data-variant="dots" style="--pds-process-progress-value: 60%">
+                <span class="pds-process-progress__copy">
+                  <strong>Certification progress</strong>
+                  <span>3 of 5</span>
+                </span>
+                <span class="pds-process-progress__track" role="progressbar" aria-label="Certification progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="3" aria-valuetext="3 of 5 steps complete">
+                  <span class="pds-process-progress__bar"></span>
+                </span>
+                <ol class="pds-process-progress__dots" aria-hidden="true">
+                  <li data-active="true"></li>
+                  <li data-active="true"></li>
+                  <li data-active="true"></li>
+                  <li></li>
+                  <li></li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-analytics-surface" id="analytics-demo">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Analytics surfaces</h2>
+                <p class="pds-surface__subtitle">KPI tiles, trend badges, chart shells, and legends keep operational metrics consistent.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">P2 foundation</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-stack">
+              <div class="pds-reference-kpi-row" aria-label="Workbench metrics">
+                <article class="pds-kpi-tile" data-tone="accent">
+                  <span class="pds-kpi-tile__topline">
+                    <span class="pds-kpi-tile__label">Open reviews</span>
+                    <span class="pds-kpi-tile__icon" aria-hidden="true">R</span>
+                  </span>
+                  <strong class="pds-kpi-tile__value">48</strong>
+                  <span class="pds-kpi-tile__footer">
+                    <span class="pds-kpi-tile__detail">12 due today</span>
+                    <span class="pds-metric-trend" data-tone="accent" data-direction="flat">
+                      <span class="pds-metric-trend__glyph" aria-hidden="true">=</span>
+                      <strong>Steady</strong>
+                    </span>
+                  </span>
+                </article>
+                <article class="pds-kpi-tile" data-tone="success">
+                  <span class="pds-kpi-tile__topline">
+                    <span class="pds-kpi-tile__label">Verified</span>
+                    <span class="pds-kpi-tile__icon" aria-hidden="true">V</span>
+                  </span>
+                  <strong class="pds-kpi-tile__value">96%</strong>
+                  <span class="pds-kpi-tile__footer">
+                    <span class="pds-kpi-tile__detail">Evidence attached</span>
+                    <span class="pds-metric-trend" data-tone="positive" data-direction="up">
+                      <span class="pds-metric-trend__glyph" aria-hidden="true">+</span>
+                      <strong>4%</strong>
+                    </span>
+                  </span>
+                </article>
+                <article class="pds-kpi-tile" data-tone="warning">
+                  <span class="pds-kpi-tile__topline">
+                    <span class="pds-kpi-tile__label">Needs decision</span>
+                    <span class="pds-kpi-tile__icon" aria-hidden="true">D</span>
+                  </span>
+                  <strong class="pds-kpi-tile__value">7</strong>
+                  <span class="pds-kpi-tile__footer">
+                    <span class="pds-kpi-tile__detail">Policy gated</span>
+                    <span class="pds-metric-trend" data-tone="warning" data-direction="down">
+                      <span class="pds-metric-trend__glyph" aria-hidden="true">-</span>
+                      <strong>2</strong>
+                    </span>
+                  </span>
+                </article>
+                <div class="pds-skeleton" data-variant="card" role="status" aria-label="Loading metric preview" aria-busy="true">
+                  <span class="pds-skeleton__line" aria-hidden="true"></span>
+                  <span class="pds-skeleton__line" aria-hidden="true"></span>
+                  <span class="pds-skeleton__line" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <section class="pds-chart-shell" aria-label="Review throughput">
+                <header class="pds-chart-shell__header">
+                  <span class="pds-chart-shell__copy">
+                    <strong>Review throughput</strong>
+                    <span>Use the shell around any chart renderer while preserving title, action, and footer regions.</span>
+                  </span>
+                  <span class="pds-chart-shell__actions">
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Export</button>
+                  </span>
+                </header>
+                <div class="pds-chart-shell__figure">
+                  <div class="pds-reference-chart-bars" role="img" aria-label="Review throughput by day">
+                    <span data-level="low"></span>
+                    <span data-level="mid"></span>
+                    <span data-level="high"></span>
+                    <span data-level="mid"></span>
+                    <span data-level="max"></span>
+                  </div>
+                </div>
+                <footer class="pds-chart-shell__footer">
+                  <ul class="pds-chart-legend" role="list">
+                    <li class="pds-chart-legend__item" data-tone="accent">
+                      <span class="pds-chart-legend__swatch" aria-hidden="true"></span>
+                      <span>Submitted</span>
+                      <strong>128</strong>
+                    </li>
+                    <li class="pds-chart-legend__item" data-tone="success">
+                      <span class="pds-chart-legend__swatch" aria-hidden="true"></span>
+                      <span>Approved</span>
+                      <strong>116</strong>
+                    </li>
+                    <li class="pds-chart-legend__item" data-tone="warning">
+                      <span class="pds-chart-legend__swatch" aria-hidden="true"></span>
+                      <span>Pending</span>
+                      <strong>12</strong>
+                    </li>
+                  </ul>
+                </footer>
+              </section>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-governed-action-surface">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Governed action primitives</h2>
+                <p class="pds-surface__subtitle">Intent preview, action audit, and undo state keep human review close to governed writes while G1 evidence proves whether execution is allowed.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">G2</span>
+              </div>
+            </header>
+            <div class="pds-surface__body pds-reference-stack">
+              <section class="pds-intent-preview" aria-label="Action intent preview">
+                <header class="pds-intent-preview__header">
+                  <div class="pds-intent-preview__copy">
+                    <h3 class="pds-intent-preview__title">Preview generated write</h3>
+                    <p class="pds-intent-preview__description">Review actor, policy, field changes, and retained evidence before confirming.</p>
+                  </div>
+                  <span class="pds-intent-preview__confidence">review</span>
+                </header>
+                <dl class="pds-intent-preview__metadata">
+                  <dt>Actor</dt>
+                  <dd>service:product-agent</dd>
+                  <dt>Policy</dt>
+                  <dd>posture recorded; live write evidence pending</dd>
+                  <dt>Evidence</dt>
+                  <dd>target/appfw/governed-write-posture.json</dd>
+                </dl>
+                <ul class="pds-intent-preview__changes" aria-label="Proposed changes">
+                  <li class="pds-intent-preview__change" data-tone="success">
+                    <span class="pds-intent-preview__change-label">Stage</span>
+                    <span class="pds-intent-preview__change-values"><span>Review</span><span aria-hidden="true">-&gt;</span><strong>Approved</strong></span>
+                  </li>
+                  <li class="pds-intent-preview__change">
+                    <span class="pds-intent-preview__change-label">Owner</span>
+                    <span class="pds-intent-preview__change-values"><span>Unassigned</span><span aria-hidden="true">-&gt;</span><strong>A. Rivera</strong></span>
+                  </li>
+                </ul>
+                <div class="pds-intent-preview__actions">
+                  <button class="pds-button" data-variant="secondary" type="button">Cancel</button>
+                  <button class="pds-button" data-variant="primary" type="button">Confirm</button>
+                </div>
+              </section>
+
+              <aside class="pds-action-audit" data-status="approved" aria-label="Action audit">
+                <header class="pds-action-audit__header">
+                  <h3 class="pds-action-audit__title">Action audit</h3>
+                  <span class="pds-action-audit__status">approved</span>
+                </header>
+                <dl class="pds-action-audit__list">
+                  <dt>Actor</dt>
+                  <dd>service:product-agent</dd>
+                  <dt>Action</dt>
+                  <dd>Approve generated write</dd>
+                  <dt>Request</dt>
+                  <dd>req_8f2c</dd>
+                  <dt>Correlation</dt>
+                  <dd>corr_19ab</dd>
+                </dl>
+              </aside>
+
+              <aside class="pds-undo-compensation-state" data-state="available" role="status" aria-live="polite" aria-label="Undo and compensation state">
+                <div class="pds-undo-compensation-state__copy">
+                  <span class="pds-undo-compensation-state__state">available</span>
+                  <h3 class="pds-undo-compensation-state__title">Undo window is open</h3>
+                  <p class="pds-undo-compensation-state__detail">The write can be reversed until the downstream system finalizes the change.</p>
+                  <p class="pds-undo-compensation-state__deadline">Expires in 9 minutes</p>
+                </div>
+                <div class="pds-undo-compensation-state__action">
+                  <button class="pds-button" data-variant="secondary" type="button">Undo</button>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-overlay-surface">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Overlay layer</h2>
+                <p class="pds-surface__subtitle">Shared dialog, drawer, popover, tooltip, and confirmation surfaces keep focus and governance behavior consistent.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="accent">Accessible</span>
+              </div>
+            </header>
+            <div class="pds-surface__body">
+              <div class="pds-reference-overlay-grid">
+                <section class="pds-dialog pds-reference-dialog-preview" data-size="sm" role="dialog" aria-modal="true" aria-labelledby="reference-dialog-title">
+                  <header class="pds-dialog__header">
+                    <div>
+                      <h2 id="reference-dialog-title">Review required</h2>
+                      <p>Modal work keeps the title, description, body, and actions in predictable regions.</p>
+                    </div>
+                    <button class="pds-button" data-variant="quiet" type="button">Close</button>
+                  </header>
+                  <div class="pds-dialog__body">
+                    <div class="pds-confirm-dialog__body">
+                      <strong>Promote this package?</strong>
+                      <span>Confirmation dialogs use the same modal shell and reserve danger styling for destructive choices.</span>
+                    </div>
+                  </div>
+                  <footer class="pds-dialog__footer">
+                    <button class="pds-button" data-variant="secondary" type="button">Cancel</button>
+                    <button class="pds-button" data-variant="primary" type="button">Confirm</button>
+                  </footer>
+                </section>
+
+                <div class="pds-drawer-backdrop pds-reference-drawer-backdrop" data-side="right">
+                  <aside class="pds-drawer pds-reference-drawer-preview" data-side="right" data-size="sm" role="dialog" aria-modal="true" aria-labelledby="reference-drawer-title">
+                    <header class="pds-drawer__header">
+                      <div>
+                        <h2 id="reference-drawer-title">Evidence details</h2>
+                        <p>Drawers support dense review without losing the parent workspace.</p>
+                      </div>
+                      <button class="pds-button" data-variant="quiet" type="button">Close</button>
+                    </header>
+                    <div class="pds-drawer__body">
+                      <dl class="pds-reference-overlay-list">
+                        <div>
+                          <dt>Status</dt>
+                          <dd>Ready for review</dd>
+                        </div>
+                        <div>
+                          <dt>Owner</dt>
+                          <dd>Operations</dd>
+                        </div>
+                      </dl>
+                    </div>
+                    <footer class="pds-drawer__footer">
+                      <button class="pds-button" data-variant="secondary" type="button">Open record</button>
+                    </footer>
+                  </aside>
+                </div>
+
+                <div class="pds-reference-popover-demo">
+                  <button class="pds-popover-trigger" type="button" aria-haspopup="dialog" aria-expanded="true" aria-controls="reference-popover">
+                    <span class="pds-popover-trigger__label">More actions</span>
+                    <span class="pds-popover-trigger__badge">3</span>
+                  </button>
+                  <div id="reference-popover" class="pds-popover pds-reference-popover-preview" data-open="true" data-size="sm" role="dialog" aria-label="More actions">
+                    <strong>Context actions</strong>
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Assign</button>
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Escalate</button>
+                    <span class="pds-tooltip" data-position="top">
+                      <button class="pds-button" data-size="sm" data-variant="quiet" type="button" aria-describedby="reference-tooltip">Why disabled?</button>
+                      <span id="reference-tooltip" class="pds-tooltip__content" role="tooltip">Policy blocks this action until evidence is attached.</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pds-surface pds-reference-color-surface">
+            <header class="pds-surface__header">
+              <div class="pds-surface__copy">
+                <h2 class="pds-surface__title">Color rhythm</h2>
+                <p class="pds-surface__subtitle">PDS blue stays primary while gradients add depth at focused and selected moments.</p>
+              </div>
+              <div class="pds-surface__actions">
+                <span class="pds-badge" data-tone="success">Tokenized</span>
+              </div>
+            </header>
+            <div class="pds-surface__body">
+              <div class="pds-reference-swatches" aria-label="PDS color and gradient samples">
+                <div class="pds-reference-swatch is-canvas">
+                  <strong>Canvas</strong>
+                  <small>Layered background</small>
+                </div>
+                <div class="pds-reference-swatch is-panel">
+                  <strong>Panel</strong>
+                  <small>Work surface</small>
+                </div>
+                <div class="pds-reference-swatch is-accent">
+                  <strong>Accent</strong>
+                  <small>Primary action</small>
+                </div>
+                <div class="pds-reference-swatch is-border">
+                  <strong>Border</strong>
+                  <small>Focus moment</small>
+                </div>
+                <div class="pds-reference-swatch is-intelligence">
+                  <strong>Intelligence</strong>
+                  <small>Assistive cue</small>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="pds-reference-grid">
+            <section class="pds-surface" id="request" data-density="comfortable">
+              <header class="pds-surface__header">
+                <div class="pds-surface__copy">
+                  <h2 class="pds-surface__title">Service request</h2>
+                  <p class="pds-surface__subtitle">Use stable, generated metadata for product-owned forms.</p>
+                </div>
+                <div class="pds-surface__actions">
+                  <span class="pds-badge" data-tone="danger">2 fields</span>
+                </div>
+              </header>
+              <div class="pds-surface__body">
+                <div class="pds-validation-summary" role="alert" aria-live="assertive">
+                  <div class="pds-validation-summary__title">Review the highlighted fields</div>
+                  <ul class="pds-validation-summary__list">
+                    <li><strong>Request type</strong>: Select the work category.</li>
+                    <li><strong>Owner</strong>: Assign a responsible reviewer.</li>
+                  </ul>
+                </div>
+
+                <div class="pds-feedback-state" data-kind="error" role="alert" aria-live="assertive">
+                  <div class="pds-feedback-state__mark" aria-hidden="true"></div>
+                  <div class="pds-feedback-state__copy">
+                    <div class="pds-feedback-state__title">Save failed</div>
+                    <div class="pds-feedback-state__detail">The request could not be stored. Keep the user near the failed action and expose traceable IDs.</div>
+                  </div>
+                  <dl class="pds-feedback-state__metadata">
+                    <div class="pds-feedback-state__metadata-item">
+                      <dt>Request ID</dt>
+                      <dd>req_7db42</dd>
+                    </div>
+                    <div class="pds-feedback-state__metadata-item">
+                      <dt>Correlation ID</dt>
+                      <dd>corr_91f0a</dd>
+                    </div>
+                  </dl>
+                  <div class="pds-feedback-state__action">
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Retry</button>
+                  </div>
+                </div>
+
+                <div class="pds-feedback-state" data-kind="loading" role="status" aria-live="polite" aria-busy="true">
+                  <div class="pds-feedback-state__mark" aria-hidden="true"></div>
+                  <div class="pds-feedback-state__copy">
+                    <div class="pds-feedback-state__title">Loading generated fields</div>
+                    <div class="pds-feedback-state__detail">Skeleton structure preserves layout while contract metadata arrives.</div>
+                  </div>
+                  <div class="pds-feedback-state__body">
+                    <div class="pds-skeleton" role="status" aria-label="Loading field preview" aria-busy="true">
+                      <span class="pds-skeleton__line" aria-hidden="true"></span>
+                      <span class="pds-skeleton__line" aria-hidden="true"></span>
+                      <span class="pds-skeleton__line" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pds-inline-alert" data-tone="warning" role="alert" aria-live="assertive">
+                  <span class="pds-inline-alert__mark" aria-hidden="true"></span>
+                  <span class="pds-inline-alert__copy">
+                    <strong>Policy review required</strong>
+                    <span>Confirm the generated permission state before submitting this request.</span>
+                  </span>
+                  <span class="pds-inline-alert__action">
+                    <button class="pds-button" data-size="sm" data-variant="quiet" type="button">Explain</button>
+                  </span>
+                </div>
+
+                <form class="pds-form-layout" data-columns="two">
+                  <div class="pds-form-layout__fields">
+                    <label class="pds-field" data-invalid="true" for="request-type">
+                      <span class="pds-field__label">Request type *</span>
+                      <select class="pds-input pds-select" id="request-type" aria-invalid="true" aria-describedby="request-type-error">
+                        <option value="">Select a type</option>
+                        <option>Credentialing</option>
+                        <option>Facilities</option>
+                        <option>Support</option>
+                      </select>
+                      <span class="pds-field__error" id="request-type-error" role="alert">Select the work category.</span>
+                    </label>
+
+                    <label class="pds-field" data-invalid="true" for="owner">
+                      <span class="pds-field__label">Owner *</span>
+                      <input class="pds-input" id="owner" aria-invalid="true" aria-describedby="owner-error" placeholder="Reviewer name" />
+                      <span class="pds-field__error" id="owner-error" role="alert">Assign a responsible reviewer.</span>
+                    </label>
+
+                    <label class="pds-field" for="approver-group">
+                      <span class="pds-field__label">Approver group</span>
+                      <span class="pds-lookup-select" data-loading="true" data-state="loading">
+                        <select class="pds-input pds-select" id="approver-group" disabled aria-busy="true">
+                          <option>Loading lookup values...</option>
+                        </select>
+                        <small class="pds-lookup-select__status" role="status" aria-live="polite">Loading lookup values...</small>
+                      </span>
+                    </label>
+
+                    <label class="pds-field" for="due-date">
+                      <span class="pds-field__label">Due date</span>
+                      <input class="pds-input pds-date-input" id="due-date" type="date" aria-describedby="due-date-hint" />
+                      <span class="pds-field__hint" id="due-date-hint">
+                        <span class="pds-field-metadata">
+                          <span class="pds-field-metadata__tags">
+                            <em>Generated</em>
+                            <em>Required at submit</em>
+                          </span>
+                          <span class="pds-field-metadata__text">Use the product model hint when the field has validation guidance.</span>
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="pds-field" for="review-start">
+                      <span class="pds-field__label">Review start</span>
+                      <input class="pds-input pds-datetime-input" id="review-start" type="datetime-local" value="2026-06-15T09:30" />
+                    </label>
+
+                    <label class="pds-field" for="cutoff-time">
+                      <span class="pds-field__label">Cutoff time</span>
+                      <input class="pds-input pds-time-input" id="cutoff-time" type="time" value="16:30" />
+                    </label>
+
+                    <label class="pds-field" for="review-window">
+                      <span class="pds-field__label">Review window</span>
+                      <span class="pds-input-group">
+                        <span class="pds-input-group__affix pds-input-group__prefix">Within</span>
+                        <span class="pds-input-group__control">
+                          <input class="pds-input" id="review-window" type="number" value="3" min="1" />
+                        </span>
+                        <span class="pds-input-group__affix pds-input-group__suffix">business days</span>
+                      </span>
+                    </label>
+
+                    <label class="pds-field" for="supporting-teams">
+                      <span class="pds-field__label">Supporting teams</span>
+                      <select class="pds-input pds-select pds-multi-select" id="supporting-teams" multiple size="4" aria-describedby="supporting-teams-hint">
+                        <option selected>Compliance</option>
+                        <option>Operations</option>
+                        <option selected>Security</option>
+                        <option>Training</option>
+                      </select>
+                      <span class="pds-field__hint" id="supporting-teams-hint">Use native multi-select behavior for generated array fields.</span>
+                    </label>
+
+                    <label class="pds-field pds-field--file-upload" for="evidence-files">
+                      <span class="pds-field__label">Evidence files</span>
+                      <span class="pds-file-upload">
+                        <input class="pds-file-upload__input" id="evidence-files" type="file" multiple accept=".csv,.pdf,.png" aria-describedby="evidence-files-hint" />
+                        <span class="pds-file-upload__summary">Attach policy, report, or screenshot evidence.</span>
+                      </span>
+                      <span class="pds-field__hint" id="evidence-files-hint">Accepted formats: CSV, PDF, and PNG.</span>
+                    </label>
+
+                    <label class="pds-field" for="summary">
+                      <span class="pds-field__label">Summary</span>
+                      <textarea class="pds-input pds-textarea" id="summary" rows="4">Prepare onboarding materials for a regional office.</textarea>
+                    </label>
+                  </div>
+
+                  <fieldset class="pds-field-group">
+                    <div class="pds-field-group__header">
+                      <div>
+                        <legend class="pds-field-group__legend">Release posture</legend>
+                        <p class="pds-field-group__description">Evidence and access behavior are explicit choices.</p>
+                      </div>
+                      <div class="pds-field-group__actions">
+                        <span class="pds-badge">Governed</span>
+                      </div>
+                    </div>
+                    <div class="pds-field-group__body pds-reference-stack">
+                      <label class="pds-choice" for="retain-evidence">
+                        <input id="retain-evidence" type="checkbox" checked />
+                        <span class="pds-choice__body">
+                          <span class="pds-choice__label">Retain evidence</span>
+                          <span class="pds-choice__detail">Store validation output with the release package.</span>
+                        </span>
+                      </label>
+                      <div class="pds-switch-field">
+                        <button class="pds-switch" id="approval-switch" type="button" role="switch" aria-checked="true" aria-labelledby="approval-switch-label">
+                          <span class="pds-switch__thumb" aria-hidden="true"></span>
+                        </button>
+                        <span class="pds-switch-field__body">
+                          <span class="pds-switch-field__label" id="approval-switch-label">Require approval</span>
+                          <span class="pds-switch-field__detail">Block promotion until all required checks pass.</span>
+                        </span>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div class="pds-form-layout__footer">
+                    <button class="pds-button" data-variant="quiet" type="button">Cancel</button>
+                    <button class="pds-button" data-variant="primary" type="button">Save request</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <section class="pds-surface" id="queue" data-density="comfortable">
+              <header class="pds-surface__header">
+                <div class="pds-surface__copy">
+                  <h2 class="pds-surface__title">Work queue</h2>
+                  <p class="pds-surface__subtitle">Compact tabular surfaces stay scannable during repeated work.</p>
+                </div>
+                <div class="pds-surface__actions">
+                  <button class="pds-button" data-size="sm" type="button">Refresh</button>
+                </div>
+              </header>
+              <div class="pds-surface__body pds-reference-stack">
+                <div class="pds-alert" data-tone="accent" role="status">
+                  <div class="pds-alert__title">Framework evidence is current</div>
+                  <div class="pds-alert__detail">Token, component, and scaffold checks have retained artifacts.</div>
+                </div>
+
+                <div class="pds-data-grid-toolbar" data-density="compact" role="toolbar" aria-label="Work queue controls">
+                  <div class="pds-data-grid-toolbar__primary">
+                    <div class="pds-data-grid-toolbar__search">
+                      <input type="search" aria-label="Search work queue" placeholder="Search queue" />
+                    </div>
+                    <div class="pds-data-grid-toolbar__filters">
+                      <button class="pds-data-grid-filter-trigger" data-active="true" data-state="active" type="button" aria-expanded="false">
+                        <span class="pds-data-grid-filter-trigger__label">Filters</span>
+                        <span class="pds-data-grid-filter-trigger__count" aria-label="2 active filters">2</span>
+                      </button>
+                      <button class="pds-data-grid-column-trigger" data-active="true" data-state="custom" type="button" aria-expanded="false">
+                        <span class="pds-data-grid-column-trigger__label">Columns</span>
+                        <span class="pds-data-grid-column-trigger__count" aria-label="4 of 5 columns selected">4/5</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="pds-data-grid-toolbar__secondary">
+                    <div class="pds-data-grid-toolbar__summary">
+                      <strong>2 shown</strong>
+                      <span>Evidence current</span>
+                    </div>
+                    <div class="pds-data-grid-toolbar__actions">
+                      <fieldset class="pds-data-grid-density-control">
+                        <legend class="pds-data-grid-density-control__legend">Density</legend>
+                        <div class="pds-data-grid-density-control__options">
+                          <label class="pds-data-grid-density-control__option" data-selected="true" title="Compact density">
+                            <input type="radio" name="queue-density" value="compact" checked />
+                            <span class="pds-data-grid-density-control__icon" data-density="compact" aria-hidden="true">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                            </span>
+                            <span class="pds-data-grid-density-control__sr-label">Compact</span>
+                          </label>
+                          <label class="pds-data-grid-density-control__option" title="Comfortable density">
+                            <input type="radio" name="queue-density" value="comfortable" />
+                            <span class="pds-data-grid-density-control__icon" data-density="comfortable" aria-hidden="true">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                            </span>
+                            <span class="pds-data-grid-density-control__sr-label">Comfortable</span>
+                          </label>
+                        </div>
+                      </fieldset>
+                      <button class="pds-button" data-size="sm" data-variant="primary" type="button">New request</button>
+                    </div>
+                  </div>
+                </div>
+
+                <section class="pds-data-grid-filter-panel" aria-label="Filter panel reference">
+                  <header class="pds-data-grid-filter-panel__header">
+                    <div class="pds-data-grid-filter-panel__copy">
+                      <strong class="pds-data-grid-filter-panel__title">Advanced filter</strong>
+                      <span class="pds-data-grid-filter-panel__summary">Generated fields and governed query controls</span>
+                    </div>
+                    <div class="pds-data-grid-filter-panel__controls">
+                      <div class="pds-segmented-control" role="group" aria-label="Reference filter join mode">
+                        <button class="pds-segmented-control__option" data-selected="true" type="button" aria-pressed="true">AND</button>
+                        <button class="pds-segmented-control__option" type="button" aria-pressed="false">OR</button>
+                      </div>
+                    </div>
+                  </header>
+                  <div class="pds-data-grid-filter-panel__body">
+                    <section class="pds-data-grid-filter-group" data-root="true">
+                      <div class="pds-data-grid-filter-group__rules">
+                        <div class="pds-data-grid-filter-rule">
+                          <select class="pds-input pds-select" aria-label="Filter field">
+                            <option>Status</option>
+                          </select>
+                          <select class="pds-input pds-select" aria-label="Filter operator">
+                            <option>Equals</option>
+                          </select>
+                          <select class="pds-input pds-select" aria-label="Filter value">
+                            <option>Needs review</option>
+                          </select>
+                          <button class="pds-button" data-size="sm" data-variant="quiet" type="button">Remove</button>
+                        </div>
+                        <div class="pds-data-grid-filter-empty" role="status">
+                          <span>No nested filters in this group.</span>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="pds-data-grid-filter-panel__actions">
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Add filter</button>
+                    <button class="pds-button" data-size="sm" data-variant="primary" type="button">Apply</button>
+                  </div>
+                </section>
+
+                <div class="pds-data-grid-control-popover pds-reference-inline-popover" data-size="sm" role="dialog" aria-label="Work queue column chooser">
+                  <div class="pds-data-grid-column-chooser">
+                    <div class="pds-data-grid-column-chooser__header">
+                      <div>
+                        <strong>Column chooser</strong>
+                        <span>4 of 5 selected</span>
+                      </div>
+                    </div>
+                    <label class="pds-data-grid-column-chooser__search">
+                      <span>Find columns</span>
+                      <input type="search" value="status" readonly />
+                    </label>
+                    <div class="pds-data-grid-column-chooser__actions">
+                      <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Save view</button>
+                      <button class="pds-button" data-size="sm" data-variant="secondary" type="button">Reset</button>
+                    </div>
+                    <div class="pds-data-grid-column-chooser__options">
+                      <fieldset class="pds-data-grid-column-chooser__group">
+                        <legend class="pds-data-grid-column-chooser__group-title">Generated fields</legend>
+                        <label class="pds-data-grid-column-chooser__option">
+                          <input type="checkbox" checked />
+                          <span>
+                            <b>Request</b>
+                            <small><span>request_name</span><em>String</em></small>
+                          </span>
+                        </label>
+                        <label class="pds-data-grid-column-chooser__option">
+                          <input type="checkbox" checked />
+                          <span>
+                            <b>Status</b>
+                            <small><span>status</span><em>Enum</em></small>
+                          </span>
+                        </label>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pds-data-grid" data-density="compact" data-row-action="true" role="region" aria-label="Work queue">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th aria-sort="ascending" data-resizable="true">
+                          <div class="pds-data-grid__header-cell">
+                            <button class="pds-data-grid-sort-button" data-active="true" data-direction="asc" type="button" aria-label="Sort Request descending">
+                              <span class="pds-data-grid-sort-button__label">Request</span>
+                              <span class="pds-data-grid-sort-button__indicator" aria-hidden="true">ASC</span>
+                            </button>
+                            <button class="pds-data-grid__resizer" type="button" aria-label="Resize Request" title="Drag to resize column"></button>
+                          </div>
+                        </th>
+                        <th aria-sort="none">
+                          <button class="pds-data-grid-sort-button" type="button" aria-label="Sort Region ascending">
+                            <span class="pds-data-grid-sort-button__label">Region</span>
+                          </button>
+                        </th>
+                        <th><span class="pds-data-grid__head is-center">Status</span></th>
+                        <th><span class="pds-data-grid__head is-end">Due</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr tabindex="0">
+                        <td>Provider onboarding</td>
+                        <td>Northwest</td>
+                        <td data-align="center"><span class="pds-badge" data-tone="accent">Review</span></td>
+                        <td data-align="end">Jun 12</td>
+                      </tr>
+                      <tr tabindex="0" aria-selected="true">
+                        <td>Facilities update</td>
+                        <td>Central</td>
+                        <td data-align="center"><span class="pds-badge" data-tone="success">Approved</span></td>
+                        <td data-align="end">Jun 17</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <nav class="pds-data-grid-pagination" aria-label="Work queue pagination">
+                  <div class="pds-data-grid-pagination__summary" aria-live="polite">
+                    <strong>1-2 of 2</strong>
+                    <span>Page 1 of 1</span>
+                    <span>22 ms</span>
+                  </div>
+                  <div class="pds-data-grid-pagination__controls">
+                    <label class="pds-data-grid-pagination__page-size">
+                      <span>Rows</span>
+                      <select aria-label="Rows per page">
+                        <option>25</option>
+                        <option>50</option>
+                      </select>
+                    </label>
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button" disabled>First</button>
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button" disabled>Prev</button>
+                    <button class="pds-button" data-size="sm" data-variant="secondary" type="button" disabled>Next</button>
+                  </div>
+                </nav>
+
+                <div class="pds-tabs">
+                  <div class="pds-tabs__list" role="tablist" aria-label="Queue detail views">
+                    <button class="pds-tabs__tab" id="notes-tab" type="button" role="tab" aria-selected="true" aria-controls="notes-panel">Notes</button>
+                    <button class="pds-tabs__tab" id="history-tab" type="button" role="tab" aria-selected="false" aria-controls="history-panel">History</button>
+                  </div>
+                  <section class="pds-tabs__panel" id="notes-panel" role="tabpanel" aria-labelledby="notes-tab">
+                    <div class="pds-empty-state" role="status" data-tone="neutral">
+                      <div class="pds-empty-state__title">No notes yet</div>
+                      <div class="pds-empty-state__detail">Add the first note after a request is assigned.</div>
+                      <div class="pds-empty-state__action">
+                        <button class="pds-button" data-variant="secondary" type="button">Add note</button>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="pds-tabs__panel" id="history-panel" role="tabpanel" aria-labelledby="history-tab" hidden>
+                    <p>No changes recorded.</p>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="pds-toast-region" data-position="bottom-end" role="region" aria-label="Notifications" aria-live="polite">
+      <div class="pds-toast" data-tone="success" role="status" aria-live="polite">
+        <span class="pds-toast__mark" aria-hidden="true"></span>
+        <span class="pds-toast__copy">
+          <strong>Workspace preference saved</strong>
+          <span>Compact density and visible columns were retained.</span>
+        </span>
+        <dl class="pds-toast__metadata">
+          <div class="pds-toast__metadata-item">
+            <dt>Request ID</dt>
+            <dd>req_2f91</dd>
+          </div>
+        </dl>
+        <button class="pds-toast__dismiss" type="button" aria-label="Dismiss notification">
+          <span aria-hidden="true">x</span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

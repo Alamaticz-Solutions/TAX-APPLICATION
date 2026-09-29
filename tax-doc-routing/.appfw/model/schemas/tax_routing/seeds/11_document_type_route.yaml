@@ -1,0 +1,119 @@
+# The document type / folder routing table (business spec 3.4), including the requirement flags
+# added in this change (docs/architecture/dynamic-form-engine-design.md section 3). This is what
+# the Upload Documents screen's "document types and their requirements" table now reads instead
+# of frontend/src/features/shared/config/documentTypes.ts's hardcoded DOCUMENT_TYPES array.
+# `document_type` matches 10_field_option_value.yaml's document_type option codes.
+- entity_type: DocumentTypeRoute
+  schema: tax_routing
+  columns:
+  - id
+  - document_type
+  - business_name
+  - external_folder
+  - internal_folder
+  - note
+  - allows_entity
+  - requires_k1_attachments
+  - requires_form_8308_attachments
+  - supports_password_protection
+  - is_external_only
+  records:
+  - id: 0c3590ab-750f-4e2e-80bd-d6a473f4388d
+    document_type: K-1
+    business_name: Schedule K-1
+    external_folder: K-1s
+    internal_folder: 4. Tax Documents
+    note: Batches of 3,000+ possible
+    allows_entity: true
+    requires_k1_attachments: true
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: false
+  - id: dbdc68b4-2b16-4847-8a4d-3448fc3f0d9a
+    document_type: Draft K-1
+    business_name: Draft Schedule K-1
+    external_folder: K-1s
+    internal_folder: 4. Tax Documents
+    note: Preliminary K-1
+    allows_entity: true
+    requires_k1_attachments: true
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: false
+  - id: 51571a87-50b4-44d6-9e30-fca083b7e532
+    document_type: Tax Return
+    business_name: Tax Return (1040/1065/1120)
+    external_folder: Tax Returns
+    internal_folder: 7. Tax Returns
+    note: Personal, partnership, or corporate
+    allows_entity: true
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: false
+  - id: a5316cd4-82dc-416e-96e7-888dee98b50a
+    document_type: Income Statement
+    business_name: Income Statement
+    external_folder: Loan Assistance
+    internal_folder: Loan Assistance
+    note: Financial statement for loans
+    allows_entity: true
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: false
+  - id: a8fc0b20-86c4-4ba9-bda6-87d4d2b85ad5
+    document_type: Balance Sheet
+    business_name: Balance Sheet
+    external_folder: Loan Assistance
+    internal_folder: Loan Assistance
+    note: Financial statement for loans
+    allows_entity: true
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: false
+  - id: a2c2857e-b460-44dc-a15d-c7b857eea201
+    document_type: S-Corp Election
+    business_name: S-Corp Election
+    external_folder: Signature Requests
+    internal_folder: null
+    note: Requires signature. External only.
+    allows_entity: false
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: true
+  - id: bb24b9bd-f575-4b10-9821-0c8fd6ddd97e
+    document_type: S-Corp
+    business_name: S-Corporation
+    external_folder: Signature Requests
+    internal_folder: null
+    note: Distinct from S-Corp Election. Added Jan 2025. External only.
+    allows_entity: false
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: true
+  - id: 8535a633-b7b4-4f14-a937-b21ee6d2115f
+    document_type: Form 8308
+    business_name: Form 8308
+    external_folder: K-1s
+    internal_folder: null
+    note: Partnership interest sale/exchange. External only.
+    allows_entity: true
+    requires_k1_attachments: false
+    requires_form_8308_attachments: true
+    supports_password_protection: true
+    is_external_only: true
+  - id: 7231909b-8997-4822-9cbf-bc303ff483f9
+    document_type: Extensions
+    business_name: Tax Extension
+    external_folder: Tax Returns
+    internal_folder: null
+    note: Filing extension documents. External only.
+    allows_entity: false
+    requires_k1_attachments: false
+    requires_form_8308_attachments: false
+    supports_password_protection: true
+    is_external_only: true

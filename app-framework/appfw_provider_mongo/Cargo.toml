@@ -1,0 +1,15 @@
+[package]
+name = "appfw-provider-mongo"
+version = "0.2.0"
+edition = "2021"
+description = "MongoDB provider implementation support for App Framework."
+publish = ["pds-app-framework-crates"]
+
+[dependencies]
+appfw_runtime = { package = "appfw-runtime", version = "0.2.0", path = "../appfw_runtime", registry = "pds-app-framework-crates", default-features = false }
+bson = { version = "2.0", features = ["chrono-0_4"] }
+chrono = { version = "0.4", features = ["serde"] }
+futures = "0.3"
+mongodb = "3.1"
+serde_json = "1.0"
+uuid = { version = "1", features = ["serde", "v4"] }

@@ -1,0 +1,40 @@
+# RolePermission — which permissions a role grants, and at what scope. `scope = own` means the
+# row filter is {owner_field: {_eq: caller's app_user id}}; `scope = all` adds no filter.
+# See docs/architecture/rbac-design.md sections 3-4.
+
+- id: ccf91ea9-d77f-4893-a9c0-61add09302c1
+  name: RolePermission
+  is_table: true
+  indexes:
+  - role_id
+  facets:
+  - audited
+  constraints:
+  - uq_role_permission UNIQUE (role_id, permission_id)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: role_id
+    caption: Role
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Role
+
+  - name: permission_id
+    caption: Permission
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Permission
+
+  - name: scope
+    caption: Scope
+    is_required: true
+    data_type: String
+    default_value: all
+    # "own" | "all". Enforced as a CHECK in the DDL facet below; the generator does not have a
+    # dedicated enum for a two-value column shared across just this table.

@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "status": "not-run",
+  "static_scaffold_only": true,
+  "template_only": true,
+  "candidate_ready": false,
+  "release_ready": false,
+  "readiness_effect": "This compatibility-named input is diagnostic-only. A non-placeholder replacement may satisfy a legacy store-track condition, but it cannot establish candidate or release readiness. Candidate readiness belongs to the future source-bound mobile candidate checker, and release authority remains external.",
+  "verifier_contract": {
+    "authoritative": false,
+    "mobile_test_treats_placeholder_as_release_ready": false,
+    "successor": "source-bound-mobile-candidate-checker",
+    "legacy_diagnostic_requires": [
+      "store or enterprise track name and submission/build identifier",
+      "signed binary digest, signing identity, runtime version, and update channel",
+      "store metadata approval or release-authority disposition tied to the submitted build"
+    ]
+  },
+  "replacement_evidence_schema": {
+    "status": "submitted-or-certified",
+    "legacy_condition_satisfied": true,
+    "candidate_ready": false,
+    "release_ready": false,
+    "template_only": false,
+    "required_fields": [
+      "distribution_channel",
+      "track_name",
+      "submitted_build_id",
+      "signed_binary_digest",
+      "signing_identity",
+      "runtime_version",
+      "update_channel",
+      "store_metadata_status",
+      "evidence_collected_by",
+      "evidence_collected_at"
+    ]
+  },
+  "future_candidate_checker_inputs": [
+    "TestFlight build certification",
+    "Google Play internal or closed-track build certification",
+    "enterprise MDM release certification when applicable",
+    "signed binary digest and runtime version evidence",
+    "store metadata approval or release-authority disposition"
+  ],
+  "notes": [
+    "This file intentionally does not claim store-track certification.",
+    "It exists so mobile-test can retain the legacy diagnostic location while showing the current static-scaffold posture.",
+    "Even a fully populated replacement remains non-authoritative until evaluated by the future source-bound mobile candidate checker."
+  ]
+}

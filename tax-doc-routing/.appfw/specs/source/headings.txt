@@ -1,0 +1,95 @@
+[Heading 1] 1. Product Overview
+[Heading 2] 1.1 Business Problem
+[Heading 2] 1.2 What the Application Does
+[Heading 2] 1.3 Record Types
+[Heading 2] 1.4 Key Outcomes
+[Heading 1] 2. User Roles and Permissions
+[Heading 2] 2.1 Role Definitions
+[Heading 3] Standard User (Tax Staff)
+[Heading 3] Administrator (Tax Admin)
+[Heading 2] 2.2 Permission Matrix
+[Heading 2] 2.3 Data Scoping
+[Heading 1] 3. Data Model
+[Heading 2] 3.1 Primary Record Fields
+[Heading 2] 3.2 Client (Taxpayer) Fields
+[Heading 2] 3.3 Document Fields (per document row)
+[Heading 2] 3.4 Document Type → Box Folder Routing
+[Heading 2] 3.5 Reference Class — TaxPayerRefData (Taxpayer Reference Table)
+[Heading 3] Fields stored per client
+[Heading 3] GetTaxPayerDetails — how data reaches the case
+[Heading 3] Write-back — UpdatePayerRef_Info
+[Heading 3] Security note — RW Password exposure
+[Heading 2] 3.6 Reference Class — TaxEntityList (Entity Reference Table)
+[Heading 3] Fields stored per entity
+[Heading 3] How entity data reaches the case — two reports, two purposes
+[Heading 3] OracleID — the external join key
+[Heading 3] Entity selection flow on Tab 2
+[Heading 1] 4. Application State Machine
+[Heading 2] 4.1 Stage Overview
+[Heading 2] 4.2 State Transition Table
+[Heading 1] 5. Stage 1 — Collect Client Info
+[Heading 2] 5.1 Business Purpose
+[Heading 2] 5.2 Automated Actions on Stage Entry
+[Heading 2] 5.3 Exception Path — Temp Folder Creation Failure
+[Heading 2] 5.4 Form: Tab 1 — Taxpayer Details
+[Heading 2] 5.5 Form: Tab 2 — Tax Document Collection
+[Heading 2] 5.5a Document Validation Rules
+[Heading 2] 5.6 System Action — Check Client Box Folder
+[Heading 2] 5.7 Confirmation Screen
+[Heading 2] 5.8 Post-Stage Action
+[Heading 1] 6. Stage 2 — PDF Processing
+[Heading 2] 6.1 Business Purpose
+[Heading 2] 6.2 Processing Logic
+[Heading 2] 6.3 Exception Handling
+[Heading 1] 6.4 PDF Password Protection
+[Heading 3] Which Box folders receive encrypted vs unencrypted files
+[Heading 3] Permission model — print-only
+[Heading 3] Two-password architecture
+[Heading 3] Filename convention for protected files
+[Heading 3] Security considerations
+[Heading 1] 7. Stage 3 — Clean Temp Folder
+[Heading 2] 7.1 Business Purpose
+[Heading 2] 7.2 Automated Actions
+[Heading 1] 8. Stage 4 — Resolution
+[Heading 1] 9. Removal / Exit Paths
+[Heading 2] 9.1 Cancel / Withdraw (Administrator Only)
+[Heading 3] Cancellation Form (modal dialog)
+[Heading 3] On Submit
+[Heading 2] 9.2 No Other Exit Paths
+[Heading 1] 10. Stage Transition Business Rules
+[Heading 1] 11. Post-Save Business Logic
+[Heading 2] On New Record Creation
+[Heading 2] On Confirmation Screen Submit (Stage 1 → Stage 2)
+[Heading 2] On PDF Processing (Stage 2)
+[Heading 2] On Stage 3 — Clean Temp Folder
+[Heading 1] 12. Portal and Dashboard Specification
+[Heading 2] 12.1 Portal Structure
+[Heading 2] 12.2 Standard User Dashboard — Work I Need To Do Grid
+[Heading 2] 12.3 Administrator Dashboard — Work I Need To Do Grid
+[Heading 2] 12.4 Case Action Menu
+[Heading 1] 13. Notification and Email Specification
+[Heading 2] 13.1 Email 1 — Exception Notification
+[Heading 2] 13.2 Email 2 — Final Confirmation
+[Heading 1] 14. Integration Contracts (Box API)
+[Heading 3] Box folder architecture
+[Heading 3] 14.1 — Authentication (Box_Token)
+[Heading 3] 14.2 — Create Temporary Folder (PDSBoxFolder)
+[Heading 3] 14.3 — Check Folder Exists (BoxFolder_IDExists)
+[Heading 3] 14.4 — Get Folder Info (GetBoxFolderInfo)
+[Heading 3] 14.5 — Upload File (PDSBoxCreateFile)
+[Heading 3] 14.6 — Read File Content (PDSBoxFileContent)
+[Heading 3] 14.7 — Move File (PDSFileMove)
+[Heading 3] 14.8 — Delete File (DeleteFileContent)
+[Heading 3] 14.9 — Delete Folder (PDSBoxDeleteFolder)
+[Heading 3] 14.10 — Grant Collaborator Access (ProvideCollaboratorAccess)
+[Heading 2] 14.11 — Box File Metadata and Filename Convention
+[Heading 3] What is sent to Box per file upload
+[Heading 3] Filename construction — the metadata strategy
+[Heading 3] Filename construction steps (SetIFFileName logic)
+[Heading 3] Box folder destinations per file
+[Heading 2] 14.11 — Box File Metadata and Filename Convention
+[Heading 3] What is sent to Box per file upload
+[Heading 3] Filename patterns (SetIFFileName data transform)
+[Heading 3] Box folder destinations per file
+[Heading 1] 15. Business Rules Reference
+[Heading 1] 16. Glossary

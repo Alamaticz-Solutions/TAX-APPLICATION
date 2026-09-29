@@ -1,0 +1,19 @@
+# The two roles from business spec section 2.1. Seed data, not code — see
+# docs/architecture/rbac-design.md. Renaming a role or adding a third one is a seed edit, never a
+# code change.
+- entity_type: Role
+  schema: tax_routing
+  columns: [id, code, name, description, is_system, is_active]
+  records:
+  - id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    code: TAX_STAFF
+    name: Tax Staff
+    description: Processes day-to-day tax document routing for the records assigned to them.
+    is_system: true
+    is_active: true
+  - id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    code: TAX_ADMIN
+    name: Tax Admin
+    description: Everything Tax Staff can do, plus full visibility, reassignment and cancel/withdraw.
+    is_system: true
+    is_active: true

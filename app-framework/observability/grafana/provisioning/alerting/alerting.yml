@@ -1,0 +1,19 @@
+# Grafana unified-alerting provisioning.
+#
+# ALERT PATH DECISION: This stack uses Prometheus + Alertmanager as the single
+# source of truth for alert evaluation and routing. Alert rules live in
+# observability/prometheus/alerts.yml and are delivered through
+# observability/alertmanager/alertmanager.yml.
+#
+# To avoid duplicate / conflicting alerts, Grafana-managed alert rules are
+# intentionally NOT defined here. Grafana remains the visualization layer
+# (dashboards in observability/grafana/dashboards). If a future environment
+# wants Grafana to surface Alertmanager alerts, add the Alertmanager data
+# source and an "Alertmanager" contact point here rather than re-authoring the
+# rules — keep one evaluation engine.
+apiVersion: 1
+groups: []
+contactPoints: []
+policies: []
+muteTimes: []
+templates: []

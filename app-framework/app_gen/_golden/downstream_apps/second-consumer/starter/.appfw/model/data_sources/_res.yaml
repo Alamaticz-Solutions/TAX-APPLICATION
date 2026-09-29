@@ -1,0 +1,11 @@
+- name: second_consumer_pg
+  data_source_type: PostgreSQL
+  is_system_schema_host: true
+  description: Disposable package-first consumer provider.
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: second_consumer
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled

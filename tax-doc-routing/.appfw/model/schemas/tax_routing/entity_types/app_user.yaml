@@ -1,0 +1,57 @@
+# AppUser — the caller resolved from the identity token to a stable row. Roles, permissions and
+# record ownership all key off this row's id, never off the token's user_name string directly.
+# See docs/architecture/rbac-design.md.
+
+- id: b714c159-bb3f-49ba-acf1-0fab696b4b9f
+  name: AppUser
+  is_table: true
+  indexes:
+  - user_name
+  facets:
+  - audited
+
+  custom_methods:
+  # No args: resolves the caller from the authenticated token, so a user can only ever read
+  # their own grants this way (docs/architecture/rbac-design.md section 8).
+  - name: my_permissions
+    kind: Query
+    mcp_enabled: false
+    args: []
+    return_type: serde_json::Value
+  constraints:
+  - uq_app_user_tenant_user_name UNIQUE (tenant_id, user_name)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: tenant_id
+    caption: Tenant
+    is_required: true
+    data_type: String
+
+  - name: user_name
+    caption: User Name
+    is_required: true
+    data_type: String
+    # Join key from the authenticated token (UserAuth.user_name). Not shown as a login form;
+    # there is no local password — identity comes from the framework's auth layer.
+
+  - name: display_name
+    caption: Display Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: email
+    caption: Email
+    is_required: false
+    fragment: property-string-email
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true
+    # An inactive user resolves to zero grants regardless of role_permission, so deactivating
+    # someone is enough to remove their access without deleting the audit history.

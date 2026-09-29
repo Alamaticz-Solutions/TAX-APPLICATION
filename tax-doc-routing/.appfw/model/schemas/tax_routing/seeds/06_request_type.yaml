@@ -1,0 +1,11 @@
+# The one request type this product handles today. Adding a second is a new row here plus its
+# own 07_request_type_screen.yaml rows — see docs/architecture/dynamic-form-engine-design.md.
+- entity_type: RequestType
+  schema: tax_routing
+  columns: [id, code, name, description, is_active]
+  records:
+  - id: f714b263-5e10-42e5-be2e-6b186189f8bc
+    code: TAX_DOCUMENT_ROUTING
+    name: Tax Document Routing
+    description: Route a client's tax documents into their permanent storage folders.
+    is_active: true

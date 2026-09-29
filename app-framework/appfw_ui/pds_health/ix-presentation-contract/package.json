@@ -1,0 +1,39 @@
+{
+  "name": "@appfw/pds-ix-presentation-contract",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "React-free channel-neutral PDS Health intelligence presentation contract.",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    },
+    "./recipes": {
+      "types": "./src/recipes.d.ts",
+      "import": "./src/recipes.js",
+      "default": "./src/recipes.js"
+    },
+    "./schema": "./schema/pds.ix.presentation.v1.schema.json",
+    "./recipe-registry": "./registry/pds.ix.recipe-registry.v1.json",
+    "./recipe-registry-schema": "./schema/pds.ix.recipe-registry.v1.schema.json",
+    "./recipe-registration-schema": "./schema/pds.ix.recipe-registration.v1.schema.json",
+    "./fixture": "./fixtures/working-brief.presentation.json"
+  },
+  "files": [
+    "src",
+    "schema",
+    "registry",
+    "fixtures",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test scripts/*.test.mjs && tsc --noEmit --strict --module NodeNext --moduleResolution NodeNext --target ES2022 scripts/recipe-types.fixture.ts",
+    "check:package": "node scripts/check-package.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.18.0",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,567 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:appfw:planning:app-fabric-mobile-auth-profile:v1",
+  "$comment": "Draft 2020-12 validation is necessary but not sufficient. This Prototype schema fixes the local issuer, audience, scope, client, and redirect values. A source-owned semantic checker must additionally enforce unique profile_id/client_id bindings, accepted_profile_ids equality with declared profiles, canonical issuer equality, registry-minted app identity, and positive plus negative proof references.",
+  "title": "App Fabric Mobile Prototype Auth Profile",
+  "description": "Fail-closed local/synthetic public-client and resource-server planning contract. It requires separate browser, iOS, and Android registrations through the real verifier and forbids local bearer bypass; it is not enterprise IdP, candidate, or release evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "profile_version",
+    "lifecycle_stage",
+    "maturity",
+    "candidate_ready",
+    "release_ready",
+    "release_authority",
+    "app_id",
+    "prototype_app_ref",
+    "prototype_identity_authority",
+    "client_profiles",
+    "server",
+    "local_reachability",
+    "audit",
+    "positive_tests",
+    "evidence",
+    "negative_tests"
+  ],
+  "properties": {
+    "schema": {
+      "const": "app_fabric_mobile_auth_profile@1"
+    },
+    "profile_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lifecycle_stage": {
+      "const": "prototype"
+    },
+    "maturity": {
+      "const": "experimental"
+    },
+    "candidate_ready": {
+      "const": false
+    },
+    "release_ready": {
+      "const": false
+    },
+    "release_authority": {
+      "const": "none"
+    },
+    "app_id": {
+      "type": "null",
+      "description": "Pending-registration Prototype profiles have no durable app_id. Only the Fabric registry may mint it under a future versioned contract."
+    },
+    "prototype_app_ref": {
+      "$ref": "#/$defs/stableId",
+      "description": "Namespaced local fixture identity only; never valid as fleet identity or an observation app_id."
+    },
+    "prototype_identity_authority": {
+      "const": "local-fixture-only"
+    },
+    "client_profiles": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/clientProfile"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "$ref": "#/$defs/webClientProfile"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/iosClientProfile"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/androidClientProfile"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issuer_profile",
+        "issuer",
+        "accepted_profile_ids",
+        "signature_verification",
+        "issuer_validation",
+        "audience_validation",
+        "scope_validation",
+        "scope_match",
+        "client_profile_validation",
+        "client_attribution",
+        "token_time_validation",
+        "jwk_rotation",
+        "tenant_context",
+        "authorization_authority",
+        "local_auth_bypass",
+        "arbitrary_bearer_fallback"
+      ],
+      "properties": {
+        "issuer_profile": {
+          "const": "local-synthetic"
+        },
+        "issuer": {
+          "const": "https://127.0.0.1:4455/oidc"
+        },
+        "accepted_profile_ids": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        },
+        "signature_verification": {
+          "const": "required"
+        },
+        "issuer_validation": {
+          "const": "required"
+        },
+        "audience_validation": {
+          "const": "required"
+        },
+        "scope_validation": {
+          "const": "required"
+        },
+        "scope_match": {
+          "const": "exact-registered-set"
+        },
+        "client_profile_validation": {
+          "const": "required"
+        },
+        "client_attribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "token_kind",
+            "claim",
+            "profile_match",
+            "missing_or_conflicting_claim",
+            "id_token_as_api_bearer"
+          ],
+          "properties": {
+            "token_kind": {
+              "const": "access-token"
+            },
+            "claim": {
+              "const": "azp"
+            },
+            "profile_match": {
+              "const": "exact-client-id"
+            },
+            "missing_or_conflicting_claim": {
+              "const": "reject"
+            },
+            "id_token_as_api_bearer": {
+              "const": "reject"
+            }
+          }
+        },
+        "token_time_validation": {
+          "const": "exp-and-nbf-required"
+        },
+        "jwk_rotation": {
+          "const": "cache-refresh-and-unknown-kid-retry-once"
+        },
+        "tenant_context": {
+          "const": "validated-token-and-request-context"
+        },
+        "authorization_authority": {
+          "const": "server-policy"
+        },
+        "local_auth_bypass": {
+          "const": false
+        },
+        "arbitrary_bearer_fallback": {
+          "const": false
+        }
+      }
+    },
+    "local_reachability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_issuer",
+        "ios_simulator",
+        "android_emulator",
+        "physical_device",
+        "issuer_substitution",
+        "tls_trust",
+        "certificate_validation",
+        "certificate_identity"
+      ],
+      "properties": {
+        "canonical_issuer": {
+          "const": "https://127.0.0.1:4455/oidc"
+        },
+        "ios_simulator": {
+          "const": "direct-loopback"
+        },
+        "android_emulator": {
+          "const": "adb-reverse-tcp-4455-to-tcp-4455"
+        },
+        "physical_device": {
+          "const": "out-of-scope"
+        },
+        "issuer_substitution": {
+          "const": "prohibited"
+        },
+        "tls_trust": {
+          "const": "development-ca-explicitly-installed"
+        },
+        "certificate_validation": {
+          "const": "required"
+        },
+        "certificate_identity": {
+          "const": "ip-san-127.0.0.1"
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "client_profile_source",
+        "subject_source",
+        "tenant_source",
+        "request_id",
+        "correlation_id",
+        "token_logging"
+      ],
+      "properties": {
+        "client_profile_source": {
+          "const": "validated-token-profile"
+        },
+        "subject_source": {
+          "const": "validated-token-subject"
+        },
+        "tenant_source": {
+          "const": "validated-authoritative-context"
+        },
+        "request_id": {
+          "const": "required"
+        },
+        "correlation_id": {
+          "const": "required"
+        },
+        "token_logging": {
+          "const": "prohibited"
+        }
+      }
+    },
+    "positive_tests": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "web-authorization-code-pkce",
+          "ios-authorization-code-pkce",
+          "android-authorization-code-pkce",
+          "authorized-api-access-token"
+        ]
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "result_refs"
+      ],
+      "properties": {
+        "status": {
+          "const": "not-executed"
+        },
+        "result_refs": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "negative_tests": {
+      "type": "array",
+      "minItems": 39,
+      "maxItems": 39,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "missing-token",
+          "arbitrary-bearer",
+          "bad-signature",
+          "wrong-algorithm",
+          "unknown-key-id",
+          "revoked-key",
+          "rotated-key-refresh",
+          "discovery-outage",
+          "wrong-issuer",
+          "wrong-audience",
+          "missing-scope",
+          "excessive-scope",
+          "unregistered-client",
+          "missing-azp",
+          "conflicting-client-attribution",
+          "malformed-client-attribution",
+          "cross-client-token-substitution",
+          "id-token-as-api-bearer",
+          "expired-token",
+          "not-yet-valid-token",
+          "excessive-clock-skew",
+          "missing-tenant",
+          "wrong-tenant",
+          "invalid-role",
+          "invalid-policy-claims",
+          "policy-denied",
+          "cross-tenant-identifier-reuse",
+          "cross-tenant-cache-reuse",
+          "missing-state",
+          "state-mismatch",
+          "nonce-mismatch",
+          "missing-pkce-verifier",
+          "wrong-pkce-verifier",
+          "pkce-plain-downgrade",
+          "redirect-uri-mismatch",
+          "authorization-code-replay",
+          "cancelled-login",
+          "renewal-failure",
+          "logout-account-switch-cleanup"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+    },
+    "nonSecretReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "clientProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "channel",
+        "platform",
+        "environment",
+        "kind",
+        "flow",
+        "pkce_method",
+        "authorization_user_agent",
+        "client_id",
+        "redirect_uris",
+        "audiences",
+        "scopes",
+        "validated_client_claim",
+        "embedded_secret",
+        "access_token_custody",
+        "renewal_material_custody",
+        "logout_clears_renewal_material"
+      ],
+      "properties": {
+        "profile_id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "channel": {
+          "enum": [
+            "web-dom",
+            "native"
+          ]
+        },
+        "platform": {
+          "enum": [
+            "browser",
+            "ios",
+            "android"
+          ]
+        },
+        "environment": {
+          "const": "local-development"
+        },
+        "kind": {
+          "const": "oidc-public-client"
+        },
+        "flow": {
+          "const": "authorization-code-pkce"
+        },
+        "pkce_method": {
+          "const": "S256"
+        },
+        "authorization_user_agent": {
+          "const": "system-browser"
+        },
+        "client_id": {
+          "$ref": "#/$defs/nonSecretReference"
+        },
+        "redirect_uris": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonSecretReference"
+          }
+        },
+        "audiences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonSecretReference"
+          }
+        },
+        "scopes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonSecretReference"
+          }
+        },
+        "validated_client_claim": {
+          "const": "azp"
+        },
+        "embedded_secret": {
+          "const": false
+        },
+        "access_token_custody": {
+          "const": "memory"
+        },
+        "renewal_material_custody": {
+          "const": "none"
+        },
+        "logout_clears_renewal_material": {
+          "const": true
+        }
+      }
+    },
+    "webClientProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/clientProfile"
+        },
+        {
+          "properties": {
+            "channel": {
+              "const": "web-dom"
+            },
+            "platform": {
+              "const": "browser"
+            },
+            "client_id": {
+              "const": "local-web-reference"
+            },
+            "redirect_uris": {
+              "const": [
+                "https://127.0.0.1:19006/oauth/callback"
+              ]
+            },
+            "audiences": {
+              "const": [
+                "appfw-api"
+              ]
+            },
+            "scopes": {
+              "const": [
+                "openid",
+                "appfw.read"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "iosClientProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/clientProfile"
+        },
+        {
+          "properties": {
+            "channel": {
+              "const": "native"
+            },
+            "platform": {
+              "const": "ios"
+            },
+            "client_id": {
+              "const": "local-native-ios-reference"
+            },
+            "redirect_uris": {
+              "const": [
+                "com.pdshealth.appfw.reference:/oauth/callback/ios"
+              ]
+            },
+            "audiences": {
+              "const": [
+                "appfw-api"
+              ]
+            },
+            "scopes": {
+              "const": [
+                "openid",
+                "appfw.read"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "androidClientProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/clientProfile"
+        },
+        {
+          "properties": {
+            "channel": {
+              "const": "native"
+            },
+            "platform": {
+              "const": "android"
+            },
+            "client_id": {
+              "const": "local-native-android-reference"
+            },
+            "redirect_uris": {
+              "const": [
+                "com.pdshealth.appfw.reference:/oauth/callback/android"
+              ]
+            },
+            "audiences": {
+              "const": [
+                "appfw-api"
+              ]
+            },
+            "scopes": {
+              "const": [
+                "openid",
+                "appfw.read"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

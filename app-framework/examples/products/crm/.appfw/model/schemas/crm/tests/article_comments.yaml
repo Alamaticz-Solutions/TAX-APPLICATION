@@ -1,0 +1,22 @@
+# ArticleComment - CDM applicationCommon-inspired knowledge feedback coverage.
+
+- name: find_article_comment
+  description: find seeded article comment with NavToOne article
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findArticleComment
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"a471c0de-0000-4000-8000-100000000003"'
+    select: |
+      id,subject,author_name,sentiment,is_internal,article { id,title }
+  expect:
+    data:
+      id: 'a471c0de-0000-4000-8000-100000000003'
+      subject: 'Helpful import notes'
+      author_name: 'Morgan Ops'
+      sentiment: 'Positive'
+      is_internal: false

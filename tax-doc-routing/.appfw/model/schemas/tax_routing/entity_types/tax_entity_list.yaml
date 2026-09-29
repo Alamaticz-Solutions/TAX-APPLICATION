@@ -1,0 +1,53 @@
+- id: 2b280012-9be7-4397-9808-2f7874619306
+  name: TaxEntityList
+  is_table: true
+  indexes:
+  - oracle_id
+  - is_active
+  facets:
+  - concurrency
+
+  custom_methods:
+  - name: list_active_entities
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: limit
+      arg_type: i32
+    - name: offset
+      arg_type: i32
+    return_type: serde_json::Value
+  - name: find_entity_by_oracle_id
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: oracle_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: oracle_id
+    caption: Oracle ID
+    is_required: true
+    data_type: String
+
+  - name: entity_name
+    caption: Entity Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  # Added so the Entity Type filter dropdown in EditDocumentDialog.tsx (business spec 5.4) can
+  # read real entity classifications instead of the static entities.ts lookup table.
+  - name: entity_type
+    caption: Entity Type
+    is_required: true
+    data_type: String
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required

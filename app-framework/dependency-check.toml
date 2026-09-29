@@ -1,0 +1,57 @@
+# App Framework dependency-check policy.
+#
+# These entries are release-evidence acceptances, not hidden ignores. The
+# scanner records every matching finding, reason, owner, source file, and expiry
+# in target/appfw/dependency-check.json. Expired entries fail strict mode.
+
+[osv]
+
+[[osv.accepted]]
+id = "GHSA-5gc2-7c65-8fq8"
+package = "async-graphql"
+ecosystem = "crates.io"
+until = "2026-09-30"
+owner = "App Framework maintainers"
+reason = "async-graphql 7 remediation requires the Axum/HTTP 1 runtime ingress migration; the dependency-check upgrade advice tracks that migration until it is completed."
+
+[[osv.accepted]]
+id = "GHSA-h395-gr6q-cpjc"
+package = "jsonwebtoken"
+ecosystem = "crates.io"
+until = "2026-09-30"
+owner = "App Framework maintainers"
+reason = "jsonwebtoken is transitive through okta-jwt-verifier and regorus; no compatible okta-jwt-verifier patch is available, so replacement or upstream remediation remains tracked dependency debt."
+
+[[osv.accepted]]
+id = "RUSTSEC-2021-0141"
+package = "dotenv"
+ecosystem = "crates.io"
+until = "2026-09-30"
+owner = "App Framework maintainers"
+reason = "dotenv is used for local/dev env loading; replacement with dotenvy remains tracked dependency cleanup and is also recorded in deny.toml."
+
+[[osv.accepted]]
+id = "RUSTSEC-2025-0134"
+package = "rustls-pemfile"
+ecosystem = "crates.io"
+until = "2026-09-30"
+owner = "App Framework maintainers"
+reason = "rustls-pemfile is transitive through reqwest 0.11; direct framework migration to newer reqwest lines remains tracked dependency cleanup and is also recorded in deny.toml."
+
+[[osv.accepted]]
+id = "GHSA-5p2g-fcmc-qvqq"
+package = "image-size"
+ecosystem = "npm"
+version = "1.2.1"
+until = "2026-09-30"
+owner = "Human risk owner"
+reason = "Named human GO 2026-08-18 option 2 (PoC architecture-validation): leftover metro→RN image-size@1.2.1 in native-components has no published advisory-clean metro/image-size; npm's only advertised fix is a forbidden React Native 0.72.17 downgrade. Accept this GHSA on paper only for image-size 1.2.1. Does not claim the advisory is false or fixed. Remove this accept when a published metro or image-size drops GHSA-5p2g-fcmc-qvqq. Do not accept nanoid or ajv."
+
+[[osv.accepted]]
+id = "GHSA-w3rx-r6r6-pgpr"
+package = "image-size"
+ecosystem = "npm"
+version = "1.2.1"
+until = "2026-09-30"
+owner = "Human risk owner"
+reason = "Named human GO 2026-08-18 option 2 (PoC architecture-validation): leftover metro→RN image-size@1.2.1 in native-components has no published advisory-clean metro/image-size; npm's only advertised fix is a forbidden React Native 0.72.17 downgrade. Accept this GHSA on paper only for image-size 1.2.1. Does not claim the advisory is false or fixed. Remove this accept when a published metro or image-size drops GHSA-w3rx-r6r6-pgpr. Do not accept nanoid or ajv."

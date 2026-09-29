@@ -1,0 +1,4 @@
+    is_required: true
+    data_type: Json
+    meta:
+      lang: json

@@ -1,0 +1,489 @@
+# Routing records (business spec section 4/5), read live by My Cases / All Cases / Dashboard
+# instead of frontend/src/features/shared/data/cases.ts's hardcoded `seedCases`. Client fields are
+# a snapshot of TaxPayerRefData taken at creation time (17_tax_payer_ref_data.yaml), matching the
+# `client_reference_id` FK. `assigned_user_id` FKs into 04_app_user.yaml (alex/dana/sarah/mike/lisa).
+# `progress_step` is the count of completed steps out of frontend config/processingSteps.ts's 9.
+- entity_type: TaxRoutingRecord
+  schema: tax_routing
+  columns:
+  - id
+  - status
+  - created_at
+  - updated_at
+  - assigned_user_id
+  - client_first_name
+  - client_last_name
+  - client_full_name
+  - office_location
+  - pds_email
+  - personal_email
+  - additional_email
+  - notification_flag
+  - internal_folder
+  - folder_name
+  - read_write_password
+  - client_reference_id
+  - progress_step
+  records:
+
+  # TDR-1024 — open, Smith
+  - id: 6f0a0001-0000-4a00-9000-000000000001
+    status: collecting_info
+    created_at: "2026-05-12T14:05:00Z"
+    updated_at: "2026-05-12T14:20:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: John
+    client_last_name: Smith
+    client_full_name: John Smith
+    office_location: Boston, MA
+    pds_email: john.smith@pds-demo.com
+    personal_email: john.smith@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Smith_John
+    folder_name: Smith_John
+    read_write_password: placeholder-pw-001234
+    client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    progress_step: 2
+
+  # TDR-1025 — in progress (cleaning_up), Jones
+  - id: 6f0a0001-0000-4a00-9000-000000000002
+    status: cleaning_up
+    created_at: "2026-05-11T09:12:00Z"
+    updated_at: "2026-05-11T15:40:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: Emily
+    client_last_name: Jones
+    client_full_name: Emily Jones
+    office_location: Chicago, IL
+    pds_email: emily.jones@pds-demo.com
+    personal_email: emily.jones@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Jones_Emily
+    folder_name: Jones_Emily
+    read_write_password: placeholder-pw-001235
+    client_reference_id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
+    progress_step: 3
+
+  # TDR-1026 — processing, Brown
+  - id: 6f0a0001-0000-4a00-9000-000000000003
+    status: processing
+    created_at: "2026-05-10T10:30:00Z"
+    updated_at: "2026-05-10T10:52:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: Michael
+    client_last_name: Brown
+    client_full_name: Michael Brown
+    office_location: Denver, CO
+    pds_email: michael.brown@pds-demo.com
+    personal_email: michael.brown@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Brown_Michael
+    folder_name: Brown_Michael
+    read_write_password: placeholder-pw-001236
+    client_reference_id: 9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03
+    progress_step: 5
+
+  # TDR-1027 — open, Davis
+  - id: 6f0a0001-0000-4a00-9000-000000000004
+    status: collecting_info
+    created_at: "2026-05-10T08:45:00Z"
+    updated_at: "2026-05-10T09:00:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: Sarah
+    client_last_name: Davis
+    client_full_name: Sarah Davis
+    office_location: Austin, TX
+    pds_email: sarah.davis@pds-demo.com
+    personal_email: sarah.davis@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Davis_Sarah
+    folder_name: Davis_Sarah
+    read_write_password: placeholder-pw-001237
+    client_reference_id: 9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04
+    progress_step: 2
+
+  # TDR-1019 — processing, Garcia
+  - id: 6f0a0001-0000-4a00-9000-000000000005
+    status: processing
+    created_at: "2026-05-09T13:10:00Z"
+    updated_at: "2026-05-09T13:32:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: Maria
+    client_last_name: Garcia
+    client_full_name: Maria Garcia
+    office_location: Phoenix, AZ
+    pds_email: maria.garcia@pds-demo.com
+    personal_email: maria.garcia@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Garcia_Maria
+    folder_name: Garcia_Maria
+    read_write_password: placeholder-pw-001239
+    client_reference_id: 9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06
+    progress_step: 6
+
+  # TDR-1021 — exception, Smith (see 20_exception_task.yaml)
+  - id: 6f0a0001-0000-4a00-9000-000000000006
+    status: exception
+    created_at: "2026-05-09T11:00:00Z"
+    updated_at: "2026-05-12T13:40:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: John
+    client_last_name: Smith
+    client_full_name: John Smith
+    office_location: Boston, MA
+    pds_email: john.smith@pds-demo.com
+    personal_email: john.smith@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Smith_John
+    folder_name: Smith_John
+    read_write_password: placeholder-pw-001234
+    client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    progress_step: 5
+
+  # TDR-1022 — exception, Jones
+  - id: 6f0a0001-0000-4a00-9000-000000000007
+    status: exception
+    created_at: "2026-05-09T09:30:00Z"
+    updated_at: "2026-05-12T13:33:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    client_first_name: Emily
+    client_last_name: Jones
+    client_full_name: Emily Jones
+    office_location: Chicago, IL
+    pds_email: emily.jones@pds-demo.com
+    personal_email: emily.jones@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Jones_Emily
+    folder_name: Jones_Emily
+    read_write_password: placeholder-pw-001235
+    client_reference_id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
+    progress_step: 3
+
+  # TDR-1023 — exception, Brown
+  - id: 6f0a0001-0000-4a00-9000-000000000008
+    status: exception
+    created_at: "2026-05-08T15:20:00Z"
+    updated_at: "2026-05-12T12:55:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    client_first_name: Michael
+    client_last_name: Brown
+    client_full_name: Michael Brown
+    office_location: Denver, CO
+    pds_email: michael.brown@pds-demo.com
+    personal_email: michael.brown@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Brown_Michael
+    folder_name: Brown_Michael
+    read_write_password: placeholder-pw-001236
+    client_reference_id: 9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03
+    progress_step: 4
+
+  # TDR-1028 — exception, Wilson
+  - id: 6f0a0001-0000-4a00-9000-000000000009
+    status: exception
+    created_at: "2026-05-08T10:05:00Z"
+    updated_at: "2026-05-12T11:58:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    client_first_name: Robert
+    client_last_name: Wilson
+    client_full_name: Robert Wilson
+    office_location: Seattle, WA
+    pds_email: robert.wilson@pds-demo.com
+    personal_email: robert.wilson@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Wilson_Robert
+    folder_name: Wilson_Robert
+    read_write_password: placeholder-pw-001238
+    client_reference_id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
+    progress_step: 2
+
+  # TDR-1030 — open, Kapoor
+  - id: 6f0a0001-0000-4a00-9000-000000000010
+    status: collecting_info
+    created_at: "2026-05-12T09:15:00Z"
+    updated_at: "2026-05-12T09:40:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    client_first_name: Anil
+    client_last_name: Kapoor
+    client_full_name: Anil Kapoor
+    office_location: Atlanta, GA
+    pds_email: anil.kapoor@pds-demo.com
+    personal_email: anil.kapoor@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Kapoor_Anil
+    folder_name: Kapoor_Anil
+    read_write_password: placeholder-pw-001240
+    client_reference_id: 9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07
+    progress_step: 2
+
+  # TDR-1031 — processing, Chen
+  - id: 6f0a0001-0000-4a00-9000-000000000011
+    status: processing
+    created_at: "2026-05-12T10:05:00Z"
+    updated_at: "2026-05-12T10:30:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    client_first_name: Linda
+    client_last_name: Chen
+    client_full_name: Linda Chen
+    office_location: Portland, OR
+    pds_email: linda.chen@pds-demo.com
+    personal_email: linda.chen@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Chen_Linda
+    folder_name: Chen_Linda
+    read_write_password: placeholder-pw-001241
+    client_reference_id: 9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08
+    progress_step: 4
+
+  # TDR-1032 — in progress (cleaning_up), Garcia
+  - id: 6f0a0001-0000-4a00-9000-000000000012
+    status: cleaning_up
+    created_at: "2026-05-11T16:25:00Z"
+    updated_at: "2026-05-11T17:02:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    client_first_name: Maria
+    client_last_name: Garcia
+    client_full_name: Maria Garcia
+    office_location: Phoenix, AZ
+    pds_email: maria.garcia@pds-demo.com
+    personal_email: maria.garcia@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Garcia_Maria
+    folder_name: Garcia_Maria
+    read_write_password: placeholder-pw-001239
+    client_reference_id: 9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06
+    progress_step: 3
+
+  # TDR-1033 — cancelled, Wilson
+  - id: 6f0a0001-0000-4a00-9000-000000000013
+    status: cancelled
+    created_at: "2026-05-06T09:00:00Z"
+    updated_at: "2026-05-07T11:10:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    client_first_name: Robert
+    client_last_name: Wilson
+    client_full_name: Robert Wilson
+    office_location: Seattle, WA
+    pds_email: robert.wilson@pds-demo.com
+    personal_email: robert.wilson@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Wilson_Robert
+    folder_name: Wilson_Robert
+    read_write_password: placeholder-pw-001238
+    client_reference_id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
+    progress_step: 2
+
+  # TDR-10245 — resolved (completed), Smith
+  - id: 6f0a0001-0000-4a00-9000-000000000014
+    status: resolved
+    created_at: "2026-05-12T14:05:00Z"
+    updated_at: "2026-05-12T14:32:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: John
+    client_last_name: Smith
+    client_full_name: John Smith
+    office_location: Boston, MA
+    pds_email: john.smith@pds-demo.com
+    personal_email: john.smith@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Smith_John
+    folder_name: Smith_John
+    read_write_password: placeholder-pw-001234
+    client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    progress_step: 9
+
+  # Completed history, for dashboard counts/chart to look realistic beyond the 14 live-flow rows.
+  - id: 6f0a0001-0000-4a00-9000-000000000101
+    status: resolved
+    created_at: "2026-05-01T10:00:00Z"
+    updated_at: "2026-05-01T10:20:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: John
+    client_last_name: Smith
+    client_full_name: John Smith
+    office_location: Boston, MA
+    pds_email: john.smith@pds-demo.com
+    personal_email: john.smith@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Smith_John
+    folder_name: Smith_John
+    read_write_password: placeholder-pw-001234
+    client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000102
+    status: resolved
+    created_at: "2026-05-02T10:00:00Z"
+    updated_at: "2026-05-02T10:22:00Z"
+    assigned_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    client_first_name: Emily
+    client_last_name: Jones
+    client_full_name: Emily Jones
+    office_location: Chicago, IL
+    pds_email: emily.jones@pds-demo.com
+    personal_email: emily.jones@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Jones_Emily
+    folder_name: Jones_Emily
+    read_write_password: placeholder-pw-001235
+    client_reference_id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000103
+    status: resolved
+    created_at: "2026-05-03T10:00:00Z"
+    updated_at: "2026-05-03T10:24:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    client_first_name: Michael
+    client_last_name: Brown
+    client_full_name: Michael Brown
+    office_location: Denver, CO
+    pds_email: michael.brown@pds-demo.com
+    personal_email: michael.brown@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Brown_Michael
+    folder_name: Brown_Michael
+    read_write_password: placeholder-pw-001236
+    client_reference_id: 9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000104
+    status: resolved
+    created_at: "2026-05-04T10:00:00Z"
+    updated_at: "2026-05-04T10:26:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    client_first_name: Sarah
+    client_last_name: Davis
+    client_full_name: Sarah Davis
+    office_location: Austin, TX
+    pds_email: sarah.davis@pds-demo.com
+    personal_email: sarah.davis@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Davis_Sarah
+    folder_name: Davis_Sarah
+    read_write_password: placeholder-pw-001237
+    client_reference_id: 9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000105
+    status: resolved
+    created_at: "2026-05-05T10:00:00Z"
+    updated_at: "2026-05-05T10:28:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    client_first_name: Robert
+    client_last_name: Wilson
+    client_full_name: Robert Wilson
+    office_location: Seattle, WA
+    pds_email: robert.wilson@pds-demo.com
+    personal_email: robert.wilson@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Wilson_Robert
+    folder_name: Wilson_Robert
+    read_write_password: placeholder-pw-001238
+    client_reference_id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000106
+    status: resolved
+    created_at: "2026-05-06T10:00:00Z"
+    updated_at: "2026-05-06T10:30:00Z"
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    client_first_name: Maria
+    client_last_name: Garcia
+    client_full_name: Maria Garcia
+    office_location: Phoenix, AZ
+    pds_email: maria.garcia@pds-demo.com
+    personal_email: maria.garcia@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Garcia_Maria
+    folder_name: Garcia_Maria
+    read_write_password: placeholder-pw-001239
+    client_reference_id: 9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000107
+    status: resolved
+    created_at: "2026-05-07T10:00:00Z"
+    updated_at: "2026-05-07T10:32:00Z"
+    assigned_user_id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    client_first_name: Anil
+    client_last_name: Kapoor
+    client_full_name: Anil Kapoor
+    office_location: Atlanta, GA
+    pds_email: anil.kapoor@pds-demo.com
+    personal_email: anil.kapoor@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Kapoor_Anil
+    folder_name: Kapoor_Anil
+    read_write_password: placeholder-pw-001240
+    client_reference_id: 9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000108
+    status: resolved
+    created_at: "2026-05-08T10:00:00Z"
+    updated_at: "2026-05-08T10:34:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    client_first_name: Linda
+    client_last_name: Chen
+    client_full_name: Linda Chen
+    office_location: Portland, OR
+    pds_email: linda.chen@pds-demo.com
+    personal_email: linda.chen@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Chen_Linda
+    folder_name: Chen_Linda
+    read_write_password: placeholder-pw-001241
+    client_reference_id: 9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000109
+    status: resolved
+    created_at: "2026-05-09T10:00:00Z"
+    updated_at: "2026-05-09T10:36:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    client_first_name: John
+    client_last_name: Smith
+    client_full_name: John Smith
+    office_location: Boston, MA
+    pds_email: john.smith@pds-demo.com
+    personal_email: john.smith@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Smith_John
+    folder_name: Smith_John
+    read_write_password: placeholder-pw-001234
+    client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    progress_step: 9
+  - id: 6f0a0001-0000-4a00-9000-000000000110
+    status: resolved
+    created_at: "2026-05-10T10:00:00Z"
+    updated_at: "2026-05-10T10:38:00Z"
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    client_first_name: Emily
+    client_last_name: Jones
+    client_full_name: Emily Jones
+    office_location: Chicago, IL
+    pds_email: emily.jones@pds-demo.com
+    personal_email: emily.jones@example.com
+    additional_email: null
+    notification_flag: true
+    internal_folder: /Clients/Jones_Emily
+    folder_name: Jones_Emily
+    read_write_password: placeholder-pw-001235
+    client_reference_id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
+    progress_step: 9

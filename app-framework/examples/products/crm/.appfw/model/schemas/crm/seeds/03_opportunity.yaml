@@ -1,0 +1,62 @@
+- entity_type: Opportunity
+  schema: crm
+  columns:
+  - id
+  - name
+  - amount
+  - close_date
+  - description
+  - next_step
+  - lead_source
+  - account_id
+  - stage_id
+  records:
+  - id: '099c0000-0000-4000-8000-100000000001'
+    name: Acme Dental - Enterprise Suite
+    amount: 97500
+    close_date: '2026-06-30'
+    description: Enterprise platform evaluation for operations, patient engagement,
+      and staff enablement.
+    next_step: Confirm legal review owner and implementation window.
+    lead_source: Partner Referral
+    account_id: a0c00000-0000-4000-8000-100000000001
+    stage_id: '0998a900-0000-4000-8000-100000000003'
+  - id: '099c0000-0000-4000-8000-100000000002'
+    name: TechBridge - Platform Expansion
+    amount: 145000
+    close_date: '2026-07-31'
+    description: Expansion opportunity covering additional platform seats and service
+      packaging.
+    next_step: Send security package and revised partner services estimate.
+    lead_source: Web
+    account_id: a0c00000-0000-4000-8000-100000000002
+    stage_id: '0998a900-0000-4000-8000-100000000002'
+  - id: '099c0000-0000-4000-8000-100000000003'
+    name: CapStone - Analytics Module
+    amount: 32500
+    close_date: '2026-05-31'
+    description: Analytics module and compliance reporting add-on for financial advisors.
+    next_step: Schedule executive readout with finance and compliance stakeholders.
+    lead_source: Trade Show
+    account_id: a0c00000-0000-4000-8000-100000000003
+    stage_id: '0998a900-0000-4000-8000-100000000004'
+  - id: '099c0000-0000-4000-8000-100000000004'
+    name: MediSystems - Pro Edition
+    amount: 47500
+    close_date: '2026-08-31'
+    description: Professional edition rollout for care coordination and IT service
+      workflows.
+    next_step: Complete technical discovery with integrations team.
+    lead_source: Phone Inquiry
+    account_id: a0c00000-0000-4000-8000-100000000004
+    stage_id: '0998a900-0000-4000-8000-100000000001'
+  - id: '099c0000-0000-4000-8000-100000000005'
+    name: RetailPlus - Services Bundle
+    amount: 27500
+    close_date: '2026-09-30'
+    description: Services and enablement bundle for store support and procurement
+      coordination.
+    next_step: Align procurement scope and delivery schedule.
+    lead_source: Employee Referral
+    account_id: a0c00000-0000-4000-8000-100000000005
+    stage_id: '0998a900-0000-4000-8000-100000000002'

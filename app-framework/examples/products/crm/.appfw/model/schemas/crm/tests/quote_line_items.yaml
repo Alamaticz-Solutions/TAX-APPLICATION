@@ -1,0 +1,21 @@
+# QuoteLineItem - seeded entity coverage with Quote and Product navigation.
+
+- name: find_quote_line_item
+  description: find seeded quote line item by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQuoteLineItem
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9407e110-0000-4000-8000-100000000001"'
+    select: |
+      id,quote_id,product_id,sort_order,quote { id,name },product { id,name }
+  expect:
+    data:
+      id: '9407e110-0000-4000-8000-100000000001'
+      quote_id: '9407e000-0000-4000-8000-100000000001'
+      product_id: '9700d000-0000-4000-8000-100000000001'
+      sort_order: 1

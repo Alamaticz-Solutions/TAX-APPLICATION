@@ -1,0 +1,7 @@
+{
+  "profile": "crm-sample",
+  "source": "app_gen/_golden/downstream_apps/crm-sample",
+  "template": "examples/products/crm",
+  "model": "sample CRM",
+  "handoff_command": "scripts/appfw handoff --json"
+}

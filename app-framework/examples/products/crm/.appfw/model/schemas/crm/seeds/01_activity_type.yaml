@@ -1,0 +1,19 @@
+- entity_type: ActivityType
+  schema: crm
+  columns: [id, name, sort_order]
+  records:
+    - id: ac71ec00-0000-4000-8000-100000000001
+      name: Email
+      sort_order: 10
+    - id: ac71ec00-0000-4000-8000-100000000002
+      name: Call
+      sort_order: 20
+    - id: ac71ec00-0000-4000-8000-100000000003
+      name: Meeting
+      sort_order: 30
+    - id: ac71ec00-0000-4000-8000-100000000004
+      name: Task
+      sort_order: 40
+    - id: ac71ec00-0000-4000-8000-100000000005
+      name: Note
+      sort_order: 50

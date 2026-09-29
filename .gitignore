@@ -1,0 +1,91 @@
+# ---------------------------------------------------------------------------
+# Tax-Application — monorepo .gitignore
+# Covers both app-framework/ and tax-doc-routing/.
+# ---------------------------------------------------------------------------
+
+# --- secrets / local env (NEVER commit) ---
+.env
+*.env
+!*.env.example
+**/local.env
+.appfw/local.env
+*.keytab
+
+# --- Rust build output ---
+target/
+debug/
+**/target/
+# Keep committed lockfiles
+!Cargo.lock
+!/app-framework/Cargo.lock
+!/tax-doc-routing/Cargo.lock
+!/app-framework/examples/products/*/Cargo.lock
+
+# --- Node / frontend ---
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+backend/product_dist/
+backend/admin_dist/
+**/product_dist/
+**/admin_dist/
+*.tsbuildinfo
+playwright-report/
+test-results/
+!/app-framework/test-results/pr-preflight.xml
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.ipynb_checkpoints/
+
+# --- logs & scratch ---
+*.log
+logs/
+outputs/
+database/data/
+
+# --- editor / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+# Claude Code: local settings stay private; the project skills are shared.
+.claude/*
+!.claude/skills/
+.claude/skills/*/evals/results/
+.qodo/
+
+# --- compiled artifacts ---
+*.class
+*.exe
+*.war
+*.app
+
+# --- large media ---
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+# Local database dumps — data, never commit
+.db-backups/
+
+# Review scratch: screenshots and working files are local only. Current
+# evidence comes from the E2E suite (layout + axe specs attach screenshots).
+# The review report, DECISIONS.md, OPEN-QUESTIONS.md and rules/RB-*.md are tracked.
+tax-doc-routing/docs/architecture/pds-audit-2026-09-23/
+tax-doc-routing/docs/architecture/pds-design-review-2026-09-24/shots/
+tax-doc-routing/docs/architecture/pds-design-review-2026-09-24/evidence/
+tax-doc-routing/docs/architecture/pds-design-review-2026-09-24/findings/
+tax-doc-routing/docs/architecture/pds-design-review-2026-09-24/rules/digests/
+
+# Codex copies of CLAUDE.md and the project skills, generated locally by a Codex sync.
+# Root only: app-framework/AGENTS.md is the framework's own, tracked file.
+/AGENTS.md
+/.agents/

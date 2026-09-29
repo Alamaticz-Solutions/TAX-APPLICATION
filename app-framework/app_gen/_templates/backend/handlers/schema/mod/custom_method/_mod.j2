@@ -1,0 +1,28 @@
+{% macro print(entityType, method, kind) %}
+{%- if method.kind == kind %}
+  async fn {{ method.name }}(
+    &self, 
+    ctx: &Context<'_>,
+{%- for arg in method.args %}
+    {{ arg.name }}: {{ arg.arg_type }},
+{%- endfor %}
+  ) -> FieldResult<{{ method.return_type }}>
+  {
+    // Custom-method context: do NOT parse selections against the calling entity's props,
+    // because the return type is `{{ method.return_type }}` whose fields generally do not
+    // exist on `{{ entityType.pascal_1 }}`. Resolver receives Null selections.
+    let handler_context = from_context_without_selections(ctx, "{{ entityType.schema_name }}", "{{ entityType.pascal_1 }}")?;
+    let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+    let res = {{ entityType.snake_1 }}::{{ method.name }}_impl(
+      user, &data_access, &entity_type, selections,
+      {%- for arg in method.args %}{{ arg.name }},{%- endfor %}
+    ).await;
+
+    match res {
+      Ok(res) => Ok(res),
+      Err(e) => Err(e.into()),
+    }
+  }
+{%- endif %}
+{% endmacro print %}

@@ -1,0 +1,390 @@
+- name: industry_accounts
+  kind: OneToMany
+  one:
+    entity: Industry
+    field: accounts
+  many:
+    entity: Account
+    field: industry
+  storage:
+    type: ForeignKey
+    owner: Account
+    field: industry_id
+
+- name: pricebook_products
+  kind: OneToMany
+  one:
+    entity: Pricebook
+    field: products
+  many:
+    entity: Product
+    field: pricebook
+  storage:
+    type: ForeignKey
+    owner: Product
+    field: pricebook_id
+
+- name: account_contacts
+  kind: OneToMany
+  one:
+    entity: Account
+    field: contacts
+  many:
+    entity: Contact
+    field: account
+  storage:
+    type: ForeignKey
+    owner: Contact
+    field: account_id
+
+- name: account_opportunities
+  kind: OneToMany
+  one:
+    entity: Account
+    field: opportunities
+  many:
+    entity: Opportunity
+    field: account
+  storage:
+    type: ForeignKey
+    owner: Opportunity
+    field: account_id
+
+- name: opportunity_stage_opportunities
+  kind: OneToMany
+  one:
+    entity: OpportunityStage
+    field: opportunities
+  many:
+    entity: Opportunity
+    field: stage
+  storage:
+    type: ForeignKey
+    owner: Opportunity
+    field: stage_id
+
+- name: account_converted_leads
+  kind: OneToMany
+  one:
+    entity: Account
+    field: converted_leads
+  many:
+    entity: Lead
+    field: converted_account
+  storage:
+    type: ForeignKey
+    owner: Lead
+    field: converted_account_id
+
+- name: lead_status_leads
+  kind: OneToMany
+  one:
+    entity: LeadStatus
+    field: leads
+  many:
+    entity: Lead
+    field: status
+  storage:
+    type: ForeignKey
+    owner: Lead
+    field: status_id
+
+- name: lead_source_leads
+  kind: OneToMany
+  one:
+    entity: LeadSource
+    field: leads
+  many:
+    entity: Lead
+    field: source
+  storage:
+    type: ForeignKey
+    owner: Lead
+    field: source_id
+
+- name: industry_leads
+  kind: OneToMany
+  one:
+    entity: Industry
+    field: leads
+  many:
+    entity: Lead
+    field: industry
+  storage:
+    type: ForeignKey
+    owner: Lead
+    field: industry_id
+
+- name: activity_type_activities
+  kind: OneToMany
+  one:
+    entity: ActivityType
+    field: activities
+  many:
+    entity: Activity
+    field: activity_type
+  storage:
+    type: ForeignKey
+    owner: Activity
+    field: type_id
+
+- name: account_activities
+  kind: OneToMany
+  one:
+    entity: Account
+    field: activities
+  many:
+    entity: Activity
+    field: account
+  storage:
+    type: ForeignKey
+    owner: Activity
+    field: account_id
+
+- name: contact_activities
+  kind: OneToMany
+  one:
+    entity: Contact
+    field: activities
+  many:
+    entity: Activity
+    field: contact
+  storage:
+    type: ForeignKey
+    owner: Activity
+    field: contact_id
+
+- name: opportunity_activities
+  kind: OneToMany
+  one:
+    entity: Opportunity
+    field: activities
+  many:
+    entity: Activity
+    field: opportunity
+  storage:
+    type: ForeignKey
+    owner: Activity
+    field: opportunity_id
+
+- name: lead_activities
+  kind: OneToMany
+  one:
+    entity: Lead
+    field: activities
+  many:
+    entity: Activity
+    field: lead
+  storage:
+    type: ForeignKey
+    owner: Activity
+    field: lead_id
+
+- name: opportunity_quotes
+  kind: OneToMany
+  one:
+    entity: Opportunity
+    field: quotes
+  many:
+    entity: Quote
+    field: opportunity
+  storage:
+    type: ForeignKey
+    owner: Quote
+    field: opportunity_id
+
+- name: account_quotes
+  kind: OneToMany
+  one:
+    entity: Account
+    field: quotes
+  many:
+    entity: Quote
+    field: account
+  storage:
+    type: ForeignKey
+    owner: Quote
+    field: account_id
+
+- name: quote_status_quotes
+  kind: OneToMany
+  one:
+    entity: QuoteStatus
+    field: quotes
+  many:
+    entity: Quote
+    field: status
+  storage:
+    type: ForeignKey
+    owner: Quote
+    field: status_id
+
+- name: quote_line_items
+  kind: OneToMany
+  one:
+    entity: Quote
+    field: line_items
+  many:
+    entity: QuoteLineItem
+    field: quote
+  storage:
+    type: ForeignKey
+    owner: QuoteLineItem
+    field: quote_id
+
+- name: product_quote_line_items
+  kind: OneToMany
+  one:
+    entity: Product
+    field: quote_line_items
+  many:
+    entity: QuoteLineItem
+    field: product
+  storage:
+    type: ForeignKey
+    owner: QuoteLineItem
+    field: product_id
+
+- name: opportunity_contacts
+  kind: ManyToMany
+  left:
+    entity: Opportunity
+    field: contacts
+  right:
+    entity: Contact
+    field: opportunities
+  junction:
+    entity: OpportunityContact
+    schema: crm
+    left_key: opportunity_id
+    right_key: contact_id
+
+- name: business_unit_territories
+  kind: OneToMany
+  one:
+    entity: BusinessUnit
+    field: territories
+  many:
+    entity: Territory
+    field: business_unit
+  storage:
+    type: ForeignKey
+    owner: Territory
+    field: business_unit_id
+
+- name: business_unit_queues
+  kind: OneToMany
+  one:
+    entity: BusinessUnit
+    field: queues
+  many:
+    entity: Queue
+    field: business_unit
+  storage:
+    type: ForeignKey
+    owner: Queue
+    field: business_unit_id
+
+- name: account_addresses
+  kind: OneToMany
+  one:
+    entity: Account
+    field: addresses
+  many:
+    entity: Address
+    field: account
+  storage:
+    type: ForeignKey
+    owner: Address
+    field: account_id
+
+- name: contact_addresses
+  kind: OneToMany
+  one:
+    entity: Contact
+    field: addresses
+  many:
+    entity: Address
+    field: contact
+  storage:
+    type: ForeignKey
+    owner: Address
+    field: contact_id
+
+- name: activity_parties
+  kind: OneToMany
+  one:
+    entity: Activity
+    field: parties
+  many:
+    entity: ActivityParty
+    field: activity
+  storage:
+    type: ForeignKey
+    owner: ActivityParty
+    field: activity_id
+
+- name: queue_items
+  kind: OneToMany
+  one:
+    entity: Queue
+    field: queue_items
+  many:
+    entity: QueueItem
+    field: queue
+  storage:
+    type: ForeignKey
+    owner: QueueItem
+    field: queue_id
+
+- name: account_queue_items
+  kind: OneToMany
+  one:
+    entity: Account
+    field: queue_items
+  many:
+    entity: QueueItem
+    field: account
+  storage:
+    type: ForeignKey
+    owner: QueueItem
+    field: account_id
+
+- name: activity_queue_items
+  kind: OneToMany
+  one:
+    entity: Activity
+    field: queue_items
+  many:
+    entity: QueueItem
+    field: activity
+  storage:
+    type: ForeignKey
+    owner: QueueItem
+    field: activity_id
+
+- name: knowledge_article_queue_items
+  kind: OneToMany
+  one:
+    entity: KnowledgeArticle
+    field: queue_items
+  many:
+    entity: QueueItem
+    field: knowledge_article
+  storage:
+    type: ForeignKey
+    owner: QueueItem
+    field: knowledge_article_id
+
+- name: knowledge_article_comments
+  kind: OneToMany
+  one:
+    entity: KnowledgeArticle
+    field: comments
+  many:
+    entity: ArticleComment
+    field: article
+  storage:
+    type: ForeignKey
+    owner: ArticleComment
+    field: article_id

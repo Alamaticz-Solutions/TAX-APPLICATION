@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+app_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ -z "${APPFW_FRAMEWORK_ROOT:-}" && -f "$app_root/.appfw/local.env" ]]; then
+  # shellcheck disable=SC1090
+  source "$app_root/.appfw/local.env"
+fi
+framework_root="${APPFW_FRAMEWORK_ROOT:?APPFW_FRAMEWORK_ROOT is required}"
+if [[ -x "$framework_root/bin/appfw" ]]; then
+  exec "$framework_root/bin/appfw" \
+    --app-root "$app_root" --framework-root "$framework_root" "$@"
+fi
+if [[ -x "$framework_root/scripts/appfw" ]]; then
+  cd "$framework_root"
+  APPFW_APP_ROOT="$app_root" APPFW_FRAMEWORK_ROOT="$framework_root" \
+    APPFW_REPORT_ROOT="$app_root/.appfw/target/appfw" \
+    exec "$framework_root/scripts/appfw" "$@"
+fi
+echo "App Framework CLI not found under $framework_root/bin or $framework_root/scripts" >&2
+exit 2

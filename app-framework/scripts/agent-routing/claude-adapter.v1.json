@@ -1,0 +1,18 @@
+{
+  "schema": "appfw_model_adapter@1",
+  "adapter_id": "claude-code@1",
+  "adapter_version": "1.0.0",
+  "provider": "claude",
+  "consumes_semantic_range": ">=1.0.0 <2.0.0",
+  "effective_at": "2026-07-22T00:00:00Z",
+  "unsupported_conditions": ["provider unavailable", "profile absent", "required execution target unsupported"],
+  "profiles": {
+    "bounded_read@1": { "model": "claude-haiku-4-5", "effort": "medium", "execution_targets": ["local", "approved_cloud"], "capabilities": ["source_discovery", "evidence_normalization"], "fallback_profile": null },
+    "routine_delivery@1": { "model": "claude-sonnet-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "coordination_projection"], "fallback_profile": null },
+    "complex_delivery@1": { "model": "claude-opus-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "signature_experience", "sensitive_boundary"], "fallback_profile": null },
+    "consequential_decision@1": { "model": "claude-opus-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["code_edit", "semantic_test", "signature_experience", "sensitive_boundary", "strategic_challenge", "architecture_decision"], "fallback_profile": null },
+    "focused_independent_review@1": { "model": "claude-sonnet-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review"], "fallback_profile": null },
+    "comprehensive_independent_review@1": { "model": "claude-opus-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review", "strategic_challenge"], "fallback_profile": null },
+    "adversarial_independent_review@1": { "model": "claude-opus-4-5", "effort": "high", "execution_targets": ["local", "approved_cloud"], "capabilities": ["independent_review", "sensitive_boundary", "strategic_challenge"], "fallback_profile": null }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@appfw/pds-health-catalog-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Unified PDS Health design-system workspace with persistent navigation across the component catalog and framework-owned reference experiences.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:evidence": "node ../../../scripts/check-pds-catalog-evidence.mjs --json"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-aria-components": "^1.19.0",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.4.2"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/framework-request.v1.schema.json",
+  "title": "Typed product-to-framework demand signal, recorded in the requesting product's repository and dispositioned through the framework's own program intake — never a parallel framework backlog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "request_id",
+    "app_id",
+    "kind",
+    "summary",
+    "requesting_work_ref",
+    "raised_by",
+    "raised_at",
+    "disposition",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "framework_request@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "request_id": { "$ref": "#/$defs/reference" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "kind": {
+      "enum": ["component_request", "improvement", "defect", "upgrade_blocker", "docs_gap"]
+    },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "requesting_work_ref": { "$ref": "#/$defs/reference" },
+    "raised_by": { "$ref": "#/$defs/reference" },
+    "raised_at": { "$ref": "#/$defs/timestamp" },
+    "disposition": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state"],
+          "properties": {
+            "state": { "enum": ["submitted", "accepted", "deferred", "rejected", "duplicate"] },
+            "dispositioned_by": { "$ref": "#/$defs/reference" },
+            "dispositioned_at": { "$ref": "#/$defs/timestamp" },
+            "framework_work_ref": { "$ref": "#/$defs/reference" },
+            "duplicate_of": { "$ref": "#/$defs/reference" },
+            "reason": { "type": "string", "minLength": 1, "maxLength": 2000 }
+          }
+        }
+      ]
+    },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

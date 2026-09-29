@@ -1,0 +1,61 @@
+{
+  "schema": "appfw_model_route@1",
+  "subject": {
+    "outcome_id": "AFS-OUTCOME-DELIVERY-FLOW",
+    "product_increment_id": "AFS-PI-DELIVERY-CONTROL-01",
+    "deliverable_id": "AFS-DELIVERY-CONTROL",
+    "task_id": "task:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d01",
+    "assignment_id": "assignment:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d02",
+    "workstream_id": "WS-01",
+    "role_card_id": "framework-pr-review-agent",
+    "stage": "prototype",
+    "parent_run_id": "run:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d03"
+  },
+  "task_shape": {
+    "role": "reviewer",
+    "read_roots": ["docs", "scripts", "AGENTS.md"],
+    "write_roots": [],
+    "allowed_tools": ["read", "node_test"],
+    "network_posture": "none",
+    "data_classification": "internal",
+    "change_class": "A",
+    "change_class_status": "exact",
+    "ambiguity": "medium",
+    "consequence": "high",
+    "sensitive_surfaces": ["security"],
+    "signature_significance": false,
+    "delegation_depth": 1,
+    "delegation_type": "direct_child",
+    "execution_target": "local",
+    "material_child": true,
+    "requested_capabilities": ["sensitive_boundary"]
+  },
+  "routing_context": {
+    "implementer": {
+      "assignment_id": "assignment:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d02",
+      "actor_id": "actor:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d04",
+      "run_id": "run:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d03"
+    },
+    "reviewer": {
+      "assignment_id": "assignment:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d05",
+      "actor_id": "actor:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d06",
+      "run_id": "run:9c3d4e50-7e6a-4b44-8dab-5f1a4b9e3d07"
+    },
+    "reviewer_required": true,
+    "provider_available": true,
+    "required_instruction_ids": [],
+    "authorized_read_roots": ["docs", "scripts", "AGENTS.md"],
+    "authorized_write_roots": [],
+    "authorized_tools": ["read", "node_test"],
+    "authorized_network_posture": "none",
+    "strategic_decision": false,
+    "human_decision_id": null
+  },
+  "privacy": {
+    "data_classification": "internal",
+    "redaction_posture": "strict",
+    "retained_field_allowlist_version": "appfw_route_telemetry_allowlist@1",
+    "prompt_content_retained": false,
+    "secret_content_retained": false
+  }
+}

@@ -1,0 +1,116 @@
+# Client reference data (business spec 5.4, Tab 1). This is what ClientSearch.tsx now reads
+# instead of frontend/src/features/shared/data/clients.ts's hardcoded `clients` array.
+# read_write_password values are placeholders for the Box-integration field (redacted in audit
+# logs via meta.audit.redact in the model) — not real credentials.
+- entity_type: TaxPayerRefData
+  schema: tax_routing
+  columns:
+  - id
+  - first_name
+  - last_name
+  - full_name
+  - personal_email
+  - pds_email
+  - office_location
+  - folder_name
+  - external_folder_id
+  - internal_folder_path
+  - is_active
+  - read_write_password
+  records:
+  - id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
+    first_name: John
+    last_name: Smith
+    full_name: John Smith
+    personal_email: john.smith@example.com
+    pds_email: john.smith@pds-demo.com
+    office_location: Boston, MA
+    folder_name: Smith_John
+    external_folder_id: CR-001234
+    internal_folder_path: /Clients/Smith_John
+    is_active: true
+    read_write_password: placeholder-pw-001234
+  - id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
+    first_name: Emily
+    last_name: Jones
+    full_name: Emily Jones
+    personal_email: emily.jones@example.com
+    pds_email: emily.jones@pds-demo.com
+    office_location: Chicago, IL
+    folder_name: Jones_Emily
+    external_folder_id: CR-001235
+    internal_folder_path: /Clients/Jones_Emily
+    is_active: true
+    read_write_password: placeholder-pw-001235
+  - id: 9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03
+    first_name: Michael
+    last_name: Brown
+    full_name: Michael Brown
+    personal_email: michael.brown@example.com
+    pds_email: michael.brown@pds-demo.com
+    office_location: Denver, CO
+    folder_name: Brown_Michael
+    external_folder_id: CR-001236
+    internal_folder_path: /Clients/Brown_Michael
+    is_active: true
+    read_write_password: placeholder-pw-001236
+  - id: 9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04
+    first_name: Sarah
+    last_name: Davis
+    full_name: Sarah Davis
+    personal_email: sarah.davis@example.com
+    pds_email: sarah.davis@pds-demo.com
+    office_location: Austin, TX
+    folder_name: Davis_Sarah
+    external_folder_id: CR-001237
+    internal_folder_path: /Clients/Davis_Sarah
+    is_active: true
+    read_write_password: placeholder-pw-001237
+  - id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
+    first_name: Robert
+    last_name: Wilson
+    full_name: Robert Wilson
+    personal_email: robert.wilson@example.com
+    pds_email: robert.wilson@pds-demo.com
+    office_location: Seattle, WA
+    folder_name: Wilson_Robert
+    external_folder_id: CR-001238
+    internal_folder_path: /Clients/Wilson_Robert
+    is_active: true
+    read_write_password: placeholder-pw-001238
+  - id: 9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06
+    first_name: Maria
+    last_name: Garcia
+    full_name: Maria Garcia
+    personal_email: maria.garcia@example.com
+    pds_email: maria.garcia@pds-demo.com
+    office_location: Phoenix, AZ
+    folder_name: Garcia_Maria
+    external_folder_id: CR-001239
+    internal_folder_path: /Clients/Garcia_Maria
+    is_active: true
+    read_write_password: placeholder-pw-001239
+  - id: 9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07
+    first_name: Anil
+    last_name: Kapoor
+    full_name: Anil Kapoor
+    personal_email: anil.kapoor@example.com
+    pds_email: anil.kapoor@pds-demo.com
+    office_location: Atlanta, GA
+    folder_name: Kapoor_Anil
+    external_folder_id: CR-001240
+    internal_folder_path: /Clients/Kapoor_Anil
+    is_active: true
+    read_write_password: placeholder-pw-001240
+  - id: 9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08
+    first_name: Linda
+    last_name: Chen
+    full_name: Linda Chen
+    personal_email: linda.chen@example.com
+    pds_email: linda.chen@pds-demo.com
+    office_location: Portland, OR
+    folder_name: Chen_Linda
+    external_folder_id: CR-001241
+    internal_folder_path: /Clients/Chen_Linda
+    is_active: true
+    read_write_password: placeholder-pw-001241

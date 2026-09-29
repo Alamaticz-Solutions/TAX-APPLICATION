@@ -1,0 +1,41 @@
+schema_version: 1
+name: second-consumer-offline-agent
+description: Least-privilege profile for the isolated second-consumer lifecycle proof.
+allowed_commands:
+  - command: scripts/appfw product validate --json
+    namespace: product
+  - command: scripts/appfw product harness-check --json
+    namespace: product
+  - command: scripts/appfw product generate
+    namespace: product
+  - command: scripts/appfw product generate --check --json
+    namespace: product
+  - command: scripts/appfw product test --fast
+    namespace: product
+  - command: scripts/appfw product handoff --json
+    namespace: product
+writable_paths:
+  - path: .appfw/model
+    ownership: application_source
+  - path: .appfw/target/appfw
+    ownership: product_evidence
+  - path: target/appfw
+    ownership: lifecycle_evidence
+network_policy: disabled
+live_service_policy: disabled
+sensitive_capabilities:
+  mcp: false
+  kafka: false
+  release: false
+  saas_governed_write: false
+threat_controls:
+  - ASI01
+  - ASI02
+  - ASI03
+review_checkpoints:
+  - generated-drift
+  - handoff
+handoff:
+  required: true
+  artifact: target/appfw/agent-handoff.json
+risk_acceptance: []

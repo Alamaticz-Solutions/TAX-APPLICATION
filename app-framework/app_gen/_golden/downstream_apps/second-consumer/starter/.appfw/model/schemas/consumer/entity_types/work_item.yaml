@@ -1,0 +1,14 @@
+- id: e1eb41d7-e2e9-4d8b-9c4d-6f1a8e2b7d51
+  name: WorkItem
+  caption: Work Item
+  is_table: true
+  props:
+    - name: id
+      fragment: property-primary-key-uuid
+    - name: title
+      data_type: String
+    - name: is_complete
+      caption: Complete
+      data_type: Boolean
+      is_required: true
+      default_value: false

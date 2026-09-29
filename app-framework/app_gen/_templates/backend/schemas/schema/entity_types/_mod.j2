@@ -1,0 +1,14 @@
+{%- import "union_type" as union_type -%}
+{%- import "non_union_type" as non_union_type -%}
+{% macro print(entityTypes) %}
+
+{# Do not declare union types for collection-level entity types #}
+{% for t in entityTypes %}
+{% if t.is_union %}
+{{ union_type::print(entityType=t, entityTypes=entityTypes) }}
+{% else %}
+{{ non_union_type::print(entityType=t, entityTypes=entityTypes) }}
+{% endif %}
+{% endfor %}
+
+{% endmacro print %}

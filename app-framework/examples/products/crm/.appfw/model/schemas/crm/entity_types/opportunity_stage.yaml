@@ -1,0 +1,34 @@
+- id: 0998a900-0000-4000-8000-000000000011
+  name: OpportunityStage
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Stage Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: probability
+    caption: Win Probability
+    data_type: Float32
+
+  - name: is_closed
+    caption: Is Closed
+    fragment: property-boolean-toggle-required
+
+  - name: is_won
+    caption: Is Won
+    fragment: property-boolean-toggle-required
+
+  - name: sort_order
+    caption: Sort Order
+    data_type: Int16

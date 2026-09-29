@@ -1,0 +1,22 @@
+# Product - seeded entity coverage with Pricebook navigation.
+
+- name: find_product
+  description: find seeded product by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findProduct
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9700d000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,product_code,is_active,pricebook_id,pricebook { id,name }
+  expect:
+    data:
+      id: '9700d000-0000-4000-8000-100000000001'
+      name: 'Enterprise Suite'
+      product_code: 'ENT-001'
+      is_active: true
+      pricebook_id: '97000b00-0000-4000-8000-100000000001'

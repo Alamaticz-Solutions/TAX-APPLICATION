@@ -1,0 +1,70 @@
+# Bitbucket Pipelines must read this file from the repository root. It only prepares a
+# Linux build box; the verification itself lives in the pds-frontend-guard plugin:
+# .claude/skills/pds-frontend-guard/scripts/verify-all.sh --ci
+#
+# It runs everything a developer's pre-push hook runs: the frontend gate with the PDS rule
+# tests, cargo check and tests, Rego tests, the framework's validate / drift / boundary /
+# policy checks, then live smoke tests (not written for Tax Document Routing yet) and the
+# full Playwright E2E suite against this build and a fresh database.
+#
+# One-time repository settings (not files, so they can't live here):
+#   - Repository settings > Pipelines > Settings: enable Pipelines.
+#   - Branch restrictions / merge checks on `main`: require at least one successful build.
+#   - Pull requests > default description: paste
+#     .claude/skills/pds-frontend-guard/bitbucket/pull-request-description.md
+#
+# Every run compiles the Rust workspace cold (the ~12 GB target dir doesn't fit a
+# Bitbucket cache), hence size: 2x. The CI mode builds with 4 jobs and no debug info to
+# stay within the step's memory. Run time is not measured yet: check the first runs. If
+# a run is killed for memory or hits max-time, set CARGO_BUILD_JOBS=2 in the step, use a
+# larger step size (paid plans), or a self-hosted runner.
+
+image: rust:1
+
+definitions:
+  caches:
+    cargo-registry: /usr/local/cargo/registry
+    frontend-node-modules: tax-doc-routing/frontend/node_modules
+    playwright-browsers: ~/.cache/ms-playwright
+  services:
+    postgres:
+      image: postgres:16-alpine
+      memory: 1024
+      variables:
+        # Local-development credentials, matching tax-doc-routing/backend/.env.example.
+        POSTGRES_DB: tax_routing
+        POSTGRES_USER: tax_routing_svc
+        POSTGRES_PASSWORD: local-dev-password
+  steps:
+    - step: &verify
+        name: Verify (PDS rules, tests, framework checks, live smoke, E2E)
+        size: 2x
+        max-time: 120
+        services:
+          - postgres
+        caches:
+          - cargo-registry
+          - frontend-node-modules
+          - playwright-browsers
+        script:
+          - apt-get update -qq
+          - apt-get install -y -qq rsync postgresql-client iproute2 python3 ca-certificates curl gnupg >/dev/null
+          - curl -fsSL https://deb.nodesource.com/setup_22.x | bash - >/dev/null
+          - apt-get install -y -qq nodejs >/dev/null
+          - rustup component add rustfmt
+          # Frontend-only checks for now: the live smoke tests (governance-flow / audit
+          # hash-chain equivalents from the source repo) do not exist for Tax Document Routing yet. Switch to
+          # `--ci` once tax-doc-routing/scripts/smoke/ has its own scripts.
+          - bash .claude/skills/pds-frontend-guard/scripts/verify-all.sh --frontend
+        after-script:
+          - mkdir -p verify-logs && cp -r tax-doc-routing/target/verify/. verify-logs/ 2>/dev/null || true
+        artifacts:
+          - verify-logs/**
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *verify
+  branches:
+    main:
+      - step: *verify

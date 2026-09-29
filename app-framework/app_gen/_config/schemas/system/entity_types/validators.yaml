@@ -1,0 +1,148 @@
+- name: Validator
+  id: 5d5fa716-246f-4b11-8068-1442d3d51da3
+  is_union: true
+  props: 
+
+  - name: name
+    fragment: property-string-required
+
+
+- name: ValueRangeValidator
+  id: db7a7e30-a3fb-4b0f-afc1-5ff44f82fcce
+  caption: Value Range Validator
+  base_type: Validator
+  
+  props: 
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: ValueRange
+
+  - name: min
+    fragment: property-string
+
+  - name: min_source
+    fragment: property-enum
+    enum_type_name: FieldValueSource
+
+  - name: max
+    fragment: property-string
+
+  - name: max_source
+    fragment: property-enum
+    enum_type_name: FieldValueSource
+
+  - name: message
+    fragment: property-string-stringmax-sm
+
+
+
+
+- name: ArrayLengthValidator
+  id: c16fac99-f7be-49ff-9b87-57599c8f9ea4
+  caption: Array Length Validator
+  base_type: Validator
+  
+  props:  
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: ArrayLength
+
+  - name: min
+    fragment: property-int-sm
+
+  - name: max
+    fragment: property-int-sm
+
+  - name: message
+    fragment: property-string-stringmax-sm
+
+
+
+
+- name: StringLengthValidator
+  id: 84663866-0fd0-4c9b-aef5-0b5b83c6e7a3
+  caption: String Length Validator
+  base_type: Validator
+  
+  props:  
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: StringLength
+
+  - name: min
+    fragment: property-int-sm
+
+  - name: max
+    fragment: property-int-sm
+
+  - name: message
+    fragment: property-string-stringmax-sm
+
+
+
+- name:  StringPatternValidator
+  id: dea2a83a-8024-40bc-8696-d07822de1ccc
+  caption: Pattern Validator
+  base_type: Validator
+  
+  props:  
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: StringPattern
+
+  - name: pattern
+    fragment: property-string-code-required
+    meta: 
+      lang: regex
+
+  - name: message
+    fragment: property-string-stringmax-sm
+
+
+
+
+
+- name:  UniquenessValidator
+  id: 0225374e-e22b-4b19-99d8-5b0378799fe1
+  caption: Uniqueness Validator
+  base_type: Validator
+  
+  props:  
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: Uniqueness
+
+  - name: filter
+    fragment: property-string-code-required
+    meta: 
+      lang: json
+
+  - name: message
+    fragment: property-string-stringmax-sm
+
+
+
+
+- name: FunctionValidator
+  id: 51995f4d-7d84-4c92-a30e-a4373d1fe610
+  caption: Function Validator
+  base_type: Validator
+  
+  props:  
+
+  - name: name
+    fragment: property-string-readonly-required
+    default_value: Function
+
+  - name: func
+    fragment: property-string-code-required
+    meta: 
+      lang: python
+
+  - name: message
+    fragment: property-string-stringmax-sm

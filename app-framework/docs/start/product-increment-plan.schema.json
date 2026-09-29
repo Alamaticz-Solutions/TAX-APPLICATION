@@ -1,0 +1,755 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/product-increment-plan.schema.json",
+  "title": "App Framework Product Increment delivery plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "program_id",
+    "product_increment",
+    "concurrency",
+    "integration",
+    "lanes",
+    "lane_links"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "appfw_product_increment_plan@1"
+    },
+    "program_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$"
+    },
+    "product_increment": {
+      "$ref": "#/$defs/productIncrement"
+    },
+    "concurrency": {
+      "$ref": "#/$defs/concurrency"
+    },
+    "integration": {
+      "$ref": "#/$defs/integration"
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/lane"
+      }
+    },
+    "lane_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/laneLink"
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "documentRef": {
+      "type": "string",
+      "pattern": "^document:(?!target/)(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"
+    },
+    "writeRoot": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?!.*[?\\[\\\\])(?!.*\\*(?!\\*$))(?!\\*\\*$)(?:[A-Za-z0-9._-]+/)*(?:[A-Za-z0-9._-]+|[A-Za-z0-9._-]+/\\*\\*)$"
+    },
+    "economicsBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default_model_tier",
+        "allowed_model_tiers",
+        "max_elapsed_ms",
+        "max_input_tokens",
+        "max_output_tokens",
+        "max_cost_usd",
+        "max_retries",
+        "max_corrections",
+        "max_rework_cycles"
+      ],
+      "properties": {
+        "default_model_tier": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "allowed_model_tiers": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "max_elapsed_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 28800000
+        },
+        "max_input_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2000000
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500000
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "max_corrections": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "max_rework_cycles": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "productIncrement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "outcome_id",
+        "title",
+        "intent",
+        "owner",
+        "planning_posture",
+        "stage",
+        "acceptance_criteria"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        },
+        "outcome_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "intent": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "planning_posture": {
+          "enum": [
+            "active",
+            "next",
+            "awaiting_input",
+            "held",
+            "later"
+          ]
+        },
+        "stage": {
+          "enum": [
+            "prototype",
+            "integration_candidate",
+            "release_candidate"
+          ]
+        },
+        "acceptance_criteria": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        }
+      }
+    },
+    "concurrency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_active_lanes",
+        "maximum_active_lanes"
+      ],
+      "properties": {
+        "target_active_lanes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "maximum_active_lanes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "below_target_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strategy",
+        "branch",
+        "destination_branch",
+        "owner",
+        "independent_reviewer",
+        "base_ref",
+        "write_roots",
+        "economics_budget",
+        "leaf_ci_profile",
+        "integration_ci_profile",
+        "release_ci_profile",
+        "merge_order",
+        "integration_checks",
+        "shared_path_owner"
+      ],
+      "properties": {
+        "strategy": {
+          "enum": [
+            "integration_branch",
+            "direct_main"
+          ]
+        },
+        "branch": {
+          "type": "string",
+          "pattern": "^(integrate/[a-z0-9][a-z0-9._/-]*|main)$"
+        },
+        "destination_branch": {
+          "const": "main"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "independent_reviewer": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "base_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "write_roots": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/writeRoot"
+          }
+        },
+        "economics_budget": {
+          "$ref": "#/$defs/economicsBudget"
+        },
+        "leaf_ci_profile": {
+          "enum": [
+            "accelerated",
+            "full"
+          ]
+        },
+        "integration_ci_profile": {
+          "const": "full"
+        },
+        "release_ci_profile": {
+          "const": "strict"
+        },
+        "merge_order": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "integration_checks": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "shared_path_owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "evidence_record_ref": {
+          "$ref": "#/$defs/documentRef"
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "summary",
+        "state"
+      ],
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,95}$"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "state": {
+          "enum": [
+            "planned",
+            "implemented",
+            "accepted"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "pattern": "^(?:git:[0-9a-f]{40}|document:(?!target/)(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+)$"
+        }
+      }
+    },
+    "lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "result",
+        "owner",
+        "technical_lead",
+        "branch_owner",
+        "independent_reviewer",
+        "status",
+        "delivery_credit",
+        "workstreams",
+        "deliverables",
+        "branch",
+        "base_sha",
+        "destination_branch",
+        "write_roots",
+        "economics_budget",
+        "focused_checks",
+        "provides"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "result": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "technical_lead": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "branch_owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "independent_reviewer": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "status": {
+          "enum": [
+            "not_started",
+            "ready_to_start",
+            "in_progress",
+            "waiting_for_decision",
+            "waiting_for_team",
+            "under_review",
+            "implemented",
+            "accepted",
+            "deferred",
+            "stopped"
+          ]
+        },
+        "delivery_credit": {
+          "enum": [
+            "none",
+            "implemented",
+            "accepted"
+          ]
+        },
+        "workstreams": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "deliverables": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "branch": {
+          "type": "string",
+          "pattern": "^(feature|fix|docs|maintenance)/[a-z0-9][a-z0-9._/-]*$"
+        },
+        "base_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "destination_branch": {
+          "type": "string",
+          "pattern": "^(integrate/[a-z0-9][a-z0-9._/-]*|main)$"
+        },
+        "write_roots": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/writeRoot"
+          }
+        },
+        "economics_budget": {
+          "$ref": "#/$defs/economicsBudget"
+        },
+        "focused_checks": {
+          "$ref": "#/$defs/nonEmptyStringArray"
+        },
+        "evidence_record_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "provides": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/capability"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "waiting_for_decision",
+                  "under_review",
+                  "implemented",
+                  "accepted"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence_record_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "not_started",
+                  "ready_to_start",
+                  "in_progress",
+                  "waiting_for_team",
+                  "deferred",
+                  "stopped"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "delivery_credit": {
+                "const": "none"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "waiting_for_decision"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "delivery_credit": {
+                "enum": [
+                  "none",
+                  "implemented"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "implemented"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "delivery_credit": {
+                "const": "implemented"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "under_review"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "delivery_credit": {
+                "enum": [
+                  "none",
+                  "implemented"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "accepted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "delivery_credit": {
+                "const": "accepted"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "delivery_credit": {
+                "const": "none"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "planned"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "delivery_credit": {
+                "const": "implemented"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "implemented"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "delivery_credit": {
+                "const": "accepted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "accepted"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "decoupling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "none",
+            "frozen_contract",
+            "fixture",
+            "adapter"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/documentRef"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "none"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "ref"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "ref"
+            ]
+          }
+        }
+      ]
+    },
+    "laneLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_lane",
+        "consumer_lane",
+        "kind",
+        "capability_id",
+        "contract_ref",
+        "decoupling",
+        "consumer_action",
+        "integration_check"
+      ],
+      "properties": {
+        "provider_lane": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "consumer_lane": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "kind": {
+          "enum": [
+            "requires",
+            "benefits_from"
+          ]
+        },
+        "capability_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "required_provider_state": {
+          "enum": [
+            "implemented",
+            "accepted"
+          ]
+        },
+        "contract_ref": {
+          "$ref": "#/$defs/documentRef"
+        },
+        "decoupling": {
+          "$ref": "#/$defs/decoupling"
+        },
+        "consumer_action": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "integration_check": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "expected_benefit": {
+          "type": "string"
+        },
+        "adoption_trigger": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "requires"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "required_provider_state"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "expected_benefit"
+                  ]
+                },
+                {
+                  "required": [
+                    "adoption_trigger"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "benefits_from"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "expected_benefit",
+              "adoption_trigger"
+            ],
+            "not": {
+              "required": [
+                "required_provider_state"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

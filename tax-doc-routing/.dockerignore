@@ -1,0 +1,11 @@
+# Keep the Docker build context small (see backend/Dockerfile).
+target/
+**/target/
+frontend/node_modules/
+backend/product_dist/
+backend/admin_dist/
+.git/
+logs/
+*.log
+**/.env
+*.env

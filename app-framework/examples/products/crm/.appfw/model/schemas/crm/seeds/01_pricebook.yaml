@@ -1,0 +1,14 @@
+- entity_type: Pricebook
+  schema: crm
+  columns: [id, name, description, is_active, is_standard]
+  records:
+    - id: 97000b00-0000-4000-8000-100000000001
+      name: Standard Price Book
+      description: Default price book for all products
+      is_active: true
+      is_standard: true
+    - id: 97000b00-0000-4000-8000-100000000002
+      name: Partner Price Book
+      description: Discounted pricing for channel partners
+      is_active: true
+      is_standard: false

@@ -1,0 +1,168 @@
+# Field placement per screen (business spec 5.4, 5.5). `section` groups match the PDS
+# `FieldGroup`s frontend/src/features/routing/ClientInfoStep.tsx and UploadDocumentsStep.tsx
+# already render — this seed controls what appears in each, not a new UI shape. Client Info's
+# `client_full_name` is not a screen field: the redesigned Client Info screen shows First/Last
+# name and the client search result, not a separate Full Name row (docs/architecture/
+# dynamic-form-engine-design.md section 5 lists this as a deliberate simplification).
+- entity_type: RequestScreenField
+  schema: tax_routing
+  columns: [id, screen_id, field_id, requirement, condition_id, section, sort_order]
+  records:
+
+  # --- Client Info (d44caa75...) ---
+  - id: 0f560822-2871-444a-823f-30ddafec8d37
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 383af50f-0888-4f63-b609-32ae0d159992 # client_reference_id
+    requirement: mandatory
+    condition_id: null
+    section: Client Profile
+    sort_order: 10
+  - id: a2eaee6d-6b6f-46f7-99e4-3b3716331773
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 42cef28a-3428-401f-91a4-dbe1f1783a53 # client_first_name
+    requirement: readonly
+    condition_id: null
+    section: Client Profile
+    sort_order: 20
+  - id: 42ef74ec-535b-4b46-90b1-534102271865
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 86ba1535-dabb-4c4a-a568-779135232775 # client_last_name
+    requirement: readonly
+    condition_id: null
+    section: Client Profile
+    sort_order: 30
+  - id: 7c724228-6731-4165-8e23-b6c03aa2f1f0
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 131c89c7-9dfe-49d9-8531-664690e7ff43 # personal_email
+    requirement: readonly
+    condition_id: null
+    section: Contact Emails
+    sort_order: 10
+  - id: fd7eca4d-20a2-4280-8dcf-613115a1065a
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 3d1b2f61-8bd8-41f3-b3fe-42e1eabb5613 # pds_email
+    requirement: readonly
+    condition_id: null
+    section: Contact Emails
+    sort_order: 20
+  - id: cbb39d0c-96b3-4296-b9b7-89e06d02418f
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 5d8fab7b-a19b-4572-8138-43dd76a8765a # additional_email
+    requirement: optional
+    condition_id: null
+    section: Contact Emails
+    sort_order: 30
+  - id: 64e656bf-3f42-4ba9-97ca-b0fe04df5850
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: ae42c92e-b06a-45fb-91c7-e690602b32db # internal_folder
+    requirement: readonly
+    condition_id: null
+    section: Intelligence Routing
+    sort_order: 10
+  - id: c9a22c76-2817-4044-88eb-f94f0f5eecb9
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 585c4e7c-daeb-45bd-b051-bf205f4dc736 # folder_name
+    requirement: readonly
+    condition_id: null
+    section: Intelligence Routing
+    sort_order: 20
+  - id: 61db0ed6-a2f6-4267-9eb4-3a1e33f570a4
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: d728bd8b-add7-4955-9a98-8a819b951339 # read_write_password
+    requirement: readonly
+    condition_id: null
+    section: Intelligence Routing
+    sort_order: 30
+  - id: c66822f3-dcd1-4111-8609-6d31e480504d
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 48db384c-c916-48a3-9bf9-ef0a56f97082 # notification_flag
+    requirement: optional
+    condition_id: null
+    section: Intelligence Routing
+    sort_order: 40
+  - id: c22de3dd-c4fe-46a6-85b8-b7fc036a13d8
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    field_id: 84f66f82-604d-4a04-b36f-e3802d493bfd # office_location
+    requirement: readonly
+    condition_id: null
+    section: Client Profile
+    sort_order: 40
+
+  # --- Upload Documents (92a1bfd9...), one section matching the extracted-documents grid ---
+  - id: 6e359cd3-1a0e-445c-a0a6-e7daabed2a20
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 5bfed36c-e4c9-40d2-895b-ac6e163afe7c # document_type
+    requirement: mandatory
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 10
+  - id: 49de5815-8003-4a39-8c26-ac4377ecc8ed
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: bbd6d423-5b9d-42a8-8824-003ed9e01fe3 # document_year
+    requirement: mandatory
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 20
+  - id: 95867def-7fe1-49f9-a74e-d00e44b3210e
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: eda662fe-a617-4561-9874-3be703386176 # document_name
+    requirement: mandatory
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 30
+  - id: baaee8ec-8af5-4be3-9166-17e6bc65f21d
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 8d32f2c0-8d70-455f-a496-9188978ebe31 # entity_type
+    requirement: conditional
+    condition_id: 921e2478-10b0-41c7-bed0-588e4882f5f0 # document_belongs_to_entity
+    section: Extracted Documents
+    sort_order: 40
+  - id: 6c5b953e-7882-4ec8-ba71-21e34c5f0003
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 5cbb8b04-b586-4f4f-ae30-49a126164b37 # entity_name
+    requirement: conditional
+    condition_id: 921e2478-10b0-41c7-bed0-588e4882f5f0 # document_belongs_to_entity
+    section: Extracted Documents
+    sort_order: 50
+  - id: 18c2f2f0-ea99-45c1-a911-e2a9018e34e6
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: fce6a649-7110-4fd6-b1d6-502f03536f79 # entity_oracle_id
+    requirement: conditional
+    condition_id: 921e2478-10b0-41c7-bed0-588e4882f5f0 # document_belongs_to_entity
+    section: Extracted Documents
+    sort_order: 60
+  - id: 273c90d5-aebe-4347-a459-fd5feb8f2c20
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 035fa518-e0a6-44b1-b348-e23819a2c9fd # is_password_protected
+    requirement: optional
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 70
+  - id: a4d8d6ba-c1a3-47a1-8da0-9ac5abbbc7b0
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 51030b74-a679-4ae9-95f2-237ba01937ab # attachment_file
+    requirement: mandatory
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 80
+  - id: afb2f3f8-383b-4857-a71d-4659ddeadd07
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: e1f6ccb6-06cd-40af-83c5-e9fb3bee31e7 # k1_attachments
+    requirement: conditional
+    condition_id: 064cb746-a408-4e37-9bc2-b1e2bcbce3d5 # document_requires_k1_attachments
+    section: Extracted Documents
+    sort_order: 90
+  - id: c13a11bd-2834-4c7b-a013-0b6cf9688596
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: 0298e5f6-a3db-45a2-8fdb-0246808fa3b7 # form_8308_attachments
+    requirement: conditional
+    condition_id: 9dc7f2a7-d6cc-4223-b58c-df0f6481f554 # document_requires_form_8308_attachments
+    section: Extracted Documents
+    sort_order: 100
+  - id: f0edb1a6-b6a2-4ae1-874e-bc6f3e254843
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    field_id: c1d3f2d3-00c1-4a44-b466-624ad531a1d9 # amended_documents
+    requirement: optional
+    condition_id: null
+    section: Extracted Documents
+    sort_order: 110

@@ -1,0 +1,5 @@
+{%- import "property_type" as property_type -%}
+{% macro print(entityType, prop, entityTypes) -%}
+{%- set isOptional = prop.is_key or prop.is_read_only or prop.is_concurrency_control or not prop.is_required or prop.computed != "None" -%}
+{{ property_type::print(objectKind="input", entityType=entityType, prop=prop, isOptional=isOptional, entityTypes=entityTypes) }}
+{%- endmacro print %}

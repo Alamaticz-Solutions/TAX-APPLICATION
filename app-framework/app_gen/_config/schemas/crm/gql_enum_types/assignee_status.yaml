@@ -1,0 +1,8 @@
+- name: AssigneeStatus
+  items:
+    - value: Active
+      caption: Active
+    - value: Inactive
+      caption: Inactive
+    - value: Pending
+      caption: Pending

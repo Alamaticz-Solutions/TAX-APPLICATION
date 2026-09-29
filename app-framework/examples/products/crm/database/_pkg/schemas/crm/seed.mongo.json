@@ -1,0 +1,3929 @@
+[
+
+
+  {
+    "collection": "activity_types",
+    "documents": [
+
+      {
+
+        "id": "ac71ec00-0000-4000-8000-100000000001",
+
+
+        "name": "Email",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "ac71ec00-0000-4000-8000-100000000002",
+
+
+        "name": "Call",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "ac71ec00-0000-4000-8000-100000000003",
+
+
+        "name": "Meeting",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "ac71ec00-0000-4000-8000-100000000004",
+
+
+        "name": "Task",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "ac71ec00-0000-4000-8000-100000000005",
+
+
+        "name": "Note",
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "industries",
+    "documents": [
+
+      {
+
+        "id": "10100070-0000-4000-8000-100000000001",
+
+
+        "name": "Healthcare",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "10100070-0000-4000-8000-100000000002",
+
+
+        "name": "Technology",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "10100070-0000-4000-8000-100000000003",
+
+
+        "name": "Financial Services",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "10100070-0000-4000-8000-100000000004",
+
+
+        "name": "Manufacturing",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "10100070-0000-4000-8000-100000000005",
+
+
+        "name": "Retail",
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "lead_sources",
+    "documents": [
+
+      {
+
+        "id": "1eadcc01-0000-4000-8000-100000000001",
+
+
+        "name": "Web",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc01-0000-4000-8000-100000000002",
+
+
+        "name": "Phone Inquiry",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc01-0000-4000-8000-100000000003",
+
+
+        "name": "Partner Referral",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc01-0000-4000-8000-100000000004",
+
+
+        "name": "Trade Show",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc01-0000-4000-8000-100000000005",
+
+
+        "name": "Employee Referral",
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "lead_statuses",
+    "documents": [
+
+      {
+
+        "id": "1eadcc00-0000-4000-8000-100000000001",
+
+
+        "name": "New",
+
+
+        "is_converted": false,
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc00-0000-4000-8000-100000000002",
+
+
+        "name": "Contacted",
+
+
+        "is_converted": false,
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc00-0000-4000-8000-100000000003",
+
+
+        "name": "Qualified",
+
+
+        "is_converted": false,
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc00-0000-4000-8000-100000000004",
+
+
+        "name": "Unqualified",
+
+
+        "is_converted": false,
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "1eadcc00-0000-4000-8000-100000000005",
+
+
+        "name": "Converted",
+
+
+        "is_converted": true,
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "opportunity_stages",
+    "documents": [
+
+      {
+
+        "id": "0998a900-0000-4000-8000-100000000001",
+
+
+        "name": "Prospecting",
+
+
+        "probability": 0.1,
+
+
+        "is_closed": false,
+
+
+        "is_won": false,
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "0998a900-0000-4000-8000-100000000002",
+
+
+        "name": "Qualification",
+
+
+        "probability": 0.2,
+
+
+        "is_closed": false,
+
+
+        "is_won": false,
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "0998a900-0000-4000-8000-100000000003",
+
+
+        "name": "Proposal",
+
+
+        "probability": 0.5,
+
+
+        "is_closed": false,
+
+
+        "is_won": false,
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "0998a900-0000-4000-8000-100000000004",
+
+
+        "name": "Closed Won",
+
+
+        "probability": 1.0,
+
+
+        "is_closed": true,
+
+
+        "is_won": true,
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "0998a900-0000-4000-8000-100000000005",
+
+
+        "name": "Closed Lost",
+
+
+        "probability": 0.0,
+
+
+        "is_closed": true,
+
+
+        "is_won": false,
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "pricebooks",
+    "documents": [
+
+      {
+
+        "id": "97000b00-0000-4000-8000-100000000001",
+
+
+        "name": "Standard Price Book",
+
+
+        "description": "Default price book for all products",
+
+
+        "is_active": true,
+
+
+        "is_standard": true
+
+
+      },
+
+
+      {
+
+        "id": "97000b00-0000-4000-8000-100000000002",
+
+
+        "name": "Partner Price Book",
+
+
+        "description": "Discounted pricing for channel partners",
+
+
+        "is_active": true,
+
+
+        "is_standard": false
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "quote_statuses",
+    "documents": [
+
+      {
+
+        "id": "9407ec00-0000-4000-8000-100000000001",
+
+
+        "name": "Draft",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "9407ec00-0000-4000-8000-100000000002",
+
+
+        "name": "Needs Review",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "9407ec00-0000-4000-8000-100000000003",
+
+
+        "name": "Delivered",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "9407ec00-0000-4000-8000-100000000004",
+
+
+        "name": "Accepted",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "9407ec00-0000-4000-8000-100000000005",
+
+
+        "name": "Rejected",
+
+
+        "sort_order": 50
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "accounts",
+    "documents": [
+
+      {
+
+        "id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "name": "Acme Dental Group",
+
+
+        "website": "https://acmedental.com",
+
+
+        "phone": "555-0100",
+
+
+        "email": "info@acmedental.com",
+
+
+        "tags": ["baseline","healthcare","south","mid-market"],
+
+
+        "billing_street": "101 Congress Ave",
+
+
+        "billing_city": "Austin",
+
+
+        "billing_state": "TX",
+
+
+        "billing_postal_code": "78701",
+
+
+        "billing_country": "US",
+
+
+        "annual_revenue": 12000000,
+
+
+        "number_of_employees": 85,
+
+
+        "description": "Regional dental services group expanding patient engagement and back-office automation.",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "name": "TechBridge Solutions",
+
+
+        "website": "https://techbridge.io",
+
+
+        "phone": "555-0200",
+
+
+        "email": "hello@techbridge.io",
+
+
+        "tags": ["baseline","technology","west","mid-market"],
+
+
+        "billing_street": "500 Market St",
+
+
+        "billing_city": "San Francisco",
+
+
+        "billing_state": "CA",
+
+
+        "billing_postal_code": "94105",
+
+
+        "billing_country": "US",
+
+
+        "annual_revenue": 45000000,
+
+
+        "number_of_employees": 220,
+
+
+        "description": "Cloud integration consultancy standardizing customer success operations.",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "a0c00000-0000-4000-8000-100000000003",
+
+
+        "name": "CapStone Financial",
+
+
+        "website": "https://capstone-fin.com",
+
+
+        "phone": "555-0300",
+
+
+        "email": "contact@capstone-fin.com",
+
+
+        "tags": ["baseline","financial-services","northeast","enterprise"],
+
+
+        "billing_street": "75 Broad St",
+
+
+        "billing_city": "New York",
+
+
+        "billing_state": "NY",
+
+
+        "billing_postal_code": "10004",
+
+
+        "billing_country": "US",
+
+
+        "annual_revenue": 90000000,
+
+
+        "number_of_employees": 450,
+
+
+        "description": "Wealth management firm evaluating analytics and compliance reporting capabilities.",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "a0c00000-0000-4000-8000-100000000004",
+
+
+        "name": "MediSystems Inc",
+
+
+        "website": "https://medisystems.com",
+
+
+        "phone": "555-0400",
+
+
+        "email": "info@medisystems.com",
+
+
+        "tags": ["baseline","healthcare","midwest","mid-market"],
+
+
+        "billing_street": "233 W Wacker Dr",
+
+
+        "billing_city": "Chicago",
+
+
+        "billing_state": "IL",
+
+
+        "billing_postal_code": "60606",
+
+
+        "billing_country": "US",
+
+
+        "annual_revenue": 22000000,
+
+
+        "number_of_employees": 130,
+
+
+        "description": "Healthcare technology provider modernizing account management and field operations.",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "a0c00000-0000-4000-8000-100000000005",
+
+
+        "name": "RetailPlus Corp",
+
+
+        "website": "https://retailplus.com",
+
+
+        "phone": "555-0500",
+
+
+        "email": "sales@retailplus.com",
+
+
+        "tags": ["baseline","retail","south","mid-market"],
+
+
+        "billing_street": "1720 Commerce St",
+
+
+        "billing_city": "Dallas",
+
+
+        "billing_state": "TX",
+
+
+        "billing_postal_code": "75201",
+
+
+        "billing_country": "US",
+
+
+        "annual_revenue": 18000000,
+
+
+        "number_of_employees": 110,
+
+
+        "description": "Regional retailer piloting service workflows across store operations and procurement.",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000005"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "products",
+    "documents": [
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000001",
+
+
+        "name": "Enterprise Suite",
+
+
+        "product_code": "ENT-001",
+
+
+        "description": "Full-featured enterprise platform license",
+
+
+        "list_price": 75000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Software",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000002",
+
+
+        "name": "Professional Edition",
+
+
+        "product_code": "PRO-001",
+
+
+        "description": "Mid-market platform license",
+
+
+        "list_price": 25000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Software",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000003",
+
+
+        "name": "Implementation Services",
+
+
+        "product_code": "SVC-001",
+
+
+        "description": "Professional services for deployment",
+
+
+        "list_price": 15000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Services",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000004",
+
+
+        "name": "Annual Support",
+
+
+        "product_code": "SUP-001",
+
+
+        "description": "Yearly support and maintenance contract",
+
+
+        "list_price": 7500.0,
+
+
+        "is_active": true,
+
+
+        "family": "Support",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000005",
+
+
+        "name": "Training Package",
+
+
+        "product_code": "TRN-001",
+
+
+        "description": "User and admin training bundle",
+
+
+        "list_price": 5000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Services",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000006",
+
+
+        "name": "Data Migration Accelerator",
+
+
+        "product_code": "SVC-002",
+
+
+        "description": "Fixed-scope migration package for legacy CRM and ERP data",
+
+
+        "list_price": 18000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Services",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000007",
+
+
+        "name": "Customer Portal Add-On",
+
+
+        "product_code": "ADD-001",
+
+
+        "description": "Customer self-service portal and branded access layer",
+
+
+        "list_price": 32000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Software",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000008",
+
+
+        "name": "Compliance Reporting Pack",
+
+
+        "product_code": "REP-001",
+
+
+        "description": "Regulated reporting dashboards and export templates",
+
+
+        "list_price": 12000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Reporting",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000009",
+
+
+        "name": "Partner Enablement Kit",
+
+
+        "product_code": "PRT-001",
+
+
+        "description": "Partner onboarding workshops, playbooks, and co-selling assets",
+
+
+        "list_price": 8500.0,
+
+
+        "is_active": true,
+
+
+        "family": "Services",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000010",
+
+
+        "name": "Sandbox Environment",
+
+
+        "product_code": "SBOX-001",
+
+
+        "description": "Isolated non-production environment for testing and training",
+
+
+        "list_price": 6000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Software",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000011",
+
+
+        "name": "Legacy Connector Pack",
+
+
+        "product_code": "INT-001",
+
+
+        "description": "Connector bundle for file drops, SFTP, and legacy API synchronization",
+
+
+        "list_price": 14000.0,
+
+
+        "is_active": true,
+
+
+        "family": "Integrations",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9700d000-0000-4000-8000-100000000012",
+
+
+        "name": "Retired On-Prem Connector",
+
+
+        "product_code": "INT-LEGACY",
+
+
+        "description": "Inactive connector retained to exercise inactive product filtering",
+
+
+        "list_price": 9500.0,
+
+
+        "is_active": false,
+
+
+        "family": "Integrations",
+
+
+        "pricebook_id": "97000b00-0000-4000-8000-100000000002"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "contacts",
+    "documents": [
+
+      {
+
+        "id": "c0c00000-0000-4000-8000-100000000001",
+
+
+        "first_name": "Sarah",
+
+
+        "last_name": "Mitchell",
+
+
+        "email": "s.mitchell@acmedental.com",
+
+
+        "phone": "555-0101",
+
+
+        "mobile": "555-0109",
+
+
+        "title": "VP Operations",
+
+
+        "department": "Operations",
+
+
+        "mailing_street": "101 Congress Ave",
+
+
+        "mailing_city": "Austin",
+
+
+        "mailing_state": "TX",
+
+
+        "mailing_postal_code": "78701",
+
+
+        "mailing_country": "US",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "c0c00000-0000-4000-8000-100000000002",
+
+
+        "first_name": "James",
+
+
+        "last_name": "Okafor",
+
+
+        "email": "j.okafor@techbridge.io",
+
+
+        "phone": "555-0201",
+
+
+        "mobile": "555-0209",
+
+
+        "title": "CTO",
+
+
+        "department": "Engineering",
+
+
+        "mailing_street": "500 Market St",
+
+
+        "mailing_city": "San Francisco",
+
+
+        "mailing_state": "CA",
+
+
+        "mailing_postal_code": "94105",
+
+
+        "mailing_country": "US",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "c0c00000-0000-4000-8000-100000000003",
+
+
+        "first_name": "Lisa",
+
+
+        "last_name": "Chen",
+
+
+        "email": "l.chen@capstone-fin.com",
+
+
+        "phone": "555-0301",
+
+
+        "mobile": "555-0309",
+
+
+        "title": "CFO",
+
+
+        "department": "Finance",
+
+
+        "mailing_street": "75 Broad St",
+
+
+        "mailing_city": "New York",
+
+
+        "mailing_state": "NY",
+
+
+        "mailing_postal_code": "10004",
+
+
+        "mailing_country": "US",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "c0c00000-0000-4000-8000-100000000004",
+
+
+        "first_name": "David",
+
+
+        "last_name": "Torres",
+
+
+        "email": "d.torres@medisystems.com",
+
+
+        "phone": "555-0401",
+
+
+        "mobile": "555-0409",
+
+
+        "title": "Director of IT",
+
+
+        "department": "Information Technology",
+
+
+        "mailing_street": "233 W Wacker Dr",
+
+
+        "mailing_city": "Chicago",
+
+
+        "mailing_state": "IL",
+
+
+        "mailing_postal_code": "60606",
+
+
+        "mailing_country": "US",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "c0c00000-0000-4000-8000-100000000005",
+
+
+        "first_name": "Priya",
+
+
+        "last_name": "Sharma",
+
+
+        "email": "p.sharma@retailplus.com",
+
+
+        "phone": "555-0501",
+
+
+        "mobile": "555-0509",
+
+
+        "title": "VP Purchasing",
+
+
+        "department": "Procurement",
+
+
+        "mailing_street": "1720 Commerce St",
+
+
+        "mailing_city": "Dallas",
+
+
+        "mailing_state": "TX",
+
+
+        "mailing_postal_code": "75201",
+
+
+        "mailing_country": "US",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000005"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "leads",
+    "documents": [
+
+      {
+
+        "id": "1eadc000-0000-4000-8000-100000000001",
+
+
+        "first_name": "Michael",
+
+
+        "last_name": "Nguyen",
+
+
+        "email": "m.nguyen@sunrise-dental.com",
+
+
+        "phone": "555-1001",
+
+
+        "company": "Sunrise Dental",
+
+
+        "title": "Office Manager",
+
+
+        "website": "https://sunrise-dental.example.com",
+
+
+        "description": "New inbound lead requesting a patient communication workflow review.",
+
+
+        "annual_revenue": 2500000,
+
+
+        "number_of_employees": 28,
+
+
+        "is_converted": false,
+
+
+        "converted_account_id": null,
+
+
+        "status_id": "1eadcc00-0000-4000-8000-100000000001",
+
+
+        "source_id": "1eadcc01-0000-4000-8000-100000000001",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "1eadc000-0000-4000-8000-100000000002",
+
+
+        "first_name": "Amanda",
+
+
+        "last_name": "Brooks",
+
+
+        "email": "a.brooks@vistaclinic.com",
+
+
+        "phone": "555-1002",
+
+
+        "company": "Vista Clinic Group",
+
+
+        "title": "Practice Administrator",
+
+
+        "website": "https://vistaclinic.example.com",
+
+
+        "description": "Multi-location practice comparing pricing and implementation services.",
+
+
+        "annual_revenue": 8700000,
+
+
+        "number_of_employees": 74,
+
+
+        "is_converted": false,
+
+
+        "converted_account_id": null,
+
+
+        "status_id": "1eadcc00-0000-4000-8000-100000000002",
+
+
+        "source_id": "1eadcc01-0000-4000-8000-100000000003",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "1eadc000-0000-4000-8000-100000000003",
+
+
+        "first_name": "Robert",
+
+
+        "last_name": "Kim",
+
+
+        "email": "r.kim@nextech.co",
+
+
+        "phone": "555-1003",
+
+
+        "company": "NexTech Co",
+
+
+        "title": "IT Director",
+
+
+        "website": "https://nextech.example.com",
+
+
+        "description": "Qualified technology prospect interested in sandbox environments and connectors.",
+
+
+        "annual_revenue": 19000000,
+
+
+        "number_of_employees": 120,
+
+
+        "is_converted": false,
+
+
+        "converted_account_id": null,
+
+
+        "status_id": "1eadcc00-0000-4000-8000-100000000003",
+
+
+        "source_id": "1eadcc01-0000-4000-8000-100000000004",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "1eadc000-0000-4000-8000-100000000004",
+
+
+        "first_name": "Elena",
+
+
+        "last_name": "Vasquez",
+
+
+        "email": "e.vasquez@meridian-health.org",
+
+
+        "phone": "555-1004",
+
+
+        "company": "Meridian Health",
+
+
+        "title": "COO",
+
+
+        "website": "https://meridian-health.example.org",
+
+
+        "description": "Early healthcare inquiry with budget owner identified.",
+
+
+        "annual_revenue": 32000000,
+
+
+        "number_of_employees": 210,
+
+
+        "is_converted": false,
+
+
+        "converted_account_id": null,
+
+
+        "status_id": "1eadcc00-0000-4000-8000-100000000001",
+
+
+        "source_id": "1eadcc01-0000-4000-8000-100000000002",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "1eadc000-0000-4000-8000-100000000005",
+
+
+        "first_name": "Thomas",
+
+
+        "last_name": "Adeyemi",
+
+
+        "email": "t.adeyemi@freshmarket.com",
+
+
+        "phone": "555-1005",
+
+
+        "company": "Fresh Market Chain",
+
+
+        "title": "VP Technology",
+
+
+        "website": "https://freshmarket.example.com",
+
+
+        "description": "Retail lead referred by an internal customer success manager.",
+
+
+        "annual_revenue": 41000000,
+
+
+        "number_of_employees": 330,
+
+
+        "is_converted": false,
+
+
+        "converted_account_id": null,
+
+
+        "status_id": "1eadcc00-0000-4000-8000-100000000002",
+
+
+        "source_id": "1eadcc01-0000-4000-8000-100000000005",
+
+
+        "industry_id": "10100070-0000-4000-8000-100000000005"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "opportunities",
+    "documents": [
+
+      {
+
+        "id": "099c0000-0000-4000-8000-100000000001",
+
+
+        "name": "Acme Dental - Enterprise Suite",
+
+
+        "amount": 97500,
+
+
+        "close_date": "2026-06-30",
+
+
+        "description": "Enterprise platform evaluation for operations, patient engagement, and staff enablement.",
+
+
+        "next_step": "Confirm legal review owner and implementation window.",
+
+
+        "lead_source": "Partner Referral",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "stage_id": "0998a900-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "099c0000-0000-4000-8000-100000000002",
+
+
+        "name": "TechBridge - Platform Expansion",
+
+
+        "amount": 145000,
+
+
+        "close_date": "2026-07-31",
+
+
+        "description": "Expansion opportunity covering additional platform seats and service packaging.",
+
+
+        "next_step": "Send security package and revised partner services estimate.",
+
+
+        "lead_source": "Web",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "stage_id": "0998a900-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "099c0000-0000-4000-8000-100000000003",
+
+
+        "name": "CapStone - Analytics Module",
+
+
+        "amount": 32500,
+
+
+        "close_date": "2026-05-31",
+
+
+        "description": "Analytics module and compliance reporting add-on for financial advisors.",
+
+
+        "next_step": "Schedule executive readout with finance and compliance stakeholders.",
+
+
+        "lead_source": "Trade Show",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000003",
+
+
+        "stage_id": "0998a900-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "099c0000-0000-4000-8000-100000000004",
+
+
+        "name": "MediSystems - Pro Edition",
+
+
+        "amount": 47500,
+
+
+        "close_date": "2026-08-31",
+
+
+        "description": "Professional edition rollout for care coordination and IT service workflows.",
+
+
+        "next_step": "Complete technical discovery with integrations team.",
+
+
+        "lead_source": "Phone Inquiry",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000004",
+
+
+        "stage_id": "0998a900-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "099c0000-0000-4000-8000-100000000005",
+
+
+        "name": "RetailPlus - Services Bundle",
+
+
+        "amount": 27500,
+
+
+        "close_date": "2026-09-30",
+
+
+        "description": "Services and enablement bundle for store support and procurement coordination.",
+
+
+        "next_step": "Align procurement scope and delivery schedule.",
+
+
+        "lead_source": "Employee Referral",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000005",
+
+
+        "stage_id": "0998a900-0000-4000-8000-100000000002"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "activities",
+    "documents": [
+
+      {
+
+        "id": "ac710007-0000-4000-8000-100000000001",
+
+
+        "subject": "Discovery Call - Acme Dental",
+
+
+        "description": "Initial discovery call to understand requirements",
+
+
+        "activity_date": "2026-05-01",
+
+
+        "due_date": "2026-05-01",
+
+
+        "is_closed": true,
+
+
+        "priority": "High",
+
+
+        "status": "Completed",
+
+
+        "type_id": "ac71ec00-0000-4000-8000-100000000002",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000001",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000001",
+
+
+        "lead_id": null
+
+
+      },
+
+
+      {
+
+        "id": "ac710007-0000-4000-8000-100000000002",
+
+
+        "subject": "Demo - TechBridge Platform",
+
+
+        "description": "Full product demonstration for expansion proposal",
+
+
+        "activity_date": "2026-05-10",
+
+
+        "due_date": "2026-05-10",
+
+
+        "is_closed": true,
+
+
+        "priority": "High",
+
+
+        "status": "Completed",
+
+
+        "type_id": "ac71ec00-0000-4000-8000-100000000003",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000002",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000002",
+
+
+        "lead_id": null
+
+
+      },
+
+
+      {
+
+        "id": "ac710007-0000-4000-8000-100000000003",
+
+
+        "subject": "Follow-up Email - CapStone Analytics",
+
+
+        "description": "Sent ROI analysis and case studies",
+
+
+        "activity_date": "2026-05-12",
+
+
+        "due_date": "2026-05-12",
+
+
+        "is_closed": true,
+
+
+        "priority": "Normal",
+
+
+        "status": "Completed",
+
+
+        "type_id": "ac71ec00-0000-4000-8000-100000000001",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000003",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000003",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000003",
+
+
+        "lead_id": null
+
+
+      },
+
+
+      {
+
+        "id": "ac710007-0000-4000-8000-100000000004",
+
+
+        "subject": "Intro Call - MediSystems",
+
+
+        "description": "First contact, qualify needs and budget",
+
+
+        "activity_date": "2026-05-19",
+
+
+        "due_date": "2026-05-19",
+
+
+        "is_closed": false,
+
+
+        "priority": "Normal",
+
+
+        "status": "Planned",
+
+
+        "type_id": "ac71ec00-0000-4000-8000-100000000002",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000004",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000004",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000004",
+
+
+        "lead_id": null
+
+
+      },
+
+
+      {
+
+        "id": "ac710007-0000-4000-8000-100000000005",
+
+
+        "subject": "Proposal Review Meeting - RetailPlus",
+
+
+        "description": "Walk through the services bundle proposal",
+
+
+        "activity_date": "2026-05-28",
+
+
+        "due_date": "2026-05-28",
+
+
+        "is_closed": false,
+
+
+        "priority": "Normal",
+
+
+        "status": "Planned",
+
+
+        "type_id": "ac71ec00-0000-4000-8000-100000000003",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000005",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000005",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000005",
+
+
+        "lead_id": null
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "opportunity_contacts",
+    "documents": [
+
+      {
+
+        "id": "0c0c0000-0000-4000-8000-100000000001",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000001",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "0c0c0000-0000-4000-8000-100000000002",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000002",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "0c0c0000-0000-4000-8000-100000000003",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000003",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "0c0c0000-0000-4000-8000-100000000004",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000004",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "0c0c0000-0000-4000-8000-100000000005",
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000005",
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000005"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "quotes",
+    "documents": [
+
+      {
+
+        "id": "9407e000-0000-4000-8000-100000000001",
+
+
+        "name": "Q-2026-001 Acme Enterprise",
+
+
+        "quote_number": "Q-2026-001",
+
+
+        "expiration_date": "2026-07-31",
+
+
+        "description": "Enterprise suite package with implementation and annual support.",
+
+
+        "subtotal": 97500,
+
+
+        "discount": 0,
+
+
+        "tax": 0,
+
+
+        "total_price": 97500,
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000001",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "status_id": "9407ec00-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "9407e000-0000-4000-8000-100000000002",
+
+
+        "name": "Q-2026-002 TechBridge Platform",
+
+
+        "quote_number": "Q-2026-002",
+
+
+        "expiration_date": "2026-08-31",
+
+
+        "description": "Multi-seat professional edition expansion and implementation package.",
+
+
+        "subtotal": 145000,
+
+
+        "discount": 0,
+
+
+        "tax": 0,
+
+
+        "total_price": 145000,
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000002",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "status_id": "9407ec00-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9407e000-0000-4000-8000-100000000003",
+
+
+        "name": "Q-2026-003 CapStone Analytics",
+
+
+        "quote_number": "Q-2026-003",
+
+
+        "expiration_date": "2026-06-15",
+
+
+        "description": "Analytics module acceptance package with added training.",
+
+
+        "subtotal": 32500,
+
+
+        "discount": 0,
+
+
+        "tax": 0,
+
+
+        "total_price": 32500,
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000003",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000003",
+
+
+        "status_id": "9407ec00-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "9407e000-0000-4000-8000-100000000004",
+
+
+        "name": "Q-2026-004 MediSystems Pro Edition",
+
+
+        "quote_number": "Q-2026-004",
+
+
+        "expiration_date": "2026-09-30",
+
+
+        "description": "Professional edition, implementation, and annual support proposal.",
+
+
+        "subtotal": 47500,
+
+
+        "discount": 2500,
+
+
+        "tax": 0,
+
+
+        "total_price": 45000,
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000004",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000004",
+
+
+        "status_id": "9407ec00-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "9407e000-0000-4000-8000-100000000005",
+
+
+        "name": "Q-2026-005 RetailPlus Services",
+
+
+        "quote_number": "Q-2026-005",
+
+
+        "expiration_date": "2026-10-31",
+
+
+        "description": "Services bundle for procurement and store operations enablement.",
+
+
+        "subtotal": 27500,
+
+
+        "discount": 0,
+
+
+        "tax": 0,
+
+
+        "total_price": 27500,
+
+
+        "opportunity_id": "099c0000-0000-4000-8000-100000000005",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000005",
+
+
+        "status_id": "9407ec00-0000-4000-8000-100000000003"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "quote_line_items",
+    "documents": [
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000001",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 75000,
+
+
+        "discount": 0,
+
+
+        "total_price": 75000,
+
+
+        "description": "Enterprise platform license.",
+
+
+        "sort_order": 1,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000001",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000002",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 15000,
+
+
+        "discount": 0,
+
+
+        "total_price": 15000,
+
+
+        "description": "Standard implementation services.",
+
+
+        "sort_order": 2,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000001",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000003",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 7500,
+
+
+        "discount": 0,
+
+
+        "total_price": 7500,
+
+
+        "description": "Annual support package.",
+
+
+        "sort_order": 3,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000001",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000004",
+
+
+        "quantity": 5,
+
+
+        "unit_price": 25000,
+
+
+        "discount": 0,
+
+
+        "total_price": 125000,
+
+
+        "description": "Five professional edition licenses.",
+
+
+        "sort_order": 1,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000002",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000005",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 20000,
+
+
+        "discount": 0,
+
+
+        "total_price": 20000,
+
+
+        "description": "Expanded implementation package.",
+
+
+        "sort_order": 2,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000002",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000006",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 25000,
+
+
+        "discount": 0,
+
+
+        "total_price": 25000,
+
+
+        "description": "Professional edition analytics module.",
+
+
+        "sort_order": 1,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000003",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000007",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 7500,
+
+
+        "discount": 0,
+
+
+        "total_price": 7500,
+
+
+        "description": "Analytics support package.",
+
+
+        "sort_order": 2,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000003",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000008",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 25000,
+
+
+        "discount": 0,
+
+
+        "total_price": 25000,
+
+
+        "description": "Professional edition core license.",
+
+
+        "sort_order": 1,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000004",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000009",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 15000,
+
+
+        "discount": 0,
+
+
+        "total_price": 15000,
+
+
+        "description": "Implementation services for care workflows.",
+
+
+        "sort_order": 2,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000004",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000010",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 7500,
+
+
+        "discount": 2500,
+
+
+        "total_price": 5000,
+
+
+        "description": "Discounted annual support.",
+
+
+        "sort_order": 3,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000004",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000004"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000011",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 15000,
+
+
+        "discount": 0,
+
+
+        "total_price": 15000,
+
+
+        "description": "Procurement implementation services.",
+
+
+        "sort_order": 1,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000005",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000012",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 5000,
+
+
+        "discount": 0,
+
+
+        "total_price": 5000,
+
+
+        "description": "Store operations training package.",
+
+
+        "sort_order": 2,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000005",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000005"
+
+
+      },
+
+
+      {
+
+        "id": "9407e110-0000-4000-8000-100000000013",
+
+
+        "quantity": 1,
+
+
+        "unit_price": 7500,
+
+
+        "discount": 0,
+
+
+        "total_price": 7500,
+
+
+        "description": "Support for store rollout.",
+
+
+        "sort_order": 3,
+
+
+        "quote_id": "9407e000-0000-4000-8000-100000000005",
+
+
+        "product_id": "9700d000-0000-4000-8000-100000000004"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "business_units",
+    "documents": [
+
+      {
+
+        "id": "b0510000-0000-4000-8000-100000000001",
+
+
+        "name": "West Commercial",
+
+
+        "code": "WEST-COM",
+
+
+        "description": "Commercial sales and service for western regional accounts",
+
+
+        "region": "West",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "b0510000-0000-4000-8000-100000000002",
+
+
+        "name": "National Service",
+
+
+        "code": "NAT-SVC",
+
+
+        "description": "Shared service and knowledge operations",
+
+
+        "region": "National",
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "territories",
+    "documents": [
+
+      {
+
+        "id": "7e441000-0000-4000-8000-100000000001",
+
+
+        "name": "Pacific Northwest",
+
+
+        "code": "PNW",
+
+
+        "region": "West",
+
+
+        "country": "USA",
+
+
+        "state": "WA",
+
+
+        "is_active": true,
+
+
+        "business_unit_id": "b0510000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "7e441000-0000-4000-8000-100000000002",
+
+
+        "name": "California Enterprise",
+
+
+        "code": "CA-ENT",
+
+
+        "region": "West",
+
+
+        "country": "USA",
+
+
+        "state": "CA",
+
+
+        "is_active": true,
+
+
+        "business_unit_id": "b0510000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "7e441000-0000-4000-8000-100000000003",
+
+
+        "name": "Remote Service Desk",
+
+
+        "code": "RSD",
+
+
+        "region": "National",
+
+
+        "country": "USA",
+
+
+        "state": null,
+
+
+        "is_active": true,
+
+
+        "business_unit_id": "b0510000-0000-4000-8000-100000000002"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "queues",
+    "documents": [
+
+      {
+
+        "id": "9e0e0000-0000-4000-8000-100000000001",
+
+
+        "name": "Enterprise Onboarding",
+
+
+        "queue_type": "Sales",
+
+
+        "description": "High-touch queue for new enterprise opportunities",
+
+
+        "email": "enterprise-onboarding@example.com",
+
+
+        "is_active": true,
+
+
+        "business_unit_id": "b0510000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9e0e0000-0000-4000-8000-100000000002",
+
+
+        "name": "Knowledge Review",
+
+
+        "queue_type": "Service",
+
+
+        "description": "Review queue for externally visible knowledge articles",
+
+
+        "email": "kb-review@example.com",
+
+
+        "is_active": true,
+
+
+        "business_unit_id": "b0510000-0000-4000-8000-100000000002"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "addresses",
+    "documents": [
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000001",
+
+
+        "name": "Acme Dental Billing",
+
+
+        "address_type": "Billing",
+
+
+        "street1": "415 Market St",
+
+
+        "street2": "Suite 300",
+
+
+        "city": "San Francisco",
+
+
+        "state": "CA",
+
+
+        "postal_code": "94105",
+
+
+        "country": "USA",
+
+
+        "latitude": 37.7899,
+
+
+        "longitude": -122.3942,
+
+
+        "is_primary": true,
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "contact_id": null
+
+
+      },
+
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000002",
+
+
+        "name": "Acme Dental Shipping",
+
+
+        "address_type": "Shipping",
+
+
+        "street1": "220 Harbor Way",
+
+
+        "street2": null,
+
+
+        "city": "Oakland",
+
+
+        "state": "CA",
+
+
+        "postal_code": "94607",
+
+
+        "country": "USA",
+
+
+        "latitude": 37.7955,
+
+
+        "longitude": -122.2791,
+
+
+        "is_primary": false,
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "contact_id": null
+
+
+      },
+
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000003",
+
+
+        "name": "Maya Johnson Mailing",
+
+
+        "address_type": "Mailing",
+
+
+        "street1": "18 Pine Ave",
+
+
+        "street2": "Apt 6C",
+
+
+        "city": "Portland",
+
+
+        "state": "OR",
+
+
+        "postal_code": "97205",
+
+
+        "country": "USA",
+
+
+        "latitude": 45.5202,
+
+
+        "longitude": -122.6742,
+
+
+        "is_primary": true,
+
+
+        "account_id": null,
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000004",
+
+
+        "name": "Northstar Supply Billing",
+
+
+        "address_type": "Billing",
+
+
+        "street1": "780 Lakeview Dr",
+
+
+        "street2": null,
+
+
+        "city": "Minneapolis",
+
+
+        "state": "MN",
+
+
+        "postal_code": "55402",
+
+
+        "country": "USA",
+
+
+        "latitude": 44.9778,
+
+
+        "longitude": -93.265,
+
+
+        "is_primary": true,
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "contact_id": null
+
+
+      },
+
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000005",
+
+
+        "name": "Redwood Logistics Dock",
+
+
+        "address_type": "Shipping",
+
+
+        "street1": "1000 Portside Rd",
+
+
+        "street2": "Dock 12",
+
+
+        "city": "Tacoma",
+
+
+        "state": "WA",
+
+
+        "postal_code": "98421",
+
+
+        "country": "USA",
+
+
+        "latitude": 47.2529,
+
+
+        "longitude": -122.4443,
+
+
+        "is_primary": false,
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000003",
+
+
+        "contact_id": null
+
+
+      },
+
+
+      {
+
+        "id": "add00000-0000-4000-8000-100000000006",
+
+
+        "name": "Jordan Lee Mailing",
+
+
+        "address_type": "Mailing",
+
+
+        "street1": "501 Innovation Pkwy",
+
+
+        "street2": null,
+
+
+        "city": "Austin",
+
+
+        "state": "TX",
+
+
+        "postal_code": "78701",
+
+
+        "country": "USA",
+
+
+        "latitude": 30.2672,
+
+
+        "longitude": -97.7431,
+
+
+        "is_primary": true,
+
+
+        "account_id": null,
+
+
+        "contact_id": "c0c00000-0000-4000-8000-100000000002"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "activity_parties",
+    "documents": [
+
+      {
+
+        "id": "ac71fa00-0000-4000-8000-100000000001",
+
+
+        "role": "Organizer",
+
+
+        "party_type": "User",
+
+
+        "party_id": "pdsh_admin",
+
+
+        "display_name": "Priya Admin",
+
+
+        "email": "priya.admin@example.com",
+
+
+        "is_required": true,
+
+
+        "responded_status": "Accepted",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "ac71fa00-0000-4000-8000-100000000002",
+
+
+        "role": "Required Attendee",
+
+
+        "party_type": "Contact",
+
+
+        "party_id": "c0c00000-0000-4000-8000-100000000001",
+
+
+        "display_name": "Maya Johnson",
+
+
+        "email": "maya.johnson@example.com",
+
+
+        "is_required": true,
+
+
+        "responded_status": "Accepted",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "ac71fa00-0000-4000-8000-100000000003",
+
+
+        "role": "Optional Attendee",
+
+
+        "party_type": "Account",
+
+
+        "party_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "display_name": "Acme Dental",
+
+
+        "email": "info@acme-dental.example.com",
+
+
+        "is_required": false,
+
+
+        "responded_status": "Tentative",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "ac71fa00-0000-4000-8000-100000000004",
+
+
+        "role": "Regarding",
+
+
+        "party_type": "Opportunity",
+
+
+        "party_id": "099c0000-0000-4000-8000-100000000002",
+
+
+        "display_name": "Northstar Renewal",
+
+
+        "email": null,
+
+
+        "is_required": false,
+
+
+        "responded_status": "NotRequired",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "ac71fa00-0000-4000-8000-100000000005",
+
+
+        "role": "Sender",
+
+
+        "party_type": "User",
+
+
+        "party_id": "pdsh_ops",
+
+
+        "display_name": "Morgan Ops",
+
+
+        "email": "morgan.ops@example.com",
+
+
+        "is_required": true,
+
+
+        "responded_status": "Sent",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000004"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "knowledge_articles",
+    "documents": [
+
+      {
+
+        "id": "a471c1e0-0000-4000-8000-100000000001",
+
+
+        "title": "Enterprise Onboarding Checklist",
+
+
+        "slug": "enterprise-onboarding-checklist",
+
+
+        "summary": "Checklist used by implementation teams before go-live.",
+
+
+        "body": "Confirm stakeholders, environments, data load, access review, and support handoff.",
+
+
+        "language": "en-US",
+
+
+        "status": "Published",
+
+
+        "publish_date": "2026-01-08",
+
+
+        "view_count": 312,
+
+
+        "is_public": true,
+
+
+        "tags": ["onboarding","enterprise","implementation"]
+
+
+      },
+
+
+      {
+
+        "id": "a471c1e0-0000-4000-8000-100000000002",
+
+
+        "title": "Quote Discount Approval Guide",
+
+
+        "slug": "quote-discount-approval-guide",
+
+
+        "summary": "Internal guide for discount thresholds and finance approval.",
+
+
+        "body": "Discounts above standard guardrails require finance review and attached business justification.",
+
+
+        "language": "en-US",
+
+
+        "status": "Draft",
+
+
+        "publish_date": null,
+
+
+        "view_count": 47,
+
+
+        "is_public": false,
+
+
+        "tags": ["quote","finance","approvals"]
+
+
+      },
+
+
+      {
+
+        "id": "a471c1e0-0000-4000-8000-100000000003",
+
+
+        "title": "Data Import Troubleshooting",
+
+
+        "slug": "data-import-troubleshooting",
+
+
+        "summary": "Common validation and mapping fixes for imported CRM data.",
+
+
+        "body": "Review required fields, duplicate keys, invalid references, and provider-specific type mappings.",
+
+
+        "language": "en-US",
+
+
+        "status": "Published",
+
+
+        "publish_date": "2026-02-14",
+
+
+        "view_count": 1289,
+
+
+        "is_public": true,
+
+
+        "tags": ["data-import","validation","support"]
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "article_comments",
+    "documents": [
+
+      {
+
+        "id": "a471c0de-0000-4000-8000-100000000001",
+
+
+        "subject": "Add security handoff step",
+
+
+        "body": "Include evidence that admin access was reviewed before production handoff.",
+
+
+        "author_name": "Priya Admin",
+
+
+        "sentiment": "Positive",
+
+
+        "is_internal": true,
+
+
+        "created_at": "2026-01-09T16:30:00Z",
+
+
+        "article_id": "a471c1e0-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "a471c0de-0000-4000-8000-100000000002",
+
+
+        "subject": "Finance example needed",
+
+
+        "body": "Add one worked example for a multi-year discount approval.",
+
+
+        "author_name": "Iris Finance",
+
+
+        "sentiment": "Neutral",
+
+
+        "is_internal": true,
+
+
+        "created_at": "2026-01-12T19:10:00Z",
+
+
+        "article_id": "a471c1e0-0000-4000-8000-100000000002"
+
+
+      },
+
+
+      {
+
+        "id": "a471c0de-0000-4000-8000-100000000003",
+
+
+        "subject": "Helpful import notes",
+
+
+        "body": "The duplicate key guidance reduced support back-and-forth on the last migration.",
+
+
+        "author_name": "Morgan Ops",
+
+
+        "sentiment": "Positive",
+
+
+        "is_internal": false,
+
+
+        "created_at": "2026-02-17T11:45:00Z",
+
+
+        "article_id": "a471c1e0-0000-4000-8000-100000000003"
+
+
+      },
+
+
+      {
+
+        "id": "a471c0de-0000-4000-8000-100000000004",
+
+
+        "subject": "Clarify lookup failures",
+
+
+        "body": "We should distinguish missing foreign keys from invalid UUID syntax.",
+
+
+        "author_name": "Rowan Support",
+
+
+        "sentiment": "Neutral",
+
+
+        "is_internal": true,
+
+
+        "created_at": "2026-02-18T14:05:00Z",
+
+
+        "article_id": "a471c1e0-0000-4000-8000-100000000003"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "queue_items",
+    "documents": [
+
+      {
+
+        "id": "9e0e1700-0000-4000-8000-100000000001",
+
+
+        "title": "Prepare Acme onboarding workspace",
+
+
+        "item_type": "Account",
+
+
+        "object_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "status": "Open",
+
+
+        "priority": 1,
+
+
+        "entered_at": "2026-01-10T09:00:00Z",
+
+
+        "due_at": "2026-01-12T17:00:00Z",
+
+
+        "queue_id": "9e0e0000-0000-4000-8000-100000000001",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000001",
+
+
+        "activity_id": null,
+
+
+        "knowledge_article_id": null
+
+
+      },
+
+
+      {
+
+        "id": "9e0e1700-0000-4000-8000-100000000002",
+
+
+        "title": "Review onboarding checklist",
+
+
+        "item_type": "KnowledgeArticle",
+
+
+        "object_id": "a471c1e0-0000-4000-8000-100000000001",
+
+
+        "status": "InReview",
+
+
+        "priority": 2,
+
+
+        "entered_at": "2026-01-11T15:20:00Z",
+
+
+        "due_at": "2026-01-15T17:00:00Z",
+
+
+        "queue_id": "9e0e0000-0000-4000-8000-100000000002",
+
+
+        "account_id": null,
+
+
+        "activity_id": null,
+
+
+        "knowledge_article_id": "a471c1e0-0000-4000-8000-100000000001"
+
+
+      },
+
+
+      {
+
+        "id": "9e0e1700-0000-4000-8000-100000000003",
+
+
+        "title": "Follow up on Northstar renewal",
+
+
+        "item_type": "Activity",
+
+
+        "object_id": "ac710007-0000-4000-8000-100000000003",
+
+
+        "status": "Open",
+
+
+        "priority": 2,
+
+
+        "entered_at": "2026-01-12T18:00:00Z",
+
+
+        "due_at": "2026-01-13T22:00:00Z",
+
+
+        "queue_id": "9e0e0000-0000-4000-8000-100000000001",
+
+
+        "account_id": "a0c00000-0000-4000-8000-100000000002",
+
+
+        "activity_id": "ac710007-0000-4000-8000-100000000003",
+
+
+        "knowledge_article_id": null
+
+
+      },
+
+
+      {
+
+        "id": "9e0e1700-0000-4000-8000-100000000004",
+
+
+        "title": "Publish data import troubleshooting",
+
+
+        "item_type": "KnowledgeArticle",
+
+
+        "object_id": "a471c1e0-0000-4000-8000-100000000003",
+
+
+        "status": "Done",
+
+
+        "priority": 3,
+
+
+        "entered_at": "2026-02-15T10:30:00Z",
+
+
+        "due_at": "2026-02-18T17:00:00Z",
+
+
+        "queue_id": "9e0e0000-0000-4000-8000-100000000002",
+
+
+        "account_id": null,
+
+
+        "activity_id": null,
+
+
+        "knowledge_article_id": "a471c1e0-0000-4000-8000-100000000003"
+
+
+      }
+
+
+    ]
+  }
+
+
+]

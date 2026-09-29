@@ -1,0 +1,85 @@
+- id: 7ebbc396-85d7-48b5-acb9-e89ab97b6bc8
+  name: IxRun
+  is_table: true
+  indexes:
+  - tenant
+  - run_state
+  - start_idempotency_key
+  - context_id
+  - updated_at
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+    document_of_record: stored_run
+  props:
+
+  - name: id
+    caption: Run ID
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: subject
+    caption: Owner Subject
+    fragment: property-string-readonly-required
+
+  - name: intent_key
+    caption: Intent Key
+    fragment: property-string-caption
+    is_read_only: true
+
+  - name: run_state
+    caption: Run State
+    fragment: property-string-required
+
+  - name: phase
+    caption: Phase
+    fragment: property-string
+
+  - name: context_id
+    caption: Context
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: IxContext
+
+  - name: repository_version
+    caption: Repository Version
+    fragment: property-int-lg-required
+    is_concurrency_control: true
+
+  - name: last_sequence
+    caption: Last Sequence
+    fragment: property-int-lg-required
+
+  - name: cursor
+    caption: Replay Cursor
+    fragment: property-string-required
+
+  - name: start_idempotency_key
+    caption: Start Idempotency Key
+    fragment: property-string-readonly-required
+
+  - name: runtime_seal_key_id
+    caption: Runtime Seal Key ID
+    fragment: property-string-readonly-required
+
+  - name: stored_run
+    caption: Sealed Stored Run
+    fragment: property-json-required
+
+  - name: created_at
+    caption: Created At
+    fragment: property-date-time-required
+    is_read_only: true
+
+  - name: updated_at
+    caption: Updated At
+    fragment: property-date-time-required

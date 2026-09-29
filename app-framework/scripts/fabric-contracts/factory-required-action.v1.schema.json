@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/factory-required-action.v1.schema.json",
+  "title": "Human-owned required action: category, blocked work, owning workstream, and evidence-backed fulfillment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "action_id",
+    "app_id",
+    "category",
+    "summary",
+    "blocked_refs",
+    "owning_workstream",
+    "evidence_to_clear",
+    "raised_at",
+    "raised_by",
+    "status",
+    "fulfillment",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "factory_required_action@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "action_id": { "$ref": "#/$defs/reference" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "category": {
+      "enum": [
+        "environment_provisioning",
+        "data_fixture",
+        "source_schema_export",
+        "credential_secret",
+        "access",
+        "approval",
+        "enterprise_registration"
+      ]
+    },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "blocked_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/reference" }
+    },
+    "owning_workstream": { "$ref": "#/$defs/reference" },
+    "data_constraints": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "evidence_to_clear": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "raised_at": { "$ref": "#/$defs/timestamp" },
+    "raised_by": { "$ref": "#/$defs/reference" },
+    "status": { "enum": ["open", "in_progress", "fulfilled", "withdrawn"] },
+    "fulfillment": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fulfilled_by", "fulfilled_at", "evidence_refs"],
+          "properties": {
+            "fulfilled_by": { "$ref": "#/$defs/reference" },
+            "fulfilled_at": { "$ref": "#/$defs/timestamp" },
+            "evidence_refs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/reference" }
+            }
+          }
+        }
+      ]
+    },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

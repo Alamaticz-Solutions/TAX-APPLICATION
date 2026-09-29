@@ -1,0 +1,118 @@
+# Hermetic MS SQL ODBC certification lab.
+# - sql_password_odbc_e2e: real Linux SQL Server + Microsoft ODBC Driver 18
+# - ntlm_e2e: TDS/NTLM protocol-fidelity mock (FreeTDS + ntlm-auth oracle)
+#
+# Credentials: copy `.env.example` → `.env` (gitignored).
+
+name: appfw-mssql-ad
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: appfw-mssql-ad-mssql
+    hostname: mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?set MSSQL_SA_PASSWORD in docker/mssql-ad/.env}
+      MSSQL_PID: Developer
+    volumes:
+      - type: volume
+        source: mssql-data
+        target: /var/opt/mssql
+    networks:
+      mssql-ad:
+        aliases:
+          - mssql.appfw.test
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1' || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    security_opt:
+      - label=disable
+
+  tds-mock:
+    build:
+      context: ./tds-mock
+    container_name: appfw-mssql-ad-tds-mock
+    hostname: tds-mock
+    environment:
+      # Throwaway mock principal; override only when exercising a different golden set.
+      TDS_MOCK_DOMAIN: APPFW
+      TDS_MOCK_USERNAME: svc-app
+      TDS_MOCK_PASSWORD: AppSvc!Passw0rd
+      TDS_MOCK_GOLDEN: /golden/handshake.json
+      TDS_MOCK_EVIDENCE: /evidence/ntlm-handshake.json
+    volumes:
+      - type: bind
+        source: ./tds-mock/golden
+        target: /golden
+        read_only: true
+      - type: volume
+        source: tds-mock-evidence
+        target: /evidence
+    networks:
+      mssql-ad:
+        aliases:
+          - tds-mock.appfw.test
+          - ntlm-mock.appfw.test
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import socket; s=socket.create_connection(('127.0.0.1',1433),2); s.close()\""]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+    security_opt:
+      - label=disable
+
+  test-runner:
+    build:
+      context: ../..
+      dockerfile: docker/mssql-ad/test-runner.Dockerfile
+    container_name: appfw-mssql-ad-test-runner
+    depends_on:
+      mssql:
+        condition: service_healthy
+      tds-mock:
+        condition: service_healthy
+    environment:
+      # NTLM → tds-mock (must match tds-mock principal above)
+      MSSQL_NTLM_HOST: tds-mock.appfw.test
+      MSSQL_NTLM_PORT: "1433"
+      MSSQL_NTLM_DATABASE: master
+      MSSQL_NTLM_USERNAME: APPFW\\svc-app
+      MSSQL_NTLM_PASSWORD: AppSvc!Passw0rd
+      # sql_password → stock Linux SQL Server (SA password from .env)
+      MSSQL_ODBC_HOST: mssql.appfw.test
+      MSSQL_ODBC_PORT: "1433"
+      MSSQL_ODBC_DATABASE: master
+      MSSQL_ODBC_USERNAME: sa
+      MSSQL_ODBC_PASSWORD: ${MSSQL_SA_PASSWORD:?set MSSQL_SA_PASSWORD in docker/mssql-ad/.env}
+      APP_MSSQL_LOGIN_TIMEOUT_SECS: "30"
+    volumes:
+      - type: bind
+        source: ../..
+        target: /src
+      - type: volume
+        source: tds-mock-evidence
+        target: /evidence
+        read_only: true
+    working_dir: /src
+    networks:
+      - mssql-ad
+    profiles: ["test"]
+    security_opt:
+      - label=disable
+
+networks:
+  mssql-ad:
+    driver: bridge
+
+volumes:
+  mssql-data:
+  tds-mock-evidence:

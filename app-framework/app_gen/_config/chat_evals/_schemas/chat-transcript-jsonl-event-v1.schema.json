@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.local/schemas/chat-transcript-jsonl-event-v1.schema.json",
+  "title": "App Framework Chat Transcript JSONL Event v1",
+  "description": "One line in the canonical network-free chat-eval transcript JSONL stream.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "type", "payload"],
+  "properties": {
+    "schema": {
+      "const": "chat_transcript_jsonl@1"
+    },
+    "type": {
+      "enum": [
+        "message",
+        "tool_call",
+        "tool_result",
+        "card",
+        "citation",
+        "answer_envelope",
+        "error"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": { "const": "answer_envelope" }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "data"],
+            "properties": {
+              "type": { "const": "data-answer-envelope" },
+              "data": { "$ref": "answer-envelope-v1.schema.json" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

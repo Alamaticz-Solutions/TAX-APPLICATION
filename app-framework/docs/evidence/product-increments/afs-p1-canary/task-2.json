@@ -1,0 +1,61 @@
+{
+  "schema": "appfw_model_route@1",
+  "subject": {
+    "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+    "product_increment_id": "AFS-PI-P2",
+    "deliverable_id": "AFS-007",
+    "task_id": "task:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b01",
+    "assignment_id": "assignment:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b02",
+    "workstream_id": "WS-01",
+    "role_card_id": "architect-agent",
+    "stage": "prototype",
+    "parent_run_id": "run:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b03"
+  },
+  "task_shape": {
+    "role": "researcher",
+    "read_roots": ["docs", "scripts", "program"],
+    "write_roots": [],
+    "allowed_tools": ["read"],
+    "network_posture": "none",
+    "data_classification": "internal",
+    "change_class": "D",
+    "change_class_status": "exact",
+    "ambiguity": "high",
+    "consequence": "high",
+    "sensitive_surfaces": [],
+    "signature_significance": false,
+    "delegation_depth": 1,
+    "delegation_type": "direct_child",
+    "execution_target": "local",
+    "material_child": true,
+    "requested_capabilities": ["strategic_challenge", "architecture_decision"]
+  },
+  "routing_context": {
+    "implementer": {
+      "assignment_id": "assignment:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b02",
+      "actor_id": "actor:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b04",
+      "run_id": "run:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b03"
+    },
+    "reviewer": {
+      "assignment_id": "assignment:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b05",
+      "actor_id": "actor:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b06",
+      "run_id": "run:7a1b2c30-5c4e-4f22-8b8f-3d9e2f7c1b07"
+    },
+    "reviewer_required": true,
+    "provider_available": true,
+    "required_instruction_ids": [],
+    "authorized_read_roots": ["docs", "scripts", "program"],
+    "authorized_write_roots": [],
+    "authorized_tools": ["read"],
+    "authorized_network_posture": "none",
+    "strategic_decision": true,
+    "human_decision_id": "evidence:8b2c3d40-6d5f-4a33-9c9a-4e0f3a8d2c01"
+  },
+  "privacy": {
+    "data_classification": "internal",
+    "redaction_posture": "strict",
+    "retained_field_allowlist_version": "appfw_route_telemetry_allowlist@1",
+    "prompt_content_retained": false,
+    "secret_content_retained": false
+  }
+}

@@ -1,0 +1,71 @@
+
+# Database level configs (update as needed)
+
+- name: pg_primary
+  data_source_type: PostgreSQL
+  is_system_schema_host: true
+  description: Primary database
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: app_framework
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: postgres
+    db_name: app_framework
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: mongo_primary
+  data_source_type: MongoDB
+  description: Primary MongoDB instance
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: app_framework
+    db_port: 27017
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: mongo
+    db_name: app_framework
+    db_port: 27017
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: mssql_primary
+  data_source_type: MsSqlServer
+  description: Primary SQL Server instance
+  environments:
+  - name: local
+    db_host: 127.0.0.1
+    db_name: app_framework
+    db_port: 1433
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: mssql
+    db_name: app_framework
+    db_port: 1433
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: snowflake_primary
+  data_source_type: Snowflake
+  description: Primary Snowflake account
+  environments:
+  - name: local
+    db_host: account_identifier.snowflakecomputing.com
+    db_name: app_framework
+    db_port: 443
+    security_profile: managed
+    tls_mode: verify_full
+  - name: compose
+    db_host: http://snowflake.localhost.localstack.cloud:4566
+    db_name: app_framework
+    db_port: 443
+    security_profile: local_dev
+    tls_mode: disabled

@@ -1,0 +1,11 @@
+{% macro print(objectKind, entityType, nav, entityTypes) -%}
+{%- if nav.resolved.schema_name %}{% set refSchemaName = nav.resolved.schema_name %}{% else %}{% set refSchemaName = entityType.schema_name %}{% endif -%}
+{%- if nav.resolved.type_name %}{% set refTypeName = nav.resolved.type_name %}{% else %}{% set refTypeName = entityType.pascal_1 %}{% endif -%}
+{%- if objectKind == "base" -%}{{ refTypeName }}
+{%- elif objectKind == "input"  -%}Input{{ refTypeName }}
+{%- elif objectKind == "create" -%}Input{{ refTypeName }}
+{%- elif objectKind == "update" -%}Input{{ refTypeName }}
+{%- elif objectKind == "projection" -%}{{ refTypeName }}Projection
+{%- else -%}// property_type/data_type/nav_type/_mod.j2: {{ entityType.pascal_1 }} objectKind {{ objectKind }} not_handled
+{%- endif -%}
+{%- endmacro print %}

@@ -1,0 +1,23 @@
+# Hand-written database changes.
+#
+# This is the supported home for anything the application model cannot express.
+# `app_gen` never writes here: everything under database/_pkg/schemas/ is generated
+# from .appfw/model/** and is overwritten on every `product generate`, but this folder
+# is yours. The framework reads it from database/_pkg/migrations and runs it with
+# `scripts/appfw product migrate`.
+#
+# What belongs here rather than in the model:
+#   - partial / functional / expression indexes (e.g. lower(full_name) for taxpayer typeahead)
+#   - GRANT / REVOKE
+#   - NOT NULL on an existing column, and the data repair it depends on
+#   - views
+#   - anything that needs a backfill before it can be enforced
+#
+# Phases: expand (additive, safe anytime) -> backfill (data repair) -> contract (tightening that
+# fails if data is not clean; opt-in). Every file is checksummed once applied. Never edit an
+# applied migration; add a new one.
+#
+# No hand-written migrations yet: the baseline tables come from schemas/tax_routing/tables.pg.sql.
+
+version: 1
+migrations: []

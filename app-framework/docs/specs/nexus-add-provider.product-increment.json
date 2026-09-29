@@ -1,0 +1,337 @@
+{
+  "$schema": "../start/product-increment-plan.schema.json",
+  "schema": "appfw_product_increment_plan@1",
+  "program_id": "nexus-poc",
+  "product_increment": {
+    "id": "NXP-PI-ADD-PROVIDER-01",
+    "outcome_id": "NXP-ADD-PROVIDER",
+    "title": "Connected Add Provider proof",
+    "intent": "An authorized user can understand, initiate, and track one Add Provider journey across Nexus, ServiceNow, Workday, and grounded assistance without hiding unconnected boundaries.",
+    "owner": "Nexus Product Owner",
+    "planning_posture": "held",
+    "stage": "prototype",
+    "acceptance_criteria": [
+      "The representative journey is demonstrable on responsive web and native mobile.",
+      "ServiceNow case and child-task state are shown through a typed provider boundary.",
+      "The named Workday operation is previewed and confirmed only through governed server-side authorization.",
+      "Gemma assistance is grounded, permission-checked, observable, and has no transaction authority.",
+      "Every fixture, disconnected boundary, failure state, and non-claim is visible."
+    ]
+  },
+  "concurrency": {
+    "target_active_lanes": 3,
+    "maximum_active_lanes": 4
+  },
+  "integration": {
+    "strategy": "integration_branch",
+    "branch": "integrate/nexus-add-provider-poc",
+    "destination_branch": "main",
+    "owner": "Nexus Integration Branch Manager",
+    "independent_reviewer": "Nexus Product Increment Independent Reviewer",
+    "base_ref": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+    "write_roots": [
+      "appfw_runtime/src/chat.rs"
+    ],
+    "economics_budget": {
+      "default_model_tier": "efficient-tier",
+      "allowed_model_tiers": [
+        "efficient-tier",
+        "advanced-tier"
+      ],
+      "max_elapsed_ms": 10800000,
+      "max_input_tokens": 500000,
+      "max_output_tokens": 80000,
+      "max_cost_usd": 50,
+      "max_retries": 1,
+      "max_corrections": 2,
+      "max_rework_cycles": 2
+    },
+    "leaf_ci_profile": "accelerated",
+    "integration_ci_profile": "full",
+    "release_ci_profile": "strict",
+    "merge_order": [
+      "NXP-L2-SERVICENOW",
+      "NXP-L3-WORKDAY",
+      "NXP-L4-INTELLIGENCE",
+      "NXP-L1-EXPERIENCE"
+    ],
+    "integration_checks": [
+      "Build the exact PDS package and Nexus web/mobile consumers.",
+      "Run the Add Provider journey against representative ServiceNow, Workday, and intelligence fixtures.",
+      "Replace available fixtures with live non-production adapters and rerun contract tests.",
+      "Bind the reviewed intelligence provider through integration-owned appfw_runtime/src/chat.rs without transferring that shared path to a leaf lane.",
+      "Prove identity, correlation, audit, failure, and no-model-transaction-authority invariants."
+    ],
+    "shared_path_owner": "Nexus Integration Branch Manager"
+  },
+  "lanes": [
+    {
+      "id": "NXP-L1-EXPERIENCE",
+      "title": "Nexus web and native experience",
+      "result": "A polished responsive and native Add Provider journey can be demonstrated against typed fixtures.",
+      "owner": "Nexus Experience Owner",
+      "technical_lead": "Nexus Experience Technical Lead",
+      "branch_owner": "Nexus Experience Branch Owner",
+      "independent_reviewer": "Nexus Experience Reviewer",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "WS-01",
+        "WS-04",
+        "WS-06",
+        "WS-07"
+      ],
+      "deliverables": [
+        "NXP-D-EXPERIENCE-SHELL",
+        "NXP-D-NATIVE-CONTINUATION"
+      ],
+      "branch": "feature/nexus-add-provider-experience",
+      "base_sha": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+      "destination_branch": "integrate/nexus-add-provider-poc",
+      "write_roots": [
+        "examples/products/pds-nexus/frontend/**",
+        "examples/products/pds-nexus/mobile/**"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "Build the Nexus web surface against published PDS packages.",
+        "Run responsive, accessibility, loading, denied, stale, error, and interruption scenarios.",
+        "Run native type, navigation, deep-link, and interruption proof."
+      ],
+      "provides": [
+        {
+          "capability_id": "nexus.add-provider.experience",
+          "summary": "The integrated web and native user journey.",
+          "state": "planned"
+        },
+        {
+          "capability_id": "nexus.add-provider.connected-proof",
+          "summary": "The coherent integrated Add Provider proof exposed by the Product Increment.",
+          "state": "planned"
+        }
+      ]
+    },
+    {
+      "id": "NXP-L2-SERVICENOW",
+      "title": "ServiceNow case projection",
+      "result": "Nexus can read the authoritative case and child-task projection and later close the case through a governed operation.",
+      "owner": "ServiceNow Integration Owner",
+      "technical_lead": "ServiceNow Integration Technical Lead",
+      "branch_owner": "ServiceNow Branch Owner",
+      "independent_reviewer": "ServiceNow Integration Reviewer",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "WS-05",
+        "WS-08"
+      ],
+      "deliverables": [
+        "NXP-D-SERVICENOW-CASE-PROJECTION"
+      ],
+      "branch": "feature/nexus-servicenow-case-projection",
+      "base_sha": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+      "destination_branch": "integrate/nexus-add-provider-poc",
+      "write_roots": [
+        "appfw_provider_servicenow/**"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "Run typed case and child-task projection fixtures.",
+        "Prove permission, identity, pagination, timeout, and stale-state behavior.",
+        "Retain correlation and audit evidence without PHI."
+      ],
+      "provides": [
+        {
+          "capability_id": "servicenow.case-projection",
+          "summary": "Typed authoritative case and task state for Nexus.",
+          "state": "planned"
+        }
+      ]
+    },
+    {
+      "id": "NXP-L3-WORKDAY",
+      "title": "Workday governed operation",
+      "result": "Nexus can preview and invoke the named Add Provider location operation through the approved enterprise API boundary.",
+      "owner": "Workday Integration Owner",
+      "technical_lead": "Workday Integration Technical Lead",
+      "branch_owner": "Workday Branch Owner",
+      "independent_reviewer": "Workday Integration Reviewer",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "WS-03",
+        "WS-08"
+      ],
+      "deliverables": [
+        "NXP-D-WORKDAY-ADD-LOCATION"
+      ],
+      "branch": "feature/nexus-workday-add-location",
+      "base_sha": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+      "destination_branch": "integrate/nexus-add-provider-poc",
+      "write_roots": [
+        "appfw_provider_workday/**"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "Run the MuleSoft Workday API contract against representative fixtures.",
+        "Prove preview, confirmation, delegated authorization, idempotency, and reconciliation.",
+        "Label live non-production connectivity separately from fixture proof."
+      ],
+      "provides": [
+        {
+          "capability_id": "workday.add-provider-location",
+          "summary": "Governed preview and execution of the named Workday operation.",
+          "state": "planned"
+        }
+      ]
+    },
+    {
+      "id": "NXP-L4-INTELLIGENCE",
+      "title": "Grounded Gemma assistance",
+      "result": "Nexus can explain case state, recommend next actions, and assist task completion through a provider-neutral reasoning contract.",
+      "owner": "Nexus Intelligence Owner",
+      "technical_lead": "Nexus Intelligence Technical Lead",
+      "branch_owner": "Nexus Intelligence Branch Owner",
+      "independent_reviewer": "Nexus Intelligence Reviewer",
+      "status": "waiting_for_team",
+      "delivery_credit": "none",
+      "workstreams": [
+        "WS-02",
+        "WS-08"
+      ],
+      "deliverables": [
+        "NXP-D-GEMMA-REASONING"
+      ],
+      "branch": "feature/nexus-gemma-reasoning",
+      "base_sha": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+      "destination_branch": "integrate/nexus-add-provider-poc",
+      "write_roots": [
+        "appfw_provider_ai_search/**"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "Run deterministic answer-envelope and recommendation fixtures.",
+        "Prove permission filtering, citations, fallback, timeout, and malformed-response behavior.",
+        "Prove the model cannot authorize or directly execute a Workday or ServiceNow transaction."
+      ],
+      "provides": [
+        {
+          "capability_id": "intelligence.grounded-assistance",
+          "summary": "Provider-neutral grounded explanation and recommendation metadata.",
+          "state": "planned"
+        }
+      ]
+    }
+  ],
+  "lane_links": [
+    {
+      "provider_lane": "NXP-L2-SERVICENOW",
+      "consumer_lane": "NXP-L1-EXPERIENCE",
+      "kind": "requires",
+      "capability_id": "servicenow.case-projection",
+      "required_provider_state": "implemented",
+      "contract_ref": "document:docs/specs/nexus-add-provider-seams.json",
+      "decoupling": {
+        "mode": "fixture",
+        "ref": "document:docs/specs/nexus-add-provider-seams.json"
+      },
+      "consumer_action": "Replace the fixture adapter with the reviewed provider package at integration.",
+      "integration_check": "Render the same case and task states from the integrated ServiceNow provider."
+    },
+    {
+      "provider_lane": "NXP-L3-WORKDAY",
+      "consumer_lane": "NXP-L1-EXPERIENCE",
+      "kind": "requires",
+      "capability_id": "workday.add-provider-location",
+      "required_provider_state": "accepted",
+      "contract_ref": "document:docs/specs/nexus-add-provider-seams.json",
+      "decoupling": {
+        "mode": "fixture",
+        "ref": "document:docs/specs/nexus-add-provider-seams.json"
+      },
+      "consumer_action": "Bind the confirmation flow to the accepted provider operation without changing UX semantics.",
+      "integration_check": "Prove preview, confirmation, completion, reconciliation, and failure states with the integrated provider."
+    },
+    {
+      "provider_lane": "NXP-L4-INTELLIGENCE",
+      "consumer_lane": "NXP-L1-EXPERIENCE",
+      "kind": "benefits_from",
+      "capability_id": "intelligence.grounded-assistance",
+      "contract_ref": "document:docs/specs/nexus-add-provider-seams.json",
+      "decoupling": {
+        "mode": "fixture",
+        "ref": "document:docs/specs/nexus-add-provider-seams.json"
+      },
+      "consumer_action": "Swap the deterministic adapter for the reviewed Gemma-backed adapter while preserving generated-view metadata.",
+      "integration_check": "Prove chat, generated-view, recommendation, citation, and fallback rendering from the integrated reasoning adapter.",
+      "expected_benefit": "The experience becomes context-aware without making chat the application or giving the model transaction authority.",
+      "adoption_trigger": "The Gemma adapter reaches Implemented with permission and fallback evidence."
+    },
+    {
+      "provider_lane": "NXP-L2-SERVICENOW",
+      "consumer_lane": "NXP-L4-INTELLIGENCE",
+      "kind": "requires",
+      "capability_id": "servicenow.case-projection",
+      "required_provider_state": "implemented",
+      "contract_ref": "document:docs/specs/nexus-add-provider-seams.json",
+      "decoupling": {
+        "mode": "fixture",
+        "ref": "document:docs/specs/nexus-add-provider-seams.json"
+      },
+      "consumer_action": "Replace the fixture context source with the integrated ServiceNow projection.",
+      "integration_check": "Prove the reasoning request receives only authorized case fields with shared correlation identity."
+    }
+  ]
+}

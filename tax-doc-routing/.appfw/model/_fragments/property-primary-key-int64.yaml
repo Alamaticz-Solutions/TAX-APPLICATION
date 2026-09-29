@@ -1,0 +1,4 @@
+    is_required: true
+    is_key: true
+    data_type: Int64
+    is_read_only: true

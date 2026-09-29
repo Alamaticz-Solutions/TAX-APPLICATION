@@ -1,0 +1,45 @@
+{
+  "name": "provider_neutral_failure_matrix",
+  "description": "Complete synthetic six-case provider-neutral fail-closed and fallback matrix.",
+  "auth_token": "west_sales_rep",
+  "provenance": "synthetic",
+  "query": "fixture-only provider-neutral failure matrix",
+  "context": {
+    "app": "fixture-only", "surface": "evaluation", "tenant": "tenant_a", "mode": "local-fixture",
+    "cases": ["unsupported_request", "policy_denial", "stale_evidence", "partial_dependency", "unavailable_dependency", "malformed_provider_result"]
+  },
+  "registry": { "operations": [{ "name": "fixture.foundation_read", "args_schema": "registry", "kind": "read" }] },
+  "fixture_store": { "records": [], "cross_tenant_seeded_ids": [] },
+  "transcript": [
+    { "type": "message", "role": "user", "content": "fixture-only provider-neutral failure matrix" },
+    { "type": "error", "code": "unsupported_request", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "policy_denied", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "stale_evidence", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "partial_dependency", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "unavailable_dependency", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "malformed_provider_result", "fallback_view": "prose", "authority": "none" }
+  ],
+  "replay_transcript": [
+    { "type": "message", "role": "user", "content": "fixture-only provider-neutral failure matrix" },
+    { "type": "error", "code": "unsupported_request", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "policy_denied", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "stale_evidence", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "partial_dependency", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "unavailable_dependency", "fallback_view": "prose", "authority": "none" },
+    { "type": "error", "code": "malformed_provider_result", "fallback_view": "prose", "authority": "none" }
+  ],
+  "answer_envelope": { "version": "answer_envelope@1", "refs": [], "citations": [], "fallback_view": "prose", "unverified": true, "provenance": { "mode": "local-fixture", "source": "synthetic-failure-matrix" } },
+  "expect": {
+    "tool_calls": [], "citations": "resolvable",
+    "foundation_cases": {
+      "unsupported_request": "deterministic_fallback",
+      "policy_denial": "fail_closed_fallback",
+      "stale_evidence": "unverified_fallback",
+      "partial_dependency": "fail_closed_fallback",
+      "unavailable_dependency": "fail_closed_fallback",
+      "malformed_provider_result": "reject_and_fallback"
+    },
+    "evaluation": { "version": "ai_evaluation@1", "mode": "local-fixture", "provenance": "synthetic", "release_ready": false, "live_ready": false, "replay_structural_diff": [] },
+    "policy": { "tenant_visibility": "tenant_a_only", "write_operations": "forbidden" }
+  }
+}

@@ -1,0 +1,20 @@
+[
+{% for seed in seeds %}
+{% set table = seed.entity_type | snake_n %}
+  {
+    "collection": "{{ table }}",
+    "documents": [
+{% for record in seed.records %}
+      {
+{% for col in seed.columns %}
+        "{{ col }}": {% if record[col] is defined %}{{ record[col] | json_encode() }}{% else %}null{% endif %}{% if not loop.last %},{% endif %}
+
+{% endfor %}
+      }{% if not loop.last %},{% endif %}
+
+{% endfor %}
+    ]
+  }{% if not loop.last %},{% endif %}
+
+{% endfor %}
+]

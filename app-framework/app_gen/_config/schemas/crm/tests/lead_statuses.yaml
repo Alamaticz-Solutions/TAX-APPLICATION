@@ -1,0 +1,21 @@
+# LeadStatus - seeded lookup coverage.
+
+- name: find_lead_status
+  description: find seeded lead status by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findLeadStatus
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"1eadcc00-0000-4000-8000-100000000001"'
+    select: |
+      id,name,is_converted,sort_order
+  expect:
+    data:
+      id: '1eadcc00-0000-4000-8000-100000000001'
+      name: 'New'
+      is_converted: false
+      sort_order: 10

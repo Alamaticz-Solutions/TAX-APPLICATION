@@ -1,0 +1,64 @@
+- id: 099c0000-0000-4000-8000-000000000004
+  name: Opportunity
+  is_table: true
+  indexes:
+  - name
+  - account_id
+  facets:
+  - concurrency
+
+  custom_methods:
+  - name: pipeline_forecast
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: stage_id
+      arg_type: Option<String>
+    - name: minimum_amount
+      arg_type: Option<f64>
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Opportunity Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: amount
+    caption: Amount
+    data_type: Float64
+
+  - name: close_date
+    caption: Close Date
+    data_type: Date
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: next_step
+    caption: Next Step
+    data_type: String
+
+  - name: lead_source
+    caption: Lead Source
+    data_type: String
+
+  - name: account_id
+    caption: Account
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Account
+
+  - name: stage_id
+    caption: Stage
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: OpportunityStage

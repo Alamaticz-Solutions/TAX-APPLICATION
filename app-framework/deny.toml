@@ -1,0 +1,102 @@
+# cargo-deny configuration for the App Framework workspace.
+#
+# Enforced in CI (see bitbucket-pipelines.yml -> "Supply chain & lint gate").
+# Run locally with:  cargo deny check
+#
+# Four checks are configured: advisories, licenses, bans, sources.
+# The allow-list below was derived by scanning the resolved dependency graph
+# (`cargo metadata`) of the current workspace. If a new dependency introduces
+# a license that is not in `allow`, the build fails until it is reviewed and
+# either added here (permissive) or recorded as an explicit exception.
+
+[graph]
+# Evaluate the dependency graph for all targets the framework actually ships /
+# tests against. Keep this list aligned with supported build targets.
+all-features = false
+
+[advisories]
+# Fail on RUSTSEC vulnerabilities. Known unmaintained warnings are reviewed
+# below and kept explicit so the gate still blocks new, unreviewed advisories.
+version = 2
+yanked = "deny"
+ignore = [
+  { id = "RUSTSEC-2021-0141", reason = "dotenv is used for local/dev env loading; replacement with dotenvy remains a cleanup item." },
+  { id = "RUSTSEC-2022-0081", reason = "json is legacy backend compatibility debt; migration to serde_json remains tracked cleanup." },
+  { id = "RUSTSEC-2024-0388", reason = "derivative is legacy backend derive debt; replacement remains tracked cleanup." },
+  { id = "RUSTSEC-2025-0134", reason = "rustls-pemfile is transitive through reqwest 0.11; no direct production PEM parsing dependency." },
+]
+
+[licenses]
+version = 2
+# Permissive licenses observed across the resolved dependency graph.
+# Anything not in this list (and not in `exceptions`) fails the build.
+allow = [
+  "MIT",
+  "MIT-0",
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "Zlib",
+  "Unicode-3.0",
+  "Unlicense",
+  "CC0-1.0",
+  "BSL-1.0",
+]
+# Minimum confidence for license-text matching when a crate ships a license
+# file instead of an SPDX expression.
+confidence-threshold = 0.8
+
+# Crates whose license expression is weak-copyleft or supplied via a license
+# FILE rather than an SPDX expression. Each is reviewed and allowed explicitly
+# rather than globally permitting the license class.
+exceptions = [
+  # Weak/file-level copyleft (MPL-2.0): permissive at file granularity, used
+  # only as transitive validation helpers, not modified.
+  { allow = ["MPL-2.0"], crate = "ascii_utils" },
+  { allow = ["MPL-2.0"], crate = "fast_chemail" },
+  # webpki-roots ships the Mozilla CA bundle under CDLA-Permissive-2.0 (data
+  # license for the certificate set; permissive, no copyleft on our code).
+  { allow = ["CDLA-Permissive-2.0"], crate = "webpki-roots" },
+  # regorus declares its license via a LICENSE file (Apache-2.0 / MIT upstream).
+  { allow = ["Apache-2.0", "MIT"], crate = "regorus" },
+  # unix-odbc is a dynamic ODBC manager binding used by the MSSQL/Fabric
+  # provider. It is not modified or vendored by the framework.
+  { allow = ["LGPL-2.1-or-later"], crate = "unix-odbc" },
+]
+
+# regorus ships its license as a file; point the matcher at it so the
+# confidence check can clear without manual intervention.
+[[licenses.clarify]]
+crate = "regorus"
+expression = "Apache-2.0 OR MIT"
+license-files = [{ path = "LICENSE", hash = 0 }]
+
+[licenses.private]
+# Workspace crates are first-party and either marked publish=false or published
+# only to the internal PDS registry; license checks apply to third-party
+# dependencies, not internal release artifacts.
+ignore = true
+registries = ["pds-app-framework-crates"]
+
+[bans]
+# Warn (do not fail) on duplicate versions of the same crate — common and
+# usually benign in a large graph — but surface them for hygiene review.
+multiple-versions = "warn"
+wildcards = "allow"
+# Highlight when many versions of one crate are pulled in.
+highlight = "all"
+# No crates are explicitly banned yet. Add known-bad / disallowed crates here.
+deny = []
+# No crates are force-skipped from duplicate analysis.
+skip = []
+skip-tree = []
+
+[sources]
+# Only allow dependencies from crates.io (the registry the lockfile pins).
+# Any git or alternative-registry source must be added here deliberately.
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

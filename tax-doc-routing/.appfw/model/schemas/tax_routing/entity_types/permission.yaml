@@ -1,0 +1,56 @@
+# Permission — the capability catalogue (seed data, migration 0002). `resource` + `action` map a
+# permission onto a Rego grant check; a null action is a UI-only / custom-method capability
+# (e.g. routing_record.cancel). See docs/architecture/rbac-design.md section 4 for the matrix.
+
+- id: 06929ec2-bad4-4061-a54e-98ddb51e6367
+  name: Permission
+  is_table: true
+  indexes:
+  - resource
+  facets:
+  - audited
+  constraints:
+  - uq_permission_code UNIQUE (code)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+    # e.g. "routing_record.read", "routing_record.cancel". Referenced by services/authz and by
+    # the frontend's usePermission(code); never by a role name.
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    is_required: false
+    data_type: String
+
+  - name: resource
+    caption: Resource
+    is_required: false
+    data_type: String
+    # The tax_routing entity this permission governs (e.g. "tax_routing_record"), or null for a
+    # capability with no matching CRUD entity.
+
+  - name: action
+    caption: Action
+    is_required: false
+    data_type: String
+    # "create" | "read" | "update" | "delete", or null for a non-CRUD capability.
+
+  - name: owner_field
+    caption: Owner Field
+    is_required: false
+    data_type: String
+    # Column on `resource` that ties a row to its owner, used when a role_permission grant has
+    # scope = own (e.g. "assigned_user_id").

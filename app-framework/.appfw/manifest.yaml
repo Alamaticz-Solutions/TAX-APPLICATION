@@ -1,0 +1,58 @@
+version: 1
+app:
+  name: crm-sample
+  display_name: CRM Sample
+  description: Model-driven CRM sample used by App Framework development.
+topology:
+  data_sources:
+  - name: pg_primary
+    provider: PostgreSQL
+    role: transactional
+    description: Local transactional database for the sample app.
+  - name: mongo_primary
+    provider: MongoDB
+    role: provider-certification
+    description: MongoDB provider topology entry for framework parity testing.
+  - name: mssql_primary
+    provider: MsSqlServer
+    role: provider-certification
+    description: SQL Server provider topology entry for framework parity testing.
+  - name: snowflake_primary
+    provider: Snowflake
+    role: provider-certification
+    description: Snowflake provider topology entry for framework parity testing.
+  - name: neo4j_graph
+    provider: Neo4j
+    role: graph-read
+    description: Optional Neo4j graph read-model topology entry for governed relationship intelligence.
+  schemas:
+  - name: system
+    data_source_name: pg_primary
+    role: framework
+    description: Runtime metadata schema loaded from generated config.
+  - name: crm
+    data_source_name: pg_primary
+    role: product
+    description: Sample CRM product schema.
+  ingress:
+  - name: crm-http
+    kind: http
+    enabled: true
+    schema: crm
+    path: /crm
+    consumers:
+    - browser
+    - service-api
+  - name: app-mcp
+    kind: mcp
+    enabled: false
+    path: /mcp
+    consumers:
+    - agent
+  - name: crm-events
+    kind: kafka
+    enabled: true
+    schema: crm
+    topic: crm.events
+    consumer_group: crm-events-worker
+    handler: services.crm_events

@@ -1,0 +1,214 @@
+version: 1
+source: target/appfw/product-analysis.json
+source_kind: poc
+product:
+  app_name: pds-nexus
+  display_name: 'PDS Nexus'
+  schema: denovo_workflow
+  provider: PostgreSQL
+  ui: enterprise
+proposal:
+  writes_final_model: true
+  requires_human_review: true
+  candidate_entities:
+    - name: denovo_workflow_synthetic
+      classification: internal
+      persistence: split_read_only_projection
+      review_status: split_accepted
+      semantic_labels:
+        - workflow_task_projection
+        - workstream_lookup
+        - team_lookup
+      suggested_domain_names:
+        - DeNovoTask
+        - Workstream
+        - Team
+      candidate_properties:
+        - id
+        - tenant
+        - task_name
+        - workstream_id
+        - team_id
+        - owner_team
+        - phase
+        - risk
+        - days_stalled
+        - freshness_watermark
+      source_profiles:
+        - synthetic_fixture_only
+
+  unassigned_properties:
+    []
+  candidate_routines:
+    []
+  frontend_views:
+    []
+  integration_points:
+    []
+  open_questions:
+    - 'Unit A ServiceNow export must reconcile final live table/object names, source keys, and field semantics before live targeting.'
+    - 'Live governed writes remain out of scope until G1 delegated auth and ServiceNow evidence exist.'
+    - 'Live AI/search execution remains out of scope until the Nexus answer path has retained gateway/search evidence.'
+implementation_plan:
+  writes_final_model: true
+  schema_source_root: .appfw/model/schemas/denovo_workflow
+  required_source_files:
+    - path: .appfw/model/schemas/denovo_workflow/_res.yaml
+      purpose: 'Declare schema metadata, data source binding, and product classification posture.'
+    - path: '.appfw/model/schemas/denovo_workflow/entity_types/*.yaml'
+      purpose: 'Declare reviewed persisted entities, DTO/read models, lookup entities, properties, facets, and custom methods.'
+    - path: '.appfw/model/schemas/denovo_workflow/relationships/*.yaml'
+      purpose: 'Declare reviewed NavToOne, NavToMany, and junction-backed many-to-many semantics.'
+    - path: '.appfw/model/schemas/denovo_workflow/rbac/*.rego'
+      purpose: 'Declare deny-by-default access policy and tenant/data-scope rules for each entity.'
+    - path: 'api_tests/src/schemas/<schema>/*.rs'
+      purpose: 'Add generated/product API scenarios after model generation.'
+  entity_tasks:
+    - entity: DeNovoTask
+      suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/de_novo_task.yaml
+      review:
+        - 'Read-only synthetic task projection for the stalled-work proof question.'
+        - 'Preserve tenant-B sentinel exclusion through policy and local fixture evidence.'
+        - 'Keep generated mutation methods absent because the denovo_workflow bounded context is external read-only.'
+    - entity: Workstream
+      suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/workstream.yaml
+      review:
+        - 'Read-only grouping noun for phase/workstream evidence.'
+        - 'Keep as provisional synthetic projection until Unit A source reconciliation.'
+    - entity: Team
+      suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/team.yaml
+      review:
+        - 'Read-only grouping noun for owner-team evidence.'
+        - 'Keep as provisional synthetic projection until Unit A source reconciliation.'
+
+  relationship_tasks:
+    - 'Identify parent/child ownership, lookup references, and many-to-many junctions from reviewed source evidence.'
+    - 'Use NavToOne for one reference/parent, NavToMany for child collections, and NavToMany with explicit junction semantics for many-to-many.'
+    - 'Preserve policy, tenant, audit, and QueryIR paths for relationship traversal.'
+  service_and_method_tasks:
+    - 'Move durable calculations, report commands, and workflow actions into product services or custom methods.'
+    - 'Use provider routines only when there is a reviewed database-side reason and tests/evidence keep the path living.'
+  frontend_tasks:
+    - 'Use the PoC UI as intent and the CRM frontend as implementation reference.'
+    - 'Create enterprise dashboards, grids, forms, lookup selectors, validation, dirty-state, dark/light mode, and E2E/a11y evidence when UI is in scope.'
+  evidence_tasks:
+    - 'Review workbook/static-data/HTML intent before writing source config.'
+    - 'Map prototype dashboards, forms, filters, and charts to generated model, custom methods, and product frontend routes.'
+    - 'Keep ambiguous spreadsheet/report fields as open questions until a reviewer classifies them.'
+  validation_sequence:
+    - 'scripts/appfw product validate --json'
+    - 'scripts/appfw product harness-check --json'
+    - 'scripts/appfw product model-status --json'
+    - 'scripts/appfw product chat-eval --json'
+    - 'scripts/appfw product generate --check --json'
+    - 'scripts/appfw product handoff --json'
+  review_checkpoint: 'Product PR Review Agent comprehensive review is required before push.'
+review_decisions:
+  writes_final_model: true
+  allowed_decisions:
+  - needs_review
+  - needs_discovery
+  - accept
+  - reject
+  - defer
+  - split
+  - merge
+  decision_states:
+    unresolved:
+    - needs_review
+    - needs_discovery
+    - missing
+    terminal:
+    - accept
+    - reject
+    - defer
+    - split
+    - merge
+  instructions:
+  - Keep this ledger aligned with the accepted .appfw/model source.
+  - Keep unresolved ambiguity as needs_review or needs_discovery.
+  - Use defer only as an explicit terminal decision with follow-up notes.
+  - Do not treat this proposal as generated model source.
+  - Set accepted_for_config only after entity, relationship, classification, policy, and evidence decisions are explicit.
+  entity_decisions:
+  - candidate: denovo_workflow_synthetic
+    decision: split
+    final_name: DeNovoTask
+    config_kind: entity
+    classification: internal
+    suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/de_novo_task.yaml
+    notes: Read-only synthetic task projection accepted for the local stalled-work proof only.
+    evidence_to_check:
+    - .appfw/source-evidence/nexus-denovo-synthetic.json sample_records
+    - .appfw/source-evidence/nexus-pilot-contract.yaml provisional_projection_model
+    - app_gen/_config/chat_evals/nexus/stalled_tasks_basic.yaml
+  - candidate: denovo_workflow_synthetic.Workstream
+    decision: accept
+    final_name: Workstream
+    config_kind: entity
+    classification: internal
+    suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/workstream.yaml
+    notes: Read-only phase/workstream grouping for local synthetic answer grounding.
+    evidence_to_check:
+    - phase/workstream grouping in synthetic tracker shape
+  - candidate: denovo_workflow_synthetic.Team
+    decision: accept
+    final_name: Team
+    config_kind: entity
+    classification: internal
+    suggested_source_path: .appfw/model/schemas/denovo_workflow/entity_types/team.yaml
+    notes: Read-only owner-team grouping for local synthetic answer grounding.
+    evidence_to_check:
+    - owner_team grouping in synthetic tracker shape
+  property_decisions:
+  - candidate: denovo_workflow_synthetic_minimum_read_fields
+    decision: accept
+    classification: internal
+    notes: Accept only id, tenant, task_name, owner_team, phase, risk, days_stalled, freshness_watermark, and relationship key fields for this slice.
+  relationship_decisions:
+  - candidate: denovo_task_workstream
+    decision: accept
+    relationship_kind: NavToOne
+    source: reviewed synthetic source evidence
+    notes: DeNovoTask belongs to one Workstream through a read-only projection key.
+  - candidate: denovo_task_team
+    decision: accept
+    relationship_kind: NavToOne
+    source: reviewed synthetic source evidence
+    notes: DeNovoTask belongs to one Team through a read-only projection key.
+  routine_decisions:
+  - candidate: live_chat_or_search_execution
+    decision: defer
+    notes: Out of scope for this model-backed proof; no AI/search provider execution in this lane.
+  frontend_decisions:
+  - candidate: static_stalled_task_reference_flow
+    decision: accept
+    notes: Existing static Nexus frontend proof remains product evidence unless generated model alignment exposes a narrow gap.
+  integration_decisions:
+  - candidate: live_servicenow_modeling
+    decision: defer
+    notes: Unit A export reconciliation and live ServiceNow modeling are explicit stop/split conditions.
+  - candidate: governed_write_execution
+    decision: defer
+    notes: Governed writes and named mutation construction remain out of scope until G1 delegated auth and ServiceNow evidence exist.
+  legacy_review:
+    stored_procedure_disposition_required: false
+    migration_parallel_run_required: false
+    source_inventory_required: false
+  sign_off:
+    model_owner: App Framework Product Manager
+    reviewed_at_utc: '2026-07-06T00:00:00Z'
+    accepted_for_config: true
+guardrails:
+  - 'The proposal remains evidence; .appfw/model source files are the product-owned config.'
+  - 'The accepted scope is synthetic, local, provisional, read-only, and preview-only.'
+  - 'Do not add live ServiceNow modeling, Unit A export reconciliation, governed writes, generic workflow engine work, AI/search execution, or release/SRA/CAB claims in this lane.'
+  - 'If a framework contract gap appears, split it into a separate lane.'
+  - 'Use CRM as an implementation reference only; do not copy CRM residue.'
+next_commands:
+  - 'scripts/appfw product validate --json'
+  - 'scripts/appfw product harness-check --json'
+  - 'scripts/appfw product model-status --json'
+  - 'scripts/appfw product chat-eval --json'
+  - 'scripts/appfw product generate --check --json'
+  - 'scripts/appfw product handoff --json'

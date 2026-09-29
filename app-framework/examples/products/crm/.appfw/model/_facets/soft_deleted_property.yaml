@@ -1,0 +1,5 @@
+name: is_deleted
+is_required: true
+is_read_only: true
+data_type: Boolean
+default_value: false

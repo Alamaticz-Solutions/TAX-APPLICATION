@@ -1,0 +1,64 @@
+# ConditionClause — one test inside a Condition. Extends project-governance's version with a
+# second subject kind: a clause can test either an answered RequestField (subject_field_id, as
+# governance's ConditionClause always does) or a DocumentTypeRoute attribute directly
+# (subject_attribute) — see docs/architecture/dynamic-form-engine-design.md section 4 for why:
+# it lets a new document type carry its own requirement flags without editing any condition.
+# Exactly one of subject_field_id / subject_attribute is set, matching subject_kind — enforced
+# by a CHECK added in a migration (a cross-column conditional CHECK isn't expressible in the
+# generator's constraint fragments), the same way ck_field_value_exactly_one is in governance.
+
+- id: 8bb66b4b-8b60-4207-a7d4-f15591b9be83
+  name: ConditionClause
+  is_table: true
+  indexes:
+  - condition_id
+  facets:
+  - audited
+  constraints:
+  - ck_condition_clause_subject_kind CHECK (subject_kind IN ('field','document_type_attribute'))
+  - ck_condition_clause_comparison CHECK (comparison IN ('is','is_not','is_one_of','is_answered'))
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: condition_id
+    caption: Condition
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Condition
+
+  - name: subject_kind
+    caption: Subject Kind
+    is_required: true
+    data_type: String
+    default_value: field
+
+  - name: subject_field_id
+    caption: Subject Field
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestField
+
+  - name: subject_attribute
+    caption: Subject Attribute
+    is_required: false
+    data_type: String
+
+  - name: comparison
+    caption: Comparison
+    is_required: true
+    data_type: String
+
+  - name: value
+    caption: Value
+    is_required: false
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    is_required: false
+    data_type: Int32

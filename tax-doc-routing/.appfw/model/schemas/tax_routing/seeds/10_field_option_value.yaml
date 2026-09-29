@@ -1,0 +1,120 @@
+# Option values. Document type codes match DocumentTypeRoute.document_type (business spec 3.4)
+# so the frontend can join a selected option straight to its routing/requirement row.
+- entity_type: FieldOptionValue
+  schema: tax_routing
+  columns: [id, option_list_id, code, label, sort_order, is_active]
+  records:
+
+  # document_type (ce2d9c7f...)
+  - id: becdad32-303c-4562-9134-9a054567f99b
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: K-1
+    label: K-1
+    sort_order: 10
+    is_active: true
+  - id: 51ea5c41-8a51-4417-b497-880348f0ebe2
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Draft K-1
+    label: Draft K-1
+    sort_order: 20
+    is_active: true
+  - id: 7d4005f4-2248-4662-9d22-f04d7df286e3
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Tax Return
+    label: Tax Return
+    sort_order: 30
+    is_active: true
+  - id: d0dbe225-452a-4e0d-9ce1-27e4adf6a135
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Income Statement
+    label: Income Statement
+    sort_order: 40
+    is_active: true
+  - id: 495e8f89-e2c3-4870-b46a-e6abdfa76bd4
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Balance Sheet
+    label: Balance Sheet
+    sort_order: 50
+    is_active: true
+  - id: 31fa3932-36f5-40fb-8323-89ff0e5eb76c
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: S-Corp Election
+    label: S-Corp Election
+    sort_order: 60
+    is_active: true
+  - id: 81ff051a-259d-4a40-9d11-e61f246e6774
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: S-Corp
+    label: S-Corp
+    sort_order: 70
+    is_active: true
+  - id: 915d6180-c316-4b74-aa0d-44985e459099
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Form 8308
+    label: Form 8308
+    sort_order: 80
+    is_active: true
+  - id: 189c9a0f-5fb2-4f22-8cd5-9e0161cd94ec
+    option_list_id: ce2d9c7f-12df-43d5-b467-92392b1aebcf
+    code: Extensions
+    label: Extensions
+    sort_order: 90
+    is_active: true
+
+  # document_year (f89ac428...)
+  - id: 8973a136-3a7a-4c18-b83f-a1e7ddd042a4
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2025"
+    label: "2025"
+    sort_order: 10
+    is_active: true
+  - id: d173a61f-f84c-40b7-9ef7-b7c6ce45556f
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2024"
+    label: "2024"
+    sort_order: 20
+    is_active: true
+  - id: d4b18770-8a04-46fb-976e-584b129aff27
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2023"
+    label: "2023"
+    sort_order: 30
+    is_active: true
+  - id: 41fadaa4-8c08-4417-a5b3-207d64c434aa
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2022"
+    label: "2022"
+    sort_order: 40
+    is_active: true
+  - id: 2c09a5b8-83f8-4979-a5aa-90e49a8fb56f
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2021"
+    label: "2021"
+    sort_order: 50
+    is_active: true
+  - id: 36fcc239-3ac7-4923-b75e-9f6d4904b284
+    option_list_id: f89ac428-0614-45c2-b07d-35c8230af50d
+    code: "2020"
+    label: "2020"
+    sort_order: 60
+    is_active: true
+
+  # entity_type (90621ea4...)
+  - id: 1ab6c210-c112-44b5-8f3a-680522014a0a
+    option_list_id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
+    code: Partnership
+    label: Partnership
+    sort_order: 10
+    is_active: true
+  - id: 17d9a361-e370-4c36-8102-0cc8c579da1b
+    option_list_id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
+    code: S-Corp
+    label: S-Corp
+    sort_order: 20
+    is_active: true
+  - id: 59950ed1-a366-493a-825a-c0bab4a1bd7a
+    option_list_id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
+    code: Personal Corporation
+    label: Personal Corporation
+    sort_order: 30
+    is_active: true

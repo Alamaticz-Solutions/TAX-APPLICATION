@@ -1,0 +1,46 @@
+- id: a471c0de-0000-4000-8000-000000000023
+  name: ArticleComment
+  is_table: true
+  indexes:
+  - article_id
+  - sentiment
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: subject
+    caption: Subject
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: body
+    caption: Body
+    data_type: String
+
+  - name: author_name
+    caption: Author Name
+    data_type: String
+
+  - name: sentiment
+    caption: Sentiment
+    data_type: String
+
+  - name: is_internal
+    caption: Is Internal
+    fragment: property-boolean-toggle-required
+
+  - name: created_at
+    caption: Created At
+    data_type: DateTime
+
+  - name: article_id
+    caption: Knowledge Article
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: KnowledgeArticle

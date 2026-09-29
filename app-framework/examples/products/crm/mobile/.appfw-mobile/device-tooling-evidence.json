@@ -1,0 +1,80 @@
+{
+  "command": [
+    "scripts/appfw",
+    "product",
+    "mobile-test",
+    "--device-preflight",
+    "--json"
+  ],
+  "cwd": ".",
+  "generated_at": "2026-08-04T22:49:46.668272Z",
+  "lane": "U5",
+  "missing": [
+    "ios-simulator-control",
+    "ios-build",
+    "android-debug-bridge",
+    "android-emulator",
+    "eas-cli",
+    "maestro"
+  ],
+  "name": "device-tooling-preflight",
+  "next_steps": [
+    "Run simulator/emulator navigation smoke tests and retain device-evidence.json before mobile release readiness.",
+    "Use EAS/TestFlight/Play evidence for store-track release claims.",
+    "Use Maestro or equivalent mobile E2E evidence for governed-write confirmation flows when enabled."
+  ],
+  "ok": true,
+  "readiness": {
+    "android_emulator_preflight_ready": false,
+    "e2e_preflight_ready": false,
+    "ios_simulator_preflight_ready": false,
+    "store_track_preflight_ready": false
+  },
+  "release_ready": false,
+  "status": "collected",
+  "tools": [
+    {
+      "available": false,
+      "binary": "xcrun",
+      "detail": "Needed for xcrun simctl iOS simulator smoke evidence.",
+      "name": "ios-simulator-control",
+      "resolved_path": null
+    },
+    {
+      "available": false,
+      "binary": "xcodebuild",
+      "detail": "Needed for native iOS build diagnostics and simulator build smoke.",
+      "name": "ios-build",
+      "resolved_path": null
+    },
+    {
+      "available": false,
+      "binary": "adb",
+      "detail": "Needed for Android emulator/device connectivity evidence.",
+      "name": "android-debug-bridge",
+      "resolved_path": null
+    },
+    {
+      "available": false,
+      "binary": "emulator",
+      "detail": "Needed to launch Android emulator smoke evidence locally.",
+      "name": "android-emulator",
+      "resolved_path": null
+    },
+    {
+      "available": false,
+      "binary": "eas",
+      "detail": "Needed for EAS build/submit/update release-track evidence.",
+      "name": "eas-cli",
+      "resolved_path": null
+    },
+    {
+      "available": false,
+      "binary": "maestro",
+      "detail": "Needed for optional mobile E2E flow evidence.",
+      "name": "maestro",
+      "resolved_path": null
+    }
+  ],
+  "version": 1
+}

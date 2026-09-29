@@ -1,0 +1,48 @@
+- id: fc7a1d80-2ea3-4e51-8761-dccfd3b9021b
+  name: IxAuditFact
+  is_table: true
+  indexes:
+  - tenant
+  - run_id
+  - event_kind
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  props:
+
+  - name: id
+    caption: Audit Fact ID
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: run_id
+    caption: Run
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: IxRun
+
+  - name: event_kind
+    caption: Event Kind
+    fragment: property-string-readonly-required
+
+  - name: disposition
+    caption: Disposition
+    fragment: property-string
+
+  - name: fact
+    caption: Audit Fact
+    fragment: property-json-required
+
+  - name: recorded_at
+    caption: Recorded At
+    fragment: property-date-time-required
+    is_read_only: true

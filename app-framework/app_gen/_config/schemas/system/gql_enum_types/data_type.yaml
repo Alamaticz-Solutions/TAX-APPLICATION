@@ -1,0 +1,32 @@
+- name: DataType
+  items: 
+  - value: Uuid
+  - value: UuidArray
+  - value: ObjectId
+  - value: ObjectIdArray
+  - value: Boolean
+  - value: String
+  - value: StringArray
+  - value: Date
+  - value: DateTime
+  - value: Time
+  - value: Int8
+  - value: Int8Array
+  - value: Int16
+  - value: Int16Array
+  - value: Int32
+  - value: Int32Array
+  - value: Int64
+  - value: Int64Array
+  - value: Float32
+  - value: Float64
+  - value: Enum
+  - value: EnumArray
+  - value: Object
+  - value: ObjectArray
+  - value: Json
+  - value: JsonArray
+  - value: NavToOne
+  - value: NavToMany
+  - value: ManyToMany
+

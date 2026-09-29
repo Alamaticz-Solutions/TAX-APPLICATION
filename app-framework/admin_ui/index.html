@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDS Health Admin</title>
+  </head>
+  <body>
+    <div id="root">
+      <main class="shell">
+        <aside class="sidebar">
+          <div class="brand-block">
+            <div class="pds-logo">
+              <img alt="PDS Health" src="/src/assets/pdsh-logo-nav-2.svg" />
+            </div>
+            <span class="brand-subtitle">Model-driven admin</span>
+          </div>
+          <label class="schema-select">
+            <span>Schema</span>
+            <select disabled>
+              <option>Loading…</option>
+            </select>
+          </label>
+          <div class="sidebar-count">Entity count: loading</div>
+          <label class="sidebar-search">
+            <input placeholder="Find entity" type="search" />
+          </label>
+          <nav class="entity-list">
+            <button class="entity-row active" type="button">
+              <span>
+                <strong>Entities</strong>
+                <small>Model loading</small>
+              </span>
+              <em>…</em>
+            </button>
+          </nav>
+          <div class="sidebar-footer">
+            <button class="about-button" type="button">About</button>
+            <span>UI loading</span>
+          </div>
+        </aside>
+        <section class="content">
+          <header class="topbar">
+            <div>
+              <p class="eyebrow">Schema</p>
+              <h1>Admin</h1>
+              <div class="entity-meta-groups compact">
+                <section class="meta-chip-group">
+                  <div><strong>Identity</strong><span>Runtime type and storage</span></div>
+                  <div class="chips">
+                    <span>loading</span>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <div class="toolbar">
+              <button class="button" type="button">Entity Model</button>
+              <button class="button" type="button">Refresh</button>
+              <button class="button primary" type="button">New</button>
+            </div>
+          </header>
+          <div class="status-line">Loading admin UI</div>
+          <section class="workbench">
+            <article class="table-panel">
+              <div class="panel-head">
+                <div>
+                  <strong>Records</strong>
+                  <span>Waiting for the SPA runtime</span>
+                </div>
+                <div class="table-controls">
+                  <label>
+                    <input placeholder="Search records" type="search" />
+                  </label>
+                </div>
+              </div>
+              <div class="empty-state">If this message stays visible, this browser is not executing JavaScript.</div>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "pds-frontend-guard",
+  "version": "1.0.0",
+  "description": "Keeps the Tax Document Routing frontend inside the PDS framework rules: a one-page rules checklist, a reviewer agent, hooks that enforce end-to-end verification before any push, and an eval suite for the guard itself.",
+  "author": {
+    "name": "Alamaticz Solutions"
+  }
+}

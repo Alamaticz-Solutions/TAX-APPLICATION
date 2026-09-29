@@ -1,0 +1,6 @@
+    data_type: String
+    meta:
+      validators:
+      - name: StringPattern
+        expression: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/
+        message: Only valid US phone numbers

@@ -1,0 +1,100 @@
+[Heading 1] 3. Data Model
+[Heading 2] 3.1 Primary Record Fields
+[TABLE]
+Field | Type | Required | Notes
+Record ID | Text (auto-generated) | Yes | System-generated unique identifier
+Status | Text | Yes | Current lifecycle state
+Created Date | DateTime | Yes | Auto-set on creation
+Last Updated | DateTime | Yes | Auto-updated on every save
+Assigned Operator | Text | Yes | Staff member currently responsible
+[Heading 2] 3.2 Client (Taxpayer) Fields
+[TABLE]
+Field | Type | Required | Notes
+Client First Name | Text | Yes | Auto-populated from client lookup
+Client Last Name | Text | Yes | Auto-populated from client lookup
+Client Full Name | Text | Yes | Auto-populated from client lookup
+Office Location | Text | Yes | Doctor's primary office location
+PDS Email | Email | Yes | Doctor's internal/work email address
+Personal Email | Email | Yes | Doctor's personal email address
+Additional Email | Email | No | Optional third email for notifications
+Notification Flag | Boolean | Yes | Whether to send emails to the client
+Internal Folder | Text | Yes | Reference to client's permanent internal Box folder
+Folder Name | Text | Yes | Display name of the client's Box folder
+Read/Write Password | Text | Yes | Credential used for Box API operations
+Client Reference ID | Text | Yes | Unique ID from client reference database
+[Heading 2] 3.3 Document Fields (per document row)
+[TABLE]
+Field | Type | Required | Notes
+Document Type | Dropdown | Yes | See Document Type table
+Document Year | Dropdown | Yes | Tax year the document applies to
+Document Name | Text | Yes | File name or descriptive name
+Entity Type | Dropdown | Conditional | Required when document belongs to an entity
+Entity Name | Dropdown (lookup) | Conditional | Required when Entity Type is selected
+Entity Type Number | Text | Conditional | Numeric identifier for the entity type
+Is Password Protected | Boolean | Yes | Whether the PDF is password-protected
+Box File URL | URL | Auto | Populated by system after Box upload
+Is Duplicate | Boolean | Auto | Set by system if duplicate detected
+Attachment File | File (PDF) | Yes | The document file to upload
+K-1 Attachments | File List | Conditional | Additional K-1 files (K-1 types only)
+Form 8308 Attachments | File List | Conditional | Additional Form 8308 files
+Amended Documents | File List | No | Amended versions of documents
+[Heading 2] 3.4 Document Type → Box Folder Routing
+[TABLE]
+Document Type | Business Name | External Folder | Internal Folder | Note
+K-1 | Schedule K-1 | K-1s | 4. Tax Documents | Batches of 3,000+ possible
+Draft K-1 | Draft Schedule K-1 | K-1s | 4. Tax Documents | Preliminary K-1
+Tax Return | Tax Return (1040/1065/1120) | Tax Returns | 7. Tax Returns | Personal, partnership, or corporate
+Income Statement | Income Statement | Loan Assistance | Loan Assistance | Financial statement for loans
+Balance Sheet | Balance Sheet | Loan Assistance | Loan Assistance | Financial statement for loans
+S-Corp Election | S-Corp Election | Signature Requests | External only | Requires signature
+S-Corp | S-Corporation (IsDocumentType_SCorp) | Signature Requests | External only | Distinct from S-Corp Election. Added Jan 2025.
+Form 8308 | Form 8308 | K-1s | External only | Partnership interest sale/exchange
+Extensions | Tax Extension | Tax Returns | External only | Filing extension documents
+[] External only: S-Corp Election, S-Corp, Form 8308, and Extensions route only to the external Box folder. They do not write to the internal folder hierarchy. Note: S-Corp (IsDocumentType_SCorp) is a distinct document type from S-Corp Election and routes to Signature Requests (external only).
+[Heading 2] 3.5 Reference Class — TaxPayerRefData (Taxpayer Reference Table)
+[] PDS-FW-Tax-Data-TaxPayerRefData is the master client registry. It holds one record per owner-doctor client and is the source of all client information that auto-populates on Tab 1 when a staff member creates a new routing record. It is maintained by administrators independently of the case workflow.
+[Heading 3] Fields stored per client
+[Heading 3] GetTaxPayerDetails — how data reaches the case
+[] GetTaxPayerDetails is the Report Definition that populates the Tab 1 client dropdown. Key characteristics:
+[] Source: alternate database (pyUseAlternateDB = true) — TaxPayerRefData is not stored in Pega's primary database; it lives in a separate data store
+[] Filter: IsActive = 'YES' (case-insensitive) — inactive clients hidden
+[] No search parameters — the entire active client list is returned on every Tab 1 load, sorted by FullName ascending
+[] Max records: 100,000. Paging disabled. Full result set fetched into memory each time.
+[] Fields returned: all 10 columns above except TaxPayerEntityType
+[] Performance note: no search filter + paging disabled = full table scan on every new case creation. Consider adding a search-as-you-type filter or enabling paging if client volumes grow.
+[Heading 3] Write-back — UpdatePayerRef_Info
+[] After CheckClientBoxLocation verifies the client's Box folder URL, the system calls UpdatePayerRef_Info (activity on PDS-FW-Tax-Work-TDRouting). This writes updated credentials — the verified Box folder reference or Payer ID — back to the TaxPayerRefData record, keeping it current with any corrections made during the Re-enter URL loop.
+[Heading 3] Security note — RW Password exposure
+[] TaxPayerRWPassword is stored as plain text in the reference table and returned as a plain text field in GetTaxPayerDetails. It flows to the case clipboard without masking and is visible to any staff member with case access. Ensure the property is masked in all UI sections and excluded from case history capture.
+[Heading 2] 3.6 Reference Class — TaxEntityList (Entity Reference Table)
+[] PDS-FW-Tax-Data-TaxEntityList holds the master list of business entities (partnerships, corporations, personal corporations) associated with owner-doctor clients. When a staff member adds a document belonging to an entity on Tab 2, this table provides the searchable entity name dropdown. It is maintained by administrators independently of the case workflow.
+[Heading 3] Fields stored per entity
+[Heading 3] How entity data reaches the case — two reports, two purposes
+[] GetTaxEntityList: the Tab 2 entity dropdown source. Returns all active entities from the standard Pega database, sorted alphabetically by EntityName. No parameters — full active list at once (max 10,000 records, paging disabled). Called from the TaxDocumentCollection section when a staff member selects an Entity Type.
+[] D_FetchTax_EntityInfo (data page wrapping FetchTax_EntityInfo report): a thread-scoped data page with a single parameter (Oracle_ID). Returns only the EntityName for one specific entity. Called by the PopulateEntity_Name data transform on PDS-FW-Tax-Data-TaxDocument after a document row is saved. The data page never auto-refreshes (pyRefreshStrategy = never) — once loaded for a given OracleID it remains cached for the thread lifetime.
+[Heading 3] OracleID — the external join key
+[] OracleID is the sole custom property on this class. It is the primary lookup key across all entity reports and the join between Pega's entity list and the external Oracle master data system. When a staff member selects an entity on Tab 2, the OracleID is stored on the document row. PopulateEntity_Name then resolves the EntityName from it. OracleID also becomes the EntityTypeNumber component in the Box filename.
+[Heading 3] Entity selection flow on Tab 2
+[] Staff selects Entity Type — GetTaxEntityList fires with no parameters, returning all active entities sorted A-Z
+[] Staff picks an entity name — OracleID stored on the document row
+[] On document row save — D_FetchTax_EntityInfo(OracleID) called by PopulateEntity_Name to resolve and store EntityName
+[] EntityName + OracleID feed into SetIFFileName — Box filename becomes: LastName, FirstName - {OracleID} {EntityName} - {Year} {DocType}.pdf
+[TABLE]
+Field (label) | Property name | How it is used in the workflow
+Client ID | ID | Primary key. Referenced by UpdatePayerRef_Info write-back after Stage 1.
+First Name | FirstName | Auto-populates Tab 1. Used in Box filename construction via SetIFFileName.
+Last Name | LastName | Auto-populates Tab 1. Used in Box filename construction via SetIFFileName.
+Full Name | FullName | Auto-populates Tab 1. Sort key in GetTaxPayerDetails. Shown in dashboards.
+Personal Email | PersonalEmail | Auto-populates Tab 1. Used by ProvideCollaboratorAccess and SendFinalNotification in Stage 3.
+PDS Email | PDSEmail | Auto-populates Tab 1. Used by ProvideCollaboratorAccess and SendFinalNotification in Stage 3.
+External Folder ID | FolderName | The Box folder identifier for the client's external folder. Verified by CheckClientBoxLocation in Stage 1. Note: the property is named FolderName but its label and function are "Client External Folder ID" — the name is misleading.
+Internal Folder Path | InternalFolder | Box folder reference for the client's internal folder. Used by CreateTargetFolders in Stage 2 to provision permanent sub-folders.
+Active Flag | IsActive | Controls visibility. Only records where IsActive = 'YES' are returned to the UI. Inactive clients are suppressed from all dropdowns.
+RW Password | TaxPayerRWPassword | Per-client PDF Read/Write password. Fetched at Tab 1 load. Flows to PDFPasswordProtection in Stage 2 when IsPasswordProtect = true.
+Entity Type | TaxPayerEntityType | Client-level entity classification (e.g. Individual, Partnership). Stored in the reference table but NOT fetched by GetTaxPayerDetails — it does not auto-populate onto cases. Admin visibility only.
+[TABLE]
+Field (label) | Property name | How it is used
+System ID | pzInsKey (system) | System-generated Pega instance key. Used as row key in all reports.
+Oracle ID | OracleID | Foreign key linking this entity to the upstream Oracle master data system. The join key used at document-add time. Also appears in Box filenames as the EntityTypeNumber component.
+Entity Name | EntityName | Display name (e.g. 'Oakwood Medical Partners LLC'). Shown in the dropdown. Embedded in Box filenames via SetIFFileName.
+Active Flag | IsActive | Controls visibility. Only IsActive = 'YES' records returned to the entity dropdown. Inactive entities suppressed.

@@ -1,0 +1,42 @@
+# QueueItem - CDM applicationCommon-inspired routed work item coverage.
+
+- name: find_queue_item
+  description: find seeded queue item with queue and account context
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQueueItem
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9e0e1700-0000-4000-8000-100000000001"'
+    select: |
+      id,title,item_type,status,priority,queue { id,name },account { id,name }
+  expect:
+    data:
+      id: '9e0e1700-0000-4000-8000-100000000001'
+      title: 'Prepare Acme onboarding workspace'
+      item_type: 'Account'
+      status: 'Open'
+      priority: 1
+
+- name: find_queue_item_activity
+  description: find seeded queue item with activity context
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQueueItem
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9e0e1700-0000-4000-8000-100000000003"'
+    select: |
+      id,title,item_type,status,activity { id,subject },account { id,name }
+  expect:
+    data:
+      id: '9e0e1700-0000-4000-8000-100000000003'
+      title: 'Follow up on Northstar renewal'
+      item_type: 'Activity'
+      status: 'Open'

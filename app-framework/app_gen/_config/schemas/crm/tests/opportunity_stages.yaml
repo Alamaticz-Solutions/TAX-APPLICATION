@@ -1,0 +1,22 @@
+# OpportunityStage - seeded lookup coverage.
+
+- name: find_opportunity_stage
+  description: find seeded opportunity stage by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findOpportunityStage
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"0998a900-0000-4000-8000-100000000003"'
+    select: |
+      id,name,is_closed,is_won,sort_order
+  expect:
+    data:
+      id: '0998a900-0000-4000-8000-100000000003'
+      name: 'Proposal'
+      is_closed: false
+      is_won: false
+      sort_order: 30

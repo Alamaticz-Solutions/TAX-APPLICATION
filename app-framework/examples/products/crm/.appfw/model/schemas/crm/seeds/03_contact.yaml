@@ -1,0 +1,88 @@
+- entity_type: Contact
+  schema: crm
+  columns:
+  - id
+  - first_name
+  - last_name
+  - email
+  - phone
+  - mobile
+  - title
+  - department
+  - mailing_street
+  - mailing_city
+  - mailing_state
+  - mailing_postal_code
+  - mailing_country
+  - account_id
+  records:
+  - id: c0c00000-0000-4000-8000-100000000001
+    first_name: Sarah
+    last_name: Mitchell
+    email: s.mitchell@acmedental.com
+    phone: 555-0101
+    mobile: 555-0109
+    title: VP Operations
+    department: Operations
+    mailing_street: 101 Congress Ave
+    mailing_city: Austin
+    mailing_state: TX
+    mailing_postal_code: '78701'
+    mailing_country: US
+    account_id: a0c00000-0000-4000-8000-100000000001
+  - id: c0c00000-0000-4000-8000-100000000002
+    first_name: James
+    last_name: Okafor
+    email: j.okafor@techbridge.io
+    phone: 555-0201
+    mobile: 555-0209
+    title: CTO
+    department: Engineering
+    mailing_street: 500 Market St
+    mailing_city: San Francisco
+    mailing_state: CA
+    mailing_postal_code: '94105'
+    mailing_country: US
+    account_id: a0c00000-0000-4000-8000-100000000002
+  - id: c0c00000-0000-4000-8000-100000000003
+    first_name: Lisa
+    last_name: Chen
+    email: l.chen@capstone-fin.com
+    phone: 555-0301
+    mobile: 555-0309
+    title: CFO
+    department: Finance
+    mailing_street: 75 Broad St
+    mailing_city: New York
+    mailing_state: NY
+    mailing_postal_code: '10004'
+    mailing_country: US
+    account_id: a0c00000-0000-4000-8000-100000000003
+  - id: c0c00000-0000-4000-8000-100000000004
+    first_name: David
+    last_name: Torres
+    email: d.torres@medisystems.com
+    phone: 555-0401
+    mobile: 555-0409
+    title: Director of IT
+    department: Information Technology
+    mailing_street: 233 W Wacker Dr
+    mailing_city: Chicago
+    mailing_state: IL
+    mailing_postal_code: '60606'
+    mailing_country: US
+    account_id: a0c00000-0000-4000-8000-100000000004
+  - id: c0c00000-0000-4000-8000-100000000005
+    first_name: Priya
+    last_name: Sharma
+    email: p.sharma@retailplus.com
+    phone: 555-0501
+    mobile: 555-0509
+    title: VP Purchasing
+    department: Procurement
+    mailing_street: 1720 Commerce St
+    mailing_city: Dallas
+    mailing_state: TX
+    mailing_postal_code: '75201'
+    mailing_country: US
+    account_id: a0c00000-0000-4000-8000-100000000005

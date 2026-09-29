@@ -1,0 +1,85 @@
+- id: a0c00000-0000-4000-8000-000000000001
+  name: Account
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - audited
+  - concurrency
+
+  custom_methods:
+  - name: account_health
+    kind: Query
+    mcp_enabled: true
+    args:
+    - name: account_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Account Name
+    fragment: property-string-caption
+
+  - name: website
+    caption: Website
+    data_type: String
+
+  - name: phone
+    caption: Phone
+    data_type: String
+
+  - name: email
+    caption: Email
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  - name: tags
+    caption: Tags
+    data_type: StringArray
+    meta:
+      allowNewItems: true
+
+  - name: billing_street
+    caption: Billing Street
+    data_type: String
+
+  - name: billing_city
+    caption: Billing City
+    data_type: String
+
+  - name: billing_state
+    caption: Billing State
+    data_type: String
+
+  - name: billing_postal_code
+    caption: Billing Postal Code
+    data_type: String
+
+  - name: billing_country
+    caption: Billing Country
+    data_type: String
+
+  - name: annual_revenue
+    caption: Annual Revenue
+    data_type: Float64
+
+  - name: number_of_employees
+    caption: Number of Employees
+    data_type: Int32
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: industry_id
+    caption: Industry
+    data_type: Uuid
+    foreign_key:
+      type_name: Industry

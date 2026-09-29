@@ -1,0 +1,59 @@
+- id: a471c1e0-0000-4000-8000-000000000022
+  name: KnowledgeArticle
+  is_table: true
+  indexes:
+  - slug
+  - status
+  - language
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: title
+    caption: Title
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: slug
+    caption: Slug
+    is_required: true
+    data_type: String
+
+  - name: summary
+    caption: Summary
+    data_type: String
+
+  - name: body
+    caption: Body
+    data_type: String
+
+  - name: language
+    caption: Language
+    data_type: String
+
+  - name: status
+    caption: Status
+    data_type: String
+
+  - name: publish_date
+    caption: Publish Date
+    data_type: Date
+
+  - name: view_count
+    caption: View Count
+    data_type: Int32
+
+  - name: is_public
+    caption: Is Public
+    fragment: property-boolean-toggle-required
+
+  - name: tags
+    caption: Tags
+    data_type: StringArray
+    meta:
+      allowNewItems: true

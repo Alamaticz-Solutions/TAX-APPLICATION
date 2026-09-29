@@ -1,0 +1,371 @@
+{
+  "schema": "appfw_routing_cases@1",
+  "base_task": {
+    "schema": "appfw_model_route@1",
+    "subject": {
+      "outcome_id": "AF-OG01",
+      "product_increment_id": "AF-M01.2",
+      "deliverable_id": "AFS-008",
+      "task_id": "task:40000000-0000-4000-8000-000000000001",
+      "assignment_id": "assignment:10000000-0000-4000-8000-000000000001",
+      "workstream_id": "WS-01",
+      "role_card_id": "coding-agent",
+      "stage": "prototype",
+      "parent_run_id": "run:30000000-0000-4000-8000-000000000001"
+    },
+    "task_shape": {
+      "role": "implementer",
+      "read_roots": ["docs", "scripts"],
+      "write_roots": ["scripts/agent-routing"],
+      "allowed_tools": ["read", "apply_patch", "node_test"],
+      "network_posture": "none",
+      "data_classification": "internal",
+      "change_class": "B",
+      "change_class_status": "exact",
+      "ambiguity": "low",
+      "consequence": "medium",
+      "sensitive_surfaces": [],
+      "signature_significance": false,
+      "delegation_depth": 1,
+      "delegation_type": "direct_child",
+      "execution_target": "local",
+      "material_child": true,
+      "requested_capabilities": ["code_edit", "semantic_test"]
+    },
+    "routing_context": {
+      "implementer": {
+        "assignment_id": "assignment:10000000-0000-4000-8000-000000000001",
+        "actor_id": "actor:20000000-0000-4000-8000-000000000001",
+        "run_id": "run:30000000-0000-4000-8000-000000000002"
+      },
+      "reviewer": {
+        "assignment_id": "assignment:10000000-0000-4000-8000-000000000002",
+        "actor_id": "actor:20000000-0000-4000-8000-000000000002",
+        "run_id": "run:30000000-0000-4000-8000-000000000003"
+      },
+      "reviewer_required": true,
+      "provider_available": true,
+      "required_instruction_ids": [],
+      "authorized_read_roots": ["docs", "scripts"],
+      "authorized_write_roots": ["scripts/agent-routing"],
+      "authorized_tools": ["read", "apply_patch", "node_test"],
+      "authorized_network_posture": "none",
+      "strategic_decision": false,
+      "human_decision_id": null
+    },
+    "privacy": {
+      "data_classification": "internal",
+      "redaction_posture": "strict",
+      "retained_field_allowlist_version": "appfw_route_telemetry_allowlist@1",
+      "prompt_content_retained": false,
+      "secret_content_retained": false
+    }
+  },
+  "canonical_cases": [
+    {
+      "id": "read-heavy-extraction",
+      "provider": "codex",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000002" },
+        "task_shape": { "role": "researcher", "write_roots": [], "change_class": "D", "requested_capabilities": ["source_discovery"] },
+        "routing_context": { "authorized_write_roots": [] }
+      },
+      "expected_implementer_profile": "bounded_read@1",
+      "expected_reviewer_profile": "focused_independent_review@1"
+    },
+    {
+      "id": "routine-program-coordination",
+      "provider": "claude",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000003", "role_card_id": "program-flow-controller" },
+        "task_shape": { "role": "coordination", "write_roots": [], "change_class": "D", "requested_capabilities": ["coordination_projection"] },
+        "routing_context": { "authorized_write_roots": [] }
+      },
+      "expected_implementer_profile": "routine_delivery@1",
+      "expected_reviewer_profile": "focused_independent_review@1"
+    },
+    {
+      "id": "narrow-class-a-delivery",
+      "provider": "codex",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000004" },
+        "task_shape": { "change_class": "A", "consequence": "high" }
+      },
+      "expected_implementer_profile": "complex_delivery@1",
+      "expected_reviewer_profile": "focused_independent_review@1"
+    },
+    {
+      "id": "signature-experience",
+      "provider": "claude",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000005" },
+        "task_shape": { "signature_significance": true, "ambiguity": "high" },
+        "routing_context": { "human_decision_id": "evidence:50000000-0000-4000-8000-000000000001" }
+      },
+      "expected_implementer_profile": "complex_delivery@1",
+      "expected_reviewer_profile": "comprehensive_independent_review@1"
+    },
+    {
+      "id": "sensitive-runtime-boundary",
+      "provider": "codex",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000006" },
+        "task_shape": { "sensitive_surfaces": ["auth", "runtime"], "data_classification": "restricted" },
+        "privacy": { "data_classification": "restricted" }
+      },
+      "expected_implementer_profile": "complex_delivery@1",
+      "expected_reviewer_profile": "adversarial_independent_review@1"
+    },
+    {
+      "id": "strategic-irreversible-decision",
+      "provider": "claude",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000007", "role_card_id": "chief-architect" },
+        "task_shape": { "role": "architecture", "consequence": "irreversible", "ambiguity": "high", "write_roots": [], "requested_capabilities": ["strategic_challenge"] },
+        "routing_context": { "authorized_write_roots": [], "strategic_decision": true, "human_decision_id": "evidence:50000000-0000-4000-8000-000000000002" }
+      },
+      "expected_implementer_profile": "consequential_decision@1",
+      "expected_reviewer_profile": "comprehensive_independent_review@1"
+    },
+    {
+      "id": "unsupported-unavailable-route",
+      "provider": "codex",
+      "task_patch": {
+        "subject": { "task_id": "task:40000000-0000-4000-8000-000000000008" },
+        "routing_context": { "provider_available": false }
+      },
+      "expected_error": "provider_unavailable"
+    }
+  ],
+  "negative_cases": [
+    {
+      "id": "unknown-required-instruction",
+      "task_patch": { "routing_context": { "required_instruction_ids": ["missing-instruction"] } },
+      "expected_error": "instruction_missing"
+    },
+    {
+      "id": "provider-field-in-neutral-task",
+      "task_patch": { "task_shape": { "provider": "codex" } },
+      "expected_error": "provider_leakage"
+    },
+    {
+      "id": "implicit-child-inheritance",
+      "task_patch": { "subject": { "parent_run_id": null } },
+      "expected_error": "implicit_child_inheritance"
+    },
+    {
+      "id": "delegation-depth-two",
+      "task_patch": { "task_shape": { "delegation_depth": 2 } },
+      "expected_error": "delegation_depth_exceeded"
+    },
+    {
+      "id": "self-review",
+      "task_patch": {
+        "routing_context": {
+          "reviewer": {
+            "assignment_id": "assignment:10000000-0000-4000-8000-000000000001",
+            "actor_id": "actor:20000000-0000-4000-8000-000000000001",
+            "run_id": "run:30000000-0000-4000-8000-000000000002"
+          }
+        }
+      },
+      "expected_error": "reviewer_not_independent"
+    },
+    {
+      "id": "missing-independent-reviewer",
+      "task_patch": { "routing_context": { "reviewer": null } },
+      "expected_error": "independent_reviewer_unavailable"
+    },
+    {
+      "id": "write-scope-widening",
+      "task_patch": { "task_shape": { "write_roots": ["scripts/agent-routing", "program"] } },
+      "expected_error": "scope_widening"
+    },
+    {
+      "id": "unknown-contract-major",
+      "task_patch": { "schema": "appfw_model_route@2" },
+      "expected_error": "unsupported_contract_major"
+    },
+    {
+      "id": "unsupported-required-capability",
+      "task_patch": { "task_shape": { "requested_capabilities": ["unsupported-capability"] } },
+      "expected_error": "unsupported_required_capability"
+    },
+    {
+      "id": "prompt-retention",
+      "task_patch": { "privacy": { "prompt_content_retained": true } },
+      "expected_error": "privacy_violation"
+    },
+    {
+      "id": "copied-reviewer-resolution",
+      "mode": "record",
+      "record_patch": {
+        "adapter_resolution": {
+          "reviewer": { "profile": "routine_delivery@1", "model": "gpt-5.4", "effort": "high" }
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "assignment_authority_mismatch"
+    },
+    {
+      "id": "broken-instruction-heading",
+      "mode": "record",
+      "record_mutation": "break_instruction_heading",
+      "recompute_record_digest": true,
+      "expected_error": "instruction_heading_missing"
+    },
+    {
+      "id": "silent-fallback-deviation",
+      "mode": "record",
+      "record_patch": { "adapter_resolution": { "fallback_deviation": "silent-profile-change" } },
+      "recompute_record_digest": true,
+      "expected_error": "invalid_adapter_resolution"
+    },
+    {
+      "id": "route-mutation-after-activation",
+      "mode": "record",
+      "record_patch": { "route_plan": { "rationale_codes": ["mutated-after-activation"] } },
+      "recompute_record_digest": true,
+      "expected_error": "assignment_authority_mismatch"
+    },
+    {
+      "id": "recomputed-public-digests-do-not-replace-pfc-authority",
+      "mode": "record",
+      "record_patch": { "route_plan": { "rationale_codes": ["self-authorized-mutation"] } },
+      "recompute_assignment_digest": true,
+      "recompute_record_digest": true,
+      "expected_error": "assignment_authority_mismatch"
+    },
+    {
+      "id": "required-instruction-removal-after-public-rehash",
+      "mode": "record",
+      "record_mutation": "remove_required_instruction",
+      "recompute_assignment_digest": true,
+      "recompute_record_digest": true,
+      "expected_error": "assignment_authority_mismatch"
+    },
+    {
+      "id": "adapter-model-tampering",
+      "mode": "record",
+      "record_mutation": "change_adapter_model",
+      "recompute_record_digest": true,
+      "expected_error": "assignment_authority_mismatch"
+    },
+    {
+      "id": "malformed-telemetry-primitive",
+      "mode": "record",
+      "record_patch": { "actual_run": { "telemetry_complete": "yes" } },
+      "recompute_record_digest": true,
+      "expected_error": "invalid_schema"
+    },
+    {
+      "id": "material-review-downgrade",
+      "task_patch": { "routing_context": { "reviewer_required": false, "reviewer": null } },
+      "expected_error": "implicit_child_inheritance"
+    },
+    {
+      "id": "pii-identifier",
+      "task_patch": { "routing_context": { "implementer": { "actor_id": "person@example.com" } } },
+      "expected_error": "privacy_violation"
+    },
+    {
+      "id": "value-claim-without-accepted-outcome",
+      "mode": "record",
+      "record_patch": {
+        "actual_run": {
+          "value_claim": {
+            "claimed": true,
+            "metric": "elapsed_time",
+            "improvement_percent": 20,
+            "baseline_evidence_refs": ["evidence:60000000-0000-4000-8000-000000000003"]
+          }
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "value_claim_without_accepted_outcome"
+    },
+    {
+      "id": "running-route-model-mismatch",
+      "mode": "record",
+      "record_patch": {
+        "record_state": "running",
+        "actual_run": {
+          "status": "running",
+          "actual_provider": "codex",
+          "actual_model": "unapproved-model",
+          "actual_effort": "high",
+          "started_at": "2026-07-22T21:30:00Z"
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "silent_reroute"
+    },
+    {
+      "id": "failed-partial-actual-route",
+      "mode": "record",
+      "record_patch": {
+        "record_state": "failed",
+        "actual_run": {
+          "status": "failed",
+          "actual_provider": "codex",
+          "started_at": "2026-07-22T21:30:00Z",
+          "completed_at": "2026-07-22T21:31:00Z",
+          "telemetry_complete": true
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "telemetry_incomplete"
+    },
+    {
+      "id": "failed-run-accepted-evidence",
+      "mode": "record",
+      "record_patch": {
+        "record_state": "failed",
+        "actual_run": {
+          "status": "failed",
+          "started_at": "2026-07-22T21:30:00Z",
+          "completed_at": "2026-07-22T21:31:00Z",
+          "telemetry_complete": true,
+          "implemented_evidence_refs": ["evidence:60000000-0000-4000-8000-000000000001"],
+          "accepted_evidence_refs": ["evidence:60000000-0000-4000-8000-000000000002"]
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "accepted_evidence_incomplete"
+    },
+    {
+      "id": "failed-run-positive-value",
+      "mode": "record",
+      "record_patch": {
+        "record_state": "failed",
+        "actual_run": {
+          "status": "failed",
+          "started_at": "2026-07-22T21:30:00Z",
+          "completed_at": "2026-07-22T21:31:00Z",
+          "telemetry_complete": true,
+          "value_claim": {
+            "claimed": true,
+            "metric": "elapsed_time",
+            "improvement_percent": 10,
+            "baseline_evidence_refs": ["evidence:60000000-0000-4000-8000-000000000003"]
+          }
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "value_claim_without_accepted_outcome"
+    },
+    {
+      "id": "encrypted-private-key-in-cost-source",
+      "mode": "record",
+      "record_patch": {
+        "actual_run": {
+          "cost": {
+            "measurement_source": "-----BEGIN ENCRYPTED PRIVATE KEY-----secret-----END ENCRYPTED PRIVATE KEY-----"
+          }
+        }
+      },
+      "recompute_record_digest": true,
+      "expected_error": "privacy_violation"
+    }
+  ]
+}

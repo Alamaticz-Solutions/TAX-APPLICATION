@@ -1,0 +1,41 @@
+# Alertmanager configuration for the local observability profile.
+#
+# This is a LOCAL DEVELOPMENT mirror of the production alerting shape. The
+# receiver below is a placeholder webhook only — it does NOT deliver to a real
+# destination and contains NO secrets. Per-environment deployments must replace
+# the receiver(s) with their own paging/notification integrations (PagerDuty,
+# Slack, Opsgenie, email gateway, etc.) supplied via environment-specific
+# secrets, never committed to this repo.
+global:
+  # How long to wait before marking a firing alert as resolved once Prometheus
+  # stops sending it.
+  resolve_timeout: 5m
+
+route:
+  # Group alerts by name + service so a burst of related firings collapses into
+  # a single notification.
+  group_by: ["alertname", "service"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+  # Default receiver. All alerts fall through to this unless a child route
+  # matches first. Add per-severity child routes in real environments.
+  receiver: default-webhook
+
+receivers:
+  - name: default-webhook
+    # Placeholder local sink. Replace `url` per environment with a real,
+    # secret-injected endpoint. The `localhost` target intentionally points at
+    # nothing in the local stack so no alert data leaves the host.
+    webhook_configs:
+      - url: http://127.0.0.1:5001/placeholder-alert-webhook
+        send_resolved: true
+
+# Inhibition lets a higher-severity alert silence lower-severity noise for the
+# same service while the bigger problem is active.
+inhibit_rules:
+  - source_matchers:
+      - severity = "critical"
+    target_matchers:
+      - severity = "warning"
+    equal: ["service"]

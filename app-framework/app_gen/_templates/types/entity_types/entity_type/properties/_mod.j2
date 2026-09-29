@@ -1,0 +1,7 @@
+{%- import "property" as property -%}
+{% macro print(entityType) %}
+{# {% set unique_props = entityType.props | unique(attribute="name", case_sensitive=false) %} #}
+{%- if entityType.props %}{%- for p in entityType.props -%}
+{{ property::print(entityType=entityType, property=p) }}
+{%- endfor -%}{%- endif %}
+{% endmacro print %}

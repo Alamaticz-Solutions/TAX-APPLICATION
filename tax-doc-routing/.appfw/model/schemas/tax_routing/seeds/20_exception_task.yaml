@@ -1,0 +1,42 @@
+# Open exceptions for the exception-status records in 19_tax_routing_record.yaml, read live by
+# the Exception Queue screen instead of the `exception` field baked into
+# frontend/src/features/shared/data/cases.ts's hardcoded rows.
+- entity_type: ExceptionTask
+  schema: tax_routing
+  columns:
+  - id
+  - routing_record_id
+  - failure_reason
+  - failed_step
+  - opened_at
+  - resolved_at
+  - assigned_user_id
+  records:
+  - id: 7a0b0001-0000-4b00-9000-000000000001
+    routing_record_id: 6f0a0001-0000-4a00-9000-000000000006
+    failure_reason: "File Transfer Failed: the K-1 file could not be moved to the External Client Copy folder."
+    failed_step: moving
+    opened_at: "2026-05-09T11:20:00Z"
+    resolved_at: null
+    assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+  - id: 7a0b0001-0000-4b00-9000-000000000002
+    routing_record_id: 6f0a0001-0000-4a00-9000-000000000007
+    failure_reason: "Storage Folder Error: the client folder could not be found. Re-enter the folder URL."
+    failed_step: verify
+    opened_at: "2026-05-09T09:50:00Z"
+    resolved_at: null
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+  - id: 7a0b0001-0000-4b00-9000-000000000003
+    routing_record_id: 6f0a0001-0000-4a00-9000-000000000008
+    failure_reason: "Processing Error: password protection failed; the Tax Return file was not uploaded."
+    failed_step: processing
+    opened_at: "2026-05-08T15:40:00Z"
+    resolved_at: null
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+  - id: 7a0b0001-0000-4b00-9000-000000000004
+    routing_record_id: 6f0a0001-0000-4a00-9000-000000000009
+    failure_reason: "Invalid File Format: the uploaded Form 8308 file is not a valid PDF."
+    failed_step: uploaded
+    opened_at: "2026-05-08T10:20:00Z"
+    resolved_at: null
+    assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03

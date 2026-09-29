@@ -1,0 +1,11 @@
+# CODEOWNERS — routes review on specific paths.
+#
+# TODO(who owns this): replace the placeholder handles below with real GitHub
+# usernames or teams before this has any effect. GitHub silently ignores a
+# CODEOWNERS line whose owner does not resolve to a real user/team.
+#
+# Security-sensitive: PDF password handling and the document-store boundary.
+tax-doc-routing/backend/src/services/pdf_protection/   @TODO-security-reviewer
+tax-doc-routing/backend/src/services/document_store/   @TODO-security-reviewer
+# Authorization policy bodies.
+tax-doc-routing/.appfw/model/schemas/tax_routing/rbac/ @TODO-security-reviewer

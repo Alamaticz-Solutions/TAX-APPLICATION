@@ -1,0 +1,4 @@
+id: daa03056-0f95-4f9d-9fe7-465cda426297
+name: crm
+description: CRM schema
+data_source_name: pg_primary

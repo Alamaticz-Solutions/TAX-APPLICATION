@@ -1,0 +1,7 @@
+name: version
+caption: Version
+is_required: true
+is_read_only: true
+is_concurrency_control: true
+data_type: Int64
+default_value: 0

@@ -1,0 +1,54 @@
+- id: ac71fa00-0000-4000-8000-000000000017
+  name: ActivityParty
+  is_table: true
+  indexes:
+  - activity_id
+  - party_type
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: role
+    caption: Role
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: party_type
+    caption: Party Type
+    is_required: true
+    data_type: String
+
+  - name: party_id
+    caption: Party ID
+    data_type: String
+
+  - name: display_name
+    caption: Display Name
+    data_type: String
+
+  - name: email
+    caption: Email
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  - name: is_required
+    caption: Is Required
+    fragment: property-boolean-toggle-required
+
+  - name: responded_status
+    caption: Responded Status
+    data_type: String
+
+  - name: activity_id
+    caption: Activity
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Activity

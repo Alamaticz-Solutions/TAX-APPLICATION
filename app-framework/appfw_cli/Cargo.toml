@@ -1,0 +1,25 @@
+[package]
+name = "appfw-cli"
+version = "0.1.7"
+edition = "2021"
+rust-version = "1.80.1"
+description = "Stable App Framework command-line package."
+publish = ["pds-app-framework-crates"]
+default-run = "appfw"
+
+[lib]
+name = "appfw_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "appfw"
+path = "src/main.rs"
+
+[[bin]]
+name = "provider_certification_export"
+path = "src/bin/provider_certification_export.rs"
+
+[dependencies]
+appfw_runtime = { package = "appfw-runtime", version = "0.2.0", path = "../appfw_runtime", registry = "pds-app-framework-crates" }
+serde_json = "1.0"
+sha2 = "0.10"

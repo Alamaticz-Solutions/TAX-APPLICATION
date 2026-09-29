@@ -1,0 +1,11 @@
+id: 13736c87-be63-43fb-8de7-ceabffa70de6
+name: denovo_workflow
+description: Read-only De Novo workflow projection bounded context backed by local synthetic Nexus evidence.
+data_source_name: pg_primary
+meta:
+  classification: internal
+  projection_of: servicenow_denovo_projection
+  storage:
+    mode: external_read_only
+  source_authority: synthetic_fixture_only
+  reconciliation_required_before_live_targeting: true

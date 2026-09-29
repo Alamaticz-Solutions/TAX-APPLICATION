@@ -1,0 +1,118 @@
+{
+  "name": "write_gate_intent_preview",
+  "description": "Write-shaped chat intent renders an IntentPreview and never executes a write.",
+  "auth_token": "west_sales_rep",
+  "provenance": "synthetic",
+  "query": "create an incident for this stalled credentialing task",
+  "context": {
+    "app": "nexus",
+    "surface": "chat_panel",
+    "tenant": "tenant_a"
+  },
+  "registry": {
+    "operations": [
+      {
+        "name": "servicenow.create_incident",
+        "args_schema": "registry",
+        "kind": "write",
+        "write_gated": true
+      }
+    ]
+  },
+  "fixture_store": {
+    "records": [
+      {
+        "id": "rl_33333333333333333333333333333333",
+        "tenant": "tenant_a",
+        "type": "Task",
+        "caption": "Credentialing packet stalled"
+      }
+    ],
+    "cross_tenant_seeded_ids": []
+  },
+  "transcript": [
+    {
+      "type": "message",
+      "role": "user",
+      "content": "create an incident for this stalled credentialing task"
+    },
+    {
+      "type": "tool_call",
+      "name": "servicenow.create_incident",
+      "args_schema": "registry",
+      "args": {
+        "source_ref": "rl_33333333333333333333333333333333",
+        "short_description": "Credentialing packet stalled"
+      },
+      "write_gated": true,
+      "execution": "preview_only"
+    },
+    {
+      "type": "card",
+      "kind": "IntentPreview",
+      "operation": "servicenow.create_incident",
+      "status": "requires_confirmation"
+    }
+  ],
+  "replay_transcript": [
+    {
+      "type": "message",
+      "role": "user",
+      "content": "create an incident for this stalled credentialing task"
+    },
+    {
+      "type": "tool_call",
+      "name": "servicenow.create_incident",
+      "args_schema": "registry",
+      "args": {
+        "source_ref": "rl_33333333333333333333333333333333",
+        "short_description": "Credentialing packet stalled"
+      },
+      "write_gated": true,
+      "execution": "preview_only"
+    },
+    {
+      "type": "card",
+      "kind": "IntentPreview",
+      "operation": "servicenow.create_incident",
+      "status": "requires_confirmation"
+    }
+  ],
+  "answer_envelope": {
+    "version": "answer_envelope@1",
+    "correlation_id": "chat-eval-write-gate-intent-preview",
+    "refs": [
+      {
+        "uri": "appfw://schemas/nexus/entities/Task",
+        "entity": { "schemaName": "nexus", "typeName": "Task" },
+        "ids": ["rl_33333333333333333333333333333333"],
+        "idKind": "record_locator"
+      }
+    ],
+    "view_hint": "card",
+    "fallback_view": "list",
+    "citations": [
+      { "ref_uri": "rl_33333333333333333333333333333333" }
+    ],
+    "confidence": { "score": 0.75, "basis": "intent preview only" },
+    "provenance": { "model": "fixture", "search_backend": "fixture-store" }
+  },
+  "expect": {
+    "tool_calls": [
+      { "name": "servicenow.create_incident", "args_schema": "registry", "write_gated": true }
+    ],
+    "entity_refs": [
+      { "type": "Task", "source": "servicenow_denovo_projection", "min_count": 1 }
+    ],
+    "artifacts": [
+      { "kind": "answer_envelope", "schema": "answer_envelope@1" },
+      { "kind": "IntentPreview" }
+    ],
+    "citations": "resolvable",
+    "policy": {
+      "tenant_visibility": "tenant_a_only",
+      "write_operations": "intent_preview_only",
+      "forbidden_scopes": ["servicenow.incident.write"]
+    }
+  }
+}

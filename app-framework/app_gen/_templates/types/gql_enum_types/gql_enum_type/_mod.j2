@@ -1,0 +1,9 @@
+{% macro print(enumType) %}
+- name: {{ enumType.name }} 
+  items: 
+{%- for item in enumType.items %}
+  - value: {{ item.value }}
+    caption: {% if item.caption %}{{ item.caption }}{% else %}{{ item.value | caption }}{% endif %}
+{%- endfor %}
+
+{% endmacro print %}

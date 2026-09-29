@@ -1,0 +1,88 @@
+
+# Database level configs (update as needed)
+
+- name: pg_primary
+  data_source_type: PostgreSQL
+  is_system_schema_host: true
+  description: Primary database
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: app_framework
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: postgres
+    db_name: app_framework
+    db_port: 5432
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: mongo_primary
+  data_source_type: MongoDB
+  description: Primary MongoDB instance
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: app_framework
+    db_port: 27017
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: mongo
+    db_name: app_framework
+    db_port: 27017
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: mssql_primary
+  data_source_type: MsSqlServer
+  description: Primary SQL Server instance
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: app_framework
+    db_port: 1433
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: mssql
+    db_name: app_framework
+    db_port: 1433
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: snowflake_primary
+  data_source_type: Snowflake
+  description: Primary Snowflake account
+  environments:
+  - name: local
+    db_host: account_identifier.snowflakecomputing.com
+    db_name: app_framework
+    db_port: 443
+    security_profile: managed
+    tls_mode: verify_full
+  - name: compose
+    db_host: https://snowflake.localhost.localstack.cloud
+    db_name: app_framework
+    db_port: 443
+    security_profile: local_dev
+    tls_mode: disabled
+
+- name: neo4j_graph
+  data_source_type: Neo4j
+  description: Optional Neo4j graph read model
+  environments:
+  - name: local
+    db_host: localhost
+    db_name: neo4j
+    db_port: 7687
+    security_profile: local_dev
+    tls_mode: disabled
+  - name: compose
+    db_host: neo4j
+    db_name: neo4j
+    db_port: 7687
+    security_profile: local_dev
+    tls_mode: disabled

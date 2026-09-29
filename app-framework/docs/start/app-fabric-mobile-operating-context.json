@@ -1,0 +1,435 @@
+{
+  "schema": "app_fabric_mobile_operating_context@1",
+  "snapshot_id": "AF-MOBILE-OPERATING-CONTEXT-2026-08-03",
+  "as_of": "2026-08-03",
+  "contract": {
+    "schema_path": "docs/start/app-fabric-mobile-operating-context.schema.json",
+    "markdown_companion": "docs/start/app-fabric-mobile-operating-context.md",
+    "sync_status": "independently-reviewed"
+  },
+  "repository": {
+    "planning_freeze": {
+      "ref": "origin/main",
+      "sha": "2de105e001ab8029eb21bce4691eded49e48ff81"
+    },
+    "observed_destination": {
+      "ref": "origin/main",
+      "sha": "2020fb3c9b07b56eba810a5f6d7419816ba55735",
+      "observed_on": "2026-08-03"
+    },
+    "integration_refresh": {
+      "required": true,
+      "classification": "Class D",
+      "merge_base_sha": "2de105e001ab8029eb21bce4691eded49e48ff81",
+      "overlap_paths": [
+        "scripts/check-doc-examples.sh"
+      ],
+      "overlap_assessment": "disjoint_hunks_no_predicted_text_conflict",
+      "proof_status": "not_destination_current_rerun_required"
+    },
+    "planning_branch": "docs/app-fabric-mobile-m0",
+    "implementation_branch": "fix/app-fabric-mobile-readiness-containment",
+    "implementation_base_sha": "a9b3646289689de824c0fbde3fdb805312fbb196",
+    "clean_isolated_worktree_required": true,
+    "source_work_admitted": true,
+    "active_assignment": {
+      "card": "M0-05",
+      "status": "reviewed_go_with_conditions_pending_commit_and_integration",
+      "admission_basis": "human_directed_accelerated_pre_candidate_containment",
+      "producer_role": "Coding Agent",
+      "review_route": "framework_pr_review_comprehensive_adversarial",
+      "integration_disposition": "refresh_required_pending",
+      "write_roots": [
+        "agent_skills/product-mobile-react-native/SKILL.md",
+        "app_gen/src/bin/appfw_introspect.rs",
+        "scripts/appfw",
+        "scripts/check-doc-examples.sh",
+        "scripts/dependency-check.py",
+        "scripts/ci/release-evidence-check.sh",
+        "scripts/mobile-readiness-containment.test.py",
+        "docs/architecture/concerns/maintainability.md",
+        "docs/architecture/concerns/north-star-wave-0.md",
+        "docs/architecture/concerns/north-star-wave-0-specs.md",
+        "docs/frontend/mobile-react-native.md",
+        "docs/reference/cli.md",
+        "docs/release/deployment-reference.md",
+        "docs/release/roadmap.md",
+        "docs/specs/app-fabric-mobile-m0-seam-freeze.md",
+        "docs/specs/app-fabric-mobile-ux-master-plan.md",
+        "docs/strategy/app-framework-product-management-strategy.md",
+        "docs/strategy/product-development-north-star.md",
+        "docs/start/branch-integration-model.md",
+        "docs/start/app-fabric-mobile-operating-context.md",
+        "docs/start/app-fabric-mobile-operating-context.json",
+        "docs/start/app-fabric-mobile-operating-context.schema.json",
+        "examples/products/crm/mobile/.appfw-mobile/device-evidence.json",
+        "examples/products/crm/mobile/.appfw-mobile/store-track-evidence.json",
+        "examples/products/crm/mobile/__tests__/mobile-contract.test.ts"
+      ],
+      "stop_rule": "no_candidate_release_distribution_ota_store_or_broader_mobile_source_claim"
+    }
+  },
+  "review_history": [
+    {
+      "sequence": 1,
+      "review_kind": "framework_pr_review_comprehensive",
+      "source_state": "pre_raw_staging_fix_uncommitted",
+      "status": "NO-GO",
+      "severity_counts": {
+        "blockers": 0,
+        "critical": 1,
+        "important": 3,
+        "should_address": 1,
+        "nice_to_address": 0
+      },
+      "conditions_captured": "not_applicable",
+      "resolution": "Raw staged U5 sources now require strict JSON with unique object keys and readiness fields that are absent or exact false; failures report path/type/value, unsafe or stale targets are deleted, safe inputs are canonically serialized, downstream consumers reject nested/type-confused/duplicate-key evidence, and the exact-state comprehensive rereview accepted the repairs with the destination-current Integration condition."
+    },
+    {
+      "sequence": 2,
+      "review_kind": "framework_pr_review_comprehensive",
+      "source_state": "exact_uncommitted_39_path_manifest_440f1b07742960336b2164a8e66a91cbc71c87497aa420db5a7f8a2ad5cacebf",
+      "status": "GO WITH CONDITIONS",
+      "severity_counts": {
+        "blockers": 0,
+        "critical": 0,
+        "important": 1,
+        "should_address": 0,
+        "nice_to_address": 0
+      },
+      "conditions_captured": "yes",
+      "resolution": "The exact reviewed tree may be committed. After commit, handoff and review evidence must be rebound to that SHA before push. Integration must refresh from origin/main@2020fb3c9b07b56eba810a5f6d7419816ba55735 or newer, preserve isolated PDS expected-failure artifacts, and rerun the full Class D proof plus comprehensive review on the assembled SHA before merge, Candidate, or any readiness claim. CRM mobile Jest and online cargo-audit/cargo-deny remain explicit pre-candidate evidence gaps, not accepted risk."
+    }
+  ],
+  "lifecycle": {
+    "stage": "prototype_pre_candidate",
+    "delivery_profile": "accelerated",
+    "maturity": "experimental",
+    "candidate_ready": false,
+    "release_ready": false,
+    "release_authority": "none"
+  },
+  "authority": {
+    "priority_posture": "docs/release/roadmap.md",
+    "live_work_admission": [
+      "docs/specs/product-increment-portfolio.json and validated Product Increment plans",
+      "program flow controller topology"
+    ],
+    "integrated_plan": "docs/release/app-fabric-master-implementation-plan.md",
+    "normative_mobile_contract": "docs/specs/hosted-product-factory.md",
+    "target_architecture": "docs/architecture/hosted-product-factory-architecture.md",
+    "technical_plan": "docs/specs/app-fabric-mobile-ux-master-plan.md",
+    "bok_commit": "046e532c0e41b6911171f3d9aa961c0898d66140",
+    "bok_posture": "draft_rules_evidence_and_open_gates_preserved",
+    "not_granted": [
+      "product_acceptance",
+      "enterprise_architecture_ratification",
+      "wip_admission",
+      "source_ownership",
+      "funding",
+      "risk_acceptance",
+      "candidate_promotion",
+      "store_submission",
+      "release",
+      "merge",
+      "push"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "channel_projection",
+      "status": "proposed_freeze",
+      "value": "shared_semantics_separate_web_ios_android_layout_and_behavior"
+    },
+    {
+      "id": "renderer_vocabulary",
+      "status": "proposed_freeze",
+      "projections": ["web-dom", "native-ios", "native-android"],
+      "size_classes": ["compact", "medium", "expanded"]
+    },
+    {
+      "id": "reference_target",
+      "status": "bounded_hypothesis",
+      "value": "react_native_expo",
+      "enterprise_standard": false,
+      "business_channel_mandate": false
+    },
+    {
+      "id": "native_auth",
+      "status": "proposed_freeze_implementation_open",
+      "value": "oidc_authorization_code_pkce_public_client_no_embedded_secret"
+    },
+    {
+      "id": "prototype_build_custody",
+      "status": "provisional",
+      "value": "enterprise_or_developer_controlled_local_synthetic_only"
+    },
+    {
+      "id": "fabric_application_identity",
+      "status": "proposed_freeze",
+      "value": "registry_mints_durable_app_id_pending_fixtures_use_null_app_id_and_local_only_prototype_ref",
+      "self_minting_allowed": false
+    },
+    {
+      "id": "candidate_build_custody",
+      "status": "parked_decision"
+    }
+  ],
+  "m0_artifacts": [
+    {
+      "id": "master_plan",
+      "path": "docs/specs/app-fabric-mobile-ux-master-plan.md",
+      "status": "planning_complete"
+    },
+    {
+      "id": "M0-00",
+      "path": "docs/specs/app-fabric-mobile-technology-evaluation-brief.md",
+      "status": "planning_complete"
+    },
+    {
+      "id": "M0-01",
+      "paths": [
+        "docs/specs/app-fabric-experience-contract.schema.json",
+        "docs/specs/app-fabric-experience-contract.example.json"
+      ],
+      "status": "planning_contract_only"
+    },
+    {
+      "id": "M0-01A",
+      "path": "docs/architecture/adr/0017-web-native-experience-projection-boundary.md",
+      "status": "prototype_architecture_accepted_implementation_open"
+    },
+    {
+      "id": "M0-02",
+      "paths": [
+        "docs/specs/app-fabric-mobile-api-seam.md",
+        "docs/specs/app-fabric-mobile-api-compatibility.graphql"
+      ],
+      "status": "wire_specified_executable_red_test_not_admitted"
+    },
+    {
+      "id": "M0-03",
+      "paths": [
+        "docs/specs/app-fabric-mobile-manifest-profile.schema.json",
+        "docs/specs/app-fabric-mobile-manifest-profile.example.json",
+        "docs/specs/app-fabric-mobile-auth-profile.schema.json",
+        "docs/specs/app-fabric-mobile-auth-profile.example.json"
+      ],
+      "status": "fail_closed_prototype_planning_contracts_runtime_and_semantic_checkers_open"
+    },
+    {
+      "id": "M0-04",
+      "path": "docs/specs/app-fabric-mobile-build-custody-decision.md",
+      "status": "prototype_posture_recorded_candidate_decision_parked"
+    },
+    {
+      "id": "M0-05",
+      "path": "docs/specs/app-fabric-mobile-ux-master-plan.md",
+      "status": "go_with_conditions_pending_commit_and_destination_current_integration"
+    },
+    {
+      "id": "M0-freeze",
+      "path": "docs/specs/app-fabric-mobile-m0-seam-freeze.md",
+      "status": "proposed_freeze_pending_exact_commit_and_integration_disposition"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "mobile_api_wire_mismatch",
+      "severity": "blocker",
+      "detail": "Generated mobile selects nodes/pageInfo/totalCount, maps semantic JsonValue to a nonexistent GraphQL JsonValue scalar, and uses ID while the generated backend exposes items/page fields, JSON, and String",
+      "blocks": ["reference_journey", "native_readiness", "candidate", "ota"]
+    },
+    {
+      "id": "legacy_mobile_false_readiness",
+      "severity": "blocker",
+      "detail": "The first comprehensive review found raw legacy inputs could retain nested readiness claims; adversarial follow-up also found malformed, duplicate-key, and type-confused JSON ambiguity. The active branch now strictly rejects those sources, canonically stages validated JSON, deletes unsafe/stale targets, and independently contains producer and consumer paths. Exact-state rereview returned GO WITH CONDITIONS; this blocker now remains only until destination-current Integration acceptance and assembled-SHA proof.",
+      "blocks": ["authoritative_mobile_readiness", "candidate", "release"]
+    },
+    {
+      "id": "local_auth_bypass",
+      "severity": "blocker",
+      "detail": "The accepted local runtime posture permits missing or arbitrary bearer input to become a local admin identity; M4a evidence must disable this path and use the real verifier",
+      "blocks": ["auth_proof", "reference_journey", "candidate"]
+    },
+    {
+      "id": "canonical_contracts_not_integrated",
+      "severity": "important",
+      "detail": "Experience and mobile profile schemas are planning artifacts, not app_gen or app-manifest inputs"
+    },
+    {
+      "id": "native_renderer_and_catalog_absent",
+      "severity": "important",
+      "detail": "No qualified PDS Native package or actual iOS/Android catalog exists"
+    },
+    {
+      "id": "named_candidate_authorities_missing",
+      "severity": "important",
+      "detail": "Identity, build, signing, store, crash/device health, support, finance, and release owners/evidence remain open"
+    },
+    {
+      "id": "planning_schema_authority_semantics_unenforced",
+      "severity": "important",
+      "detail": "The planning JSON Schemas validate shape and selected scalar fail-closed posture but do not enforce operating-context authority membership, decision identity, evidence binding, or cross-record semantic invariants; they must not become executable promotion inputs until a repo-owned semantic checker exists.",
+      "blocks": ["generator_integration", "candidate"]
+    },
+    {
+      "id": "experience_classification_and_evidence_binding_unenforced",
+      "severity": "important",
+      "detail": "The experience planning schema does not yet bind prototype readiness to source/build evidence or conservatively derive Fabric classification; machine enforcement is required before renderer qualification or registry projection.",
+      "blocks": ["renderer_qualification", "registry_projection", "candidate"]
+    },
+    {
+      "id": "auth_client_allowlist_binding_unenforced",
+      "severity": "important",
+      "detail": "The auth planning schema does not enforce exact unique equality between declared public clients and server accepted profile IDs; a semantic checker and runtime proof are required before auth-server projection.",
+      "blocks": ["auth_runtime_projection", "auth_proof", "candidate"]
+    },
+    {
+      "id": "manifest_reference_and_ownership_safety_unenforced",
+      "severity": "important",
+      "detail": "Manifest planning references are not yet safe-root, schema-identity, digest, same-app, or version bound, and ownership paths are not canonicalized or cross-list disjoint; executable consumers must reject traversal, type confusion, and overlap.",
+      "blocks": ["generator_integration", "registry_projection", "candidate"]
+    },
+    {
+      "id": "channel_test_and_referential_integrity_unenforced",
+      "severity": "important",
+      "detail": "Channel disposition, capability/test feasibility, operation/evidence references, unique IDs, and physical-device versus auth-profile alignment remain prose-only promotion conditions.",
+      "blocks": ["reference_journey", "candidate"]
+    }
+  ],
+  "next_move": {
+    "card": "M0-05",
+    "slice": "legacy_false_readiness_containment",
+    "status": "go_with_conditions_pending_commit_and_integration",
+    "objective": "Commit the exact reviewed containment content, rebind handoff and review evidence to that SHA, and hand it to Integration for destination-current refresh before treating M0-02 evidence as authoritative",
+    "parallel_safe_move": {
+      "card": "M0-02",
+      "slice": "red_real_schema_compatibility_harness",
+      "objective": "Turn the proposed API wire into a source-owned executable real-schema test retained red against the current generated mobile client",
+      "integration_condition": "M0-05 must be accepted before this result can be treated as authoritative mobile evidence"
+    },
+    "follow_on": {
+      "card": "M1-01",
+      "slice": "api_operation_transport",
+      "objective": "Normalize the operation transport contract in app_gen, make the retained red test green, emit web and native clients from canonical in-memory IR, execute them against the generated backend, and regenerate fixtures"
+    },
+    "forbidden_shortcuts": [
+      "patch_generated_output",
+      "consume_generated_web_typescript_as_source",
+      "consume_prior_generated_mobile_output_as_source",
+      "use_mock_shape_as_compatibility_proof"
+    ]
+  },
+  "hard_stops": [
+    "real_sensitive_or_tenant_data",
+    "production_identity_or_live_provider_write",
+    "external_signed_distribution_or_store_submission",
+    "production_ota",
+    "production_capable_signing_material",
+    "enterprise_standard_or_shared_shell_claim",
+    "candidate_qualified_or_released_claim",
+    "unassigned_source_root_mutation"
+  ],
+  "verification": {
+    "status": "passed_for_feature_branch_commit_pending_integration",
+    "completed": [
+      {
+        "id": "json_parse_and_draft_2020_12_validation",
+        "status": "passed",
+        "detail": "All planning schemas and examples parse; experience, manifest, auth, and operating-context instances validate with Python jsonschema 4.21.1"
+      },
+      {
+        "id": "graphql_static_wire_shape",
+        "status": "passed",
+        "detail": "The proposed operation document uses JSON, String!, items, and App Framework pagination and excludes the known invalid Relay selections"
+      },
+      {
+        "id": "framework_validate",
+        "status": "passed"
+      },
+      {
+      "id": "framework_docs_check_full",
+      "status": "passed_with_observation",
+      "detail": "Full branch-local docs-check passed all 525 examples; its 170393ms runtime exceeded the advisory 60000ms budget, which was not enforced. Destination-current rerun remains required after Integration refresh."
+      },
+      {
+        "id": "framework_change_impact",
+        "status": "passed",
+        "detail": "Class D, human review and integration branch required; auth_or_policy sensitive surface detected"
+      },
+      {
+        "id": "schema_meta_and_shape_validation",
+        "status": "passed_with_observation",
+        "detail": "All four Draft 2020-12 schemas are meta-valid and current instances validate. Adversarial review proved that several cross-record authority, identity, classification, evidence, path, and referential rules are not schema-enforced; validation is not semantic promotion evidence."
+      },
+      {
+        "id": "independent_architecture_contract_security_challenge",
+        "status": "passed_with_observation",
+        "detail": "Read-only review found no blocker to retaining explicitly non-executable pre-candidate planning contracts, and identified the important semantic promotion conditions recorded as blockers in this context."
+      },
+      {
+        "id": "m0_05_first_comprehensive_review",
+        "status": "passed_with_observation",
+        "detail": "The first review returned NO-GO with one critical raw-staging defect, three important alignment/integration conditions, and one should-address source-boundary issue; all internal findings were repaired and challenged again."
+      },
+      {
+        "id": "m0_05_exact_state_comprehensive_rereview",
+        "status": "passed_with_observation",
+        "detail": "Exact-state comprehensive rereview returned GO WITH CONDITIONS with zero blockers, zero critical, one important destination-current Integration condition, zero should-address, and zero nice-to-address findings. The reviewed 39-path manifest was 440f1b07742960336b2164a8e66a91cbc71c87497aa420db5a7f8a2ad5cacebf."
+      },
+      {
+        "id": "m0_05_adversarial_containment",
+        "status": "passed",
+        "detail": "Synthetic all-legacy-green proof plus top-level, nested, malformed, duplicate-key, and type-confused mutation matrices across audit, disposition, device, and store sources verifies explicit path/type/value rejection, canonical safe staging, unsafe/stale target deletion, recursive containment of every staged U5 artifact, nested and duplicate-key Wave 2 producer/strict-consumer rejection, and fail-closed missing-workspace behavior."
+      },
+      {
+        "id": "m0_05_mobile_docs_contract",
+        "status": "passed",
+        "detail": "Focused mobile docs-check passed all 53 examples, including semantic top-level authority assertions and the adversarial regression"
+      },
+      {
+        "id": "framework_cli_test",
+        "status": "passed",
+        "detail": "Fast CLI contract suite passed and now executes mobile-readiness-containment.test.py"
+      },
+      {
+        "id": "mobile_generator_drift_check",
+        "status": "passed",
+        "detail": "product generate --target mobile-rn --check preserved generated drift and projected candidate_ready false, release_ready false, and non-authoritative M0-05 metadata"
+      },
+      {
+        "id": "framework_generate_check",
+        "status": "passed"
+      },
+      {
+        "id": "framework_test_fast",
+        "status": "passed"
+      },
+      {
+        "id": "framework_dependency_check_offline",
+        "status": "passed_with_observation",
+        "detail": "Offline dependency-check reported ok with no blocking findings and marked the mobile lockfile diagnostic gate non-authoritative; cargo-audit and cargo-deny remained advisory-unavailable in the isolated offline environment."
+      }
+    ],
+    "declared_gaps": [
+      "m0_05_destination_current_integration_acceptance_pending",
+      "destination_current_refresh_and_full_proof_not_completed",
+      "graphql_real_schema_red_green_harness_not_implemented",
+      "repo_owned_schema_semantic_and_context_sync_checkers_not_implemented",
+      "experience_readiness_evidence_and_classification_semantics_not_enforced",
+      "auth_client_allowlist_exact_binding_not_enforced",
+      "manifest_safe_reference_and_ownership_disjointness_not_enforced",
+      "channel_test_and_operation_evidence_referential_integrity_not_enforced",
+      "crm_mobile_jest_assertions_not_executed_node_modules_absent",
+      "native_renderer_and_catalog_not_implemented",
+      "review_evidence_rebind_to_committed_sha_required_before_push"
+    ]
+  },
+  "role_card_check": {
+    "card": "Coding Agent executing Architect-defined M0-05 containment with comprehensive Framework review routed",
+    "within_role": true,
+    "authority_assumed": false,
+    "drift_signal": "watch"
+  }
+}

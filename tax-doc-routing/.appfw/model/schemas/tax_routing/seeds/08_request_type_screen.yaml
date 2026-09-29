@@ -1,0 +1,15 @@
+# Both screens belong to the one request type today, in flow order.
+- entity_type: RequestTypeScreen
+  schema: tax_routing
+  columns: [id, request_type_id, screen_id, is_mandatory, sort_order]
+  records:
+  - id: 412c9b6f-8927-4c52-a67a-b4fc7a4392af
+    request_type_id: f714b263-5e10-42e5-be2e-6b186189f8bc
+    screen_id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    is_mandatory: true
+    sort_order: 10
+  - id: 1b2193d4-df94-4fd1-b776-60773bcff092
+    request_type_id: f714b263-5e10-42e5-be2e-6b186189f8bc
+    screen_id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    is_mandatory: true
+    sort_order: 20

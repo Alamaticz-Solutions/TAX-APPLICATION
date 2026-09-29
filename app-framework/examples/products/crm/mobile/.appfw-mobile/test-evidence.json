@@ -1,0 +1,22 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test"
+  ],
+  "cwd": "mobile",
+  "duration_ms": 7097,
+  "exit_code": 0,
+  "generated_at": "2026-07-02T18:31:09Z",
+  "lane": "U5",
+  "name": "test",
+  "ok": true,
+  "status": "passed",
+  "stderr_tail": "",
+  "stdout_tail": "PASS __tests__/mobile-contract.test.ts\nTest Suites: 1 passed, 1 total\nTests: 4 passed, 4 total\nSnapshots: 0 total\nRan all test suites.",
+  "test_suite_count": 1,
+  "test_count": 4,
+  "release_ready": false,
+  "release_readiness_effect": "Local Jest contract tests prove scaffold metadata, tokens, and placeholder evidence semantics only. They do not replace simulator, physical-device, runtime-audit, or store-track release evidence.",
+  "version": 1
+}

@@ -1,0 +1,29 @@
+{% macro print(objectKind, entityType, prop, entityTypes) -%}
+{%- set type_name = prop.nested_entity_type.type_name -%}
+{%- set is_union_type = false -%}
+{%- for t in entityTypes -%}
+  {%- if t.pascal_1 == type_name and t.is_union -%}
+    {%- set is_union_type = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if is_union_type -%}
+  {%- if objectKind == "base" -%}{{ type_name }}
+  {%- elif objectKind == "input" -%}Input{{ type_name }}
+  {%- elif objectKind == "create" -%}Input{{ type_name }}
+  {%- elif objectKind == "update" -%}Input{{ type_name }}
+  {%- elif objectKind == "projection" -%}{{ type_name }}Projection
+  {%- else -%}
+  // property_type/data_type/object_type/_mod.j2: {{ entityType.pascal_1 }} objectKind {{ objectKind }} not_handled
+  {%- endif -%}
+{%- else -%}
+  {%- if objectKind == "base" -%}{{ type_name }}
+  {%- elif objectKind == "input" -%}Input{{ type_name }}
+  {%- elif objectKind == "create" -%}Input{{ type_name }}
+  {%- elif objectKind == "update" -%}Input{{ type_name }}
+  {%- elif objectKind == "projection" -%}{{ type_name }}Projection
+  {%- else -%}
+  // property_type/data_type/object_type/_mod.j2: {{ entityType.pascal_1 }} objectKind {{ objectKind }} not_handled
+  {%- endif -%}
+{%- endif -%}
+{%- endmacro print %}

@@ -1,0 +1,7 @@
+[package]
+name = "second_consumer_rego_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+appfw_test = { package = "appfw-test", path = "../../../../appfw_test" }

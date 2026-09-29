@@ -1,0 +1,73 @@
+# Note: 
+# Declare DataSourceEnvironment first since DataSource depends on it.
+# This matters in how the .sql file content is generated.
+
+- name: DataSourceEnvironment
+  id: 8f71ffae-b253-4e37-95c9-912a131e4a42
+  props: 
+
+  - name: name
+    fragment: property-string-required
+
+  - name: db_host
+    fragment: property-string-required
+
+  - name: db_name
+    fragment: property-string-required
+
+  - name: db_port
+    fragment: property-string-required
+
+  # local_dev allows local docker/podman plaintext or unvalidated certs.
+  # managed requires TLS and rejects local-development transport exceptions.
+  - name: security_profile
+    fragment: property-string-required
+
+  # disabled, prefer, require, verify_ca, or verify_full.
+  - name: tls_mode
+    fragment: property-string-required
+
+  # sql_password, entra_access_token, entra_client_credentials, or ntlm
+  # (ntlm is plain MsSqlServer only; FabricSqlAnalytics is entra_* only; see ADR 0018).
+  - name: auth_mode
+    fragment: property-string
+
+  # Microsoft Entra tenant id for Fabric SQL analytics client-credentials auth.
+  - name: entra_tenant_id
+    fragment: property-string
+
+  # Microsoft Entra token resource/scope for Fabric SQL analytics TDS auth.
+  - name: entra_token_scope
+    fragment: property-string
+
+  # value resolved when application loads from secret manager
+  - name: service_account_name
+    fragment: property-string
+
+  # value resolved when application loads from secret manager
+  - name: service_account_password
+    fragment: property-string
+
+
+- name: DataSource
+  id: e35f4b14-fd0f-41d5-b635-a6ebd50304ac
+  props: 
+
+  - name: name
+    fragment: property-string-required
+
+  - name: description
+    fragment: property-string
+
+  - name: data_source_type
+    fragment: property-enum-required
+    enum_type_name: DataSourceType
+
+  # There must be 1 exclusive data source that is the host of the database that contains the system schema
+  - name: is_system_schema_host
+    fragment: property-boolean-toggle
+
+  - name: environments
+    fragment: property-object-array-required
+    nested_entity_type:
+      type_name: DataSourceEnvironment

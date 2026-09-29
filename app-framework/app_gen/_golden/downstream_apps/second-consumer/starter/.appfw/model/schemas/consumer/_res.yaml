@@ -1,0 +1,4 @@
+id: 2f4f104f-84fd-43b1-b7cc-7c8a972607ae
+name: consumer
+description: Isolated second-consumer schema
+data_source_name: second_consumer_pg

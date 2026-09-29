@@ -1,0 +1,16 @@
+[package]
+name = "api_tests"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+appfw_test = { package = "appfw-test", path = "../appfw_test" }
+tokio = { workspace = true }
+async-graphql = { workspace = true }
+graphql_client = "0.14"
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+once_cell = "1.20"

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "auth": {
+    "flow": "expo-auth-session",
+    "token_storage": "expo-secure-store",
+    "embedded_client_secret": false
+  },
+  "tenant": {
+    "source": "runtime-context",
+    "required_for_data_operations": true
+  },
+  "policy_states": [
+    "not-authenticated",
+    "policy-denied",
+    "tenant-required",
+    "validation-error",
+    "request-failed"
+  ],
+  "audit_context": {
+    "request_id_visible": true,
+    "correlation_id_visible": true,
+    "governed_write_requires_intent_preview": true
+  }
+}

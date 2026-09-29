@@ -1,0 +1,63 @@
+{%- import "base_prop" as base_prop -%}
+{%- import "input_prop" as input_prop -%}
+{%- import "projection_prop" as projection_prop -%}
+{% macro print(entityType, entityTypes) %}
+
+// {{entityType.pascal_1}} is_union: {{entityType.is_union}} ////////////////////////////////////////////////////////////
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct {{ entityType.pascal_1 }} 
+{
+  {%- for p in entityType.props %}
+    {%- if p.data_type != "NavToOne" and p.data_type != "NavToMany" %}
+  {{ base_prop::print(entityType=entityType, prop=p, entityTypes=entityTypes) }}
+    {%- endif %}
+  {%- endfor %}
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct {{ entityType.pascal_1 }}Projection
+{
+  {%- if entityType.is_table %}
+  #[serde(default)]
+  pub record_locator: Option<String>,
+  {%- endif %}
+  {%- for p in entityType.props %}
+  {{ projection_prop::print(entityType=entityType, prop=p, entityTypes=entityTypes) }}
+  {%- endfor %}
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, InputObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct Input{{ entityType.pascal_1 }}
+{
+  {%- for p in entityType.props %}
+    {%- if p.data_type != "NavToOne" and p.data_type != "NavToMany" %}
+  {{ input_prop::print(entityType=entityType, prop=p, entityTypes=entityTypes) }}
+    {%- endif %}
+  {%- endfor %}
+}
+
+{%- if entityType.is_table %}
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct {{ entityType.pascal_1 }}QueryResult
+{
+  pub date_time: String,
+  pub request_duration: f64,
+  pub skip: i32,
+  pub limit: i32,
+  pub page_count: i32,
+  pub page_index: i32,
+  pub query_count: i64,
+  pub next_cursor: Option<String>,
+  pub previous_cursor: Option<String>,
+  pub items: Vec<{{ entityType.pascal_1 }}Projection>,
+}
+
+{%- endif %}
+
+{%- endmacro print %}

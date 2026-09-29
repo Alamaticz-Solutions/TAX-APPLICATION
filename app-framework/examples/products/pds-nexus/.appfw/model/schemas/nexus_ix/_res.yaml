@@ -1,0 +1,8 @@
+id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+name: nexus_ix
+description: Product persistence and bounded-context adapter storage for the Framework Intelligent Experience runtime. Product adapters persist sealed runs, envelopes, audit facts, projection cursors, and server-owned context; Framework IX owns canonical lifecycle facts, events, cursors, cancellation, replay, and sealing.
+data_source_name: pg_primary
+meta:
+  classification: internal
+  write_posture: runtime_adapter_only
+  lifecycle_authority: appfw_runtime_ix

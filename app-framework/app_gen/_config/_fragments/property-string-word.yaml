@@ -1,0 +1,6 @@
+    data_type: String
+    meta:
+      validators:
+      - name: StringPattern
+        expression: /^[a-zA-Z0-9_]{0,50}$/
+        message: Only letters, digits and underscores (up to 50 characters)

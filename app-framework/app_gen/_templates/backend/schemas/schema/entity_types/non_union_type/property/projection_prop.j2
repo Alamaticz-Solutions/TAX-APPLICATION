@@ -1,0 +1,5 @@
+{%- import "property_type" as property_type -%}
+{% macro print(entityType, prop, entityTypes) -%}
+{%- set isOptional = true -%}
+{{ property_type::print(objectKind="projection", entityType=entityType, prop=prop, isOptional=isOptional, entityTypes=entityTypes) }}
+{%- endmacro print %}

@@ -1,0 +1,130 @@
+- entity_type: QuoteLineItem
+  schema: crm
+  columns:
+  - id
+  - quantity
+  - unit_price
+  - discount
+  - total_price
+  - description
+  - sort_order
+  - quote_id
+  - product_id
+  records:
+  - id: 9407e110-0000-4000-8000-100000000001
+    quantity: 1
+    unit_price: 75000
+    discount: 0
+    total_price: 75000
+    description: Enterprise platform license.
+    sort_order: 1
+    quote_id: 9407e000-0000-4000-8000-100000000001
+    product_id: 9700d000-0000-4000-8000-100000000001
+  - id: 9407e110-0000-4000-8000-100000000002
+    quantity: 1
+    unit_price: 15000
+    discount: 0
+    total_price: 15000
+    description: Standard implementation services.
+    sort_order: 2
+    quote_id: 9407e000-0000-4000-8000-100000000001
+    product_id: 9700d000-0000-4000-8000-100000000003
+  - id: 9407e110-0000-4000-8000-100000000003
+    quantity: 1
+    unit_price: 7500
+    discount: 0
+    total_price: 7500
+    description: Annual support package.
+    sort_order: 3
+    quote_id: 9407e000-0000-4000-8000-100000000001
+    product_id: 9700d000-0000-4000-8000-100000000004
+  - id: 9407e110-0000-4000-8000-100000000004
+    quantity: 5
+    unit_price: 25000
+    discount: 0
+    total_price: 125000
+    description: Five professional edition licenses.
+    sort_order: 1
+    quote_id: 9407e000-0000-4000-8000-100000000002
+    product_id: 9700d000-0000-4000-8000-100000000002
+  - id: 9407e110-0000-4000-8000-100000000005
+    quantity: 1
+    unit_price: 20000
+    discount: 0
+    total_price: 20000
+    description: Expanded implementation package.
+    sort_order: 2
+    quote_id: 9407e000-0000-4000-8000-100000000002
+    product_id: 9700d000-0000-4000-8000-100000000003
+  - id: 9407e110-0000-4000-8000-100000000006
+    quantity: 1
+    unit_price: 25000
+    discount: 0
+    total_price: 25000
+    description: Professional edition analytics module.
+    sort_order: 1
+    quote_id: 9407e000-0000-4000-8000-100000000003
+    product_id: 9700d000-0000-4000-8000-100000000002
+  - id: 9407e110-0000-4000-8000-100000000007
+    quantity: 1
+    unit_price: 7500
+    discount: 0
+    total_price: 7500
+    description: Analytics support package.
+    sort_order: 2
+    quote_id: 9407e000-0000-4000-8000-100000000003
+    product_id: 9700d000-0000-4000-8000-100000000004
+  - id: 9407e110-0000-4000-8000-100000000008
+    quantity: 1
+    unit_price: 25000
+    discount: 0
+    total_price: 25000
+    description: Professional edition core license.
+    sort_order: 1
+    quote_id: 9407e000-0000-4000-8000-100000000004
+    product_id: 9700d000-0000-4000-8000-100000000002
+  - id: 9407e110-0000-4000-8000-100000000009
+    quantity: 1
+    unit_price: 15000
+    discount: 0
+    total_price: 15000
+    description: Implementation services for care workflows.
+    sort_order: 2
+    quote_id: 9407e000-0000-4000-8000-100000000004
+    product_id: 9700d000-0000-4000-8000-100000000003
+  - id: 9407e110-0000-4000-8000-100000000010
+    quantity: 1
+    unit_price: 7500
+    discount: 2500
+    total_price: 5000
+    description: Discounted annual support.
+    sort_order: 3
+    quote_id: 9407e000-0000-4000-8000-100000000004
+    product_id: 9700d000-0000-4000-8000-100000000004
+  - id: 9407e110-0000-4000-8000-100000000011
+    quantity: 1
+    unit_price: 15000
+    discount: 0
+    total_price: 15000
+    description: Procurement implementation services.
+    sort_order: 1
+    quote_id: 9407e000-0000-4000-8000-100000000005
+    product_id: 9700d000-0000-4000-8000-100000000003
+  - id: 9407e110-0000-4000-8000-100000000012
+    quantity: 1
+    unit_price: 5000
+    discount: 0
+    total_price: 5000
+    description: Store operations training package.
+    sort_order: 2
+    quote_id: 9407e000-0000-4000-8000-100000000005
+    product_id: 9700d000-0000-4000-8000-100000000005
+  - id: 9407e110-0000-4000-8000-100000000013
+    quantity: 1
+    unit_price: 7500
+    discount: 0
+    total_price: 7500
+    description: Support for store rollout.
+    sort_order: 3
+    quote_id: 9407e000-0000-4000-8000-100000000005
+    product_id: 9700d000-0000-4000-8000-100000000004

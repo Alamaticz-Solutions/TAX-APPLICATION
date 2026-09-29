@@ -1,0 +1,74 @@
+# Industry - simple lookup CRUD (no foreign keys)
+#
+# NOTE: Tests covering access-denied paths and update-with-valid-version are intentionally
+# omitted while two backend gaps exist:
+#   1. The local-dev jwt_extractor bypass grants admin to every request when ENV_NAME=local,
+#      so cc_tenant_user tokens can't be exercised against access policies.
+#   2. `version` is i64 on the server but exposed as GraphQL Int (i32) - sending a real
+#      version (a nanosecond timestamp) back as input overflows and the server returns
+#      "internal server error".
+
+- name: create_industry
+  description: create industry as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: mutation
+    name: createIndustry
+    variables:
+    - name: input
+      type: InputIndustry!
+      yaml_value:
+        name: 'Test Industry'
+        description: 'Industry created by api-test'
+        sort_order: 999
+        version: 0
+    select: |
+      id,name,description,sort_order,version
+  expect:
+    data:
+      name: 'Test Industry'
+      description: 'Industry created by api-test'
+      sort_order: 999
+  result_object_name: create_industry_result
+
+
+
+- name: find_industry
+  description: find industry by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findIndustry
+    variables:
+    - name: id
+      type: String!
+      reference_value_property: create_industry_result.id
+    select: |
+      id,name,description,sort_order,version
+  expect:
+    data:
+      name: 'Test Industry'
+  result_object_name: find_industry_result
+
+
+
+- name: update_industry_with_invalid_version
+  description: stale version is rejected by concurrency control
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: mutation
+    name: updateIndustry
+    variables:
+    - name: input
+      type: InputIndustry!
+      reference_value: create_industry_result
+      overwrite:
+        description: 'updated by test - stale'
+        version: 1
+    select: |
+      id,name,description,version
+  expect:
+    error: { "message":"invalid key or version", "path":["updateIndustry"] }

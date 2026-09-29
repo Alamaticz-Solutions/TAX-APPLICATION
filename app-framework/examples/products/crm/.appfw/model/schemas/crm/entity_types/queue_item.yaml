@@ -1,0 +1,71 @@
+- id: 9e0e1700-0000-4000-8000-000000000021
+  name: QueueItem
+  is_table: true
+  indexes:
+  - queue_id
+  - account_id
+  - activity_id
+  - knowledge_article_id
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: title
+    caption: Title
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: item_type
+    caption: Item Type
+    is_required: true
+    data_type: String
+
+  - name: object_id
+    caption: Object ID
+    data_type: String
+
+  - name: status
+    caption: Status
+    data_type: String
+
+  - name: priority
+    caption: Priority
+    data_type: Int16
+
+  - name: entered_at
+    caption: Entered At
+    data_type: DateTime
+
+  - name: due_at
+    caption: Due At
+    data_type: DateTime
+
+  - name: queue_id
+    caption: Queue
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Queue
+
+  - name: account_id
+    caption: Account
+    data_type: Uuid
+    foreign_key:
+      type_name: Account
+
+  - name: activity_id
+    caption: Activity
+    data_type: Uuid
+    foreign_key:
+      type_name: Activity
+
+  - name: knowledge_article_id
+    caption: Knowledge Article
+    data_type: Uuid
+    foreign_key:
+      type_name: KnowledgeArticle

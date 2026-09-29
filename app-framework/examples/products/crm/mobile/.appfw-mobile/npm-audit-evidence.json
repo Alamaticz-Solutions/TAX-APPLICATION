@@ -1,0 +1,63 @@
+{
+  "audit_direct_vulnerabilities": [
+    "expo"
+  ],
+  "audit_fix_available_count": 10,
+  "audit_remediation": {
+    "direct_vulnerabilities": [
+      "expo"
+    ],
+    "fix_available_count": 10,
+    "recommendation": "plan dependency upgrade and rerun mobile local evidence",
+    "semver_major_fix_count": 9,
+    "semver_major_fix_packages": [
+      "@expo/cli",
+      "@expo/config",
+      "@expo/config-plugins",
+      "@expo/inline-modules",
+      "@expo/local-build-cache-provider",
+      "@expo/metro-config",
+      "expo",
+      "uuid",
+      "xcode"
+    ],
+    "unknown_fix_count": 1
+  },
+  "audit_summary": {
+    "critical": 0,
+    "high": 0,
+    "info": 0,
+    "low": 0,
+    "moderate": 10,
+    "total": 10
+  },
+  "audit_unavailable": {
+    "preserved_fields": [
+      "audit_summary",
+      "audit_vulnerability_count",
+      "audit_direct_vulnerabilities",
+      "audit_fix_available_count",
+      "audit_remediation"
+    ],
+    "reason": "request to https://registry.npmjs.org/-/npm/v1/security/audits/quick failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org",
+    "used_previous_audit_details": true
+  },
+  "audit_vulnerability_count": 10,
+  "command": [
+    "npm",
+    "audit",
+    "--omit=dev",
+    "--json"
+  ],
+  "cwd": "mobile",
+  "duration_ms": 2501,
+  "exit_code": 1,
+  "generated_at": "2026-07-02T18:31:09Z",
+  "lane": "U5",
+  "name": "npm-audit-runtime",
+  "ok": false,
+  "status": "failed",
+  "stderr_tail": "npm warn audit request to https://registry.npmjs.org/-/npm/v1/security/audits/quick failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org\nnpm error audit endpoint returned an error\nnpm error Log files were not written due to an error writing to the directory: /Users/wayne.kempf/.npm/_logs\nnpm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal\n",
+  "stdout_tail": "{\n  \"message\": \"request to https://registry.npmjs.org/-/npm/v1/security/audits/quick failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org\",\n  \"error\": {\n    \"summary\": \"\",\n    \"detail\": \"\"\n  }\n}\n",
+  "version": 1
+}

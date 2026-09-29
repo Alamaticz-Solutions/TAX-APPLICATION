@@ -1,0 +1,1197 @@
+- id: fc7a1d80-2ea3-4e51-8761-dccfd3b9021b
+  schema_name: nexus_ix
+  schema_id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+  pascal_1: IxAuditFact
+  pascal_n: IxAuditFacts
+  snake_1: ix_audit_fact
+  snake_n: ix_audit_facts
+  caption_1: Ix Audit Fact
+  caption_n: Ix Audit Facts
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - run_id
+  - event_kind
+  constraints: []
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 13e89582c603186b
+    name: id
+    caption: Audit Fact ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7c4b1ec5b111e015
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 83af018e2fe8dbd2
+    name: run_id
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: nexus_ix
+      type_name: IxRun
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a7dd41c9e0337ccb
+    name: event_kind
+    caption: Event Kind
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 32af44a9ef997fd4
+    name: disposition
+    caption: Disposition
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8961797d38c10f1
+    name: fact
+    caption: Audit Fact
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: json
+  - id: b804a80c4cf202a4
+    name: recorded_at
+    caption: Recorded At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5a7ceed33b7da07b
+    name: run
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxAuditFact
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxRun
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_audit_facts
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: fe6709fc-5894-4c8c-bcd1-f45c1ec19fe3
+  schema_name: nexus_ix
+  schema_id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+  pascal_1: IxCommitEnvelope
+  pascal_n: IxCommitEnvelopes
+  snake_1: ix_commit_envelope
+  snake_n: ix_commit_envelopes
+  caption_1: Ix Commit Envelope
+  caption_n: Ix Commit Envelopes
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - run_id
+  - sequence
+  constraints: []
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 11c65fa0f40228cf
+    name: id
+    caption: Envelope Key
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 63d1205e5add188e
+    name: run_id
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: nexus_ix
+      type_name: IxRun
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8f2031c710e8158d
+    name: sequence
+    caption: Sequence
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Int64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2a5963d434ac8865
+    name: event_kind
+    caption: Event Kind
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f6d3cb89fbc85660
+    name: envelope
+    caption: Canonical Envelope
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: json
+  - id: 53b0826220cd8b12
+    name: committed_at
+    caption: Committed At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2939902d41b8b92c
+    name: run
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxCommitEnvelope
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxRun
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_envelopes
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 0b51cfef-dc5e-4566-9086-f0d92dbf34b6
+  schema_name: nexus_ix
+  schema_id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+  pascal_1: IxContext
+  pascal_n: IxContexts
+  snake_1: ix_context
+  snake_n: ix_contexts
+  caption_1: Ix Context
+  caption_n: Ix Contexts
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - subject
+  - context_kind
+  constraints: []
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: e5892e9c56412bc
+    name: id
+    caption: Context ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: db3e7ece522f3ba1
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7d3ee0a376c0ac31
+    name: subject
+    caption: Subject
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 57f6ff5c19557ce8
+    name: context_kind
+    caption: Context Kind
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 12a62e7995158518
+    name: focus_label
+    caption: Focus Label
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bec9a6b4b047dd27
+    name: detail
+    caption: Detail
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5ce024c0ee3529de
+    name: freshness
+    caption: Freshness
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f53fe3554bb12e59
+    name: evaluated_at
+    caption: Evaluated At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 35e93720be23892d
+    name: revision
+    caption: Revision
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5262d5c1d2d4cb93
+    name: payload
+    caption: Bounded Context Payload
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: json
+  - id: b9743bfecb63dbd4
+    name: created_at
+    caption: Created At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6b83ec2a4762efb
+    name: updated_at
+    caption: Updated At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bb16b155729b6516
+    name: runs
+    caption: Runs
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxRun
+      prop_name: context_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxRun
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_context
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 474e50e4-c4a9-423f-91a9-937b57f23df8
+  schema_name: nexus_ix
+  schema_id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+  pascal_1: IxProjectionCursor
+  pascal_n: IxProjectionCursors
+  snake_1: ix_projection_cursor
+  snake_n: ix_projection_cursors
+  caption_1: Ix Projection Cursor
+  caption_n: Ix Projection Cursors
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - run_id
+  constraints: []
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 4da0750aea5af6eb
+    name: id
+    caption: Projection Dedup Key
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f9cbbc7d6030397c
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a6c1a35d9644e98
+    name: run_id
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: nexus_ix
+      type_name: IxRun
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 27f121a29bf0a2ac
+    name: command_id
+    caption: Command ID
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ed3545d38b823b5b
+    name: cursor
+    caption: Cursor
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8bf8cd6e43c864b3
+    name: projection_state
+    caption: Projection State
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e5e693ceb5e10c2a
+    name: updated_at
+    caption: Updated At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ef917fba1ee4a234
+    name: run
+    caption: Run
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxProjectionCursor
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxRun
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_projection_cursors
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 7ebbc396-85d7-48b5-acb9-e89ab97b6bc8
+  schema_name: nexus_ix
+  schema_id: e5069af5-02bb-4f5d-9fdb-16ea00b23ae5
+  pascal_1: IxRun
+  pascal_n: IxRuns
+  snake_1: ix_run
+  snake_n: ix_runs
+  caption_1: Ix Run
+  caption_n: Ix Runs
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - run_state
+  - start_idempotency_key
+  - context_id
+  - updated_at
+  constraints: []
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+    document_of_record: stored_run
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 3b702f46058ac37c
+    name: id
+    caption: Run ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aa2c7bd4cefc0a20
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9aded99d92fea95e
+    name: subject
+    caption: Owner Subject
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1439070402d238c4
+    name: intent_key
+    caption: Intent Key
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fcd4b97c2c20b651
+    name: run_state
+    caption: Run State
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c637016f975187b8
+    name: phase
+    caption: Phase
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e46496b4d04766fc
+    name: context_id
+    caption: Context
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: nexus_ix
+      type_name: IxContext
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9720c3fd82dba26d
+    name: repository_version
+    caption: Repository Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6c49c3ee73e9996d
+    name: last_sequence
+    caption: Last Sequence
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ba288c0e7a99461
+    name: cursor
+    caption: Replay Cursor
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 81c019c87ac9a591
+    name: start_idempotency_key
+    caption: Start Idempotency Key
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a277e52adc33972f
+    name: runtime_seal_key_id
+    caption: Runtime Seal Key ID
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b6e357e8b143a845
+    name: stored_run
+    caption: Sealed Stored Run
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      lang: json
+  - id: bb60c049b60ad7f9
+    name: created_at
+    caption: Created At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c29c547d0fe9d645
+    name: updated_at
+    caption: Updated At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f223aaa2676c7437
+    name: context
+    caption: Context
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxRun
+      prop_name: context_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxContext
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_context
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: c3df6b855fc5aea6
+    name: envelopes
+    caption: Envelopes
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxCommitEnvelope
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxCommitEnvelope
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_envelopes
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: c87fb081301fabf8
+    name: audit_facts
+    caption: Audit Facts
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxAuditFact
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxAuditFact
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_audit_facts
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: f98284cf9d98aa6a
+    name: projection_cursors
+    caption: Projection Cursors
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: nexus_ix
+      type_name: IxProjectionCursor
+      prop_name: run_id
+      filter: null
+      resolved:
+        schema_name: nexus_ix
+        type_name: IxProjectionCursor
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: ix_run_projection_cursors
+        kind: OneToMany
+        source_schema: nexus_ix
+        cardinality: Many
+        storage_path: InverseForeignKey

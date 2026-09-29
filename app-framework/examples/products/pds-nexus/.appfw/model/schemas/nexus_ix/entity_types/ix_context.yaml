@@ -1,0 +1,67 @@
+- id: 0b51cfef-dc5e-4566-9086-f0d92dbf34b6
+  name: IxContext
+  is_table: true
+  indexes:
+  - tenant
+  - subject
+  - context_kind
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    write_posture: runtime_adapter_only
+    lifecycle_authority: appfw_runtime_ix
+  props:
+
+  - name: id
+    caption: Context ID
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: subject
+    caption: Subject
+    fragment: property-string-readonly-required
+
+  - name: context_kind
+    caption: Context Kind
+    fragment: property-string-readonly-required
+
+  - name: focus_label
+    caption: Focus Label
+    fragment: property-string-caption
+
+  - name: detail
+    caption: Detail
+    fragment: property-string-required
+
+  - name: freshness
+    caption: Freshness
+    fragment: property-string-required
+
+  - name: evaluated_at
+    caption: Evaluated At
+    fragment: property-date-time-required
+
+  - name: revision
+    caption: Revision
+    fragment: property-int-lg-required
+    is_concurrency_control: true
+
+  - name: payload
+    caption: Bounded Context Payload
+    fragment: property-json-required
+
+  - name: created_at
+    caption: Created At
+    fragment: property-date-time-required
+    is_read_only: true
+
+  - name: updated_at
+    caption: Updated At
+    fragment: property-date-time-required

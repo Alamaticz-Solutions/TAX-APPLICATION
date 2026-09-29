@@ -1,0 +1,24 @@
+- entity_type: LeadStatus
+  schema: crm
+  columns: [id, name, is_converted, sort_order]
+  records:
+    - id: 1eadcc00-0000-4000-8000-100000000001
+      name: New
+      is_converted: false
+      sort_order: 10
+    - id: 1eadcc00-0000-4000-8000-100000000002
+      name: Contacted
+      is_converted: false
+      sort_order: 20
+    - id: 1eadcc00-0000-4000-8000-100000000003
+      name: Qualified
+      is_converted: false
+      sort_order: 30
+    - id: 1eadcc00-0000-4000-8000-100000000004
+      name: Unqualified
+      is_converted: false
+      sort_order: 40
+    - id: 1eadcc00-0000-4000-8000-100000000005
+      name: Converted
+      is_converted: true
+      sort_order: 50

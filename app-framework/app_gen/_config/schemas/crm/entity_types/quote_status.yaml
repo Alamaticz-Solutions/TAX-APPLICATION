@@ -1,0 +1,22 @@
+- id: 9407ec00-0000-4000-8000-000000000014
+  name: QuoteStatus
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Status Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    data_type: Int16

@@ -1,0 +1,22 @@
+# BusinessUnit - CDM applicationCommon-inspired organizational unit coverage.
+
+- name: find_business_unit
+  description: find seeded business unit with territories and queues
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findBusinessUnit
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"b0510000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,code,region,is_active,territories { id,name },queues { id,name }
+  expect:
+    data:
+      id: 'b0510000-0000-4000-8000-100000000001'
+      name: 'West Commercial'
+      code: 'WEST-COM'
+      region: 'West'
+      is_active: true

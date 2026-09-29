@@ -1,0 +1,33 @@
+{
+  "name": "crm-sample",
+  "description": "Model-driven CRM sample app with generated backend, data package, and API tests.",
+  "template": "examples/products/crm",
+  "overlay": "overlay",
+  "verification": [
+    "scripts/appfw product validate --json",
+    "scripts/appfw product harness-check --json",
+    "scripts/appfw product generate",
+    "scripts/appfw product generate --check --json",
+    "scripts/appfw product test",
+    "scripts/appfw product handoff --json"
+  ],
+  "frontend_scaffold": {
+    "root": "frontend",
+    "scaffold_manifest": ".appfw-ui/scaffold-manifest.json",
+    "ownership_manifest": ".appfw-ui/ownership.json",
+    "generated_contract": "src/generated/appfw-ui-contract.ts",
+    "check_script": "scripts/check-scaffold.mjs",
+    "package_check": "npm run appfw:check",
+    "verification": [
+      "npm run appfw:check",
+      "npm run typecheck",
+      "npm run build"
+    ],
+    "release_evidence": [
+      "frontend/.appfw-ui/scaffold-manifest.json",
+      "frontend/.appfw-ui/ownership.json",
+      "frontend/src/generated/appfw-ui-contract.ts",
+      "backend/product_dist/**/*"
+    ]
+  }
+}

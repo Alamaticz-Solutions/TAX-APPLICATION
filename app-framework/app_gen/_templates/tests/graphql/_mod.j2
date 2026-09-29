@@ -1,0 +1,15 @@
+{%- import "request" as request -%}
+{%- import "variables" as variables -%}
+{%- import "assert" as assert -%}
+{% macro print(test) %}
+  async fn step_{{ test.name | snake_1 }}(ctx: &mut TestContext) -> Result<()> {
+    // Description: {{ test.description }}
+    println!("*** {% if test.description %}Test description: {{ test.description }}{% else %}Test name: {{ test.name }}{% endif %} ***");
+    {{ request::print(test=test) }}
+    {{ variables::print(vars=test.graphql.variables) }}
+    let gql_result = ctx.execute_graphql("{{ test.auth_token }}", "{{ test.graphql.schema }}", req, variables).await?;
+    println!("{{ test.name }} GraphQL result: {:?}", gql_result);
+    {{ assert::print(test=test) }}
+    Ok(())
+  }
+{% endmacro print %}

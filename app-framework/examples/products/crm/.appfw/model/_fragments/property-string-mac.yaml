@@ -1,0 +1,6 @@
+    data_type: String
+    meta:
+      validators:
+      - name: StringPattern
+        expression: /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
+        message: Only valid MAC addresses

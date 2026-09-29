@@ -1,0 +1,36 @@
+- name: ManyToManyProperty
+  id: 979b6d21-38e1-46cb-baed-5ea1067a3cc8
+  caption_1: Many-to-Many Property
+  caption_n: Many-to-Many Properties
+  is_table: false
+
+  props:
+    - name: junction_table
+      caption: Junction Table
+      data_type: String
+      is_required: true
+
+    - name: junction_schema
+      caption: Junction Schema
+      data_type: String
+      is_required: false
+
+    - name: local_key
+      caption: Local Key
+      data_type: String
+      is_required: true
+
+    - name: foreign_key
+      caption: Foreign Key
+      data_type: String
+      is_required: true
+
+    - name: target_schema
+      caption: Target Schema
+      data_type: String
+      is_required: true
+
+    - name: target_type
+      caption: Target Type
+      data_type: String
+      is_required: true

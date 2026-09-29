@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/workstation-assignment.schema.json",
+  "title": "App Framework Product Increment lane assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "assignment_id",
+    "portfolio_id",
+    "program_id",
+    "product_increment_id",
+    "delivery_lane_id",
+    "capability_domain_ids",
+    "workstation_id",
+    "lane_outcome_owner",
+    "technical_lead",
+    "branch_owner",
+    "independent_reviewer",
+    "admitted_by",
+    "integration_owner",
+    "branch",
+    "base_sha",
+    "integration_branch",
+    "execution_target",
+    "planned_model_tier",
+    "routing_basis",
+    "economics_budget",
+    "delegation_depth",
+    "activated_at",
+    "review_after",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "appfw_workstation_assignment@4"
+    },
+    "assignment_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "portfolio_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$"
+    },
+    "program_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$"
+    },
+    "product_increment_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+    },
+    "delivery_lane_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+    },
+    "capability_domain_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "workstation_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "lane_outcome_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "technical_lead": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branch_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "independent_reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "admitted_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "integration_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branch": {
+      "type": "string",
+      "pattern": "^(feature|fix|docs|maintenance)/[a-z0-9][a-z0-9._/-]*$"
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "integration_branch": {
+      "type": "string",
+      "pattern": "^(?:integrate/[a-z0-9][a-z0-9._/-]*|main)$"
+    },
+    "execution_target": {
+      "enum": [
+        "local_agent",
+        "approved_cloud_worker",
+        "human_developer"
+      ]
+    },
+    "planned_model_tier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$"
+    },
+    "routing_basis": {
+      "enum": [
+        "lowest_capable",
+        "escalated_novel_synthesis",
+        "escalated_independent_review"
+      ]
+    },
+    "routing_justification": {
+      "type": "string",
+      "minLength": 1
+    },
+    "economics_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default_model_tier",
+        "allowed_model_tiers",
+        "max_elapsed_ms",
+        "max_input_tokens",
+        "max_output_tokens",
+        "max_cost_usd",
+        "max_retries",
+        "max_corrections",
+        "max_rework_cycles"
+      ],
+      "properties": {
+        "default_model_tier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_model_tiers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "max_elapsed_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_input_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_corrections": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_rework_cycles": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "delegation_depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "activated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_after": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "blocked",
+        "handoff"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "routing_basis": {
+            "enum": [
+              "escalated_novel_synthesis",
+              "escalated_independent_review"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "routing_justification"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "routing_justification"
+          ]
+        }
+      }
+    }
+  ]
+}

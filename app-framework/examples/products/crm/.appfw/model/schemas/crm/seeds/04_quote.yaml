@@ -1,0 +1,76 @@
+- entity_type: Quote
+  schema: crm
+  columns:
+  - id
+  - name
+  - quote_number
+  - expiration_date
+  - description
+  - subtotal
+  - discount
+  - tax
+  - total_price
+  - opportunity_id
+  - account_id
+  - status_id
+  records:
+  - id: 9407e000-0000-4000-8000-100000000001
+    name: Q-2026-001 Acme Enterprise
+    quote_number: Q-2026-001
+    expiration_date: '2026-07-31'
+    description: Enterprise suite package with implementation and annual support.
+    subtotal: 97500
+    discount: 0
+    tax: 0
+    total_price: 97500
+    opportunity_id: '099c0000-0000-4000-8000-100000000001'
+    account_id: a0c00000-0000-4000-8000-100000000001
+    status_id: 9407ec00-0000-4000-8000-100000000003
+  - id: 9407e000-0000-4000-8000-100000000002
+    name: Q-2026-002 TechBridge Platform
+    quote_number: Q-2026-002
+    expiration_date: '2026-08-31'
+    description: Multi-seat professional edition expansion and implementation package.
+    subtotal: 145000
+    discount: 0
+    tax: 0
+    total_price: 145000
+    opportunity_id: '099c0000-0000-4000-8000-100000000002'
+    account_id: a0c00000-0000-4000-8000-100000000002
+    status_id: 9407ec00-0000-4000-8000-100000000001
+  - id: 9407e000-0000-4000-8000-100000000003
+    name: Q-2026-003 CapStone Analytics
+    quote_number: Q-2026-003
+    expiration_date: '2026-06-15'
+    description: Analytics module acceptance package with added training.
+    subtotal: 32500
+    discount: 0
+    tax: 0
+    total_price: 32500
+    opportunity_id: '099c0000-0000-4000-8000-100000000003'
+    account_id: a0c00000-0000-4000-8000-100000000003
+    status_id: 9407ec00-0000-4000-8000-100000000004
+  - id: 9407e000-0000-4000-8000-100000000004
+    name: Q-2026-004 MediSystems Pro Edition
+    quote_number: Q-2026-004
+    expiration_date: '2026-09-30'
+    description: Professional edition, implementation, and annual support proposal.
+    subtotal: 47500
+    discount: 2500
+    tax: 0
+    total_price: 45000
+    opportunity_id: '099c0000-0000-4000-8000-100000000004'
+    account_id: a0c00000-0000-4000-8000-100000000004
+    status_id: 9407ec00-0000-4000-8000-100000000002
+  - id: 9407e000-0000-4000-8000-100000000005
+    name: Q-2026-005 RetailPlus Services
+    quote_number: Q-2026-005
+    expiration_date: '2026-10-31'
+    description: Services bundle for procurement and store operations enablement.
+    subtotal: 27500
+    discount: 0
+    tax: 0
+    total_price: 27500
+    opportunity_id: '099c0000-0000-4000-8000-100000000005'
+    account_id: a0c00000-0000-4000-8000-100000000005
+    status_id: 9407ec00-0000-4000-8000-100000000003

@@ -1,0 +1,9 @@
+[package]
+name = "rego_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+appfw_test = { package = "appfw-test", path = "../../../../appfw_test" }
+serde_json = "1.0"

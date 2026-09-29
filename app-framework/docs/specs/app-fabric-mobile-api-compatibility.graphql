@@ -1,0 +1,40 @@
+# AF-MOBILE-M0-02 reference operations for the accepted-main v1 GraphQL wire.
+# This document is planning evidence until a source-bound checker validates it
+# against the generated backend schema.
+
+query AppfwMobileAccountList(
+  $filter: JSON
+  $sort: JSON
+  $skip: Int
+  $limit: Int
+  $after: String
+) {
+  queryAccounts(
+    filter: $filter
+    sort: $sort
+    skip: $skip
+    limit: $limit
+    after: $after
+  ) {
+    date_time
+    request_duration
+    skip
+    limit
+    page_count
+    page_index
+    query_count
+    next_cursor
+    previous_cursor
+    items {
+      id
+      name
+    }
+  }
+}
+
+query AppfwMobileAccountRecord($id: String!) {
+  findAccount(id: $id) {
+    id
+    name
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/portfolio-model.v1.schema.json",
+  "title": "One-level portfolio themes (journey, process, experience) with named owners, portfolio strategies, and app participation — no work hierarchy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "themes",
+    "participations",
+    "updated_at",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "portfolio_model@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "kind", "owner", "status"],
+        "properties": {
+          "id": { "$ref": "#/$defs/workId" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "kind": { "enum": ["journey", "process", "experience"] },
+          "owner": { "$ref": "#/$defs/reference" },
+          "status": { "enum": ["active", "retired"] }
+        }
+      }
+    },
+    "strategies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "owner"],
+        "properties": {
+          "id": { "$ref": "#/$defs/workId" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "owner": { "$ref": "#/$defs/reference" },
+          "theme_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "$ref": "#/$defs/workId" }
+          }
+        }
+      }
+    },
+    "participations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["app_id", "theme_id", "role"],
+        "properties": {
+          "app_id": { "$ref": "#/$defs/appId" },
+          "theme_id": { "$ref": "#/$defs/workId" },
+          "role": { "enum": ["primary", "contributor"] }
+        }
+      }
+    },
+    "updated_at": { "$ref": "#/$defs/timestamp" },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "workId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

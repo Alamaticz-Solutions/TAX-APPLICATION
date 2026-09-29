@@ -1,0 +1,118 @@
+# Prometheus alert rules for the app-framework backend.
+#
+# Metric names below MUST match what the backend emits from
+# appfw_runtime/src/observability/metrics.rs (verified against the Grafana
+# dashboard observability/grafana/dashboards/app-framework-backend.json):
+#   - up                                          (Prometheus per-target health)
+#   - app_http_requests_total{status,...}         (counter)
+#   - app_http_request_duration_seconds_bucket    (histogram)
+#   - app_provider_operation_duration_seconds_bucket (histogram)
+#   - app_provider_operation_duration_seconds_max (gauge)
+#   - app_provider_query_count_total              (counter)
+#   - app_provider_result_count_total             (counter)
+#   - app_provider_pool_pressure                  (gauge, 0..1 ratio)
+#
+# Thresholds are deliberately conservative starting points; tune per
+# environment. These rules are evaluated by Prometheus and routed to
+# Alertmanager (see prometheus.yml -> alerting + rule_files).
+groups:
+  - name: app-framework-availability
+    rules:
+      - alert: BackendTargetDown
+        # The backend scrape target is unreachable (Prometheus sets up==0).
+        expr: up{job="app-framework-backend"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "Backend target down"
+          description: >-
+            Prometheus has been unable to scrape the app-framework backend
+            target ({{ $labels.instance }}) for more than 2 minutes. The
+            service may be crashed, unhealthy, or network-isolated.
+
+  - name: app-framework-errors
+    rules:
+      - alert: BackendHigh5xxErrorRate
+        # Fraction of 5xx responses over total responses across the last 5m.
+        # Guarded with `> 0` total-rate denominator handling via clamp_min so
+        # the expression does not divide by zero on an idle backend.
+        expr: |
+          (
+            sum(rate(app_http_requests_total{status=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(app_http_requests_total[5m])), 0.001)
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          service: backend
+        annotations:
+          summary: "High backend 5xx error rate"
+          description: >-
+            More than 5% of backend HTTP responses have been 5xx over the last
+            5 minutes. Investigate recent deploys, provider failures, or
+            saturation.
+
+  - name: app-framework-latency
+    rules:
+      - alert: BackendHighRequestLatencyP95
+        # p95 request latency derived from the native histogram buckets.
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (rate(app_http_request_duration_seconds_bucket[5m]))
+          ) > 1
+        for: 10m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "High backend request latency (p95)"
+          description: >-
+            The p95 HTTP request latency for the backend has exceeded 1s over
+            the last 5 minutes (sustained 10m). Check provider/database
+            response times and pool pressure.
+
+  - name: app-framework-providers
+    rules:
+      - alert: ProviderSlowOperationsP95
+        # Provider operation p95 derived from provider latency buckets. This
+        # catches slow provider calls even when HTTP handlers mask latency with
+        # caching, batching, or downstream retries.
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le, provider, data_source, entity, operation) (
+              rate(app_provider_operation_duration_seconds_bucket[5m])
+            )
+          ) > 1
+        for: 10m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "Slow provider operations (p95)"
+          description: >-
+            Provider {{ $labels.provider }} operation {{ $labels.operation }}
+            for {{ $labels.entity }} on data source {{ $labels.data_source }}
+            has exceeded 1s p95 latency for more than 10 minutes. Compare
+            provider max duration, query_count, result_count, pool pressure,
+            and correlated backend logs before running approved diagnostics.
+
+      - alert: ProviderPoolSaturation
+        # Provider connection pool pressure is a 0..1 ratio (in_use/max-ish).
+        # Sustained high pressure indicates connection-pool exhaustion risk.
+        expr: max by (provider, data_source) (app_provider_pool_pressure) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          service: backend
+        annotations:
+          summary: "Provider connection pool near saturation"
+          description: >-
+            Connection pool pressure for provider {{ $labels.provider }}
+            (data source {{ $labels.data_source }}) has exceeded 0.90 for more
+            than 5 minutes. Requests may begin to queue or fail; consider
+            raising pool size or reducing load.

@@ -1,0 +1,50 @@
+- name: ConcatenateComputed
+  id: 686cfa84-19e4-4d28-b841-ed22c1997d54
+  props: 
+
+  - name: prop_names
+    is_required: true
+    fragment: property-string-array
+    meta: 
+      allowNewItems: true
+
+  - name: delimiter
+    is_required: true
+    fragment: property-string
+
+
+- name: FormatComputed
+  id: 0233d643-809d-4160-b879-82fb7d1c2eb4
+  props: 
+
+  - name: prop_names
+    is_required: true
+    fragment: property-string-array
+    meta: 
+      allowNewItems: true
+      
+  - name: template
+    is_required: true
+    fragment: property-string
+
+
+- name: WordComputed
+  id: f33c10e4-bcdc-4ce7-8200-9160f4e968ad
+  props: 
+
+  - name: source_field
+    is_required: true
+    fragment: property-string
+
+
+- name: InflectionComputed
+  id: ece2a11d-86b4-45af-aec0-89958fc8b4fd
+  props: 
+
+  - name: inflector
+    is_required: true
+    fragment: property-string
+
+  - name: source_field
+    is_required: true
+    fragment: property-string

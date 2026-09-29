@@ -1,0 +1,189 @@
+{
+  "schema": "app_fabric_mobile_auth_profile@1",
+  "profile_version": "0.1.0-prototype",
+  "lifecycle_stage": "prototype",
+  "maturity": "experimental",
+  "candidate_ready": false,
+  "release_ready": false,
+  "release_authority": "none",
+  "app_id": null,
+  "prototype_app_ref": "appfw.reference",
+  "prototype_identity_authority": "local-fixture-only",
+  "client_profiles": [
+    {
+      "profile_id": "web.reference",
+      "channel": "web-dom",
+      "platform": "browser",
+      "environment": "local-development",
+      "kind": "oidc-public-client",
+      "flow": "authorization-code-pkce",
+      "pkce_method": "S256",
+      "authorization_user_agent": "system-browser",
+      "client_id": "local-web-reference",
+      "redirect_uris": [
+        "https://127.0.0.1:19006/oauth/callback"
+      ],
+      "audiences": [
+        "appfw-api"
+      ],
+      "scopes": [
+        "openid",
+        "appfw.read"
+      ],
+      "validated_client_claim": "azp",
+      "embedded_secret": false,
+      "access_token_custody": "memory",
+      "renewal_material_custody": "none",
+      "logout_clears_renewal_material": true
+    },
+    {
+      "profile_id": "native.ios.reference",
+      "channel": "native",
+      "platform": "ios",
+      "environment": "local-development",
+      "kind": "oidc-public-client",
+      "flow": "authorization-code-pkce",
+      "pkce_method": "S256",
+      "authorization_user_agent": "system-browser",
+      "client_id": "local-native-ios-reference",
+      "redirect_uris": [
+        "com.pdshealth.appfw.reference:/oauth/callback/ios"
+      ],
+      "audiences": [
+        "appfw-api"
+      ],
+      "scopes": [
+        "openid",
+        "appfw.read"
+      ],
+      "validated_client_claim": "azp",
+      "embedded_secret": false,
+      "access_token_custody": "memory",
+      "renewal_material_custody": "none",
+      "logout_clears_renewal_material": true
+    },
+    {
+      "profile_id": "native.android.reference",
+      "channel": "native",
+      "platform": "android",
+      "environment": "local-development",
+      "kind": "oidc-public-client",
+      "flow": "authorization-code-pkce",
+      "pkce_method": "S256",
+      "authorization_user_agent": "system-browser",
+      "client_id": "local-native-android-reference",
+      "redirect_uris": [
+        "com.pdshealth.appfw.reference:/oauth/callback/android"
+      ],
+      "audiences": [
+        "appfw-api"
+      ],
+      "scopes": [
+        "openid",
+        "appfw.read"
+      ],
+      "validated_client_claim": "azp",
+      "embedded_secret": false,
+      "access_token_custody": "memory",
+      "renewal_material_custody": "none",
+      "logout_clears_renewal_material": true
+    }
+  ],
+  "server": {
+    "issuer_profile": "local-synthetic",
+    "issuer": "https://127.0.0.1:4455/oidc",
+    "accepted_profile_ids": [
+      "web.reference",
+      "native.ios.reference",
+      "native.android.reference"
+    ],
+    "signature_verification": "required",
+    "issuer_validation": "required",
+    "audience_validation": "required",
+    "scope_validation": "required",
+    "scope_match": "exact-registered-set",
+    "client_profile_validation": "required",
+    "client_attribution": {
+      "token_kind": "access-token",
+      "claim": "azp",
+      "profile_match": "exact-client-id",
+      "missing_or_conflicting_claim": "reject",
+      "id_token_as_api_bearer": "reject"
+    },
+    "token_time_validation": "exp-and-nbf-required",
+    "jwk_rotation": "cache-refresh-and-unknown-kid-retry-once",
+    "tenant_context": "validated-token-and-request-context",
+    "authorization_authority": "server-policy",
+    "local_auth_bypass": false,
+    "arbitrary_bearer_fallback": false
+  },
+  "local_reachability": {
+    "canonical_issuer": "https://127.0.0.1:4455/oidc",
+    "ios_simulator": "direct-loopback",
+    "android_emulator": "adb-reverse-tcp-4455-to-tcp-4455",
+    "physical_device": "out-of-scope",
+    "issuer_substitution": "prohibited",
+    "tls_trust": "development-ca-explicitly-installed",
+    "certificate_validation": "required",
+    "certificate_identity": "ip-san-127.0.0.1"
+  },
+  "audit": {
+    "client_profile_source": "validated-token-profile",
+    "subject_source": "validated-token-subject",
+    "tenant_source": "validated-authoritative-context",
+    "request_id": "required",
+    "correlation_id": "required",
+    "token_logging": "prohibited"
+  },
+  "positive_tests": [
+    "web-authorization-code-pkce",
+    "ios-authorization-code-pkce",
+    "android-authorization-code-pkce",
+    "authorized-api-access-token"
+  ],
+  "evidence": {
+    "status": "not-executed",
+    "result_refs": []
+  },
+  "negative_tests": [
+    "missing-token",
+    "arbitrary-bearer",
+    "bad-signature",
+    "wrong-algorithm",
+    "unknown-key-id",
+    "revoked-key",
+    "rotated-key-refresh",
+    "discovery-outage",
+    "wrong-issuer",
+    "wrong-audience",
+    "missing-scope",
+    "excessive-scope",
+    "unregistered-client",
+    "missing-azp",
+    "conflicting-client-attribution",
+    "malformed-client-attribution",
+    "cross-client-token-substitution",
+    "id-token-as-api-bearer",
+    "expired-token",
+    "not-yet-valid-token",
+    "excessive-clock-skew",
+    "missing-tenant",
+    "wrong-tenant",
+    "invalid-role",
+    "invalid-policy-claims",
+    "policy-denied",
+    "cross-tenant-identifier-reuse",
+    "cross-tenant-cache-reuse",
+    "missing-state",
+    "state-mismatch",
+    "nonce-mismatch",
+    "missing-pkce-verifier",
+    "wrong-pkce-verifier",
+    "pkce-plain-downgrade",
+    "redirect-uri-mismatch",
+    "authorization-code-replay",
+    "cancelled-login",
+    "renewal-failure",
+    "logout-account-switch-cleanup"
+  ]
+}

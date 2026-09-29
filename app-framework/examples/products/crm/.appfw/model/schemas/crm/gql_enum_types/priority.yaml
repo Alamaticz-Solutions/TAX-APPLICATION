@@ -1,0 +1,8 @@
+- name: Priority
+  items:
+    - value: Low
+      caption: Low
+    - value: Medium
+      caption: Medium
+    - value: High
+      caption: High

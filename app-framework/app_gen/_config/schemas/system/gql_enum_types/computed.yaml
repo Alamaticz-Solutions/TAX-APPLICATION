@@ -1,0 +1,8 @@
+- name: Computed
+  items: 
+  - value: Concatenate
+  - value: Format
+  - value: Word
+  - value: Inflection
+  - value: DateTimeNow
+  - value: None

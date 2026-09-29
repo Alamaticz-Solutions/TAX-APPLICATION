@@ -1,0 +1,31 @@
+- id: 9fc0d56f-4669-4d10-99ee-959fd016c986
+  name: Workstream
+  is_table: true
+  indexes:
+  - tenant
+  - name
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.Workstream
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+  props:
+
+  - name: id
+    caption: Workstream ID
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: name
+    caption: Workstream Name
+    fragment: property-string-caption
+    is_read_only: true

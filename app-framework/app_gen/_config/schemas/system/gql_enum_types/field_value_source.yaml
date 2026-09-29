@@ -1,0 +1,8 @@
+
+- name: FieldValueSource
+  items: 
+  - value: Literal
+  - value: FieldReference
+  - value: Expression
+  - value: Function
+

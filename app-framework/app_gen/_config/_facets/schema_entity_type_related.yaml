@@ -1,0 +1,25 @@
+- name: schema_entity_type_related
+
+  props: 
+
+  - name: schema_id
+    data_type: Uuid
+    foreign_key:
+      type_name: Schema
+
+  - name: schema
+    data_type: NavToOne
+    nav_by_fk_property: 
+      prop_name: schema_id
+
+
+  - name: entity_type_id
+    data_type: Uuid
+    foreign_key:
+      type_name: EntityType
+
+  - name: entity_type
+    data_type: NavToOne
+    nav_by_fk_property: 
+      prop_name: entity_type_id
+

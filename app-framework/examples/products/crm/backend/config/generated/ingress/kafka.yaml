@@ -1,0 +1,32 @@
+# Human-owned Kafka runtime ingress config.
+# Generated once from enabled .appfw/manifest.yaml kafka topology entries.
+# Keep broker credentials in secrets and replace local_no_auth before production.
+# Review retry, dead_letter, readiness, tenant, idempotency, and operation bindings before enabling workers.
+enabled: true
+consumers:
+- name: crm-events
+  topic: crm.events
+  consumer_group: crm-events-worker
+  handler: services.crm_events
+  actor:
+    subject: crm-events-consumer
+    roles:
+    - crm.integration_writer
+    scopes: []
+  tenant:
+    source: message_field
+    field: tenant_id
+  auth:
+    mechanism: local_no_auth
+  idempotency_key_field: event_id
+  retry:
+    enabled: true
+    max_attempts: 3
+    initial_backoff_ms: 1000
+    max_backoff_ms: 30000
+  dead_letter:
+    enabled: false
+    topic: crm.events.dlq
+  readiness:
+    max_lag_messages: 1000
+    max_idle_ms: 300000

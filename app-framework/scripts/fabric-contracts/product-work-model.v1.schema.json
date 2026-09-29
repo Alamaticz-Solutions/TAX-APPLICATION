@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/product-work-model.v1.schema.json",
+  "title": "Bounded per-app product work profile: purpose, strategy, product increment, task — a subset of the canonical Program Work System",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "app_id",
+    "purpose",
+    "increments",
+    "tasks",
+    "updated_at",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "product_work_model@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "success_metric", "owner"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "success_metric": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "value_hypothesis": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "owner": { "$ref": "#/$defs/reference" }
+      }
+    },
+    "strategies": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "$ref": "#/$defs/workId" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "rationale": { "type": "string", "minLength": 1, "maxLength": 2000 }
+        }
+      }
+    },
+    "increments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "goal", "status"],
+        "properties": {
+          "id": { "$ref": "#/$defs/workId" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "goal": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "target_window": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "status": { "enum": ["planned", "active", "implemented", "accepted"] },
+          "acceptance": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "accepted_by": { "$ref": "#/$defs/reference" }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "increment_id", "title", "class", "state"],
+        "properties": {
+          "id": { "$ref": "#/$defs/workId" },
+          "increment_id": { "$ref": "#/$defs/workId" },
+          "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "class": { "enum": ["A", "B", "C", "D"] },
+          "state": { "enum": ["todo", "doing", "implemented", "accepted"] },
+          "accepted_by": { "$ref": "#/$defs/reference" },
+          "deliverable_ref": { "$ref": "#/$defs/reference" }
+        }
+      }
+    },
+    "updated_at": { "$ref": "#/$defs/timestamp" },
+    "source_commit": { "$ref": "#/$defs/gitSha" },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "workId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" }
+  }
+}

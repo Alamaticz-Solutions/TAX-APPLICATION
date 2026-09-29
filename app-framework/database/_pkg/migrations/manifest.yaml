@@ -1,0 +1,100 @@
+version: 1
+migrations:
+  - id: "202605210000"
+    name: crm_schema_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210000__crm_schema_baseline.expand.sql
+    description: Create the CRM schema before applying table DDL.
+
+  - id: "202605210001"
+    name: crm_tables_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210001__crm_tables_baseline.expand.sql
+    description: Baseline CRM tables, indexes, constraints, and junction tables.
+
+  - id: "202605210002"
+    name: crm_logs_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/202605210002__crm_logs_baseline.expand.sql
+    description: Baseline CRM logger tables and indexes.
+
+  - id: "202605210003"
+    name: crm_seed_baseline
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: backfill
+    path: postgresql/202605210003__crm_seed_baseline.backfill.sql
+    description: Baseline CRM reference data.
+
+  - id: "202605230000"
+    name: crm_version_backfill
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: backfill
+    path: postgresql/202605230000__crm_version_backfill.backfill.sql
+    description: Backfill CRM optimistic-concurrency versions and enforce defaults.
+
+  - id: "202605230001"
+    name: crm_volume_seed
+    schema: crm
+    data_source: pg_primary
+    dialect: postgresql
+    phase: backfill
+    path: postgresql/202605230001__crm_volume_seed.backfill.sql
+    description: Backfill generated CRM volume seed data for performance testing.
+
+  - id: "202605210000"
+    name: crm_schema_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: expand
+    path: mssql/202605210000__crm_schema_baseline.expand.sql
+    description: Create the CRM schema before applying table DDL.
+
+  - id: "202605210001"
+    name: crm_tables_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: expand
+    path: mssql/202605210001__crm_tables_baseline.expand.sql
+    description: Baseline CRM tables, indexes, constraints, and junction tables.
+
+  - id: "202605210003"
+    name: crm_seed_baseline
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: backfill
+    path: mssql/202605210003__crm_seed_baseline.backfill.sql
+    description: Baseline CRM reference data.
+
+  - id: "202605230000"
+    name: crm_version_backfill
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: backfill
+    path: mssql/202605230000__crm_version_backfill.backfill.sql
+    description: Backfill CRM optimistic-concurrency versions and enforce defaults.
+
+  - id: "202605230001"
+    name: crm_volume_seed
+    schema: crm
+    data_source: mssql_primary
+    dialect: mssql
+    phase: backfill
+    path: mssql/202605230001__crm_volume_seed.backfill.sql
+    description: Backfill generated CRM volume seed data for performance testing.

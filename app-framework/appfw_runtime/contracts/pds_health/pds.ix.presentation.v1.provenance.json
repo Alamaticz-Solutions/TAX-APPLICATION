@@ -1,0 +1,19 @@
+{
+  "schema": "appfw.pds_ix_presentation_schema_projection@1",
+  "authority": "PDS Health Design System",
+  "source_package": "@appfw/pds-ix-presentation-contract",
+  "source_version": "0.1.0",
+  "current_package_version": "0.2.0",
+  "reviewed_source_commit": "b6e5e5e1bfff6be0a3eeed4ccf3f068798ab9b33",
+  "integrated_source_commit": "49cb47b0b6b8a0719f22493766d382d86430a7b2",
+  "source_path": "appfw_ui/pds_health/ix-presentation-contract/schema/pds.ix.presentation.v1.schema.json",
+  "source_sha256": "efda83abe50ab4402977fc00408daf233bee3c10f04e718bfac62dd61ae0120a",
+  "projection_path": "appfw_runtime/contracts/pds_health/pds.ix.presentation.v1.schema.json",
+  "projection_sha256": "efda83abe50ab4402977fc00408daf233bee3c10f04e718bfac62dd61ae0120a",
+  "fixture_source_path": "appfw_ui/pds_health/ix-presentation-contract/fixtures/working-brief.presentation.json",
+  "fixture_source_sha256": "dac3de336e92b79a518208120e6190fcd9caf3cd519076efa446d33302dbc6cf",
+  "fixture_projection_path": "appfw_runtime/contracts/pds_health/working-brief.presentation.json",
+  "fixture_projection_sha256": "dac3de336e92b79a518208120e6190fcd9caf3cd519076efa446d33302dbc6cf",
+  "generated": true,
+  "hand_edit": "forbidden"
+}

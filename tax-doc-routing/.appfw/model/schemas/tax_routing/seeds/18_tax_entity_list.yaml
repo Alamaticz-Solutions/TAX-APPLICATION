@@ -1,0 +1,48 @@
+# Entity reference data (business spec 5.4). This is what the Entity Type/Entity Name dropdowns
+# in EditDocumentDialog.tsx now read instead of frontend/src/features/shared/data/entities.ts's
+# hardcoded `entities` array. `entity_type` values match 10_field_option_value.yaml's entity_type
+# option codes (Partnership, S-Corp, Personal Corporation).
+- entity_type: TaxEntityList
+  schema: tax_routing
+  columns:
+  - id
+  - oracle_id
+  - entity_name
+  - entity_type
+  - is_active
+  records:
+  - id: 3f2a7c10-0001-4b1e-9c2a-6e1d2f3a4b01
+    oracle_id: '001'
+    entity_name: Oakwood Medical Partners LLC
+    entity_type: Partnership
+    is_active: true
+  - id: 3f2a7c10-0002-4b1e-9c2a-6e1d2f3a4b02
+    oracle_id: '002'
+    entity_name: Riverside Surgical Associates LP
+    entity_type: Partnership
+    is_active: true
+  - id: 3f2a7c10-0003-4b1e-9c2a-6e1d2f3a4b03
+    oracle_id: '003'
+    entity_name: Summit Orthopedic Group LLC
+    entity_type: Partnership
+    is_active: true
+  - id: 3f2a7c10-0004-4b1e-9c2a-6e1d2f3a4b04
+    oracle_id: '014'
+    entity_name: Smith Family Medicine PC
+    entity_type: Personal Corporation
+    is_active: true
+  - id: 3f2a7c10-0005-4b1e-9c2a-6e1d2f3a4b05
+    oracle_id: '015'
+    entity_name: Lakeview Radiology PC
+    entity_type: Personal Corporation
+    is_active: true
+  - id: 3f2a7c10-0006-4b1e-9c2a-6e1d2f3a4b06
+    oracle_id: '021'
+    entity_name: Harbor Health Holdings Inc.
+    entity_type: S-Corp
+    is_active: true
+  - id: 3f2a7c10-0007-4b1e-9c2a-6e1d2f3a4b07
+    oracle_id: '022'
+    entity_name: Pinecrest Clinics Inc.
+    entity_type: S-Corp
+    is_active: true

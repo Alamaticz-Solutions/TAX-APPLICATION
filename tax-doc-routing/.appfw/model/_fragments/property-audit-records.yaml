@@ -1,0 +1,3 @@
+    data_type: ObjectArray
+    meta:
+      enum_type_name: AuditRecord

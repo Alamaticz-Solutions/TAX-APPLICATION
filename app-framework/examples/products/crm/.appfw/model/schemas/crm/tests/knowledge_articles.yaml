@@ -1,0 +1,24 @@
+# KnowledgeArticle - CDM applicationCommon-inspired knowledge base coverage.
+
+- name: find_knowledge_article
+  description: find seeded knowledge article with comments
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findKnowledgeArticle
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"a471c1e0-0000-4000-8000-100000000003"'
+    select: |
+      id,title,slug,status,language,is_public,view_count,comments { id,subject,sentiment }
+  expect:
+    data:
+      id: 'a471c1e0-0000-4000-8000-100000000003'
+      title: 'Data Import Troubleshooting'
+      slug: 'data-import-troubleshooting'
+      status: 'Published'
+      language: 'en-US'
+      is_public: true
+      view_count: 1289

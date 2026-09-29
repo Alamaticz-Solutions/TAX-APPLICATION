@@ -1,0 +1,51 @@
+- name: taxpayer_ref_data_routing_records
+  kind: OneToMany
+  one:
+    entity: TaxPayerRefData
+    field: routing_records
+  many:
+    entity: TaxRoutingRecord
+    field: client_reference
+  storage:
+    type: ForeignKey
+    owner: TaxRoutingRecord
+    field: client_reference_id
+
+- name: document_type_route_documents
+  kind: OneToMany
+  one:
+    entity: DocumentTypeRoute
+    field: documents
+  many:
+    entity: TaxDocument
+    field: document_type_route
+  storage:
+    type: ForeignKey
+    owner: TaxDocument
+    field: document_type_route_id
+
+- name: routing_record_documents
+  kind: OneToMany
+  one:
+    entity: TaxRoutingRecord
+    field: documents
+  many:
+    entity: TaxDocument
+    field: routing_record
+  storage:
+    type: ForeignKey
+    owner: TaxDocument
+    field: routing_record_id
+
+- name: routing_record_exception_tasks
+  kind: OneToMany
+  one:
+    entity: TaxRoutingRecord
+    field: exception_tasks
+  many:
+    entity: ExceptionTask
+    field: routing_record
+  storage:
+    type: ForeignKey
+    owner: ExceptionTask
+    field: routing_record_id

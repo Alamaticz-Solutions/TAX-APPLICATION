@@ -1,0 +1,140 @@
+{
+  "schema": "appfw_route_policy@1",
+  "semantic_version": "1.0.0",
+  "max_delegation_depth": 1,
+  "profile_strength": {
+    "implementer": ["bounded_read@1", "routine_delivery@1", "complex_delivery@1", "consequential_decision@1"],
+    "reviewer": ["focused_independent_review@1", "comprehensive_independent_review@1", "adversarial_independent_review@1"]
+  },
+  "provider_neutral_profiles": [
+    "bounded_read@1",
+    "routine_delivery@1",
+    "complex_delivery@1",
+    "consequential_decision@1",
+    "focused_independent_review@1",
+    "comprehensive_independent_review@1",
+    "adversarial_independent_review@1"
+  ],
+  "instructions": [
+    {
+      "id": "repository-operating-guide",
+      "path": "AGENTS.md",
+      "heading": "# Agent Operating Guide",
+      "precedence": 2,
+      "required": true,
+      "rationale_code": "repository_operating_contract",
+      "applies_when": { "op": "always" }
+    },
+    {
+      "id": "role-card",
+      "path": "docs/start/agent-role-cards.md",
+      "heading": "## Role Cards",
+      "precedence": 4,
+      "required": true,
+      "rationale_code": "declared_role_contract",
+      "applies_when": { "op": "always" }
+    },
+    {
+      "id": "product-north-star",
+      "path": "docs/strategy/product-development-north-star.md",
+      "heading": "## North Star Statement",
+      "precedence": 3,
+      "required": true,
+      "rationale_code": "strategic_decision_context",
+      "applies_when": {
+        "op": "any",
+        "predicates": [
+          { "path": "routing_context.strategic_decision", "op": "equals", "value": true },
+          { "path": "task_shape.consequence", "op": "equals", "value": "irreversible" }
+        ]
+      }
+    },
+    {
+      "id": "nexus-delivery-contract",
+      "path": "docs/specs/nexus-poc-multi-workstation-delivery.md",
+      "heading": "## Workstation Contract",
+      "precedence": 3,
+      "required": true,
+      "rationale_code": "declared_workstream_context",
+      "applies_when": { "path": "subject.workstream_id", "op": "nonempty" }
+    }
+  ],
+  "routing_rules": [
+    {
+      "id": "strategic-or-irreversible",
+      "match": {
+        "op": "any",
+        "predicates": [
+          { "path": "routing_context.strategic_decision", "op": "equals", "value": true },
+          { "path": "task_shape.consequence", "op": "equals", "value": "irreversible" }
+        ]
+      },
+      "implementer_profile": "consequential_decision@1",
+      "reviewer_profile": "comprehensive_independent_review@1",
+      "rationale_codes": ["consequential_decision", "human_decision_required"],
+      "requires_human_decision": true
+    },
+    {
+      "id": "sensitive-boundary",
+      "match": {
+        "op": "any",
+        "predicates": [
+          { "path": "task_shape.sensitive_surfaces", "op": "nonempty" },
+          { "path": "task_shape.data_classification", "op": "in", "value": ["restricted", "phi"] }
+        ]
+      },
+      "implementer_profile": "complex_delivery@1",
+      "reviewer_profile": "adversarial_independent_review@1",
+      "rationale_codes": ["sensitive_boundary", "adversarial_review_required"],
+      "requires_human_decision": false
+    },
+    {
+      "id": "signature-experience",
+      "match": { "path": "task_shape.signature_significance", "op": "equals", "value": true },
+      "implementer_profile": "complex_delivery@1",
+      "reviewer_profile": "comprehensive_independent_review@1",
+      "rationale_codes": ["signature_experience", "human_design_judgment_required"],
+      "requires_human_decision": true
+    },
+    {
+      "id": "read-heavy-extraction",
+      "match": {
+        "op": "all",
+        "predicates": [
+          { "path": "task_shape.role", "op": "equals", "value": "researcher" },
+          { "path": "task_shape.write_roots", "op": "empty" }
+        ]
+      },
+      "implementer_profile": "bounded_read@1",
+      "reviewer_profile": "focused_independent_review@1",
+      "rationale_codes": ["read_only_extraction", "parent_reconciliation_required"],
+      "requires_human_decision": false
+    },
+    {
+      "id": "class-a-delivery",
+      "match": { "path": "task_shape.change_class", "op": "equals", "value": "A" },
+      "implementer_profile": "complex_delivery@1",
+      "reviewer_profile": "focused_independent_review@1",
+      "rationale_codes": ["declared_class_a", "independent_review_required"],
+      "requires_human_decision": false
+    },
+    {
+      "id": "routine-delivery",
+      "match": { "op": "always" },
+      "implementer_profile": "routine_delivery@1",
+      "reviewer_profile": "focused_independent_review@1",
+      "rationale_codes": ["bounded_routine_delivery", "independent_review_required"],
+      "requires_human_decision": false
+    }
+  ],
+  "privacy": {
+    "retained_field_allowlist_version": "appfw_route_telemetry_allowlist@1",
+    "prompt_content_retained": false,
+    "secret_content_retained": false
+  },
+  "otel": {
+    "route_span": "appfw.agent.route.select",
+    "run_span": "appfw.agent.run",
+    "review_span": "appfw.agent.review"
+  }
+}

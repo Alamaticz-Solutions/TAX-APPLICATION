@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "source": "app_gen",
+  "packageKind": "product_frontend_scaffold",
+  "generatedContract": "src/generated/appfw-ui-contract.ts",
+  "ownershipManifest": ".appfw-ui/ownership.json",
+  "designSystem": {
+    "brand": "PDS Health",
+    "source": "appfw_ui/pds_health",
+    "tokens": "appfw_ui/pds_health/tokens",
+    "components": "appfw_ui/pds_health/components",
+    "package": "@appfw/pds-health-components",
+    "styleImport": "@appfw/pds-health-components/styles.css"
+  },
+  "schemaNames": [
+    "crm"
+  ],
+  "contracts": [
+    {
+      "schemaName": "crm",
+      "provider": "PostgreSQL",
+      "dataSourceName": "pg_primary",
+      "entityCount": 24,
+      "relationshipCount": 30,
+      "workflowCount": 4
+    }
+  ],
+  "generatedRoots": [
+    "src/generated/**",
+    ".appfw-ui/scaffold-manifest.json"
+  ],
+  "scaffoldRoots": [
+    "src/app/**",
+    "src/components/**",
+    "src/scaffold/**",
+    "src/lib/**",
+    "src/styles/**",
+    "scripts/check-scaffold.mjs"
+  ],
+  "humanOwnedRoots": [
+    "src/features/**"
+  ],
+  "requiredPackageScripts": [
+    "appfw:check",
+    "typecheck",
+    "build"
+  ],
+  "verification": {
+    "packageCheck": "npm run appfw:check",
+    "typecheck": "npm run typecheck",
+    "build": "npm run build",
+    "backendValidation": "scripts/appfw validate --json",
+    "generatedDrift": "scripts/appfw generate --check --json"
+  },
+  "releaseEvidence": [
+    "frontend scaffold manifest check",
+    "generated contract drift check",
+    "TypeScript typecheck",
+    "production frontend build emitted to backend/product_dist",
+    "backend validation",
+    "handoff JSON"
+  ],
+  "notes": [
+    "The scaffold manifest is deterministic and regenerated from app_gen.",
+    "Product teams customize src/features/**; scaffold upgrades own reusable package surfaces.",
+    "The package check is intentionally offline and does not require a running backend."
+  ]
+}

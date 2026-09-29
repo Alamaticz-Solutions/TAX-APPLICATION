@@ -1,0 +1,65 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    stack: app-framework
+    environment: compose
+
+# Alert rule definitions. Evaluated every `evaluation_interval`; firing alerts
+# are forwarded to Alertmanager via the `alerting` block below.
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+# Alertmanager is part of the `observability` Compose profile and reachable on
+# the observability-network as `alertmanager:9093`.
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  - job_name: app-framework-backend
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - backend:3000
+        labels:
+          service: backend
+          environment: compose
+
+  - job_name: grafana-alloy
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - alloy:12345
+        labels:
+          service: alloy
+          environment: compose
+
+  - job_name: grafana-loki
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - loki:3100
+        labels:
+          service: loki
+          environment: compose
+
+  - job_name: prometheus
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - prometheus:9090
+        labels:
+          service: prometheus
+          environment: compose
+
+  - job_name: alertmanager
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - alertmanager:9093
+        labels:
+          service: alertmanager
+          environment: compose

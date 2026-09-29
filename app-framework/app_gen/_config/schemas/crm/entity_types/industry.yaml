@@ -1,0 +1,26 @@
+- id: 10100070-0000-4000-8000-000000000010
+  name: Industry
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Industry Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    data_type: Int16

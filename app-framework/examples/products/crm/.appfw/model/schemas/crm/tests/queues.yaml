@@ -1,0 +1,21 @@
+# Queue - CDM applicationCommon-inspired operational queue coverage.
+
+- name: find_queue
+  description: find seeded queue with business unit and queue items
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQueue
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9e0e0000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,queue_type,is_active,business_unit { id,name },queue_items { id,title,status }
+  expect:
+    data:
+      id: '9e0e0000-0000-4000-8000-100000000001'
+      name: 'Enterprise Onboarding'
+      queue_type: 'Sales'
+      is_active: true

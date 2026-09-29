@@ -1,0 +1,61 @@
+{
+  "schema": "appfw_model_route@1",
+  "subject": {
+    "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+    "product_increment_id": "AFS-PI-P1",
+    "deliverable_id": "AFS-008",
+    "task_id": "task:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a01",
+    "assignment_id": "assignment:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a02",
+    "workstream_id": "WS-01",
+    "role_card_id": "coding-agent",
+    "stage": "prototype",
+    "parent_run_id": "run:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a03"
+  },
+  "task_shape": {
+    "role": "implementer",
+    "read_roots": ["docs", "scripts"],
+    "write_roots": ["AGENTS.md", "docs/start", "scripts/agent-routing"],
+    "allowed_tools": ["read", "apply_patch", "node_test", "git"],
+    "network_posture": "none",
+    "data_classification": "internal",
+    "change_class": "B",
+    "change_class_status": "exact",
+    "ambiguity": "low",
+    "consequence": "medium",
+    "sensitive_surfaces": [],
+    "signature_significance": false,
+    "delegation_depth": 1,
+    "delegation_type": "direct_child",
+    "execution_target": "local",
+    "material_child": true,
+    "requested_capabilities": ["code_edit", "semantic_test"]
+  },
+  "routing_context": {
+    "implementer": {
+      "assignment_id": "assignment:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a02",
+      "actor_id": "actor:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a04",
+      "run_id": "run:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a03"
+    },
+    "reviewer": {
+      "assignment_id": "assignment:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a05",
+      "actor_id": "actor:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a06",
+      "run_id": "run:6f2a9c10-4b3d-4e11-9a7f-2c8d1e6b0a07"
+    },
+    "reviewer_required": true,
+    "provider_available": true,
+    "required_instruction_ids": [],
+    "authorized_read_roots": ["docs", "scripts"],
+    "authorized_write_roots": ["AGENTS.md", "docs/start", "scripts/agent-routing"],
+    "authorized_tools": ["read", "apply_patch", "node_test", "git"],
+    "authorized_network_posture": "none",
+    "strategic_decision": false,
+    "human_decision_id": null
+  },
+  "privacy": {
+    "data_classification": "internal",
+    "redaction_posture": "strict",
+    "retained_field_allowlist_version": "appfw_route_telemetry_allowlist@1",
+    "prompt_content_retained": false,
+    "secret_content_retained": false
+  }
+}

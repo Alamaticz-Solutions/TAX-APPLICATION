@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "schemaName": "crm",
+  "note": "Frontend ownership manifest (ADR 0007). Peer of the backend artifacts.json. Records which paths the scaffold generates vs. which the product team owns, so regeneration is safe.",
+  "roots": {
+    "generated": [
+      "src/generated/**",
+      ".appfw-ui/scaffold-manifest.json"
+    ],
+    "scaffold": [
+      "src/app/**",
+      "src/components/**",
+      "src/scaffold/**",
+      "src/lib/**",
+      "src/styles/**",
+      "src/design/**",
+      "scripts/check-scaffold.mjs"
+    ],
+    "humanOwned": [
+      "src/features/**"
+    ]
+  },
+  "rules": {
+    "generated": "Overwrite-safe. Produced from the backend model (ADR 0006). Do not hand-edit; change the model.",
+    "scaffold": "Reusable framework scaffold. Updated by scaffold upgrades; avoid product-specific edits here.",
+    "humanOwned": "Product customization. Created once when missing, then preserved across regeneration."
+  }
+}

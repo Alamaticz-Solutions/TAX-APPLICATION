@@ -1,0 +1,35 @@
+{% macro print(test) %}
+{%- if test.expect %}
+  {%- if test.expect.data %}
+    ctx.expect_data(
+      "{{ test.name }}",
+      &gql_result,
+      "{{ test.graphql.name }}",
+      json!({{ test.expect.data | json_encode(pretty=false) | safe }}),
+      {% if test.result_object_name %}Some("{{ test.result_object_name }}"){% else %}None{% endif %},
+    )?;
+  {%- elif test.expect.error %}
+    ctx.expect_error(
+      "{{ test.name }}",
+      &gql_result,
+      json!({{ test.expect.error | json_encode(pretty=false) | safe }}),
+    )?;
+  {%- endif %}
+{%- endif %}
+{% endmacro print %}
+
+
+{# 
+  expect: 
+    code: 200
+    message: 
+    result_values:
+      user_name: testuser12
+      email: test.user12@test.com
+      first_name: test
+      last_name: user12
+      full_name: test user12
+      mobile: 111-111-1111
+      notes: null
+      status: Active 
+#}

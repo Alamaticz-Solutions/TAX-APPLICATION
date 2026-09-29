@@ -1,0 +1,11 @@
+version: 1
+migrations:
+
+  - id: "20260816180220"
+    name: nexus_ix_ix_real_vertical_constraints
+    schema: nexus_ix
+    data_source: pg_primary
+    dialect: postgresql
+    phase: expand
+    path: postgresql/20260816180220__nexus_ix_ix_real_vertical_constraints.expand.sql
+    description: "Supplemental Nexus IX tenant, idempotency, ordering, and projection constraints."

@@ -1,0 +1,135 @@
+{
+  "$schema": "../start/product-increment-plan.schema.json",
+  "schema": "appfw_product_increment_plan@1",
+  "program_id": "agentic-factory-system",
+  "product_increment": {
+    "id": "AFS-PI-DELIVERY-CONTROL-01",
+    "outcome_id": "AFS-OUTCOME-DELIVERY-FLOW",
+    "title": "Executable Product Increment delivery control",
+    "intent": "Make every major batch easy to find and understand, and establish the enforceable contract required to operate two to four independent lanes without repeating integration and release proof on every leaf branch.",
+    "owner": "Program Product Manager",
+    "planning_posture": "active",
+    "stage": "prototype",
+    "acceptance_criteria": [
+      "The canonical portfolio lists envisioned through accepted Product Increments in plain language with current status and next action.",
+      "Machine validation enforces one-to-four lane plans, portfolio-wide WIP and independence, requires and benefits_from links, router maturity, stage-appropriate proof, and integration strategy.",
+      "Workstation assignment schema @4 binds source scope to the validated Delivery Lane while retaining capability-domain context and requiring a shared live lease for source authority.",
+      "The contract fails closed and makes clear that the live lease adapter, trusted authority and metering adapters, and destination-aware accelerated remote CI remain a separate operational Product Increment.",
+      "Nexus and AFS P1-P5 validate against the model without inflating Implemented or Accepted credit.",
+      "Changed-surface classification uses one bounded process for the complete changed-file set while preserving single-path compatibility and focused-before-sensitive precedence.",
+      "A changed-surface classifier failure or malformed result fails closed to full documentation proof rather than silently selecting a narrower lane.",
+      "A PR #454-equivalent 317-path product scaffold selects the fast lane and completes inside the unchanged 20000 millisecond CI budget, with retained selector phase timing.",
+      "The CLI reference states the effective 20 second fast-selected and 480 second full-selected Bitbucket budgets.",
+      "Independent review returns no blocker, critical, or important correctness finding."
+    ]
+  },
+  "concurrency": {
+    "target_active_lanes": 1,
+    "maximum_active_lanes": 1,
+    "below_target_reason": "This is one cohesive operating-contract and validator change; portfolio parallelism comes from independent Product Increments."
+  },
+  "integration": {
+    "strategy": "direct_main",
+    "branch": "main",
+    "destination_branch": "main",
+    "owner": "Integration Branch Manager",
+    "independent_reviewer": "Product Increment Independent Reviewer",
+    "base_ref": "068db78e08bcd2424f27465001773ed3c6e43281",
+    "write_roots": [],
+    "economics_budget": {
+      "default_model_tier": "efficient-tier",
+      "allowed_model_tiers": [
+        "efficient-tier",
+        "advanced-tier"
+      ],
+      "max_elapsed_ms": 7200000,
+      "max_input_tokens": 300000,
+      "max_output_tokens": 50000,
+      "max_cost_usd": 30,
+      "max_retries": 1,
+      "max_corrections": 2,
+      "max_rework_cycles": 2
+    },
+    "leaf_ci_profile": "full",
+    "integration_ci_profile": "full",
+    "release_ci_profile": "strict",
+    "merge_order": [
+      "AFS-L1-DELIVERY-CONTROL"
+    ],
+    "integration_checks": [
+      "Run the Product Increment plan, portfolio, and workstation assignment regression suites.",
+      "Run the focused Product Increment documentation check and the fast framework documentation suite.",
+      "Prove fail-closed classifier behavior and a PR #454-equivalent 317-path fast selection without increasing the 20000 millisecond budget.",
+      "Obtain independent exact-scope implementation review before commit or push.",
+      "Confirm the branch is one coherent candidate and the portfolio reports its own active lane truthfully."
+    ],
+    "shared_path_owner": "Integration Branch Manager"
+  },
+  "lanes": [
+    {
+      "id": "AFS-L1-DELIVERY-CONTROL",
+      "title": "Product Increment delivery control and selector correction",
+      "result": "The harness has one executable, human-readable system for portfolio status, parallel lanes, dependencies, integration, proof depth, delivery credit, and scalable fail-closed documentation routing.",
+      "owner": "Framework Delivery Model Owner",
+      "technical_lead": "Chief Architect",
+      "branch_owner": "Coding Agent",
+      "independent_reviewer": "Independent Framework Implementation Reviewer",
+      "status": "in_progress",
+      "delivery_credit": "none",
+      "workstreams": [
+        "Harness operating model"
+      ],
+      "deliverables": [
+        "AFS-D-PRODUCT-INCREMENT-CONTRACT",
+        "AFS-D-PRODUCT-INCREMENT-VALIDATORS",
+        "AFS-D-WORKSTATION-LANE-BINDING",
+        "AFS-D-DOCS-SELECTOR-SCALABILITY-CORRECTION"
+      ],
+      "branch": "fix/docs-check-changed-surface-selector",
+      "base_sha": "068db78e08bcd2424f27465001773ed3c6e43281",
+      "destination_branch": "main",
+      "write_roots": [
+        "docs/reference/cli.md",
+        "docs/specs/afs-product-increment-delivery-control.product-increment.json",
+        "docs/specs/product-increment-portfolio.json",
+        "docs/start/tech-debt-register.md",
+        "scripts/check-doc-examples.sh",
+        "scripts/check-product-increment-portfolio.test.mjs",
+        "scripts/product-increment-path-safety.mjs",
+        "scripts/product-increment-path-safety.test.mjs"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "node scripts/product-increment-path-safety.test.mjs",
+        "node scripts/check-product-increment-plan.test.mjs",
+        "node scripts/check-product-increment-portfolio.test.mjs",
+        "node --test --test-name-pattern='admission-smoke' scripts/check-nexus-workstreams.test.mjs",
+        "node scripts/check-product-increment-plan.mjs --plan docs/specs/afs-product-increment-delivery-control.product-increment.json --current-diff AFS-L1-DELIVERY-CONTROL --json",
+        "scripts/appfw framework docs-check --fast --subcheck product-increment-delivery --json",
+        "APPFW_DOCS_CHECK_FAST_BUDGET_MS=20000 scripts/appfw framework docs-check --fast --json --enforce-budget",
+        "git diff --check"
+      ],
+      "provides": [
+        {
+          "capability_id": "harness.product-increment-delivery-control",
+          "summary": "Executable portfolio, lane, dependency, router-maturity, integration, and delivery-credit governance.",
+          "state": "planned"
+        }
+      ]
+    }
+  ],
+  "lane_links": []
+}

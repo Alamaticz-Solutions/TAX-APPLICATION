@@ -1,0 +1,18 @@
+{
+  "schema": "appfw.pds_ix_recipe_registry_projection@1",
+  "authority": "PDS Health Design System",
+  "source_package": "@appfw/pds-ix-presentation-contract",
+  "source_version": "0.2.0",
+  "current_package_version": "0.2.0",
+  "reviewed_source_commit": "8e5b33119b84fa23eee1f1d3534481101afed2a9",
+  "integrated_source_commit": "1e919fafe783b68cef4abc65f99d585be482b4e7",
+  "integration_base_commit": "9ea26157a2bed29424e1052a909303985ba466bd",
+  "integration_relation": "history_preserving_cherry_pick_assembly",
+  "lineage_status": "reviewed_source_assembled",
+  "source_path": "appfw_ui/pds_health/ix-presentation-contract/registry/pds.ix.recipe-registry.v1.json",
+  "source_sha256": "ef182296762e424522febed024117006d2bfa499e048a07fc0199a70e5556e8f",
+  "projection_path": "appfw_runtime/contracts/pds_health/pds.ix.recipe-registry.v1.json",
+  "projection_sha256": "ef182296762e424522febed024117006d2bfa499e048a07fc0199a70e5556e8f",
+  "generated": true,
+  "hand_edit": "forbidden"
+}

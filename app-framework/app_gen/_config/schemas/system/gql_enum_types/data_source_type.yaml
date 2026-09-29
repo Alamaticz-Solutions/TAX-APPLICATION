@@ -1,0 +1,14 @@
+- name: DataSourceType
+  items:
+  - value: PostgreSQL
+  - value: MongoDB
+  - value: MsSqlServer
+  - value: FabricSqlAnalytics
+  - value: Snowflake
+  - value: Neo4j
+  - value: ServiceNow
+  - value: Workday
+  - value: Icims
+  - value: Salesforce
+  - value: Anaplan
+  - value: OracleFinancials

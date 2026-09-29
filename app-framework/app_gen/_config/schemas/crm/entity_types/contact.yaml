@@ -1,0 +1,69 @@
+- id: c0c00000-0000-4000-8000-000000000002
+  name: Contact
+  is_table: true
+  indexes:
+  - account_id
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: first_name
+    caption: First Name
+    is_required: true
+    data_type: String
+
+  - name: last_name
+    caption: Last Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: email
+    caption: Email
+    data_type: String
+
+  - name: phone
+    caption: Phone
+    data_type: String
+
+  - name: mobile
+    caption: Mobile
+    data_type: String
+
+  - name: title
+    caption: Title
+    data_type: String
+
+  - name: department
+    caption: Department
+    data_type: String
+
+  - name: mailing_street
+    caption: Mailing Street
+    data_type: String
+
+  - name: mailing_city
+    caption: Mailing City
+    data_type: String
+
+  - name: mailing_state
+    caption: Mailing State
+    data_type: String
+
+  - name: mailing_postal_code
+    caption: Mailing Postal Code
+    data_type: String
+
+  - name: mailing_country
+    caption: Mailing Country
+    data_type: String
+
+  - name: account_id
+    caption: Account
+    data_type: Uuid
+    foreign_key:
+      type_name: Account

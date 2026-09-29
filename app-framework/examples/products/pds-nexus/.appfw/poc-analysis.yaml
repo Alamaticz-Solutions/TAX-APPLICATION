@@ -1,0 +1,36 @@
+version: 1
+source_kind: poc
+source: poc
+product:
+  app_name: pds-nexus
+  display_name: 'PDS Nexus'
+  schema: denovo_workflow
+  provider: PostgreSQL
+  ui: enterprise
+detected_signals:
+  - structured_export
+model_clues:
+  candidate_entities:
+    - denovo_workflow_synthetic
+  candidate_properties:
+    []
+  candidate_routines:
+    []
+  frontend_views:
+    []
+open_questions:
+  - 'Which source columns are persisted entities versus report-only fields?'
+  - 'Which values are lookup/status enums and which are free text?'
+  - 'Which calculations belong in generated queries, custom methods, or frontend-only presentation?'
+  - 'What data classification applies to each candidate entity and property?'
+  - 'Which prototype screens become product routes, dashboards, forms, or grids?'
+recommendations:
+  - 'Review .appfw/poc-analysis.yaml before writing final .appfw/model.'
+  - 'Use source artifacts to propose entities, relationships, DTOs, lookups, dashboards, and forms.'
+  - 'Keep ambiguous fields as open questions instead of guessing regulated semantics.'
+  - 'Use CRM as an implementation reference only; do not copy CRM schema or UI residue.'
+candidate_model_plan:
+  write_final_config: false
+  source: target/appfw/product-analysis.json
+agent_contract:
+  next_step: 'Review this analysis, then draft .appfw/model from reviewed PoC evidence.'

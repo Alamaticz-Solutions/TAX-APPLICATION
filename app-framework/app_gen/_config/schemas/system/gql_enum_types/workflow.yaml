@@ -1,0 +1,7 @@
+
+- name: CrudEvent
+  items: 
+  - value: Create
+  - value: Read
+  - value: Update
+  - value: Delete

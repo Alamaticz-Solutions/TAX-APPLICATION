@@ -1,0 +1,17 @@
+{% macro print(entityType) %}
+{%- if entityType.is_table -%}{# standard methods apply to EntityTypes with tables/collections #}
+{%- if entityType.standard_methods %}{% set len = entityType.standard_methods | length %}{% else %}{% set len = -1 %}{% endif -%}
+{%- if len >= 0 %}  {# print declared standard methods, respecting empty array #}
+{%- for name in entityType.standard_methods %}
+    - {{ name }}
+{% endfor -%}
+{% else %}          {# default to all standard methods #}
+    - FindById
+    - GetAll
+    - Query
+    - Create
+    - Update
+    - Delete
+{% endif -%}
+{% endif -%}
+{% endmacro print %}

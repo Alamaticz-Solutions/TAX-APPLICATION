@@ -1,0 +1,124 @@
+schema_version: 1
+kind: nexus-pilot-contract
+status: local_model_backed_synthetic
+lane: W3-C/CH8
+product:
+  app_name: pds-nexus
+  display_name: PDS Nexus
+  schema: denovo_workflow
+source_evidence:
+  primary_fixture: .appfw/source-evidence/nexus-denovo-synthetic.json
+  provenance: synthetic
+  retained_in_workspace: true
+  external_paths_allowed: false
+  freshness_watermark: '2026-07-02T00:00:00Z'
+  lineage:
+    - stage: synthetic_fixture
+      evidence: .appfw/source-evidence/nexus-denovo-synthetic.json
+      trust_boundary: workspace_local
+    - stage: reviewed_projection_model
+      evidence: .appfw/model-proposal.yaml
+      trust_boundary: accepted_for_local_config
+    - stage: generated_contract_evidence
+      evidence: .appfw/target/appfw/artifacts.json
+      trust_boundary: generated_from_local_model
+  live_sources:
+    servicenow: absent_unit_a_required
+pilot_scope:
+  purpose: Prove the product-intake, least-privilege harness, read-only
+    De Novo tracker UX, and CH8 stalled-task chat/FlowGraph consumer wiring
+    against a reviewed synthetic source model before ServiceNow evidence exists.
+  task_shape:
+    total_tasks: 176
+    teams: 20
+    primary_tenant: tenant_a
+    sentinel_tenant: tenant_b
+    stalled_threshold_days: 5
+  ui_mode: read_only_tracker_plus_static_chat_flowgraph
+  write_mode: intent_preview_only
+  governed_write_execution: disabled
+chat_pilot:
+  mode: local_fixture_static
+  live_chat_module: disabled
+  answer_envelope: answer_envelope@1
+  reference_flow: what_tasks_are_stalled
+  consumer_wiring:
+    conversation_family:
+      - MessageThread
+      - MessageComposer
+      - StreamingText
+      - ToolCallStatus
+      - EntityRefCard
+      - CitationList
+      - ConfidenceSignal
+      - AgentTimeline
+      - FlowGraphShell
+    ambient_family:
+      - GeneratedViewShell
+      - RecommendationCard
+      - EvidenceSummary
+      - FreshnessIndicator
+      - AttentionMarker
+      - AiAttributionAffordance
+  retained_fixture:
+    chat_eval_scenario: app_gen/_config/chat_evals/nexus/stalled_tasks_basic.yaml
+    red_team_scenario: app_gen/_config/chat_evals/red_team/cross_tenant_leak_blocked.yaml
+  release_claims:
+    release_ready: false
+    reason: local fixture only; CH1-CH7 runtime/gateway/search live evidence and ServiceNow Unit A export are absent
+provisional_projection_model:
+  source_authority: synthetic_fixture_only
+  source_model_root: .appfw/model/schemas/denovo_workflow
+  source_model_status: accepted_for_local_config
+  reconciliation_required_before_live_targeting: true
+  entities:
+    - name: DeNovoTask
+      role: read_only_projection
+      caption_field: task_name
+      required_fields:
+        - id
+        - tenant
+        - task_name
+        - owner_team
+        - phase
+        - risk
+        - days_stalled
+        - freshness_watermark
+    - name: Workstream
+      role: read_only_projection
+      caption_field: name
+    - name: Team
+      role: read_only_projection
+      caption_field: name
+  relationships:
+    - from: DeNovoTask
+      kind: NavToOne
+      to: Workstream
+      evidence: phase/workstream grouping in synthetic tracker shape
+    - from: DeNovoTask
+      kind: NavToOne
+      to: Team
+      evidence: owner_team grouping in synthetic tracker shape
+agentic_ux_guardrails:
+  generated_views: allowed_from_resolved_refs
+  recommendations: preview_only_intent
+  write_confirmation: disabled_until_g1_evidence
+  ai_attribution_required: true
+  tenant_b_sentinel_exposure_allowed: false
+checks:
+  required_local:
+    - scripts/appfw product validate --json
+    - scripts/appfw product harness-check --json
+    - scripts/appfw product model-status --json
+    - scripts/appfw product chat-eval --json
+    - scripts/appfw product generate --check --json
+    - cd frontend && npm run appfw:check
+    - cd frontend && npm run typecheck
+  intentionally_not_claimed:
+    - ServiceNow live read certification
+    - governed write certification
+    - live AI gateway certification
+    - live chat streaming certification
+    - Unit A reconciled ServiceNow model source
+    - production-ready generated backend/database/API artifacts
+    - production tenant data access

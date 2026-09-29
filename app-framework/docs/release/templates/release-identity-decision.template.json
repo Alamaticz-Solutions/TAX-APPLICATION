@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "release_ready": false,
+  "template_only": true,
+  "release_authority": {
+    "owner": "TODO: release owner or team",
+    "approver": "TODO: legal/product/release approver",
+    "approved_at_utc": "TODO: YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "release": {
+    "git_tag": "TODO: vX.Y.Z",
+    "license_file": "TODO: LICENSE",
+    "release_notes": "TODO: target/appfw/release-notes/vX.Y.Z.md",
+    "release_notes_url": "TODO: https://approved-release-notes.example",
+    "distribution_artifacts": [
+      {
+        "name": "TODO: consumable artifact name",
+        "url": "TODO: https://artifact-repository.example/app-framework/vX.Y.Z",
+        "path": "TODO: target/appfw/distribution/app-framework-vX.Y.Z.tgz"
+      }
+    ]
+  }
+}

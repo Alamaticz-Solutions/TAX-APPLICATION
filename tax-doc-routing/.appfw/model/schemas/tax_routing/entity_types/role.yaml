@@ -1,0 +1,44 @@
+# Role — a named bundle of permissions. Tax Staff and Tax Admin are seed data (migration
+# 0002_rbac_seed_and_owner_fk), not code. See docs/architecture/rbac-design.md.
+
+- id: 1b6db378-9899-4829-87a6-4c9252984299
+  name: Role
+  is_table: true
+  facets:
+  - audited
+  constraints:
+  - uq_role_code UNIQUE (code)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+    # Stable key referenced by the seed migration and by services/authz. Never compared against
+    # in Rego or in frontend code — those consume resolved permissions, not role codes.
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    is_required: false
+    data_type: String
+
+  - name: is_system
+    caption: System Role
+    fragment: property-boolean-toggle-required
+    default_value: false
+    # Seeded roles (Tax Staff, Tax Admin); the admin UI refuses to delete these.
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true

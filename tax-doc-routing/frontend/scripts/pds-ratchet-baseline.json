@@ -1,0 +1,10 @@
+{
+  "note": "Lower-only ratchet. Regenerate with: node scripts/check-pds-ratchet.mjs --update",
+  "totals": {
+    "inlineStyle": 0,
+    "nativeControl": 0,
+    "hardColor": 0,
+    "legacyToken": 0
+  },
+  "files": {}
+}

@@ -1,0 +1,490 @@
+- id: c06d389f-3e0c-453a-9e51-79c3e212a612
+  schema_name: denovo_workflow
+  schema_id: 13736c87-be63-43fb-8de7-ceabffa70de6
+  pascal_1: DeNovoTask
+  pascal_n: DeNovoTasks
+  snake_1: de_novo_task
+  snake_n: de_novo_tasks
+  caption_1: De Novo Task
+  caption_n: De Novo Tasks
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - workstream_id
+  - team_id
+  - risk
+  - days_stalled
+  constraints: []
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.DeNovoTask
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+    write_posture: intent_preview_only
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: ddf9d72ab5515b4d
+    name: id
+    caption: Record Locator
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3c8b4604e8d8c249
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1514d156a2acb72b
+    name: task_name
+    caption: Task Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4fa5aa6a6c913cf
+    name: workstream_id
+    caption: Workstream
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: denovo_workflow
+      type_name: Workstream
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3d3ebf1d6973edc5
+    name: team_id
+    caption: Team
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: denovo_workflow
+      type_name: Team
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e82968ad7833d93d
+    name: owner_team
+    caption: Owner Team
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 297c0b669d25110c
+    name: phase
+    caption: Phase
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f7a1d1b8c1f7ba08
+    name: risk
+    caption: Risk
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bd177fbb54838bc4
+    name: days_stalled
+    caption: Days Stalled
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7942dc6208975688
+    name: freshness_watermark
+    caption: Freshness Watermark
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 88bcc12c59398fcf
+    name: workstream
+    caption: Workstream
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: denovo_workflow
+      type_name: DeNovoTask
+      prop_name: workstream_id
+      filter: null
+      resolved:
+        schema_name: denovo_workflow
+        type_name: Workstream
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: denovo_task_workstream
+        kind: OneToMany
+        source_schema: denovo_workflow
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 91c771af3fc4f96f
+    name: team
+    caption: Team
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: denovo_workflow
+      type_name: DeNovoTask
+      prop_name: team_id
+      filter: null
+      resolved:
+        schema_name: denovo_workflow
+        type_name: Team
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: denovo_task_team
+        kind: OneToMany
+        source_schema: denovo_workflow
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 5dcd2314-5fe3-406a-a433-450f4b480c2d
+  schema_name: denovo_workflow
+  schema_id: 13736c87-be63-43fb-8de7-ceabffa70de6
+  pascal_1: Team
+  pascal_n: Teams
+  snake_1: team
+  snake_n: teams
+  caption_1: Team
+  caption_n: Teams
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - name
+  constraints: []
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.Team
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 396d28e8859470c5
+    name: id
+    caption: Team ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bbbf761f074a5bca
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c58466177aa60847
+    name: name
+    caption: Team Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1f1aff602007729b
+    name: tasks
+    caption: Tasks
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: denovo_workflow
+      type_name: DeNovoTask
+      prop_name: team_id
+      filter: null
+      resolved:
+        schema_name: denovo_workflow
+        type_name: DeNovoTask
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: denovo_task_team
+        kind: OneToMany
+        source_schema: denovo_workflow
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 9fc0d56f-4669-4d10-99ee-959fd016c986
+  schema_name: denovo_workflow
+  schema_id: 13736c87-be63-43fb-8de7-ceabffa70de6
+  pascal_1: Workstream
+  pascal_n: Workstreams
+  snake_1: workstream
+  snake_n: workstreams
+  caption_1: Workstream
+  caption_n: Workstreams
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes:
+  - tenant
+  - name
+  constraints: []
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.Workstream
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  custom_methods: null
+  props:
+  - id: 78a0ad64a61090c6
+    name: id
+    caption: Workstream ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 43c7eb374e63dc4b
+    name: tenant
+    caption: Tenant
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 685b16f0085d2b98
+    name: name
+    caption: Workstream Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ddbc04cb76ad8fe3
+    name: tasks
+    caption: Tasks
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: denovo_workflow
+      type_name: DeNovoTask
+      prop_name: workstream_id
+      filter: null
+      resolved:
+        schema_name: denovo_workflow
+        type_name: DeNovoTask
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: denovo_task_workstream
+        kind: OneToMany
+        source_schema: denovo_workflow
+        cardinality: Many
+        storage_path: InverseForeignKey

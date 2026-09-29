@@ -1,0 +1,335 @@
+image: rust:1.95-bookworm
+
+options:
+  max-time: 120
+
+definitions:
+  caches:
+    cargo-registry: /usr/local/cargo/registry
+    cargo-git: /usr/local/cargo/git
+    # Installed tool binaries (cargo-audit, cargo-deny) so supply-chain-gate.sh's
+    # `cargo install --locked` calls skip recompiling them from source every run.
+    cargo-tools: /usr/local/cargo/bin
+    # Compiled Rust build artifacts only. Do not cache all of `target/` because
+    # retained CI/release evidence lives under target/appfw and must be produced
+    # fresh for the current commit/pipeline, not restored from a stale cache.
+    # Note: Bitbucket caches are soft-capped around 1GB compressed; if this
+    # cache stops being uploaded (check step logs), switch to sccache with a
+    # remote/shared backend instead of a raw target/ cache.
+    cargo-target: target/cargo
+    release-backend-target: target/ci-crm-backend
+  services:
+    postgres:
+      image: postgres:14
+      variables:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: app_framework
+    mongo:
+      image: mongo:7
+      variables:
+        MONGO_INITDB_ROOT_USERNAME: mongo
+        MONGO_INITDB_ROOT_PASSWORD: mongo
+    mssql:
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      memory: 3072
+      variables:
+        ACCEPT_EULA: "Y"
+        MSSQL_SA_PASSWORD: "YourStrong!Passw0rd"
+        MSSQL_PID: Developer
+    snowflake:
+      image: localstack/snowflake:stable
+      memory: 2048
+      variables:
+        # Secured CI variable required by scripts/ci/bitbucket-release-gate.sh.
+        LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
+        SF_DEFAULT_USER: test
+        SF_DEFAULT_PASSWORD: test
+  steps:
+    - step: &pr-preflight
+        name: PR preflight
+        # Runner deadline is 240s. This five-minute step backstop also bounds a
+        # one-time rustfmt component bootstrap in the cache-free container.
+        max-time: 5
+        script:
+          - |
+            # The preceding release-lite guard uses python3 in the same declared
+            # image, so reaching this step proves the image capability. Keep an
+            # explicit check here so an image regression fails clearly.
+            command -v python3 >/dev/null
+            python3 --version
+            # rust:bookworm may use rustup's minimal profile. Bound a component
+            # install attempt, then let the runner classify any remaining tool
+            # absence as infrastructure and still finalize its evidence.
+            rustfmt_probe_status=0
+            if command -v timeout >/dev/null 2>&1; then
+              timeout --kill-after=2s 3s cargo fmt --version >/dev/null 2>&1 || rustfmt_probe_status=$?
+            else
+              rustfmt_probe_status=127
+            fi
+            if [ "$rustfmt_probe_status" -ne 0 ]; then
+              printf 'rustfmt probe status: %s\n' "$rustfmt_probe_status"
+              rustfmt_bootstrap_status=0
+              if command -v timeout >/dev/null 2>&1 && command -v rustup >/dev/null 2>&1; then
+                timeout --kill-after=2s 45s rustup component add rustfmt || rustfmt_bootstrap_status=$?
+              else
+                rustfmt_bootstrap_status=127
+              fi
+              printf 'rustfmt bootstrap status: %s\n' "$rustfmt_bootstrap_status"
+            fi
+            python3 scripts/ci/pr-preflight.py --deadline-seconds 240
+        artifacts:
+          download: false
+          upload:
+            - name: pr-preflight-evidence
+              # No downstream step consumes this producer evidence. Scoped
+              # prevents automatic cross-step download while keeping review
+              # and native JUnit evidence available from this step.
+              type: scoped
+              capture-on: always
+              paths:
+                - target/appfw/pr-preflight-change-impact.json
+                - target/appfw/pr-preflight.json
+                - target/appfw/pr-preflight-progress.jsonl
+                - target/appfw/pr-preflight-manifest.json
+                - target/appfw/pr-preflight-logs/*.log
+                - test-results/pr-preflight.xml
+    - step: &fast-framework-check
+        name: Fast framework check
+        caches:
+          - cargo-registry
+          - cargo-git
+          - cargo-target
+        script:
+          # Shared with local pre-push: scripts/ci/pr-fast-framework-check.sh
+          # is the only place that lists the Fast framework check commands.
+          - export CARGO_TARGET_DIR=target/cargo
+          - export APPFW_RELEASE_TOOL_DIR=target/appfw-tools
+          - bash scripts/ci/pr-fast-framework-check.sh --ci-bootstrap
+        artifacts:
+          download: false
+          upload:
+            - name: pr-fast-evidence
+              type: shared
+              paths:
+                - target/appfw/pr-fast-evidence-manifest.json
+                - target/appfw/pr-fast-evidence/**
+              capture-on: always
+    - step: &supply-chain-gate
+        name: Supply chain & lint gate
+        caches:
+          - cargo-registry
+          - cargo-git
+          - cargo-tools
+          - cargo-target
+        script:
+          # fmt + clippy + cargo audit (RUSTSEC) + cargo deny + PHI/PII log lint.
+          # Installs cargo-audit / cargo-deny on the image (see script).
+          - export CARGO_TARGET_DIR=target/cargo
+          - export APPFW_RELEASE_TOOL_DIR=target/appfw-tools
+          - bash scripts/ci/prepare-appfw-evidence-root.sh
+          - bash scripts/ci/supply-chain-gate.sh
+        artifacts:
+          download: false
+          paths:
+            - target/appfw/**
+    - step: &secret-scan
+        name: Secret scan
+        clone:
+          # Full history so gitleaks can scan past commits, not just the tip.
+          depth: full
+        script:
+          - export APPFW_RELEASE_TOOL_DIR=target/appfw-tools
+          - bash scripts/ci/prepare-appfw-evidence-root.sh
+          - bash scripts/ci/secret-scan.sh
+          - APPFW_RELEASE_ARTIFACT_DIR=target/appfw/local-fixture bash scripts/ci/release-evidence-check.sh --local-fixture
+        artifacts:
+          download: false
+          paths:
+            - target/appfw/**
+    - step: &release-lite-guard
+        name: PR release-lite guard
+        max-time: 5
+        script:
+          # Sensitive provider/runtime/security PRs require secured pipeline
+          # variables with current release-lite evidence. Do not carry checked-in
+          # fallback approvals; the guard writes a missing-field artifact when
+          # the variables are absent.
+          - APPFW_PR_REMOTE_GIT_TIMEOUT_SECONDS=240 bash scripts/ci/release-lite-guard.sh
+        artifacts:
+          download: false
+          upload:
+            - name: pr-release-lite-opening-evidence
+              type: scoped
+              capture-on: always
+              paths:
+                - target/appfw/release-lite-guard.json
+    - step: &release-lite-closing-guard
+        name: PR closing release-lite and destination freshness guard
+        max-time: 5
+        script:
+          - APPFW_PR_REMOTE_GIT_TIMEOUT_SECONDS=120 bash scripts/ci/release-lite-guard.sh
+          # Bitbucket does not automatically rerun an active PR pipeline when
+          # the destination advances. Reject stale green evidence after every
+          # long producer has finished.
+          - APPFW_PR_REMOTE_GIT_TIMEOUT_SECONDS=120 python3 scripts/ci/pr-destination-freshness.py
+        artifacts:
+          download: false
+          upload:
+            - name: pr-release-lite-closing-evidence
+              type: scoped
+              capture-on: always
+              paths:
+                - target/appfw/release-lite-guard.json
+                - target/appfw/pr-destination-freshness.json
+    - step: &release-gate
+        name: Release gate
+        clone:
+          # Full history so docs-check's Product Increment evidence-reachability
+          # check can resolve durable git-SHA evidence that is older than the
+          # default shallow-clone window (matches the secret-scan step's need).
+          depth: full
+        size: 4x
+        caches:
+          - cargo-registry
+          - cargo-git
+          - cargo-target
+          - release-backend-target
+        services:
+          - postgres
+          - mongo
+          - mssql
+          - snowflake
+        script:
+          - export CARGO_TARGET_DIR=target/cargo
+          - export APPFW_RELEASE_TOOL_DIR=target/appfw-tools
+          - bash scripts/ci/bitbucket-release-gate.sh
+        artifacts:
+          - target/appfw/**
+          - api_tests/target/provider-parity.json
+          - api_tests/target/provider-test-*.log
+    - step: &publish-proget
+        name: Publish to ProGet
+        # A human reviews the retained release-gate evidence, then presses the
+        # button. The deployment environment scopes who may run this step and
+        # where the ProGet credentials live.
+        trigger: manual
+        deployment: production
+        size: 2x
+        caches:
+          - cargo-registry
+          - cargo-git
+          - cargo-target
+        script:
+          # This step consumes the release-gate evidence artifact; it must NOT
+          # run prepare-appfw-evidence-root.sh (that would wipe target/appfw).
+          - export CARGO_TARGET_DIR=target/cargo
+          # ProGet artifacts always ship optimized release binaries.
+          - export APPFW_PACKAGE_PROFILE=release
+          - export PROGET_SERVER="${PROGET_SERVER:-$ProgetServer}"
+          - export PROGET_API_KEY="${PROGET_API_KEY:-$ProgetApiKey}"
+          - bash scripts/ci/proget-publish.sh
+        artifacts:
+          - target/appfw/proget-publish.json
+          - target/appfw/proget-publish-package.log
+          - target/appfw/proget/app-framework-proget-manifest.json
+    - step: &release-gate-focused
+        name: Release gate (focused evidence)
+        clone:
+          # Full history so docs-check's Product Increment evidence-reachability
+          # check can resolve durable git-SHA evidence that is older than the
+          # default shallow-clone window (matches the secret-scan step's need).
+          depth: full
+        size: 4x
+        caches:
+          - cargo-registry
+          - cargo-git
+          - cargo-target
+          - release-backend-target
+        services:
+          - postgres
+          - mongo
+          - mssql
+          - snowflake
+        script:
+          - |
+            export CARGO_TARGET_DIR=target/cargo
+            export APPFW_RELEASE_TOOL_DIR=target/appfw-tools
+            export APPFW_RELEASE_REQUIRE_SECURITY_ASSURANCE_DECISION=false
+            export APPFW_RELEASE_REQUIRE_PRODUCTION_ATTESTATIONS=false
+            export APPFW_RELEASE_REQUIRE_LIVE_OPS_EVIDENCE=false
+            export APPFW_RELEASE_REQUIRE_OPS_CERTIFICATION=false
+            export APPFW_RELEASE_REQUIRE_PDS_BASELINE_EVIDENCE=false
+            export APPFW_RELEASE_REQUIRE_RELEASE_IDENTITY=false
+            export APPFW_RELEASE_REQUIRE_PERFORMANCE_EVIDENCE=true
+            export APPFW_BITBUCKET_RELEASE_GATE_FOCUSED_EVIDENCE=true
+            bash scripts/ci/bitbucket-release-gate.sh
+        artifacts:
+          - target/appfw/**
+          - api_tests/target/provider-parity.json
+          - api_tests/target/provider-test-*.log
+
+pipelines:
+  pull-requests:
+    "**":
+      # Fail closed before spending the long PR gate path when sensitive
+      # changes are missing required release-lite approval evidence.
+      - step: *release-lite-guard
+      # The cache-free exact-SHA preflight returns cheap deterministic failures
+      # before any producer restores the multi-gigabyte Rust target cache.
+      - step: *pr-preflight
+      # Fast, supply-chain/lint, and secret scan are independent producers:
+      # each initializes or ignores inherited evidence, and none consumes
+      # another producer's output. Run them concurrently after preflight.
+      - parallel:
+          fail-fast: true
+          steps:
+            - step: *fast-framework-check
+            - step: *supply-chain-gate
+            - step: *secret-scan
+      # Keep the final guard after all retained PR evidence producers so merge
+      # readiness still has a current fail-closed release-lite artifact.
+      - step: *release-lite-closing-guard
+  branches:
+    main:
+      - parallel:
+          - step: *supply-chain-gate
+          - step: *secret-scan
+      # Main proves provider-backed CI readiness without claiming production
+      # release authority. Strict production evidence remains on v* tags.
+      - step: *release-gate-focused
+  tags:
+    "v*":
+      - parallel:
+          - step: *supply-chain-gate
+          - step: *secret-scan
+      - step: *release-gate
+      # Manual, evidence-gated ProGet publish; only the strict tag lane may
+      # publish stable versions (see scripts/ci/proget-publish.sh gates).
+      - step: *publish-proget
+  custom:
+    mssql-odbc-ntlm-e2e:
+      # Protocol-fidelity NTLM cert (in-process tds-mock + ntlm-auth) + ODBC sql_password e2e.
+      # Keep off the PR path until proven stable across consecutive runs; promote later.
+      - step:
+          name: MS-SQL ODBC NTLM e2e
+          size: 2x
+          caches:
+            - cargo-registry
+            - cargo-git
+            - cargo-target
+          services:
+            - mssql
+          script:
+            - export CARGO_TARGET_DIR=target/cargo
+            - bash scripts/ci/prepare-appfw-evidence-root.sh
+            - bash scripts/ci/mssql-odbc-ntlm-cert-step.sh
+          artifacts:
+            - target/appfw/**
+    release-check:
+      # Focused provider-backed evidence for PR approval and main-branch CI.
+      # Use the v* tag lane for strict production release authority.
+      - parallel:
+          - step: *supply-chain-gate
+          - step: *secret-scan
+      - step: *release-gate-focused

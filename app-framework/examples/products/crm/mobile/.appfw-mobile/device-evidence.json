@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "status": "not-run",
+  "static_scaffold_only": true,
+  "template_only": true,
+  "candidate_ready": false,
+  "release_ready": false,
+  "readiness_effect": "This compatibility-named input is diagnostic-only. A non-placeholder replacement may satisfy a legacy device-evidence condition, but it cannot establish candidate or release readiness. Candidate readiness belongs to the future source-bound mobile candidate checker, and release authority remains external.",
+  "verifier_contract": {
+    "authoritative": false,
+    "mobile_test_treats_placeholder_as_release_ready": false,
+    "successor": "source-bound-mobile-candidate-checker",
+    "legacy_diagnostic_requires": [
+      "non-placeholder simulator or physical-device smoke evidence",
+      "target platform, OS version, app build identifier, and runtime version",
+      "tested workflow matrix tied to governed-write and native-capability requirements"
+    ]
+  },
+  "replacement_evidence_schema": {
+    "status": "passed",
+    "legacy_condition_satisfied": true,
+    "candidate_ready": false,
+    "release_ready": false,
+    "template_only": false,
+    "required_fields": [
+      "platform",
+      "device_or_simulator",
+      "os_version",
+      "app_build_identifier",
+      "runtime_version",
+      "workflow_matrix",
+      "auth_tenant_policy_checks",
+      "request_or_correlation_id_observed",
+      "evidence_collected_by",
+      "evidence_collected_at"
+    ]
+  },
+  "future_candidate_checker_inputs": [
+    "ios simulator navigation smoke",
+    "android emulator navigation smoke",
+    "physical device evidence for push, biometrics, deep links, secure storage, and background behavior when enabled"
+  ],
+  "notes": [
+    "This file intentionally does not claim device certification.",
+    "It exists so mobile-test can retain the legacy diagnostic location while showing the current static-scaffold posture.",
+    "Even a fully populated replacement remains non-authoritative until evaluated by the future source-bound mobile candidate checker."
+  ]
+}

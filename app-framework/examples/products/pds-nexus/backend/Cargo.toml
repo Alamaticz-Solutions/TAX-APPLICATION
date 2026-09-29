@@ -1,0 +1,80 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+description = "PDS Nexus product backend"
+
+[features]
+default = ["http", "chat"]
+http = [
+    "appfw_runtime/http",
+    "dep:async-graphql-axum",
+    "dep:axum",
+    "dep:hyper",
+    "dep:http",
+    "dep:tower",
+    "dep:tower-http",
+]
+chat = ["http", "appfw_runtime/chat"]
+mcp = ["appfw_runtime/mcp"]
+kafka = ["appfw_runtime/kafka"]
+sync = ["appfw_runtime/sync"]
+
+[dependencies]
+anyhow = "1.0"
+appfw_runtime = { package = "appfw-runtime", path = "../../../../appfw_runtime", default-features = false }
+appfw_mssql_auth = { package = "appfw-mssql-auth", path = "../../../../appfw_mssql_auth" }
+appfw_provider_postgres = { package = "appfw-provider-postgres", path = "../../../../appfw_provider_postgres" }
+async-graphql = { version = "6", features = ["bson", "chrono", "dynamic-schema"] }
+async-graphql-value = "6"
+async-graphql-axum = { version = "6", optional = true }
+async-trait = "0.1"
+axum = { version = "0.6", features = ["macros"], optional = true }
+bson = "2.0"
+bytes = "1.7"
+chrono = { version = "0.4", features = ["clock", "serde"] }
+chrono-tz = "0.10"
+deadpool = "0.12"
+deadpool-postgres = "0.12"
+derivative = "2.2"
+dotenv = "0.15"
+futures = "0.3"
+futures-util = "0.3.27"
+governor = "0.10"
+hyper = { version = "1.0", optional = true }
+http = { version = "=1.1.0", optional = true }
+Inflector = "*"
+json = "0.12"
+opentelemetry = { version = "0.32", features = ["metrics", "trace"] }
+opentelemetry-otlp = { version = "0.32", default-features = false, features = ["http-proto", "metrics", "reqwest-blocking-client", "trace"] }
+opentelemetry_sdk = { version = "0.32", features = ["metrics", "rt-tokio", "trace"] }
+postgres-types = { version = "0.2", features = ["derive", "with-chrono-0_4"] }
+regorus = "0.2"
+regex = "1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+sha2 = "0.10"
+slab = "0.4.7"
+thiserror = "2.0.12"
+time = { version = "0.3", features = ["macros"] }
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0.4", features = ["util"], optional = true }
+tower-http = { version = "0.4", features = ["cors", "fs", "request-id", "trace"], optional = true }
+tokio-postgres = { version = "0.7", features = ["with-serde_json-1", "with-uuid-1", "with-chrono-0_4"] }
+tracing = "0.1"
+tracing-opentelemetry = "0.33"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1", features = ["serde", "v4"] }
+
+[dev-dependencies]
+base64 = "0.22"
+jsonwebtoken = "9.3.1"
+rand = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream"] }
+rsa = { version = "0.9", features = ["pem"] }
+
+[[bin]]
+name = "nexus_ix_server"
+path = "src/bin/nexus_ix_server.rs"
+required-features = ["chat"]

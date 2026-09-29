@@ -1,0 +1,9 @@
+[package]
+name = "appfw-provider-ai-search"
+version = "0.1.0"
+edition = "2021"
+description = "AI search provider contract skeleton for App Framework."
+publish = false
+
+[dependencies]
+appfw-saas-core = { path = "../appfw_saas_core" }

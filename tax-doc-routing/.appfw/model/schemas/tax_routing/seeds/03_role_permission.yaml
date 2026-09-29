@@ -1,0 +1,280 @@
+# The Standard-User / Administrator permission matrix, business spec section 2.2, as data.
+# Changing what a role may do is an edit to this file (+ a migration), never a code change.
+- entity_type: RolePermission
+  schema: tax_routing
+  columns: [id, role_id, permission_id, scope]
+  records:
+  - id: 80e27729-88ac-4c86-a81e-d38d7ceb8863
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: fb82caa4-e91b-48f8-b696-9c219f0e61ee
+    scope: all  # TAX_ADMIN routing_record.create
+  - id: dc38c9b4-59ad-45f8-88d5-88d741ac759f
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: a7b79a25-784f-4774-b8fa-85e25938c621
+    scope: all  # TAX_ADMIN routing_record.read
+  - id: 7e4b15ee-4159-4b8c-ba85-fee87b941cba
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: a986327f-425e-4428-a8d1-ab10b839eb49
+    scope: all  # TAX_ADMIN routing_record.update
+  - id: d0594304-a44e-44c9-a6f0-81e78db9fa1a
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 5d168548-6f91-4cd3-874e-8d123c31b26e
+    scope: all  # TAX_ADMIN routing_record.cancel
+  - id: 5349c4d8-d2f1-4fd8-99bf-f5daf383a83a
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: f398d344-3aa8-42cd-ba92-dae4f36ef697
+    scope: all  # TAX_ADMIN routing_record.reassign
+  - id: 697ed440-45bb-4e30-8883-f964bf082fed
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: b2ec1d44-3987-4c9c-9368-50ba0b93b43f
+    scope: all  # TAX_ADMIN routing_record.bulk_resolve
+  - id: a719b237-4225-4004-969f-b427482417b2
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 544ec284-5695-4594-ac63-43e6bf6c0470
+    scope: all  # TAX_ADMIN routing_record.view_assignee
+  - id: 1e77a532-46da-42f6-945c-f5674689cb15
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 8a484471-1290-4ace-b1a9-17dd00ea2b92
+    scope: all  # TAX_ADMIN tax_document.create
+  - id: 7d2d5658-10ee-4c3d-b2ff-740652e21398
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17
+    scope: all  # TAX_ADMIN tax_document.read
+  - id: 1279c1d7-b6e5-42ce-824f-2763e8795552
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 9c277bb6-69b0-4872-a2a7-93294bf3c41d
+    scope: all  # TAX_ADMIN tax_document.update
+  - id: 3584d37c-80e7-4901-b046-41ea9f9e76a3
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 30ec3a74-77dd-48a6-8ab7-2cedcb8307ec
+    scope: all  # TAX_ADMIN tax_document.delete
+  - id: 575463d5-93c9-49e4-8a8b-0a5cea0eb023
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 452c8f59-c9b5-4249-8730-e5a9e33b745c
+    scope: all  # TAX_ADMIN exception_task.read
+  - id: 7c83bcac-4639-4995-ac3d-d1f5ded6a216
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: fbd5468c-7472-44be-9a00-2eace8bd633f
+    scope: all  # TAX_ADMIN exception_task.create
+  - id: c3d3aad9-061d-4651-8756-4e5ea43e7d2e
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 61578bb1-f74d-450b-9464-407f3361592c
+    scope: all  # TAX_ADMIN exception_task.update
+  - id: 27252370-af69-46d2-bc56-1f63b2879bf5
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 3c3c96d7-279b-4de9-8577-c4b4071368b2
+    scope: all  # TAX_ADMIN document_type_route.read
+  - id: 11d11e31-cc4b-431e-9a19-827b3d976b85
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 183a5aac-366a-417e-a9f1-654b37cf2c8b
+    scope: all  # TAX_ADMIN document_type_route.create
+  - id: 49f2455b-aa19-42e2-b75e-341a963882b5
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: cfd793f5-629b-4fac-aa12-c1acd2da4317
+    scope: all  # TAX_ADMIN document_type_route.update
+  - id: ba8d1e1e-232d-44f8-a5fd-aa58fbe61708
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 594b0e06-c18a-4243-87cf-f03669b489d8
+    scope: all  # TAX_ADMIN document_type_route.delete
+  - id: a4c19977-6f0a-4667-96ed-f5fb809e0694
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: b8acb30f-d62a-48e7-af39-e6b67e4b2591
+    scope: all  # TAX_ADMIN tax_payer_ref_data.read
+  - id: adeafcff-af58-41d8-974c-749c91900de0
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 9adbac11-9eca-4073-8d52-c061578d7379
+    scope: all  # TAX_ADMIN tax_payer_ref_data.create
+  - id: fefd754b-da98-4107-9ee3-67c1e3a4e4cb
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 74e0a938-72cc-4132-a819-acebdf2cb350
+    scope: all  # TAX_ADMIN tax_payer_ref_data.update
+  - id: a5043549-0625-45c6-bf03-eb883ba8097f
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 59fa9713-2d31-415b-a69b-a1f577fcb873
+    scope: all  # TAX_ADMIN tax_payer_ref_data.delete
+  - id: f2a4e657-c4f6-4327-8406-e66bf806f7b0
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: d62e8989-88c1-44bf-8e4a-64beb3a03494
+    scope: all  # TAX_ADMIN tax_entity_list.read
+  - id: 1dfec2e2-9edc-441a-8688-0d4701533a1b
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 1116500f-69bb-41dc-9a91-e24374124800
+    scope: all  # TAX_ADMIN tax_entity_list.create
+  - id: f765a736-dc7f-46fc-be41-7037e91dc686
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: cf729421-4776-4801-b1f9-7c54cba90b83
+    scope: all  # TAX_ADMIN tax_entity_list.update
+  - id: 01a2b1dd-88b8-4414-8d00-116aad92b40e
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 33fa821c-2e45-42a4-b6e7-105eb7281086
+    scope: all  # TAX_ADMIN tax_entity_list.delete
+  - id: 452913e0-65a2-49ff-9e6e-06665e35a469
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 9b98555c-7a7f-449a-abef-d70a5a636cd0
+    scope: all  # TAX_ADMIN tax_routing_record_audit.read
+  - id: 692152dd-1894-4dc8-9042-85d80626a7cb
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 4b4d59eb-a2ee-4916-aeeb-508dedc18ad3
+    scope: all  # TAX_ADMIN tax_document_audit.read
+  - id: 708b5e85-6484-4560-956a-efce5700f3ff
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: d8d5ee86-9bb9-4220-b8d9-6d9d241131d1
+    scope: all  # TAX_ADMIN tax_payer_ref_data_audit.read
+  - id: b341e10c-1fe1-4baa-9125-1211445c65aa
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: e5ef01ca-db19-42df-a3ca-495a43f10e8b
+    scope: all  # TAX_ADMIN exception_task_audit.read
+  - id: f48e17db-9c2c-4960-a2a4-e5e7a028e7e4
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 5cb154cf-e83b-46c4-ad1c-cdbb0dc46bd1
+    scope: all  # TAX_ADMIN rbac.manage
+  - id: b1bbac87-5026-4096-a9ec-e1a389e7d445
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: fb82caa4-e91b-48f8-b696-9c219f0e61ee
+    scope: all  # TAX_STAFF routing_record.create
+  - id: 99872eb3-c074-4305-9ef2-8bef42de645d
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: a7b79a25-784f-4774-b8fa-85e25938c621
+    scope: own  # TAX_STAFF routing_record.read
+  - id: 1f331ac3-3ff9-4006-8721-4ae19aca207d
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: a986327f-425e-4428-a8d1-ab10b839eb49
+    scope: own  # TAX_STAFF routing_record.update
+  - id: 2d7a34d2-d7e2-467a-8897-80fff3bfa5bc
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: b2ec1d44-3987-4c9c-9368-50ba0b93b43f
+    scope: all  # TAX_STAFF routing_record.bulk_resolve
+  - id: 867f0f5b-21cb-4871-a2db-5fad9ae40b49
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 8a484471-1290-4ace-b1a9-17dd00ea2b92
+    scope: all  # TAX_STAFF tax_document.create
+  - id: 7449bc0e-39c6-4bf2-b190-701fa6da6595
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17
+    scope: own  # TAX_STAFF tax_document.read
+  - id: 8bd0dcd4-fba5-4281-953b-827ee96b7c21
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 9c277bb6-69b0-4872-a2a7-93294bf3c41d
+    scope: own  # TAX_STAFF tax_document.update
+  - id: 80fc1f5e-6b7d-4718-b72c-7db12cf6ed62
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 30ec3a74-77dd-48a6-8ab7-2cedcb8307ec
+    scope: own  # TAX_STAFF tax_document.delete
+  - id: 53647ba6-09b7-43f9-bacc-4539cc559aee
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 452c8f59-c9b5-4249-8730-e5a9e33b745c
+    scope: all  # TAX_STAFF exception_task.read
+  - id: 6631c947-c621-4e41-8103-1b40368c88bd
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: fbd5468c-7472-44be-9a00-2eace8bd633f
+    scope: all  # TAX_STAFF exception_task.create
+  - id: 24bff196-c62b-4fad-80a3-7e5d57be7a7c
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 61578bb1-f74d-450b-9464-407f3361592c
+    scope: own  # TAX_STAFF exception_task.update
+  - id: 454e2e0e-8f2e-4347-9078-9e4778da0e50
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 3c3c96d7-279b-4de9-8577-c4b4071368b2
+    scope: all  # TAX_STAFF document_type_route.read
+  - id: 170726ac-3515-41ef-96ad-4d6eeba61d9c
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: b8acb30f-d62a-48e7-af39-e6b67e4b2591
+    scope: active_only  # TAX_STAFF tax_payer_ref_data.read
+  - id: 2356007e-bf0e-483a-965e-9f08cd5956ae
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: d62e8989-88c1-44bf-8e4a-64beb3a03494
+    scope: active_only  # TAX_STAFF tax_entity_list.read
+
+  # RBAC self-management grants (see 02_permission.yaml).
+  - id: ea96e6cf-c3d5-40d9-9f70-a7cf809766f0
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 5524636a-fd77-42ea-81cc-c941015e8750
+    scope: all  # TAX_ADMIN app_user.read
+  - id: 7cfe2472-b1d0-4632-9fdc-6c2012bae595
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: ba06aa0b-1ab0-4cc4-a7f1-ee8ad68a1fc4
+    scope: all  # TAX_ADMIN app_user.create
+  - id: 4bf7bd12-b5a2-4e28-bc18-77cbe8b77d35
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: feb541e4-3c05-4e73-ae6f-ee3d8f3ebbf4
+    scope: all  # TAX_ADMIN app_user.update
+  - id: 1425fa57-487d-4c64-9caf-ff1dedb0dbf1
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: b717a3a3-68b4-4337-84b7-c4a406b4b043
+    scope: all  # TAX_ADMIN app_user.delete
+  - id: 6d764a8b-43e3-4e36-b618-ebadf25a3806
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: cea7c1af-ae9b-4d99-baf3-0a44359e27a3
+    scope: all  # TAX_ADMIN role.read
+  - id: 9cb24fa4-9bb3-48a6-b246-a75c7b642d25
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: ea4d76f0-8792-436f-ac89-ac0cfdfbd1d6
+    scope: all  # TAX_ADMIN role.create
+  - id: 249792c5-c980-46be-9165-26b450c60e81
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: eac356f3-5bba-4086-ae2e-93d90707c5cb
+    scope: all  # TAX_ADMIN role.update
+  - id: d1f9ff44-5e33-4e4a-ad96-1cf70c41beef
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 3722542b-e4f6-4570-af2c-756a618509e5
+    scope: all  # TAX_ADMIN role.delete
+  - id: 25e0694a-4393-47cc-aa73-458ca24f3740
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 78ac37e5-5cac-42ca-9fc8-a731554099be
+    scope: all  # TAX_ADMIN permission.read
+  - id: 3e5b8445-fbae-45da-bb01-70515ddb72e8
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 7b362477-344e-42cf-ace7-ed7b72d0a77a
+    scope: all  # TAX_ADMIN role_permission.read
+  - id: 873c8897-c0b0-4c5b-a736-8ad874ea3af6
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: c82fd48f-3fe4-4852-be0c-9a4c9e6beb30
+    scope: all  # TAX_ADMIN role_permission.create
+  - id: 63e13bf7-7a6b-40d9-bb00-c9d583d47623
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 9b74b7d0-e4ae-4c57-941b-2b23e52fe65c
+    scope: all  # TAX_ADMIN role_permission.update
+  - id: 6c836243-1bc8-4849-8d3e-1d0cf7eadd9c
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 1d0de8f4-846b-434b-9f59-098f116159f1
+    scope: all  # TAX_ADMIN role_permission.delete
+  - id: 2211588f-6601-4968-9457-67dc4d12cbcb
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 781569b1-6eed-463e-8cef-6b3a785e1faf
+    scope: all  # TAX_ADMIN user_role.read
+  - id: fd6b1e9d-7e9f-4040-91f3-9d83563a5225
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: eca98571-56c4-469e-8cc6-157e7f728c34
+    scope: all  # TAX_ADMIN user_role.create
+  - id: 6ad96f0b-a466-4cb2-9c13-e80e5cf36623
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: bd9abc0a-8c89-4db2-9c53-f6470fe339fc
+    scope: all  # TAX_ADMIN user_role.update
+  - id: 203ab308-defa-4f05-902a-391424e09048
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 98cbfa99-2c8c-4a21-a0a6-9e9a786ad70e
+    scope: all  # TAX_ADMIN user_role.delete
+  - id: 62b24597-c79a-4a2c-bf64-47ebc630e296
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 5d247cb7-22d7-4ff8-a008-06d425dddda8
+    scope: all  # TAX_ADMIN app_user_audit.read
+  - id: 4a7f1b5a-47f1-43ac-9689-7ada00d9ff0e
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 2b4f2ce4-4ddf-4336-8953-1a36c1c52bf9
+    scope: all  # TAX_ADMIN role_audit.read
+  - id: d1ac33ab-4a6b-44ff-a9fb-cbfa8ea56d47
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 141ff7ed-e22b-47f7-87a1-61ace3a03e3a
+    scope: all  # TAX_ADMIN permission_audit.read
+  - id: ac5b3fdb-9c86-4d9d-b87e-209c7c26b431
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 495fa653-bc26-4837-b24e-7d0b86493ee6
+    scope: all  # TAX_ADMIN role_permission_audit.read
+  - id: 2171c83a-ac87-477b-849a-106954b5d64a
+    role_id: 95b5f46a-de62-463e-b822-d437ac2b28c7
+    permission_id: 33ecd0de-ffc7-4de3-9096-c4d78f2f39a5
+    scope: all  # TAX_ADMIN user_role_audit.read
+  - id: 5a8387b0-e9e6-4d4d-881f-40c2fe024891
+    role_id: 208a2102-a238-4e7c-b2d3-c279bf00f89e
+    permission_id: 5524636a-fd77-42ea-81cc-c941015e8750
+    scope: all  # TAX_STAFF app_user.read

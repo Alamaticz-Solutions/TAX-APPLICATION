@@ -1,0 +1,119 @@
+{% macro print(entityType, methodName) %}
+
+{%- if methodName == "FindById" %}
+pub async fn find_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue,
+  id: String
+) -> HandlerResult<Option<{{ entityType.pascal_1 }}Projection>>
+{
+  let res = data_access.find_item::<{{ entityType.pascal_1 }}Projection>(entity_type.clone(), selections, id, user).await?;
+  Ok(res)
+}
+{%- elif methodName == "GetAll" %}
+pub async fn get_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue
+) -> HandlerResult<Vec<{{ entityType.pascal_1 }}Projection>>
+{
+  let res = data_access.get_items::<{{ entityType.pascal_1 }}Projection>(entity_type.clone(), selections, None, user).await?;
+  Ok(res)
+}
+{%- elif methodName == "Query" %}
+pub async fn query_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue,
+  filter: Option<JsonValue>,
+  sort: Option<JsonValue>,
+  skip: i32,
+  limit: i32,
+  after: Option<String>,
+) -> HandlerResult<{{ entityType.pascal_1 }}QueryResult>
+{
+  let res = data_access.query_items::<{{ entityType.pascal_1 }}Projection>(entity_type.clone(), selections, filter, sort, skip, limit, after, user).await?;
+  let query_res = {{ entityType.pascal_1 }}QueryResult {
+    date_time: res.date_time,
+    request_duration: res.request_duration,
+    skip: res.skip,
+    limit: res.limit,
+    page_count: res.page_count,
+    page_index: res.page_index,
+    query_count: res.query_count,
+    next_cursor: res.next_cursor,
+    previous_cursor: res.previous_cursor,
+    items: res.items,
+  };
+  Ok(query_res)
+}
+// Generated aggregate handlers are public extension points even when a schema
+// does not currently route every entity aggregate through GraphQL.
+#[allow(dead_code)]
+pub async fn aggregate_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>,
+  filter: Option<JsonValue>,
+  group_by: Option<JsonValue>,
+  metrics: Option<JsonValue>,
+  having: Option<JsonValue>,
+  sort: Option<JsonValue>,
+  skip: i32,
+  limit: i32,
+) -> HandlerResult<AggregateResult>
+{
+  let res = data_access.aggregate_items(
+    entity_type.clone(),
+    filter,
+    group_by,
+    metrics,
+    having,
+    sort,
+    skip,
+    limit,
+    user,
+  ).await?;
+  Ok(res)
+}
+{%- elif methodName == "Create" %}
+pub async fn create_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue,
+  input: Input{{ entityType.pascal_1 }},
+) -> HandlerResult<{{ entityType.pascal_1 }}Projection>
+{
+  let res = data_access.create_item::<Input{{ entityType.pascal_1 }}, {{ entityType.pascal_1 }}Projection>(entity_type.clone(), selections, input, user).await?;
+  Ok(res)
+}
+{%- elif methodName == "Update" %}
+pub async fn update_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  selections: JsonValue,
+  input: Input{{ entityType.pascal_1 }},
+) -> HandlerResult<{{ entityType.pascal_1 }}Projection>
+{
+  let res = data_access.update_item::<Input{{ entityType.pascal_1 }}, {{ entityType.pascal_1 }}Projection>(entity_type.clone(), selections, input, user).await?;
+  Ok(res)
+}
+{%- elif methodName == "Delete" %}
+pub async fn delete_impl(
+  user: Option<UserAuth>,
+  data_access: &Arc<DataAccess>,
+  entity_type: &Arc<EntityType>, 
+  input: Input{{ entityType.pascal_1 }},
+) -> HandlerResult<i64>
+{
+  let res = data_access.delete_item::<Input{{ entityType.pascal_1 }}>(entity_type.clone(), input, user).await?;
+  Ok(res)
+}
+{%- endif %}
+{% endmacro print %}

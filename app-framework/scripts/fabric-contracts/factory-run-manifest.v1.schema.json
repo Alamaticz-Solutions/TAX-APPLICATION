@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/factory-run-manifest.v1.schema.json",
+  "title": "Factory run manifest: exact source, profile, commands, gates, runner/model/cost identity, review, result, and correlation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "run_id",
+    "assignment_ref",
+    "app_id",
+    "source",
+    "profile",
+    "commands",
+    "gates",
+    "runner",
+    "review",
+    "result",
+    "correlation_id",
+    "started_at",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "factory_run_manifest@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "run_id": { "$ref": "#/$defs/reference" },
+    "assignment_ref": { "$ref": "#/$defs/reference" },
+    "app_id": { "$ref": "#/$defs/appId" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repo_ref", "branch", "base_sha"],
+      "properties": {
+        "repo_ref": { "$ref": "#/$defs/reference" },
+        "branch": { "$ref": "#/$defs/reference" },
+        "base_sha": { "$ref": "#/$defs/gitSha" },
+        "result_sha": { "$ref": "#/$defs/gitSha" },
+        "lock_digest": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "profile": { "enum": ["accelerated", "candidate"] },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1, "maxLength": 500 }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executed", "deferred"],
+      "properties": {
+        "executed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["gate", "status"],
+            "properties": {
+              "gate": { "$ref": "#/$defs/reference" },
+              "status": { "enum": ["pass", "fail", "skipped"] }
+            }
+          }
+        },
+        "deferred": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["gate", "reason"],
+            "properties": {
+              "gate": { "$ref": "#/$defs/reference" },
+              "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+            }
+          }
+        }
+      }
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runner_id"],
+      "properties": {
+        "runner_id": { "$ref": "#/$defs/reference" },
+        "image_digest": { "$ref": "#/$defs/imageDigest" },
+        "model": { "$ref": "#/$defs/reference" },
+        "provider": { "$ref": "#/$defs/reference" },
+        "effort": { "enum": ["low", "medium", "high"] }
+      }
+    },
+    "artifact_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/reference" }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_tokens": { "type": "integer", "minimum": 0 },
+        "output_tokens": { "type": "integer", "minimum": 0 },
+        "amount": { "type": "number", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "measurement_source": { "$ref": "#/$defs/reference" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "route"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "route": { "enum": ["agent", "human"] },
+        "status": { "enum": ["pending", "go", "go_with_conditions", "no_go"] }
+      }
+    },
+    "result": { "enum": ["success", "failure", "escalated", "expired"] },
+    "correlation_id": { "$ref": "#/$defs/reference" },
+    "started_at": { "$ref": "#/$defs/timestamp" },
+    "finished_at": { "$ref": "#/$defs/timestamp" },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+    "imageDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

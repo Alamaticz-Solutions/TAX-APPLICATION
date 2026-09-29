@@ -1,0 +1,23 @@
+# ActivityParty - CDM applicationCommon-inspired activity participant coverage.
+
+- name: find_activity_party
+  description: find seeded activity party with NavToOne activity
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findActivityParty
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"ac71fa00-0000-4000-8000-100000000002"'
+    select: |
+      id,role,party_type,display_name,is_required,responded_status,activity { id,subject }
+  expect:
+    data:
+      id: 'ac71fa00-0000-4000-8000-100000000002'
+      role: 'Required Attendee'
+      party_type: 'Contact'
+      display_name: 'Maya Johnson'
+      is_required: true
+      responded_status: 'Accepted'

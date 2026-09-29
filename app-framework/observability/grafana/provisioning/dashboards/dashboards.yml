@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: App Framework
+    orgId: 1
+    folder: App Framework
+    type: file
+    disableDeletion: true
+    editable: false
+    options:
+      path: /etc/grafana/dashboards

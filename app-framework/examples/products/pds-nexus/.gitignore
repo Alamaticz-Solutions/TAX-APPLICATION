@@ -1,0 +1,14 @@
+.DS_Store
+.appfw/local.env
+Cargo.lock
+target/
+backend/target/
+database/target/
+api_tests/target/
+rego_test/target/
+frontend/node_modules/
+frontend/dist/
+backend/product_dist/
+frontend/playwright-report/
+frontend/test-results/
+*.log

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "profile": "product-intake",
+  "app_name": "tax-doc-routing",
+  "owners": [
+    {
+      "path": "src/generated/**",
+      "owner": "app-framework-generator",
+      "edit_policy": "regenerate, do not hand-edit"
+    },
+    {
+      "path": "src/**",
+      "owner": "product-frontend",
+      "edit_policy": "product-owned implementation"
+    },
+    {
+      "path": ".appfw-ui/**",
+      "owner": "app-framework",
+      "edit_policy": "update through framework scaffold upgrades"
+    }
+  ]
+}

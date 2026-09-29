@@ -1,0 +1,52 @@
+- id: 9407e110-0000-4000-8000-000000000006
+  name: QuoteLineItem
+  is_table: true
+  indexes:
+  - quote_id
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: quantity
+    caption: Quantity
+    is_required: true
+    data_type: Float64
+
+  - name: unit_price
+    caption: Unit Price
+    is_required: true
+    data_type: Float64
+
+  - name: discount
+    caption: Discount
+    data_type: Float64
+
+  - name: total_price
+    caption: Total Price
+    data_type: Float64
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    data_type: Int16
+
+  - name: quote_id
+    caption: Quote
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Quote
+
+  - name: product_id
+    caption: Product
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Product

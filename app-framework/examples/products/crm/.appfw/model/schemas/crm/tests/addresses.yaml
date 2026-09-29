@@ -1,0 +1,45 @@
+# Address - CDM applicationCommon-inspired child entity with account/contact ownership.
+
+- name: find_address
+  description: find seeded account address as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findAddress
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"add00000-0000-4000-8000-100000000001"'
+    select: |
+      id,name,address_type,city,state,country,is_primary,account { id,name }
+  expect:
+    data:
+      id: 'add00000-0000-4000-8000-100000000001'
+      name: 'Acme Dental Billing'
+      address_type: 'Billing'
+      city: 'San Francisco'
+      state: 'CA'
+      country: 'USA'
+      is_primary: true
+
+- name: find_contact_address
+  description: find seeded contact address as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findAddress
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"add00000-0000-4000-8000-100000000003"'
+    select: |
+      id,name,address_type,city,state,country,contact { id,first_name,last_name }
+  expect:
+    data:
+      id: 'add00000-0000-4000-8000-100000000003'
+      name: 'Maya Johnson Mailing'
+      address_type: 'Mailing'
+      city: 'Portland'
+      state: 'OR'

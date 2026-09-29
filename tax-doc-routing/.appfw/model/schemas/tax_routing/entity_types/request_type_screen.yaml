@@ -1,0 +1,42 @@
+# RequestTypeScreen — which screens belong to which request type, mandatory or not, in what
+# order. Direct analogue of project-governance's ProjectTypeActivity.
+# See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 1e88566b-d6da-4c72-aff5-ede2b26d188d
+  name: RequestTypeScreen
+  is_table: true
+  indexes:
+  - request_type_id
+  facets:
+  - audited
+  constraints:
+  - uq_request_type_screen UNIQUE (request_type_id, screen_id)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: request_type_id
+    caption: Request Type
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestType
+
+  - name: screen_id
+    caption: Screen
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestScreen
+
+  - name: is_mandatory
+    caption: Mandatory
+    fragment: property-boolean-toggle-required
+    default_value: true
+
+  - name: sort_order
+    caption: Sort Order
+    is_required: false
+    data_type: Int32

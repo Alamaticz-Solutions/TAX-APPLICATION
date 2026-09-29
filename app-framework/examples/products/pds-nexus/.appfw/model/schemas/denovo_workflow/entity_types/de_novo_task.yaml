@@ -1,0 +1,69 @@
+- id: c06d389f-3e0c-453a-9e51-79c3e212a612
+  name: DeNovoTask
+  is_table: true
+  indexes:
+  - tenant
+  - workstream_id
+  - team_id
+  - risk
+  - days_stalled
+  facets: []
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  meta:
+    classification: internal
+    projection_of: servicenow_denovo_projection.DeNovoTask
+    source_authority: synthetic_fixture_only
+    storage:
+      mode: read_only_projection
+    write_posture: intent_preview_only
+  props:
+
+  - name: id
+    caption: Record Locator
+    fragment: property-primary-key-string
+
+  - name: tenant
+    caption: Tenant
+    fragment: property-string-readonly-required
+
+  - name: task_name
+    caption: Task Name
+    fragment: property-string-caption
+    is_read_only: true
+
+  - name: workstream_id
+    caption: Workstream
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: Workstream
+
+  - name: team_id
+    caption: Team
+    fragment: property-string-readonly-required
+    foreign_key:
+      type_name: Team
+
+  - name: owner_team
+    caption: Owner Team
+    fragment: property-string-readonly-required
+
+  - name: phase
+    caption: Phase
+    fragment: property-string-readonly-required
+
+  - name: risk
+    caption: Risk
+    fragment: property-string-readonly-required
+
+  - name: days_stalled
+    caption: Days Stalled
+    fragment: property-int-md-required
+    is_read_only: true
+
+  - name: freshness_watermark
+    caption: Freshness Watermark
+    fragment: property-date-time-required
+    is_read_only: true

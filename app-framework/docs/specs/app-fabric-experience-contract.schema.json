@@ -1,0 +1,696 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:appfw:planning:app-fabric-experience-contract:v1",
+  "$comment": "Draft 2020-12 validation is necessary but not sufficient. A source-owned App Framework semantic checker must also enforce unique IDs, channel-disposition/projection consistency, action operation-reference membership, evidence-reference integrity, and replacement of the local prototype_app_ref by a registry-minted app_id only after an authoritative registration record exists.",
+  "title": "App Fabric Experience Contract",
+  "description": "Fail-closed Prototype planning contract for channel-neutral semantics projected into web, iOS, and Android. Candidate and qualified values require a future versioned schema and evidence; this schema confers no readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_id",
+    "contract_version",
+    "lifecycle_stage",
+    "maturity",
+    "candidate_ready",
+    "release_ready",
+    "release_authority",
+    "app_id",
+    "prototype_app_ref",
+    "prototype_identity_authority",
+    "source",
+    "renderer_profiles",
+    "journeys"
+  ],
+  "properties": {
+    "schema": {
+      "const": "app_fabric_experience_contract@1"
+    },
+    "contract_id": {
+      "$ref": "#/$defs/stableId"
+    },
+    "contract_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lifecycle_stage": {
+      "const": "prototype"
+    },
+    "maturity": {
+      "const": "experimental"
+    },
+    "candidate_ready": {
+      "const": false
+    },
+    "release_ready": {
+      "const": false
+    },
+    "release_authority": {
+      "const": "none"
+    },
+    "app_id": {
+      "type": "null",
+      "description": "Prototype planning fixtures are not registered. Only the Fabric registry may mint a non-null durable app_id under a future versioned contract."
+    },
+    "prototype_app_ref": {
+      "$ref": "#/$defs/stableId",
+      "description": "Namespaced local fixture identity only; never valid as fleet identity or an observation app_id."
+    },
+    "prototype_identity_authority": {
+      "const": "local-fixture-only"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_model_ref",
+        "manifest_ref",
+        "api_contract_ref",
+        "pds_contract_ref",
+        "source_sha"
+      ],
+      "properties": {
+        "product_model_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "api_contract_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pds_contract_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha": {
+          "type": "string",
+          "pattern": "^(TBD|[0-9a-f]{40,64})$"
+        }
+      }
+    },
+    "renderer_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "web-dom",
+        "native-ios",
+        "native-android"
+      ],
+      "properties": {
+        "web-dom": {
+          "$ref": "#/$defs/rendererProfile"
+        },
+        "native-ios": {
+          "$ref": "#/$defs/rendererProfile"
+        },
+        "native-android": {
+          "$ref": "#/$defs/rendererProfile"
+        }
+      }
+    },
+    "journeys": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/journey"
+      }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+    },
+    "sizeClass": {
+      "enum": [
+        "compact",
+        "medium",
+        "expanded"
+      ]
+    },
+    "projectionReadiness": {
+      "enum": [
+        "prototype",
+        "not-qualified",
+        "not-applicable"
+      ]
+    },
+    "rendererProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "readiness",
+        "size_classes",
+        "evidence_ref"
+      ],
+      "properties": {
+        "applicability": {
+          "enum": [
+            "supported",
+            "adapted",
+            "product-specific",
+            "not-applicable"
+          ]
+        },
+        "readiness": {
+          "$ref": "#/$defs/projectionReadiness"
+        },
+        "size_classes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/sizeClass"
+          }
+        },
+        "evidence_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "const": "not-applicable"
+              }
+            },
+            "required": [
+              "applicability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "readiness": {
+                "const": "not-applicable"
+              },
+              "size_classes": {
+                "maxItems": 0
+              },
+              "evidence_ref": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "readiness": {
+                "enum": [
+                  "prototype",
+                  "not-qualified"
+                ]
+              },
+              "size_classes": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "readiness": {
+                "const": "prototype"
+              }
+            },
+            "required": [
+              "readiness"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "projectionDisposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability",
+        "readiness",
+        "size_classes",
+        "evidence_ref"
+      ],
+      "properties": {
+        "applicability": {
+          "enum": [
+            "supported",
+            "adapted",
+            "product-specific",
+            "not-applicable"
+          ]
+        },
+        "readiness": {
+          "$ref": "#/$defs/projectionReadiness"
+        },
+        "size_classes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/sizeClass"
+          }
+        },
+        "evidence_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "intentional_differences": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "const": "not-applicable"
+              }
+            },
+            "required": [
+              "applicability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "readiness": {
+                "const": "not-applicable"
+              },
+              "size_classes": {
+                "maxItems": 0
+              },
+              "evidence_ref": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "readiness": {
+                "enum": [
+                  "prototype",
+                  "not-qualified"
+                ]
+              },
+              "size_classes": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "readiness": {
+                "const": "prototype"
+              }
+            },
+            "required": [
+              "readiness"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "journey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "purpose",
+        "outcome_owner_ref",
+        "service_owner_ref",
+        "channel_disposition",
+        "projections",
+        "tasks",
+        "resumption",
+        "data_policy",
+        "telemetry"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome_owner_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "service_owner_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "channel_disposition": {
+          "enum": [
+            "web-only",
+            "responsive-web",
+            "native-only",
+            "web-and-native",
+            "not-yet-qualified"
+          ]
+        },
+        "projections": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "web-dom",
+            "native-ios",
+            "native-android"
+          ],
+          "properties": {
+            "web-dom": {
+              "$ref": "#/$defs/projectionDisposition"
+            },
+            "native-ios": {
+              "$ref": "#/$defs/projectionDisposition"
+            },
+            "native-android": {
+              "$ref": "#/$defs/projectionDisposition"
+            }
+          }
+        },
+        "tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/task"
+          }
+        },
+        "resumption": {
+          "$ref": "#/$defs/resumption"
+        },
+        "data_policy": {
+          "$ref": "#/$defs/dataPolicy"
+        },
+        "telemetry": {
+          "$ref": "#/$defs/telemetry"
+        }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "intent",
+        "operation_refs",
+        "actions",
+        "required_states",
+        "accessibility"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        },
+        "required_states": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "loading",
+              "empty",
+              "partial",
+              "stale",
+              "offline",
+              "policy-denied",
+              "validation-error",
+              "expired-session",
+              "conflict",
+              "success",
+              "unexpected-error"
+            ]
+          }
+        },
+        "accessibility": {
+          "$ref": "#/$defs/accessibility"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "operation_ref",
+        "authorization_authority",
+        "external_write",
+        "requires_preview",
+        "requires_confirmation",
+        "requires_receipt"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "kind": {
+          "enum": [
+            "read",
+            "preview"
+          ]
+        },
+        "operation_ref": {
+          "$ref": "#/$defs/stableId"
+        },
+        "authorization_authority": {
+          "const": "server"
+        },
+        "external_write": {
+          "const": false
+        },
+        "requires_preview": {
+          "type": "boolean"
+        },
+        "requires_confirmation": {
+          "type": "boolean"
+        },
+        "requires_receipt": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "preview"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "requires_preview": {
+                "const": true
+              },
+              "requires_receipt": {
+                "const": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_role",
+        "reading_order",
+        "announcement_events",
+        "text_scale",
+        "reduced_motion"
+      ],
+      "properties": {
+        "semantic_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reading_order": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        },
+        "announcement_events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        },
+        "text_scale": {
+          "enum": [
+            "required",
+            "not-applicable"
+          ]
+        },
+        "reduced_motion": {
+          "enum": [
+            "required",
+            "not-applicable"
+          ]
+        }
+      }
+    },
+    "resumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checkpoint_id_field",
+        "route_ref_field",
+        "correlation_id_field",
+        "cross_renderer"
+      ],
+      "properties": {
+        "checkpoint_id_field": {
+          "$ref": "#/$defs/stableId"
+        },
+        "route_ref_field": {
+          "$ref": "#/$defs/stableId"
+        },
+        "correlation_id_field": {
+          "$ref": "#/$defs/stableId"
+        },
+        "cross_renderer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "dataPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prototype_data",
+        "classifications",
+        "fabric_registration_classification",
+        "offline_persistence",
+        "notification_payload",
+        "screenshot_policy",
+        "clipboard_policy"
+      ],
+      "properties": {
+        "prototype_data": {
+          "const": "synthetic-only"
+        },
+        "classifications": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "public",
+              "internal",
+              "confidential",
+              "restricted",
+              "secret",
+              "sensitive",
+              "phi",
+              "ephi"
+            ]
+          }
+        },
+        "fabric_registration_classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted",
+            "phi"
+          ],
+          "description": "Conservative projection into fabric_app_registration@1. The semantic checker enforces public->public, internal->internal, confidential->confidential, restricted/secret/sensitive->restricted, and phi/ephi->phi."
+        },
+        "offline_persistence": {
+          "const": "disabled"
+        },
+        "notification_payload": {
+          "const": "identifier-only"
+        },
+        "screenshot_policy": {
+          "enum": [
+            "redact-sensitive",
+            "blocked-where-supported"
+          ]
+        },
+        "clipboard_policy": {
+          "enum": [
+            "redact-sensitive",
+            "disabled"
+          ]
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "journey_event_prefix",
+        "request_id",
+        "correlation_id",
+        "sensitive_field_logging"
+      ],
+      "properties": {
+        "journey_event_prefix": {
+          "$ref": "#/$defs/stableId"
+        },
+        "request_id": {
+          "const": "required"
+        },
+        "correlation_id": {
+          "const": "required"
+        },
+        "sensitive_field_logging": {
+          "const": "prohibited"
+        }
+      }
+    }
+  }
+}

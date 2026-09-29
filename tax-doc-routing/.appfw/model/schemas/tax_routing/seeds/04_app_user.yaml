@@ -1,0 +1,49 @@
+# Bootstrap users for local development and demos. Production users are created through the
+# RBAC admin screen (permission rbac.manage), not by editing this file.
+#
+# `local` / `local-dev` matches the framework's built-in "no Authorization header = admin"
+# convenience for ENV_NAME=local (appfw_runtime/src/auth.rs::local_admin_user). Seeding this row
+# is what keeps that convenience working under database-driven RBAC: it resolves through the same
+# app_user/user_role/role_permission tables as everyone else, not a role-name special case.
+- entity_type: AppUser
+  schema: tax_routing
+  columns: [id, tenant_id, user_name, display_name, email, is_active]
+  records:
+  - id: 945fa771-0def-4f99-bd28-e77acec8014d
+    tenant_id: local
+    user_name: local-dev
+    display_name: Local Admin
+    email: null
+    is_active: true
+  - id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    tenant_id: t1
+    user_name: alex
+    display_name: Alex Morgan
+    email: alex.morgan@pds-demo.com
+    is_active: true
+  - id: 0cd4a062-d170-4f68-b4c7-d717c767c35b
+    tenant_id: t1
+    user_name: dana
+    display_name: Dana Whitfield
+    email: dana.whitfield@pds-demo.com
+    is_active: true
+  # Additional TAX_STAFF users so seeded routing records can show real assignment diversity in
+  # My Cases / All Cases (business spec 12.3), not just the two role-switcher identities.
+  - id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    tenant_id: t1
+    user_name: sarah
+    display_name: Sarah Wilson
+    email: sarah.wilson@pds-demo.com
+    is_active: true
+  - id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    tenant_id: t1
+    user_name: mike
+    display_name: Mike Chen
+    email: mike.chen@pds-demo.com
+    is_active: true
+  - id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    tenant_id: t1
+    user_name: lisa
+    display_name: Lisa Patel
+    email: lisa.patel@pds-demo.com
+    is_active: true

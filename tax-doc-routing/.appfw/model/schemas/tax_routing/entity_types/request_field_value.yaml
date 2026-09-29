@@ -1,0 +1,108 @@
+# RequestFieldValue — the field-store answer for a "storage_target = field_store" RequestField.
+# One row per (routing_record, tax_document?, field, item). Copied shape and constraints from
+# project-governance's field_value.yaml, which documents exactly why each rule exists (duplicate
+# answers under concurrent saves, a row claiming two value types at once). See
+# docs/architecture/dynamic-form-engine-design.md sections 3 and 7 — nothing seeded at launch uses
+# this table (every current field is still a real column), so it starts empty by design.
+#
+# THREE RULES THE DATABASE ENFORCES, copied from governance's field_value.yaml:
+#   1. One current answer per (routing_record, field, item). A partial unique index (not
+#      expressible in this model file) belongs in database/_pkg/migrations — add it before any
+#      real data exists in this table, exactly as governance's own file warns.
+#   2. No two saves claiming the same version number (uq_request_field_value_version).
+#   3. Exactly one value_* column filled (ck_request_field_value_exactly_one).
+
+- id: 61777e7f-bf4f-4227-9bf1-3bc463b5754b
+  name: RequestFieldValue
+  is_table: true
+  indexes:
+  - routing_record_id
+  - field_id
+  facets:
+  - audited
+  - concurrency
+  constraints:
+  - uq_request_field_value_version UNIQUE (routing_record_id, field_id, item_no, version_no)
+  - ck_request_field_value_exactly_one CHECK ((CASE WHEN value_text IS NULL THEN 0 ELSE 1 END) + (CASE WHEN value_number IS NULL THEN 0 ELSE 1 END) + (CASE WHEN value_date IS NULL THEN 0 ELSE 1 END) + (CASE WHEN value_bool IS NULL THEN 0 ELSE 1 END) + (CASE WHEN value_option_id IS NULL THEN 0 ELSE 1 END) + (CASE WHEN value_json IS NULL OR value_json = '{}'::jsonb THEN 0 ELSE 1 END) = 1)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: routing_record_id
+    caption: Routing Record
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: TaxRoutingRecord
+
+  - name: tax_document_id
+    caption: Tax Document
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: TaxDocument
+
+  - name: field_id
+    caption: Field
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestField
+
+  - name: submission_id
+    caption: Submission
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: RequestScreenSubmission
+
+  - name: item_no
+    caption: Item No
+    is_required: true
+    data_type: Int32
+    default_value: 0
+
+  - name: version_no
+    caption: Version No
+    is_required: true
+    data_type: Int32
+    default_value: 1
+
+  - name: is_current
+    caption: Current
+    fragment: property-boolean-toggle-required
+    default_value: true
+
+  - name: value_text
+    caption: Value (Text)
+    is_required: false
+    data_type: String
+
+  - name: value_number
+    caption: Value (Number)
+    is_required: false
+    data_type: Float64
+
+  - name: value_date
+    caption: Value (Date)
+    is_required: false
+    data_type: DateTime
+
+  - name: value_bool
+    caption: Value (Boolean)
+    is_required: false
+    data_type: Boolean
+
+  - name: value_option_id
+    caption: Value (Option)
+    is_required: false
+    data_type: Uuid
+    foreign_key:
+      type_name: FieldOptionValue
+
+  - name: value_json
+    caption: Value (JSON)
+    is_required: false
+    data_type: Json

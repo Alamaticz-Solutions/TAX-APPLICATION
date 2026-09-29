@@ -1,0 +1,683 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:appfw:planning:app-fabric-mobile-operating-context:v1",
+  "$comment": "This planning schema protects the durable machine-context shape and selected scalar fail-closed posture only. It does not enforce authority membership, cross-record identity, classification mapping, evidence binding, safe reference resolution, ownership disjointness, or referential integrity. A repo-owned semantic checker is required before any planning artifact becomes an executable generator, registry, auth, candidate, or release input.",
+  "title": "App Fabric Mobile Operating Context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "snapshot_id",
+    "as_of",
+    "contract",
+    "repository",
+    "review_history",
+    "lifecycle",
+    "authority",
+    "decisions",
+    "m0_artifacts",
+    "blockers",
+    "next_move",
+    "hard_stops",
+    "verification",
+    "role_card_check"
+  ],
+  "properties": {
+    "schema": {
+      "const": "app_fabric_mobile_operating_context@1"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^AF-MOBILE-OPERATING-CONTEXT-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_path",
+        "markdown_companion",
+        "sync_status"
+      ],
+      "properties": {
+        "schema_path": {
+          "const": "docs/start/app-fabric-mobile-operating-context.schema.json"
+        },
+        "markdown_companion": {
+          "const": "docs/start/app-fabric-mobile-operating-context.md"
+        },
+        "sync_status": {
+          "enum": [
+            "independently-reviewed",
+            "needs-review"
+          ]
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "planning_freeze",
+        "observed_destination",
+        "integration_refresh",
+        "planning_branch",
+        "implementation_branch",
+        "implementation_base_sha",
+        "clean_isolated_worktree_required",
+        "source_work_admitted",
+        "active_assignment"
+      ],
+      "properties": {
+        "planning_freeze": {
+          "$ref": "#/$defs/repositoryRef"
+        },
+        "observed_destination": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/repositoryRef"
+            },
+            {
+              "type": "object",
+              "required": [
+                "observed_on"
+              ],
+              "properties": {
+                "observed_on": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          ]
+        },
+        "integration_refresh": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "classification",
+            "merge_base_sha",
+            "overlap_paths",
+            "overlap_assessment",
+            "proof_status"
+          ],
+          "properties": {
+            "required": {
+              "const": true
+            },
+            "classification": {
+              "const": "Class D"
+            },
+            "merge_base_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "overlap_paths": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "overlap_assessment": {
+              "const": "disjoint_hunks_no_predicted_text_conflict"
+            },
+            "proof_status": {
+              "const": "not_destination_current_rerun_required"
+            }
+          }
+        },
+        "planning_branch": {
+          "const": "docs/app-fabric-mobile-m0"
+        },
+        "implementation_branch": {
+          "const": "fix/app-fabric-mobile-readiness-containment"
+        },
+        "implementation_base_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "clean_isolated_worktree_required": {
+          "const": true
+        },
+        "source_work_admitted": {
+          "const": true
+        },
+        "active_assignment": {
+          "$ref": "#/$defs/activeAssignment"
+        }
+      }
+    },
+    "review_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reviewRecord"
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "delivery_profile",
+        "maturity",
+        "candidate_ready",
+        "release_ready",
+        "release_authority"
+      ],
+      "properties": {
+        "stage": {
+          "const": "prototype_pre_candidate"
+        },
+        "delivery_profile": {
+          "const": "accelerated"
+        },
+        "maturity": {
+          "const": "experimental"
+        },
+        "candidate_ready": {
+          "const": false
+        },
+        "release_ready": {
+          "const": false
+        },
+        "release_authority": {
+          "const": "none"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "priority_posture",
+        "live_work_admission",
+        "integrated_plan",
+        "normative_mobile_contract",
+        "target_architecture",
+        "technical_plan",
+        "bok_commit",
+        "bok_posture",
+        "not_granted"
+      ],
+      "properties": {
+        "priority_posture": {
+          "const": "docs/release/roadmap.md"
+        },
+        "live_work_admission": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "integrated_plan": {
+          "const": "docs/release/app-fabric-master-implementation-plan.md"
+        },
+        "normative_mobile_contract": {
+          "const": "docs/specs/hosted-product-factory.md"
+        },
+        "target_architecture": {
+          "const": "docs/architecture/hosted-product-factory-architecture.md"
+        },
+        "technical_plan": {
+          "const": "docs/specs/app-fabric-mobile-ux-master-plan.md"
+        },
+        "bok_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "bok_posture": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "not_granted": {
+          "type": "array",
+          "minItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "$ref": "#/$defs/namedRecord"
+      }
+    },
+    "m0_artifacts": {
+      "type": "array",
+      "minItems": 9,
+      "items": {
+        "$ref": "#/$defs/artifactRecord"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "$ref": "#/$defs/blockerRecord"
+      }
+    },
+    "next_move": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "slice",
+        "status",
+        "objective",
+        "parallel_safe_move",
+        "follow_on",
+        "forbidden_shortcuts"
+      ],
+      "properties": {
+        "card": {
+          "const": "M0-05"
+        },
+        "slice": {
+          "const": "legacy_false_readiness_containment"
+        },
+        "status": {
+          "const": "go_with_conditions_pending_commit_and_integration"
+        },
+        "objective": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "parallel_safe_move": {
+          "$ref": "#/$defs/m002Move"
+        },
+        "follow_on": {
+          "$ref": "#/$defs/m101Move"
+        },
+        "forbidden_shortcuts": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        }
+      }
+    },
+    "hard_stops": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/stableId"
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "completed",
+        "declared_gaps"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "in_progress",
+            "passed_for_planning_with_declared_gaps",
+            "passed_for_implementation_pending_review",
+            "passed_for_feature_branch_commit_pending_integration"
+          ]
+        },
+        "completed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/checkRecord"
+          }
+        },
+        "declared_gaps": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        }
+      }
+    },
+    "role_card_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "within_role",
+        "authority_assumed",
+        "drift_signal"
+      ],
+      "properties": {
+        "card": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "within_role": {
+          "const": true
+        },
+        "authority_assumed": {
+          "const": false
+        },
+        "drift_signal": {
+          "enum": [
+            "watch",
+            "needs-correction"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "repositoryRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha"
+      ],
+      "properties": {
+        "ref": {
+          "const": "origin/main"
+        },
+        "sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "observed_on": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "reviewRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "review_kind",
+        "source_state",
+        "status",
+        "severity_counts",
+        "conditions_captured",
+        "resolution"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "review_kind": {
+          "const": "framework_pr_review_comprehensive"
+        },
+        "source_state": {
+          "$ref": "#/$defs/stableId"
+        },
+        "status": {
+          "enum": [
+            "GO",
+            "GO WITH CONDITIONS",
+            "NO-GO",
+            "DEFER"
+          ]
+        },
+        "severity_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "blockers",
+            "critical",
+            "important",
+            "should_address",
+            "nice_to_address"
+          ],
+          "properties": {
+            "blockers": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "important": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "should_address": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "nice_to_address": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "conditions_captured": {
+          "enum": [
+            "yes",
+            "not_applicable"
+          ]
+        },
+        "resolution": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "namedRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "status": {
+          "$ref": "#/$defs/stableId"
+        }
+      },
+      "additionalProperties": true
+    },
+    "artifactRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/stableId"
+        },
+        "path": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "paths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "path"
+          ]
+        },
+        {
+          "required": [
+            "paths"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "blockerRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "severity",
+        "detail"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "severity": {
+          "enum": [
+            "blocker",
+            "important"
+          ]
+        },
+        "detail": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/stableId"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "activeAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "status",
+        "admission_basis",
+        "producer_role",
+        "review_route",
+        "integration_disposition",
+        "write_roots",
+        "stop_rule"
+      ],
+      "properties": {
+        "card": {
+          "const": "M0-05"
+        },
+        "status": {
+          "const": "reviewed_go_with_conditions_pending_commit_and_integration"
+        },
+        "admission_basis": {
+          "const": "human_directed_accelerated_pre_candidate_containment"
+        },
+        "producer_role": {
+          "const": "Coding Agent"
+        },
+        "review_route": {
+          "const": "framework_pr_review_comprehensive_adversarial"
+        },
+        "integration_disposition": {
+          "const": "refresh_required_pending"
+        },
+        "write_roots": {
+          "type": "array",
+          "minItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "stop_rule": {
+          "const": "no_candidate_release_distribution_ota_store_or_broader_mobile_source_claim"
+        }
+      }
+    },
+    "m002Move": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "slice",
+        "objective",
+        "integration_condition"
+      ],
+      "properties": {
+        "card": {
+          "const": "M0-02"
+        },
+        "slice": {
+          "const": "red_real_schema_compatibility_harness"
+        },
+        "objective": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "integration_condition": {
+          "const": "M0-05 must be accepted before this result can be treated as authoritative mobile evidence"
+        }
+      }
+    },
+    "m101Move": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "slice",
+        "objective"
+      ],
+      "properties": {
+        "card": {
+          "const": "M1-01"
+        },
+        "slice": {
+          "const": "api_operation_transport"
+        },
+        "objective": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "checkRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/stableId"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "passed_with_observation"
+          ]
+        },
+        "detail": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    }
+  }
+}

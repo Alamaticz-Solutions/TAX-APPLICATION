@@ -1,0 +1,13 @@
+# Used by `docker build -f backend/Dockerfile` regardless of context location
+# (BuildKit honours <dockerfile>.dockerignore). The context is the PARENT of
+# this repo and the framework checkout — keep both trees' build junk out.
+**/target/
+**/node_modules/
+**/product_dist/
+**/admin_dist/
+**/.git/
+**/*.log
+**/logs/
+**/.env
+**/.appfw/target/
+**/.appfw/local.env

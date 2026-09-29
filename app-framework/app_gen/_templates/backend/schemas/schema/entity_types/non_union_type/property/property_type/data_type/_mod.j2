@@ -1,0 +1,10 @@
+{% macro print(objectKind, entityType, prop, entityTypes) -%}
+{{ prop | rust_type(objectKind=objectKind, entityType=entityType) }}
+{%- endmacro print %}
+
+{# 
+Date time related types from the chrono crate:
+    chrono::NaiveDate: Represents a date without a time zone.
+    NaiveDateTime: Represents a datetime without a time zone.
+    DateTime<Utc> or DateTime<Local>: Represents a datetime with a time zone. 
+#}

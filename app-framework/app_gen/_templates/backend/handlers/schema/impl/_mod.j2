@@ -1,0 +1,26 @@
+{%- import "custom_method" as custom_method -%}
+{%- set schemaRustName = schemaName | snake_1 -%}
+// 
+// Backend {{ schemaRustName }} {{ entityType.pascal_1 }} Implementation  
+//    Product-owned handler extension file.
+//    Generated once by app_gen, then preserved.
+//
+#[allow(unused_imports)]
+pub(crate) use super::generated::{{ entityType.snake_1 }}::*;
+
+{%- if entityType.custom_methods %}
+#[allow(unused)]
+use std::sync::Arc;
+
+#[allow(unused_imports)]
+use crate::{
+  product_api::{DataAccess, EntityType, HandlerResult, JsonValue, UserAuth},
+  schemas::common::AggregateResult,
+  schemas::{{ schemaRustName }}::{
+    Input{{ entityType.pascal_1 }}, {{ entityType.pascal_1 }}Projection, {% if entityType.is_table %}{{ entityType.pascal_1 }}QueryResult, {% endif %}
+  },
+};
+{%- for method in entityType.custom_methods %}
+{{ custom_method::print(method=method) }}
+{%- endfor %}
+{%- endif %}

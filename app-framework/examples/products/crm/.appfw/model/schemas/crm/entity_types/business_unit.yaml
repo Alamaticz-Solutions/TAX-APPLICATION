@@ -1,0 +1,36 @@
+- id: b0510000-0000-4000-8000-000000000018
+  name: BusinessUnit
+  is_table: true
+  indexes:
+  - code
+  - region
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Business Unit Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: region
+    caption: Region
+    data_type: String
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required

@@ -1,0 +1,17 @@
+# The two data-entry screens of Create New Request (business spec 5.4, 5.5). Processing and
+# Completed are system-rendered, not forms — see docs/architecture/dynamic-form-engine-design.md
+# section 6.
+- entity_type: RequestScreen
+  schema: tax_routing
+  columns: [id, code, name, sort_order, is_active]
+  records:
+  - id: d44caa75-3296-4df6-a1f4-9c827ff069a4
+    code: client_info
+    name: Client Info
+    sort_order: 10
+    is_active: true
+  - id: 92a1bfd9-47f9-4bcf-a682-5628f16baca3
+    code: upload_documents
+    name: Upload Documents
+    sort_order: 20
+    is_active: true

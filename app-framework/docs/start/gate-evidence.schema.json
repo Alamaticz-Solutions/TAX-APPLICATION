@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "gates": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "status": {"enum": ["deferred", "required"]}
+        },
+        "required": ["id", "status"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "profile": {"enum": ["accelerated", "candidate"]},
+    "schema": {"const": "appfw_deferred_gate_ledger@1"}
+  },
+  "required": ["schema", "profile", "gates"],
+  "type": "object"
+}

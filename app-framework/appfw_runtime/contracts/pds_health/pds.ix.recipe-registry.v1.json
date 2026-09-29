@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "pds.ix.recipe_registry@1",
+  "presentationSchemaVersion": "pds.ix.presentation@1",
+  "projections": [
+    "web-dom",
+    "native-ios",
+    "native-android"
+  ],
+  "capabilities": [
+    "pds.ix.capability.focus-context@1",
+    "pds.ix.capability.progressive-presentation@1",
+    "pds.ix.capability.evidence-disclosure@1",
+    "pds.ix.capability.human-control@1",
+    "pds.ix.capability.causal-explanation@1",
+    "pds.ix.capability.contextual-follow-up@1",
+    "pds.ix.capability.composition-change-explanation@1",
+    "pds.ix.capability.goal-plan-revision@1",
+    "pds.ix.capability.full-record-fallback@1",
+    "pds.ix.capability.strategy-challenge@1",
+    "pds.ix.capability.attention-correction@1",
+    "pds.ix.capability.ambient-work-continuity@1"
+  ],
+  "recipes": [
+    {
+      "id": "analyze-why",
+      "ordinal": 1,
+      "name": "Analyze Why",
+      "intentKey": "pds.ix.intent.analyze-why@1",
+      "rendererKey": "pds.ix.recipe.analyze-why@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.causal-explanation@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "contextual-conversation",
+      "ordinal": 2,
+      "name": "Contextual Conversation",
+      "intentKey": "pds.ix.intent.contextual-conversation@1",
+      "rendererKey": "pds.ix.recipe.contextual-conversation@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.contextual-follow-up@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "adaptive-composition",
+      "ordinal": 3,
+      "name": "Adaptive Composition",
+      "intentKey": "pds.ix.intent.adaptive-composition@1",
+      "rendererKey": "pds.ix.recipe.adaptive-composition@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.composition-change-explanation@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "working-goal-plan",
+      "ordinal": 4,
+      "name": "Working Goal Plan",
+      "intentKey": "pds.ix.intent.working-goal-plan@1",
+      "rendererKey": "pds.ix.recipe.working-goal-plan@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.goal-plan-revision@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "adaptive-information-lens",
+      "ordinal": 5,
+      "name": "Adaptive Information Lens",
+      "intentKey": "pds.ix.intent.adaptive-information-lens@1",
+      "rendererKey": "pds.ix.recipe.adaptive-information-lens@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.full-record-fallback@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "situation-to-strategy",
+      "ordinal": 6,
+      "name": "Situation to Strategy",
+      "intentKey": "pds.ix.intent.situation-to-strategy@1",
+      "rendererKey": "pds.ix.recipe.situation-to-strategy@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.strategy-challenge@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "attention-stewardship",
+      "ordinal": 7,
+      "name": "Attention Stewardship",
+      "intentKey": "pds.ix.intent.attention-stewardship@1",
+      "rendererKey": "pds.ix.recipe.attention-stewardship@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.attention-correction@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    },
+    {
+      "id": "ambient-agent-continuity",
+      "ordinal": 8,
+      "name": "Agents Helping You",
+      "intentKey": "pds.ix.intent.ambient-agent-continuity@1",
+      "rendererKey": "pds.ix.recipe.ambient-agent-continuity@1",
+      "presentationSchemaVersion": "pds.ix.presentation@1",
+      "requiredCapabilities": [
+        "pds.ix.capability.focus-context@1",
+        "pds.ix.capability.progressive-presentation@1",
+        "pds.ix.capability.evidence-disclosure@1",
+        "pds.ix.capability.human-control@1",
+        "pds.ix.capability.ambient-work-continuity@1"
+      ],
+      "projections": {
+        "web-dom": {
+          "applicability": "supported",
+          "readiness": "prototype"
+        },
+        "native-ios": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        },
+        "native-android": {
+          "applicability": "supported",
+          "readiness": "not-qualified"
+        }
+      }
+    }
+  ]
+}

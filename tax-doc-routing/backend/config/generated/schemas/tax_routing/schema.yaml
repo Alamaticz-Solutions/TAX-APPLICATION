@@ -1,0 +1,4 @@
+id: 92825ca5-4363-46c8-a072-f00625be9108
+name: tax_routing
+description: Tax Document Routing schema
+data_source_name: pg_primary

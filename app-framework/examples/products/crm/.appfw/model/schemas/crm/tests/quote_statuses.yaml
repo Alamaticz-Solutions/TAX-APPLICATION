@@ -1,0 +1,20 @@
+# QuoteStatus - seeded lookup coverage.
+
+- name: find_quote_status
+  description: find seeded quote status by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findQuoteStatus
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"9407ec00-0000-4000-8000-100000000001"'
+    select: |
+      id,name,sort_order
+  expect:
+    data:
+      id: '9407ec00-0000-4000-8000-100000000001'
+      name: 'Draft'
+      sort_order: 10

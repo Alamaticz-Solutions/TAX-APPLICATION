@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "offline_mode": "read-through-network-first",
+  "local_persistence": {
+    "phi_or_sensitive_tenant_data_cache": "disabled",
+    "secure_store_allowed_for": [
+      "opaque session metadata approved by identity policy"
+    ],
+    "requires_explicit_release_decision_for": [
+      "PHI/ePHI",
+      "tenant data snapshots",
+      "attachments",
+      "push notification payload content"
+    ]
+  },
+  "degraded_states": [
+    "offline",
+    "stale-data",
+    "sync-unavailable"
+  ]
+}

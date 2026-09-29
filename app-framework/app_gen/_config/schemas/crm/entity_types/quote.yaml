@@ -1,0 +1,76 @@
+- id: 9407e000-0000-4000-8000-000000000005
+  name: Quote
+  is_table: true
+  indexes:
+  - opportunity_id
+  facets:
+  - concurrency
+
+  custom_methods:
+  - name: reprice_quote
+    kind: Mutation
+    mcp_enabled: true
+    args:
+    - name: quote_id
+      arg_type: String
+    - name: include_tax
+      arg_type: bool
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Quote Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: quote_number
+    caption: Quote Number
+    data_type: String
+
+  - name: expiration_date
+    caption: Expiration Date
+    data_type: Date
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: subtotal
+    caption: Subtotal
+    data_type: Float64
+
+  - name: discount
+    caption: Discount
+    data_type: Float64
+
+  - name: tax
+    caption: Tax
+    data_type: Float64
+
+  - name: total_price
+    caption: Total Price
+    data_type: Float64
+
+  - name: opportunity_id
+    caption: Opportunity
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: Opportunity
+
+  - name: account_id
+    caption: Account
+    data_type: Uuid
+    foreign_key:
+      type_name: Account
+
+  - name: status_id
+    caption: Status
+    data_type: Uuid
+    foreign_key:
+      type_name: QuoteStatus

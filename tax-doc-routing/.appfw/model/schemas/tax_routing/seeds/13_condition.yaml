@@ -1,0 +1,20 @@
+# The three visibility conditions from business spec 5.5's Visibility column
+# (docs/architecture/dynamic-form-engine-design.md section 5). Each has exactly one clause today
+# (join_kind is moot with one clause, but set for when a future condition needs "and"/"or" of
+# several).
+- entity_type: Condition
+  schema: tax_routing
+  columns: [id, name, join_kind, description]
+  records:
+  - id: 921e2478-10b0-41c7-bed0-588e4882f5f0
+    name: document_belongs_to_entity
+    join_kind: and
+    description: The selected document type allows an entity to be attached (business spec 5.5).
+  - id: 064cb746-a408-4e37-9bc2-b1e2bcbce3d5
+    name: document_requires_k1_attachments
+    join_kind: and
+    description: The selected document type is K-1 or Draft K-1 (business spec 5.5).
+  - id: 9dc7f2a7-d6cc-4223-b58c-df0f6481f554
+    name: document_requires_form_8308_attachments
+    join_kind: and
+    description: The selected document type is Form 8308 (business spec 5.5).

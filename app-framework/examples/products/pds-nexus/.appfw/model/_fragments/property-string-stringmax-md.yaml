@@ -1,0 +1,5 @@
+    data_type: String
+    meta:
+      validators:
+      - name: StringLength
+        max: 250

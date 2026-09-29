@@ -1,0 +1,118 @@
+{
+  "$schema": "../start/product-increment-plan.schema.json",
+  "schema": "appfw_product_increment_plan@1",
+  "program_id": "agentic-factory-system",
+  "product_increment": {
+    "id": "AFS-PI-P1",
+    "outcome_id": "AFS-OUTCOME-DELIVERY-EFFICIENCY",
+    "title": "Transparent model routing and delivery telemetry",
+    "intent": "A contributor can see why a model and instruction route was selected, while the harness preserves independent review, privacy, authority, and enough telemetry to judge whether routing improves accepted delivery outcomes.",
+    "owner": "Program Product Manager",
+    "planning_posture": "held",
+    "stage": "prototype",
+    "acceptance_criteria": [
+      "The provider-neutral route contract passes all canonical and adversarial authority, privacy, lifecycle, and fallback cases.",
+      "The current immutable checkpoint receives a fresh independent exact-HEAD review with no blocker or critical finding.",
+      "The reviewed checkpoint reaches accepted main through the normal integration owner.",
+      "At least five representative tasks compare route, time, cost, retries, corrections, review findings, rework, and accepted outcome.",
+      "Product records GO, NARROW, or STOP from measured value without granting the router admission or acceptance authority."
+    ]
+  },
+  "concurrency": {
+    "target_active_lanes": 1,
+    "maximum_active_lanes": 1,
+    "below_target_reason": "This is one cohesive eight-path contract. Portfolio capacity, rather than artificial subdivision, supplies parallel work."
+  },
+  "integration": {
+    "strategy": "direct_main",
+    "branch": "main",
+    "destination_branch": "main",
+    "owner": "Integration Branch Manager",
+    "independent_reviewer": "AFS Product Increment Aggregate Reviewer",
+    "base_ref": "db9bb89ab392b75806d59ff535c1babc42cece76",
+    "write_roots": [],
+    "economics_budget": {
+      "default_model_tier": "efficient-tier",
+      "allowed_model_tiers": [
+        "efficient-tier",
+        "advanced-tier"
+      ],
+      "max_elapsed_ms": 7200000,
+      "max_input_tokens": 300000,
+      "max_output_tokens": 50000,
+      "max_cost_usd": 30,
+      "max_retries": 1,
+      "max_corrections": 2,
+      "max_rework_cycles": 2
+    },
+    "leaf_ci_profile": "full",
+    "integration_ci_profile": "full",
+    "release_ci_profile": "strict",
+    "merge_order": [
+      "AFS-L1-ROUTER"
+    ],
+    "integration_checks": [
+      "Verify the delivery checkpoint is one commit whose sole parent is the accepted base and excludes every archived rejected checkpoint.",
+      "Run the complete deterministic routing and adversarial regression suite.",
+      "Run a fresh independent exact-HEAD review and unchanged-head guard.",
+      "After merge, run the five-task value canary before Product acceptance or P2 admission."
+    ],
+    "shared_path_owner": "Integration Branch Manager",
+    "evidence_record_ref": "document:docs/evidence/product-increments/afs-p1-router.json"
+  },
+  "lanes": [
+    {
+      "id": "AFS-L1-ROUTER",
+      "title": "Provider-neutral router contract",
+      "result": "The harness can select and disclose a bounded route without silently changing authority, review independence, privacy, or execution depth.",
+      "owner": "AFS Routing Outcome Owner",
+      "technical_lead": "AFS Routing Technical Lead",
+      "branch_owner": "AFS-008 Branch Owner",
+      "independent_reviewer": "AFS-008 Independent Framework Reviewer",
+      "status": "stopped",
+      "delivery_credit": "none",
+      "workstreams": [
+        "Harness routing and economics"
+      ],
+      "deliverables": [
+        "AFS-008"
+      ],
+      "branch": "feature/afs-008-transparent-routing-telemetry",
+      "base_sha": "db9bb89ab392b75806d59ff535c1babc42cece76",
+      "destination_branch": "main",
+      "write_roots": [
+        "docs/specs/afs-008-transparent-routing-and-telemetry.md",
+        "scripts/agent-routing/**"
+      ],
+      "economics_budget": {
+        "default_model_tier": "efficient-tier",
+        "allowed_model_tiers": [
+          "efficient-tier",
+          "advanced-tier"
+        ],
+        "max_elapsed_ms": 7200000,
+        "max_input_tokens": 300000,
+        "max_output_tokens": 50000,
+        "max_cost_usd": 30,
+        "max_retries": 1,
+        "max_corrections": 2,
+        "max_rework_cycles": 2
+      },
+      "focused_checks": [
+        "Run scripts/agent-routing/appfw-model-route.test.mjs.",
+        "Verify exact eight-path scope and direct-child lineage.",
+        "Reject provider, adapter, model, effort, authority, privacy, lifecycle, cost, or review-route substitution.",
+        "Retain value-free privacy diagnostics and no network or dispatch side effects."
+      ],
+      "evidence_record_ref": "document:docs/evidence/product-increments/afs-p1-router.json",
+      "provides": [
+        {
+          "capability_id": "harness.transparent-routing",
+          "summary": "Provider-neutral route selection, disclosure, authority validation, and privacy-safe outcome telemetry.",
+          "state": "planned"
+        }
+      ]
+    }
+  ],
+  "lane_links": []
+}

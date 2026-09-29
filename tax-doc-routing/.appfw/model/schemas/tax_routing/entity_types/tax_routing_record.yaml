@@ -1,0 +1,148 @@
+- id: 889785cb-afa5-4a93-9e1e-4117a95be474
+  name: TaxRoutingRecord
+  is_table: true
+  indexes:
+  - status
+  - client_reference_id
+  facets:
+  - audited
+  - concurrency
+
+  custom_methods:
+  # Admin-only actions the row filter can't express (a filter restricts which rows a query
+  # returns, not which columns an update may touch). Both check the routing_record.cancel /
+  # routing_record.reassign permission through services/authz, never a role literal.
+  - name: cancel_record
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    - name: resolution_status
+      arg_type: String
+    - name: comments
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: reassign_record
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    - name: new_assigned_user_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: status
+    caption: Status
+    is_required: true
+    data_type: Enum
+    enum_type_name: RoutingRecordStatus
+
+  - name: created_at
+    caption: Created At
+    is_required: true
+    data_type: DateTime
+
+  - name: updated_at
+    caption: Updated At
+    is_required: true
+    data_type: DateTime
+
+  - name: assigned_user_id
+    caption: Assigned To
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: AppUser
+    # Real ownership FK (docs/architecture/rbac-design.md); replaces the earlier free-text
+    # assigned_operator column. Rego's "own" scope filter compares this against the caller's
+    # AppUser id, never against a role name or a string username.
+
+  # Denormalized from TaxPayerRefData at lookup time; read-only in the UI.
+  - name: client_first_name
+    caption: Client First Name
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: client_last_name
+    caption: Client Last Name
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: client_full_name
+    caption: Client Full Name
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: office_location
+    caption: Office Location
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: pds_email
+    caption: PDS Email
+    is_required: true
+    is_read_only: true
+    fragment: property-string-email
+
+  - name: personal_email
+    caption: Personal Email
+    is_required: true
+    is_read_only: true
+    fragment: property-string-email
+
+  - name: additional_email
+    caption: Additional Email
+    is_required: false
+    fragment: property-string-email
+
+  - name: notification_flag
+    caption: Notification Flag
+    fragment: property-boolean-toggle-required
+
+  - name: internal_folder
+    caption: Internal Folder
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: folder_name
+    caption: Folder Name
+    is_required: true
+    is_read_only: true
+    data_type: String
+
+  - name: read_write_password
+    caption: Read/Write Password
+    is_required: true
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  - name: client_reference_id
+    caption: Taxpayer Reference
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: TaxPayerRefData
+
+  # Completed steps of the 9-step processing timeline (frontend config/processingSteps.ts).
+  # Persisted so the workflow's real progress survives a reload instead of being re-guessed from
+  # status alone; the frontend's animated timeline both reads and advances this column.
+  - name: progress_step
+    caption: Progress Step
+    is_required: true
+    data_type: Int32

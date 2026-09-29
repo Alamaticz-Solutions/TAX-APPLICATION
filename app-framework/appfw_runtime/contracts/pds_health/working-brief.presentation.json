@@ -1,0 +1,63 @@
+{
+  "identity": {
+    "schemaVersion": "pds.ix.presentation@1",
+    "presentationId": "fixture-working-brief",
+    "revision": 1
+  },
+  "announcement": "Working brief revision 1 is ready.",
+  "context": {
+    "eyebrow": "Working from",
+    "title": "Sanitized reference context",
+    "detail": "One current source",
+    "announcement": "Context resolved from one source with one known gap.",
+    "gaps": ["Approval owner is not yet resolved."],
+    "evidence": {
+      "summary": "View source",
+      "items": [
+        {
+          "id": "source-a",
+          "sourceRef": "fixture-source-a",
+          "label": "Source",
+          "value": "Sanitized fixture"
+        }
+      ]
+    },
+    "metaLabel": "Evaluated now"
+  },
+  "workStatus": {
+    "label": "Evidence checked",
+    "detail": "One source resolved",
+    "active": false
+  },
+  "response": {
+    "eyebrow": "Progressive response",
+    "title": "Working brief",
+    "metaLabel": "Revision 1",
+    "announcement": "Working brief revision 1 is ready.",
+    "active": false,
+    "regions": [
+      {
+        "id": "finding",
+        "status": "ready",
+        "label": "Finding",
+        "title": "A bounded finding",
+        "body": "Plain portable content.",
+        "whyItMatters": "It changes the next decision.",
+        "evidence": {
+          "summary": "Where did this come from?",
+          "items": [
+            {
+              "sourceRef": "fixture-source-a",
+              "label": "Source",
+              "value": "Sanitized fixture"
+            }
+          ]
+        },
+        "editable": true,
+        "changed": true
+      }
+    ],
+    "emptyState": "Useful sections will appear when ready.",
+    "footerText": "Sanitized reference data"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "default_profile": "accelerated",
+  "gate_execution_projection": {
+    "schema": "appfw_gate_execution_projection@1",
+    "gates": [
+      {
+        "gate_id": "framework-docs-check",
+        "command": "scripts/appfw framework docs-check --json",
+        "evidence_path": "target/appfw/gate-evidence/framework-docs-check.json"
+      },
+      {
+        "gate_id": "framework-generate-check",
+        "command": "scripts/appfw framework generate --check --json",
+        "evidence_path": "target/appfw/gate-evidence/framework-generate-check.json"
+      },
+      {
+        "gate_id": "framework-test-fast",
+        "command": "scripts/appfw framework test --fast --json",
+        "evidence_path": "target/appfw/gate-evidence/framework-test-fast.json"
+      }
+    ]
+  },
+  "profiles": {
+    "accelerated": {
+      "accelerated_reason": "focused-delivery-profile",
+      "deferred_gate_ids": ["framework-docs-check", "framework-generate-check", "framework-test-fast"],
+      "enforce_candidate": false,
+      "routing": "focused"
+    },
+    "candidate": {
+      "candidate_version": "1",
+      "deferred_gate_ids": ["framework-docs-check", "framework-generate-check", "framework-test-fast"],
+      "enforce_candidate": true,
+      "routing": "enforce-candidate"
+    }
+  },
+  "schema": "appfw_delivery_profiles@1"
+}

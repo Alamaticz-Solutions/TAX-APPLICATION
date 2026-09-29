@@ -1,0 +1,43 @@
+# Normalize text to LF in the repo; check out native on each platform.
+* text=auto
+
+# Shell scripts and the appfw CLI wrapper run in Linux containers — must stay LF.
+*.sh            text eol=lf
+.claude/skills/pds-frontend-guard/git-hooks/*  text eol=lf
+*.bash          text eol=lf
+tax-doc-routing/scripts/appfw   text eol=lf
+app-framework/scripts/**           text eol=lf
+
+# POSIX-oriented tooling
+*.py            text eol=lf
+Dockerfile*     text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+
+# Generated artifacts must be byte-identical to the generator's output (LF), on every
+# OS, or `appfw product generate --check` reports drift. Never check these out as CRLF.
+# (Hand-owned files next to them, e.g. handlers/<schema>/<entity>.rs, keep the default.)
+tax-doc-routing/database/_pkg/**                          text eol=lf
+tax-doc-routing/backend/config/generated/**               text eol=lf
+tax-doc-routing/backend/src/routes/**                     text eol=lf
+tax-doc-routing/backend/src/schemas/**                    text eol=lf
+tax-doc-routing/backend/src/operations/generated.rs       text eol=lf
+tax-doc-routing/backend/src/operations/mod.rs              text eol=lf
+tax-doc-routing/backend/src/handlers/mod.rs               text eol=lf
+tax-doc-routing/backend/src/handlers/selections.rs        text eol=lf
+tax-doc-routing/backend/src/handlers/**/generated.rs      text eol=lf
+tax-doc-routing/backend/src/handlers/**/mod.rs            text eol=lf
+tax-doc-routing/api_tests/src/schemas/**                  text eol=lf
+tax-doc-routing/frontend/src/generated/**                 text eol=lf
+tax-doc-routing/appfw.lock                                text eol=lf
+
+# Windows scripts stay CRLF
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+
+# Binary
+*.pptx          binary
+*.png           binary
+*.jpg           binary
+*.exe           binary

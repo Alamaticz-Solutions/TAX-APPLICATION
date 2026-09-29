@@ -1,0 +1,41 @@
+{
+  "name": "crm-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "PDS Health CRM product frontend — first reference instance of the enterprise frontend scaffold (see docs/adr/0005-0012).",
+  "scripts": {
+    "dev": "vite",
+    "appfw:check": "node scripts/check-scaffold.mjs",
+    "tokens:check": "node ../../../../scripts/check-pds-tokens.mjs --consumer crm-frontend",
+    "test": "node --test scripts/route-identity.test.mjs",
+    "test:browser": "playwright test",
+    "test:e2e": "playwright test tests/e2e",
+    "test:a11y": "playwright test tests/a11y",
+    "test:frontend": "npm run tokens:check && npm run appfw:check -- --json && npm test && npm run typecheck && npm run build && npm run test:browser",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run tokens:check && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "release:evidence": "node scripts/release-evidence.mjs"
+  },
+  "dependencies": {
+    "@appfw/pds-health-components": "file:../../../../target/appfw/packages/appfw-pds-health-components-0.9.0.tgz",
+    "chart.js": "^4.5.1",
+    "lucide-react": "^0.439.0",
+    "react": "^19.2.8",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^19.2.8",
+    "react-router": "^8.3.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.5.4",
+    "vite": "^6.4.3"
+  }
+}

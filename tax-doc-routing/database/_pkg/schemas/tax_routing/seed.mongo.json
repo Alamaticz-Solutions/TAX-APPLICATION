@@ -1,0 +1,9921 @@
+[
+
+
+  {
+    "collection": "roles",
+    "documents": [
+
+      {
+
+        "id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "code": "TAX_STAFF",
+
+
+        "name": "Tax Staff",
+
+
+        "description": "Processes day-to-day tax document routing for the records assigned to them.",
+
+
+        "is_system": true,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "code": "TAX_ADMIN",
+
+
+        "name": "Tax Admin",
+
+
+        "description": "Everything Tax Staff can do, plus full visibility, reassignment and cancel/withdraw.",
+
+
+        "is_system": true,
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "permissions",
+    "documents": [
+
+      {
+
+        "id": "fb82caa4-e91b-48f8-b696-9c219f0e61ee",
+
+
+        "code": "routing_record.create",
+
+
+        "name": "Create routing record",
+
+
+        "description": "Create a new tax document routing record.",
+
+
+        "resource": "tax_routing_record",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "a7b79a25-784f-4774-b8fa-85e25938c621",
+
+
+        "code": "routing_record.read",
+
+
+        "name": "Read routing records",
+
+
+        "description": "View routing records (scope decides whether that is only your own or everyone's).",
+
+
+        "resource": "tax_routing_record",
+
+
+        "action": "read",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "a986327f-425e-4428-a8d1-ab10b839eb49",
+
+
+        "code": "routing_record.update",
+
+
+        "name": "Process routing records",
+
+
+        "description": "Advance a routing record through the workflow.",
+
+
+        "resource": "tax_routing_record",
+
+
+        "action": "update",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "5d168548-6f91-4cd3-874e-8d123c31b26e",
+
+
+        "code": "routing_record.cancel",
+
+
+        "name": "Cancel / withdraw a routing record",
+
+
+        "description": "Permanently close a record (business spec 9.1). Checked in the cancel_record custom method, not by row filter.",
+
+
+        "resource": null,
+
+
+        "action": null,
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "f398d344-3aa8-42cd-ba92-dae4f36ef697",
+
+
+        "code": "routing_record.reassign",
+
+
+        "name": "Reassign a routing record",
+
+
+        "description": "Change which user a record is assigned to. Checked in the reassign_record custom method.",
+
+
+        "resource": null,
+
+
+        "action": null,
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b2ec1d44-3987-4c9c-9368-50ba0b93b43f",
+
+
+        "code": "routing_record.bulk_resolve",
+
+
+        "name": "Bulk-select and resolve records",
+
+
+        "description": "Deferred capability (design doc section 3); reserved so the frontend can gate it once built.",
+
+
+        "resource": null,
+
+
+        "action": null,
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "544ec284-5695-4594-ac63-43e6bf6c0470",
+
+
+        "code": "routing_record.view_assignee",
+
+
+        "name": "See the Assigned To column",
+
+
+        "description": "Frontend-only capability; the Assigned To column is shown when this is granted.",
+
+
+        "resource": null,
+
+
+        "action": null,
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "8a484471-1290-4ace-b1a9-17dd00ea2b92",
+
+
+        "code": "tax_document.create",
+
+
+        "name": "Add a document",
+
+
+        "description": "Attach a document to a routing record.",
+
+
+        "resource": "tax_document",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17",
+
+
+        "code": "tax_document.read",
+
+
+        "name": "Read documents",
+
+
+        "description": "View the documents on a routing record.",
+
+
+        "resource": "tax_document",
+
+
+        "action": "read",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "9c277bb6-69b0-4872-a2a7-93294bf3c41d",
+
+
+        "code": "tax_document.update",
+
+
+        "name": "Update documents",
+
+
+        "description": "Change document metadata before it is filed.",
+
+
+        "resource": "tax_document",
+
+
+        "action": "update",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "30ec3a74-77dd-48a6-8ab7-2cedcb8307ec",
+
+
+        "code": "tax_document.delete",
+
+
+        "name": "Remove a document",
+
+
+        "description": "Remove a document from a routing record before it is filed.",
+
+
+        "resource": "tax_document",
+
+
+        "action": "delete",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "452c8f59-c9b5-4249-8730-e5a9e33b745c",
+
+
+        "code": "exception_task.read",
+
+
+        "name": "View exception queue",
+
+
+        "description": "See every exception, regardless of who it is assigned to.",
+
+
+        "resource": "exception_task",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "fbd5468c-7472-44be-9a00-2eace8bd633f",
+
+
+        "code": "exception_task.create",
+
+
+        "name": "Open an exception",
+
+
+        "description": "Opened by the routing workflow on the caller's behalf.",
+
+
+        "resource": "exception_task",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "61578bb1-f74d-450b-9464-407f3361592c",
+
+
+        "code": "exception_task.update",
+
+
+        "name": "Work / resolve an exception",
+
+
+        "description": "Retry or resolve an exception assigned to you.",
+
+
+        "resource": "exception_task",
+
+
+        "action": "update",
+
+
+        "owner_field": "assigned_user_id"
+
+
+      },
+
+
+      {
+
+        "id": "3c3c96d7-279b-4de9-8577-c4b4071368b2",
+
+
+        "code": "document_type_route.read",
+
+
+        "name": "Read the document routing table",
+
+
+        "description": "Look up which folder a document type routes to.",
+
+
+        "resource": "document_type_route",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "183a5aac-366a-417e-a9f1-654b37cf2c8b",
+
+
+        "code": "document_type_route.create",
+
+
+        "name": "Add a routing rule",
+
+
+        "description": null,
+
+
+        "resource": "document_type_route",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "cfd793f5-629b-4fac-aa12-c1acd2da4317",
+
+
+        "code": "document_type_route.update",
+
+
+        "name": "Change a routing rule",
+
+
+        "description": null,
+
+
+        "resource": "document_type_route",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "594b0e06-c18a-4243-87cf-f03669b489d8",
+
+
+        "code": "document_type_route.delete",
+
+
+        "name": "Remove a routing rule",
+
+
+        "description": null,
+
+
+        "resource": "document_type_route",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b8acb30f-d62a-48e7-af39-e6b67e4b2591",
+
+
+        "code": "tax_payer_ref_data.read",
+
+
+        "name": "Read the taxpayer registry",
+
+
+        "description": "Staff see active taxpayers only; Tax Admin sees all (scope decides which).",
+
+
+        "resource": "tax_payer_ref_data",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "9adbac11-9eca-4073-8d52-c061578d7379",
+
+
+        "code": "tax_payer_ref_data.create",
+
+
+        "name": "Add a taxpayer",
+
+
+        "description": null,
+
+
+        "resource": "tax_payer_ref_data",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "74e0a938-72cc-4132-a819-acebdf2cb350",
+
+
+        "code": "tax_payer_ref_data.update",
+
+
+        "name": "Update a taxpayer",
+
+
+        "description": null,
+
+
+        "resource": "tax_payer_ref_data",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "59fa9713-2d31-415b-a69b-a1f577fcb873",
+
+
+        "code": "tax_payer_ref_data.delete",
+
+
+        "name": "Remove a taxpayer",
+
+
+        "description": null,
+
+
+        "resource": "tax_payer_ref_data",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "d62e8989-88c1-44bf-8e4a-64beb3a03494",
+
+
+        "code": "tax_entity_list.read",
+
+
+        "name": "Read the entity list",
+
+
+        "description": "Staff see active entities only; Tax Admin sees all (scope decides which).",
+
+
+        "resource": "tax_entity_list",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "1116500f-69bb-41dc-9a91-e24374124800",
+
+
+        "code": "tax_entity_list.create",
+
+
+        "name": "Add an entity",
+
+
+        "description": null,
+
+
+        "resource": "tax_entity_list",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "cf729421-4776-4801-b1f9-7c54cba90b83",
+
+
+        "code": "tax_entity_list.update",
+
+
+        "name": "Update an entity",
+
+
+        "description": null,
+
+
+        "resource": "tax_entity_list",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "33fa821c-2e45-42a4-b6e7-105eb7281086",
+
+
+        "code": "tax_entity_list.delete",
+
+
+        "name": "Remove an entity",
+
+
+        "description": null,
+
+
+        "resource": "tax_entity_list",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "9b98555c-7a7f-449a-abef-d70a5a636cd0",
+
+
+        "code": "tax_routing_record_audit.read",
+
+
+        "name": "Read routing record audit trail",
+
+
+        "description": null,
+
+
+        "resource": "tax_routing_record_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "4b4d59eb-a2ee-4916-aeeb-508dedc18ad3",
+
+
+        "code": "tax_document_audit.read",
+
+
+        "name": "Read document audit trail",
+
+
+        "description": null,
+
+
+        "resource": "tax_document_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "d8d5ee86-9bb9-4220-b8d9-6d9d241131d1",
+
+
+        "code": "tax_payer_ref_data_audit.read",
+
+
+        "name": "Read taxpayer audit trail",
+
+
+        "description": null,
+
+
+        "resource": "tax_payer_ref_data_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "e5ef01ca-db19-42df-a3ca-495a43f10e8b",
+
+
+        "code": "exception_task_audit.read",
+
+
+        "name": "Read exception audit trail",
+
+
+        "description": null,
+
+
+        "resource": "exception_task_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "5cb154cf-e83b-46c4-ad1c-cdbb0dc46bd1",
+
+
+        "code": "rbac.manage",
+
+
+        "name": "Manage users, roles and permissions",
+
+
+        "description": "Create/deactivate users, grant or revoke roles, edit the permission matrix.",
+
+
+        "resource": null,
+
+
+        "action": null,
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "5524636a-fd77-42ea-81cc-c941015e8750",
+
+
+        "code": "app_user.read",
+
+
+        "name": "Read users",
+
+
+        "description": null,
+
+
+        "resource": "app_user",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "ba06aa0b-1ab0-4cc4-a7f1-ee8ad68a1fc4",
+
+
+        "code": "app_user.create",
+
+
+        "name": "Create a user",
+
+
+        "description": null,
+
+
+        "resource": "app_user",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "feb541e4-3c05-4e73-ae6f-ee3d8f3ebbf4",
+
+
+        "code": "app_user.update",
+
+
+        "name": "Update a user",
+
+
+        "description": null,
+
+
+        "resource": "app_user",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b717a3a3-68b4-4337-84b7-c4a406b4b043",
+
+
+        "code": "app_user.delete",
+
+
+        "name": "Remove a user",
+
+
+        "description": null,
+
+
+        "resource": "app_user",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "cea7c1af-ae9b-4d99-baf3-0a44359e27a3",
+
+
+        "code": "role.read",
+
+
+        "name": "Read roles",
+
+
+        "description": null,
+
+
+        "resource": "role",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "ea4d76f0-8792-436f-ac89-ac0cfdfbd1d6",
+
+
+        "code": "role.create",
+
+
+        "name": "Create a role",
+
+
+        "description": null,
+
+
+        "resource": "role",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "eac356f3-5bba-4086-ae2e-93d90707c5cb",
+
+
+        "code": "role.update",
+
+
+        "name": "Update a role",
+
+
+        "description": null,
+
+
+        "resource": "role",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "3722542b-e4f6-4570-af2c-756a618509e5",
+
+
+        "code": "role.delete",
+
+
+        "name": "Remove a role",
+
+
+        "description": null,
+
+
+        "resource": "role",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "78ac37e5-5cac-42ca-9fc8-a731554099be",
+
+
+        "code": "permission.read",
+
+
+        "name": "Read the permission catalogue",
+
+
+        "description": null,
+
+
+        "resource": "permission",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "7b362477-344e-42cf-ace7-ed7b72d0a77a",
+
+
+        "code": "role_permission.read",
+
+
+        "name": "Read the permission matrix",
+
+
+        "description": null,
+
+
+        "resource": "role_permission",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "c82fd48f-3fe4-4852-be0c-9a4c9e6beb30",
+
+
+        "code": "role_permission.create",
+
+
+        "name": "Grant a permission to a role",
+
+
+        "description": null,
+
+
+        "resource": "role_permission",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "9b74b7d0-e4ae-4c57-941b-2b23e52fe65c",
+
+
+        "code": "role_permission.update",
+
+
+        "name": "Change a role's grant scope",
+
+
+        "description": null,
+
+
+        "resource": "role_permission",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "1d0de8f4-846b-434b-9f59-098f116159f1",
+
+
+        "code": "role_permission.delete",
+
+
+        "name": "Revoke a permission from a role",
+
+
+        "description": null,
+
+
+        "resource": "role_permission",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "781569b1-6eed-463e-8cef-6b3a785e1faf",
+
+
+        "code": "user_role.read",
+
+
+        "name": "Read user role assignments",
+
+
+        "description": null,
+
+
+        "resource": "user_role",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "eca98571-56c4-469e-8cc6-157e7f728c34",
+
+
+        "code": "user_role.create",
+
+
+        "name": "Grant a role to a user",
+
+
+        "description": null,
+
+
+        "resource": "user_role",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "bd9abc0a-8c89-4db2-9c53-f6470fe339fc",
+
+
+        "code": "user_role.update",
+
+
+        "name": "Change a user's role assignment",
+
+
+        "description": null,
+
+
+        "resource": "user_role",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "98cbfa99-2c8c-4a21-a0a6-9e9a786ad70e",
+
+
+        "code": "user_role.delete",
+
+
+        "name": "Revoke a role from a user",
+
+
+        "description": null,
+
+
+        "resource": "user_role",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "5d247cb7-22d7-4ff8-a008-06d425dddda8",
+
+
+        "code": "app_user_audit.read",
+
+
+        "name": "Read user audit trail",
+
+
+        "description": null,
+
+
+        "resource": "app_user_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2b4f2ce4-4ddf-4336-8953-1a36c1c52bf9",
+
+
+        "code": "role_audit.read",
+
+
+        "name": "Read role audit trail",
+
+
+        "description": null,
+
+
+        "resource": "role_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "141ff7ed-e22b-47f7-87a1-61ace3a03e3a",
+
+
+        "code": "permission_audit.read",
+
+
+        "name": "Read permission audit trail",
+
+
+        "description": null,
+
+
+        "resource": "permission_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "495fa653-bc26-4837-b24e-7d0b86493ee6",
+
+
+        "code": "role_permission_audit.read",
+
+
+        "name": "Read permission-matrix audit trail",
+
+
+        "description": null,
+
+
+        "resource": "role_permission_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "33ecd0de-ffc7-4de3-9096-c4d78f2f39a5",
+
+
+        "code": "user_role_audit.read",
+
+
+        "name": "Read role-assignment audit trail",
+
+
+        "description": null,
+
+
+        "resource": "user_role_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "dc8563ab-fdfe-4a1e-ba38-ae5c3339bd40",
+
+
+        "code": "request_type.read",
+
+
+        "name": "Request Type - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_type",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "49277002-b8bb-44ef-98ae-a31119dcd89a",
+
+
+        "code": "request_type.create",
+
+
+        "name": "Request Type - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_type",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2e5dd3ec-bf9a-46c6-9695-c9abdcc65413",
+
+
+        "code": "request_type.update",
+
+
+        "name": "Request Type - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_type",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "301c1b26-730c-4fe4-9ed0-02c94c226219",
+
+
+        "code": "request_type.delete",
+
+
+        "name": "Request Type - Delete",
+
+
+        "description": null,
+
+
+        "resource": "request_type",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "ecea19a9-4b74-404f-bb11-c0e256734d64",
+
+
+        "code": "request_screen.read",
+
+
+        "name": "Request Screen - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "dbc4968f-511c-4920-8072-06af332478ae",
+
+
+        "code": "request_screen.create",
+
+
+        "name": "Request Screen - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_screen",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "d0127839-da72-42bb-a149-b4bbcb10a1d0",
+
+
+        "code": "request_screen.update",
+
+
+        "name": "Request Screen - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_screen",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "aeea58f6-5334-4e55-921d-08fafc2a1ee7",
+
+
+        "code": "request_screen.delete",
+
+
+        "name": "Request Screen - Delete",
+
+
+        "description": null,
+
+
+        "resource": "request_screen",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "98712260-3383-4e8a-8797-07e504946393",
+
+
+        "code": "request_type_screen.read",
+
+
+        "name": "Request Type Screen - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_type_screen",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "50b9423d-0a03-4763-93a2-4878d997319b",
+
+
+        "code": "request_type_screen.create",
+
+
+        "name": "Request Type Screen - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_type_screen",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b09e5804-647d-4412-8c18-6547ea46a73e",
+
+
+        "code": "request_type_screen.update",
+
+
+        "name": "Request Type Screen - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_type_screen",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b91ab276-4e55-412b-bdc6-22ce232a859c",
+
+
+        "code": "request_type_screen.delete",
+
+
+        "name": "Request Type Screen - Delete",
+
+
+        "description": null,
+
+
+        "resource": "request_type_screen",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "fd4ced68-b37e-4263-af38-d94e3ce50369",
+
+
+        "code": "request_field.read",
+
+
+        "name": "Request Field - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_field",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "5fc6dbf7-4437-4374-a0b4-8fdd396c0190",
+
+
+        "code": "request_field.create",
+
+
+        "name": "Request Field - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_field",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "16cebd7f-4c6e-4164-b384-56f844ae0b3b",
+
+
+        "code": "request_field.update",
+
+
+        "name": "Request Field - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_field",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "4fcf2929-c96f-4527-9e30-f662751ddc3c",
+
+
+        "code": "request_field.delete",
+
+
+        "name": "Request Field - Delete",
+
+
+        "description": null,
+
+
+        "resource": "request_field",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "1f4d037f-49f7-4b64-a2af-0721452653ac",
+
+
+        "code": "request_screen_field.read",
+
+
+        "name": "Request Screen Field - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_field",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "c430b1e0-3e3d-4047-89d6-24687015d2e0",
+
+
+        "code": "request_screen_field.create",
+
+
+        "name": "Request Screen Field - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_field",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "6871452d-e2ba-42f3-9f63-9b8a86a66e5a",
+
+
+        "code": "request_screen_field.update",
+
+
+        "name": "Request Screen Field - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_field",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "3491f676-fb5a-40de-8c02-4ddaab3e6889",
+
+
+        "code": "request_screen_field.delete",
+
+
+        "name": "Request Screen Field - Delete",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_field",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "53b25f7f-85d3-45be-8493-602df3814caf",
+
+
+        "code": "field_option_list.read",
+
+
+        "name": "Field Option List - Read",
+
+
+        "description": null,
+
+
+        "resource": "field_option_list",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "159d8d39-e826-43a0-b436-0a5b78524693",
+
+
+        "code": "field_option_list.create",
+
+
+        "name": "Field Option List - Create",
+
+
+        "description": null,
+
+
+        "resource": "field_option_list",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "65fe2ae6-2c8e-468c-9c22-4cea2bf7bf3a",
+
+
+        "code": "field_option_list.update",
+
+
+        "name": "Field Option List - Update",
+
+
+        "description": null,
+
+
+        "resource": "field_option_list",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "c18a43f0-5299-4ab6-8f03-cbb09a36cf2a",
+
+
+        "code": "field_option_list.delete",
+
+
+        "name": "Field Option List - Delete",
+
+
+        "description": null,
+
+
+        "resource": "field_option_list",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "33cddff0-017c-4cf7-b852-d9dcdcf38ae0",
+
+
+        "code": "field_option_value.read",
+
+
+        "name": "Field Option Value - Read",
+
+
+        "description": null,
+
+
+        "resource": "field_option_value",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "8faad617-2a9f-4a5b-a791-4e5cf2eb1e4c",
+
+
+        "code": "field_option_value.create",
+
+
+        "name": "Field Option Value - Create",
+
+
+        "description": null,
+
+
+        "resource": "field_option_value",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b35c7ef4-412d-457c-9420-8ff8ca0fbd5d",
+
+
+        "code": "field_option_value.update",
+
+
+        "name": "Field Option Value - Update",
+
+
+        "description": null,
+
+
+        "resource": "field_option_value",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "7cb59402-d229-49e2-ab75-96a3f856f897",
+
+
+        "code": "field_option_value.delete",
+
+
+        "name": "Field Option Value - Delete",
+
+
+        "description": null,
+
+
+        "resource": "field_option_value",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "ef728ef8-4cbf-49d8-9194-70563e553c8a",
+
+
+        "code": "condition.read",
+
+
+        "name": "Condition - Read",
+
+
+        "description": null,
+
+
+        "resource": "condition",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "5110e5cc-c923-490d-a29e-30023430fa3a",
+
+
+        "code": "condition.create",
+
+
+        "name": "Condition - Create",
+
+
+        "description": null,
+
+
+        "resource": "condition",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "72608a55-0e50-4d11-8ed9-1ae985248aa5",
+
+
+        "code": "condition.update",
+
+
+        "name": "Condition - Update",
+
+
+        "description": null,
+
+
+        "resource": "condition",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "196e153e-3320-4bbb-9c35-df9a5b328593",
+
+
+        "code": "condition.delete",
+
+
+        "name": "Condition - Delete",
+
+
+        "description": null,
+
+
+        "resource": "condition",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "a208c167-37e1-4b87-83aa-1c1a3132a8de",
+
+
+        "code": "condition_clause.read",
+
+
+        "name": "Condition Clause - Read",
+
+
+        "description": null,
+
+
+        "resource": "condition_clause",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "1d04db41-5022-4dbb-83ea-97af84f43868",
+
+
+        "code": "condition_clause.create",
+
+
+        "name": "Condition Clause - Create",
+
+
+        "description": null,
+
+
+        "resource": "condition_clause",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "953615dd-0e71-4c73-9851-f58af0c64709",
+
+
+        "code": "condition_clause.update",
+
+
+        "name": "Condition Clause - Update",
+
+
+        "description": null,
+
+
+        "resource": "condition_clause",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "7cc80fd8-3146-44cc-82c7-b0d36745a9f1",
+
+
+        "code": "condition_clause.delete",
+
+
+        "name": "Condition Clause - Delete",
+
+
+        "description": null,
+
+
+        "resource": "condition_clause",
+
+
+        "action": "delete",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2a0ecf8d-29cc-4ed5-99f0-f8cbf2cd4618",
+
+
+        "code": "request_screen_submission.read",
+
+
+        "name": "Request Screen Submission - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_submission",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b00b99b2-328a-44d7-869f-1f293428d795",
+
+
+        "code": "request_screen_submission.create",
+
+
+        "name": "Request Screen Submission - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_submission",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "c05dbe8f-eae1-44b2-b6e0-6a2da9e622fd",
+
+
+        "code": "request_screen_submission.update",
+
+
+        "name": "Request Screen Submission - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_submission",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "21c53624-b3c6-413c-802a-2cc3be5b6cea",
+
+
+        "code": "request_field_value.read",
+
+
+        "name": "Request Field Value - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_field_value",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2b231031-f011-45f4-9b5e-218b7e32890a",
+
+
+        "code": "request_field_value.create",
+
+
+        "name": "Request Field Value - Create",
+
+
+        "description": null,
+
+
+        "resource": "request_field_value",
+
+
+        "action": "create",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "e93507b2-d21b-4b36-84c7-771e699c8f71",
+
+
+        "code": "request_field_value.update",
+
+
+        "name": "Request Field Value - Update",
+
+
+        "description": null,
+
+
+        "resource": "request_field_value",
+
+
+        "action": "update",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "9e577f25-52bf-42d9-bfbf-9de426eeec38",
+
+
+        "code": "request_type_audit.read",
+
+
+        "name": "Request Type Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_type_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "941b760e-2099-4c0a-a582-25888d473952",
+
+
+        "code": "request_screen_audit.read",
+
+
+        "name": "Request Screen Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2e7e30a4-a5cc-4dda-8d25-5bbe1a0261b6",
+
+
+        "code": "request_type_screen_audit.read",
+
+
+        "name": "Request Type Screen Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_type_screen_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "e1541021-a2be-418a-8342-cd4e153d7ad9",
+
+
+        "code": "request_field_audit.read",
+
+
+        "name": "Request Field Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_field_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "a8a1bb7e-1f1f-4792-b3d3-d87377637e06",
+
+
+        "code": "request_screen_field_audit.read",
+
+
+        "name": "Request Screen Field Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_field_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "4849e163-9843-4b91-9560-08ba2327e859",
+
+
+        "code": "field_option_list_audit.read",
+
+
+        "name": "Field Option List Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "field_option_list_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "e8ab0ba9-d938-4e9a-9169-86fc8bee215a",
+
+
+        "code": "field_option_value_audit.read",
+
+
+        "name": "Field Option Value Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "field_option_value_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "2a0076c8-b207-4db4-ae59-a6591af39c66",
+
+
+        "code": "condition_audit.read",
+
+
+        "name": "Condition Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "condition_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "e60764b6-5e49-4b5d-81ec-75126ffe50bb",
+
+
+        "code": "condition_clause_audit.read",
+
+
+        "name": "Condition Clause Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "condition_clause_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "b1ad3a49-55f5-452c-8f25-037f878b1bf4",
+
+
+        "code": "request_screen_submission_audit.read",
+
+
+        "name": "Request Screen Submission Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_screen_submission_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      },
+
+
+      {
+
+        "id": "f2c599fc-337f-46c5-abcf-5fb76cc1dd56",
+
+
+        "code": "request_field_value_audit.read",
+
+
+        "name": "Request Field Value Audit - Read",
+
+
+        "description": null,
+
+
+        "resource": "request_field_value_audit",
+
+
+        "action": "read",
+
+
+        "owner_field": null
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "role_permissions",
+    "documents": [
+
+      {
+
+        "id": "80e27729-88ac-4c86-a81e-d38d7ceb8863",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "fb82caa4-e91b-48f8-b696-9c219f0e61ee",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "dc38c9b4-59ad-45f8-88d5-88d741ac759f",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "a7b79a25-784f-4774-b8fa-85e25938c621",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7e4b15ee-4159-4b8c-ba85-fee87b941cba",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "a986327f-425e-4428-a8d1-ab10b839eb49",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d0594304-a44e-44c9-a6f0-81e78db9fa1a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5d168548-6f91-4cd3-874e-8d123c31b26e",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "5349c4d8-d2f1-4fd8-99bf-f5daf383a83a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "f398d344-3aa8-42cd-ba92-dae4f36ef697",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "697ed440-45bb-4e30-8883-f964bf082fed",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b2ec1d44-3987-4c9c-9368-50ba0b93b43f",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a719b237-4225-4004-969f-b427482417b2",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "544ec284-5695-4594-ac63-43e6bf6c0470",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1e77a532-46da-42f6-945c-f5674689cb15",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "8a484471-1290-4ace-b1a9-17dd00ea2b92",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7d2d5658-10ee-4c3d-b2ff-740652e21398",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1279c1d7-b6e5-42ce-824f-2763e8795552",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "9c277bb6-69b0-4872-a2a7-93294bf3c41d",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "3584d37c-80e7-4901-b046-41ea9f9e76a3",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "30ec3a74-77dd-48a6-8ab7-2cedcb8307ec",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "575463d5-93c9-49e4-8a8b-0a5cea0eb023",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "452c8f59-c9b5-4249-8730-e5a9e33b745c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7c83bcac-4639-4995-ac3d-d1f5ded6a216",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "fbd5468c-7472-44be-9a00-2eace8bd633f",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "c3d3aad9-061d-4651-8756-4e5ea43e7d2e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "61578bb1-f74d-450b-9464-407f3361592c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "27252370-af69-46d2-bc56-1f63b2879bf5",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "3c3c96d7-279b-4de9-8577-c4b4071368b2",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "11d11e31-cc4b-431e-9a19-827b3d976b85",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "183a5aac-366a-417e-a9f1-654b37cf2c8b",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "49f2455b-aa19-42e2-b75e-341a963882b5",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "cfd793f5-629b-4fac-aa12-c1acd2da4317",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "ba8d1e1e-232d-44f8-a5fd-aa58fbe61708",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "594b0e06-c18a-4243-87cf-f03669b489d8",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a4c19977-6f0a-4667-96ed-f5fb809e0694",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b8acb30f-d62a-48e7-af39-e6b67e4b2591",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "adeafcff-af58-41d8-974c-749c91900de0",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "9adbac11-9eca-4073-8d52-c061578d7379",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "fefd754b-da98-4107-9ee3-67c1e3a4e4cb",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "74e0a938-72cc-4132-a819-acebdf2cb350",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a5043549-0625-45c6-bf03-eb883ba8097f",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "59fa9713-2d31-415b-a69b-a1f577fcb873",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "f2a4e657-c4f6-4327-8406-e66bf806f7b0",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "d62e8989-88c1-44bf-8e4a-64beb3a03494",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1dfec2e2-9edc-441a-8688-0d4701533a1b",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "1116500f-69bb-41dc-9a91-e24374124800",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "f765a736-dc7f-46fc-be41-7037e91dc686",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "cf729421-4776-4801-b1f9-7c54cba90b83",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "01a2b1dd-88b8-4414-8d00-116aad92b40e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "33fa821c-2e45-42a4-b6e7-105eb7281086",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "452913e0-65a2-49ff-9e6e-06665e35a469",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "9b98555c-7a7f-449a-abef-d70a5a636cd0",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "692152dd-1894-4dc8-9042-85d80626a7cb",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "4b4d59eb-a2ee-4916-aeeb-508dedc18ad3",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "708b5e85-6484-4560-956a-efce5700f3ff",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "d8d5ee86-9bb9-4220-b8d9-6d9d241131d1",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "b341e10c-1fe1-4baa-9125-1211445c65aa",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "e5ef01ca-db19-42df-a3ca-495a43f10e8b",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "f48e17db-9c2c-4960-a2a4-e5e7a028e7e4",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5cb154cf-e83b-46c4-ad1c-cdbb0dc46bd1",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "b1bbac87-5026-4096-a9ec-e1a389e7d445",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "fb82caa4-e91b-48f8-b696-9c219f0e61ee",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "99872eb3-c074-4305-9ef2-8bef42de645d",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "a7b79a25-784f-4774-b8fa-85e25938c621",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "1f331ac3-3ff9-4006-8721-4ae19aca207d",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "a986327f-425e-4428-a8d1-ab10b839eb49",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "2d7a34d2-d7e2-467a-8897-80fff3bfa5bc",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "b2ec1d44-3987-4c9c-9368-50ba0b93b43f",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "867f0f5b-21cb-4871-a2db-5fad9ae40b49",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "8a484471-1290-4ace-b1a9-17dd00ea2b92",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7449bc0e-39c6-4bf2-b190-701fa6da6595",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "a4f89ffe-15c4-4d06-ac28-c2e9cab8ab17",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "8bd0dcd4-fba5-4281-953b-827ee96b7c21",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "9c277bb6-69b0-4872-a2a7-93294bf3c41d",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "80fc1f5e-6b7d-4718-b72c-7db12cf6ed62",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "30ec3a74-77dd-48a6-8ab7-2cedcb8307ec",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "53647ba6-09b7-43f9-bacc-4539cc559aee",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "452c8f59-c9b5-4249-8730-e5a9e33b745c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6631c947-c621-4e41-8103-1b40368c88bd",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "fbd5468c-7472-44be-9a00-2eace8bd633f",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "24bff196-c62b-4fad-80a3-7e5d57be7a7c",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "61578bb1-f74d-450b-9464-407f3361592c",
+
+
+        "scope": "own"
+
+
+      },
+
+
+      {
+
+        "id": "454e2e0e-8f2e-4347-9078-9e4778da0e50",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "3c3c96d7-279b-4de9-8577-c4b4071368b2",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "170726ac-3515-41ef-96ad-4d6eeba61d9c",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "b8acb30f-d62a-48e7-af39-e6b67e4b2591",
+
+
+        "scope": "active_only"
+
+
+      },
+
+
+      {
+
+        "id": "2356007e-bf0e-483a-965e-9f08cd5956ae",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "d62e8989-88c1-44bf-8e4a-64beb3a03494",
+
+
+        "scope": "active_only"
+
+
+      },
+
+
+      {
+
+        "id": "ea96e6cf-c3d5-40d9-9f70-a7cf809766f0",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5524636a-fd77-42ea-81cc-c941015e8750",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7cfe2472-b1d0-4632-9fdc-6c2012bae595",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "ba06aa0b-1ab0-4cc4-a7f1-ee8ad68a1fc4",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "4bf7bd12-b5a2-4e28-bc18-77cbe8b77d35",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "feb541e4-3c05-4e73-ae6f-ee3d8f3ebbf4",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1425fa57-487d-4c64-9caf-ff1dedb0dbf1",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b717a3a3-68b4-4337-84b7-c4a406b4b043",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6d764a8b-43e3-4e36-b618-ebadf25a3806",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "cea7c1af-ae9b-4d99-baf3-0a44359e27a3",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "9cb24fa4-9bb3-48a6-b246-a75c7b642d25",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "ea4d76f0-8792-436f-ac89-ac0cfdfbd1d6",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "249792c5-c980-46be-9165-26b450c60e81",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "eac356f3-5bba-4086-ae2e-93d90707c5cb",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d1f9ff44-5e33-4e4a-ad96-1cf70c41beef",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "3722542b-e4f6-4570-af2c-756a618509e5",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "25e0694a-4393-47cc-aa73-458ca24f3740",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "78ac37e5-5cac-42ca-9fc8-a731554099be",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "3e5b8445-fbae-45da-bb01-70515ddb72e8",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "7b362477-344e-42cf-ace7-ed7b72d0a77a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "873c8897-c0b0-4c5b-a736-8ad874ea3af6",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "c82fd48f-3fe4-4852-be0c-9a4c9e6beb30",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "63e13bf7-7a6b-40d9-bb00-c9d583d47623",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "9b74b7d0-e4ae-4c57-941b-2b23e52fe65c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6c836243-1bc8-4849-8d3e-1d0cf7eadd9c",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "1d0de8f4-846b-434b-9f59-098f116159f1",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "2211588f-6601-4968-9457-67dc4d12cbcb",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "781569b1-6eed-463e-8cef-6b3a785e1faf",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "fd6b1e9d-7e9f-4040-91f3-9d83563a5225",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "eca98571-56c4-469e-8cc6-157e7f728c34",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6ad96f0b-a466-4cb2-9c13-e80e5cf36623",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "bd9abc0a-8c89-4db2-9c53-f6470fe339fc",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "203ab308-defa-4f05-902a-391424e09048",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "98cbfa99-2c8c-4a21-a0a6-9e9a786ad70e",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "62b24597-c79a-4a2c-bf64-47ebc630e296",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5d247cb7-22d7-4ff8-a008-06d425dddda8",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "4a7f1b5a-47f1-43ac-9689-7ada00d9ff0e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2b4f2ce4-4ddf-4336-8953-1a36c1c52bf9",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d1ac33ab-4a6b-44ff-a9fb-cbfa8ea56d47",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "141ff7ed-e22b-47f7-87a1-61ace3a03e3a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "ac5b3fdb-9c86-4d9d-b87e-209c7c26b431",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "495fa653-bc26-4837-b24e-7d0b86493ee6",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "2171c83a-ac87-477b-849a-106954b5d64a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "33ecd0de-ffc7-4de3-9096-c4d78f2f39a5",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "5a8387b0-e9e6-4d4d-881f-40c2fe024891",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "5524636a-fd77-42ea-81cc-c941015e8750",
+
+
+        "scope": "all"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "app_users",
+    "documents": [
+
+      {
+
+        "id": "945fa771-0def-4f99-bd28-e77acec8014d",
+
+
+        "tenant_id": "local",
+
+
+        "user_name": "local-dev",
+
+
+        "display_name": "Local Admin",
+
+
+        "email": null,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "tenant_id": "t1",
+
+
+        "user_name": "alex",
+
+
+        "display_name": "Alex Morgan",
+
+
+        "email": "alex.morgan@pds-demo.com",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "tenant_id": "t1",
+
+
+        "user_name": "dana",
+
+
+        "display_name": "Dana Whitfield",
+
+
+        "email": "dana.whitfield@pds-demo.com",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "tenant_id": "t1",
+
+
+        "user_name": "sarah",
+
+
+        "display_name": "Sarah Wilson",
+
+
+        "email": "sarah.wilson@pds-demo.com",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "tenant_id": "t1",
+
+
+        "user_name": "mike",
+
+
+        "display_name": "Mike Chen",
+
+
+        "email": "mike.chen@pds-demo.com",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "tenant_id": "t1",
+
+
+        "user_name": "lisa",
+
+
+        "display_name": "Lisa Patel",
+
+
+        "email": "lisa.patel@pds-demo.com",
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "user_roles",
+    "documents": [
+
+      {
+
+        "id": "45b4feb3-6f9d-40db-858f-f0ae374cdef6",
+
+
+        "user_id": "945fa771-0def-4f99-bd28-e77acec8014d",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "granted_by_user_id": null,
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      },
+
+
+      {
+
+        "id": "f224d10a-fb5b-40b3-bf89-7f1d9cdd8159",
+
+
+        "user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "granted_by_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      },
+
+
+      {
+
+        "id": "6b0d8ccf-fc0b-496f-bea7-8f5f7a706e20",
+
+
+        "user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "granted_by_user_id": null,
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      },
+
+
+      {
+
+        "id": "c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e01",
+
+
+        "user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "granted_by_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      },
+
+
+      {
+
+        "id": "c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e02",
+
+
+        "user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "granted_by_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      },
+
+
+      {
+
+        "id": "c9a4f6a1-2b3c-4d5e-8f60-1a2b3c4d5e03",
+
+
+        "user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "granted_by_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "granted_at": "2026-01-01T00:00:00Z"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "request_types",
+    "documents": [
+
+      {
+
+        "id": "f714b263-5e10-42e5-be2e-6b186189f8bc",
+
+
+        "code": "TAX_DOCUMENT_ROUTING",
+
+
+        "name": "Tax Document Routing",
+
+
+        "description": "Route a client's tax documents into their permanent storage folders.",
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "request_screens",
+    "documents": [
+
+      {
+
+        "id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "code": "client_info",
+
+
+        "name": "Client Info",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "code": "upload_documents",
+
+
+        "name": "Upload Documents",
+
+
+        "sort_order": 20,
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "request_type_screens",
+    "documents": [
+
+      {
+
+        "id": "412c9b6f-8927-4c52-a67a-b4fc7a4392af",
+
+
+        "request_type_id": "f714b263-5e10-42e5-be2e-6b186189f8bc",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "is_mandatory": true,
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "1b2193d4-df94-4fd1-b776-60773bcff092",
+
+
+        "request_type_id": "f714b263-5e10-42e5-be2e-6b186189f8bc",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "is_mandatory": true,
+
+
+        "sort_order": 20
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "field_option_lists",
+    "documents": [
+
+      {
+
+        "id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "name": "document_type",
+
+
+        "description": "Document types offered on the Upload Documents screen (business spec 3.4)."
+
+
+      },
+
+
+      {
+
+        "id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "name": "document_year",
+
+
+        "description": "Tax years offered on the Upload Documents screen."
+
+
+      },
+
+
+      {
+
+        "id": "90621ea4-fdf2-4a20-ae92-9c487fa58ceb",
+
+
+        "name": "entity_type",
+
+
+        "description": "Entity types a document can belong to (business spec 3.3)."
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "field_option_values",
+    "documents": [
+
+      {
+
+        "id": "becdad32-303c-4562-9134-9a054567f99b",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "K-1",
+
+
+        "label": "K-1",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "51ea5c41-8a51-4417-b497-880348f0ebe2",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Draft K-1",
+
+
+        "label": "Draft K-1",
+
+
+        "sort_order": 20,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "7d4005f4-2248-4662-9d22-f04d7df286e3",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Tax Return",
+
+
+        "label": "Tax Return",
+
+
+        "sort_order": 30,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "d0dbe225-452a-4e0d-9ce1-27e4adf6a135",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Income Statement",
+
+
+        "label": "Income Statement",
+
+
+        "sort_order": 40,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "495e8f89-e2c3-4870-b46a-e6abdfa76bd4",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Balance Sheet",
+
+
+        "label": "Balance Sheet",
+
+
+        "sort_order": 50,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "31fa3932-36f5-40fb-8323-89ff0e5eb76c",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "S-Corp Election",
+
+
+        "label": "S-Corp Election",
+
+
+        "sort_order": 60,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "81ff051a-259d-4a40-9d11-e61f246e6774",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "S-Corp",
+
+
+        "label": "S-Corp",
+
+
+        "sort_order": 70,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "915d6180-c316-4b74-aa0d-44985e459099",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Form 8308",
+
+
+        "label": "Form 8308",
+
+
+        "sort_order": 80,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "189c9a0f-5fb2-4f22-8cd5-9e0161cd94ec",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "code": "Extensions",
+
+
+        "label": "Extensions",
+
+
+        "sort_order": 90,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "8973a136-3a7a-4c18-b83f-a1e7ddd042a4",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2025",
+
+
+        "label": "2025",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "d173a61f-f84c-40b7-9ef7-b7c6ce45556f",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2024",
+
+
+        "label": "2024",
+
+
+        "sort_order": 20,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "d4b18770-8a04-46fb-976e-584b129aff27",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2023",
+
+
+        "label": "2023",
+
+
+        "sort_order": 30,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "41fadaa4-8c08-4417-a5b3-207d64c434aa",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2022",
+
+
+        "label": "2022",
+
+
+        "sort_order": 40,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "2c09a5b8-83f8-4979-a5aa-90e49a8fb56f",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2021",
+
+
+        "label": "2021",
+
+
+        "sort_order": 50,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "36fcc239-3ac7-4923-b75e-9f6d4904b284",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "code": "2020",
+
+
+        "label": "2020",
+
+
+        "sort_order": 60,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "1ab6c210-c112-44b5-8f3a-680522014a0a",
+
+
+        "option_list_id": "90621ea4-fdf2-4a20-ae92-9c487fa58ceb",
+
+
+        "code": "Partnership",
+
+
+        "label": "Partnership",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "17d9a361-e370-4c36-8102-0cc8c579da1b",
+
+
+        "option_list_id": "90621ea4-fdf2-4a20-ae92-9c487fa58ceb",
+
+
+        "code": "S-Corp",
+
+
+        "label": "S-Corp",
+
+
+        "sort_order": 20,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "59950ed1-a366-493a-825a-c0bab4a1bd7a",
+
+
+        "option_list_id": "90621ea4-fdf2-4a20-ae92-9c487fa58ceb",
+
+
+        "code": "Personal Corporation",
+
+
+        "label": "Personal Corporation",
+
+
+        "sort_order": 30,
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "document_type_routes",
+    "documents": [
+
+      {
+
+        "id": "0c3590ab-750f-4e2e-80bd-d6a473f4388d",
+
+
+        "document_type": "K-1",
+
+
+        "business_name": "Schedule K-1",
+
+
+        "external_folder": "K-1s",
+
+
+        "internal_folder": "4. Tax Documents",
+
+
+        "note": "Batches of 3,000+ possible",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": true,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": false
+
+
+      },
+
+
+      {
+
+        "id": "dbdc68b4-2b16-4847-8a4d-3448fc3f0d9a",
+
+
+        "document_type": "Draft K-1",
+
+
+        "business_name": "Draft Schedule K-1",
+
+
+        "external_folder": "K-1s",
+
+
+        "internal_folder": "4. Tax Documents",
+
+
+        "note": "Preliminary K-1",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": true,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": false
+
+
+      },
+
+
+      {
+
+        "id": "51571a87-50b4-44d6-9e30-fca083b7e532",
+
+
+        "document_type": "Tax Return",
+
+
+        "business_name": "Tax Return (1040/1065/1120)",
+
+
+        "external_folder": "Tax Returns",
+
+
+        "internal_folder": "7. Tax Returns",
+
+
+        "note": "Personal, partnership, or corporate",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": false
+
+
+      },
+
+
+      {
+
+        "id": "a5316cd4-82dc-416e-96e7-888dee98b50a",
+
+
+        "document_type": "Income Statement",
+
+
+        "business_name": "Income Statement",
+
+
+        "external_folder": "Loan Assistance",
+
+
+        "internal_folder": "Loan Assistance",
+
+
+        "note": "Financial statement for loans",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": false
+
+
+      },
+
+
+      {
+
+        "id": "a8fc0b20-86c4-4ba9-bda6-87d4d2b85ad5",
+
+
+        "document_type": "Balance Sheet",
+
+
+        "business_name": "Balance Sheet",
+
+
+        "external_folder": "Loan Assistance",
+
+
+        "internal_folder": "Loan Assistance",
+
+
+        "note": "Financial statement for loans",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": false
+
+
+      },
+
+
+      {
+
+        "id": "a2c2857e-b460-44dc-a15d-c7b857eea201",
+
+
+        "document_type": "S-Corp Election",
+
+
+        "business_name": "S-Corp Election",
+
+
+        "external_folder": "Signature Requests",
+
+
+        "internal_folder": null,
+
+
+        "note": "Requires signature. External only.",
+
+
+        "allows_entity": false,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": true
+
+
+      },
+
+
+      {
+
+        "id": "bb24b9bd-f575-4b10-9821-0c8fd6ddd97e",
+
+
+        "document_type": "S-Corp",
+
+
+        "business_name": "S-Corporation",
+
+
+        "external_folder": "Signature Requests",
+
+
+        "internal_folder": null,
+
+
+        "note": "Distinct from S-Corp Election. Added Jan 2025. External only.",
+
+
+        "allows_entity": false,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": true
+
+
+      },
+
+
+      {
+
+        "id": "8535a633-b7b4-4f14-a937-b21ee6d2115f",
+
+
+        "document_type": "Form 8308",
+
+
+        "business_name": "Form 8308",
+
+
+        "external_folder": "K-1s",
+
+
+        "internal_folder": null,
+
+
+        "note": "Partnership interest sale/exchange. External only.",
+
+
+        "allows_entity": true,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": true,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": true
+
+
+      },
+
+
+      {
+
+        "id": "7231909b-8997-4822-9cbf-bc303ff483f9",
+
+
+        "document_type": "Extensions",
+
+
+        "business_name": "Tax Extension",
+
+
+        "external_folder": "Tax Returns",
+
+
+        "internal_folder": null,
+
+
+        "note": "Filing extension documents. External only.",
+
+
+        "allows_entity": false,
+
+
+        "requires_k1_attachments": false,
+
+
+        "requires_form_8308_attachments": false,
+
+
+        "supports_password_protection": true,
+
+
+        "is_external_only": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "request_fields",
+    "documents": [
+
+      {
+
+        "id": "383af50f-0888-4f63-b609-32ae0d159992",
+
+
+        "code": "client_reference_id",
+
+
+        "label": "Client",
+
+
+        "help_text": "Search the taxpayer reference database by name or ID.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "uuid",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "client_reference_id",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "42cef28a-3428-401f-91a4-dbe1f1783a53",
+
+
+        "code": "client_first_name",
+
+
+        "label": "First Name",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "client_first_name",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "86ba1535-dabb-4c4a-a568-779135232775",
+
+
+        "code": "client_last_name",
+
+
+        "label": "Last Name",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "client_last_name",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "84f66f82-604d-4a04-b36f-e3802d493bfd",
+
+
+        "code": "office_location",
+
+
+        "label": "Office Location",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "office_location",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3d1b2f61-8bd8-41f3-b3fe-42e1eabb5613",
+
+
+        "code": "pds_email",
+
+
+        "label": "Client PDS Email",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "pds_email",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "131c89c7-9dfe-49d9-8531-664690e7ff43",
+
+
+        "code": "personal_email",
+
+
+        "label": "Client Personal Email",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "personal_email",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "5d8fab7b-a19b-4572-8138-43dd76a8765a",
+
+
+        "code": "additional_email",
+
+
+        "label": "Additional Email",
+
+
+        "help_text": "Optional third email for notifications.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "additional_email",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "48db384c-c916-48a3-9bf9-ef0a56f97082",
+
+
+        "code": "notification_flag",
+
+
+        "label": "Send Notification?",
+
+
+        "help_text": "Emails the client when routing completes.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "boolean",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "notification_flag",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "ae42c92e-b06a-45fb-91c7-e690602b32db",
+
+
+        "code": "internal_folder",
+
+
+        "label": "Internal Folder",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "internal_folder",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "585c4e7c-daeb-45bd-b051-bf205f4dc736",
+
+
+        "code": "folder_name",
+
+
+        "label": "Client Folder",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "folder_name",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "d728bd8b-add7-4955-9a98-8a819b951339",
+
+
+        "code": "read_write_password",
+
+
+        "label": "Read Write Password",
+
+
+        "help_text": "Password on file. Never displayed; only used to protect PDFs when required.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "read_write_password",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "5bfed36c-e4c9-40d2-895b-ac6e163afe7c",
+
+
+        "code": "document_type",
+
+
+        "label": "Document Type",
+
+
+        "help_text": "Drives routing and conditional fields.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "enum",
+
+
+        "option_list_id": "ce2d9c7f-12df-43d5-b467-92392b1aebcf",
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "document_type_route_id",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "bbd6d423-5b9d-42a8-8824-003ed9e01fe3",
+
+
+        "code": "document_year",
+
+
+        "label": "Year",
+
+
+        "help_text": null,
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "enum",
+
+
+        "option_list_id": "f89ac428-0614-45c2-b07d-35c8230af50d",
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "document_year",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "eda662fe-a617-4561-9874-3be703386176",
+
+
+        "code": "document_name",
+
+
+        "label": "Document Name",
+
+
+        "help_text": "e.g. K1_2024.pdf",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "document_name",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "8d32f2c0-8d70-455f-a496-9188978ebe31",
+
+
+        "code": "entity_type",
+
+
+        "label": "Entity Type",
+
+
+        "help_text": "Required when this document belongs to an entity.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "enum",
+
+
+        "option_list_id": "90621ea4-fdf2-4a20-ae92-9c487fa58ceb",
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "entity_type",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "5cbb8b04-b586-4f4f-ae30-49a126164b37",
+
+
+        "code": "entity_name",
+
+
+        "label": "Entity Name",
+
+
+        "help_text": "From the entity reference list.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "entity_name",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "fce6a649-7110-4fd6-b1d6-502f03536f79",
+
+
+        "code": "entity_oracle_id",
+
+
+        "label": "Entity Number",
+
+
+        "help_text": "Auto-populated from the selected entity.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "string",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "entity_oracle_id",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "035fa518-e0a6-44b1-b348-e23819a2c9fd",
+
+
+        "code": "is_password_protected",
+
+
+        "label": "Password Protect Client Copies",
+
+
+        "help_text": "The PDF is encrypted with the client's password.",
+
+
+        "answer_shape": "single",
+
+
+        "data_type": "boolean",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "is_password_protected",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "51030b74-a679-4ae9-95f2-237ba01937ab",
+
+
+        "code": "attachment_file",
+
+
+        "label": "Attachment",
+
+
+        "help_text": "The document file to upload.",
+
+
+        "answer_shape": "file",
+
+
+        "data_type": "file",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "attachment_file",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "e1f6ccb6-06cd-40af-83c5-e9fb3bee31e7",
+
+
+        "code": "k1_attachments",
+
+
+        "label": "K-1 Attachments",
+
+
+        "help_text": "Additional K-1 files.",
+
+
+        "answer_shape": "list",
+
+
+        "data_type": "file",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "k1_attachments",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "0298e5f6-a3db-45a2-8fdb-0246808fa3b7",
+
+
+        "code": "form_8308_attachments",
+
+
+        "label": "Form 8308 Attachments",
+
+
+        "help_text": "Additional Form 8308 files.",
+
+
+        "answer_shape": "list",
+
+
+        "data_type": "file",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "form_8308_attachments",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "c1d3f2d3-00c1-4a44-b466-624ad531a1d9",
+
+
+        "code": "amended_documents",
+
+
+        "label": "Amended Documents",
+
+
+        "help_text": "Amended versions of documents.",
+
+
+        "answer_shape": "list",
+
+
+        "data_type": "file",
+
+
+        "option_list_id": null,
+
+
+        "storage_target": "column",
+
+
+        "promoted_column": "amended_documents",
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "conditions",
+    "documents": [
+
+      {
+
+        "id": "921e2478-10b0-41c7-bed0-588e4882f5f0",
+
+
+        "name": "document_belongs_to_entity",
+
+
+        "join_kind": "and",
+
+
+        "description": "The selected document type allows an entity to be attached (business spec 5.5)."
+
+
+      },
+
+
+      {
+
+        "id": "064cb746-a408-4e37-9bc2-b1e2bcbce3d5",
+
+
+        "name": "document_requires_k1_attachments",
+
+
+        "join_kind": "and",
+
+
+        "description": "The selected document type is K-1 or Draft K-1 (business spec 5.5)."
+
+
+      },
+
+
+      {
+
+        "id": "9dc7f2a7-d6cc-4223-b58c-df0f6481f554",
+
+
+        "name": "document_requires_form_8308_attachments",
+
+
+        "join_kind": "and",
+
+
+        "description": "The selected document type is Form 8308 (business spec 5.5)."
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "condition_clauses",
+    "documents": [
+
+      {
+
+        "id": "eabdca8f-8dc5-451e-83f2-56c200ed84ca",
+
+
+        "condition_id": "921e2478-10b0-41c7-bed0-588e4882f5f0",
+
+
+        "subject_kind": "document_type_attribute",
+
+
+        "subject_field_id": null,
+
+
+        "subject_attribute": "allows_entity",
+
+
+        "comparison": "is",
+
+
+        "value": "true",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "930f014d-79f9-4d78-9492-b6971e0a4939",
+
+
+        "condition_id": "064cb746-a408-4e37-9bc2-b1e2bcbce3d5",
+
+
+        "subject_kind": "document_type_attribute",
+
+
+        "subject_field_id": null,
+
+
+        "subject_attribute": "requires_k1_attachments",
+
+
+        "comparison": "is",
+
+
+        "value": "true",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "5b7942a7-2aa7-4810-a20b-5af65e8e6f46",
+
+
+        "condition_id": "9dc7f2a7-d6cc-4223-b58c-df0f6481f554",
+
+
+        "subject_kind": "document_type_attribute",
+
+
+        "subject_field_id": null,
+
+
+        "subject_attribute": "requires_form_8308_attachments",
+
+
+        "comparison": "is",
+
+
+        "value": "true",
+
+
+        "sort_order": 10
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "request_screen_fields",
+    "documents": [
+
+      {
+
+        "id": "0f560822-2871-444a-823f-30ddafec8d37",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "383af50f-0888-4f63-b609-32ae0d159992",
+
+
+        "requirement": "mandatory",
+
+
+        "condition_id": null,
+
+
+        "section": "Client Profile",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "a2eaee6d-6b6f-46f7-99e4-3b3716331773",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "42cef28a-3428-401f-91a4-dbe1f1783a53",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Client Profile",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "42ef74ec-535b-4b46-90b1-534102271865",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "86ba1535-dabb-4c4a-a568-779135232775",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Client Profile",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "7c724228-6731-4165-8e23-b6c03aa2f1f0",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "131c89c7-9dfe-49d9-8531-664690e7ff43",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Contact Emails",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "fd7eca4d-20a2-4280-8dcf-613115a1065a",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "3d1b2f61-8bd8-41f3-b3fe-42e1eabb5613",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Contact Emails",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "cbb39d0c-96b3-4296-b9b7-89e06d02418f",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "5d8fab7b-a19b-4572-8138-43dd76a8765a",
+
+
+        "requirement": "optional",
+
+
+        "condition_id": null,
+
+
+        "section": "Contact Emails",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "64e656bf-3f42-4ba9-97ca-b0fe04df5850",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "ae42c92e-b06a-45fb-91c7-e690602b32db",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Intelligence Routing",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "c9a22c76-2817-4044-88eb-f94f0f5eecb9",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "585c4e7c-daeb-45bd-b051-bf205f4dc736",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Intelligence Routing",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "61db0ed6-a2f6-4267-9eb4-3a1e33f570a4",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "d728bd8b-add7-4955-9a98-8a819b951339",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Intelligence Routing",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "c66822f3-dcd1-4111-8609-6d31e480504d",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "48db384c-c916-48a3-9bf9-ef0a56f97082",
+
+
+        "requirement": "optional",
+
+
+        "condition_id": null,
+
+
+        "section": "Intelligence Routing",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "c22de3dd-c4fe-46a6-85b8-b7fc036a13d8",
+
+
+        "screen_id": "d44caa75-3296-4df6-a1f4-9c827ff069a4",
+
+
+        "field_id": "84f66f82-604d-4a04-b36f-e3802d493bfd",
+
+
+        "requirement": "readonly",
+
+
+        "condition_id": null,
+
+
+        "section": "Client Profile",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "6e359cd3-1a0e-445c-a0a6-e7daabed2a20",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "5bfed36c-e4c9-40d2-895b-ac6e163afe7c",
+
+
+        "requirement": "mandatory",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 10
+
+
+      },
+
+
+      {
+
+        "id": "49de5815-8003-4a39-8c26-ac4377ecc8ed",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "bbd6d423-5b9d-42a8-8824-003ed9e01fe3",
+
+
+        "requirement": "mandatory",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 20
+
+
+      },
+
+
+      {
+
+        "id": "95867def-7fe1-49f9-a74e-d00e44b3210e",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "eda662fe-a617-4561-9874-3be703386176",
+
+
+        "requirement": "mandatory",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 30
+
+
+      },
+
+
+      {
+
+        "id": "baaee8ec-8af5-4be3-9166-17e6bc65f21d",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "8d32f2c0-8d70-455f-a496-9188978ebe31",
+
+
+        "requirement": "conditional",
+
+
+        "condition_id": "921e2478-10b0-41c7-bed0-588e4882f5f0",
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 40
+
+
+      },
+
+
+      {
+
+        "id": "6c5b953e-7882-4ec8-ba71-21e34c5f0003",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "5cbb8b04-b586-4f4f-ae30-49a126164b37",
+
+
+        "requirement": "conditional",
+
+
+        "condition_id": "921e2478-10b0-41c7-bed0-588e4882f5f0",
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 50
+
+
+      },
+
+
+      {
+
+        "id": "18c2f2f0-ea99-45c1-a911-e2a9018e34e6",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "fce6a649-7110-4fd6-b1d6-502f03536f79",
+
+
+        "requirement": "conditional",
+
+
+        "condition_id": "921e2478-10b0-41c7-bed0-588e4882f5f0",
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 60
+
+
+      },
+
+
+      {
+
+        "id": "273c90d5-aebe-4347-a459-fd5feb8f2c20",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "035fa518-e0a6-44b1-b348-e23819a2c9fd",
+
+
+        "requirement": "optional",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 70
+
+
+      },
+
+
+      {
+
+        "id": "a4d8d6ba-c1a3-47a1-8da0-9ac5abbbc7b0",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "51030b74-a679-4ae9-95f2-237ba01937ab",
+
+
+        "requirement": "mandatory",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 80
+
+
+      },
+
+
+      {
+
+        "id": "afb2f3f8-383b-4857-a71d-4659ddeadd07",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "e1f6ccb6-06cd-40af-83c5-e9fb3bee31e7",
+
+
+        "requirement": "conditional",
+
+
+        "condition_id": "064cb746-a408-4e37-9bc2-b1e2bcbce3d5",
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 90
+
+
+      },
+
+
+      {
+
+        "id": "c13a11bd-2834-4c7b-a013-0b6cf9688596",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "0298e5f6-a3db-45a2-8fdb-0246808fa3b7",
+
+
+        "requirement": "conditional",
+
+
+        "condition_id": "9dc7f2a7-d6cc-4223-b58c-df0f6481f554",
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 100
+
+
+      },
+
+
+      {
+
+        "id": "f0edb1a6-b6a2-4ae1-874e-bc6f3e254843",
+
+
+        "screen_id": "92a1bfd9-47f9-4bcf-a682-5628f16baca3",
+
+
+        "field_id": "c1d3f2d3-00c1-4a44-b466-624ad531a1d9",
+
+
+        "requirement": "optional",
+
+
+        "condition_id": null,
+
+
+        "section": "Extracted Documents",
+
+
+        "sort_order": 110
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "role_permissions",
+    "documents": [
+
+      {
+
+        "id": "922816c8-b297-4fe9-8da3-d06e95f77696",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "dc8563ab-fdfe-4a1e-ba38-ae5c3339bd40",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "176e4ac5-3acd-4398-bb71-6f6e94ce4ea5",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "dc8563ab-fdfe-4a1e-ba38-ae5c3339bd40",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "08a63c7f-3758-42e6-ba69-cb1d0cc68600",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "49277002-b8bb-44ef-98ae-a31119dcd89a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a895ae9e-493d-4d8d-bf11-abab1059811e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2e5dd3ec-bf9a-46c6-9695-c9abdcc65413",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "c9eeb9ad-1a58-4e2c-850e-5ddcfb2c4edc",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "301c1b26-730c-4fe4-9ed0-02c94c226219",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "be28fe44-ef5e-4b81-b736-dc8af07a3798",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "ecea19a9-4b74-404f-bb11-c0e256734d64",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "10d64e41-3d5d-4b7c-ae0d-2c8f09bf2f34",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "ecea19a9-4b74-404f-bb11-c0e256734d64",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "f8cb498a-f372-4cbb-8f08-8cec7ed0d1ab",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "dbc4968f-511c-4920-8072-06af332478ae",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "058daa9d-a74e-4c07-8808-e45cde4f7537",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "d0127839-da72-42bb-a149-b4bbcb10a1d0",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "90c460a7-be34-4885-80be-f046e086ac53",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "aeea58f6-5334-4e55-921d-08fafc2a1ee7",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "329f6426-fa03-46fb-82a5-3dbe02994d11",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "98712260-3383-4e8a-8797-07e504946393",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "64c8eee6-0786-40f3-b7f0-7b78f8488d00",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "98712260-3383-4e8a-8797-07e504946393",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "188c1462-964b-4828-a1e6-231387aab0b0",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "50b9423d-0a03-4763-93a2-4878d997319b",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "4ea4e4ce-f3e7-4d8a-a46a-bc0f5c45bd6e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b09e5804-647d-4412-8c18-6547ea46a73e",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "2d88a871-a009-4938-8ec6-77109161159f",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b91ab276-4e55-412b-bdc6-22ce232a859c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "8c75f985-155d-46e3-acf9-54bfc0c798ec",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "fd4ced68-b37e-4263-af38-d94e3ce50369",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7c4c09f4-4ac9-4072-a121-011ad423d57e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "fd4ced68-b37e-4263-af38-d94e3ce50369",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "163aae76-1e8a-4b39-a572-da675e20a761",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5fc6dbf7-4437-4374-a0b4-8fdd396c0190",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7dd6501b-8768-4949-b937-517d04c0cf6f",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "16cebd7f-4c6e-4164-b384-56f844ae0b3b",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "bbbf82d1-eb98-4aeb-bbf3-0475d4325987",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "4fcf2929-c96f-4527-9e30-f662751ddc3c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "048f96f8-701e-4b9c-bd58-a08ab7870de8",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "1f4d037f-49f7-4b64-a2af-0721452653ac",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "aaa63c75-b6d8-4704-b33d-b67aa6993aa6",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "1f4d037f-49f7-4b64-a2af-0721452653ac",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "67a0701a-37c0-4bfe-9853-79dc94829335",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "c430b1e0-3e3d-4047-89d6-24687015d2e0",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "5154d251-087c-4433-9c87-4c25609d1052",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "6871452d-e2ba-42f3-9f63-9b8a86a66e5a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "9f4f5ef0-076d-4200-9ca1-cb0e284d85ba",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "3491f676-fb5a-40de-8c02-4ddaab3e6889",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "beb251ee-5e1c-4f4a-b7e0-413e2087cd85",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "53b25f7f-85d3-45be-8493-602df3814caf",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "067bfca1-273f-4b1d-9524-f11cb22293a5",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "53b25f7f-85d3-45be-8493-602df3814caf",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "27202332-86e5-4840-b9ee-3484a98f851e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "159d8d39-e826-43a0-b436-0a5b78524693",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7610bdce-897b-40cf-a9dd-cdce81e3590e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "65fe2ae6-2c8e-468c-9c22-4cea2bf7bf3a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "946f9ebc-55f6-457a-9cad-255100e907f1",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "c18a43f0-5299-4ab6-8f03-cbb09a36cf2a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "b943ce07-b7ee-4c5f-bd38-074133ed018a",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "33cddff0-017c-4cf7-b852-d9dcdcf38ae0",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "5c055be9-5c3f-4e5c-8938-10951050f318",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "33cddff0-017c-4cf7-b852-d9dcdcf38ae0",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "438b53ce-86f1-44df-aa7b-c9cf51c93679",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "8faad617-2a9f-4a5b-a791-4e5cf2eb1e4c",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "73648067-4316-4555-b243-8441a8882c58",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b35c7ef4-412d-457c-9420-8ff8ca0fbd5d",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "0e1ed6fa-bd38-440e-ae45-4467f497fc0e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "7cb59402-d229-49e2-ab75-96a3f856f897",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6f75a8c8-323b-446d-ba70-1e70cac2f3b6",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "ef728ef8-4cbf-49d8-9194-70563e553c8a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "8d5fad18-f996-46f5-82ae-0e9955691a2e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "ef728ef8-4cbf-49d8-9194-70563e553c8a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1ce0dbea-38cb-4354-8672-9186de4253c9",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "5110e5cc-c923-490d-a29e-30023430fa3a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "82af6b5f-dd0e-4bbe-9645-393ecd299364",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "72608a55-0e50-4d11-8ed9-1ae985248aa5",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "2674a36e-f9c0-45e9-8a45-2022851626bb",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "196e153e-3320-4bbb-9c35-df9a5b328593",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1c3842d6-6cd8-4d17-a5a7-90ec412b14b4",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "a208c167-37e1-4b87-83aa-1c1a3132a8de",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "46e1280b-229d-4aac-b314-e74fdecac565",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "a208c167-37e1-4b87-83aa-1c1a3132a8de",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "6af34e45-5f86-4f3b-abff-1550aa6f16c1",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "1d04db41-5022-4dbb-83ea-97af84f43868",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "7e09c651-5c71-46cd-b25c-a0f674c3a86a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "953615dd-0e71-4c73-9851-f58af0c64709",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "e3ddf161-3c80-46a9-ac94-a97f2a6168a5",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "7cc80fd8-3146-44cc-82c7-b0d36745a9f1",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d8a1e94d-37bf-47ca-ab98-0042e495bc96",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "2a0ecf8d-29cc-4ed5-99f0-f8cbf2cd4618",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d06d2a70-5f13-4068-a35b-8106978ab4eb",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2a0ecf8d-29cc-4ed5-99f0-f8cbf2cd4618",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "33b7dc0a-03b3-4a0c-a175-0792a44067b5",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "b00b99b2-328a-44d7-869f-1f293428d795",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "0eb6e80f-2989-4951-b660-34e7606a5ca0",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b00b99b2-328a-44d7-869f-1f293428d795",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "083ebd5b-9d02-432f-94c8-8edad2775e67",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "c05dbe8f-eae1-44b2-b6e0-6a2da9e622fd",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "028426ac-6be4-45a8-a58a-6279d30cd440",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "c05dbe8f-eae1-44b2-b6e0-6a2da9e622fd",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "b2b0b03d-eba9-45ba-9c22-d0221010aee9",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "21c53624-b3c6-413c-802a-2cc3be5b6cea",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "95aa7ede-c187-4f50-890f-3b4332bc0765",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "21c53624-b3c6-413c-802a-2cc3be5b6cea",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "544087fe-4186-4299-b2c3-97b23586e7ef",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "2b231031-f011-45f4-9b5e-218b7e32890a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "d88dbcae-7ed8-46a8-8b67-ea370252ede1",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2b231031-f011-45f4-9b5e-218b7e32890a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "38c061c3-9c3a-4a4d-ad69-6dc5ef0faaf4",
+
+
+        "role_id": "208a2102-a238-4e7c-b2d3-c279bf00f89e",
+
+
+        "permission_id": "e93507b2-d21b-4b36-84c7-771e699c8f71",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "e9297d5c-cd15-47aa-b8e9-e5559ecbbd4b",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "e93507b2-d21b-4b36-84c7-771e699c8f71",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "f936e8f4-70d4-4a48-89b4-87e400add53a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "9e577f25-52bf-42d9-bfbf-9de426eeec38",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "84085384-11f8-47f4-930a-dff3f3bdda91",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "941b760e-2099-4c0a-a582-25888d473952",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "677d0e6f-a902-479d-83ea-cfdc9b20ec79",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2e7e30a4-a5cc-4dda-8d25-5bbe1a0261b6",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "9eb30707-61d2-4b9b-b5ce-660db8f5e93a",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "e1541021-a2be-418a-8342-cd4e153d7ad9",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a21416a7-896a-440a-8b1e-cb97bf85c244",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "a8a1bb7e-1f1f-4792-b3d3-d87377637e06",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "ab32e166-43c2-482c-b6e6-0791afd2e83f",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "4849e163-9843-4b91-9560-08ba2327e859",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "5c5e3fa8-c521-4049-9d08-f85b239a0695",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "e8ab0ba9-d938-4e9a-9169-86fc8bee215a",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "89d63bf2-867d-4c80-9abf-76cc3c13bf57",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "2a0076c8-b207-4db4-ae59-a6591af39c66",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "49f98f1d-e57b-49c2-8f79-3c33c8237aaa",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "e60764b6-5e49-4b5d-81ec-75126ffe50bb",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "a19249f4-edf1-4e61-8c57-21a605d7ed89",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "b1ad3a49-55f5-452c-8f25-037f878b1bf4",
+
+
+        "scope": "all"
+
+
+      },
+
+
+      {
+
+        "id": "1478ee45-52e6-45ce-97f1-e151db77b05e",
+
+
+        "role_id": "95b5f46a-de62-463e-b822-d437ac2b28c7",
+
+
+        "permission_id": "f2c599fc-337f-46c5-abcf-5fb76cc1dd56",
+
+
+        "scope": "all"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "tax_payer_ref_data",
+    "documents": [
+
+      {
+
+        "id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "first_name": "John",
+
+
+        "last_name": "Smith",
+
+
+        "full_name": "John Smith",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "office_location": "Boston, MA",
+
+
+        "folder_name": "Smith_John",
+
+
+        "external_folder_id": "CR-001234",
+
+
+        "internal_folder_path": "/Clients/Smith_John",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001234"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
+
+
+        "first_name": "Emily",
+
+
+        "last_name": "Jones",
+
+
+        "full_name": "Emily Jones",
+
+
+        "personal_email": "emily.jones@example.com",
+
+
+        "pds_email": "emily.jones@pds-demo.com",
+
+
+        "office_location": "Chicago, IL",
+
+
+        "folder_name": "Jones_Emily",
+
+
+        "external_folder_id": "CR-001235",
+
+
+        "internal_folder_path": "/Clients/Jones_Emily",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001235"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
+
+
+        "first_name": "Michael",
+
+
+        "last_name": "Brown",
+
+
+        "full_name": "Michael Brown",
+
+
+        "personal_email": "michael.brown@example.com",
+
+
+        "pds_email": "michael.brown@pds-demo.com",
+
+
+        "office_location": "Denver, CO",
+
+
+        "folder_name": "Brown_Michael",
+
+
+        "external_folder_id": "CR-001236",
+
+
+        "internal_folder_path": "/Clients/Brown_Michael",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001236"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04",
+
+
+        "first_name": "Sarah",
+
+
+        "last_name": "Davis",
+
+
+        "full_name": "Sarah Davis",
+
+
+        "personal_email": "sarah.davis@example.com",
+
+
+        "pds_email": "sarah.davis@pds-demo.com",
+
+
+        "office_location": "Austin, TX",
+
+
+        "folder_name": "Davis_Sarah",
+
+
+        "external_folder_id": "CR-001237",
+
+
+        "internal_folder_path": "/Clients/Davis_Sarah",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001237"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
+
+
+        "first_name": "Robert",
+
+
+        "last_name": "Wilson",
+
+
+        "full_name": "Robert Wilson",
+
+
+        "personal_email": "robert.wilson@example.com",
+
+
+        "pds_email": "robert.wilson@pds-demo.com",
+
+
+        "office_location": "Seattle, WA",
+
+
+        "folder_name": "Wilson_Robert",
+
+
+        "external_folder_id": "CR-001238",
+
+
+        "internal_folder_path": "/Clients/Wilson_Robert",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001238"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
+
+
+        "first_name": "Maria",
+
+
+        "last_name": "Garcia",
+
+
+        "full_name": "Maria Garcia",
+
+
+        "personal_email": "maria.garcia@example.com",
+
+
+        "pds_email": "maria.garcia@pds-demo.com",
+
+
+        "office_location": "Phoenix, AZ",
+
+
+        "folder_name": "Garcia_Maria",
+
+
+        "external_folder_id": "CR-001239",
+
+
+        "internal_folder_path": "/Clients/Garcia_Maria",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001239"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07",
+
+
+        "first_name": "Anil",
+
+
+        "last_name": "Kapoor",
+
+
+        "full_name": "Anil Kapoor",
+
+
+        "personal_email": "anil.kapoor@example.com",
+
+
+        "pds_email": "anil.kapoor@pds-demo.com",
+
+
+        "office_location": "Atlanta, GA",
+
+
+        "folder_name": "Kapoor_Anil",
+
+
+        "external_folder_id": "CR-001240",
+
+
+        "internal_folder_path": "/Clients/Kapoor_Anil",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001240"
+
+
+      },
+
+
+      {
+
+        "id": "9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08",
+
+
+        "first_name": "Linda",
+
+
+        "last_name": "Chen",
+
+
+        "full_name": "Linda Chen",
+
+
+        "personal_email": "linda.chen@example.com",
+
+
+        "pds_email": "linda.chen@pds-demo.com",
+
+
+        "office_location": "Portland, OR",
+
+
+        "folder_name": "Chen_Linda",
+
+
+        "external_folder_id": "CR-001241",
+
+
+        "internal_folder_path": "/Clients/Chen_Linda",
+
+
+        "is_active": true,
+
+
+        "read_write_password": "placeholder-pw-001241"
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "tax_entity_lists",
+    "documents": [
+
+      {
+
+        "id": "3f2a7c10-0001-4b1e-9c2a-6e1d2f3a4b01",
+
+
+        "oracle_id": "001",
+
+
+        "entity_name": "Oakwood Medical Partners LLC",
+
+
+        "entity_type": "Partnership",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0002-4b1e-9c2a-6e1d2f3a4b02",
+
+
+        "oracle_id": "002",
+
+
+        "entity_name": "Riverside Surgical Associates LP",
+
+
+        "entity_type": "Partnership",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0003-4b1e-9c2a-6e1d2f3a4b03",
+
+
+        "oracle_id": "003",
+
+
+        "entity_name": "Summit Orthopedic Group LLC",
+
+
+        "entity_type": "Partnership",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0004-4b1e-9c2a-6e1d2f3a4b04",
+
+
+        "oracle_id": "014",
+
+
+        "entity_name": "Smith Family Medicine PC",
+
+
+        "entity_type": "Personal Corporation",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0005-4b1e-9c2a-6e1d2f3a4b05",
+
+
+        "oracle_id": "015",
+
+
+        "entity_name": "Lakeview Radiology PC",
+
+
+        "entity_type": "Personal Corporation",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0006-4b1e-9c2a-6e1d2f3a4b06",
+
+
+        "oracle_id": "021",
+
+
+        "entity_name": "Harbor Health Holdings Inc.",
+
+
+        "entity_type": "S-Corp",
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "3f2a7c10-0007-4b1e-9c2a-6e1d2f3a4b07",
+
+
+        "oracle_id": "022",
+
+
+        "entity_name": "Pinecrest Clinics Inc.",
+
+
+        "entity_type": "S-Corp",
+
+
+        "is_active": true
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "tax_routing_records",
+    "documents": [
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000001",
+
+
+        "status": "collecting_info",
+
+
+        "created_at": "2026-05-12T14:05:00Z",
+
+
+        "updated_at": "2026-05-12T14:20:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "John",
+
+
+        "client_last_name": "Smith",
+
+
+        "client_full_name": "John Smith",
+
+
+        "office_location": "Boston, MA",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Smith_John",
+
+
+        "folder_name": "Smith_John",
+
+
+        "read_write_password": "placeholder-pw-001234",
+
+
+        "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "progress_step": 2
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000002",
+
+
+        "status": "cleaning_up",
+
+
+        "created_at": "2026-05-11T09:12:00Z",
+
+
+        "updated_at": "2026-05-11T15:40:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "Emily",
+
+
+        "client_last_name": "Jones",
+
+
+        "client_full_name": "Emily Jones",
+
+
+        "office_location": "Chicago, IL",
+
+
+        "pds_email": "emily.jones@pds-demo.com",
+
+
+        "personal_email": "emily.jones@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Jones_Emily",
+
+
+        "folder_name": "Jones_Emily",
+
+
+        "read_write_password": "placeholder-pw-001235",
+
+
+        "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
+
+
+        "progress_step": 3
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000003",
+
+
+        "status": "processing",
+
+
+        "created_at": "2026-05-10T10:30:00Z",
+
+
+        "updated_at": "2026-05-10T10:52:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "Michael",
+
+
+        "client_last_name": "Brown",
+
+
+        "client_full_name": "Michael Brown",
+
+
+        "office_location": "Denver, CO",
+
+
+        "pds_email": "michael.brown@pds-demo.com",
+
+
+        "personal_email": "michael.brown@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Brown_Michael",
+
+
+        "folder_name": "Brown_Michael",
+
+
+        "read_write_password": "placeholder-pw-001236",
+
+
+        "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
+
+
+        "progress_step": 5
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000004",
+
+
+        "status": "collecting_info",
+
+
+        "created_at": "2026-05-10T08:45:00Z",
+
+
+        "updated_at": "2026-05-10T09:00:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "Sarah",
+
+
+        "client_last_name": "Davis",
+
+
+        "client_full_name": "Sarah Davis",
+
+
+        "office_location": "Austin, TX",
+
+
+        "pds_email": "sarah.davis@pds-demo.com",
+
+
+        "personal_email": "sarah.davis@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Davis_Sarah",
+
+
+        "folder_name": "Davis_Sarah",
+
+
+        "read_write_password": "placeholder-pw-001237",
+
+
+        "client_reference_id": "9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04",
+
+
+        "progress_step": 2
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000005",
+
+
+        "status": "processing",
+
+
+        "created_at": "2026-05-09T13:10:00Z",
+
+
+        "updated_at": "2026-05-09T13:32:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "Maria",
+
+
+        "client_last_name": "Garcia",
+
+
+        "client_full_name": "Maria Garcia",
+
+
+        "office_location": "Phoenix, AZ",
+
+
+        "pds_email": "maria.garcia@pds-demo.com",
+
+
+        "personal_email": "maria.garcia@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Garcia_Maria",
+
+
+        "folder_name": "Garcia_Maria",
+
+
+        "read_write_password": "placeholder-pw-001239",
+
+
+        "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
+
+
+        "progress_step": 6
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000006",
+
+
+        "status": "exception",
+
+
+        "created_at": "2026-05-09T11:00:00Z",
+
+
+        "updated_at": "2026-05-12T13:40:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "John",
+
+
+        "client_last_name": "Smith",
+
+
+        "client_full_name": "John Smith",
+
+
+        "office_location": "Boston, MA",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Smith_John",
+
+
+        "folder_name": "Smith_John",
+
+
+        "read_write_password": "placeholder-pw-001234",
+
+
+        "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "progress_step": 5
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000007",
+
+
+        "status": "exception",
+
+
+        "created_at": "2026-05-09T09:30:00Z",
+
+
+        "updated_at": "2026-05-12T13:33:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "client_first_name": "Emily",
+
+
+        "client_last_name": "Jones",
+
+
+        "client_full_name": "Emily Jones",
+
+
+        "office_location": "Chicago, IL",
+
+
+        "pds_email": "emily.jones@pds-demo.com",
+
+
+        "personal_email": "emily.jones@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Jones_Emily",
+
+
+        "folder_name": "Jones_Emily",
+
+
+        "read_write_password": "placeholder-pw-001235",
+
+
+        "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
+
+
+        "progress_step": 3
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000008",
+
+
+        "status": "exception",
+
+
+        "created_at": "2026-05-08T15:20:00Z",
+
+
+        "updated_at": "2026-05-12T12:55:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "client_first_name": "Michael",
+
+
+        "client_last_name": "Brown",
+
+
+        "client_full_name": "Michael Brown",
+
+
+        "office_location": "Denver, CO",
+
+
+        "pds_email": "michael.brown@pds-demo.com",
+
+
+        "personal_email": "michael.brown@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Brown_Michael",
+
+
+        "folder_name": "Brown_Michael",
+
+
+        "read_write_password": "placeholder-pw-001236",
+
+
+        "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
+
+
+        "progress_step": 4
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000009",
+
+
+        "status": "exception",
+
+
+        "created_at": "2026-05-08T10:05:00Z",
+
+
+        "updated_at": "2026-05-12T11:58:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "client_first_name": "Robert",
+
+
+        "client_last_name": "Wilson",
+
+
+        "client_full_name": "Robert Wilson",
+
+
+        "office_location": "Seattle, WA",
+
+
+        "pds_email": "robert.wilson@pds-demo.com",
+
+
+        "personal_email": "robert.wilson@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Wilson_Robert",
+
+
+        "folder_name": "Wilson_Robert",
+
+
+        "read_write_password": "placeholder-pw-001238",
+
+
+        "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
+
+
+        "progress_step": 2
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000010",
+
+
+        "status": "collecting_info",
+
+
+        "created_at": "2026-05-12T09:15:00Z",
+
+
+        "updated_at": "2026-05-12T09:40:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "client_first_name": "Anil",
+
+
+        "client_last_name": "Kapoor",
+
+
+        "client_full_name": "Anil Kapoor",
+
+
+        "office_location": "Atlanta, GA",
+
+
+        "pds_email": "anil.kapoor@pds-demo.com",
+
+
+        "personal_email": "anil.kapoor@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Kapoor_Anil",
+
+
+        "folder_name": "Kapoor_Anil",
+
+
+        "read_write_password": "placeholder-pw-001240",
+
+
+        "client_reference_id": "9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07",
+
+
+        "progress_step": 2
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000011",
+
+
+        "status": "processing",
+
+
+        "created_at": "2026-05-12T10:05:00Z",
+
+
+        "updated_at": "2026-05-12T10:30:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "client_first_name": "Linda",
+
+
+        "client_last_name": "Chen",
+
+
+        "client_full_name": "Linda Chen",
+
+
+        "office_location": "Portland, OR",
+
+
+        "pds_email": "linda.chen@pds-demo.com",
+
+
+        "personal_email": "linda.chen@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Chen_Linda",
+
+
+        "folder_name": "Chen_Linda",
+
+
+        "read_write_password": "placeholder-pw-001241",
+
+
+        "client_reference_id": "9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08",
+
+
+        "progress_step": 4
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000012",
+
+
+        "status": "cleaning_up",
+
+
+        "created_at": "2026-05-11T16:25:00Z",
+
+
+        "updated_at": "2026-05-11T17:02:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "client_first_name": "Maria",
+
+
+        "client_last_name": "Garcia",
+
+
+        "client_full_name": "Maria Garcia",
+
+
+        "office_location": "Phoenix, AZ",
+
+
+        "pds_email": "maria.garcia@pds-demo.com",
+
+
+        "personal_email": "maria.garcia@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Garcia_Maria",
+
+
+        "folder_name": "Garcia_Maria",
+
+
+        "read_write_password": "placeholder-pw-001239",
+
+
+        "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
+
+
+        "progress_step": 3
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000013",
+
+
+        "status": "cancelled",
+
+
+        "created_at": "2026-05-06T09:00:00Z",
+
+
+        "updated_at": "2026-05-07T11:10:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "client_first_name": "Robert",
+
+
+        "client_last_name": "Wilson",
+
+
+        "client_full_name": "Robert Wilson",
+
+
+        "office_location": "Seattle, WA",
+
+
+        "pds_email": "robert.wilson@pds-demo.com",
+
+
+        "personal_email": "robert.wilson@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Wilson_Robert",
+
+
+        "folder_name": "Wilson_Robert",
+
+
+        "read_write_password": "placeholder-pw-001238",
+
+
+        "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
+
+
+        "progress_step": 2
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000014",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-12T14:05:00Z",
+
+
+        "updated_at": "2026-05-12T14:32:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "John",
+
+
+        "client_last_name": "Smith",
+
+
+        "client_full_name": "John Smith",
+
+
+        "office_location": "Boston, MA",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Smith_John",
+
+
+        "folder_name": "Smith_John",
+
+
+        "read_write_password": "placeholder-pw-001234",
+
+
+        "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000101",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-01T10:00:00Z",
+
+
+        "updated_at": "2026-05-01T10:20:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "John",
+
+
+        "client_last_name": "Smith",
+
+
+        "client_full_name": "John Smith",
+
+
+        "office_location": "Boston, MA",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Smith_John",
+
+
+        "folder_name": "Smith_John",
+
+
+        "read_write_password": "placeholder-pw-001234",
+
+
+        "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000102",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-02T10:00:00Z",
+
+
+        "updated_at": "2026-05-02T10:22:00Z",
+
+
+        "assigned_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "client_first_name": "Emily",
+
+
+        "client_last_name": "Jones",
+
+
+        "client_full_name": "Emily Jones",
+
+
+        "office_location": "Chicago, IL",
+
+
+        "pds_email": "emily.jones@pds-demo.com",
+
+
+        "personal_email": "emily.jones@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Jones_Emily",
+
+
+        "folder_name": "Jones_Emily",
+
+
+        "read_write_password": "placeholder-pw-001235",
+
+
+        "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000103",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-03T10:00:00Z",
+
+
+        "updated_at": "2026-05-03T10:24:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "client_first_name": "Michael",
+
+
+        "client_last_name": "Brown",
+
+
+        "client_full_name": "Michael Brown",
+
+
+        "office_location": "Denver, CO",
+
+
+        "pds_email": "michael.brown@pds-demo.com",
+
+
+        "personal_email": "michael.brown@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Brown_Michael",
+
+
+        "folder_name": "Brown_Michael",
+
+
+        "read_write_password": "placeholder-pw-001236",
+
+
+        "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000104",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-04T10:00:00Z",
+
+
+        "updated_at": "2026-05-04T10:26:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "client_first_name": "Sarah",
+
+
+        "client_last_name": "Davis",
+
+
+        "client_full_name": "Sarah Davis",
+
+
+        "office_location": "Austin, TX",
+
+
+        "pds_email": "sarah.davis@pds-demo.com",
+
+
+        "personal_email": "sarah.davis@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Davis_Sarah",
+
+
+        "folder_name": "Davis_Sarah",
+
+
+        "read_write_password": "placeholder-pw-001237",
+
+
+        "client_reference_id": "9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000105",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-05T10:00:00Z",
+
+
+        "updated_at": "2026-05-05T10:28:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "client_first_name": "Robert",
+
+
+        "client_last_name": "Wilson",
+
+
+        "client_full_name": "Robert Wilson",
+
+
+        "office_location": "Seattle, WA",
+
+
+        "pds_email": "robert.wilson@pds-demo.com",
+
+
+        "personal_email": "robert.wilson@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Wilson_Robert",
+
+
+        "folder_name": "Wilson_Robert",
+
+
+        "read_write_password": "placeholder-pw-001238",
+
+
+        "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000106",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-06T10:00:00Z",
+
+
+        "updated_at": "2026-05-06T10:30:00Z",
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "client_first_name": "Maria",
+
+
+        "client_last_name": "Garcia",
+
+
+        "client_full_name": "Maria Garcia",
+
+
+        "office_location": "Phoenix, AZ",
+
+
+        "pds_email": "maria.garcia@pds-demo.com",
+
+
+        "personal_email": "maria.garcia@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Garcia_Maria",
+
+
+        "folder_name": "Garcia_Maria",
+
+
+        "read_write_password": "placeholder-pw-001239",
+
+
+        "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000107",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-07T10:00:00Z",
+
+
+        "updated_at": "2026-05-07T10:32:00Z",
+
+
+        "assigned_user_id": "0cd4a062-d170-4f68-b4c7-d717c767c35b",
+
+
+        "client_first_name": "Anil",
+
+
+        "client_last_name": "Kapoor",
+
+
+        "client_full_name": "Anil Kapoor",
+
+
+        "office_location": "Atlanta, GA",
+
+
+        "pds_email": "anil.kapoor@pds-demo.com",
+
+
+        "personal_email": "anil.kapoor@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Kapoor_Anil",
+
+
+        "folder_name": "Kapoor_Anil",
+
+
+        "read_write_password": "placeholder-pw-001240",
+
+
+        "client_reference_id": "9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000108",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-08T10:00:00Z",
+
+
+        "updated_at": "2026-05-08T10:34:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "client_first_name": "Linda",
+
+
+        "client_last_name": "Chen",
+
+
+        "client_full_name": "Linda Chen",
+
+
+        "office_location": "Portland, OR",
+
+
+        "pds_email": "linda.chen@pds-demo.com",
+
+
+        "personal_email": "linda.chen@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Chen_Linda",
+
+
+        "folder_name": "Chen_Linda",
+
+
+        "read_write_password": "placeholder-pw-001241",
+
+
+        "client_reference_id": "9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000109",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-09T10:00:00Z",
+
+
+        "updated_at": "2026-05-09T10:36:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "client_first_name": "John",
+
+
+        "client_last_name": "Smith",
+
+
+        "client_full_name": "John Smith",
+
+
+        "office_location": "Boston, MA",
+
+
+        "pds_email": "john.smith@pds-demo.com",
+
+
+        "personal_email": "john.smith@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Smith_John",
+
+
+        "folder_name": "Smith_John",
+
+
+        "read_write_password": "placeholder-pw-001234",
+
+
+        "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
+
+
+        "progress_step": 9
+
+
+      },
+
+
+      {
+
+        "id": "6f0a0001-0000-4a00-9000-000000000110",
+
+
+        "status": "resolved",
+
+
+        "created_at": "2026-05-10T10:00:00Z",
+
+
+        "updated_at": "2026-05-10T10:38:00Z",
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "client_first_name": "Emily",
+
+
+        "client_last_name": "Jones",
+
+
+        "client_full_name": "Emily Jones",
+
+
+        "office_location": "Chicago, IL",
+
+
+        "pds_email": "emily.jones@pds-demo.com",
+
+
+        "personal_email": "emily.jones@example.com",
+
+
+        "additional_email": null,
+
+
+        "notification_flag": true,
+
+
+        "internal_folder": "/Clients/Jones_Emily",
+
+
+        "folder_name": "Jones_Emily",
+
+
+        "read_write_password": "placeholder-pw-001235",
+
+
+        "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
+
+
+        "progress_step": 9
+
+
+      }
+
+
+    ]
+  },
+
+
+
+  {
+    "collection": "exception_tasks",
+    "documents": [
+
+      {
+
+        "id": "7a0b0001-0000-4b00-9000-000000000001",
+
+
+        "routing_record_id": "6f0a0001-0000-4a00-9000-000000000006",
+
+
+        "failure_reason": "File Transfer Failed: the K-1 file could not be moved to the External Client Copy folder.",
+
+
+        "failed_step": "moving",
+
+
+        "opened_at": "2026-05-09T11:20:00Z",
+
+
+        "resolved_at": null,
+
+
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad"
+
+
+      },
+
+
+      {
+
+        "id": "7a0b0001-0000-4b00-9000-000000000002",
+
+
+        "routing_record_id": "6f0a0001-0000-4a00-9000-000000000007",
+
+
+        "failure_reason": "Storage Folder Error: the client folder could not be found. Re-enter the folder URL.",
+
+
+        "failed_step": "verify",
+
+
+        "opened_at": "2026-05-09T09:50:00Z",
+
+
+        "resolved_at": null,
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01"
+
+
+      },
+
+
+      {
+
+        "id": "7a0b0001-0000-4b00-9000-000000000003",
+
+
+        "routing_record_id": "6f0a0001-0000-4a00-9000-000000000008",
+
+
+        "failure_reason": "Processing Error: password protection failed; the Tax Return file was not uploaded.",
+
+
+        "failed_step": "processing",
+
+
+        "opened_at": "2026-05-08T15:40:00Z",
+
+
+        "resolved_at": null,
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02"
+
+
+      },
+
+
+      {
+
+        "id": "7a0b0001-0000-4b00-9000-000000000004",
+
+
+        "routing_record_id": "6f0a0001-0000-4a00-9000-000000000009",
+
+
+        "failure_reason": "Invalid File Format: the uploaded Form 8308 file is not a valid PDF.",
+
+
+        "failed_step": "uploaded",
+
+
+        "opened_at": "2026-05-08T10:20:00Z",
+
+
+        "resolved_at": null,
+
+
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03"
+
+
+      }
+
+
+    ]
+  }
+
+
+]

@@ -1,0 +1,30 @@
+- id: 97000b00-0000-4000-8000-000000000008
+  name: Pricebook
+  is_table: true
+  indexes:
+  - name
+  facets:
+  - concurrency
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: name
+    caption: Pricebook Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    data_type: String
+
+  - name: is_active
+    caption: Is Active
+    fragment: property-boolean-toggle-required
+
+  - name: is_standard
+    caption: Is Standard
+    fragment: property-boolean-toggle-required

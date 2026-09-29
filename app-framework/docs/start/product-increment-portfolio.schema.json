@@ -1,0 +1,572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/product-increment-portfolio.schema.json",
+  "title": "App Framework Product Increment portfolio",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "portfolio_id",
+    "title",
+    "last_reconciled_at",
+    "catalog_state",
+    "operating_capacity",
+    "economics_control",
+    "product_increments",
+    "known_unregistered_work"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "appfw_product_increment_portfolio@1"
+    },
+    "portfolio_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$"
+    },
+    "title": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "last_reconciled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "catalog_state": {
+      "enum": [
+        "migration_required",
+        "current"
+      ]
+    },
+    "operating_capacity": {
+      "$ref": "#/$defs/operatingCapacity"
+    },
+    "economics_control": {
+      "$ref": "#/$defs/economicsControl"
+    },
+    "product_increments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/productIncrement"
+      }
+    },
+    "known_unregistered_work": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "documentRef": {
+      "type": "string",
+      "pattern": "^document:(?!target/)(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"
+    },
+    "operatingCapacity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_active_lanes",
+        "maximum_active_lanes",
+        "current_active_lanes",
+        "current_review_lanes"
+      ],
+      "properties": {
+        "target_active_lanes": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 4
+        },
+        "maximum_active_lanes": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 4
+        },
+        "current_active_lanes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "current_review_lanes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "below_target_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "economicsControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context_capsule_max_controlling_records",
+        "default_max_delegation_depth",
+        "correction_cycles_before_replan",
+        "idle_agent_policy",
+        "model_routing_policy",
+        "evidence_measurement_required",
+        "primary_metrics"
+      ],
+      "properties": {
+        "context_capsule_max_controlling_records": {
+          "const": 4
+        },
+        "default_max_delegation_depth": {
+          "const": 1
+        },
+        "correction_cycles_before_replan": {
+          "const": 2
+        },
+        "idle_agent_policy": {
+          "const": "unload"
+        },
+        "model_routing_policy": {
+          "const": "lowest_capable_then_escalate"
+        },
+        "evidence_measurement_required": {
+          "const": true
+        },
+        "primary_metrics": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "accepted_lead_time",
+              "cost_per_accepted_deliverable",
+              "tokens_per_accepted_deliverable",
+              "review_queue_age",
+              "rework_rate"
+            ]
+          },
+          "minItems": 5,
+          "maxItems": 5
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "ref",
+        "summary"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "git",
+            "branch",
+            "document"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "summary",
+        "state"
+      ],
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,95}$"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "state": {
+          "enum": [
+            "planned",
+            "implemented",
+            "accepted"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "pattern": "^(?:git:[0-9a-f]{40}|document:(?!target/)(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+)$"
+        }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from_product_increment_id",
+        "capability_id",
+        "required_state",
+        "reason",
+        "decoupling"
+      ],
+      "properties": {
+        "from_product_increment_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "capability_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "required_state": {
+          "enum": [
+            "implemented",
+            "accepted"
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "decoupling": {
+          "enum": [
+            "none",
+            "frozen_contract",
+            "fixture",
+            "adapter",
+            "manual_fallback"
+          ]
+        },
+        "decoupling_ref": {
+          "$ref": "#/$defs/documentRef"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "decoupling": {
+                "const": "none"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "decoupling_ref"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "decoupling_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "benefit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from_product_increment_id",
+        "capability_id",
+        "expected_benefit",
+        "adoption_trigger"
+      ],
+      "properties": {
+        "from_product_increment_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "capability_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "expected_benefit": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "adoption_trigger": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_maturity",
+        "minimum_maturity",
+        "fallback"
+      ],
+      "properties": {
+        "current_maturity": {
+          "$ref": "#/$defs/routingMaturity"
+        },
+        "minimum_maturity": {
+          "$ref": "#/$defs/routingMaturity"
+        },
+        "fallback": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "routingMaturity": {
+      "enum": [
+        "manual_explicit",
+        "transparent_candidate",
+        "transparent_accepted",
+        "measured",
+        "adaptive"
+      ]
+    },
+    "productIncrement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "outcome_id",
+        "title",
+        "plain_language_summary",
+        "owner",
+        "lifecycle_state",
+        "stage",
+        "status_updated_at",
+        "current_status",
+        "next_action",
+        "integration_strategy",
+        "routing",
+        "provides",
+        "requires",
+        "benefits_from",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        },
+        "outcome_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]{1,63}$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "plain_language_summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "lifecycle_state": {
+          "enum": [
+            "envisioned",
+            "planned",
+            "ready",
+            "active",
+            "under_review",
+            "implemented",
+            "accepted",
+            "blocked",
+            "held",
+            "needs_reconciliation",
+            "stopped",
+            "superseded"
+          ]
+        },
+        "stage": {
+          "enum": [
+            "prototype",
+            "integration_candidate",
+            "release_candidate"
+          ]
+        },
+        "status_updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "current_status": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "next_action": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "plan_ref": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*\\.product-increment\\.json$"
+        },
+        "integration_strategy": {
+          "enum": [
+            "integration_branch",
+            "direct_main",
+            "not_yet_planned"
+          ]
+        },
+        "routing": {
+          "$ref": "#/$defs/routing"
+        },
+        "provides": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/capability"
+          }
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/requirement"
+          }
+        },
+        "benefits_from": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/benefit"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "lifecycle_state": {
+                "enum": [
+                  "envisioned",
+                  "planned",
+                  "ready",
+                  "blocked",
+                  "held",
+                  "needs_reconciliation",
+                  "stopped",
+                  "superseded"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "planned"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lifecycle_state": {
+                "const": "active"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "planned",
+                        "implemented"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lifecycle_state": {
+                "enum": [
+                  "implemented"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "implemented"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lifecycle_state": {
+                "const": "under_review"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "planned",
+                        "implemented"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lifecycle_state": {
+                "const": "accepted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provides": {
+                "items": {
+                  "properties": {
+                    "state": {
+                      "const": "accepted"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

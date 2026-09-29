@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+app_root="$(cd "$script_dir/.." && pwd)"
+
+if [[ -z "${APPFW_FRAMEWORK_ROOT:-}" && -f "$app_root/.appfw/local.env" ]]; then
+  # shellcheck disable=SC1091
+  source "$app_root/.appfw/local.env"
+fi
+
+if [[ -n "${APPFW_FRAMEWORK_ROOT:-}" ]]; then
+  framework_root="$APPFW_FRAMEWORK_ROOT"
+elif [[ -f "$app_root/../app-framework/Cargo.toml" ]]; then
+  framework_root="$(cd "$app_root/../app-framework" && pwd)"
+elif [[ -f "$app_root/../../../Cargo.toml" && -d "$app_root/../../../app_gen/_templates" ]]; then
+  framework_root="$(cd "$app_root/../../.." && pwd)"
+else
+  echo "Could not find app-framework; set APPFW_FRAMEWORK_ROOT." >&2
+  exit 2
+fi
+
+export CARGO_TARGET_DIR="${APPFW_CARGO_TARGET_DIR:-$app_root/target/appfw-cargo}"
+
+if [[ ! -f "$framework_root/Cargo.lock" ]]; then
+  cat >&2 <<EOF
+appfw: missing required framework Cargo.lock:
+  $framework_root/Cargo.lock
+
+The product wrapper runs appfw-cli with --locked for deterministic workflow
+evidence. Generate and commit the framework workspace lockfile before running
+this command:
+  cd "$framework_root" && cargo generate-lockfile
+EOF
+  exit 2
+fi
+
+exec cargo run --locked --quiet --manifest-path "$framework_root/Cargo.toml" -p appfw-cli -- \
+  --app-root "$app_root" \
+  --framework-root "$framework_root" \
+  "$@"

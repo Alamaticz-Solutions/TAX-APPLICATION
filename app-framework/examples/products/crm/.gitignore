@@ -1,0 +1,38 @@
+# Local framework/build artifacts
+target/
+/outputs/
+/debug/
+/backend/admin_dist/
+/backend/product_dist/
+/database/data/
+*.tsbuildinfo
+
+# Product workspaces commit their root lockfile for deterministic appfw gates.
+Cargo.lock
+!/Cargo.lock
+
+# Local environment and tool state
+.env
+.appfw/local.env
+venv/
+.ipynb_checkpoints/
+__pycache__/
+.qodo/
+
+# Compiled artifacts and logs
+*.class
+*.py[cod]
+*.log
+*.app
+*.exe
+*.war
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+# OS-generated files
+.DS_Store
+Thumbs.db

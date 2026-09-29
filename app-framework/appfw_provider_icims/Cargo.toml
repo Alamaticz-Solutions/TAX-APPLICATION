@@ -1,0 +1,6 @@
+[package]
+name = "appfw-provider-icims"
+version = "0.1.1"
+edition = "2021"
+description = "iCIMS evidence-gated provider skeleton for App Framework."
+publish = ["pds-app-framework-crates"]

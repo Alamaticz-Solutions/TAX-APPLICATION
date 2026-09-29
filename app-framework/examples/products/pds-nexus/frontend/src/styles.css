@@ -1,0 +1,389 @@
+@import "@appfw/pds-health-components/styles.css";
+
+body {
+  margin: 0;
+  background: var(--pds-gradient-canvas);
+  color: var(--pds-color-text-default);
+  font-family: var(--pds-font-family-sans);
+}
+
+.pds-app-shell__main {
+  display: grid;
+  align-content: start;
+  gap: var(--pds-space-5);
+}
+
+.app-brand,
+.app-nav,
+.app-shell-footer {
+  display: grid;
+  gap: var(--pds-space-2);
+}
+
+.app-brand strong {
+  color: var(--pds-color-text-default);
+  font-size: var(--pds-font-size-base);
+}
+
+.app-brand span,
+.app-shell-footer {
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-sm);
+}
+
+.app-nav a {
+  padding: var(--pds-space-2) var(--pds-space-3);
+  border-radius: var(--pds-radius-md);
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-md);
+  font-weight: var(--pds-font-weight-semibold);
+  text-decoration: none;
+}
+
+.app-nav a:hover,
+.app-nav a:focus-visible {
+  background: var(--pds-color-state-accent-soft);
+  color: var(--pds-color-brand-blue-deep);
+}
+
+.app-topbar {
+  width: min(100%, 420px);
+}
+
+.app-topbar .pds-command-palette,
+.app-topbar .pds-command-palette__trigger {
+  width: 100%;
+}
+
+.app-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pds-space-4);
+}
+
+.app-status-grid p {
+  min-height: 40px;
+  margin: 0 0 var(--pds-space-3);
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-md);
+  overflow-wrap: anywhere;
+}
+
+.app-kpi-grid,
+.app-work-grid,
+.app-chat-grid,
+.app-recommendation-grid {
+  display: grid;
+  gap: var(--pds-space-4);
+}
+
+.app-kpi-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-work-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: start;
+}
+
+.app-chat-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: start;
+}
+
+.app-chat-sidecar {
+  display: grid;
+  gap: var(--pds-space-4);
+}
+
+.app-chat-answer {
+  display: grid;
+  gap: var(--pds-space-3);
+}
+
+.app-ref-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pds-space-3);
+}
+
+.app-lineage-list {
+  display: grid;
+  gap: var(--pds-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-lineage-list li {
+  display: grid;
+  gap: var(--pds-space-2);
+  padding: var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-surface-panel-soft);
+}
+
+.app-lineage-list span,
+.app-lineage-list p {
+  margin: 0;
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-sm);
+}
+
+.app-lineage-list strong {
+  color: var(--pds-color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.app-recommendation-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  align-items: stretch;
+}
+
+.app-flow-proof {
+  display: grid;
+  gap: var(--pds-space-4);
+}
+
+.app-flow-proof__nodes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pds-space-3);
+}
+
+.app-flow-proof__node {
+  min-height: 112px;
+  display: grid;
+  align-content: start;
+  gap: var(--pds-space-2);
+  padding: var(--pds-space-4);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-lg);
+  background: var(--pds-color-surface-panel-soft);
+  box-shadow: var(--pds-shadow-card);
+}
+
+.app-flow-proof__node[data-status="blocked"] {
+  border-color: var(--pds-color-state-danger);
+  background: var(--pds-color-state-danger-bg);
+}
+
+.app-flow-proof__node[data-status="waiting"] {
+  background: color-mix(in srgb, var(--pds-color-state-gold) 12%, var(--pds-color-surface-panel-soft));
+}
+
+.app-flow-proof__node strong {
+  color: var(--pds-color-text-default);
+  font-size: var(--pds-font-size-md);
+}
+
+.app-flow-proof__node span {
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-sm);
+}
+
+.app-flow-proof__edges {
+  display: grid;
+  gap: var(--pds-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-flow-proof__edges li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pds-space-2);
+  align-items: center;
+  padding: var(--pds-space-2) var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-surface-panel);
+  color: var(--pds-color-text-muted);
+  font-size: var(--pds-font-size-sm);
+}
+
+.app-flow-proof__edges strong {
+  color: var(--pds-color-text-default);
+}
+
+.app-search {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-gradient-control);
+  color: var(--pds-color-text-default);
+  font: inherit;
+}
+
+.app-search:focus {
+  border-color: transparent;
+  background:
+    var(--pds-gradient-control) padding-box,
+    var(--pds-gradient-border-accent) border-box;
+  box-shadow: var(--pds-shadow-control);
+  outline: 3px solid var(--pds-color-state-focus);
+  outline-offset: 2px;
+}
+
+.app-chart-bars {
+  display: grid;
+  gap: var(--pds-space-3);
+}
+
+.app-chart-bar {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  padding-inline: var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-default);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-surface-panel-soft);
+  color: var(--pds-color-text-default);
+}
+
+.app-chart-bar b {
+  font-size: var(--pds-font-size-sm);
+}
+
+.app-chart-bar.is-ready {
+  width: 72%;
+  border-color: var(--pds-color-state-success);
+  background: var(--pds-color-state-success-bg);
+}
+
+.app-chart-bar.is-review {
+  width: 44%;
+  background: color-mix(in srgb, var(--pds-color-state-gold) 14%, var(--pds-color-surface-panel-soft));
+}
+
+.app-chart-bar.is-draft {
+  width: 28%;
+}
+
+@media (max-width: 860px) {
+  .app-topbar .pds-command-palette,
+  .app-topbar .pds-command-palette__trigger {
+    width: 100%;
+    max-width: none;
+  }
+
+  .app-status-grid,
+  .app-kpi-grid,
+  .app-work-grid,
+  .app-chat-grid,
+  .app-recommendation-grid,
+  .app-flow-proof__nodes,
+  .app-ref-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-chart-bar {
+    width: 100%;
+  }
+}
+
+/* My Work intelligent experience journey */
+
+.ix-journey {
+  display: grid;
+  gap: var(--pds-space-4, 16px);
+}
+
+.ix-journey__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pds-space-3, 12px);
+}
+
+.ix-journey__posture {
+  margin-inline-start: auto;
+}
+
+.ix-journey__auth {
+  margin-top: var(--pds-space-3, 12px);
+  display: grid;
+  gap: var(--pds-space-2, 8px);
+}
+
+.ix-journey__auth label {
+  display: grid;
+  gap: 4px;
+  max-width: 28rem;
+  font-size: var(--pds-font-size-sm, 0.875rem);
+}
+
+.ix-journey__auth input {
+  padding: 6px 10px;
+  border: 1px solid var(--pds-color-border-default, #b9c0cc);
+  border-radius: var(--pds-radius-sm, 6px);
+  background: var(--pds-color-surface-panel, #fff);
+  color: inherit;
+}
+
+.ix-journey__unavailable {
+  display: grid;
+  gap: var(--pds-space-2, 8px);
+  max-width: 60ch;
+}
+
+.ix-journey__terminal,
+.ix-journey__waiting {
+  display: flex;
+  align-items: center;
+  gap: var(--pds-space-3, 12px);
+}
+
+.ix-journey__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pds-space-4, 16px);
+  font-size: var(--pds-font-size-sm, 0.875rem);
+  color: var(--pds-color-text-muted, #5a6472);
+  overflow-wrap: anywhere;
+}
+
+.ix-journey__timeline {
+  margin: var(--pds-space-3, 12px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--pds-space-2, 8px);
+}
+
+.ix-journey__timeline li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pds-space-2, 8px);
+  align-items: baseline;
+  border-block-end: 1px solid var(--pds-color-border-subtle, #e3e7ee);
+  padding-block-end: var(--pds-space-2, 8px);
+}
+
+.ix-journey__timeline-seq {
+  font-variant-numeric: tabular-nums;
+  color: var(--pds-color-text-muted, #5a6472);
+}
+
+.ix-journey__timeline-actor {
+  font-weight: 600;
+}
+
+.ix-journey__context {
+  margin-top: var(--pds-space-3, 12px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pds-space-2, 8px);
+}
+
+.ix-journey__violations {
+  margin: 0;
+  padding-inline-start: 1.2em;
+  display: grid;
+  gap: 4px;
+}

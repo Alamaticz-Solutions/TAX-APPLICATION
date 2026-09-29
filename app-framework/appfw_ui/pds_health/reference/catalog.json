@@ -1,0 +1,1534 @@
+{
+  "version": 1,
+  "name": "PDS Component Catalog",
+  "brand": "PDS Health",
+  "purpose": "Product-neutral, agent-readable contract for framework-owned PDS Health component families.",
+  "entrypoints": {
+    "tokens": "appfw_ui/pds_health/tokens",
+    "componentSource": "appfw_ui/pds_health/components/src",
+    "visibleCatalog": "appfw_ui/pds_health/reference/index.html",
+    "interactiveCatalog": "appfw_ui/pds_health/catalog-app",
+    "catalogManifest": "appfw_ui/pds_health/reference/catalog.json",
+    "evidenceCommand": "scripts/check-pds-components.mjs --json",
+    "evidenceArtifact": "target/appfw/pds-component-check.json"
+  },
+  "packageContract": {
+    "package": "@appfw/pds-health-components",
+    "rootImport": "@appfw/pds-health-components",
+    "stylesImport": "@appfw/pds-health-components/styles.css",
+    "tokensImport": "@appfw/pds-health-components/tokens.css",
+    "familySubpaths": [
+      "ambient",
+      "catalog",
+      "charts",
+      "conversation",
+      "conversation-workspace",
+      "connected-fabric",
+      "copy",
+      "data",
+      "data-grid",
+      "experience",
+      "exploration-workspace",
+      "foundation",
+      "forms",
+      "intelligence-presentation",
+      "intelligence-presentation-model",
+      "ix-recipes",
+      "layout",
+      "narrative-workspace",
+      "primitives",
+      "process",
+      "relationship-atlas",
+      "surfaces",
+      "timeline",
+      "types",
+      "work-surfaces"
+    ],
+    "consumerBoundary": "Products import the compiled package root or a public family subpath. Checkout-relative components/src imports and direct React Aria or AG Grid imports are not supported product contracts."
+  },
+  "agentContract": {
+    "startHere": [
+      "Read catalogManifest for family and component inventory.",
+      "Read componentSource for React APIs before creating product-local wrappers.",
+      "Use visibleCatalog for states, density, theme, and accessibility examples.",
+      "Run evidenceCommand before handoff."
+    ],
+    "do": [
+      "Use exported PDS components before introducing product-local controls.",
+      "Keep product routes, copy, data semantics, and workflow logic outside the shared package.",
+      "Bind generated model metadata, validation, request IDs, and correlation IDs through component props.",
+      "Preserve token-backed styling, keyboard behavior, focus management, and non-color status cues."
+    ],
+    "avoid": [
+      "Do not copy reference fixture nouns into product scaffolds.",
+      "Do not fork admin UI or sample workflow screens into product frontends.",
+      "Do not add raw color literals to component CSS.",
+      "Do not claim a family is enterprise-ready without retained evidence."
+    ]
+  },
+  "readinessContract": [
+    "props",
+    "states",
+    "density",
+    "accessibility",
+    "usage",
+    "verification"
+  ],
+  "plannedFamilySlots": [],
+  "apiContract": {
+    "componentExportRule": "Every framework-owned React component is a named export from components/src and has a matching <ComponentName>Props export.",
+    "sourceExportEvidence": "source-export-catalog-drift",
+    "inventoryArtifactPath": "target/appfw/pds-component-check.json#component_api_inventory",
+    "agentUse": [
+      "Use the component API inventory in the evidence artifact to find the source file and props type for a component.",
+      "Add new components to source, catalog.json, the visible catalog, and docs in the same change.",
+      "Do not introduce product-local controls while a matching PDS component family exists."
+    ],
+    "sourceFiles": [
+      {
+        "path": "appfw_ui/pds_health/components/src/catalog.ts",
+        "families": [
+          "Catalog"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/primitives.tsx",
+        "families": [
+          "Actions",
+          "Feedback",
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/forms.tsx",
+        "families": [
+          "Forms"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/experience.tsx",
+        "families": [
+          "Actions",
+          "Forms",
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/exploration-workspace.tsx",
+        "families": [
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/narrative-workspace.tsx",
+        "families": [
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/layout.tsx",
+        "families": [
+          "Actions",
+          "Navigation",
+          "Overlays"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/foundation.tsx",
+        "families": [
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/connected-fabric.tsx",
+        "families": [
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/data.tsx",
+        "families": [
+          "Data Grid"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/data-grid.tsx",
+        "families": [
+          "Data Grid"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/conversation.tsx",
+        "families": [
+          "Conversation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/conversation-workspace.tsx",
+        "families": [
+          "Conversation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/ambient.tsx",
+        "families": [
+          "Ambient AI"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/intelligence-presentation-model.ts",
+        "families": [
+          "Ambient AI"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/intelligence-presentation.tsx",
+        "families": [
+          "Ambient AI"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/ix-recipes.tsx",
+        "families": [
+          "Ambient AI"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/process.tsx",
+        "families": [
+          "Process"
+        ]
+      },
+    {
+      "path": "appfw_ui/pds_health/components/src/timeline.tsx",
+      "families": [
+        "Analytics"
+      ]
+    },
+    {
+      "path": "appfw_ui/pds_health/components/src/relationship-atlas.tsx",
+      "families": [
+        "Analytics"
+      ]
+    },
+    {
+        "path": "appfw_ui/pds_health/components/src/work-surfaces.tsx",
+        "families": [
+          "Actions",
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/surfaces.tsx",
+        "families": [
+          "Analytics",
+          "Feedback",
+          "Forms",
+          "Navigation"
+        ]
+      },
+      {
+        "path": "appfw_ui/pds_health/components/src/charts.tsx",
+        "families": [
+          "Analytics"
+        ]
+      }
+    ]
+  },
+  "agentDecisionGuide": [
+    {
+      "slug": "generated-entity-workspace",
+      "intent": "Build a dense generated entity list with query controls, column control, density, loading, and pagination.",
+      "startWith": [
+        "DataGrid",
+        "DataGridShell",
+        "DataGridToolbar",
+        "DataGridFilterTrigger",
+        "DataGridColumnChooserTrigger",
+        "DataGridDensityControl",
+        "DataGridLoadingPreview",
+        "DataGridPagination"
+      ],
+      "productOwns": "Columns, row routes, server query bindings, permission checks, persisted preferences, and row action meaning.",
+      "avoid": "Do not create local table chrome or query buttons until the shared grid shell and controls are unsuitable and the exception is documented.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-consumer-wiring",
+        "density-default-policy"
+      ]
+    },
+    {
+      "slug": "generated-entity-form",
+      "intent": "Build a generated create or edit form with labels, hints, validation, lookup choices, and stable loading rhythm.",
+      "startWith": [
+        "FormLayout",
+        "FieldGroup",
+        "FieldMetadata",
+        "TextField",
+        "SelectField",
+        "LookupSelect",
+        "ValidationSummary",
+        "FormLoadingPreview"
+      ],
+      "productOwns": "Generated field metadata, validation rules, submit behavior, save conflict handling, and workflow-specific copy.",
+      "avoid": "Do not fork field wrappers or validation summaries when generated metadata can be bound through shared props.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-consumer-wiring"
+      ]
+    },
+    {
+      "slug": "governed-action",
+      "intent": "Build a destructive, policy-sensitive, or release-relevant action that needs confirmation and traceable feedback.",
+      "startWith": [
+        "Button",
+        "IconButton",
+        "MenuButton",
+        "IntentPreview",
+        "ActionAudit",
+        "UndoCompensationState",
+        "ConfirmDialog",
+        "InlineAlert",
+        "ToastRegion"
+      ],
+      "productOwns": "Action labels, authorization result, business consequence, confirmation copy, undo or compensation behavior, and recovery path.",
+      "avoid": "Do not rely on color alone for danger or policy state, and do not bypass shared intent preview, confirmation, audit, undo, or compensation behavior.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-agent-readiness-ledger",
+        "g1-governed-write-posture",
+        "g1-governed-write-live-evidence",
+        "u2-agent-harness-profile"
+      ]
+    },
+    {
+      "slug": "decision-support-dashboard",
+      "intent": "Build an operational dashboard with metric summaries, chart chrome, trends, empty states, and loading states.",
+      "startWith": [
+        "KpiTile",
+        "MetricTrend",
+        "ChartShell",
+        "ChartLegend",
+        "TimelineRangeSelector",
+        "EmptyState",
+        "Skeleton"
+      ],
+      "productOwns": "Measures, calculations, chart renderer, thresholds, date-domain labels and density values, and data interpretation.",
+      "avoid": "Do not put chart or date-domain semantics into the shared design system; keep shared components chart-engine-neutral and bind the adjustable range to product-owned data.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-consumer-wiring"
+      ]
+    },
+    {
+      "slug": "guided-process-flow",
+      "intent": "Build a multi-step intake, approval, certification, or release workflow with visible progress and governed transitions.",
+      "startWith": [
+        "ProcessStepper",
+        "ProcessProgress",
+        "Button",
+        "InlineAlert",
+        "FeedbackState"
+      ],
+      "productOwns": "Step labels, workflow ordering, branching rules, completion criteria, authorization, and transition side effects.",
+      "avoid": "Do not hide blocked, optional, or skipped steps; expose current progress and governed transition feedback. Do not make only the marker or label selectable when the full step surface can be one native control.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-agent-readiness-ledger"
+      ]
+    },
+    {
+      "slug": "workspace-navigation",
+      "intent": "Build product navigation, page context, command access, and view switching with predictable keyboard behavior.",
+      "startWith": [
+        "AppShell",
+        "NarrativeWorkspace",
+        "ConnectedFabric",
+        "AppearanceProvider",
+        "PdsHealthLogo",
+        "NavigationItem",
+        "IconSlot",
+        "Avatar",
+        "IdentitySummary",
+        "Breadcrumbs",
+        "PageHeader",
+        "CommandBar",
+        "CommandPalette",
+        "Tabs",
+        "SegmentedControl",
+        "Badge",
+        "ButtonLink",
+        "InteractiveCard",
+        "CardLink",
+        "WorkQueueItem"
+      ],
+      "productOwns": "Route identity, navigation labels, selected view, user identity, role-aware visibility, URL behavior, and persisted appearance policy.",
+      "avoid": "Do not copy admin UI navigation or reference screens into product scaffolds. Do not nest a secondary button inside a whole-card link or emulate navigation with a non-semantic click handler.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-agent-readiness-ledger"
+      ]
+    },
+    {
+      "slug": "conversational-answer",
+      "intent": "Build an invoked AI answer surface that shows grounded messages, citations, confidence, tool status, entity refs, timeline, and graph context without granting write execution.",
+      "startWith": [
+        "ConversationWorkspace",
+        "MessageThread",
+        "Message",
+        "StreamingText",
+        "ToolCallStatus",
+        "EntityRefCard",
+        "CitationList",
+        "ConfidenceSignal",
+        "AgentTimeline",
+        "FlowGraphShell",
+        "IntentPreview"
+      ],
+      "productOwns": "Prompt copy, model/gateway calls, answer-envelope data, retrieval policy, write-gate decisions, and product-specific graph content.",
+      "avoid": "Do not present chat as write-capable; write-shaped actions must remain IntentPreview-only until G1 governed-write evidence and delegated auth exist.",
+      "evidence": [
+        "answer-envelope-contract",
+        "view-registry-contract",
+        "chat-eval-posture",
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map"
+      ]
+    },
+    {
+      "slug": "ambient-assistance",
+      "intent": "Build in-workflow AI-generated views, suggestions, cues, and summaries that are grounded, preview-gated, attributable, and non-disruptive.",
+      "startWith": [
+        "GeneratedViewShell",
+        "SuggestedAction",
+        "RecommendationCard",
+        "EvidenceSummary",
+        "InsightSummary",
+        "FreshnessIndicator",
+        "AttentionMarker",
+        "AiAttributionAffordance",
+        "AssistLevelControl",
+        "MemoryChip",
+        "IntentPreview"
+      ],
+      "productOwns": "Resolved refs, viewRegistry bindings, answer-envelope claims, assist-level behavior, memory storage/correction, policy decisions, and all write execution.",
+      "avoid": "Do not render ungrounded suggestions, execute writes directly, or blend model-derived cues into deterministic facts without attribution.",
+      "evidence": [
+        "agentic-ux-grounding",
+        "answer-envelope-contract",
+        "view-registry-contract",
+        "chat-eval-posture",
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map"
+      ]
+    },
+    {
+      "slug": "service-feedback",
+      "intent": "Build request-aware loading, empty, denied, error, success, warning, and retry feedback near the affected workflow.",
+      "startWith": [
+        "FeedbackState",
+        "OperationState",
+        "LoadingState",
+        "ErrorState",
+        "ForbiddenState",
+        "Alert",
+        "Banner",
+        "Toast"
+      ],
+      "productOwns": "Error category, retry behavior, request and correlation identifiers, and support escalation path.",
+      "avoid": "Do not hide request evidence in developer-only surfaces when the user needs recovery context.",
+      "evidence": [
+        "source-export-catalog-drift",
+        "reference-agent-api-source-map",
+        "reference-agent-readiness-ledger"
+      ]
+    }
+  ],
+  "maturityLevels": [
+    "foundation",
+    "enterprise-ready",
+    "release-gated"
+  ],
+  "evidenceRequirements": [
+    "catalog-manifest",
+    "visible-catalog",
+    "token-backed-css",
+    "accessibility-patterns",
+    "consumer-wiring",
+    "scaffold-proof",
+    "g1-governed-write-posture",
+    "g1-governed-write-live-evidence",
+    "u2-agent-harness-profile",
+    "answer-envelope-contract",
+    "view-registry-contract",
+    "chat-eval-posture",
+    "agentic-ux-grounding"
+  ],
+  "maturityEvidence": {
+    "basis": "retained-local-ci",
+    "note": "PDS maturity reflects retained local/CI evidence (catalog manifest, visible catalog, token-backed CSS, accessibility patterns, consumer wiring). It is not live managed-environment certification; treat release-gated as 'evidence-backed pending live certification'.",
+    "requiredByLevel": {
+      "foundation": [
+        "catalog-manifest",
+        "visible-catalog",
+        "token-backed-css",
+        "accessibility-patterns"
+      ],
+      "enterprise-ready": [
+        "catalog-manifest",
+        "visible-catalog",
+        "token-backed-css",
+        "accessibility-patterns"
+      ],
+      "release-gated": [
+        "catalog-manifest",
+        "visible-catalog",
+        "token-backed-css",
+        "accessibility-patterns",
+        "consumer-wiring"
+      ]
+    },
+    "verifiedBy": {
+      "catalog-manifest": "reference-agent-catalog-manifest",
+      "visible-catalog": "reference-component-catalog",
+      "token-backed-css": "token-backed-css",
+      "accessibility-patterns": "accessibility-patterns",
+      "consumer-wiring": "reference-consumer-wiring",
+      "scaffold-proof": "external:intake-proof",
+      "answer-envelope-contract": "app_gen/_config/chat_evals/_schemas/answer-envelope-v1.schema.json",
+      "view-registry-contract": "generated frontend appfw-ui-contract.ts",
+      "chat-eval-posture": "target/appfw/chat-eval.json",
+      "agentic-ux-grounding": "docs/frontend/agentic-ux.md"
+    }
+  },
+  "versioning": {
+    "packageVersion": "0.12.0",
+    "scheme": "semver",
+    "changelog": "appfw_ui/pds_health/CHANGELOG.md",
+    "policy": "appfw_ui/pds_health/components is versioned with SemVer. Breaking component API or token-contract changes require a major bump; additive components/props a minor; fixes a patch. Components are deprecated for at least one minor release (status 'deprecated' with a replacement and removeBy) before removal.",
+    "statuses": [
+      "stable",
+      "beta",
+      "experimental",
+      "deprecated"
+    ],
+    "statusByMaturity": {
+      "release-gated": "stable",
+      "enterprise-ready": "beta",
+      "foundation": "experimental"
+    },
+    "deprecationPolicy": "A deprecated component keeps working for at least one minor release, carries status 'deprecated' with 'replacement' and 'removeBy', and is announced in the CHANGELOG before removal in a major release."
+  },
+  "componentLifecycle": {
+    "Button": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ButtonLink": {
+      "status": "stable",
+      "since": "0.7.0"
+    },
+    "ToggleButton": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "FloatingActionButton": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "ButtonGroup": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "IconButton": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "MenuButton": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Toolbar": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "IntentPreview": {
+      "status": "stable",
+      "since": "0.2.0"
+    },
+    "ActionAudit": {
+      "status": "stable",
+      "since": "0.2.0"
+    },
+    "UndoCompensationState": {
+      "status": "stable",
+      "since": "0.2.0"
+    },
+    "CommandBar": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "CommandPalette": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Field": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FieldMetadata": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FormLoadingPreview": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FieldGroup": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FormLayout": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "TextField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ComboboxField": {
+      "status": "experimental",
+      "since": "0.6.0"
+    },
+    "TextArea": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "SelectField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DateField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "TimeField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DateTimeField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DatePicker": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "TimePicker": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "InputGroup": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "MultiSelect": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FileUpload": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "CheckboxField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "SwitchField": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "LookupSelect": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ValidationSummary": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGrid": {
+      "status": "beta",
+      "since": "0.6.0"
+    },
+    "DataGridShell": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridLoadingPreview": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridToolbar": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridColumnChooser": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridColumnChooserTrigger": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridColumnResizeHandle": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridControlPopover": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridDensityControl": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridFilterPanel": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridFilterGroup": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridFilterRule": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridFilterEmpty": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridFilterTrigger": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridSortButton": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "DataGridPagination": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Dialog": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Drawer": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Popover": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "PopoverTrigger": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Tooltip": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ConfirmDialog": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Alert": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Banner": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "FeedbackState": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "OperationState": {
+      "status": "experimental",
+      "since": "0.5.0"
+    },
+    "LoadingState": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ErrorState": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ForbiddenState": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "InlineAlert": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "EmptyState": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Skeleton": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Toast": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "ToastRegion": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "AppShell": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "NarrativeWorkspace": {
+      "status": "experimental",
+      "since": "0.9.0"
+    },
+    "ConnectedFabric": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "AppearanceProvider": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "PdsHealthLogo": {
+      "status": "beta",
+      "since": "0.9.0"
+    },
+    "NavigationItem": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "IconSlot": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "Avatar": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "IdentitySummary": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "Breadcrumbs": {
+      "status": "stable",
+      "since": "0.7.0"
+    },
+    "PageHeader": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Surface": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "List": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "ListItem": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "SearchBar": {
+      "status": "stable",
+      "since": "0.6.0"
+    },
+    "ExplorationWorkspace": {
+      "status": "experimental",
+      "since": "0.8.0"
+    },
+    "Tabs": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "SegmentedControl": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "Badge": {
+      "status": "stable",
+      "since": "0.1.0"
+    },
+    "InteractiveCard": {
+      "status": "stable",
+      "since": "0.7.0"
+    },
+    "CardLink": {
+      "status": "stable",
+      "since": "0.7.0"
+    },
+    "WorkQueueItem": {
+      "status": "stable",
+      "since": "0.7.0"
+    },
+    "ProcessStepper": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "ProcessProgress": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "KpiTile": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "MetricTrend": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "ChartShell": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "ChartLegend": {
+      "status": "beta",
+      "since": "0.1.0"
+    },
+    "TimelineRangeSelector": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "RelationshipAtlas": {
+      "status": "experimental",
+      "since": "0.8.0"
+    },
+    "RelationshipAtlasTable": {
+      "status": "experimental",
+      "since": "0.8.0"
+    },
+    "RelationshipExplorer": {
+      "status": "experimental",
+      "since": "0.8.0"
+    },
+    "BarChart": {
+      "status": "beta",
+      "since": "0.2.0"
+    },
+    "LineChart": {
+      "status": "beta",
+      "since": "0.2.0"
+    },
+    "AreaChart": {
+      "status": "beta",
+      "since": "0.2.0"
+    },
+    "DonutChart": {
+      "status": "beta",
+      "since": "0.2.0"
+    },
+    "MessageThread": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "Message": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "MessageComposer": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "ConversationWorkspace": {
+      "status": "beta",
+      "since": "0.7.0"
+    },
+    "StreamingText": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "ToolCallStatus": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "EntityRefCard": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "CitationList": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "ConfidenceSignal": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "AgentTimeline": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "FlowGraphShell": {
+      "status": "beta",
+      "since": "0.3.0"
+    },
+    "GeneratedViewShell": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "SuggestedAction": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "RecommendationCard": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "EvidenceSummary": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "InsightSummary": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "FreshnessIndicator": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "AttentionMarker": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "AiAttributionAffordance": {
+      "status": "beta",
+      "since": "0.4.0"
+    },
+    "AssistLevelControl": {
+      "status": "beta",
+      "since": "0.5.0"
+    },
+    "MemoryChip": {
+      "status": "beta",
+      "since": "0.5.0"
+    },
+    "EvidenceDisclosure": {
+      "status": "experimental",
+      "since": "0.10.0"
+    },
+    "ResolvedContextDisclosure": {
+      "status": "experimental",
+      "since": "0.10.0"
+    },
+    "WorkStatus": {
+      "status": "experimental",
+      "since": "0.10.0"
+    },
+    "ProgressiveResponse": {
+      "status": "experimental",
+      "since": "0.10.0"
+    },
+    "PdsIxRecipePresentation": {
+      "status": "experimental",
+      "since": "0.12.0"
+    }
+  },
+  "rendererProjectionLedger": {
+    "contract": "pds.ix.presentation@1",
+    "projections": ["web-dom", "native-ios", "native-android"],
+    "entries": {
+      "PdsIxPresentation": {
+        "web-dom": { "applicability": "adapted", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      },
+      "EvidenceDisclosure": {
+        "web-dom": { "applicability": "supported", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      },
+      "ResolvedContextDisclosure": {
+        "web-dom": { "applicability": "supported", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      },
+      "WorkStatus": {
+        "web-dom": { "applicability": "supported", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      },
+      "ProgressiveResponse": {
+        "web-dom": { "applicability": "supported", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      },
+      "PdsIxRecipePresentation": {
+        "web-dom": { "applicability": "supported", "readiness": "prototype" },
+        "native-ios": { "applicability": "supported", "readiness": "not-qualified" },
+        "native-android": { "applicability": "supported", "readiness": "not-qualified" }
+      }
+    },
+    "nonclaim": "Native renderer source exists, but iOS and Android remain not-qualified until exact platform runtime, accessibility, visual, and compatibility evidence is retained."
+  },
+  "families": [
+    {
+      "slug": "actions",
+      "name": "Actions",
+      "purpose": "Explicit commands, overflow actions, icon-only controls, and unified command access.",
+      "components": [
+        "Button",
+        "ButtonLink",
+        "ToggleButton",
+        "FloatingActionButton",
+        "ButtonGroup",
+        "IconButton",
+        "MenuButton",
+        "Toolbar",
+        "IntentPreview",
+        "ActionAudit",
+        "UndoCompensationState",
+        "CommandBar",
+        "CommandPalette"
+      ],
+      "contract": {
+        "props": "variant, size, icon, loading, disabled, href, command items, intent changes, audit metadata, undo state",
+        "states": "quiet, secondary, primary, danger, loading, disabled, linked navigation, pending, approved, denied, undo available, compensation blocked",
+        "density": "small and medium controls use shared token sizing",
+        "accessibility": "native anchors for navigation, native buttons for commands, named icon actions, menu roles, disabled semantics, named intent review, live undo status",
+        "usage": "use ButtonLink for location changes, Button for commands, and governed-action primitives for write previews; keep product copy outside shared APIs",
+        "verification": "component checker, governed-action examples, consumer wiring, governed-write posture/evidence, agent harness profile"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose action components before adding product-local buttons, menus, or command search.",
+          "Keep labels, route targets, and permission decisions in product code.",
+          "Do not enable write execution from action primitives until G1 governed-write posture and live evidence are present for the provider and operation."
+        ],
+        "productBoundary": "PDS owns action and navigation-control semantics, governed-action review surfaces, audit styling, and undo-state presentation; products own destinations, command meaning, labels, authorization, write execution, and compensation semantics. Live write execution requires G1 governed-write evidence and U2 agent-harness approval.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring",
+          "g1-governed-write-posture",
+          "g1-governed-write-live-evidence",
+          "u2-agent-harness-profile"
+        ]
+      }
+    },
+    {
+      "slug": "forms",
+      "name": "Forms",
+      "purpose": "Generated field wrappers, native inputs, lookup controls, grouped fields, and validation evidence.",
+      "components": [
+        "Field",
+        "FieldMetadata",
+        "FormLoadingPreview",
+        "FieldGroup",
+        "FormLayout",
+        "TextField",
+        "ComboboxField",
+        "TextArea",
+        "SelectField",
+        "DateField",
+        "TimeField",
+        "DateTimeField",
+        "DatePicker",
+        "TimePicker",
+        "InputGroup",
+        "MultiSelect",
+        "FileUpload",
+        "CheckboxField",
+        "SwitchField",
+        "LookupSelect",
+        "ValidationSummary"
+      ],
+      "contract": {
+        "props": "label, hint, error, required, options, lookup state, field metadata",
+        "states": "valid, invalid, disabled, loading lookup, empty lookup, dirty form",
+        "density": "generated layouts use responsive fields and token spacing",
+        "accessibility": "labels, described-by, native inputs, alerts, switch roles",
+        "usage": "bind controls to generated field and validation contracts",
+        "verification": "form examples, generated frontend checks, browser form tests"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose form controls before creating product-local field wrappers.",
+          "Bind generated field metadata, validation, and relationship options through props."
+        ],
+        "productBoundary": "PDS owns control semantics, focus, and validation presentation; products own data shape and workflow rules.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring",
+          "scaffold-proof"
+        ]
+      }
+    },
+    {
+      "slug": "data-grid",
+      "name": "Data Grid",
+      "purpose": "Dense record workspaces, server-side query controls, column customization, sort, and pagination.",
+      "components": [
+        "DataGrid",
+        "DataGridShell",
+        "DataGridLoadingPreview",
+        "DataGridToolbar",
+        "DataGridColumnChooser",
+        "DataGridColumnChooserTrigger",
+        "DataGridColumnResizeHandle",
+        "DataGridControlPopover",
+        "DataGridDensityControl",
+        "DataGridFilterPanel",
+        "DataGridFilterGroup",
+        "DataGridFilterRule",
+        "DataGridFilterEmpty",
+        "DataGridFilterTrigger",
+        "DataGridSortButton",
+        "DataGridPagination"
+      ],
+      "contract": {
+        "props": "columns, rows, row key, density, query state, pagination, resize callbacks",
+        "states": "selected, loading preview, empty, filtered, dirty query, sorted",
+        "density": "compact is default; comfortable remains available",
+        "accessibility": "named region, toolbar, keyboard row activation, native fieldsets",
+        "usage": "products provide columns, renderers, server query bindings, and row routes",
+        "verification": "density policy, grid E2E, loading transition evidence"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose grid shells and controls before adding product-local table chrome.",
+          "Keep column definitions, query bindings, and row routes product-owned."
+        ],
+        "productBoundary": "PDS owns workspace chrome and query-control ergonomics; products own provider-backed data semantics.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring",
+          "scaffold-proof"
+        ]
+      }
+    },
+    {
+      "slug": "overlays",
+      "name": "Overlays",
+      "purpose": "Modal and contextual surfaces for focused review, side-panel work, confirmation, and inline help.",
+      "components": [
+        "Dialog",
+        "Drawer",
+        "Popover",
+        "PopoverTrigger",
+        "Tooltip",
+        "ConfirmDialog"
+      ],
+      "contract": {
+        "props": "open, title, description, size, side, tone, confirm actions",
+        "states": "open, closed, destructive, dismissing, confirming",
+        "density": "modal and drawer sizes are token-backed and responsive",
+        "accessibility": "focus trap, focus return, scroll body focus, escape handling",
+        "usage": "use for focused review, contextual work, and destructive confirmation",
+        "verification": "accessibility patterns and reference consumer wiring"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose overlay shells before creating product-local modal, drawer, or popover behavior.",
+          "Keep destructive-action copy and workflow consequences product-owned."
+        ],
+        "productBoundary": "PDS owns overlay mechanics and accessibility; products own content, actions, and domain risk.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring",
+          "scaffold-proof"
+        ]
+      }
+    },
+    {
+      "slug": "feedback",
+      "name": "Feedback",
+      "purpose": "Blocking and non-blocking status surfaces, request metadata, skeletons, and notifications.",
+      "components": [
+        "Alert",
+        "Banner",
+        "FeedbackState",
+        "OperationState",
+        "LoadingState",
+        "ErrorState",
+        "ForbiddenState",
+        "InlineAlert",
+        "EmptyState",
+        "Skeleton",
+        "Toast",
+        "ToastRegion"
+      ],
+      "contract": {
+        "props": "kind, title, detail, typed operation state/result/request-correlation slots, metadata, retry actions, toast items",
+        "states": "idle, pending, loading, empty, denied, error, success, warning, info, cancelled",
+        "density": "inline and page-level feedback use shared rhythm",
+        "accessibility": "live regions, alert roles, status roles, keyboard-reachable actions, reduced-motion pending cues, request metadata near messages",
+        "usage": "keep users near the failed or blocked action with traceable IDs",
+        "verification": "feedback pattern checks and reference states"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose feedback primitives before creating product-local loading, empty, denied, or error states.",
+          "Expose request metadata near the affected workflow."
+        ],
+        "productBoundary": "PDS owns feedback structure and live-region behavior; products own error categories and recovery actions.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring"
+        ]
+      }
+    },
+    {
+      "slug": "navigation",
+      "name": "Navigation",
+      "purpose": "Application chrome, document-scrolling narrative and object-exploration workspaces, page structure, tabs, segmented controls, surfaces, and status badges.",
+      "components": [
+        "AppShell",
+        "NarrativeWorkspace",
+        "ConnectedFabric",
+        "AppearanceProvider",
+        "PdsHealthLogo",
+        "NavigationItem",
+        "IconSlot",
+        "Avatar",
+        "IdentitySummary",
+        "Breadcrumbs",
+        "PageHeader",
+        "Surface",
+        "List",
+        "ListItem",
+        "SearchBar",
+        "ExplorationWorkspace",
+        "Tabs",
+        "SegmentedControl",
+        "Badge",
+        "InteractiveCard",
+        "CardLink",
+        "WorkQueueItem"
+      ],
+      "contract": {
+        "props": "brand, appearance preference, nav items, label wrapping or intentional truncation, icons, trailing counts, optional adjustable sidebar bounds, document-scrolling narrative header/navigation/utility/context/footer slots, identity and avatar content, breadcrumb items, page title, exploration controls and named region slots, tabs, selected segment, whole-surface activation, queue status, surface actions",
+        "states": "system, light, dark, Apple-like, Material-like, current route or same-page mode, wrapped label, intentionally truncated label, overflow disclosure, pointer and keyboard resizing, responsive drawer, sticky narrative chrome, optional narrative context, bounded or flow exploration, optional navigator, inspector, controls, and evidence regions, breadcrumb location, selected tab, selected segment, selected card or row, completed, disabled, collapsed content",
+        "density": "expanded navigation uses a 14 px / 20 px semantic label role, a fixed 24 px icon column, a flexible two-line label column, non-shrinking trailing content, and shared responsive shell spacing; NarrativeWorkspace preserves document scrolling and a visible wrapping horizontal dock; bounded exploration gives its supplied regions independent scroll surfaces without expanding the page",
+        "accessibility": "named banner, primary navigation, main, narrative context, exploration, and breadcrumb landmarks; a narrative skip link and measured sticky offset; keyboard-focusable exploration scroll regions; current-page or pressed-mode semantics supplied by native product controls; complete accessible labels; overflow-only tooltip on hover and focus with Escape dismissal; an adjustable separator with value semantics and pointer plus keyboard operation; sibling secondary actions; tablist roles; pressed state; and focus rings",
+        "usage": "use NarrativeWorkspace for long-form knowledge experiences that need persistent horizontal mode navigation and one document scroll owner; products supply route or mode identity, destinations, activation commands, app-specific labels, role visibility, counts, identity values, sidebar persistence key, narrative context, exploration objects, access and selection state, evidence, status meaning, and secondary-action consequences; PDS owns readable wrapping, exceptional overflow disclosure, icon geometry, resize mechanics, responsive collapse, narrative sticky geometry, and exploration-region layout",
+        "verification": "catalog coverage at 240, 288, and 360 px sidebar widths; document-scrolling narrative desktop/narrow/print layouts; sticky offset and unobscured focus; wrapped and intentionally truncated labels; one-, two-, and three-region exploration; bounded desktop and flow-based narrow/print exploration; Apple-like and Material-like light/dark themes; pointer and keyboard resizing; independent keyboard scrolling; overflow tooltip behavior; 200% zoom; mobile drawer; scaffold residue checks"
+      },
+      "readiness": {
+        "level": "release-gated",
+        "agentUse": [
+          "Choose shell, narrative or exploration workspace, header, surface, tab, and segmented controls before building product-local navigation chrome, long-form knowledge layouts, or dense object-exploration layouts.",
+          "Keep route identity and workflow labels product-owned."
+        ],
+        "productBoundary": "PDS owns appearance state propagation, semantic navigation typography, icon geometry, two-line wrapping, exceptional overflow disclosure, adjustable-sidebar mechanics, responsive collapse, narrative sticky-header/dock geometry and landmarks, identity composition, navigation structure, exploration-region landmarks and responsive layout, whole-surface activation semantics, queue-row composition, and selected-state treatment; products own routing or same-page mode semantics, information architecture, copy, context meaning, content anchors, focus restoration, object semantics, access, selection, filtering, relationships, evidence and proof, role visibility, counts, identity data, persistence keys, status meaning, and action consequences.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring",
+          "scaffold-proof"
+        ]
+      }
+    },
+    {
+      "slug": "conversation",
+      "name": "Conversation",
+      "purpose": "Invoked AI answer surfaces, grounded references, tool-call progress, agent timeline, and graph context shells.",
+      "components": [
+        "MessageThread",
+        "Message",
+        "MessageComposer",
+        "ConversationWorkspace",
+        "StreamingText",
+        "ToolCallStatus",
+        "EntityRefCard",
+        "CitationList",
+        "ConfidenceSignal",
+        "AgentTimeline",
+        "FlowGraphShell"
+      ],
+      "contract": {
+        "props": "messages, roles, streaming state, workspace title and regions, suggested prompts, context rail, composer, tool-call status, entity refs, citations, confidence, timeline items, graph nodes and edges",
+        "states": "user, assistant, system, tool, streaming, busy, queued, running, blocked, completed, failed, high confidence, policy warning",
+        "density": "the workspace collapses its context rail responsively; thread, cards, timeline, and graph shells fit side panels and generated workspaces without nested cards",
+        "accessibility": "named workspace, log and context regions, ordered messages, live streaming and busy status, disabled composer while busy, named prompt groups, assertive blocked tool states, ordered citations, named timeline and graph regions",
+        "usage": "use ConversationWorkspace as the invoked-assistance floor plan and lower-level primitives for grounded answer detail; keep messages, model calls, prompts, retrieval, actions, context content, and write gates product/runtime-owned",
+        "verification": "component checker, answer-envelope contract, chat-eval posture, view registry contract, catalog examples"
+      },
+      "readiness": {
+        "level": "enterprise-ready",
+        "agentUse": [
+          "Choose conversation primitives before creating product-local chat or answer cards.",
+          "Use EntityRefCard and FlowGraphShell with generated viewRegistry/addressing data when available.",
+          "Keep write-shaped actions IntentPreview-only until G1 governed-write and W3-B delegated-auth evidence exist."
+        ],
+        "productBoundary": "PDS owns the responsive conversation floor plan, region semantics, busy/composer behavior, evidence presentation, timeline, confidence, citation, and graph shells; products own prompt copy, messages, suggested-prompt values, answer-envelope data, retrieval policy, model/gateway calls, action meaning, context content, and domain graph content.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "answer-envelope-contract",
+          "view-registry-contract",
+          "chat-eval-posture"
+        ]
+      }
+    },
+    {
+      "slug": "ambient-ai",
+      "name": "Ambient AI",
+      "purpose": "In-workflow generated views, suggestions, cues, summaries, freshness, and model attribution for governed ambient assistance.",
+      "components": [
+        "GeneratedViewShell",
+        "SuggestedAction",
+        "RecommendationCard",
+        "EvidenceSummary",
+        "InsightSummary",
+        "FreshnessIndicator",
+        "AttentionMarker",
+        "AiAttributionAffordance",
+        "AssistLevelControl",
+        "MemoryChip",
+        "EvidenceDisclosure",
+        "ResolvedContextDisclosure",
+        "WorkStatus",
+        "ProgressiveResponse",
+        "PdsIxRecipePresentation"
+      ],
+      "contract": {
+        "props": "title, reason, grounding, risk, freshness, attribution, claims, citations, preview slots, resolved view content, assist level, memory scope, correction/reset handlers, pds.ix.presentation@1 identity, stable source refs, context gaps, region status, announcement",
+        "states": "grounded, partial, ready, stale, failed, unverified, policy denied, current, low risk, medium risk, high risk, suggest, co-pilot, autopilot disabled, personalized",
+        "density": "ambient surfaces fit generated workspaces, side panels, and inline cues without interruptive modals",
+        "accessibility": "named generated regions, polite attribution/freshness status, assertive high-risk cues, ordered grounded claims, native radio assist levels, named memory correction group",
+        "usage": "use for ambient AI influence; keep refs, policy, answer envelopes, action execution, assist behavior, and personalization memory product/runtime-owned",
+        "verification": "component checker, agentic-ux grounding contract, answer-envelope contract, view registry contract, chat-eval posture, catalog examples"
+      },
+      "readiness": {
+        "level": "enterprise-ready",
+        "agentUse": [
+          "Choose ambient AI components before creating product-local generated-view, recommendation, cue, or summary chrome.",
+          "Bind only resolved refs and registered viewRegistry views; leave ungrounded suggestions absent or explicitly unverified.",
+          "Keep write-shaped recommendations IntentPreview-only until G1 governed-write and W3-B delegated-auth evidence exist.",
+          "Expose assist-level and memory correction controls before enabling personalization or higher-autonomy modes."
+        ],
+        "productBoundary": "PDS owns ambient AI presentation, attribution, freshness, attention, summary, assist-level, and memory affordance shells; products own resolved refs, view bindings, assist behavior, memory storage/correction, policy decisions, and execution.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "agentic-ux-grounding",
+          "answer-envelope-contract",
+          "view-registry-contract",
+          "chat-eval-posture"
+        ]
+      }
+    },
+    {
+      "slug": "process",
+      "name": "Process",
+      "purpose": "Step-by-step workflow progress, release gates, approvals, and compact mobile progress indicators.",
+      "components": [
+        "ProcessStepper",
+        "ProcessProgress"
+      ],
+      "contract": {
+        "props": "steps, status, current step, selectedStepId, default or milestone variant, optional state, disabled state, progress value, selection handler",
+        "states": "complete, current, selected, upcoming, warning, blocked, disabled",
+        "density": "horizontal, vertical, compact progress, marker-centered milestone timeline, and mobile dot variants",
+        "accessibility": "ordered steps, one native full-surface button per selectable step, aria-current independent from aria-pressed selection, aria-controls, disabled semantics, progressbar metadata",
+        "usage": "PDS owns workflow progress, connector geometry, and default or milestone selection presentation; products own selectedStepId, transition logic, filtering behavior, and step meaning",
+        "verification": "catalog coverage, accessibility patterns, component checker"
+      },
+      "readiness": {
+        "level": "enterprise-ready",
+        "agentUse": [
+          "Use process controls for intake, approval, certification, release, and generated workflow progress.",
+          "Keep branching rules, completion criteria, authorization, and transition side effects in product code."
+        ],
+        "productBoundary": "PDS owns process visibility, full-surface selection mechanics, state treatment, and progress semantics; products own selected state, step meaning, filtering, and workflow execution.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns"
+        ]
+      }
+    },
+    {
+      "slug": "analytics",
+      "name": "Analytics",
+      "purpose": "Operational metrics, trend indicators, chart containers, legends, adjustable time-window selection, relationship exploration, and presentational chart renderers (bar, line, area, donut).",
+      "components": [
+        "KpiTile",
+        "MetricTrend",
+        "ChartShell",
+        "ChartLegend",
+        "TimelineRangeSelector",
+        "RelationshipAtlas",
+        "RelationshipAtlasTable",
+        "RelationshipExplorer",
+        "BarChart",
+        "LineChart",
+        "AreaChart",
+        "DonutChart"
+      ],
+      "contract": {
+        "props": "label, value, trend, tone, chart title, legend items, footer, ordered timeline items, selected start and width, snap widths, selection labels, authored relationship groups, nodes, edges, selected node, and map/table view",
+        "states": "positive, warning, danger, flat, loading, empty, error, moving range, resizing range, map, table, selected relationship, and invalid reference",
+        "density": "tiles and chart shells fit dense dashboards without nested cards; timeline range remains horizontally usable; relationship exploration falls back to an equivalent table in narrow containers",
+        "accessibility": "legend list semantics, non-color trend direction, named adjustable range, keyboard-operable move and resize handles, keyboard-operable relationship nodes, explicit boundary and selection labels, and a complete tabular relationship alternative",
+        "usage": "use chart chrome and presentational renderers for standard series, TimelineRangeSelector for an adjustable historical window, and RelationshipExplorer for authored relationship data; products own data, calculations, relationship semantics and derivation, citations, thresholds, and interpretation",
+        "verification": "dashboard evidence, chart containment, component checker"
+      },
+      "readiness": {
+        "level": "enterprise-ready",
+        "agentUse": [
+          "Choose analytics chrome before creating product-local metric cards or chart panels.",
+          "Keep calculations, chart renderer choice, relationship meaning and derivation, citations, and data interpretation in product code."
+        ],
+        "productBoundary": "PDS owns analytics chrome, status tone, legend structure, adjustable range interaction, and map/table relationship presentation; products own measures, time-domain items and labels, relationship semantics and evidence, density values, snapping choices, chart semantics, and the data query driven by selection.",
+        "evidence": [
+          "catalog-manifest",
+          "visible-catalog",
+          "token-backed-css",
+          "accessibility-patterns",
+          "consumer-wiring"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+# RequestType — a kind of request the app handles ("Tax Document Routing" today). Adding a
+# second request type is a data row here plus RequestTypeScreen rows, not a code change.
+# See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 0ba7886f-440c-4dcf-9e0f-0ecab61b827d
+  name: RequestType
+  is_table: true
+  facets:
+  - audited
+  constraints:
+  - uq_request_type_code UNIQUE (code)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: name
+    caption: Name
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: description
+    caption: Description
+    is_required: false
+    data_type: String
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true

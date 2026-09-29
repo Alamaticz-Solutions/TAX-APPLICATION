@@ -1,0 +1,24 @@
+version: 1
+source: citizen_poc
+source_kind: poc
+app:
+  name: pds-nexus
+  display_name: 'PDS Nexus'
+schema:
+  name: denovo_workflow
+topology:
+  backend_provider:
+    provider: PostgreSQL
+    data_source_name: pg_primary
+  ingress:
+    mcp_server: false
+    kafka_client: false
+    ui: enterprise
+artifacts:
+  poc_source: null
+  data_artifact: .appfw/source-evidence/nexus-denovo-synthetic.json
+  ui_artifact: null
+agent_contract:
+  skill: product-poc-intake
+  sample_reference_only: true
+  next_step: 'Use the synthetic Nexus De Novo fixture to infer the provisional read-only projection model, then wait for Unit A ServiceNow export before converting projections to live contracts.'

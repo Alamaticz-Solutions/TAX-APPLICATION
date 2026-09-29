@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "cwd": "mobile",
+  "duration_ms": 4183,
+  "exit_code": 0,
+  "generated_at": "2026-07-02T18:31:09Z",
+  "lane": "U5",
+  "name": "typecheck",
+  "ok": true,
+  "status": "passed",
+  "stderr_tail": "",
+  "stdout_tail": "\n> @pds/app-framework-crm-mobile@0.1.0 typecheck\n> tsc --noEmit\n\n",
+  "test_types_included": true,
+  "release_ready": false,
+  "release_readiness_effect": "Local TypeScript typecheck proves source and contract typing only. It does not replace Expo Doctor, runtime audit, simulator/device, or store-track release evidence.",
+  "version": 1
+}

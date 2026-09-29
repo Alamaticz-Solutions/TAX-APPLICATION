@@ -1,0 +1,23 @@
+# Territory - CDM applicationCommon-inspired regional coverage.
+
+- name: find_territory
+  description: find seeded territory with NavToOne business unit
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findTerritory
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"7e441000-0000-4000-8000-100000000002"'
+    select: |
+      id,name,code,region,country,state,is_active,business_unit { id,name }
+  expect:
+    data:
+      id: '7e441000-0000-4000-8000-100000000002'
+      name: 'California Enterprise'
+      code: 'CA-ENT'
+      region: 'West'
+      state: 'CA'
+      is_active: true

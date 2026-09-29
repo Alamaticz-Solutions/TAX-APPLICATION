@@ -1,0 +1,7 @@
+    data_type: String
+    meta:
+      validators:
+      - name: StringLength
+        min: 2
+        max: 2
+        message: Length must be 2

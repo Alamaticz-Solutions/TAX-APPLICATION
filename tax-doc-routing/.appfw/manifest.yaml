@@ -1,0 +1,51 @@
+version: 1
+app:
+  name: tax-doc-routing
+  display_name: 'Tax Document Routing'
+  description: 'Tax document routing: collect client and document details, file documents into the correct permanent storage folders, and surface exceptions.'
+topology:
+  data_sources:
+  - name: pg_primary
+    provider: PostgreSQL
+    role: transactional
+    description: Primary transactional database.
+  schemas:
+  - name: system
+    data_source_name: pg_primary
+    role: framework
+    description: Runtime metadata schema loaded from generated config.
+  - name: tax_routing
+    data_source_name: pg_primary
+    role: product
+    description: Tax Document Routing product schema.
+  ingress:
+  - name: tax-routing-http
+    kind: http
+    enabled: true
+    schema: tax_routing
+    path: /tax-routing
+    consumers:
+    - browser
+    - service-api
+  - name: app-mcp
+    kind: mcp
+    enabled: false
+    path: /mcp
+    consumers:
+    - agent
+  - name: tax-routing-events
+    kind: kafka
+    enabled: false
+    schema: tax_routing
+    topic: tax-routing.events
+    consumer_group: tax-routing-events-worker
+    handler: services.tax_routing_events
+ui:
+  product_spa:
+    enabled: true
+    packaging: backend-product-dist
+    description: Tax Document Routing product SPA is built to backend/product_dist and served at / by the single backend image (APP_PRODUCT_UI_ENABLED=true).
+  admin_ui:
+    enabled: false
+    packaging: disabled
+    description: Framework admin UI is available for local/framework operations but is not embedded in the product image.

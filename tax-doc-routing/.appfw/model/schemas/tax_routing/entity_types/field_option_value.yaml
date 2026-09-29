@@ -1,0 +1,45 @@
+# FieldOptionValue — one choice in a managed drop-down list.
+# See docs/architecture/dynamic-form-engine-design.md.
+
+- id: 2440f8ee-3e70-4d2c-8a41-91320a61346a
+  name: FieldOptionValue
+  is_table: true
+  indexes:
+  - option_list_id
+  facets:
+  - audited
+  constraints:
+  - uq_field_option_value_code UNIQUE (option_list_id, code)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  - name: option_list_id
+    caption: Option List
+    is_required: true
+    data_type: Uuid
+    foreign_key:
+      type_name: FieldOptionList
+
+  - name: code
+    caption: Code
+    is_required: true
+    data_type: String
+
+  - name: label
+    caption: Label
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: sort_order
+    caption: Sort Order
+    is_required: false
+    data_type: Int32
+
+  - name: is_active
+    caption: Active
+    fragment: property-boolean-toggle-required
+    default_value: true

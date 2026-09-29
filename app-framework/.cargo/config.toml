@@ -1,0 +1,2 @@
+[registries.pds-app-framework-crates]
+index = "sparse+https://proget.pdsconnect.com/cargo/pds-app-framework-crates/"

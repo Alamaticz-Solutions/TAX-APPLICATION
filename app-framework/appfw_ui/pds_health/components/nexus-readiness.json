@@ -1,0 +1,60 @@
+{
+  "schema_version": "pds-nexus-readiness/1.0.0",
+  "status": "foundation-active-product-activation-gated",
+  "governing_adr": [
+    "docs/architecture/adr/0015-pds-experience-system-dimensions.md",
+    "docs/architecture/adr/0016-pds-web-interaction-substrate.md"
+  ],
+  "public_package": "@appfw/pds-health-components",
+  "web_interaction_substrate": "react-aria-components",
+  "product_direct_substrate_imports_allowed": false,
+  "visual_grammars": ["apple-like", "material-like"],
+  "color_modes": ["system", "light", "dark"],
+  "platform_scales": ["pointer", "touch"],
+  "density_modes": ["comfortable", "compact-data-only"],
+  "readiness_slices": [
+    {"id": "F0", "name": "foundation-lock", "priority": "P0"},
+    {"id": "F1", "name": "interaction-substrate-proof", "priority": "P0"},
+    {"id": "N0", "name": "my-work-skeleton", "priority": "P0"},
+    {"id": "N1", "name": "trusted-task", "priority": "P0"},
+    {"id": "N2", "name": "structured-intelligence", "priority": "P0"},
+    {"id": "N3", "name": "native-continuation", "priority": "P0"},
+    {"id": "N4", "name": "package-consumer-proof", "priority": "P0"}
+  ],
+  "interaction_proof": [
+    "button-toggle",
+    "field-validation",
+    "select-combobox",
+    "menu-popover",
+    "dialog",
+    "date-time"
+  ],
+  "nexus_core": [
+    "application-shell",
+    "global-search",
+    "responsive-navigation",
+    "my-requests-my-tasks-queue",
+    "list-detail-workbench",
+    "request-task-approval",
+    "notification-center",
+    "governed-action",
+    "structured-intelligence",
+    "operation-receipt",
+    "native-continuation"
+  ],
+  "required_evidence": [
+    "stable-geometry",
+    "keyboard-focus",
+    "screen-reader",
+    "touch-coarse-pointer",
+    "zoom-rtl-forced-colors",
+    "reduced-motion",
+    "visual-dimension-matrix",
+    "bundle-performance",
+    "pds-observability-trace",
+    "package-only-consumer",
+    "genuine-upgrade",
+    "task-and-signature-quality"
+  ]
+}
+

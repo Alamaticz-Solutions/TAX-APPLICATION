@@ -1,0 +1,20 @@
+# LeadSource - seeded lookup coverage.
+
+- name: find_lead_source
+  description: find seeded lead source by id as admin
+  auth_token: pdsh_admin
+  graphql:
+    schema: crm
+    type: query
+    name: findLeadSource
+    variables:
+    - name: id
+      type: String!
+      literal_value: '"1eadcc01-0000-4000-8000-100000000001"'
+    select: |
+      id,name,sort_order
+  expect:
+    data:
+      id: '1eadcc01-0000-4000-8000-100000000001'
+      name: 'Web'
+      sort_order: 10

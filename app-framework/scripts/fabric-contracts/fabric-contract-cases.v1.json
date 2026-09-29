@@ -1,0 +1,1050 @@
+{
+  "schema": "fabric_contract_cases@1",
+  "cases": [
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "crm active registered with web and mobile surfaces",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "crm",
+        "name": "CRM Reference Product",
+        "purpose_summary": "Reference CRM product proving the App Framework golden path, PDS experience composition, and the fabric vertical.",
+        "purpose_authority_ref": "repo:examples/products/crm/.appfw/manifest.yaml",
+        "owner_group": "okta-group:appfw-crm-owners",
+        "origination_path": "engineering",
+        "lifecycle_state": "active",
+        "platform_surfaces": [
+          { "surface": "web" },
+          { "surface": "native_mobile", "targets": ["ios", "android"] }
+        ],
+        "repository_ref": "https://bitbucket.org/pacificdental/app-framework",
+        "environment_refs": [{ "environment": "dev", "url": "https://crm.dev.pdshealth.com" }],
+        "data_classification": "internal",
+        "support_contact": "okta-group:appfw-platform",
+        "management_tier": "factory_managed",
+        "cmdb_ci_ref": "servicenow:cmdb_ci_service:crm-reference",
+        "matriculated_at": "2026-07-25T12:00:00Z",
+        "registered_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "pds-nexus idea stage not in cmdb",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "name": "PDS Nexus",
+        "purpose_summary": "Employee portal PoC orchestrating De Novo workflows; product-management originated idea proving the intake path.",
+        "owner_group": "okta-group:pds-product-management",
+        "origination_path": "product_management",
+        "lifecycle_state": "idea",
+        "platform_surfaces": [{ "surface": "web" }],
+        "repository_ref": "repo:examples/products/pds-nexus",
+        "environment_refs": [{ "environment": "dev" }],
+        "data_classification": "internal",
+        "support_contact": "okta:wayne.kempf@pdshealth.com",
+        "management_tier": "appfw_managed",
+        "cmdb_ci_ref": null,
+        "matriculated_at": null,
+        "registered_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "idea stage with cmdb reference violates matriculation rule",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "sneaky-idea",
+        "name": "Sneaky Idea",
+        "purpose_summary": "An idea that tries to enter the CMDB before the planned decision.",
+        "owner_group": "okta-group:pds-product-management",
+        "origination_path": "citizen",
+        "lifecycle_state": "idea",
+        "platform_surfaces": [{ "surface": "web" }],
+        "repository_ref": null,
+        "environment_refs": [],
+        "data_classification": "internal",
+        "support_contact": "okta:someone@pdshealth.com",
+        "management_tier": "registered",
+        "cmdb_ci_ref": "servicenow:cmdb_ci_service:sneaky",
+        "matriculated_at": "2026-07-25T12:00:00Z",
+        "registered_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "unknown field is rejected by the closed schema",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "crm",
+        "name": "CRM Reference Product",
+        "purpose_summary": "Closed schemas reject unknown fields.",
+        "owner_group": "okta-group:appfw-crm-owners",
+        "origination_path": "engineering",
+        "lifecycle_state": "active",
+        "platform_surfaces": [{ "surface": "web" }],
+        "repository_ref": null,
+        "environment_refs": [],
+        "data_classification": "internal",
+        "support_contact": "okta-group:appfw-platform",
+        "management_tier": "registered",
+        "cmdb_ci_ref": "servicenow:cmdb_ci_service:crm-reference",
+        "matriculated_at": "2026-07-25T12:00:00Z",
+        "registered_at": "2026-07-25T12:00:00Z",
+        "token_leaderboard_rank": 1
+      }
+    },
+    {
+      "contract": "app_component_snapshot@1",
+      "name": "crm backend web snapshot with all four states",
+      "expect": "valid",
+      "record": {
+        "schema": "app_component_snapshot@1",
+        "semantic_version": "1.0.0",
+        "snapshot_id": "snap:crm:web:2026-07-25",
+        "app_id": "crm",
+        "platform_surface": "web",
+        "captured_at": "2026-07-25T12:00:00Z",
+        "desired": {
+          "source_sha": "0dcc53d37",
+          "manifest_ref": "repo:examples/products/crm/.appfw/manifest.yaml",
+          "components": [
+            { "name": "app-framework", "kind": "framework", "version": "0.7.0" },
+            { "name": "pds-health-components", "kind": "component_catalog", "version": "2.1.0" },
+            { "name": "appfw-provider-postgres", "kind": "provider", "version": "0.7.0" }
+          ]
+        },
+        "built": {
+          "image_digest": "sha256:a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+          "sbom_ref": "target/appfw/sbom-deployable-image.cdx.json",
+          "signed": true
+        },
+        "deployed": {
+          "environment": "dev",
+          "gitops_revision": "gitops:crm-dev@4f2c1",
+          "digest": "sha256:a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+        },
+        "running": {
+          "observed_digest": "sha256:a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+          "health": "healthy",
+          "observed_at": "2026-07-25T12:05:00Z"
+        },
+        "freshness": "fresh",
+        "source_refs": [
+          { "authority": "bitbucket", "observed_at": "2026-07-25T12:00:00Z" },
+          { "authority": "argocd:dev", "observed_at": "2026-07-25T12:05:00Z" }
+        ]
+      }
+    },
+    {
+      "contract": "app_component_snapshot@1",
+      "name": "crm ios snapshot with store release and version skew",
+      "expect": "valid",
+      "record": {
+        "schema": "app_component_snapshot@1",
+        "semantic_version": "1.0.0",
+        "snapshot_id": "snap:crm:ios:2026-07-25",
+        "app_id": "crm",
+        "platform_surface": "native_mobile_ios",
+        "captured_at": "2026-07-25T12:00:00Z",
+        "desired": {
+          "source_sha": "0dcc53d37",
+          "components": [
+            { "name": "crm-mobile-scaffold", "kind": "scaffold", "version": "0.3.0" },
+            { "name": "expo-sdk", "kind": "sdk", "version": "54.0.0" }
+          ]
+        },
+        "built": {
+          "store_build": {
+            "build_number": "142",
+            "artifact_hash": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2",
+            "ota_bundle_id": "ota:crm:2026-07-24:01"
+          },
+          "signed": true
+        },
+        "deployed": {
+          "store_track": "testflight",
+          "review_status": "approved",
+          "staged_rollout_percent": 100
+        },
+        "running": {
+          "version_distribution": [
+            { "version": "1.2.0", "share": 0.4 },
+            { "version": "1.3.0", "share": 0.6 }
+          ],
+          "crash_free_rate": 0.995,
+          "observed_at": "2026-07-25T12:05:00Z"
+        },
+        "freshness": "fresh",
+        "source_refs": [
+          { "authority": "app-store-connect", "observed_at": "2026-07-25T12:00:00Z" }
+        ]
+      }
+    },
+    {
+      "contract": "app_component_snapshot@1",
+      "name": "mobile snapshot with web deployment variant is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "app_component_snapshot@1",
+        "semantic_version": "1.0.0",
+        "snapshot_id": "snap:crm:ios:bad",
+        "app_id": "crm",
+        "platform_surface": "native_mobile_ios",
+        "captured_at": "2026-07-25T12:00:00Z",
+        "desired": {
+          "source_sha": "0dcc53d37",
+          "components": [{ "name": "crm-mobile-scaffold", "kind": "scaffold", "version": "0.3.0" }]
+        },
+        "built": null,
+        "deployed": {
+          "environment": "dev",
+          "gitops_revision": "gitops:crm-dev@4f2c1",
+          "digest": "sha256:a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1"
+        },
+        "running": null,
+        "freshness": "unknown",
+        "source_refs": [{ "authority": "argocd:dev", "observed_at": "2026-07-25T12:00:00Z" }]
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "app-scoped build observation with correlation",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:build:crm:310",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "build",
+        "occurred_at": "2026-07-25T11:58:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "bitbucket", "source_id": "pipeline:310" },
+        "correlation": {
+          "correlation_id": "corr:crm:310",
+          "commit_sha": "0dcc53d37",
+          "pipeline_id": "310"
+        },
+        "payload": { "status": "passed" },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "whole cost observation using the extended taxonomy",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:cost:crm:2026-07",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "whole_cost",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "model-gateway-meter" },
+        "correlation": { "correlation_id": "corr:crm:cost:2026-07" },
+        "payload": {
+          "cost_component": "agent_tokens",
+          "amount": 412.5,
+          "currency": "USD",
+          "measurement_source": "provider_measurement:gateway"
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "framework release observation is framework scoped",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:framework-release:0.8.0",
+        "scope": "framework",
+        "app_id": null,
+        "kind": "framework_release",
+        "occurred_at": "2026-07-25T10:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "proget", "source_id": "release:0.8.0" },
+        "correlation": { "commit_sha": "0dcc53d37" },
+        "payload": { "version": "0.8.0", "channel": "stable" },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "satisfaction observation with free text is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:sat:crm:q3",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "satisfaction",
+        "occurred_at": "2026-07-01T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "survey-system" },
+        "correlation": {},
+        "payload": {
+          "source": "quarterly-survey",
+          "period": "2026-Q3",
+          "cohort_size": 44,
+          "score": 4.2,
+          "free_text": "I love it but please add dark mode"
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "framework release with app id is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:framework-release:bad",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "framework_release",
+        "occurred_at": "2026-07-25T10:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "proget" },
+        "correlation": {},
+        "payload": { "version": "0.8.0" },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "idea stage with production environment is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "eager-idea",
+        "name": "Eager Idea",
+        "purpose_summary": "An idea trying to claim production presence.",
+        "owner_group": "okta-group:pds-product-management",
+        "origination_path": "citizen",
+        "lifecycle_state": "idea",
+        "platform_surfaces": [{ "surface": "web" }],
+        "repository_ref": "repo:examples/products/eager-idea",
+        "environment_refs": [{ "environment": "production" }],
+        "data_classification": "internal",
+        "support_contact": "okta:someone@pdshealth.com",
+        "management_tier": "registered",
+        "cmdb_ci_ref": null,
+        "matriculated_at": null,
+        "registered_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "fabric_app_registration@1",
+      "name": "beyond-dev presence without cmdb ci is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_app_registration@1",
+        "semantic_version": "1.0.0",
+        "app_id": "gate-jumper",
+        "name": "Gate Jumper",
+        "purpose_summary": "An active app in test without a CMDB configuration item.",
+        "owner_group": "okta-group:pds-product-management",
+        "origination_path": "engineering",
+        "lifecycle_state": "active",
+        "platform_surfaces": [{ "surface": "web" }],
+        "repository_ref": "repo:examples/products/gate-jumper",
+        "environment_refs": [{ "environment": "dev" }, { "environment": "test" }],
+        "data_classification": "internal",
+        "support_contact": "okta:someone@pdshealth.com",
+        "management_tier": "appfw_managed",
+        "cmdb_ci_ref": null,
+        "matriculated_at": null,
+        "registered_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "app_component_snapshot@1",
+      "name": "mobile built state without store build is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "app_component_snapshot@1",
+        "semantic_version": "1.0.0",
+        "snapshot_id": "snap:crm:ios:nobuild",
+        "app_id": "crm",
+        "platform_surface": "native_mobile_ios",
+        "captured_at": "2026-07-25T12:00:00Z",
+        "desired": {
+          "source_sha": "0dcc53d37",
+          "components": [{ "name": "crm-mobile-scaffold", "kind": "scaffold", "version": "0.3.0" }]
+        },
+        "built": {
+          "image_digest": "sha256:a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+          "signed": true
+        },
+        "deployed": null,
+        "running": null,
+        "freshness": "unknown",
+        "source_refs": [{ "authority": "eas-build", "observed_at": "2026-07-25T12:00:00Z" }]
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "valid satisfaction observation with cohort",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:sat:crm:q3-clean",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "satisfaction",
+        "occurred_at": "2026-07-01T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "survey-system" },
+        "correlation": {},
+        "payload": {
+          "source": "quarterly-survey",
+          "period": "2026-Q3",
+          "cohort_size": 44,
+          "score": 4.2
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "valid store rating as public aggregate",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:rating:crm:ios:2026-07",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "store_rating",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "app-store-connect" },
+        "correlation": {},
+        "payload": {
+          "source": "app-store",
+          "period": "2026-07",
+          "public_aggregate": true,
+          "average_rating": 4.6,
+          "rating_count": 128
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "valid store release observation",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:release:crm:ios:142",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "store_release",
+        "occurred_at": "2026-07-24T18:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "app-store-connect", "source_id": "build:142" },
+        "correlation": { "correlation_id": "corr:crm:ios:142" },
+        "payload": {
+          "store_track": "testflight",
+          "review_status": "approved",
+          "staged_rollout_percent": 100
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "valid version adoption observation",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:adoption:crm:ios:2026-07-25",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "version_adoption",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "crash-device-health" },
+        "correlation": {},
+        "payload": {
+          "version_distribution": [
+            { "version": "1.2.0", "share": 0.4 },
+            { "version": "1.3.0", "share": 0.6 }
+          ]
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "whole cost with off-taxonomy component is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:cost:crm:vibes",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "whole_cost",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "model-gateway-meter" },
+        "correlation": {},
+        "payload": {
+          "cost_component": "vibes",
+          "amount": 1,
+          "currency": "USD",
+          "measurement_source": "declared_rate:guess"
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "store rating without public aggregate flag is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:rating:crm:ios:raw",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "store_rating",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "app-store-connect" },
+        "correlation": {},
+        "payload": {
+          "source": "app-store",
+          "period": "2026-07",
+          "average_rating": 4.6
+        },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "factory_run_manifest@1",
+      "name": "completed run without finished_at is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "factory_run_manifest@1",
+        "semantic_version": "1.0.0",
+        "run_id": "run:crm:0003",
+        "assignment_ref": "assignment:crm:FAB-demo-3",
+        "app_id": "crm",
+        "source": {
+          "repo_ref": "https://bitbucket.org/pacificdental/app-framework",
+          "branch": "feature/crm-copy-change",
+          "base_sha": "0dcc53d37"
+        },
+        "profile": "accelerated",
+        "commands": ["scripts/appfw product validate --json"],
+        "gates": { "executed": [], "deferred": [] },
+        "runner": { "runner_id": "runner:claude-harness:01" },
+        "review": { "required": true, "route": "agent", "status": "pending" },
+        "result": "success",
+        "correlation_id": "corr:crm:run:0003",
+        "started_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "framework_request@1",
+      "name": "accepted request without framework work ref is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "framework_request@1",
+        "semantic_version": "1.0.0",
+        "request_id": "freq:pds-nexus:0003",
+        "app_id": "pds-nexus",
+        "kind": "component_request",
+        "summary": "Timeline component accepted but not linked to framework work.",
+        "requesting_work_ref": "work:pds-nexus:PI-1:T-1",
+        "raised_by": "okta:wayne.kempf@pdshealth.com",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "disposition": {
+          "state": "accepted",
+          "dispositioned_by": "okta:framework-po@pdshealth.com",
+          "dispositioned_at": "2026-07-25T13:00:00Z"
+        }
+      }
+    },
+    {
+      "contract": "fabric_command_proposal@1",
+      "name": "submitted copy change proposal",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_command_proposal@1",
+        "semantic_version": "1.0.0",
+        "proposal_id": "prop:crm:0001",
+        "app_id": "crm",
+        "proposed_by": "okta:wayne.kempf@pdshealth.com",
+        "context_ref": "work:crm:PI-1:task-3",
+        "intended_effect": {
+          "kind": "copy_change",
+          "summary": "Change the empty-state text on the activities queue to name the next action.",
+          "write_surface_paths": ["frontend/src/copy/activities.ts"]
+        },
+        "idempotency_key": "prop:crm:0001:v1",
+        "submitted_at": "2026-07-25T12:00:00Z",
+        "disposition": { "state": "submitted" }
+      }
+    },
+    {
+      "contract": "fabric_command_proposal@1",
+      "name": "admitted proposal without decider is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_command_proposal@1",
+        "semantic_version": "1.0.0",
+        "proposal_id": "prop:crm:0002",
+        "app_id": "crm",
+        "proposed_by": "okta:wayne.kempf@pdshealth.com",
+        "context_ref": "work:crm:PI-1:task-4",
+        "intended_effect": { "kind": "style_change", "summary": "Tighten card spacing." },
+        "idempotency_key": "prop:crm:0002:v1",
+        "submitted_at": "2026-07-25T12:00:00Z",
+        "disposition": { "state": "admitted" }
+      }
+    },
+    {
+      "contract": "factory_run_manifest@1",
+      "name": "accelerated run with deferred gates",
+      "expect": "valid",
+      "record": {
+        "schema": "factory_run_manifest@1",
+        "semantic_version": "1.0.0",
+        "run_id": "run:crm:0001",
+        "assignment_ref": "assignment:crm:FAB-demo-1",
+        "app_id": "crm",
+        "source": {
+          "repo_ref": "https://bitbucket.org/pacificdental/app-framework",
+          "branch": "feature/crm-copy-change",
+          "base_sha": "0dcc53d37",
+          "lock_digest": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+        },
+        "profile": "accelerated",
+        "commands": ["scripts/appfw product validate --json", "scripts/appfw product test --fast --json"],
+        "gates": {
+          "executed": [{ "gate": "product-validate", "status": "pass" }],
+          "deferred": [{ "gate": "framework-docs-check", "reason": "accelerated profile defers canonical framework gates" }]
+        },
+        "runner": {
+          "runner_id": "runner:claude-harness:01",
+          "image_digest": "sha256:d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4",
+          "model": "claude",
+          "provider": "anthropic",
+          "effort": "medium"
+        },
+        "artifact_refs": ["target/appfw/agent-handoff.json", "target/appfw/framework-pr-review.md"],
+        "review": { "required": true, "route": "agent", "status": "go" },
+        "result": "success",
+        "correlation_id": "corr:crm:run:0001",
+        "started_at": "2026-07-25T12:00:00Z",
+        "finished_at": "2026-07-25T12:20:00Z"
+      }
+    },
+    {
+      "contract": "factory_run_manifest@1",
+      "name": "candidate run with deferred gates is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "factory_run_manifest@1",
+        "semantic_version": "1.0.0",
+        "run_id": "run:crm:0002",
+        "assignment_ref": "assignment:crm:FAB-demo-2",
+        "app_id": "crm",
+        "source": {
+          "repo_ref": "https://bitbucket.org/pacificdental/app-framework",
+          "branch": "feature/crm-copy-change",
+          "base_sha": "0dcc53d37"
+        },
+        "profile": "candidate",
+        "commands": ["scripts/appfw product validate --json"],
+        "gates": {
+          "executed": [{ "gate": "product-validate", "status": "pass" }],
+          "deferred": [{ "gate": "framework-docs-check", "reason": "should not be deferrable in candidate" }]
+        },
+        "runner": { "runner_id": "runner:claude-harness:01" },
+        "review": { "required": true, "route": "human", "status": "pending" },
+        "result": "success",
+        "correlation_id": "corr:crm:run:0002",
+        "started_at": "2026-07-25T12:00:00Z",
+        "finished_at": "2026-07-25T12:20:00Z"
+      }
+    },
+    {
+      "contract": "factory_required_action@1",
+      "name": "open cmdb matriculation required action",
+      "expect": "valid",
+      "record": {
+        "schema": "factory_required_action@1",
+        "semantic_version": "1.0.0",
+        "action_id": "ra:pds-nexus:0001",
+        "app_id": "pds-nexus",
+        "category": "enterprise_registration",
+        "summary": "Create the CMDB configuration item for pds-nexus at the planned decision so promotion beyond dev can unlock.",
+        "blocked_refs": ["work:pds-nexus:promotion:test"],
+        "owning_workstream": "enterprise-architecture",
+        "evidence_to_clear": "The ServiceNow CI identifier recorded on the registration.",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "raised_by": "fabric:registry",
+        "status": "open",
+        "fulfillment": null
+      }
+    },
+    {
+      "contract": "factory_required_action@1",
+      "name": "fulfilled action without evidence is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "factory_required_action@1",
+        "semantic_version": "1.0.0",
+        "action_id": "ra:pds-nexus:0002",
+        "app_id": "pds-nexus",
+        "category": "access",
+        "summary": "Grant analytics read access.",
+        "blocked_refs": [],
+        "owning_workstream": "platform",
+        "evidence_to_clear": "Access grant reference.",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "raised_by": "fabric:registry",
+        "status": "fulfilled",
+        "fulfillment": null
+      }
+    },
+    {
+      "contract": "product_work_model@1",
+      "name": "nexus work model with purpose, increment, and tasks",
+      "expect": "valid",
+      "record": {
+        "schema": "product_work_model@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "purpose": {
+          "statement": "Give De Novo teams one portal that shows every workflow task, owner, and deadline without spreadsheet archaeology.",
+          "success_metric": "Median task-status lookup under 10 seconds; zero missed De Novo deadlines attributable to visibility.",
+          "value_hypothesis": "Replaces 6 hours/week of manual status compilation per workstream lead.",
+          "owner": "okta:wayne.kempf@pdshealth.com"
+        },
+        "strategies": [
+          { "id": "S1", "name": "Orchestration before decoration", "rationale": "Ship the task spine before styling." }
+        ],
+        "increments": [
+          { "id": "PI-1", "name": "Task spine", "goal": "All 176 De Novo tasks visible with owners and states.", "status": "active" }
+        ],
+        "tasks": [
+          { "id": "T-1", "increment_id": "PI-1", "title": "Mock the workflow model", "class": "B", "state": "implemented" },
+          { "id": "T-2", "increment_id": "PI-1", "title": "Owner assignment view", "class": "B", "state": "accepted", "accepted_by": "okta:wayne.kempf@pdshealth.com" }
+        ],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "product_work_model@1",
+      "name": "task referencing unknown increment is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "product_work_model@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "purpose": {
+          "statement": "Purpose statement.",
+          "success_metric": "Metric.",
+          "owner": "okta:wayne.kempf@pdshealth.com"
+        },
+        "increments": [
+          { "id": "PI-1", "name": "Task spine", "goal": "Goal.", "status": "active" }
+        ],
+        "tasks": [
+          { "id": "T-9", "increment_id": "PI-404", "title": "Orphan task", "class": "A", "state": "todo" }
+        ],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "product_work_model@1",
+      "name": "accepted task without acceptor is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "product_work_model@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "purpose": {
+          "statement": "Purpose statement.",
+          "success_metric": "Metric.",
+          "owner": "okta:wayne.kempf@pdshealth.com"
+        },
+        "increments": [
+          { "id": "PI-1", "name": "Task spine", "goal": "Goal.", "status": "active" }
+        ],
+        "tasks": [
+          { "id": "T-3", "increment_id": "PI-1", "title": "Ghost acceptance", "class": "B", "state": "accepted" }
+        ],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "portfolio_model@1",
+      "name": "portfolio with themes and participations",
+      "expect": "valid",
+      "record": {
+        "schema": "portfolio_model@1",
+        "semantic_version": "1.0.0",
+        "themes": [
+          { "id": "TH-onboarding", "name": "Employee onboarding journey", "kind": "journey", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" },
+          { "id": "TH-denovo", "name": "De Novo office launch process", "kind": "process", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" }
+        ],
+        "strategies": [
+          { "id": "PS-1", "name": "One governed front door per journey", "owner": "okta:wayne.kempf@pdshealth.com", "theme_refs": ["TH-onboarding"] }
+        ],
+        "participations": [
+          { "app_id": "pds-nexus", "theme_id": "TH-denovo", "role": "primary" },
+          { "app_id": "crm", "theme_id": "TH-onboarding", "role": "contributor" }
+        ],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "portfolio_model@1",
+      "name": "participation with unknown theme is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "portfolio_model@1",
+        "semantic_version": "1.0.0",
+        "themes": [
+          { "id": "TH-onboarding", "name": "Employee onboarding journey", "kind": "journey", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" }
+        ],
+        "participations": [
+          { "app_id": "crm", "theme_id": "TH-missing", "role": "primary" }
+        ],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "framework_request@1",
+      "name": "component request raised from nexus",
+      "expect": "valid",
+      "record": {
+        "schema": "framework_request@1",
+        "semantic_version": "1.0.0",
+        "request_id": "freq:pds-nexus:0001",
+        "app_id": "pds-nexus",
+        "kind": "component_request",
+        "summary": "Need a governed timeline component for De Novo milestone visualization in the PDS catalog.",
+        "requesting_work_ref": "work:pds-nexus:PI-1:T-1",
+        "raised_by": "okta:wayne.kempf@pdshealth.com",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "disposition": { "state": "submitted" }
+      }
+    },
+    {
+      "contract": "framework_request@1",
+      "name": "duplicate disposition without surviving request is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "framework_request@1",
+        "semantic_version": "1.0.0",
+        "request_id": "freq:crm:0002",
+        "app_id": "crm",
+        "kind": "improvement",
+        "summary": "Faster generate loop.",
+        "requesting_work_ref": "work:crm:PI-2:T-7",
+        "raised_by": "okta:wayne.kempf@pdshealth.com",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "disposition": {
+          "state": "duplicate",
+          "dispositioned_by": "okta:framework-po@pdshealth.com",
+          "dispositioned_at": "2026-07-25T13:00:00Z"
+        }
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "valid crash free observation",
+      "expect": "valid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:crash:crm:ios:2026-07-25",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "crash_free",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "crash-device-health" },
+        "correlation": {},
+        "payload": { "rate": 0.995, "window": "7d" },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "crash free without rate is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:crash:crm:ios:norate",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "crash_free",
+        "occurred_at": "2026-07-25T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "crash-device-health" },
+        "correlation": {},
+        "payload": { "window": "7d" },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "fabric_observation_event@1",
+      "name": "satisfaction without cohort size is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "fabric_observation_event@1",
+        "semantic_version": "1.0.0",
+        "event_id": "evt:sat:crm:nocohort",
+        "scope": "app",
+        "app_id": "crm",
+        "kind": "satisfaction",
+        "occurred_at": "2026-07-01T00:00:00Z",
+        "observed_at": "2026-07-25T12:00:00Z",
+        "source": { "authority": "survey-system" },
+        "correlation": {},
+        "payload": { "source": "quarterly-survey", "period": "2026-Q3", "score": 4.2 },
+        "freshness": "fresh"
+      }
+    },
+    {
+      "contract": "app_component_snapshot@1",
+      "name": "web built state without image digest is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "app_component_snapshot@1",
+        "semantic_version": "1.0.0",
+        "snapshot_id": "snap:crm:web:noimage",
+        "app_id": "crm",
+        "platform_surface": "web",
+        "captured_at": "2026-07-25T12:00:00Z",
+        "desired": {
+          "source_sha": "0dcc53d37",
+          "components": [{ "name": "app-framework", "kind": "framework", "version": "0.7.0" }]
+        },
+        "built": { "signed": false },
+        "deployed": null,
+        "running": null,
+        "freshness": "unknown",
+        "source_refs": [{ "authority": "bitbucket", "observed_at": "2026-07-25T12:00:00Z" }]
+      }
+    },
+    {
+      "contract": "product_work_model@1",
+      "name": "accepted increment without acceptor is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "product_work_model@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "purpose": {
+          "statement": "Purpose statement.",
+          "success_metric": "Metric.",
+          "owner": "okta:wayne.kempf@pdshealth.com"
+        },
+        "increments": [
+          { "id": "PI-1", "name": "Task spine", "goal": "Goal.", "status": "accepted" }
+        ],
+        "tasks": [],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "product_work_model@1",
+      "name": "duplicate increment ids are rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "product_work_model@1",
+        "semantic_version": "1.0.0",
+        "app_id": "pds-nexus",
+        "purpose": {
+          "statement": "Purpose statement.",
+          "success_metric": "Metric.",
+          "owner": "okta:wayne.kempf@pdshealth.com"
+        },
+        "increments": [
+          { "id": "PI-1", "name": "First", "goal": "Goal.", "status": "active" },
+          { "id": "PI-1", "name": "Shadow", "goal": "Goal.", "status": "planned" }
+        ],
+        "tasks": [],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "portfolio_model@1",
+      "name": "duplicate theme ids are rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "portfolio_model@1",
+        "semantic_version": "1.0.0",
+        "themes": [
+          { "id": "TH-onboarding", "name": "Onboarding", "kind": "journey", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" },
+          { "id": "TH-onboarding", "name": "Onboarding shadow", "kind": "process", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" }
+        ],
+        "participations": [],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "portfolio_model@1",
+      "name": "strategy referencing unknown theme is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "portfolio_model@1",
+        "semantic_version": "1.0.0",
+        "themes": [
+          { "id": "TH-onboarding", "name": "Onboarding", "kind": "journey", "owner": "okta:wayne.kempf@pdshealth.com", "status": "active" }
+        ],
+        "strategies": [
+          { "id": "PS-9", "name": "Phantom bet", "owner": "okta:wayne.kempf@pdshealth.com", "theme_refs": ["TH-phantom"] }
+        ],
+        "participations": [],
+        "updated_at": "2026-07-25T12:00:00Z"
+      }
+    },
+    {
+      "contract": "framework_request@1",
+      "name": "dispositioned request without decider is rejected",
+      "expect": "invalid",
+      "record": {
+        "schema": "framework_request@1",
+        "semantic_version": "1.0.0",
+        "request_id": "freq:crm:0004",
+        "app_id": "crm",
+        "kind": "docs_gap",
+        "summary": "Provider docs missing the retry contract.",
+        "requesting_work_ref": "work:crm:PI-2:T-9",
+        "raised_by": "okta:wayne.kempf@pdshealth.com",
+        "raised_at": "2026-07-25T12:00:00Z",
+        "disposition": { "state": "deferred" }
+      }
+    }
+  ]
+}

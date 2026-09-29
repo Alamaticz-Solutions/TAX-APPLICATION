@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "lane": "U5",
+  "name": "npm-audit-runtime-disposition",
+  "template_only": true,
+  "status": "upgrade_planned",
+  "release_approved": false,
+  "approved_by": "<release-authority>",
+  "reason": "Template only. Do not rename to npm-audit-disposition.json unless release authority approves the residual Expo runtime audit findings or a clean audit cannot be achieved before the release window.",
+  "expires_on": "<YYYY-MM-DD>",
+  "audit_evidence": "mobile/.appfw-mobile/npm-audit-evidence.json",
+  "release_readiness_effect": "No effect while this file remains npm-audit-disposition.template.json. The mobile-test verifier only evaluates npm-audit-disposition.json, and an approved disposition must remove template_only, use real non-placeholder authority values, remain unexpired, and match the retained audit evidence summary.",
+  "verifier_contract": {
+    "template_filename": "mobile/.appfw-mobile/npm-audit-disposition.template.json",
+    "approved_filename": "mobile/.appfw-mobile/npm-audit-disposition.json",
+    "mobile_test_treats_template_as_release_ready": false,
+    "approved_disposition_required_when": "mobile/.appfw-mobile/npm-audit-evidence.json is retained and npm audit has not passed cleanly",
+    "release_grade_requires": [
+      "clean registry-backed npm audit evidence, or",
+      "a non-template npm-audit-disposition.json approved by release/security authority, unexpired, and matching the retained audit summary"
+    ]
+  },
+  "current_evidence_summary": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 10,
+    "low": 0,
+    "info": 0,
+    "total": 10
+  },
+  "known_local_findings": [
+    {
+      "package": "expo",
+      "posture": "Expo SDK 57 runtime tree reports moderate npm audit findings; npm suggested fixes would downgrade Expo and are not compatible with the ratified React Native + Expo target."
+    },
+    {
+      "package": "uuid",
+      "path": "xcode -> uuid",
+      "posture": "uuid@7.0.3 is pulled by Expo config plugins through xcode@3.0.1; patched uuid versions are not available in the local npm cache, so this requires a controlled registry-backed upgrade or formal release disposition."
+    }
+  ],
+  "required_before_use": [
+    "Verify current npm audit output from an approved network or internal registry path.",
+    "Confirm no safe Expo-compatible dependency upgrade clears the runtime audit findings.",
+    "Confirm current_evidence_summary still matches mobile/.appfw-mobile/npm-audit-evidence.json.",
+    "Create npm-audit-disposition.json from this template only when keeping the app release-blocked is not the selected release decision.",
+    "Remove template_only or set it to false in the approved disposition file.",
+    "Replace approved_by and expires_on with real release authority values.",
+    "Replace reason with the release-specific acceptance or mitigation rationale.",
+    "Set release_approved to true only after release/security approval."
+  ]
+}

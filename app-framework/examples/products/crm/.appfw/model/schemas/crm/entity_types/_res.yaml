@@ -1,0 +1,6814 @@
+- id: a0c00000-0000-4000-8000-000000000001
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Account
+  pascal_n: Accounts
+  snake_1: account
+  snake_n: accounts
+  caption_1: Account
+  caption_n: Accounts
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - audited
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution:
+    prepared_statements: true
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods:
+  - name: account_health
+    kind: Query
+    args:
+    - name: account_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: true
+    provider_routine: null
+  - name: account_health_provider_function
+    kind: Query
+    args:
+    - name: account_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine:
+      kind: Function
+      returns: One
+      data_source: null
+      schema: crm
+      name: account_health_provider_function
+      routines: null
+  - name: refresh_account_health_stored_procedure
+    kind: Mutation
+    args:
+    - name: account_id
+      arg_type: String
+    - name: health_score
+      arg_type: f64
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine:
+      kind: Procedure
+      returns: One
+      data_source: null
+      schema: crm
+      name: refresh_account_health_stored_procedure
+      routines: null
+  - name: account_relationship_graph
+    kind: Query
+    args:
+    - name: account
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: true
+    provider_routine: null
+  - name: link_account_referral
+    kind: Mutation
+    args:
+    - name: from_account
+      arg_type: String
+    - name: to_account
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: unlink_account_referral
+    kind: Mutation
+    args:
+    - name: from_account
+      arg_type: String
+    - name: to_account
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  props:
+  - id: cc03d065a184c6d7
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 91d185c28eee4b0b
+    name: name
+    caption: Account Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 52046fe412fc1ec4
+    name: website
+    caption: Website
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c6ecdb308a71065e
+    name: phone
+    caption: Phone
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f3af7e6e0f99f1ba
+    name: email
+    caption: Email
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      audit:
+        redact: true
+  - id: 759b0a3f13c61471
+    name: tags
+    caption: Tags
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      allowNewItems: true
+  - id: d033587041698bd6
+    name: billing_street
+    caption: Billing Street
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c431d2f70cba1f22
+    name: billing_city
+    caption: Billing City
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b4262c6a7e5d0d4
+    name: billing_state
+    caption: Billing State
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 597c15a5f996ed5
+    name: billing_postal_code
+    caption: Billing Postal Code
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7db0f54d60e0851c
+    name: billing_country
+    caption: Billing Country
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4d300e375c27beba
+    name: annual_revenue
+    caption: Annual Revenue
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 58a587fa5ffed78e
+    name: health_score
+    caption: Account Health Score
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 70bfe783863da7ce
+    name: health_last_refreshed_at
+    caption: Health Last Refreshed At
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a9b2b33e33b949de
+    name: number_of_employees
+    caption: Number of Employees
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1496b31afdc5064f
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 16ae556a5a6cce98
+    name: industry_id
+    caption: Industry
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Industry
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 872a775007d307a9
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8364423aae95763e
+    name: industry
+    caption: Industry
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Account
+      prop_name: industry_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Industry
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: industry_accounts
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 6640460b79d13e9f
+    name: contacts
+    caption: Contacts
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Contact
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Contact
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_contacts
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 47f585ffc1c4dbe
+    name: opportunities
+    caption: Opportunities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Opportunity
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Opportunity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_opportunities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 155c3195fe408076
+    name: converted_leads
+    caption: Converted Leads
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: converted_account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Lead
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_converted_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: c7d9e6ae48d36a63
+    name: activities
+    caption: Activities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 7c2df7ea5cf415d5
+    name: quotes
+    caption: Quotes
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Quote
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: b4f41d1519709392
+    name: addresses
+    caption: Addresses
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Address
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Address
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_addresses
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: fcc8f60876c45688
+    name: queue_items
+    caption: Queue Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QueueItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: cb98b7f6-7f6c-59e9-b775-44795f594825
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: AccountAudit
+  pascal_n: AccountAudits
+  snake_1: account_audit
+  snake_n: accounts_audit
+  caption_1: Account Audit
+  caption_n: Account Audits
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes: []
+  constraints: []
+  meta:
+    generatedAuditEntity: true
+    sourceEntity: Account
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: bf85a2f2127d2862
+    name: audit_id
+    caption: Audit ID
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bb8dc20318ae63c5
+    name: occurred_at
+    caption: Occurred At
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f99f4e8b5441459b
+    name: tenant_id
+    caption: Tenant ID
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 11219f43c6cad715
+    name: actor_user_name
+    caption: Actor User Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a50f74f4a42ba560
+    name: actor_roles
+    caption: Actor Roles
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5cb2e978e87426fb
+    name: action
+    caption: Action
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 38caaedaca6ca267
+    name: outcome
+    caption: Outcome
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4f1b2111ca41c036
+    name: schema_name
+    caption: Schema Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 21247f8c95381f5b
+    name: entity_name
+    caption: Entity Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 88d6f7701e696c60
+    name: table_name
+    caption: Table Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6ee33a38ffe01370
+    name: audit_table_name
+    caption: Audit Table Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a284775f7ba018ef
+    name: record_id
+    caption: Record ID
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9f54e323dd6cb525
+    name: before_json
+    caption: Before JSON
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c71c16b8e75084d0
+    name: after_json
+    caption: After JSON
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 795a7c46f481f62b
+    name: diff_json
+    caption: Diff JSON
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c213694c45e9927e
+    name: policy_json
+    caption: Policy JSON
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9aef6ff6f70798de
+    name: redactions_json
+    caption: Redactions JSON
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Json
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 20871fb8ca8157c
+    name: chain_scope
+    caption: Chain Scope
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 606915c225697cca
+    name: prev_hash
+    caption: Previous Hash
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6769dd022505f7e6
+    name: event_hash
+    caption: Event Hash
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7ac0d3336864ba5f
+    name: signature
+    caption: Signature
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+- id: ac710007-0000-4000-8000-000000000009
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Activity
+  pascal_n: Activities
+  snake_1: activity
+  snake_n: activities
+  caption_1: Activity
+  caption_n: Activities
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - account_id
+  - contact_id
+  - opportunity_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: ab80555874926e80
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: eacad70e5b7837c9
+    name: subject
+    caption: Subject
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1726d9c0c3f0f525
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 32e94fe3c92684fb
+    name: activity_date
+    caption: Activity Date
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Date
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 47183a1048a62d2a
+    name: due_date
+    caption: Due Date
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Date
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2224ce1ab3969d34
+    name: is_closed
+    caption: Is Closed
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1520c9b0047ee970
+    name: priority
+    caption: Priority
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 457da58da5b173b0
+    name: status
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9dba5ae4c8cc31a1
+    name: type_id
+    caption: Activity Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: ActivityType
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ee86aca3b1a437e9
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fdd8a55dca994cc1
+    name: contact_id
+    caption: Contact
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Contact
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 907fd8a841413487
+    name: opportunity_id
+    caption: Opportunity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Opportunity
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1a32bb817f149f15
+    name: lead_id
+    caption: Lead
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Lead
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 356747949741f5d2
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d604cf86bc64d45c
+    name: activity_type
+    caption: Activity Type
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: type_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: ActivityType
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_type_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: fe280de10f872d1f
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 27f37f32482f64cc
+    name: contact
+    caption: Contact
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: contact_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Contact
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: contact_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 3852adfc6985048f
+    name: opportunity
+    caption: Opportunity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: opportunity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Opportunity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 538d472760d09d90
+    name: lead
+    caption: Lead
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: lead_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Lead
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: d75ce130a9a6ec6a
+    name: parties
+    caption: Parties
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: ActivityParty
+      prop_name: activity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: ActivityParty
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_parties
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 4137793b0b54928e
+    name: queue_items
+    caption: Queue Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: activity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QueueItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: ac71fa00-0000-4000-8000-000000000017
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: ActivityParty
+  pascal_n: ActivityParties
+  snake_1: activity_party
+  snake_n: activity_parties
+  caption_1: Activity Party
+  caption_n: Parties
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - activity_id
+  - party_type
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 7e7c8876edb99d01
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7ac002e4f2b6d7e6
+    name: role
+    caption: Role
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2a499cc3df1ece13
+    name: party_type
+    caption: Party Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1bbd651135289eda
+    name: party_id
+    caption: Party ID
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 93a265381d5dc9b6
+    name: display_name
+    caption: Display Name
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d4f4fc896e9c25ae
+    name: email
+    caption: Email
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      audit:
+        redact: true
+  - id: 748685d44500825a
+    name: is_required
+    caption: Is Required
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 13263ebb5fdf4ee
+    name: responded_status
+    caption: Responded Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fcc4cf55cecc8156
+    name: activity_id
+    caption: Activity
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Activity
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e3dea93e0a7e65f7
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 36822b218522b289
+    name: activity
+    caption: Activity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: ActivityParty
+      prop_name: activity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_parties
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: ac71ec00-0000-4000-8000-000000000015
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: ActivityType
+  pascal_n: ActivityTypes
+  snake_1: activity_type
+  snake_n: activity_types
+  caption_1: Activity Type
+  caption_n: Activity Types
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 7839b25f25a1a6ef
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8af60b898f723e2e
+    name: name
+    caption: Type Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a711e088b67892b5
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 37c0758acf7f01a9
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 82f2cd392f989c62
+    name: activities
+    caption: Activities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: type_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_type_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: add00000-0000-4000-8000-000000000016
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Address
+  pascal_n: Addresses
+  snake_1: address
+  snake_n: addresses
+  caption_1: Address
+  caption_n: Addresses
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - account_id
+  - contact_id
+  - country
+  - state
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 11c65fc0b51f0e94
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fbfd3e0e05c3362d
+    name: name
+    caption: Address Name
+    is_key: false
+    is_caption: true
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e356fd21933419b6
+    name: address_type
+    caption: Address Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b98aba62e79794fd
+    name: street1
+    caption: Street 1
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1156bcfc1f2fbf14
+    name: street2
+    caption: Street 2
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5397445229aaed1a
+    name: city
+    caption: City
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7cbad7f8ec9f3b12
+    name: state
+    caption: State
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5ad58ed0da04653e
+    name: postal_code
+    caption: Postal Code
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ac0cc4fbb4d87b73
+    name: country
+    caption: Country
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 65ad26e839b56691
+    name: latitude
+    caption: Latitude
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 67a8a60469fa097a
+    name: longitude
+    caption: Longitude
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f45cae3187291a1
+    name: is_primary
+    caption: Is Primary
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 299b535a08b65e6c
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b6d6643c6636fc9e
+    name: contact_id
+    caption: Contact
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Contact
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d0abc6a9b3a1dbf2
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aab02b7736b7f2f1
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Address
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_addresses
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 2cbef8c59ea1ce51
+    name: contact
+    caption: Contact
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Address
+      prop_name: contact_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Contact
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: contact_addresses
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: a471c0de-0000-4000-8000-000000000023
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: ArticleComment
+  pascal_n: ArticleComments
+  snake_1: article_comment
+  snake_n: article_comments
+  caption_1: Article Comment
+  caption_n: Article Comments
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - article_id
+  - sentiment
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: b845eced6e7f5927
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dec8ecbeaf29888c
+    name: subject
+    caption: Subject
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 601cfc0b0fb3fa8b
+    name: body
+    caption: Body
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 10f42cac060144b3
+    name: author_name
+    caption: Author Name
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fc471d8dc09805c9
+    name: sentiment
+    caption: Sentiment
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4ea11399517d2bfb
+    name: is_internal
+    caption: Is Internal
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6c0d247357c32d50
+    name: created_at
+    caption: Created At
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 17dab6fe004258af
+    name: article_id
+    caption: Knowledge Article
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: KnowledgeArticle
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f0188dcd2f14b2f
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9709525e0160d826
+    name: article
+    caption: Article
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: ArticleComment
+      prop_name: article_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: KnowledgeArticle
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: knowledge_article_comments
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: b0510000-0000-4000-8000-000000000018
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: BusinessUnit
+  pascal_n: BusinessUnits
+  snake_1: business_unit
+  snake_n: business_units
+  caption_1: Business Unit
+  caption_n: Business Units
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - code
+  - region
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 1680b03c27e53ad
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9451d23629e9d03a
+    name: name
+    caption: Business Unit Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b993d0cd10634d97
+    name: code
+    caption: Code
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d7b06e4ef27ffca1
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c7263464a958a7da
+    name: region
+    caption: Region
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 589bd0a07abf3ced
+    name: is_active
+    caption: Is Active
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aa83d5244ee1bc98
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 475586aa30603f93
+    name: territories
+    caption: Territories
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Territory
+      prop_name: business_unit_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Territory
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: business_unit_territories
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 547a191b936dbc18
+    name: queues
+    caption: Queues
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Queue
+      prop_name: business_unit_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Queue
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: business_unit_queues
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: c0c00000-0000-4000-8000-000000000002
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Contact
+  pascal_n: Contacts
+  snake_1: contact
+  snake_n: contacts
+  caption_1: Contact
+  caption_n: Contacts
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - account_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 6fb957fb08fe38cc
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4380f24f22835773
+    name: first_name
+    caption: First Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2e7c63ae3e9638e9
+    name: last_name
+    caption: Last Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1e0405d84e43ebad
+    name: email
+    caption: Email
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b01497ca9eb9aab9
+    name: phone
+    caption: Phone
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 53e153bf961719ad
+    name: mobile
+    caption: Mobile
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5af07e5b89b44b80
+    name: title
+    caption: Title
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 95a198be35602a2c
+    name: department
+    caption: Department
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 377e725372f64220
+    name: mailing_street
+    caption: Mailing Street
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a196f78665e4b97b
+    name: mailing_city
+    caption: Mailing City
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 50cceb4b95ffe8c6
+    name: mailing_state
+    caption: Mailing State
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 35cfa4057f255c82
+    name: mailing_postal_code
+    caption: Mailing Postal Code
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d63f15d07e960cf2
+    name: mailing_country
+    caption: Mailing Country
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f064d476426de8b9
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b3aa8f570f101677
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b46fad4064148138
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Contact
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_contacts
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 467de26aed4e579f
+    name: activities
+    caption: Activities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: contact_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: contact_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 3a2ebfc88dc24daa
+    name: opportunities
+    caption: Opportunities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ManyToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property:
+      junction_table: OpportunityContact
+      junction_schema: crm
+      local_key: contact_id
+      foreign_key: opportunity_id
+      target_schema: crm
+      target_type: Opportunity
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_contacts
+        kind: ManyToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: Junction
+  - id: 3450e639c805c3fa
+    name: addresses
+    caption: Addresses
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Address
+      prop_name: contact_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Address
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: contact_addresses
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 10100070-0000-4000-8000-000000000010
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Industry
+  pascal_n: Industries
+  snake_1: industry
+  snake_n: industries
+  caption_1: Industry
+  caption_n: Industries
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 7f0a9e06efe65695
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8b07630eac95d38a
+    name: name
+    caption: Industry Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8f0a2c9fd34763a9
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 57654ec6c6aa76b
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f465dbbe768e534c
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dc86451f26ff68
+    name: accounts
+    caption: Accounts
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Account
+      prop_name: industry_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: industry_accounts
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 715fc55974ae822b
+    name: leads
+    caption: Leads
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: industry_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Lead
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: industry_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: a471c1e0-0000-4000-8000-000000000022
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: KnowledgeArticle
+  pascal_n: KnowledgeArticles
+  snake_1: knowledge_article
+  snake_n: knowledge_articles
+  caption_1: Knowledge Article
+  caption_n: Knowledge Articles
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - slug
+  - status
+  - language
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 49ae54e043aa6493
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d768f67be3c62d4a
+    name: title
+    caption: Title
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4b7fa73579a126eb
+    name: slug
+    caption: Slug
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4b31e65061f56686
+    name: summary
+    caption: Summary
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3ede3e4d51a630f2
+    name: body
+    caption: Body
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ed81f0de5da41853
+    name: language
+    caption: Language
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aafe75f3a5dce041
+    name: status
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6a2f47e63def0806
+    name: publish_date
+    caption: Publish Date
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Date
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b72edbef0dbf27e4
+    name: view_count
+    caption: View Count
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: eea861f03f040a2f
+    name: is_public
+    caption: Is Public
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 348d0cff8fd50d2d
+    name: tags
+    caption: Tags
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      allowNewItems: true
+  - id: 739b7fbd0fdd7595
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5d067ddaf75f9137
+    name: queue_items
+    caption: Queue Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: knowledge_article_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QueueItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: knowledge_article_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 4cde0d2a13ca4eee
+    name: comments
+    caption: Comments
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: ArticleComment
+      prop_name: article_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: ArticleComment
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: knowledge_article_comments
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 1eadc000-0000-4000-8000-000000000003
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Lead
+  pascal_n: Leads
+  snake_1: lead
+  snake_n: leads
+  caption_1: Lead
+  caption_n: Leads
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - email
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods:
+  - name: convert_lead
+    kind: Mutation
+    args:
+    - name: lead_id
+      arg_type: String
+    - name: target_account_id
+      arg_type: Option<String>
+    return_type: serde_json::Value
+    mcp_enabled: true
+    provider_routine: null
+  props:
+  - id: 42b3c2561535965d
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3a562e09ea49dccb
+    name: first_name
+    caption: First Name
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 4ea3bff931e120d0
+    name: last_name
+    caption: Last Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6b13eacc1a33fe7b
+    name: email
+    caption: Email
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ccdcfb67e18904d4
+    name: phone
+    caption: Phone
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e156e0430089a12a
+    name: company
+    caption: Company
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 276257be3470cb1
+    name: title
+    caption: Title
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 93b0de5a826be3ee
+    name: website
+    caption: Website
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 6d0e66740bdaa430
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5ddd3bc2b93c1d98
+    name: annual_revenue
+    caption: Annual Revenue
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5733bd1efa6fbb2
+    name: number_of_employees
+    caption: Number of Employees
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9b9d6642aa89b55c
+    name: is_converted
+    caption: Is Converted
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 265e6a458a93f474
+    name: converted_account_id
+    caption: Converted Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a6057d60e066e6bd
+    name: status_id
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: LeadStatus
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 59118f290ecfdd8d
+    name: source_id
+    caption: Source
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: LeadSource
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 298fd86f91cdf782
+    name: industry_id
+    caption: Industry
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Industry
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 810e8b89e24d8518
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8b00a58a25daa52
+    name: converted_account
+    caption: Converted Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: converted_account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_converted_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 6b758f718427ad2
+    name: status
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: status_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: LeadStatus
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_status_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: f46716d67a7602b1
+    name: source
+    caption: Source
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: source_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: LeadSource
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_source_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 158efd3a9c4d89e
+    name: industry
+    caption: Industry
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: industry_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Industry
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: industry_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 1c99ad5f24096111
+    name: activities
+    caption: Activities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: lead_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 1eadcc01-0000-4000-8000-000000000013
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: LeadSource
+  pascal_n: LeadSources
+  snake_1: lead_source
+  snake_n: lead_sources
+  caption_1: Lead Source
+  caption_n: Lead Sources
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 4a5a4fed54dca073
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 947f4c28da1e04df
+    name: name
+    caption: Source Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e919077a667bcfe9
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1a8a3252a680f2ab
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1a856dfd0d2250c8
+    name: leads
+    caption: Leads
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: source_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Lead
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_source_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 1eadcc00-0000-4000-8000-000000000012
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: LeadStatus
+  pascal_n: LeadStatuses
+  snake_1: lead_status
+  snake_n: lead_statuses
+  caption_1: Lead Status
+  caption_n: Statuses
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 9e0385653d0199ae
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3efdfc46e333013e
+    name: name
+    caption: Status Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c31fd9f656f155e2
+    name: is_converted
+    caption: Is Converted
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 40b30e9789a6c8fa
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 47fdf929924fcd63
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9796280881cb6a61
+    name: leads
+    caption: Leads
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Lead
+      prop_name: status_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Lead
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: lead_status_leads
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 099c0000-0000-4000-8000-000000000004
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Opportunity
+  pascal_n: Opportunities
+  snake_1: opportunity
+  snake_n: opportunities
+  caption_1: Opportunity
+  caption_n: Opportunities
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  - account_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods:
+  - name: pipeline_forecast
+    kind: Query
+    args:
+    - name: stage_id
+      arg_type: Option<String>
+    - name: minimum_amount
+      arg_type: Option<f64>
+    return_type: serde_json::Value
+    mcp_enabled: true
+    provider_routine: null
+  props:
+  - id: b560438b000824f2
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8be62a1f45003a6
+    name: name
+    caption: Opportunity Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 87d9a2a26f36c642
+    name: amount
+    caption: Amount
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9af58b3e64e1758e
+    name: close_date
+    caption: Close Date
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Date
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9414b000e82eb4c
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 368c4c067cd47811
+    name: next_step
+    caption: Next Step
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3366cf54fb1ec42b
+    name: lead_source
+    caption: Lead Source
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 44531e9c79cbe97e
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 21282974e7db988b
+    name: stage_id
+    caption: Stage
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: OpportunityStage
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 923ad6ccd96b4e9c
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 130bb4e0568e8c2
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Opportunity
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_opportunities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 88b2ddb4161e5c49
+    name: stage
+    caption: Stage
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Opportunity
+      prop_name: stage_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: OpportunityStage
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_stage_opportunities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 138e0f8bf590e607
+    name: activities
+    caption: Activities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Activity
+      prop_name: opportunity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_activities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: 567866b03a868c6f
+    name: quotes
+    caption: Quotes
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: opportunity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Quote
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+  - id: cbb251980d32603
+    name: contacts
+    caption: Contacts
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: ManyToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property:
+      junction_table: OpportunityContact
+      junction_schema: crm
+      local_key: opportunity_id
+      foreign_key: contact_id
+      target_schema: crm
+      target_type: Contact
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_contacts
+        kind: ManyToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: Junction
+- id: 0998a900-0000-4000-8000-000000000011
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: OpportunityStage
+  pascal_n: OpportunityStages
+  snake_1: opportunity_stage
+  snake_n: opportunity_stages
+  caption_1: Opportunity Stage
+  caption_n: Opportunity Stages
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 803eed5132f9f2e1
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5aa4086e2cc7c995
+    name: name
+    caption: Stage Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fdee72bbf7f905cc
+    name: probability
+    caption: Win Probability
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 28ded223e22fe4a2
+    name: is_closed
+    caption: Is Closed
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 79b0f013536730e2
+    name: is_won
+    caption: Is Won
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c9cec2e698ed18ac
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8238d1e80f709a1c
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ffa3c8decdc505ff
+    name: opportunities
+    caption: Opportunities
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Opportunity
+      prop_name: stage_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Opportunity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_stage_opportunities
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 97000b00-0000-4000-8000-000000000008
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Pricebook
+  pascal_n: Pricebooks
+  snake_1: pricebook
+  snake_n: pricebooks
+  caption_1: Pricebook
+  caption_n: Pricebooks
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: be78aa5a7920c20f
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 354beeab8369b460
+    name: name
+    caption: Pricebook Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8b049b81f8383c9f
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: be5b23ea75953ab9
+    name: is_active
+    caption: Is Active
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7c8c52f55fefa8a
+    name: is_standard
+    caption: Is Standard
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dda501c3a249cd7c
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dd40f2a8096aa173
+    name: products
+    caption: Products
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Product
+      prop_name: pricebook_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Product
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: pricebook_products
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 9700d000-0000-4000-8000-000000000007
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Product
+  pascal_n: Products
+  snake_1: product
+  snake_n: products
+  caption_1: Product
+  caption_n: Products
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 1668ef9b4e5c5b2c
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a094fecfeedac753
+    name: name
+    caption: Product Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 125c46764607474f
+    name: product_code
+    caption: Product Code
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d9014bd5f6b73a3
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ffb76688feb2bdc6
+    name: list_price
+    caption: List Price
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 2baf55282a375a2f
+    name: is_active
+    caption: Is Active
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fe845bd6850583f4
+    name: family
+    caption: Product Family
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 9b911d99704beb56
+    name: pricebook_id
+    caption: Pricebook
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Pricebook
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5315e9e9303e0741
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: cd1aa2f4e38b070b
+    name: pricebook
+    caption: Pricebook
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Product
+      prop_name: pricebook_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Pricebook
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: pricebook_products
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: a043135c404fb3b8
+    name: quote_line_items
+    caption: Quote Line Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QuoteLineItem
+      prop_name: product_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QuoteLineItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: product_quote_line_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 9e0e0000-0000-4000-8000-000000000020
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Queue
+  pascal_n: Queues
+  snake_1: queue
+  snake_n: queues
+  caption_1: Queue
+  caption_n: Queues
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - business_unit_id
+  - queue_type
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 51e0302393cc0bd2
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 983ababeb67c2519
+    name: name
+    caption: Queue Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 1beb7eb533347474
+    name: queue_type
+    caption: Queue Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 5472c818bfd8d850
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 75d8edb82cd96392
+    name: email
+    caption: Email
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bf7f73604df7c055
+    name: is_active
+    caption: Is Active
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 78e99ddbe133b699
+    name: business_unit_id
+    caption: Business Unit
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: BusinessUnit
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 76762c3366948d00
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: d88489dffedb2549
+    name: business_unit
+    caption: Business Unit
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Queue
+      prop_name: business_unit_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: BusinessUnit
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: business_unit_queues
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 141688f9947508f7
+    name: queue_items
+    caption: Queue Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: queue_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QueueItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 9e0e1700-0000-4000-8000-000000000021
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: QueueItem
+  pascal_n: QueueItems
+  snake_1: queue_item
+  snake_n: queue_items
+  caption_1: Queue Item
+  caption_n: Queue Items
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - queue_id
+  - account_id
+  - activity_id
+  - knowledge_article_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 56f7bc94b7adc276
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e6c1ae47a38d06dd
+    name: title
+    caption: Title
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: de22f670fcbc3a57
+    name: item_type
+    caption: Item Type
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dceba4cee7500435
+    name: object_id
+    caption: Object ID
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: bb1e381e3e051387
+    name: status
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 31eef093babd64d3
+    name: priority
+    caption: Priority
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 335c9ccf34ce8a5f
+    name: entered_at
+    caption: Entered At
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b4fe48153726e213
+    name: due_at
+    caption: Due At
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 35e8024478601ae8
+    name: queue_id
+    caption: Queue
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Queue
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 99cf1d252dbfe721
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 54e3ff092cf736d
+    name: activity_id
+    caption: Activity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Activity
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 87d74a3dbda4237d
+    name: knowledge_article_id
+    caption: Knowledge Article
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: KnowledgeArticle
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 88d4b2d72b49cdd8
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: aeaaa54d925b4074
+    name: queue
+    caption: Queue
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: queue_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Queue
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: c013d478e524c159
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: f2e2847c911b0d89
+    name: activity
+    caption: Activity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: activity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Activity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: activity_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 8d38470c4b45aadd
+    name: knowledge_article
+    caption: Knowledge Article
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QueueItem
+      prop_name: knowledge_article_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: KnowledgeArticle
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: knowledge_article_queue_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 9407e000-0000-4000-8000-000000000005
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Quote
+  pascal_n: Quotes
+  snake_1: quote
+  snake_n: quotes
+  caption_1: Quote
+  caption_n: Quotes
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - opportunity_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods:
+  - name: reprice_quote
+    kind: Mutation
+    args:
+    - name: quote_id
+      arg_type: String
+    - name: include_tax
+      arg_type: bool
+    return_type: serde_json::Value
+    mcp_enabled: true
+    provider_routine: null
+  props:
+  - id: 570c34943a252af2
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c1e73dbe17e5b7bf
+    name: name
+    caption: Quote Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7d71d99d209e76e8
+    name: quote_number
+    caption: Quote Number
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a691c3b8fe526001
+    name: expiration_date
+    caption: Expiration Date
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Date
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: dada56742dded6ec
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b01b1e70767ae498
+    name: subtotal
+    caption: Subtotal
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e08ecba6cf41d18
+    name: discount
+    caption: Discount
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ba5eb728400e64b1
+    name: tax
+    caption: Tax
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 901f8c506f343ff
+    name: total_price
+    caption: Total Price
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 576b55d64eee4f17
+    name: opportunity_id
+    caption: Opportunity
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Opportunity
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fef4388131ef6327
+    name: account_id
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Account
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 7119ab802273f08b
+    name: status_id
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: QuoteStatus
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a2e1027e2833d63f
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ae5e94941f1c56f2
+    name: opportunity
+    caption: Opportunity
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: opportunity_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Opportunity
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: opportunity_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 5ca02743ee49612c
+    name: account
+    caption: Account
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: account_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Account
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: account_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 4c1285949a50788a
+    name: status
+    caption: Status
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: status_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QuoteStatus
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: quote_status_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: 2f750f64d1319887
+    name: line_items
+    caption: Line Items
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QuoteLineItem
+      prop_name: quote_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: QuoteLineItem
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: quote_line_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 9407e110-0000-4000-8000-000000000006
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: QuoteLineItem
+  pascal_n: QuoteLineItems
+  snake_1: quote_line_item
+  snake_n: quote_line_items
+  caption_1: Quote Line Item
+  caption_n: Quote Line Items
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - quote_id
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 54c3b339cb811d47
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 48c7babaa576e74f
+    name: quantity
+    caption: Quantity
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 31dc226eef2afe56
+    name: unit_price
+    caption: Unit Price
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 16037546a79b156f
+    name: discount
+    caption: Discount
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: ea3fc60f6ce5cd83
+    name: total_price
+    caption: Total Price
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Float64
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 11c11c6415d5a493
+    name: description
+    caption: Description
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 11a38d84adbf7773
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3be870c6c791ca1d
+    name: quote_id
+    caption: Quote
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Quote
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f010b3f7b0d992d5
+    name: product_id
+    caption: Product
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: Product
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: cee041e99ad66180
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b07346fd6182744e
+    name: quote
+    caption: Quote
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QuoteLineItem
+      prop_name: quote_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Quote
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: quote_line_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+  - id: ae538b25fb184216
+    name: product
+    caption: Product
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: QuoteLineItem
+      prop_name: product_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Product
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: product_quote_line_items
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey
+- id: 9407ec00-0000-4000-8000-000000000014
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: QuoteStatus
+  pascal_n: QuoteStatuses
+  snake_1: quote_status
+  snake_n: quote_statuses
+  caption_1: Quote Status
+  caption_n: Statuses
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - name
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: b0f15ce4869189f7
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 75c5071779ae030b
+    name: name
+    caption: Status Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fef443e8bfa4b54c
+    name: sort_order
+    caption: Sort Order
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int16
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b990eb3e35dc85ff
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e0ffd26d2c7f5d58
+    name: quotes
+    caption: Quotes
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToMany
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Quote
+      prop_name: status_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: Quote
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: quote_status_quotes
+        kind: OneToMany
+        source_schema: crm
+        cardinality: Many
+        storage_path: InverseForeignKey
+- id: 7e441000-0000-4000-8000-000000000019
+  schema_name: crm
+  schema_id: daa03056-0f95-4f9d-9fe7-465cda426297
+  pascal_1: Territory
+  pascal_n: Territories
+  snake_1: territory
+  snake_n: territories
+  caption_1: Territory
+  caption_n: Territories
+  is_union: false
+  base_type: null
+  is_table: true
+  facets:
+  - concurrency
+  indexes:
+  - business_unit_id
+  - code
+  - region
+  constraints: []
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 8e68ad8999c63b8b
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: e4cee29cde04388c
+    name: name
+    caption: Territory Name
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 8b0d8c3a35b3f96e
+    name: code
+    caption: Code
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 59ea353f029b9608
+    name: region
+    caption: Region
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: b4056d9af4686ff1
+    name: country
+    caption: Country
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: a0f73a4486b5d5f6
+    name: state
+    caption: State
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: f9e82c5a93db7b5a
+    name: is_active
+    caption: Is Active
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 64633f1b233db33e
+    name: business_unit_id
+    caption: Business Unit
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key:
+      schema_name: crm
+      type_name: BusinessUnit
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 399e341fbb7a7636
+    name: version
+    caption: Version
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: true
+    data_type: Int64
+    computed: None
+    default_value: 0
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 596ae5cd74793b84
+    name: business_unit
+    caption: Business Unit
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: NavToOne
+    computed: None
+    default_value: null
+    foreign_key: null
+    nav_by_fk_property:
+      schema_name: crm
+      type_name: Territory
+      prop_name: business_unit_id
+      filter: null
+      resolved:
+        schema_name: crm
+        type_name: BusinessUnit
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      relationship:
+        name: business_unit_territories
+        kind: OneToMany
+        source_schema: crm
+        cardinality: One
+        storage_path: DirectForeignKey

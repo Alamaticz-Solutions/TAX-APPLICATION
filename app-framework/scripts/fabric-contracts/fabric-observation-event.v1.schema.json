@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://app-framework.pdshealth.com/schemas/fabric-observation-event.v1.schema.json",
+  "title": "Append-only, source-attributed fabric observation event with correlation and integrity metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "semantic_version",
+    "event_id",
+    "scope",
+    "app_id",
+    "kind",
+    "occurred_at",
+    "observed_at",
+    "source",
+    "correlation",
+    "payload",
+    "freshness",
+    "record_digest"
+  ],
+  "properties": {
+    "schema": { "const": "fabric_observation_event@1" },
+    "semantic_version": { "const": "1.0.0" },
+    "event_id": { "$ref": "#/$defs/reference" },
+    "scope": { "enum": ["app", "fleet", "framework"] },
+    "app_id": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/appId" }] },
+    "kind": {
+      "enum": [
+        "build",
+        "promotion",
+        "deployment",
+        "framework_release",
+        "usage",
+        "outcome",
+        "satisfaction",
+        "value_realization",
+        "whole_cost",
+        "store_release",
+        "version_adoption",
+        "crash_free",
+        "store_rating"
+      ]
+    },
+    "occurred_at": { "$ref": "#/$defs/timestamp" },
+    "observed_at": { "$ref": "#/$defs/timestamp" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority"],
+      "properties": {
+        "authority": { "$ref": "#/$defs/reference" },
+        "source_id": { "$ref": "#/$defs/reference" },
+        "integrity_ref": { "$ref": "#/$defs/reference" }
+      }
+    },
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "correlation_id": { "$ref": "#/$defs/reference" },
+        "work_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/reference" }
+        },
+        "commit_sha": { "$ref": "#/$defs/gitSha" },
+        "pr_id": { "$ref": "#/$defs/reference" },
+        "pipeline_id": { "$ref": "#/$defs/reference" },
+        "image_digest": { "$ref": "#/$defs/imageDigest" },
+        "deployment_id": { "$ref": "#/$defs/reference" }
+      }
+    },
+    "payload": { "type": "object" },
+    "freshness": { "enum": ["fresh", "stale", "unknown"] },
+    "record_digest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "appId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+    "reference": { "type": "string", "minLength": 1, "maxLength": 300, "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._:@/#?&=-]{0,299}$" },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+    "imageDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

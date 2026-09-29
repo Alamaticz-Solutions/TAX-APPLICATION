@@ -1,0 +1,45 @@
+{
+  "schema": "appfw_workstation_assignment@4",
+  "assignment_id": "6f33f37e-bf45-4d7c-ae4a-11d26b97a213",
+  "portfolio_id": "app-framework-and-nexus",
+  "program_id": "nexus-poc",
+  "product_increment_id": "NXP-PI-ADD-PROVIDER-01",
+  "delivery_lane_id": "NXP-L1-EXPERIENCE",
+  "capability_domain_ids": [
+    "WS-01",
+    "WS-04",
+    "WS-06",
+    "WS-07"
+  ],
+  "workstation_id": "nexus-experience-01",
+  "lane_outcome_owner": "Nexus Experience Owner",
+  "technical_lead": "Nexus Experience Technical Lead",
+  "branch_owner": "Nexus Experience Branch Owner",
+  "independent_reviewer": "Nexus Experience Reviewer",
+  "admitted_by": "Program Flow Controller",
+  "integration_owner": "Nexus Integration Branch Manager",
+  "branch": "feature/nexus-add-provider-experience",
+  "base_sha": "ba210c1792d8e62bf5f9743370700e1cbf037957",
+  "integration_branch": "integrate/nexus-add-provider-poc",
+  "execution_target": "local_agent",
+  "planned_model_tier": "efficient-tier",
+  "routing_basis": "lowest_capable",
+  "economics_budget": {
+    "default_model_tier": "efficient-tier",
+    "allowed_model_tiers": [
+      "efficient-tier",
+      "advanced-tier"
+    ],
+    "max_elapsed_ms": 7200000,
+    "max_input_tokens": 300000,
+    "max_output_tokens": 50000,
+    "max_cost_usd": 30,
+    "max_retries": 1,
+    "max_corrections": 2,
+    "max_rework_cycles": 2
+  },
+  "delegation_depth": 1,
+  "activated_at": "2026-07-18T17:00:00Z",
+  "review_after": "2026-07-21T17:00:00Z",
+  "status": "blocked"
+}

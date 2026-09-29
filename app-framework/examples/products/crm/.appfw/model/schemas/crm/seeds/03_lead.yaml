@@ -1,0 +1,101 @@
+- entity_type: Lead
+  schema: crm
+  columns:
+  - id
+  - first_name
+  - last_name
+  - email
+  - phone
+  - company
+  - title
+  - website
+  - description
+  - annual_revenue
+  - number_of_employees
+  - is_converted
+  - converted_account_id
+  - status_id
+  - source_id
+  - industry_id
+  records:
+  - id: 1eadc000-0000-4000-8000-100000000001
+    first_name: Michael
+    last_name: Nguyen
+    email: m.nguyen@sunrise-dental.com
+    phone: 555-1001
+    company: Sunrise Dental
+    title: Office Manager
+    website: https://sunrise-dental.example.com
+    description: New inbound lead requesting a patient communication workflow review.
+    annual_revenue: 2500000
+    number_of_employees: 28
+    is_converted: false
+    converted_account_id:
+    status_id: 1eadcc00-0000-4000-8000-100000000001
+    source_id: 1eadcc01-0000-4000-8000-100000000001
+    industry_id: 10100070-0000-4000-8000-100000000001
+  - id: 1eadc000-0000-4000-8000-100000000002
+    first_name: Amanda
+    last_name: Brooks
+    email: a.brooks@vistaclinic.com
+    phone: 555-1002
+    company: Vista Clinic Group
+    title: Practice Administrator
+    website: https://vistaclinic.example.com
+    description: Multi-location practice comparing pricing and implementation services.
+    annual_revenue: 8700000
+    number_of_employees: 74
+    is_converted: false
+    converted_account_id:
+    status_id: 1eadcc00-0000-4000-8000-100000000002
+    source_id: 1eadcc01-0000-4000-8000-100000000003
+    industry_id: 10100070-0000-4000-8000-100000000001
+  - id: 1eadc000-0000-4000-8000-100000000003
+    first_name: Robert
+    last_name: Kim
+    email: r.kim@nextech.co
+    phone: 555-1003
+    company: NexTech Co
+    title: IT Director
+    website: https://nextech.example.com
+    description: Qualified technology prospect interested in sandbox environments
+      and connectors.
+    annual_revenue: 19000000
+    number_of_employees: 120
+    is_converted: false
+    converted_account_id:
+    status_id: 1eadcc00-0000-4000-8000-100000000003
+    source_id: 1eadcc01-0000-4000-8000-100000000004
+    industry_id: 10100070-0000-4000-8000-100000000002
+  - id: 1eadc000-0000-4000-8000-100000000004
+    first_name: Elena
+    last_name: Vasquez
+    email: e.vasquez@meridian-health.org
+    phone: 555-1004
+    company: Meridian Health
+    title: COO
+    website: https://meridian-health.example.org
+    description: Early healthcare inquiry with budget owner identified.
+    annual_revenue: 32000000
+    number_of_employees: 210
+    is_converted: false
+    converted_account_id:
+    status_id: 1eadcc00-0000-4000-8000-100000000001
+    source_id: 1eadcc01-0000-4000-8000-100000000002
+    industry_id: 10100070-0000-4000-8000-100000000001
+  - id: 1eadc000-0000-4000-8000-100000000005
+    first_name: Thomas
+    last_name: Adeyemi
+    email: t.adeyemi@freshmarket.com
+    phone: 555-1005
+    company: Fresh Market Chain
+    title: VP Technology
+    website: https://freshmarket.example.com
+    description: Retail lead referred by an internal customer success manager.
+    annual_revenue: 41000000
+    number_of_employees: 330
+    is_converted: false
+    converted_account_id:
+    status_id: 1eadcc00-0000-4000-8000-100000000002
+    source_id: 1eadcc01-0000-4000-8000-100000000005
+    industry_id: 10100070-0000-4000-8000-100000000005
