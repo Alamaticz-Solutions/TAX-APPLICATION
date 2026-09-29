@@ -242,12 +242,19 @@ if [ "$FRONTEND_ONLY" = 1 ]; then
   fi
   run frontend-gate bash -c "cd \"$FE\" && npm run test:frontend"
   echo "3. E2E (mocked API)"
-  E2E_SERVER=1
-  (cd "$FE" && detach npx vite --port "$E2E_PORT" --strictPort >"$LOGS/vite.log" 2>&1 </dev/null &)
-  wait_http "http://localhost:$E2E_PORT/" 120 || fail "the E2E dev server did not start (log $LOGS/vite.log)"
-  curl -s --max-time 180 "http://localhost:$E2E_PORT/src/main.tsx" >/dev/null 2>&1 || true
-  run e2e bash -c "cd \"$FE\" && env -u CI npx playwright test --reporter=line"
-  kill_port "$E2E_PORT"; E2E_SERVER=0
+  # Tax Document Routing has no Playwright specs yet (no tax-doc-routing/frontend/tests/ dir),
+  # unlike the product this script was adapted from. Same reasoning as the backend live-phase
+  # guard above: skip rather than fail on an empty suite, and remove this once specs exist.
+  if [ ! -d "$FE/tests" ] || ! find "$FE/tests" -name '*.spec.ts' -print -quit | grep -q .; then
+    echo "  skip (no Playwright specs under $FE/tests yet)"
+  else
+    E2E_SERVER=1
+    (cd "$FE" && detach npx vite --port "$E2E_PORT" --strictPort >"$LOGS/vite.log" 2>&1 </dev/null &)
+    wait_http "http://localhost:$E2E_PORT/" 120 || fail "the E2E dev server did not start (log $LOGS/vite.log)"
+    curl -s --max-time 180 "http://localhost:$E2E_PORT/src/main.tsx" >/dev/null 2>&1 || true
+    run e2e bash -c "cd \"$FE\" && env -u CI npx playwright test --reporter=line"
+    kill_port "$E2E_PORT"; E2E_SERVER=0
+  fi
   STAMPED="no stamp (the working tree had changes or HEAD moved)"
   if [ "$CLEAN_AT_START" = 1 ] && [ "$(git rev-parse HEAD)" = "$HEAD_AT_START" ] && [ -z "$(git status --porcelain)" ]; then
     echo "$HEAD_AT_START" >"$STAMP"
