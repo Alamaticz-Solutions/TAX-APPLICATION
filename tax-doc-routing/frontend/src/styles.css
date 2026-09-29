@@ -54,16 +54,6 @@ body {
   max-width: 640px;
   margin-inline: auto;
 }
-/* Stepper spans the full page width: the last step sits at the right edge instead of
-   leaving an empty column, so the progress line runs edge to edge. */
-.tax-stepper-wide .pds-process-stepper[data-orientation='horizontal'] {
-  grid-template-columns: repeat(calc(var(--pds-process-step-count) - 1), minmax(0, 1fr)) auto;
-}
-.tax-stepper-wide .pds-process-stepper__step:last-child {
-  justify-items: end;
-  text-align: end;
-}
-
 /* Side-by-side form sections: top-aligned, with room for PDS floating labels between fields. */
 .tax-form-sections > .pds-form-layout__fields {
   gap: var(--pds-space-6);
