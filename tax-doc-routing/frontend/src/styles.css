@@ -54,6 +54,24 @@ body {
   max-width: 640px;
   margin-inline: auto;
 }
+/* PDS's horizontal ProcessStepper gives every step an equal-width grid column with its marker
+   left-aligned inside it (component source: app-framework's process.tsx / styles.css) — there is
+   no prop for "flush at both ends"; the last step's marker sits at the START of its own column,
+   leaving unused space after it. Right-aligning only the last step's marker (justify-items: end)
+   would put it flush at the true right edge, but the previous step's connector line — sized to
+   reach the START of the next column, per PDS's own `calc(100% + gap)` — would then fall short of
+   it. Extending that one connector to span two columns (its own plus the whole last one, minus the
+   last step's own marker width and left offset, both fixed PDS values) closes exactly that gap.
+   Only the last two steps are touched; the first N-2 keep PDS's default, unmodified layout. */
+.tax-stepper-full-width .pds-process-stepper__step:last-child {
+  justify-items: end;
+}
+.tax-stepper-full-width .pds-process-stepper__step:last-child > :last-child {
+  text-align: end;
+}
+.tax-stepper-full-width .pds-process-stepper__step:nth-last-child(2) .pds-process-stepper__connector {
+  width: calc(200% - 37px);
+}
 /* Side-by-side form sections: each FieldGroup stretches to match its tallest sibling (grid's
    own default), so a section with fewer fields doesn't leave a short card floating above empty
    page space next to a taller one. */

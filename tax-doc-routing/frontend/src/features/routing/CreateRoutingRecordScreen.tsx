@@ -41,7 +41,9 @@ export function CreateRoutingRecordScreen() {
   return (
     <div className="tax-stack">
       <PageHeader title="Create New Request" />
-      <ProcessStepper ariaLabel="New request progress" steps={steps} currentStepId={step === 'completed' ? undefined : step} />
+      <div className="tax-stepper-full-width">
+        <ProcessStepper ariaLabel="New request progress" steps={steps} currentStepId={step === 'completed' ? undefined : step} />
+      </div>
       {step === 'client' ? <ClientInfoStep /> : null}
       {step === 'documents' ? <UploadDocumentsStep /> : null}
       {step === 'processing' && draft.recordId ? <ProcessingStep recordId={draft.recordId} /> : null}
