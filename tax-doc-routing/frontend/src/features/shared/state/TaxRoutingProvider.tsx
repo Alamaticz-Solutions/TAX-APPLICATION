@@ -6,6 +6,7 @@ import {
   fetchAllRecords,
   fetchExceptionQueue,
   fetchMyRecords,
+  reassignRoutingRecord,
   retryFailedStep,
   updateRoutingRecordProgress
 } from '../../../lib/routingRecords';
@@ -57,6 +58,7 @@ export type TaxRoutingContextValue = {
   submitDraft: () => Promise<RoutingCase>;
   retryException: (id: string) => void;
   cancelCase: (id: string, resolution: string, comments: string) => void;
+  reassignCase: (id: string, newAssignedUserId: string) => Promise<void>;
   /** Live, database-driven grants for the current role's backend identity. */
   grants: Grant[];
   permissionsStatus: 'loading' | 'ready' | 'error';
@@ -205,7 +207,6 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
               status: isLast ? STATUS.COMPLETED : STATUS.PROCESSING
             });
           } catch (err) {
-            // eslint-disable-next-line no-console -- surfaced instead of silently freezing the timeline
             console.error('Failed to persist processing step', err);
             break;
           }
@@ -273,12 +274,21 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
     [role, updateCaseInPlace]
   );
 
+  const reassignCase = useCallback(
+    async (id: string, newAssignedUserId: string) => {
+      await reassignRoutingRecord(BACKEND_USER_NAME[role], id, newAssignedUserId);
+      const current = casesRef.current.find((c) => c.id === id);
+      if (current) updateCaseInPlace({ ...current, assignedTo: newAssignedUserId });
+    },
+    [role, updateCaseInPlace]
+  );
+
   const value: TaxRoutingContextValue = {
     role, setRole, user,
     cases, casesStatus, visibleCases, exceptionQueue, getCase,
     canActOn, canCancel,
     draft, draftApi,
-    submitDraft, retryException, cancelCase,
+    submitDraft, retryException, cancelCase, reassignCase,
     grants, permissionsStatus, hasPermission, hasScope
   };
   return <TaxRoutingContext.Provider value={value}>{children}</TaxRoutingContext.Provider>;

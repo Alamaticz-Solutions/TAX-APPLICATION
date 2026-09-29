@@ -344,6 +344,21 @@ export async function cancelRoutingRecord(userName: string, recordId: string, re
   });
 }
 
+const REASSIGN_RECORD_MUTATION = `mutation($recordId: String!, $newAssignedUserId: String!) {
+  reassignRecord(recordId: $recordId, newAssignedUserId: $newAssignedUserId)
+}`;
+
+/** Admin-only reassignment (business spec 12.3); delegates to the backend's `reassign_record`
+ * custom mutation. */
+export async function reassignRoutingRecord(userName: string, recordId: string, newAssignedUserId: string): Promise<void> {
+  await client(userName).graphql<{ reassignRecord: unknown }, { recordId: string; newAssignedUserId: string }>({
+    schemaName: 'tax_routing',
+    operationName: 'reassign_record',
+    query: REASSIGN_RECORD_MUTATION,
+    variables: { recordId, newAssignedUserId }
+  });
+}
+
 const RETRY_FAILED_STEP_MUTATION = `mutation($exceptionTaskId: String!) {
   retryFailedStep(exceptionTaskId: $exceptionTaskId)
 }`;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { Ban, RotateCcw } from 'lucide-react';
+import { Ban, RotateCcw, UserCog } from 'lucide-react';
 import { PageHeader, Tabs } from '@appfw/pds-health-components/layout';
 import { Button } from '@appfw/pds-health-components/primitives';
 import { EmptyState, ForbiddenState, InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
@@ -10,13 +10,14 @@ import { FilingPlan } from '../../components/FilingPlan';
 import { ProcessingTimeline } from '../../components/ProcessingTimeline';
 import { StatusBadge } from '../../components/StatusBadge';
 import { PROCESSING_STEPS } from '../shared/config/processingSteps';
-import { STATUS } from '../shared/config/statuses';
+import { STATUS, TERMINAL_STATUSES } from '../shared/config/statuses';
 import { useStaffDirectory } from '../shared/hooks/useStaffDirectory';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { Client, RoutingCase } from '../shared/types';
 import { formatDate, formatDateTime } from '../shared/utils/format';
 import { progressPercent } from '../shared/utils/timeline';
 import { CancelRecordDialog } from './CancelRecordDialog';
+import { ReassignRecordDialog } from './ReassignRecordDialog';
 
 function stagingState(c: RoutingCase): string {
   if (c.progress >= 7) return 'Deleted';
@@ -30,10 +31,11 @@ function clientFolderState(c: RoutingCase): string {
 
 export function RecordDetailsScreen() {
   const { recordId = '' } = useParams();
-  const { role, user, getCase, canActOn, canCancel, cancelCase, retryException } = useTaxRouting();
+  const { role, user, getCase, canActOn, canCancel, cancelCase, retryException, reassignCase, hasPermission } = useTaxRouting();
   const { staffName } = useStaffDirectory();
   const [tab, setTab] = useState('overview');
   const [cancelling, setCancelling] = useState(false);
+  const [reassigning, setReassigning] = useState(false);
   const record = getCase(recordId);
 
   if (!record) {
@@ -50,6 +52,7 @@ export function RecordDetailsScreen() {
   // Filing Plan tab only ever reads firstName/lastName from it, so the rest are inert placeholders.
   const filingClient: Client = { ...client, refId: client.id, passwordOnFile: true, active: true, readWritePassword: '' };
   const canRetry = record.status === STATUS.EXCEPTION && canActOn(record);
+  const canReassign = hasPermission('routing_record.reassign') && !TERMINAL_STATUSES.includes(record.status);
   const back = role === 'admin' ? { to: '/admin/cases', label: 'Back to All Cases' } : { to: '/dashboard', label: 'Back to Dashboard' };
 
   const overview = (
@@ -154,6 +157,11 @@ export function RecordDetailsScreen() {
                 <RotateCcw size={16} aria-hidden="true" /> Retry failed step
               </Button>
             ) : null}
+            {canReassign ? (
+              <Button variant="secondary" onClick={() => setReassigning(true)}>
+                <UserCog size={16} aria-hidden="true" /> Reassign
+              </Button>
+            ) : null}
             {canCancel(record) ? (
               <Button variant="danger" onClick={() => setCancelling(true)}>
                 <Ban size={16} aria-hidden="true" /> Cancel / Withdraw
@@ -185,6 +193,16 @@ export function RecordDetailsScreen() {
           onConfirm={(resolution, comments) => {
             cancelCase(record.id, resolution, comments);
             setCancelling(false);
+          }}
+        />
+      ) : null}
+      {reassigning ? (
+        <ReassignRecordDialog
+          record={record}
+          onClose={() => setReassigning(false)}
+          onConfirm={async (newAssignedUserId) => {
+            await reassignCase(record.id, newAssignedUserId);
+            setReassigning(false);
           }}
         />
       ) : null}
