@@ -52,7 +52,7 @@ function ScaffoldReference() {
   const [reviewOpen, setReviewOpen] = useState(false);
   return (
     <AppShell
-      brand={<strong>Tax Document Routing</strong>}
+      brand={<strong>TaxPro Enterprise Platform</strong>}
       navigation={<div aria-label="Reference sections">Components</div>}
       topBar={<CommandPalette items={referenceCommands} triggerLabel="Search reference" searchPlaceholder="Search design-system reference" />}
     >

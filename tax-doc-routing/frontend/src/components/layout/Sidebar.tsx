@@ -27,7 +27,7 @@ export function SidebarBrand() {
   return (
     <div className="tax-sidebar-brand">
       <PdsHealthLogo variant="mark" decorative className="tax-sidebar-logo" />
-      <div className="tax-sidebar-brand-title">Tax Document Routing</div>
+      <div className="tax-sidebar-brand-title">TaxPro Enterprise Platform</div>
     </div>
   );
 }
