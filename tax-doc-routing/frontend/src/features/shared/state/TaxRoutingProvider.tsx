@@ -236,7 +236,8 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
         readWritePassword: draft.client.readWritePassword
       },
       additionalEmail: draft.additionalEmail || null,
-      notifyClient: draft.notifyClient
+      notifyClient: draft.notifyClient,
+      takenCaseNumbers: new Set(casesRef.current.flatMap((c) => (c.caseNumber === null ? [] : [c.caseNumber])))
     });
     // Documents are session-only (deferred pending SharePoint — see module comment); attach the
     // draft's uploads to the in-memory case so Completed/Record Details can still show them for

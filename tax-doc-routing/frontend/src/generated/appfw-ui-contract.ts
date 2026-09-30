@@ -28061,6 +28061,30 @@ export const taxRoutingUiContract = {
           }
         },
         {
+          "name": "case_number",
+          "label": "Case Number",
+          "kind": "scalar",
+          "dataType": "Int32",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "number"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
           "name": "status",
           "label": "Status",
           "kind": "enum",
@@ -28653,6 +28677,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28689,6 +28714,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28719,6 +28745,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28810,6 +28837,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28847,6 +28875,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28894,6 +28923,7 @@ export const taxRoutingUiContract = {
           "fields": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28921,6 +28951,7 @@ export const taxRoutingUiContract = {
           "fields": [
             "client_full_name",
             "id",
+            "case_number",
             "status",
             "created_at",
             "updated_at",
@@ -28947,6 +28978,7 @@ export const taxRoutingUiContract = {
         "edit": {
           "route": "/data/tax_routing_records/:recordLocator/edit",
           "fields": [
+            "case_number",
             "status",
             "created_at",
             "updated_at",

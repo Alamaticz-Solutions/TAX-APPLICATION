@@ -6,6 +6,7 @@ import { FeedbackState, KpiTile, Surface } from '@appfw/pds-health-components/su
 import type { PdsDataGridColumn } from '@appfw/pds-health-components/types';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { buildFileName } from '../shared/utils/filenameRules';
 import { destinationsFor } from '../shared/utils/routingRules';
 
@@ -68,7 +69,7 @@ export function CompletedStep({ recordId }: { recordId: string }) {
       </Surface>
 
       <div className="tax-kpi-grid" role="list" aria-label="Record summary">
-        <KpiTile as="div" role="listitem" label="Record ID" value={record.id} icon={<Hash size={20} aria-hidden="true" />} />
+        <KpiTile as="div" role="listitem" label="Case No." value={formatCaseNumber(record.caseNumber)} icon={<Hash size={20} aria-hidden="true" />} />
         <KpiTile as="div" role="listitem" label="Client" value={client.fullName ? `${client.lastName}, ${client.firstName}` : '—'} icon={<User size={20} aria-hidden="true" />} />
         <KpiTile as="div" role="listitem" label="Documents Filed" value={record.documents.length} icon={<FileText size={20} aria-hidden="true" />} tone="success" />
         <KpiTile

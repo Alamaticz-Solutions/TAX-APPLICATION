@@ -7,6 +7,11 @@
   facets:
   - audited
   - concurrency
+  constraints:
+  # The 4-digit case number people quote (the uuid id stays the internal key). The database is the
+  # arbiter of uniqueness: the frontend picks a free number and retries when this fires. Rows
+  # created before the column existed keep NULL, which a UNIQUE constraint allows repeatedly.
+  - uq_tax_routing_record_case_number UNIQUE (case_number)
 
   custom_methods:
   # Admin-only actions the row filter can't express (a filter restricts which rows a query
@@ -38,6 +43,11 @@
 
   - name: id
     fragment: property-primary-key-uuid
+
+  - name: case_number
+    caption: Case Number
+    is_required: false
+    data_type: Int32
 
   - name: status
     caption: Status
