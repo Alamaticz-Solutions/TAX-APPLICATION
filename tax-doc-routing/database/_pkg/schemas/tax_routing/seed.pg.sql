@@ -7318,10 +7318,12 @@ ON CONFLICT (id) DO NOTHING;
 
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000001',
+
+  1024,
 
   'collecting_info',
 
@@ -7362,10 +7364,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000002',
+
+  1025,
 
   'cleaning_up',
 
@@ -7406,10 +7410,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000003',
+
+  1026,
 
   'processing',
 
@@ -7450,10 +7456,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000004',
+
+  1027,
 
   'collecting_info',
 
@@ -7494,10 +7502,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000005',
+
+  1019,
 
   'processing',
 
@@ -7538,10 +7548,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000006',
+
+  1021,
 
   'exception',
 
@@ -7582,10 +7594,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000007',
+
+  1022,
 
   'exception',
 
@@ -7626,10 +7640,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000008',
+
+  1023,
 
   'exception',
 
@@ -7670,10 +7686,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000009',
+
+  1028,
 
   'exception',
 
@@ -7714,10 +7732,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000010',
+
+  1030,
 
   'collecting_info',
 
@@ -7758,10 +7778,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000011',
+
+  1031,
 
   'processing',
 
@@ -7802,10 +7824,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000012',
+
+  1032,
 
   'cleaning_up',
 
@@ -7846,10 +7870,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000013',
+
+  1033,
 
   'cancelled',
 
@@ -7890,10 +7916,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000014',
+
+  1029,
 
   'resolved',
 
@@ -7934,10 +7962,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000101',
+
+  1001,
 
   'resolved',
 
@@ -7978,10 +8008,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000102',
+
+  1002,
 
   'resolved',
 
@@ -8022,10 +8054,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000103',
+
+  1003,
 
   'resolved',
 
@@ -8066,10 +8100,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000104',
+
+  1004,
 
   'resolved',
 
@@ -8110,10 +8146,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000105',
+
+  1005,
 
   'resolved',
 
@@ -8154,10 +8192,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000106',
+
+  1006,
 
   'resolved',
 
@@ -8198,10 +8238,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000107',
+
+  1007,
 
   'resolved',
 
@@ -8242,10 +8284,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000108',
+
+  1008,
 
   'resolved',
 
@@ -8286,10 +8330,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000109',
+
+  1009,
 
   'resolved',
 
@@ -8330,10 +8376,12 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO tax_routing.tax_routing_records (
-  id, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
+  id, case_number, status, created_at, updated_at, assigned_user_id, client_first_name, client_last_name, client_full_name, office_location, pds_email, personal_email, additional_email, notification_flag, internal_folder, folder_name, read_write_password, client_reference_id, progress_step
 )
 VALUES (
   '6f0a0001-0000-4a00-9000-000000000110',
+
+  1010,
 
   'resolved',
 

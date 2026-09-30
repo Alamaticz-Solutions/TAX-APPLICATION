@@ -14,6 +14,7 @@ import { STATUS, TERMINAL_STATUSES } from '../shared/config/statuses';
 import { useStaffDirectory } from '../shared/hooks/useStaffDirectory';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { Client, RoutingCase } from '../shared/types';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { formatDate, formatDateTime } from '../shared/utils/format';
 import { progressPercent } from '../shared/utils/timeline';
 import { CancelRecordDialog } from './CancelRecordDialog';
@@ -55,13 +56,14 @@ export function RecordDetailsScreen() {
   const canReassign = hasPermission('routing_record.reassign') && !TERMINAL_STATUSES.includes(record.status);
   const back = role === 'admin' ? { to: '/admin/cases', label: 'Back to All Cases' } : { to: '/dashboard', label: 'Back to Dashboard' };
 
+  const caseNumber = formatCaseNumber(record.caseNumber);
   const overview = (
     <div className="tax-stack">
       <Surface title="Case Summary" subtitle="Who raised this request and where it stands." density="compact">
         <DefinitionList
           columns={3}
           items={[
-            { label: 'Case No.', value: record.id },
+            { label: 'Case No.', value: caseNumber },
             { label: 'Status', value: <StatusBadge status={record.status} /> },
             { label: 'Client', value: client.fullName },
             { label: 'Created By', value: staffName(record.createdBy) },
@@ -72,26 +74,30 @@ export function RecordDetailsScreen() {
           ]}
         />
       </Surface>
-      <div className="tax-two-col">
-        <Surface title="Client Information" density="compact">
+      <div className="tax-two-col tax-equal">
+        <Surface title="Client Profile" subtitle="Details captured when the request was created." density="compact">
           <DefinitionList
             columns={2}
             items={[
-              { label: 'Name', value: client.fullName },
+              { label: 'First Name', value: client.firstName },
+              { label: 'Last Name', value: client.lastName },
               { label: 'Location', value: client.officeLocation },
+              { label: 'Send Notification', value: record.notifyClient ? 'Yes' : 'No' },
               { label: 'PDS Email', value: client.pdsEmail },
               { label: 'Personal Email', value: client.personalEmail },
-              { label: 'Notification', value: record.notifyClient ? 'Yes' : 'No' },
-              { label: 'Client Reference ID', value: client.id }
+              { label: 'Additional Email', value: record.additionalEmail }
             ]}
           />
         </Surface>
-        <Surface title="Storage Status" density="compact">
+        <Surface title="Routing & Storage" subtitle="Where this client's documents are filed." density="compact">
           <DefinitionList
             columns={2}
             items={[
-              { label: 'Staging Folder', value: stagingState(record) },
-              { label: 'Client Folder', value: clientFolderState(record) }
+              { label: 'Internal Folder', value: client.internalFolder },
+              { label: 'Client Folder', value: client.folderName },
+              { label: 'Staging Folder Status', value: stagingState(record) },
+              { label: 'Client Folder Status', value: clientFolderState(record) },
+              { label: 'Read Write Password', value: client.readWritePassword ? 'On file (never shown)' : 'Not on file' }
             ]}
           />
         </Surface>
@@ -143,7 +149,7 @@ export function RecordDetailsScreen() {
         <Link to={back.to}>← {back.label}</Link>
       </p>
       <PageHeader
-        title={record.id}
+        title={`Case ${caseNumber}`}
         subtitle={
           <span className="tax-inline">
             <StatusBadge status={record.status} />

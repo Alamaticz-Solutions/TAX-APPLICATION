@@ -7,6 +7,7 @@
   schema: tax_routing
   columns:
   - id
+  - case_number
   - status
   - created_at
   - updated_at
@@ -28,6 +29,7 @@
 
   # TDR-1024 — open, Smith
   - id: 6f0a0001-0000-4a00-9000-000000000001
+    case_number: 1024
     status: collecting_info
     created_at: "2026-05-12T14:05:00Z"
     updated_at: "2026-05-12T14:20:00Z"
@@ -48,6 +50,7 @@
 
   # TDR-1025 — in progress (cleaning_up), Jones
   - id: 6f0a0001-0000-4a00-9000-000000000002
+    case_number: 1025
     status: cleaning_up
     created_at: "2026-05-11T09:12:00Z"
     updated_at: "2026-05-11T15:40:00Z"
@@ -68,6 +71,7 @@
 
   # TDR-1026 — processing, Brown
   - id: 6f0a0001-0000-4a00-9000-000000000003
+    case_number: 1026
     status: processing
     created_at: "2026-05-10T10:30:00Z"
     updated_at: "2026-05-10T10:52:00Z"
@@ -88,6 +92,7 @@
 
   # TDR-1027 — open, Davis
   - id: 6f0a0001-0000-4a00-9000-000000000004
+    case_number: 1027
     status: collecting_info
     created_at: "2026-05-10T08:45:00Z"
     updated_at: "2026-05-10T09:00:00Z"
@@ -108,6 +113,7 @@
 
   # TDR-1019 — processing, Garcia
   - id: 6f0a0001-0000-4a00-9000-000000000005
+    case_number: 1019
     status: processing
     created_at: "2026-05-09T13:10:00Z"
     updated_at: "2026-05-09T13:32:00Z"
@@ -128,6 +134,7 @@
 
   # TDR-1021 — exception, Smith (see 20_exception_task.yaml)
   - id: 6f0a0001-0000-4a00-9000-000000000006
+    case_number: 1021
     status: exception
     created_at: "2026-05-09T11:00:00Z"
     updated_at: "2026-05-12T13:40:00Z"
@@ -148,6 +155,7 @@
 
   # TDR-1022 — exception, Jones
   - id: 6f0a0001-0000-4a00-9000-000000000007
+    case_number: 1022
     status: exception
     created_at: "2026-05-09T09:30:00Z"
     updated_at: "2026-05-12T13:33:00Z"
@@ -168,6 +176,7 @@
 
   # TDR-1023 — exception, Brown
   - id: 6f0a0001-0000-4a00-9000-000000000008
+    case_number: 1023
     status: exception
     created_at: "2026-05-08T15:20:00Z"
     updated_at: "2026-05-12T12:55:00Z"
@@ -188,6 +197,7 @@
 
   # TDR-1028 — exception, Wilson
   - id: 6f0a0001-0000-4a00-9000-000000000009
+    case_number: 1028
     status: exception
     created_at: "2026-05-08T10:05:00Z"
     updated_at: "2026-05-12T11:58:00Z"
@@ -208,6 +218,7 @@
 
   # TDR-1030 — open, Kapoor
   - id: 6f0a0001-0000-4a00-9000-000000000010
+    case_number: 1030
     status: collecting_info
     created_at: "2026-05-12T09:15:00Z"
     updated_at: "2026-05-12T09:40:00Z"
@@ -228,6 +239,7 @@
 
   # TDR-1031 — processing, Chen
   - id: 6f0a0001-0000-4a00-9000-000000000011
+    case_number: 1031
     status: processing
     created_at: "2026-05-12T10:05:00Z"
     updated_at: "2026-05-12T10:30:00Z"
@@ -248,6 +260,7 @@
 
   # TDR-1032 — in progress (cleaning_up), Garcia
   - id: 6f0a0001-0000-4a00-9000-000000000012
+    case_number: 1032
     status: cleaning_up
     created_at: "2026-05-11T16:25:00Z"
     updated_at: "2026-05-11T17:02:00Z"
@@ -268,6 +281,7 @@
 
   # TDR-1033 — cancelled, Wilson
   - id: 6f0a0001-0000-4a00-9000-000000000013
+    case_number: 1033
     status: cancelled
     created_at: "2026-05-06T09:00:00Z"
     updated_at: "2026-05-07T11:10:00Z"
@@ -286,8 +300,9 @@
     client_reference_id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
     progress_step: 2
 
-  # TDR-10245 — resolved (completed), Smith
+  # TDR-1029 — resolved (completed), Smith
   - id: 6f0a0001-0000-4a00-9000-000000000014
+    case_number: 1029
     status: resolved
     created_at: "2026-05-12T14:05:00Z"
     updated_at: "2026-05-12T14:32:00Z"
@@ -308,6 +323,7 @@
 
   # Completed history, for dashboard counts/chart to look realistic beyond the 14 live-flow rows.
   - id: 6f0a0001-0000-4a00-9000-000000000101
+    case_number: 1001
     status: resolved
     created_at: "2026-05-01T10:00:00Z"
     updated_at: "2026-05-01T10:20:00Z"
@@ -326,6 +342,7 @@
     client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000102
+    case_number: 1002
     status: resolved
     created_at: "2026-05-02T10:00:00Z"
     updated_at: "2026-05-02T10:22:00Z"
@@ -344,6 +361,7 @@
     client_reference_id: 9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000103
+    case_number: 1003
     status: resolved
     created_at: "2026-05-03T10:00:00Z"
     updated_at: "2026-05-03T10:24:00Z"
@@ -362,6 +380,7 @@
     client_reference_id: 9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000104
+    case_number: 1004
     status: resolved
     created_at: "2026-05-04T10:00:00Z"
     updated_at: "2026-05-04T10:26:00Z"
@@ -380,6 +399,7 @@
     client_reference_id: 9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000105
+    case_number: 1005
     status: resolved
     created_at: "2026-05-05T10:00:00Z"
     updated_at: "2026-05-05T10:28:00Z"
@@ -398,6 +418,7 @@
     client_reference_id: 9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000106
+    case_number: 1006
     status: resolved
     created_at: "2026-05-06T10:00:00Z"
     updated_at: "2026-05-06T10:30:00Z"
@@ -416,6 +437,7 @@
     client_reference_id: 9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000107
+    case_number: 1007
     status: resolved
     created_at: "2026-05-07T10:00:00Z"
     updated_at: "2026-05-07T10:32:00Z"
@@ -434,6 +456,7 @@
     client_reference_id: 9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000108
+    case_number: 1008
     status: resolved
     created_at: "2026-05-08T10:00:00Z"
     updated_at: "2026-05-08T10:34:00Z"
@@ -452,6 +475,7 @@
     client_reference_id: 9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000109
+    case_number: 1009
     status: resolved
     created_at: "2026-05-09T10:00:00Z"
     updated_at: "2026-05-09T10:36:00Z"
@@ -470,6 +494,7 @@
     client_reference_id: 9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01
     progress_step: 9
   - id: 6f0a0001-0000-4a00-9000-000000000110
+    case_number: 1010
     status: resolved
     created_at: "2026-05-10T10:00:00Z"
     updated_at: "2026-05-10T10:38:00Z"

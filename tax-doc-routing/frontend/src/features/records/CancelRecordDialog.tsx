@@ -5,6 +5,7 @@ import { InlineAlert } from '@appfw/pds-health-components/surfaces';
 import { SingleSelectField } from '../../components/ui';
 import { CANCEL_RESOLUTIONS } from '../shared/config/statuses';
 import type { RoutingCase } from '../shared/types';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 
 const RESOLUTION_OPTIONS = CANCEL_RESOLUTIONS.map((r) => ({ value: r, label: r }));
 
@@ -43,7 +44,7 @@ export function CancelRecordDialog({
       size="sm"
       tone="danger"
       title="Cancel / Withdraw Record"
-      description={`Record ${record.id} will be permanently closed.`}
+      description={`Case ${formatCaseNumber(record.caseNumber)} will be permanently closed.`}
       confirmLabel="Confirm Closure"
       cancelLabel="Cancel"
       isConfirming={busy}

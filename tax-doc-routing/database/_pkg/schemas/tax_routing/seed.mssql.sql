@@ -5170,10 +5170,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_entity_lists] WHERE [id] = N'3f2
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000001')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000001',
+        1024,
         N'collecting_info',
         N'2026-05-12T14:05:00Z',
         N'2026-05-12T14:20:00Z',
@@ -5196,10 +5197,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000002')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000002',
+        1025,
         N'cleaning_up',
         N'2026-05-11T09:12:00Z',
         N'2026-05-11T15:40:00Z',
@@ -5222,10 +5224,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000003')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000003',
+        1026,
         N'processing',
         N'2026-05-10T10:30:00Z',
         N'2026-05-10T10:52:00Z',
@@ -5248,10 +5251,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000004')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000004',
+        1027,
         N'collecting_info',
         N'2026-05-10T08:45:00Z',
         N'2026-05-10T09:00:00Z',
@@ -5274,10 +5278,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000005')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000005',
+        1019,
         N'processing',
         N'2026-05-09T13:10:00Z',
         N'2026-05-09T13:32:00Z',
@@ -5300,10 +5305,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000006')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000006',
+        1021,
         N'exception',
         N'2026-05-09T11:00:00Z',
         N'2026-05-12T13:40:00Z',
@@ -5326,10 +5332,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000007')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000007',
+        1022,
         N'exception',
         N'2026-05-09T09:30:00Z',
         N'2026-05-12T13:33:00Z',
@@ -5352,10 +5359,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000008')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000008',
+        1023,
         N'exception',
         N'2026-05-08T15:20:00Z',
         N'2026-05-12T12:55:00Z',
@@ -5378,10 +5386,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000009')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000009',
+        1028,
         N'exception',
         N'2026-05-08T10:05:00Z',
         N'2026-05-12T11:58:00Z',
@@ -5404,10 +5413,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000010')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000010',
+        1030,
         N'collecting_info',
         N'2026-05-12T09:15:00Z',
         N'2026-05-12T09:40:00Z',
@@ -5430,10 +5440,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000011')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000011',
+        1031,
         N'processing',
         N'2026-05-12T10:05:00Z',
         N'2026-05-12T10:30:00Z',
@@ -5456,10 +5467,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000012')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000012',
+        1032,
         N'cleaning_up',
         N'2026-05-11T16:25:00Z',
         N'2026-05-11T17:02:00Z',
@@ -5482,10 +5494,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000013')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000013',
+        1033,
         N'cancelled',
         N'2026-05-06T09:00:00Z',
         N'2026-05-07T11:10:00Z',
@@ -5508,10 +5521,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000014')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000014',
+        1029,
         N'resolved',
         N'2026-05-12T14:05:00Z',
         N'2026-05-12T14:32:00Z',
@@ -5534,10 +5548,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000101')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000101',
+        1001,
         N'resolved',
         N'2026-05-01T10:00:00Z',
         N'2026-05-01T10:20:00Z',
@@ -5560,10 +5575,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000102')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000102',
+        1002,
         N'resolved',
         N'2026-05-02T10:00:00Z',
         N'2026-05-02T10:22:00Z',
@@ -5586,10 +5602,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000103')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000103',
+        1003,
         N'resolved',
         N'2026-05-03T10:00:00Z',
         N'2026-05-03T10:24:00Z',
@@ -5612,10 +5629,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000104')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000104',
+        1004,
         N'resolved',
         N'2026-05-04T10:00:00Z',
         N'2026-05-04T10:26:00Z',
@@ -5638,10 +5656,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000105')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000105',
+        1005,
         N'resolved',
         N'2026-05-05T10:00:00Z',
         N'2026-05-05T10:28:00Z',
@@ -5664,10 +5683,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000106')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000106',
+        1006,
         N'resolved',
         N'2026-05-06T10:00:00Z',
         N'2026-05-06T10:30:00Z',
@@ -5690,10 +5710,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000107')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000107',
+        1007,
         N'resolved',
         N'2026-05-07T10:00:00Z',
         N'2026-05-07T10:32:00Z',
@@ -5716,10 +5737,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000108')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000108',
+        1008,
         N'resolved',
         N'2026-05-08T10:00:00Z',
         N'2026-05-08T10:34:00Z',
@@ -5742,10 +5764,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000109')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000109',
+        1009,
         N'resolved',
         N'2026-05-09T10:00:00Z',
         N'2026-05-09T10:36:00Z',
@@ -5768,10 +5791,11 @@ IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'
 
 IF NOT EXISTS (SELECT 1 FROM [tax_routing].[tax_routing_records] WHERE [id] = N'6f0a0001-0000-4a00-9000-000000000110')
     INSERT INTO [tax_routing].[tax_routing_records] (
-        [id], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
+        [id], [case_number], [status], [created_at], [updated_at], [assigned_user_id], [client_first_name], [client_last_name], [client_full_name], [office_location], [pds_email], [personal_email], [additional_email], [notification_flag], [internal_folder], [folder_name], [read_write_password], [client_reference_id], [progress_step]
     )
     VALUES (
         N'6f0a0001-0000-4a00-9000-000000000110',
+        1010,
         N'resolved',
         N'2026-05-10T10:00:00Z',
         N'2026-05-10T10:38:00Z',

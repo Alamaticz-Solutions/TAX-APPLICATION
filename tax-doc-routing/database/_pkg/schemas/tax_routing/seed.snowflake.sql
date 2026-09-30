@@ -5525,10 +5525,11 @@ WHERE NOT EXISTS (
 
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000001',
+    1024,
     'collecting_info',
     '2026-05-12T14:05:00Z',
     '2026-05-12T14:20:00Z',
@@ -5552,10 +5553,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000002',
+    1025,
     'cleaning_up',
     '2026-05-11T09:12:00Z',
     '2026-05-11T15:40:00Z',
@@ -5579,10 +5581,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000003',
+    1026,
     'processing',
     '2026-05-10T10:30:00Z',
     '2026-05-10T10:52:00Z',
@@ -5606,10 +5609,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000004',
+    1027,
     'collecting_info',
     '2026-05-10T08:45:00Z',
     '2026-05-10T09:00:00Z',
@@ -5633,10 +5637,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000005',
+    1019,
     'processing',
     '2026-05-09T13:10:00Z',
     '2026-05-09T13:32:00Z',
@@ -5660,10 +5665,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000006',
+    1021,
     'exception',
     '2026-05-09T11:00:00Z',
     '2026-05-12T13:40:00Z',
@@ -5687,10 +5693,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000007',
+    1022,
     'exception',
     '2026-05-09T09:30:00Z',
     '2026-05-12T13:33:00Z',
@@ -5714,10 +5721,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000008',
+    1023,
     'exception',
     '2026-05-08T15:20:00Z',
     '2026-05-12T12:55:00Z',
@@ -5741,10 +5749,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000009',
+    1028,
     'exception',
     '2026-05-08T10:05:00Z',
     '2026-05-12T11:58:00Z',
@@ -5768,10 +5777,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000010',
+    1030,
     'collecting_info',
     '2026-05-12T09:15:00Z',
     '2026-05-12T09:40:00Z',
@@ -5795,10 +5805,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000011',
+    1031,
     'processing',
     '2026-05-12T10:05:00Z',
     '2026-05-12T10:30:00Z',
@@ -5822,10 +5833,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000012',
+    1032,
     'cleaning_up',
     '2026-05-11T16:25:00Z',
     '2026-05-11T17:02:00Z',
@@ -5849,10 +5861,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000013',
+    1033,
     'cancelled',
     '2026-05-06T09:00:00Z',
     '2026-05-07T11:10:00Z',
@@ -5876,10 +5889,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000014',
+    1029,
     'resolved',
     '2026-05-12T14:05:00Z',
     '2026-05-12T14:32:00Z',
@@ -5903,10 +5917,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000101',
+    1001,
     'resolved',
     '2026-05-01T10:00:00Z',
     '2026-05-01T10:20:00Z',
@@ -5930,10 +5945,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000102',
+    1002,
     'resolved',
     '2026-05-02T10:00:00Z',
     '2026-05-02T10:22:00Z',
@@ -5957,10 +5973,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000103',
+    1003,
     'resolved',
     '2026-05-03T10:00:00Z',
     '2026-05-03T10:24:00Z',
@@ -5984,10 +6001,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000104',
+    1004,
     'resolved',
     '2026-05-04T10:00:00Z',
     '2026-05-04T10:26:00Z',
@@ -6011,10 +6029,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000105',
+    1005,
     'resolved',
     '2026-05-05T10:00:00Z',
     '2026-05-05T10:28:00Z',
@@ -6038,10 +6057,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000106',
+    1006,
     'resolved',
     '2026-05-06T10:00:00Z',
     '2026-05-06T10:30:00Z',
@@ -6065,10 +6085,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000107',
+    1007,
     'resolved',
     '2026-05-07T10:00:00Z',
     '2026-05-07T10:32:00Z',
@@ -6092,10 +6113,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000108',
+    1008,
     'resolved',
     '2026-05-08T10:00:00Z',
     '2026-05-08T10:34:00Z',
@@ -6119,10 +6141,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000109',
+    1009,
     'resolved',
     '2026-05-09T10:00:00Z',
     '2026-05-09T10:36:00Z',
@@ -6146,10 +6169,11 @@ WHERE NOT EXISTS (
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "case_number", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000110',
+    1010,
     'resolved',
     '2026-05-10T10:00:00Z',
     '2026-05-10T10:38:00Z',

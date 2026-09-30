@@ -7,9 +7,10 @@ import { Badge, Button } from '@appfw/pds-health-components/primitives';
 import { InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
 import type { PdsDataGridColumn } from '@appfw/pds-health-components/types';
 import { SingleSelectField } from '../../components/ui';
+import { formatCaseNumber, matchesCaseSearch } from '../shared/utils/caseNumber';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 
-type ExceptionRow = { id: string; client: string; error: string; detail: string; document: string; age: string; action: string };
+type ExceptionRow = { id: string; caseNumber: string; client: string; error: string; detail: string; document: string; age: string; action: string };
 
 /** The short category before the first colon (e.g. "File Transfer Failed" from "File Transfer
  * Failed: the K-1 file could not be moved…") — what the PDS Badge is designed to hold; the full
@@ -35,12 +36,12 @@ export function ExceptionQueueScreen() {
   );
 
   const rows = useMemo<ExceptionRow[]>(() => {
-    const term = query.trim().toLowerCase();
     return exceptionQueue
       .filter((c) => !error || (c.exception && errorCategory(c.exception.error) === error))
-      .filter((c) => !term || c.id.toLowerCase().includes(term) || c.client.fullName.toLowerCase().includes(term))
+      .filter((c) => matchesCaseSearch(c, query))
       .map((c) => ({
         id: c.id,
+        caseNumber: formatCaseNumber(c.caseNumber),
         client: c.client.fullName || '—',
         error: c.exception ? errorCategory(c.exception.error) : '',
         detail: c.exception?.error ?? '',
@@ -51,7 +52,7 @@ export function ExceptionQueueScreen() {
   }, [exceptionQueue, query, error]);
 
   const columns: PdsDataGridColumn<ExceptionRow>[] = [
-    { key: 'id', header: 'Record ID', width: 150, render: (row) => <Link to={`/records/${row.id}`}>{row.id}</Link> },
+    { key: 'caseNumber', header: 'Case No.', width: 120, render: (row) => <Link to={`/records/${row.id}`}>{row.caseNumber}</Link> },
     { key: 'client', header: 'Client', width: 170 },
     {
       key: 'error',
@@ -71,7 +72,7 @@ export function ExceptionQueueScreen() {
       width: 100,
       align: 'end',
       render: (row) => (
-        <Button size="sm" variant="secondary" aria-label={`Open ${row.id}`} onClick={() => navigate(`/records/${row.id}`)}>
+        <Button size="sm" variant="secondary" aria-label={`Open case ${row.caseNumber}`} onClick={() => navigate(`/records/${row.id}`)}>
           Open
         </Button>
       )
@@ -90,7 +91,7 @@ export function ExceptionQueueScreen() {
       ) : null}
       <Surface density="compact">
         <div className="tax-filters">
-          <TextField label="Search by record ID or client" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <TextField label="Search by case number or client" value={query} onChange={(e) => setQuery(e.target.value)} />
           <SingleSelectField label="Error type" value={error} onValueChange={setError} options={errorOptions} placeholder="All errors" />
         </div>
         <DataGridShell<ExceptionRow>

@@ -898,6 +898,7 @@ ALTER TABLE "tax_routing"."tax_payer_ref_data"
 CREATE TABLE IF NOT EXISTS "tax_routing"."tax_routing_records"
 (
     "id" VARCHAR NOT NULL DEFAULT UUID_STRING() PRIMARY KEY
+    ,"case_number" NUMBER(10,0)
     ,"status" VARCHAR
     ,"created_at" TIMESTAMP_TZ
     ,"updated_at" TIMESTAMP_TZ
@@ -919,6 +920,9 @@ CREATE TABLE IF NOT EXISTS "tax_routing"."tax_routing_records"
     ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
 );
 
+
+ALTER TABLE "tax_routing"."tax_routing_records"
+    ADD COLUMN IF NOT EXISTS "case_number" NUMBER(10,0);
 
 ALTER TABLE "tax_routing"."tax_routing_records"
     ADD COLUMN IF NOT EXISTS "status" VARCHAR;

@@ -197,13 +197,17 @@ body {
 .tax-definition-list[data-columns='3'] {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+.tax-definition-list {
+  row-gap: var(--pds-space-4);
+}
 .tax-definition-list dt {
   font-size: var(--pds-font-size-sm);
-  font-weight: var(--pds-font-weight-semibold);
+  font-weight: var(--pds-font-weight-regular);
   color: var(--pds-color-text-muted);
 }
 .tax-definition-list dd {
-  margin: 2px 0 0;
+  margin: var(--pds-space-1) 0 0;
+  font-weight: var(--pds-font-weight-semibold);
   overflow-wrap: anywhere;
 }
 

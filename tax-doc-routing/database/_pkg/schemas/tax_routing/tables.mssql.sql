@@ -1573,6 +1573,13 @@ BEGIN
     IF NOT EXISTS (
         SELECT 1 FROM sys.columns
         WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
+          AND name = N'case_number'
+    )
+        ALTER TABLE [tax_routing].[tax_routing_records] ADD [case_number] int;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
           AND name = N'status'
     )
         ALTER TABLE [tax_routing].[tax_routing_records] ADD [status] nvarchar(255);
@@ -1710,6 +1717,7 @@ BEGIN
     CREATE TABLE [tax_routing].[tax_routing_records]
     (
         [id] uniqueidentifier NOT NULL CONSTRAINT [df_tax_routing_records_id] DEFAULT NEWID() CONSTRAINT [pk_tax_routing_records] PRIMARY KEY
+        ,[case_number] int
         ,[status] nvarchar(255)
         ,[created_at] datetimeoffset(7)
         ,[updated_at] datetimeoffset(7)
@@ -4592,6 +4600,18 @@ BEGIN
     PRINT N'Creating constraint uq_role_permission on role_permissions';
     ALTER TABLE [tax_routing].[role_permissions]
         ADD CONSTRAINT uq_role_permission UNIQUE (role_id, permission_id);
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1 FROM sys.objects
+    WHERE name = N'uq_tax_routing_record_case_number'
+      AND parent_object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
+)
+BEGIN
+    PRINT N'Creating constraint uq_tax_routing_record_case_number on tax_routing_records';
+    ALTER TABLE [tax_routing].[tax_routing_records]
+        ADD CONSTRAINT uq_tax_routing_record_case_number UNIQUE (case_number);
 END
 GO
 

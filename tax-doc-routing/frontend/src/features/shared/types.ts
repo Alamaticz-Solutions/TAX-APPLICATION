@@ -109,6 +109,8 @@ export type RoutingRecordClient = {
 
 export type RoutingCase = {
   id: string;
+  /** Four-digit number people quote for this case; null for records that predate it. */
+  caseNumber: number | null;
   client: RoutingRecordClient;
   status: RecordStatus;
   task: string;

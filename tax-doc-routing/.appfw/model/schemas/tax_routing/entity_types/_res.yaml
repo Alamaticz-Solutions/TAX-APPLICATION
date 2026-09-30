@@ -10495,7 +10495,8 @@
   indexes:
   - status
   - client_reference_id
-  constraints: []
+  constraints:
+  - uq_tax_routing_record_case_number UNIQUE (case_number)
   meta: null
   execution: null
   standard_methods:
@@ -10538,6 +10539,23 @@
     is_read_only: true
     is_concurrency_control: false
     data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 15db938e02f73f4f
+    name: case_number
+    caption: Case Number
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
     computed: None
     default_value: {}
     foreign_key: null
