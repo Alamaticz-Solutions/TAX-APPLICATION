@@ -727,8 +727,6 @@ BEGIN
     THEN
         RAISE NOTICE 'ALTERING table tax_routing_records';
 
-        ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "case_number" integer;
-
         ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "status" varchar;
 
         ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "created_at" timestamptz;
@@ -772,7 +770,6 @@ BEGIN
         CREATE TABLE tax_routing.tax_routing_records
         (
             "id" uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY
-            ,"case_number" integer
             ,"status" varchar
             ,"created_at" timestamptz
             ,"updated_at" timestamptz
@@ -3552,19 +3549,6 @@ BEGIN
         ADD CONSTRAINT uq_role_permission UNIQUE (role_id, permission_id);
     ELSE
         RAISE NOTICE 'Constraint uq_role_permission already exists';
-    END IF;
-
-    IF NOT EXISTS (
-        SELECT 1
-        FROM pg_constraint
-        WHERE conname = 'uq_tax_routing_record_case_number'
-        AND conrelid = 'tax_routing."tax_routing_records"'::regclass
-    ) THEN
-        RAISE NOTICE 'Creating constraint uq_tax_routing_record_case_number on tax_routing_records';
-        ALTER TABLE tax_routing."tax_routing_records"
-        ADD CONSTRAINT uq_tax_routing_record_case_number UNIQUE (case_number);
-    ELSE
-        RAISE NOTICE 'Constraint uq_tax_routing_record_case_number already exists';
     END IF;
 
     IF NOT EXISTS (

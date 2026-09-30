@@ -4544,8 +4544,6 @@ pub struct TaxPayerRefDataAuditQueryResult {
 pub struct TaxRoutingRecord {
     #[graphql(name = "id")]
     pub id: String,
-    #[graphql(name = "case_number")]
-    pub case_number: Option<i32>,
     #[graphql(name = "status")]
     pub status: RoutingRecordStatus,
     #[graphql(name = "created_at")]
@@ -4591,8 +4589,6 @@ pub struct TaxRoutingRecordProjection {
     pub record_locator: Option<String>,
     #[graphql(name = "id")]
     pub id: Option<String>,
-    #[graphql(name = "case_number")]
-    pub case_number: Option<i32>,
     #[graphql(name = "status")]
     pub status: Option<RoutingRecordStatus>,
     #[graphql(name = "created_at")]
@@ -4642,8 +4638,6 @@ pub struct TaxRoutingRecordProjection {
 pub struct InputTaxRoutingRecord {
     #[graphql(name = "id")]
     pub id: Option<String>,
-    #[graphql(name = "case_number")]
-    pub case_number: Option<i32>,
     #[graphql(name = "status")]
     pub status: RoutingRecordStatus,
     #[graphql(name = "created_at")]

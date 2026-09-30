@@ -5,13 +5,11 @@ import { Button } from '@appfw/pds-health-components/primitives';
 import type { PdsDataGridColumn } from '@appfw/pds-health-components/types';
 import { useStaffDirectory } from '../features/shared/hooks/useStaffDirectory';
 import type { RecordStatus, RoutingCase } from '../features/shared/types';
-import { formatCaseNumber } from '../features/shared/utils/caseNumber';
 import { formatDate } from '../features/shared/utils/format';
 import { StatusBadge } from './StatusBadge';
 
 type CaseRow = {
   id: string;
-  caseNumber: string;
   task: string;
   client: string;
   status: RecordStatus;
@@ -35,7 +33,6 @@ export type CasesGridOptions = {
 function toRow(c: RoutingCase, staffName: (id: string) => string): CaseRow {
   return {
     id: c.id,
-    caseNumber: formatCaseNumber(c.caseNumber),
     task: c.task,
     client: c.client.fullName || '—',
     status: c.status,
@@ -73,7 +70,7 @@ export function CasesGrid({
 
   const columns = useMemo<PdsDataGridColumn<CaseRow>[]>(() => {
     const cols: PdsDataGridColumn<CaseRow>[] = [
-      { key: 'caseNumber', header: 'Case No.', width: 110, render: (row) => <Link to={`/records/${row.id}`}>{row.caseNumber}</Link> }
+      { key: 'id', header: 'Record ID', width: 130, render: (row) => <Link to={`/records/${row.id}`}>{row.id}</Link> }
     ];
     if (options.task) cols.push({ key: 'task', header: 'Task', width: 130 });
     cols.push({ key: 'client', header: 'Client', width: 170 });
@@ -89,7 +86,7 @@ export function CasesGrid({
       width: 100,
       align: 'end',
       render: (row) => (
-        <Button size="sm" variant="secondary" aria-label={`View case ${row.caseNumber}`} onClick={() => navigate(`/records/${row.id}`)}>
+        <Button size="sm" variant="secondary" aria-label={`View ${row.id}`} onClick={() => navigate(`/records/${row.id}`)}>
           View
         </Button>
       )

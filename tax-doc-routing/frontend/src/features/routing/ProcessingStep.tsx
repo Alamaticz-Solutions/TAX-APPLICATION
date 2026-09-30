@@ -5,7 +5,6 @@ import { ProcessProgress } from '@appfw/pds-health-components/process';
 import { InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
 import { ProcessingTimeline } from '../../components/ProcessingTimeline';
 import { ESTIMATED_MINUTES, PROCESSING_STEPS } from '../shared/config/processingSteps';
-import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { STATUS } from '../shared/config/statuses';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import { progressPercent } from '../shared/utils/timeline';
@@ -32,7 +31,7 @@ export function ProcessingStep({ recordId }: { recordId: string }) {
     <div className="tax-stack">
       <div>
         <h2 className="tax-section-title">Processing Tax Documents</h2>
-        <p className="tax-muted">Case {formatCaseNumber(record.caseNumber)} · You can leave this page; processing continues and the record stays on your dashboard.</p>
+        <p className="tax-muted">{record.id} · You can leave this page; processing continues and the record stays on your dashboard.</p>
       </div>
 
       {record.status === STATUS.EXCEPTION ? (

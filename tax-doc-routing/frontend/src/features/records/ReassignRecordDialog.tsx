@@ -4,7 +4,6 @@ import { InlineAlert } from '@appfw/pds-health-components/surfaces';
 import { SingleSelectField } from '../../components/ui';
 import { useStaffDirectory } from '../shared/hooks/useStaffDirectory';
 import type { RoutingCase } from '../shared/types';
-import { formatCaseNumber } from '../shared/utils/caseNumber';
 
 /**
  * Admin-only reassignment (business spec 12.3). Real enforcement belongs to the backend's
@@ -45,7 +44,7 @@ export function ReassignRecordDialog({
       open
       size="sm"
       title="Reassign Record"
-      description={`Case ${formatCaseNumber(record.caseNumber)} is currently assigned to ${staffName(record.assignedTo)}.`}
+      description={`Record ${record.id} is currently assigned to ${staffName(record.assignedTo)}.`}
       confirmLabel="Reassign"
       cancelLabel="Cancel"
       isConfirming={busy}

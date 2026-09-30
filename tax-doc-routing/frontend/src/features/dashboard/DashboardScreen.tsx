@@ -12,7 +12,6 @@ import { StatusBadge } from '../../components/StatusBadge';
 import { ALL_STATUSES, STATUS, STATUS_META, TERMINAL_STATUSES } from '../shared/config/statuses';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { RecordStatus, RoutingCase } from '../shared/types';
-import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { formatDate } from '../shared/utils/format';
 
 type Tile = {
@@ -147,7 +146,7 @@ export function DashboardScreen() {
                   as="li"
                   density="compact"
                   activation={{ kind: 'button', onActivate: () => navigate(`/records/${c.id}`) }}
-                  title={`Case ${formatCaseNumber(c.caseNumber)}`}
+                  title={c.id}
                   description={c.client.fullName}
                   metadata={formatDate(c.updated)}
                   status={<StatusBadge status={c.status} />}

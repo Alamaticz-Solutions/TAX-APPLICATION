@@ -24,7 +24,7 @@ fn full_record_selection() -> serde_json::Value {
     json!({
         "name": "tax_routing_record",
         "selection_set": [
-            field("id"), field("case_number"), field("status"), field("created_at"), field("updated_at"),
+            field("id"), field("status"), field("created_at"), field("updated_at"),
             field("assigned_user_id"), field("client_first_name"), field("client_last_name"),
             field("client_full_name"), field("office_location"), field("pds_email"),
             field("personal_email"), field("additional_email"), field("notification_flag"),
@@ -64,7 +64,6 @@ fn to_input(
 ) -> HandlerResult<InputTaxRoutingRecord> {
     Ok(InputTaxRoutingRecord {
         id: current.id.clone(),
-        case_number: current.case_number,
         status: status_override.unwrap_or(require_field(current.status.clone(), "status")?),
         created_at: require_field(current.created_at, "created_at")?,
         updated_at: chrono::Utc::now(),
