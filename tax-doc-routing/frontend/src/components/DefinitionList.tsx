@@ -9,7 +9,7 @@ export function DefinitionList({ items, columns = 1 }: { items: DefinitionItem[]
       {items.map(({ label, value }) => (
         <div key={label}>
           <dt>{label}</dt>
-          <dd>{value === null || value === undefined || value === '' ? <span className="tax-subtle">—</span> : value}</dd>
+          <dd>{value ?? '—'}</dd>
         </div>
       ))}
     </dl>

@@ -69,58 +69,58 @@ export function ClientInfoStep() {
         <FormLayout columns="auto" className="tax-form-sections">
           <FieldGroup legend="Client Profile">
             <FormLayout columns="one">
-              <ClientSearch
-                selected={client}
-                onSelect={(c) => {
-                  setClient(c);
-                  setEmailError('');
-                  if (c) setMissingClient(false);
-                }}
-              />
-              <TextField label="First Name" value={client?.firstName ?? ''} readOnly />
-              <TextField label="Last Name" value={client?.lastName ?? ''} readOnly />
+            <ClientSearch
+              selected={client}
+              onSelect={(c) => {
+                setClient(c);
+                setEmailError('');
+                if (c) setMissingClient(false);
+              }}
+            />
+            <TextField label="First Name" value={client?.firstName ?? ''} readOnly />
+            <TextField label="Last Name" value={client?.lastName ?? ''} readOnly />
             </FormLayout>
           </FieldGroup>
 
           <FieldGroup legend="Contact Emails">
             <FormLayout columns="one">
-              <TextField label="Client Personal Email" type="email" value={client?.personalEmail ?? ''} readOnly />
-              <TextField label="Client PDS Email" type="email" value={client?.pdsEmail ?? ''} readOnly />
-              <TextField
-                label="Additional Email"
-                type="email"
-                value={draft.additionalEmail}
-                error={emailError}
-                onChange={(e) => {
-                  setAdditionalEmail(e.target.value);
-                  setEmailError('');
-                }}
-              />
+            <TextField label="Client Personal Email" type="email" value={client?.personalEmail ?? ''} readOnly />
+            <TextField label="Client PDS Email" type="email" value={client?.pdsEmail ?? ''} readOnly />
+            <TextField
+              label="Additional Email"
+              type="email"
+              value={draft.additionalEmail}
+              error={emailError}
+              onChange={(e) => {
+                setAdditionalEmail(e.target.value);
+                setEmailError('');
+              }}
+            />
             </FormLayout>
           </FieldGroup>
 
           <FieldGroup legend="Intelligence Routing">
             <FormLayout columns="one">
-              <TextField label="Internal Folder" value={client?.internalFolder ?? ''} readOnly />
-              <TextField label="Client Folder" value={client?.folderName ?? ''} readOnly />
-              <TextField
-                label="Read Write Password"
-                type="password"
-                value={client ? '••••••••••' : ''}
-                readOnly
-                hint={client ? 'Password on file. It is never displayed and only protects PDFs when required.' : undefined}
+            <TextField label="Internal Folder" value={client?.internalFolder ?? ''} readOnly />
+            <TextField label="Client Folder" value={client?.folderName ?? ''} readOnly />
+            <TextField
+              label="Read Write Password"
+              type="password"
+              value={client ? '••••••••••' : ''}
+              readOnly
+              hint={client ? 'Password on file. It is never displayed and only protects PDFs when required.' : undefined}
+            />
+            <FieldGroup legend="Send Notification?" description="Emails the client when routing completes.">
+              <SegmentedControl<'yes' | 'no'>
+                ariaLabel="Send notification to client"
+                value={draft.notifyClient ? 'yes' : 'no'}
+                onValueChange={(v) => setNotifyClient(v === 'yes')}
+                options={[
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' }
+                ]}
               />
-              <FieldGroup legend="Send Notification?" description="Emails the client when routing completes.">
-                <SegmentedControl<'yes' | 'no'>
-                  ariaLabel="Send notification to client"
-                  value={draft.notifyClient ? 'yes' : 'no'}
-                  onValueChange={(v) => setNotifyClient(v === 'yes')}
-                  options={[
-                    { value: 'yes', label: 'Yes' },
-                    { value: 'no', label: 'No' }
-                  ]}
-                />
-              </FieldGroup>
+            </FieldGroup>
             </FormLayout>
           </FieldGroup>
         </FormLayout>

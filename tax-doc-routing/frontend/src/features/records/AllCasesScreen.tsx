@@ -9,7 +9,6 @@ import { CasesGrid } from '../../components/CasesGrid';
 import { SingleSelectField } from '../../components/ui';
 import { ALL_STATUSES } from '../shared/config/statuses';
 import { useStaffDirectory } from '../shared/hooks/useStaffDirectory';
-import { matchesCaseSearch } from '../shared/utils/caseNumber';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { RecordStatus } from '../shared/types';
 
@@ -27,10 +26,11 @@ export function AllCasesScreen() {
   const ownerOptions = useMemo(() => staff.map((s) => ({ value: s.id, label: s.name })), [staff]);
 
   const rows = useMemo(() => {
+    const term = query.trim().toLowerCase();
     return cases
       .filter((c) => !status || c.status === status)
       .filter((c) => !owner || c.assignedTo === owner)
-      .filter((c) => matchesCaseSearch(c, query))
+      .filter((c) => !term || c.id.toLowerCase().includes(term) || c.client.fullName.toLowerCase().includes(term))
       .sort((a, b) => b.updated.localeCompare(a.updated));
   }, [cases, query, status, owner]);
 
@@ -53,7 +53,7 @@ export function AllCasesScreen() {
       />
       <Surface density="compact">
         <div className="tax-filters tax-filters-3">
-          <TextField label="Search by case number or client name" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <TextField label="Search by record ID or client name" value={query} onChange={(e) => setQuery(e.target.value)} />
           <SingleSelectField label="Status" value={status} onValueChange={(v) => setStatus(v as RecordStatus | '')} options={STATUS_OPTIONS} placeholder="All statuses" />
           <SingleSelectField label="Assigned to" value={owner} onValueChange={setOwner} options={ownerOptions} placeholder="Everyone" />
         </div>

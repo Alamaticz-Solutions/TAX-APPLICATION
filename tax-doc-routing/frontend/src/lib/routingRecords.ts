@@ -1,5 +1,4 @@
-import { AppfwClientError, createAppfwClient } from './appfwClient';
-import { pickCaseNumber } from '../features/shared/utils/caseNumber';
+import { createAppfwClient } from './appfwClient';
 import type { ExceptionInfo, RecordStatus, RoutingCase, RoutingRecordClient } from '../features/shared/types';
 
 // Routing records and exceptions (business spec 4/5/5.3), read/written live from the database
@@ -42,7 +41,6 @@ const TASK_LABEL: Record<RecordStatus, string> = {
 
 type RawTaxRoutingRecord = {
   id: string;
-  case_number: number | null;
   status: string | null;
   created_at: string | null;
   updated_at: string | null;
@@ -100,7 +98,6 @@ function toCase(row: RawTaxRoutingRecord, exception: ExceptionInfo | null): Rout
   };
   return {
     id: row.id,
-    caseNumber: row.case_number ?? null,
     client: clientSnapshot,
     status,
     task: TASK_LABEL[status],
@@ -122,7 +119,7 @@ function toCase(row: RawTaxRoutingRecord, exception: ExceptionInfo | null): Rout
 
 function recordFields(): string {
   return `
-    id case_number status created_at updated_at assigned_user_id
+    id status created_at updated_at assigned_user_id
     client_first_name client_last_name client_full_name office_location pds_email personal_email
     additional_email notification_flag internal_folder folder_name read_write_password
     client_reference_id progress_step version
@@ -226,7 +223,6 @@ export async function fetchExceptionQueue(userName: string, knownCases: RoutingC
     }
     result.push({
       id: recordId,
-      caseNumber: null,
       client: { id: '', firstName: '', lastName: '', fullName: 'Restricted', officeLocation: '', pdsEmail: '', personalEmail: '', internalFolder: '', folderName: '', readWritePassword: '' },
       status: 'Exception',
       task: TASK_LABEL.Exception,
@@ -253,68 +249,45 @@ export type CreateRoutingRecordInput = {
   client: { refId: string; firstName: string; lastName: string; fullName: string; officeLocation: string; pdsEmail: string; personalEmail: string; internalFolder: string; folderName: string; readWritePassword: string };
   additionalEmail: string | null;
   notifyClient: boolean;
-  /** Case numbers the caller already knows are in use, so the first pick is usually free. */
-  takenCaseNumbers?: ReadonlySet<number>;
 };
 
 const CREATE_RECORD_MUTATION = `mutation($input: InputTaxRoutingRecord!) {
   createTaxRoutingRecord(input: $input) { ${recordFields()} }
 }`;
 
-const CASE_NUMBER_ATTEMPTS = 8;
-
-/** True when the database refused the row because the case number is already in use. */
-function isCaseNumberClash(err: unknown): boolean {
-  return err instanceof AppfwClientError && /case_number|unique|duplicate/i.test(err.message);
-}
-
 /** Creates the routing record row (business spec 4/9.1) — the one write that must happen before
  * a new request can appear in My Cases. Starts life in `processing`/step 0, matching the previous
- * mock's `createRecord` (documents are already "uploaded" by the time this is called).
- *
- * The four-digit case number is picked here and the database's UNIQUE constraint decides whether
- * it stands: a clash (with a record this user cannot see) picks another number and tries again. */
+ * mock's `createRecord` (documents are already "uploaded" by the time this is called). */
 export async function createRoutingRecord(userName: string, input: CreateRoutingRecordInput): Promise<RoutingCase> {
   const now = new Date().toISOString();
-  const taken = new Set(input.takenCaseNumbers ?? []);
-  for (let attempt = 1; ; attempt += 1) {
-    const caseNumber = pickCaseNumber(taken);
-    if (caseNumber === null) throw new Error('No case numbers are left to assign.');
-    const graphqlInput = {
-      id: null,
-      case_number: caseNumber,
-      status: STATUS_TO_DB.Processing,
-      created_at: now,
-      updated_at: now,
-      assigned_user_id: input.assignedUserId,
-      client_first_name: input.client.firstName,
-      client_last_name: input.client.lastName,
-      client_full_name: input.client.fullName,
-      office_location: input.client.officeLocation,
-      pds_email: input.client.pdsEmail,
-      personal_email: input.client.personalEmail,
-      additional_email: input.additionalEmail,
-      notification_flag: input.notifyClient,
-      internal_folder: input.client.internalFolder,
-      folder_name: input.client.folderName,
-      read_write_password: input.client.readWritePassword,
-      client_reference_id: input.client.refId,
-      progress_step: 0,
-      version: null
-    };
-    try {
-      const result = await client(userName).graphql<{ createTaxRoutingRecord: RawTaxRoutingRecord }, { input: unknown }>({
-        schemaName: 'tax_routing',
-        operationName: 'create_tax_routing_record',
-        query: CREATE_RECORD_MUTATION,
-        variables: { input: graphqlInput }
-      });
-      return toCase(result.data.createTaxRoutingRecord, null);
-    } catch (err) {
-      if (!isCaseNumberClash(err) || attempt >= CASE_NUMBER_ATTEMPTS) throw err;
-      taken.add(caseNumber);
-    }
-  }
+  const graphqlInput = {
+    id: null,
+    status: STATUS_TO_DB.Processing,
+    created_at: now,
+    updated_at: now,
+    assigned_user_id: input.assignedUserId,
+    client_first_name: input.client.firstName,
+    client_last_name: input.client.lastName,
+    client_full_name: input.client.fullName,
+    office_location: input.client.officeLocation,
+    pds_email: input.client.pdsEmail,
+    personal_email: input.client.personalEmail,
+    additional_email: input.additionalEmail,
+    notification_flag: input.notifyClient,
+    internal_folder: input.client.internalFolder,
+    folder_name: input.client.folderName,
+    read_write_password: input.client.readWritePassword,
+    client_reference_id: input.client.refId,
+    progress_step: 0,
+    version: null
+  };
+  const result = await client(userName).graphql<{ createTaxRoutingRecord: RawTaxRoutingRecord }, { input: unknown }>({
+    schemaName: 'tax_routing',
+    operationName: 'create_tax_routing_record',
+    query: CREATE_RECORD_MUTATION,
+    variables: { input: graphqlInput }
+  });
+  return toCase(result.data.createTaxRoutingRecord, null);
 }
 
 const UPDATE_RECORD_MUTATION = `mutation($input: InputTaxRoutingRecord!) {
@@ -328,7 +301,6 @@ export async function updateRoutingRecordProgress(userName: string, record: Rout
   const nextStatus = patch.status ?? record.status;
   const graphqlInput = {
     id: record.id,
-    case_number: record.caseNumber,
     status: STATUS_TO_DB[nextStatus],
     created_at: record.created,
     updated_at: new Date().toISOString(),
