@@ -15,6 +15,7 @@ members = [
   "appfw_provider_neo4j",
   "appfw_provider_postgres",
   "appfw_provider_salesforce",
+  "appfw_provider_sharepoint",
   "appfw_provider_snowflake",
   "appfw_provider_workday",
   "appfw_runtime",

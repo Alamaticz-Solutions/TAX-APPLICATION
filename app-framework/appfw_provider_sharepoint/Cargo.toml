@@ -1,0 +1,6 @@
+[package]
+name = "appfw-provider-sharepoint"
+version = "0.1.0"
+edition = "2021"
+description = "Microsoft SharePoint (via Microsoft Graph) evidence-gated provider skeleton for App Framework."
+publish = ["pds-app-framework-crates"]

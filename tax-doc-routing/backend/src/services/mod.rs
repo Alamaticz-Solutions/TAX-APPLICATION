@@ -9,8 +9,15 @@
 //! - `document_store`   - `DocumentStore` boundary (in-memory now; SharePoint later)
 //! - `pdf_protection`   - in-memory PDF encryption, fail-closed
 //! - `notifications`    - exception and final-confirmation email
+//!
+//! Built:
+//! - `graph`            - shared Microsoft Graph plumbing (auth, escaping, classification)
+//! - `sharepoint`       - SharePoint document-storage provider (separate from `graph`;
+//!                        see `docs/architecture/sharepoint-integration-plan.md`)
 
 pub mod authz;
 pub mod exception_task_actions;
 pub mod form_engine;
+pub mod graph;
 pub mod routing_record_actions;
+pub mod sharepoint;

@@ -136,6 +136,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "appfw-provider-sharepoint"
+version = "0.1.0"
+
+[[package]]
 name = "appfw-runtime"
 version = "0.2.0"
 dependencies = [
@@ -412,6 +416,7 @@ dependencies = [
  "Inflector",
  "anyhow",
  "appfw-provider-postgres",
+ "appfw-provider-sharepoint",
  "appfw-runtime",
  "async-graphql",
  "async-graphql-axum",
@@ -438,6 +443,7 @@ dependencies = [
  "postgres-types",
  "regex",
  "regorus",
+ "reqwest 0.12.28",
  "serde",
  "serde_json",
  "serde_yaml",

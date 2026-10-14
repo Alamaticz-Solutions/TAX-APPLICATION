@@ -220,6 +220,10 @@ name = "appfw-provider-servicenow"
 version = "0.1.1"
 
 [[package]]
+name = "appfw-provider-sharepoint"
+version = "0.1.0"
+
+[[package]]
 name = "appfw-provider-snowflake"
 version = "0.2.0"
 dependencies = [

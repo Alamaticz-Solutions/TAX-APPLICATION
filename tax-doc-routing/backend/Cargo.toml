@@ -30,6 +30,7 @@ provider-postgres = ["dep:appfw_provider_postgres"]
 
 anyhow = "1.0"
 appfw_provider_postgres = { package = "appfw-provider-postgres", path = "../../app-framework/appfw_provider_postgres", optional = true }
+appfw_provider_sharepoint = { package = "appfw-provider-sharepoint", path = "../../app-framework/appfw_provider_sharepoint" }
 appfw_runtime = { package = "appfw-runtime", path = "../../app-framework/appfw_runtime", default-features = false }
 async-graphql = { version = "6", features = ["bson", "chrono", "dynamic-schema"] }
 async-graphql-value = "6"
@@ -66,6 +67,7 @@ postgres-types = { version = "0.2", features = ["derive", "with-chrono-0_4"] }
 
 regorus = "0.2"
 regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
 
 serde = {version = "1.0", features = ["derive"] }
 serde_json = "1.0"
