@@ -25,7 +25,8 @@ fn exception_selection() -> serde_json::Value {
         "name": "exception_task",
         "selection_set": [
             field("id"), field("routing_record_id"), field("failure_reason"), field("failed_step"),
-            field("opened_at"), field("resolved_at"), field("assigned_user_id"), field("version"),
+            field("opened_at"), field("resolved_at"), field("assigned_user_id"), field("case_number"),
+            field("version"),
         ]
     })
 }
@@ -39,7 +40,8 @@ fn record_selection() -> serde_json::Value {
             field("client_full_name"), field("office_location"), field("pds_email"),
             field("personal_email"), field("additional_email"), field("notification_flag"),
             field("internal_folder"), field("folder_name"), field("read_write_password"),
-            field("client_reference_id"), field("progress_step"), field("version"),
+            field("client_reference_id"), field("progress_step"), field("case_number"),
+            field("temp_folder_id"), field("version"),
         ]
     })
 }
@@ -90,6 +92,7 @@ pub async fn retry_failed_step(
         opened_at: require_field(exception.opened_at, "opened_at")?,
         resolved_at: Some(chrono::Utc::now()),
         assigned_user_id: exception.assigned_user_id.clone(),
+        case_number: exception.case_number,
         version: exception.version,
     };
     data_access
@@ -132,6 +135,8 @@ pub async fn retry_failed_step(
         read_write_password: require_field(record.read_write_password.clone(), "read_write_password")?,
         client_reference_id: require_field(record.client_reference_id.clone(), "client_reference_id")?,
         progress_step: record.progress_step.unwrap_or(0),
+        case_number: record.case_number,
+        temp_folder_id: record.temp_folder_id.clone(),
         version: record.version,
     };
     let updated = data_access
@@ -139,9 +144,13 @@ pub async fn retry_failed_step(
             record_entity_type,
             record_selection(),
             record_input,
-            Some(user),
+            Some(user.clone()),
         )
         .await?;
+
+    // The filing pipeline runs on the server, so a retry restarts it there (every step is safe to
+    // repeat) instead of leaving the browser to animate progress.
+    crate::services::document_routing::spawn_pipeline(user, data_access.clone(), record_id.clone());
 
     tracing::info!(
         exception_task_id = %exception_task_id,

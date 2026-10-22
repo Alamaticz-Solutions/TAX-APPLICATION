@@ -1,21 +1,24 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { ArrowLeft, Loader2, Pencil, Send, Trash2 } from 'lucide-react';
+import { ArrowLeft, Eye, Pencil, Send, Trash2 } from 'lucide-react';
+import { WorkingSpinner } from '../../components/WorkingSpinner';
 import { DataGridShell } from '@appfw/pds-health-components/data';
 import { FileUpload } from '@appfw/pds-health-components/forms';
 import { Badge, Button, SegmentedControl } from '@appfw/pds-health-components/primitives';
 import { InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
 import type { PdsDataGridColumn } from '@appfw/pds-health-components/types';
-import { sampleDraftDocuments } from '../shared/data/documents';
 import { useDocumentTypeCatalogue } from '../shared/hooks/useDocumentTypeCatalogue';
 import { useRoutingRecord } from '../shared/hooks/useRoutingRecord';
+import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import { mockAIService } from '../shared/services/mockAIService';
-import { mockDocumentService } from '../shared/services/mockDocumentService';
 import type { TaxDocument } from '../shared/types';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { buildFileName } from '../shared/utils/filenameRules';
+import { formatBytes } from '../shared/utils/format';
 import { EditDocumentDialog, type EditedDocument } from './EditDocumentDialog';
+import { PdfPreviewDialog } from './PdfPreviewDialog';
 
-type Upload = { id: string; fileName: string; fileSize: number };
+type Upload = { id: string; fileName: string; fileSize: number; storageFileId?: string };
 
 type GridRow = {
   id: string;
@@ -26,6 +29,7 @@ type GridRow = {
   entityNumber: string;
   entityName: string;
   uploaded: string;
+  size: string;
   named: string;
   protection: string;
   status: string;
@@ -37,21 +41,30 @@ const isPdf = (f: File) => f.type === 'application/pdf' || f.name.toLowerCase().
 const dash = (v: string | number | undefined | null) => (v === undefined || v === null || v === '' ? '—' : String(v));
 
 /**
- * Screen 2 of "Create New Request". Uploaded files are read by the (mock) AI assistant, which
- * prefills one grid row per file. Nothing is final until the user reviews the rows: every value
+ * Screen 2 of "Create New Request". Each PDF is stored in the request's temporary storage folder as
+ * soon as it is added; the (mock) AI assistant reads it and prefills one grid row per file. Nothing is final until the user reviews the rows: every value
  * can be corrected in the Review dialog, and password protection can be flipped inline.
  */
 export function UploadDocumentsStep() {
   const navigate = useNavigate();
-  const { draft, addDocument, updateDocument, removeDocument, submit, reset } = useRoutingRecord();
+  const { draft, addDocument, updateDocument, removeDocument, submit, discard, uploadFile } = useRoutingRecord();
   const { getDocumentType } = useDocumentTypeCatalogue();
+  const { getCase } = useTaxRouting();
   const { client, documents } = draft;
+  // The request already exists (it was created on screen 1), so its number is shown here.
+  const created = draft.recordId ? getCase(draft.recordId) : null;
+  const requestLabel = created ? formatCaseNumber(created.caseNumber, created.id) : '';
   const [analyzing, setAnalyzing] = useState<Upload[]>([]);
   const [unclassified, setUnclassified] = useState<Upload[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [rejected, setRejected] = useState<string[]>([]);
+  const [uploadErrors, setUploadErrors] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [tried, setTried] = useState(false);
+  const [previewId, setPreviewId] = useState<string | null>(null);
+  // The files added in this browser, kept so the user can open one to check it is the right document.
+  const files = useRef(new Map<string, File>());
   const counter = useRef(0);
 
   const nextId = () => `doc-${Date.now()}-${counter.current++}`;
@@ -59,8 +72,20 @@ export function UploadDocumentsStep() {
 
   const processFile = async (file: File) => {
     const upload: Upload = { id: nextId(), fileName: file.name, fileSize: file.size };
+    files.current.set(upload.id, file);
     setAnalyzing((list) => [...list, upload]);
-    const [suggestion] = await Promise.all([mockAIService.analyzeDocument(file.name), mockDocumentService.uploadDocument(file)]);
+    let suggestion;
+    try {
+      // The file goes to the request's temporary folder while the AI reads its name.
+      const [read, stored] = await Promise.all([mockAIService.analyzeDocument(file.name), uploadFile(file)]);
+      suggestion = read;
+      upload.storageFileId = stored.fileId;
+    } catch (err) {
+      setAnalyzing((list) => list.filter((u) => u.id !== upload.id));
+      files.current.delete(upload.id);
+      setUploadErrors((list) => [...list, err instanceof Error && err.message ? err.message : `${file.name} could not be uploaded.`]);
+      return;
+    }
     setAnalyzing((list) => list.filter((u) => u.id !== upload.id));
     if (!suggestion.documentType || suggestion.confidence < AI_CONFIDENT) {
       setUnclassified((list) => [...list, upload]);
@@ -78,7 +103,8 @@ export function UploadDocumentsStep() {
       passwordProtected: Boolean(cfg?.supportsPasswordProtection && passwordDefault),
       attachments: {},
       status: 'Ready',
-      aiConfidence: suggestion.confidence
+      aiConfidence: suggestion.confidence,
+      storageFileId: upload.storageFileId
     });
   };
 
@@ -86,6 +112,7 @@ export function UploadDocumentsStep() {
     if (!list?.length) return;
     const files = Array.from(list);
     setRejected(files.filter((f) => !isPdf(f)).map((f) => f.name));
+    setUploadErrors([]);
     files.filter(isPdf).forEach((f) => void processFile(f));
   };
 
@@ -95,16 +122,22 @@ export function UploadDocumentsStep() {
   };
 
   const classify = (upload: Upload, values: EditedDocument) => {
-    addDocument({ id: upload.id, fileName: upload.fileName, fileSize: upload.fileSize, status: 'Ready', ...values });
+    addDocument({ id: upload.id, fileName: upload.fileName, fileSize: upload.fileSize, status: 'Ready', storageFileId: upload.storageFileId, ...values });
     setUnclassified((list) => list.filter((u) => u.id !== upload.id));
   };
 
   const submitAll = async () => {
     setTried(true);
     if (!client || documents.length === 0 || analyzing.length > 0) return;
+    setSubmitError('');
     setSubmitting(true);
-    await submit();
-    navigate('/new/processing');
+    try {
+      await submit();
+      navigate('/new/processing');
+    } catch (err) {
+      setSubmitError(err instanceof Error && err.message ? err.message : 'The request could not be submitted.');
+      setSubmitting(false);
+    }
   };
 
   const isDuplicate = (doc: TaxDocument, index: number) =>
@@ -120,6 +153,7 @@ export function UploadDocumentsStep() {
       entityNumber: d.entity?.number ?? '',
       entityName: d.entity?.name ?? '',
       uploaded: d.fileName,
+      size: formatBytes(d.fileSize),
       named: client ? buildFileName(client, d) : '',
       protection: d.id,
       status: d.id,
@@ -134,6 +168,7 @@ export function UploadDocumentsStep() {
       entityNumber: '',
       entityName: '',
       uploaded: u.fileName,
+      size: formatBytes(u.fileSize),
       named: '',
       protection: '',
       status: u.id,
@@ -150,7 +185,17 @@ export function UploadDocumentsStep() {
     { key: 'entityType', header: 'Entity Type', width: 150, render: (r) => dash(r.entityType) },
     { key: 'entityNumber', header: 'Entity Number', width: 130, render: (r) => dash(r.entityNumber) },
     { key: 'entityName', header: 'Entity Name', width: 220, render: (r) => dash(r.entityName) },
-    { key: 'uploaded', header: 'Document Uploaded', width: 160 },
+    {
+      key: 'uploaded',
+      header: 'Document Uploaded',
+      width: 240,
+      render: (r) => (
+        <span className="tax-stack-tight">
+          <span>{r.uploaded}</span>
+          {r.size ? <span className="tax-muted">{r.size}</span> : null}
+        </span>
+      )
+    },
     { key: 'named', header: 'Document Will Be Named', width: 270, render: (r) => dash(r.named) },
     {
       key: 'protection',
@@ -184,7 +229,7 @@ export function UploadDocumentsStep() {
         if (!doc) {
           return (
             <span className="tax-inline tax-muted">
-              <Loader2 size={14} className="tax-spin" aria-hidden="true" /> Analyzing…
+              <WorkingSpinner size={14} /> Analyzing…
             </span>
           );
         }
@@ -200,15 +245,21 @@ export function UploadDocumentsStep() {
     {
       key: 'actions',
       header: 'Actions',
-      width: 100,
+      width: 140,
       align: 'end',
       render: (r) =>
         docById(r.id) ? (
           <span className="tax-inline">
+            <Button size="sm" variant="quiet" aria-label={`Preview ${r.uploaded}`} disabled={!files.current.has(r.id)} onClick={() => setPreviewId(r.id)}>
+              <Eye size={15} aria-hidden="true" />
+            </Button>
             <Button size="sm" variant="quiet" aria-label={`Review ${r.uploaded}`} onClick={() => setEditingId(r.id)}>
               <Pencil size={15} aria-hidden="true" />
             </Button>
-            <Button size="sm" variant="quiet" aria-label={`Remove ${r.uploaded}`} onClick={() => removeDocument(r.id)}>
+            <Button size="sm" variant="quiet" aria-label={`Remove ${r.uploaded}`} onClick={() => {
+                files.current.delete(r.id);
+                removeDocument(r.id);
+              }}>
               <Trash2 size={15} aria-hidden="true" />
             </Button>
           </span>
@@ -218,12 +269,17 @@ export function UploadDocumentsStep() {
 
   const editing = editingId ? docById(editingId) ?? null : null;
   const manual = unclassified[0];
+  const previewFile = previewId ? files.current.get(previewId) : undefined;
 
   return (
     <div className="tax-stack">
       <Surface
-        title="Upload Documents"
-        subtitle={client ? `Request for ${client.fullName}. AI reads each file and prefills the table below.` : 'AI reads each file and prefills the table below.'}
+        title={requestLabel ? `Upload Documents · ${requestLabel}` : 'Upload Documents'}
+        subtitle={
+          client
+            ? `${requestLabel ? `Request ${requestLabel}` : 'Request'} for ${client.fullName}. AI reads each file and prefills the table below.`
+            : 'AI reads each file and prefills the table below.'
+        }
         density="compact"
       >
         <FileUpload
@@ -239,28 +295,19 @@ export function UploadDocumentsStep() {
         {rejected.length > 0 ? (
           <InlineAlert tone="warning" title="Some files were skipped" detail={`Only PDF files (.pdf) are allowed: ${rejected.join(', ')}`} />
         ) : null}
+        {uploadErrors.map((message) => (
+          <InlineAlert key={message} tone="danger" title="A file could not be uploaded" detail={message} />
+        ))}
         {tried && documents.length === 0 ? (
-          <InlineAlert tone="warning" title="Upload at least one document to submit" detail="Import a PDF above, or load the sample documents." />
+          <InlineAlert tone="warning" title="Upload at least one document to submit" detail="Import a PDF above." />
         ) : null}
+        {submitError ? <InlineAlert tone="danger" title="The request could not be submitted" detail={submitError} /> : null}
       </Surface>
 
       <Surface
         title={`Extracted Documents (${documents.length})`}
         subtitle="Review the AI-prefilled values. Use the pencil to correct a row before submitting."
         density="compact"
-        actions={
-          documents.length === 0 && analyzing.length === 0 ? (
-            <Button
-              size="sm"
-              variant="secondary"
-              onClick={() =>
-                sampleDraftDocuments().forEach((d) => addDocument({ ...d, id: nextId(), passwordProtected: Boolean(getDocumentType(d.type)?.supportsPasswordProtection && passwordDefault), aiConfidence: 96 }))
-              }
-            >
-              Use sample documents
-            </Button>
-          ) : undefined
-        }
       >
         <DataGridShell<GridRow>
           ariaLabel="Extracted documents"
@@ -282,18 +329,27 @@ export function UploadDocumentsStep() {
             variant="quiet"
             disabled={submitting}
             onClick={() => {
-              reset();
-              navigate('/dashboard');
+              // Cancelling removes the request and its temporary folder, with the files uploaded so far.
+              void discard().then(() => navigate('/dashboard'));
             }}
           >
             Cancel
           </Button>
-          <Button variant="primary" isLoading={submitting} disabled={analyzing.length > 0} onClick={() => void submitAll()}>
-            <Send size={16} aria-hidden="true" /> Submit
+          <Button variant="primary" disabled={submitting || analyzing.length > 0} onClick={() => void submitAll()}>
+            {submitting ? (
+              <>
+                <WorkingSpinner /> Submitting…
+              </>
+            ) : (
+              <>
+                <Send size={16} aria-hidden="true" /> Submit
+              </>
+            )}
           </Button>
         </div>
       </div>
 
+      {previewFile ? <PdfPreviewDialog file={previewFile} onClose={() => setPreviewId(null)} /> : null}
       {editing ? (
         <EditDocumentDialog doc={editing} fileName={editing.fileName} onSave={(v) => saveEdit(editing.id, v)} onClose={() => setEditingId(null)} />
       ) : null}

@@ -1,5 +1,5 @@
 import { createAppfwClient } from './appfwClient';
-import type { ExceptionInfo, RecordStatus, RoutingCase, RoutingRecordClient } from '../features/shared/types';
+import type { DocEntity, DocumentTypeName, EntityType, ExceptionInfo, RecordStatus, RoutingCase, RoutingRecordClient, TaxDocument } from '../features/shared/types';
 
 // Routing records and exceptions (business spec 4/5/5.3), read/written live from the database
 // instead of frontend/src/features/shared/data/cases.ts's hardcoded `seedCases`. Same local-auth
@@ -14,6 +14,9 @@ function localAuthHeader(userName: string, tenantId = 't1'): string {
 function client(userName: string) {
   return createAppfwClient({ authorization: localAuthHeader(userName), tenantId: 't1' });
 }
+
+/** The same client, for the bulk-request calls in `bulkRequests.ts`. */
+export const clientFor = client;
 
 // RoutingRecordStatus (DB) <-> RecordStatus (frontend label). A bijective mapping so a status
 // read from the database and one about to be written back always round-trip losslessly. The
@@ -58,6 +61,7 @@ type RawTaxRoutingRecord = {
   read_write_password: string | null;
   client_reference_id: string | null;
   progress_step: number | null;
+  case_number: number | null;
   version: number | null;
 };
 
@@ -98,6 +102,7 @@ function toCase(row: RawTaxRoutingRecord, exception: ExceptionInfo | null): Rout
   };
   return {
     id: row.id,
+    caseNumber: row.case_number ?? null,
     client: clientSnapshot,
     status,
     task: TASK_LABEL[status],
@@ -122,7 +127,7 @@ function recordFields(): string {
     id status created_at updated_at assigned_user_id
     client_first_name client_last_name client_full_name office_location pds_email personal_email
     additional_email notification_flag internal_folder folder_name read_write_password
-    client_reference_id progress_step version
+    client_reference_id progress_step case_number version
   `;
 }
 
@@ -133,6 +138,7 @@ type RawExceptionTask = {
   failed_step: string | null;
   opened_at: string | null;
   resolved_at: string | null;
+  case_number: number | null;
 };
 
 function ageFrom(openedAt: string | null): string {
@@ -147,12 +153,12 @@ function ageFrom(openedAt: string | null): string {
 
 /** Open (unresolved) exceptions, keyed by their parent routing_record_id, for joining onto the
  * matching records client-side (business spec 5.3: the exception queue is one shared list). */
-async function fetchOpenExceptions(userName: string): Promise<Map<string, ExceptionInfo>> {
+async function fetchOpenExceptions(userName: string): Promise<Map<string, ExceptionInfo & { caseNumber: number | null }>> {
   // No "is null" filter operator exists on the query surface; the exception queue is a small,
   // shared list (business spec 5.3), so filtering resolved_at client-side is cheap and correct.
   const query = `{
     queryExceptionTasks(limit: 200) {
-      items { id routing_record_id failure_reason failed_step opened_at resolved_at }
+      items { id routing_record_id failure_reason failed_step opened_at resolved_at case_number }
     }
   }`;
   const result = await client(userName).graphql<{ queryExceptionTasks: { items: RawExceptionTask[] } }, Record<string, never>>({
@@ -161,7 +167,7 @@ async function fetchOpenExceptions(userName: string): Promise<Map<string, Except
     query,
     variables: {}
   });
-  const map = new Map<string, ExceptionInfo>();
+  const map = new Map<string, ExceptionInfo & { caseNumber: number | null }>();
   for (const row of result.data.queryExceptionTasks.items) {
     if (!row.routing_record_id || row.resolved_at) continue;
     map.set(row.routing_record_id, {
@@ -169,10 +175,92 @@ async function fetchOpenExceptions(userName: string): Promise<Map<string, Except
       error: row.failure_reason ?? 'Exception',
       document: row.failed_step ?? '—',
       age: ageFrom(row.opened_at),
-      detail: row.failure_reason ?? ''
+      detail: row.failure_reason ?? '',
+      caseNumber: row.case_number ?? null
     });
   }
   return map;
+}
+
+type RawTaxDocument = {
+  id: string;
+  routing_record_id: string | null;
+  document_type_route_id: string | null;
+  document_year: number | null;
+  document_name: string | null;
+  entity_type: string | null;
+  entity_oracle_id: string | null;
+  entity_name: string | null;
+  is_password_protected: boolean | null;
+  attachment_file: string | null;
+  k1_attachments: string[] | null;
+  form_8308_attachments: string[] | null;
+  storage_file_id: string | null;
+  file_size: number | null;
+  is_file_moved: boolean | null;
+};
+
+let routeTypeCache: Map<string, string> | null = null;
+
+/** Document type id -> label, from the document-type table (read once). */
+async function routeTypes(userName: string): Promise<Map<string, string>> {
+  if (routeTypeCache) return routeTypeCache;
+  const result = await client(userName).graphql<{ queryDocumentTypeRoutes: { items: { id: string; document_type: string | null }[] } }, Record<string, never>>({
+    schemaName: 'tax_routing',
+    operationName: 'query_document_type_routes',
+    query: '{ queryDocumentTypeRoutes(limit: 250) { items { id document_type } } }',
+    variables: {}
+  });
+  routeTypeCache = new Map(result.data.queryDocumentTypeRoutes.items.map((i) => [i.id, i.document_type ?? '']));
+  return routeTypeCache;
+}
+
+function toDocument(row: RawTaxDocument, types: Map<string, string>): TaxDocument {
+  const fileName = row.attachment_file ?? row.document_name ?? '';
+  const entity: DocEntity | null = row.entity_name
+    ? { type: (row.entity_type ?? '') as EntityType, name: row.entity_name, number: row.entity_oracle_id ?? '' }
+    : null;
+  const attachments: Record<string, boolean> = {};
+  for (const key of [...(row.k1_attachments ?? []), ...(row.form_8308_attachments ?? [])]) attachments[key] = true;
+  return {
+    id: row.id,
+    type: (types.get(row.document_type_route_id ?? '') ?? '') as DocumentTypeName,
+    year: row.document_year ?? 0,
+    name: fileName,
+    fileName,
+    fileSize: row.file_size ?? undefined,
+    entity,
+    passwordProtected: row.is_password_protected ?? false,
+    attachments,
+    status: row.is_file_moved ? 'Filed' : 'Uploaded',
+    storageFileId: row.storage_file_id ?? undefined
+  };
+}
+
+const DOCUMENT_FIELDS = 'id routing_record_id document_type_route_id document_year document_name entity_type entity_oracle_id entity_name is_password_protected attachment_file k1_attachments form_8308_attachments storage_file_id file_size is_file_moved';
+
+/** The stored documents of the given records, grouped by record. */
+async function fetchDocumentsFor(userName: string, recordIds: string[]): Promise<Map<string, TaxDocument[]>> {
+  const grouped = new Map<string, TaxDocument[]>();
+  if (recordIds.length === 0) return grouped;
+  const types = await routeTypes(userName);
+  const query = `query($filter: JSON) { queryTaxDocuments(filter: $filter, limit: 250) { items { ${DOCUMENT_FIELDS} } } }`;
+  for (let i = 0; i < recordIds.length; i += 40) {
+    const chunk = recordIds.slice(i, i + 40);
+    const result = await client(userName).graphql<{ queryTaxDocuments: { items: RawTaxDocument[] } }, { filter: unknown }>({
+      schemaName: 'tax_routing',
+      operationName: 'query_tax_documents',
+      query,
+      variables: { filter: { routing_record_id: { _in: chunk } } }
+    });
+    for (const row of result.data.queryTaxDocuments.items) {
+      if (!row.routing_record_id) continue;
+      const list = grouped.get(row.routing_record_id) ?? [];
+      list.push(toDocument(row, types));
+      grouped.set(row.routing_record_id, list);
+    }
+  }
+  return grouped;
 }
 
 async function queryRecords(userName: string, filter: unknown): Promise<RoutingCase[]> {
@@ -190,7 +278,17 @@ async function queryRecords(userName: string, filter: unknown): Promise<RoutingC
     }),
     fetchOpenExceptions(userName)
   ]);
-  return result.data.queryTaxRoutingRecords.items.map((row) => toCase(row, exceptions.get(row.id) ?? null));
+  const cases = result.data.queryTaxRoutingRecords.items.map((row) => toCase(row, exceptions.get(row.id) ?? null));
+  // Only records that have been submitted have stored documents, so skip the others.
+  const withDocuments = cases.filter((c) => c.progress >= 3).map((c) => c.id);
+  const documents = await fetchDocumentsFor(userName, withDocuments);
+  return cases.map((c) => ({ ...c, documents: documents.get(c.id) ?? [] }));
+}
+
+/** One record, freshly read (used to follow a request while the server files its documents). */
+export async function fetchRecordById(userName: string, recordId: string): Promise<RoutingCase | null> {
+  const list = await queryRecords(userName, { id: { _eq: recordId } });
+  return list[0] ?? null;
 }
 
 /** Every record assigned to this user (My Cases / Work I Need To Do / Dashboard for a standard user). */
@@ -223,6 +321,7 @@ export async function fetchExceptionQueue(userName: string, knownCases: RoutingC
     }
     result.push({
       id: recordId,
+      caseNumber: info.caseNumber,
       client: { id: '', firstName: '', lastName: '', fullName: 'Restricted', officeLocation: '', pdsEmail: '', personalEmail: '', internalFolder: '', folderName: '', readWritePassword: '' },
       status: 'Exception',
       task: TASK_LABEL.Exception,
@@ -255,14 +354,14 @@ const CREATE_RECORD_MUTATION = `mutation($input: InputTaxRoutingRecord!) {
   createTaxRoutingRecord(input: $input) { ${recordFields()} }
 }`;
 
-/** Creates the routing record row (business spec 4/9.1) — the one write that must happen before
- * a new request can appear in My Cases. Starts life in `processing`/step 0, matching the previous
- * mock's `createRecord` (documents are already "uploaded" by the time this is called). */
+/** Creates the routing record when the user leaves screen 1, so the request has its number (TD-1001)
+ * and its temporary storage folder before any document is uploaded. It starts out collecting
+ * documents; the server assigns the number and creates the folder (create_impl). */
 export async function createRoutingRecord(userName: string, input: CreateRoutingRecordInput): Promise<RoutingCase> {
   const now = new Date().toISOString();
   const graphqlInput = {
     id: null,
-    status: STATUS_TO_DB.Processing,
+    status: STATUS_TO_DB.Open,
     created_at: now,
     updated_at: now,
     assigned_user_id: input.assignedUserId,
@@ -279,6 +378,9 @@ export async function createRoutingRecord(userName: string, input: CreateRouting
     read_write_password: input.client.readWritePassword,
     client_reference_id: input.client.refId,
     progress_step: 0,
+    // Assigned by the backend (create_impl); anything sent here would be replaced.
+    case_number: null,
+    temp_folder_id: null,
     version: null
   };
   const result = await client(userName).graphql<{ createTaxRoutingRecord: RawTaxRoutingRecord }, { input: unknown }>({
@@ -290,43 +392,95 @@ export async function createRoutingRecord(userName: string, input: CreateRouting
   return toCase(result.data.createTaxRoutingRecord, null);
 }
 
-const UPDATE_RECORD_MUTATION = `mutation($input: InputTaxRoutingRecord!) {
-  updateTaxRoutingRecord(input: $input) { ${recordFields()} }
+const UPLOAD_DOCUMENT_MUTATION = `mutation($recordId: String!, $fileName: String!, $contentBase64: String!) {
+  uploadDocument(recordId: $recordId, fileName: $fileName, contentBase64: $contentBase64)
 }`;
 
-/** Persists a status/progress advance from the client-side processing animation. Carries every
- * other field forward unchanged, same "read the whole row, replace it" pattern the backend's
- * cancel_record/reassign_record custom mutations use for the columns they don't touch. */
-export async function updateRoutingRecordProgress(userName: string, record: RoutingCase, patch: { status?: RecordStatus; progress?: number }): Promise<RoutingCase> {
-  const nextStatus = patch.status ?? record.status;
-  const graphqlInput = {
-    id: record.id,
-    status: STATUS_TO_DB[nextStatus],
-    created_at: record.created,
-    updated_at: new Date().toISOString(),
-    assigned_user_id: record.assignedTo,
-    client_first_name: record.client.firstName,
-    client_last_name: record.client.lastName,
-    client_full_name: record.client.fullName,
-    office_location: record.client.officeLocation,
-    pds_email: record.client.pdsEmail,
-    personal_email: record.client.personalEmail,
-    additional_email: record.additionalEmail ?? null,
-    notification_flag: record.notifyClient,
-    internal_folder: record.client.internalFolder,
-    folder_name: record.client.folderName,
-    read_write_password: record.client.readWritePassword,
-    client_reference_id: record.client.id,
-    progress_step: patch.progress ?? record.progress,
-    version: record.version
-  };
-  const result = await client(userName).graphql<{ updateTaxRoutingRecord: RawTaxRoutingRecord }, { input: unknown }>({
-    schemaName: 'tax_routing',
-    operationName: 'update_tax_routing_record',
-    query: UPDATE_RECORD_MUTATION,
-    variables: { input: graphqlInput }
+export type UploadedFile = { fileId: string; fileName: string; fileSize: number };
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result ?? '');
+      resolve(text.slice(text.indexOf(',') + 1));
+    };
+    reader.onerror = () => reject(new Error('The file could not be read.'));
+    reader.readAsDataURL(file);
   });
-  return toCase(result.data.updateTaxRoutingRecord, record.exception);
+}
+
+/** Stores one PDF in the request's temporary storage folder. The server checks the type, size and
+ * name and refuses a file that was already uploaded for this request. */
+export async function uploadDocumentFile(userName: string, recordId: string, file: File): Promise<UploadedFile> {
+  const contentBase64 = await fileToBase64(file);
+  const result = await client(userName).graphql<{ uploadDocument: { file_id: string; file_name: string; file_size: number } }, { recordId: string; fileName: string; contentBase64: string }>({
+    schemaName: 'tax_routing',
+    operationName: 'upload_document',
+    query: UPLOAD_DOCUMENT_MUTATION,
+    variables: { recordId, fileName: file.name, contentBase64 }
+  });
+  const u = result.data.uploadDocument;
+  return { fileId: u.file_id, fileName: u.file_name, fileSize: u.file_size };
+}
+
+const DOWNLOAD_DOCUMENT_MUTATION = `mutation($recordId: String!, $documentId: String!) {
+  downloadDocument(recordId: $recordId, documentId: $documentId)
+}`;
+
+/** Reads one stored document of a record (the filed copy) so it can be previewed or downloaded. */
+export async function downloadDocumentFile(userName: string, recordId: string, documentId: string): Promise<File> {
+  const result = await client(userName).graphql<{ downloadDocument: { file_name: string; content_base64: string } }, { recordId: string; documentId: string }>({
+    schemaName: 'tax_routing',
+    operationName: 'download_document',
+    query: DOWNLOAD_DOCUMENT_MUTATION,
+    variables: { recordId, documentId }
+  });
+  const { file_name: name, content_base64: base64 } = result.data.downloadDocument;
+  const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+  return new File([bytes], name, { type: 'application/pdf' });
+}
+
+const SUBMIT_REQUEST_MUTATION = `mutation($recordId: String!, $documentsJson: String!) {
+  submitRequest(recordId: $recordId, documentsJson: $documentsJson)
+}`;
+
+/** Saves the document list and starts filing on the server. Returns at once; follow the record's
+ * progress with `fetchRecordById`. */
+export async function submitRequest(userName: string, recordId: string, documents: TaxDocument[]): Promise<void> {
+  const payload = documents.map((d) => ({
+    file_id: d.storageFileId ?? '',
+    file_name: d.fileName,
+    document_type: d.type,
+    year: d.year,
+    file_size: d.fileSize ?? null,
+    entity_type: d.entity?.type ?? null,
+    entity_oracle_id: d.entity?.number ?? null,
+    entity_name: d.entity?.name ?? null,
+    password_protected: d.passwordProtected,
+    k1_attachments: ['k1Statement', 'k1Schedule'].filter((k) => d.attachments[k]),
+    form_8308_attachments: ['form8308Attachment'].filter((k) => d.attachments[k])
+  }));
+  await client(userName).graphql<{ submitRequest: unknown }, { recordId: string; documentsJson: string }>({
+    schemaName: 'tax_routing',
+    operationName: 'submit_request',
+    query: SUBMIT_REQUEST_MUTATION,
+    variables: { recordId, documentsJson: JSON.stringify(payload) }
+  });
+}
+
+const DISCARD_REQUEST_MUTATION = `mutation($recordId: String!) {
+  discardRequest(recordId: $recordId)
+}`;
+
+/** Abandons a request that was started but never submitted; its temporary folder is removed. */
+export async function discardRequest(userName: string, recordId: string): Promise<void> {
+  await client(userName).graphql<{ discardRequest: unknown }, { recordId: string }>({
+    schemaName: 'tax_routing',
+    operationName: 'discard_request',
+    query: DISCARD_REQUEST_MUTATION,
+    variables: { recordId }
+  });
 }
 
 const CANCEL_RECORD_MUTATION = `mutation($recordId: String!, $resolutionStatus: String!, $comments: String!) {
@@ -394,4 +548,15 @@ export async function fetchStaffDirectory(userName: string): Promise<{ id: strin
   return result.data.queryAppUsers.items
     .filter((u) => u.display_name && u.display_name !== 'Local Admin')
     .map((u) => ({ id: u.id, name: u.display_name ?? u.id }));
+}
+
+/** The signed-in user's display name (AppUser.display_name), for the sidebar and greetings. */
+export async function fetchAppUserName(userName: string, userId: string): Promise<string | null> {
+  const result = await client(userName).graphql<{ queryAppUsers: { items: RawAppUser[] } }, { filter: unknown }>({
+    schemaName: 'tax_routing',
+    operationName: 'query_app_users',
+    query: `query($filter: JSON) { queryAppUsers(filter: $filter, limit: 1) { items { id display_name } } }`,
+    variables: { filter: { id: { _eq: userId } } }
+  });
+  return result.data.queryAppUsers.items[0]?.display_name ?? null;
 }

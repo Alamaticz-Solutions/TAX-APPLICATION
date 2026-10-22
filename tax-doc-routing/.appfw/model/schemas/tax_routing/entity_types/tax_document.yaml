@@ -111,3 +111,20 @@
     caption: Amended Documents
     is_required: false
     data_type: StringArray
+
+  # The uploaded file's id in document storage (Box). While the request is being collected it
+  # points at the copy in the temporary folder; submission reads it from there.
+  - name: storage_file_id
+    caption: Storage File Id
+    is_required: false
+    data_type: String
+
+  - name: file_size
+    caption: File Size (bytes)
+    is_required: false
+    data_type: Int32
+
+  # Set once every required copy of this document has been written to its permanent folders.
+  - name: is_file_moved
+    caption: Is File Moved
+    fragment: property-boolean-toggle-required

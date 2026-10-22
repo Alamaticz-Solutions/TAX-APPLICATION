@@ -5516,6 +5516,30 @@ export const taxRoutingUiContract = {
           }
         },
         {
+          "name": "case_number",
+          "label": "Case Number",
+          "kind": "scalar",
+          "dataType": "Int32",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "number"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
           "name": "version",
           "label": "Version",
           "kind": "scalar",
@@ -5680,7 +5704,8 @@ export const taxRoutingUiContract = {
             "id",
             "failed_step",
             "opened_at",
-            "resolved_at"
+            "resolved_at",
+            "case_number"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -5706,6 +5731,7 @@ export const taxRoutingUiContract = {
             "failed_step",
             "opened_at",
             "resolved_at",
+            "case_number",
             "version"
           ],
           "requiresAuth": true,
@@ -5724,7 +5750,8 @@ export const taxRoutingUiContract = {
             "id",
             "failed_step",
             "opened_at",
-            "resolved_at"
+            "resolved_at",
+            "case_number"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -5805,6 +5832,7 @@ export const taxRoutingUiContract = {
             "failed_step",
             "opened_at",
             "resolved_at",
+            "case_number",
             "version"
           ],
           "requiresAuth": true,
@@ -5831,6 +5859,7 @@ export const taxRoutingUiContract = {
             "failed_step",
             "opened_at",
             "resolved_at",
+            "case_number",
             "version"
           ],
           "requiresAuth": true,
@@ -5866,7 +5895,8 @@ export const taxRoutingUiContract = {
             "id",
             "failed_step",
             "opened_at",
-            "resolved_at"
+            "resolved_at",
+            "case_number"
           ],
           "states": [
             "loading",
@@ -5883,6 +5913,7 @@ export const taxRoutingUiContract = {
             "failed_step",
             "opened_at",
             "resolved_at",
+            "case_number",
             "version"
           ],
           "states": [
@@ -5898,7 +5929,8 @@ export const taxRoutingUiContract = {
             "failure_reason",
             "failed_step",
             "opened_at",
-            "resolved_at"
+            "resolved_at",
+            "case_number"
           ],
           "states": [
             "loading",
@@ -23974,6 +24006,455 @@ export const taxRoutingUiContract = {
     },
     {
       "schemaName": "tax_routing",
+      "typeName": "StorageToken",
+      "routeSegment": "storage_tokens",
+      "addressing": {
+        "entityUri": "appfw://entity/tax_routing/StorageToken",
+        "recordUriTemplate": "appfw://entity/tax_routing/StorageToken/{recordLocator}",
+        "listRoute": "/data/storage_tokens",
+        "routeTemplate": "/data/storage_tokens/:recordLocator",
+        "filteredListRoute": "/data/storage_tokens?filter=:filterJson",
+        "routeIdKind": "record_locator",
+        "idKinds": [
+          {
+            "kind": "record_locator",
+            "field": "record_locator",
+            "public": true,
+            "routeSafe": true,
+            "answerEnvelope": true,
+            "filterOperators": [
+              "eq",
+              "in"
+            ]
+          },
+          {
+            "kind": "primary_key",
+            "field": "id",
+            "public": false,
+            "routeSafe": false,
+            "answerEnvelope": false,
+            "filterOperators": []
+          }
+        ],
+        "resolveOperation": {
+          "name": "find_storage_token",
+          "graphqlName": "findStorageToken"
+        },
+        "locatorResolveOperation": {
+          "name": "find_storage_token_by_locator",
+          "graphqlName": "findStorageTokenByLocator"
+        },
+        "queryOperation": {
+          "name": "query_storage_tokens",
+          "graphqlName": "queryStorageTokens"
+        },
+        "batchResolution": {
+          "field": "record_locator",
+          "operator": "in",
+          "maxPageSize": 100,
+          "filterParameter": "filter",
+          "fallback": "by_locator_loop"
+        }
+      },
+      "caption": {
+        "singular": "Storage Token",
+        "plural": "Storage Tokens"
+      },
+      "primaryKey": "id",
+      "captionField": "provider",
+      "audited": false,
+      "readOnly": false,
+      "facets": [],
+      "fields": [
+        {
+          "name": "id",
+          "label": "Id",
+          "kind": "scalar",
+          "dataType": "Uuid",
+          "required": true,
+          "readOnly": true,
+          "isKey": true,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": false,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "readonly"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": true,
+            "concurrencyControl": false,
+            "clientHint": "Generated primary key; display only."
+          }
+        },
+        {
+          "name": "provider",
+          "label": "Provider",
+          "kind": "scalar",
+          "dataType": "String",
+          "required": true,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "text"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Required by the generated model."
+          }
+        },
+        {
+          "name": "access_token",
+          "label": "Access Token",
+          "kind": "scalar",
+          "dataType": "String",
+          "required": true,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "text"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Required by the generated model."
+          }
+        },
+        {
+          "name": "issued_at",
+          "label": "Issued At",
+          "kind": "scalar",
+          "dataType": "DateTime",
+          "required": true,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "datetime",
+            "format": "datetime"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Required by the generated model."
+          }
+        },
+        {
+          "name": "expires_at",
+          "label": "Expires At",
+          "kind": "scalar",
+          "dataType": "DateTime",
+          "required": true,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "datetime",
+            "format": "datetime"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Required by the generated model."
+          }
+        }
+      ],
+      "relationships": [],
+      "operations": [
+        {
+          "name": "query_storage_tokens",
+          "kind": "query",
+          "graphqlName": "queryStorageTokens",
+          "variables": [
+            {
+              "name": "filter",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Provider-normalized filter JSON"
+            },
+            {
+              "name": "sort",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Provider-normalized sort JSON"
+            },
+            {
+              "name": "skip",
+              "dataType": "Int",
+              "required": false,
+              "description": "Offset pagination start"
+            },
+            {
+              "name": "limit",
+              "dataType": "Int",
+              "required": false,
+              "description": "Requested page size"
+            },
+            {
+              "name": "after",
+              "dataType": "String",
+              "required": false,
+              "description": "Cursor returned by the previous page"
+            }
+          ],
+          "returns": "StorageTokenConnection",
+          "returnsShape": "connection",
+          "selectionPreset": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "find_storage_token",
+          "kind": "query",
+          "graphqlName": "findStorageToken",
+          "variables": [
+            {
+              "name": "id",
+              "dataType": "ID",
+              "required": true,
+              "description": "Primary key value"
+            }
+          ],
+          "returns": "StorageToken",
+          "returnsShape": "record",
+          "selectionPreset": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "get_storage_tokens",
+          "kind": "query",
+          "graphqlName": "getStorageTokens",
+          "variables": [],
+          "returns": "StorageTokenList",
+          "returnsShape": "list",
+          "selectionPreset": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "aggregate_storage_tokens",
+          "kind": "aggregate",
+          "graphqlName": "aggregateStorageTokens",
+          "variables": [
+            {
+              "name": "filter",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Provider-normalized filter JSON"
+            },
+            {
+              "name": "groupBy",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Aggregate grouping fields"
+            },
+            {
+              "name": "metrics",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Aggregate metric selections"
+            },
+            {
+              "name": "having",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Aggregate post-filter JSON"
+            },
+            {
+              "name": "sort",
+              "dataType": "JsonValue",
+              "required": false,
+              "description": "Aggregate sort JSON"
+            },
+            {
+              "name": "skip",
+              "dataType": "Int",
+              "required": false,
+              "description": "Offset pagination start"
+            },
+            {
+              "name": "limit",
+              "dataType": "Int",
+              "required": false,
+              "description": "Requested page size"
+            }
+          ],
+          "returns": "StorageTokenAggregate",
+          "returnsShape": "aggregate",
+          "selectionPreset": [],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "create_storage_token",
+          "kind": "mutation",
+          "graphqlName": "createStorageToken",
+          "variables": [
+            {
+              "name": "input",
+              "dataType": "Input",
+              "required": true,
+              "description": "Generated create input"
+            }
+          ],
+          "returns": "StorageToken",
+          "returnsShape": "record",
+          "selectionPreset": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "update_storage_token",
+          "kind": "mutation",
+          "graphqlName": "updateStorageToken",
+          "variables": [
+            {
+              "name": "input",
+              "dataType": "Input",
+              "required": true,
+              "description": "Generated update input"
+            }
+          ],
+          "returns": "StorageToken",
+          "returnsShape": "record",
+          "selectionPreset": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "requiresAuth": true,
+          "requiresTenant": true
+        },
+        {
+          "name": "delete_storage_token",
+          "kind": "mutation",
+          "graphqlName": "deleteStorageToken",
+          "variables": [
+            {
+              "name": "input",
+              "dataType": "Input",
+              "required": true,
+              "description": "Generated delete input"
+            }
+          ],
+          "returns": "Int64",
+          "returnsShape": "scalar",
+          "selectionPreset": [],
+          "requiresAuth": true,
+          "requiresTenant": true,
+          "disabledReason": "Generated delete actions require product confirmation UX before enabling."
+        }
+      ],
+      "scaffold": {
+        "list": {
+          "route": "/data/storage_tokens",
+          "fields": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "states": [
+            "loading",
+            "empty",
+            "error",
+            "policy_denied"
+          ]
+        },
+        "detail": {
+          "route": "/data/storage_tokens/:recordLocator",
+          "fields": [
+            "provider",
+            "id",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "states": [
+            "loading",
+            "empty",
+            "error",
+            "policy_denied"
+          ]
+        },
+        "edit": {
+          "route": "/data/storage_tokens/:recordLocator/edit",
+          "fields": [
+            "provider",
+            "access_token",
+            "issued_at",
+            "expires_at"
+          ],
+          "states": [
+            "loading",
+            "validation",
+            "saving",
+            "error",
+            "policy_denied"
+          ]
+        }
+      }
+    },
+    {
+      "schemaName": "tax_routing",
       "typeName": "TaxDocument",
       "routeSegment": "tax_documents",
       "addressing": {
@@ -24351,6 +24832,78 @@ export const taxRoutingUiContract = {
           }
         },
         {
+          "name": "storage_file_id",
+          "label": "Storage File Id",
+          "kind": "scalar",
+          "dataType": "String",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "text"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
+          "name": "file_size",
+          "label": "File Size (bytes)",
+          "kind": "scalar",
+          "dataType": "Int32",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "number"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
+          "name": "is_file_moved",
+          "label": "Is File Moved",
+          "kind": "scalar",
+          "dataType": "Boolean",
+          "required": true,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "toggle"
+          },
+          "validation": {
+            "required": true,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Required by the generated model."
+          }
+        },
+        {
           "name": "version",
           "label": "Version",
           "kind": "scalar",
@@ -24586,7 +25139,10 @@ export const taxRoutingUiContract = {
             "attachment_file",
             "k1_attachments",
             "form_8308_attachments",
-            "amended_documents"
+            "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -24620,6 +25176,9 @@ export const taxRoutingUiContract = {
             "k1_attachments",
             "form_8308_attachments",
             "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved",
             "version"
           ],
           "requiresAuth": true,
@@ -24646,7 +25205,10 @@ export const taxRoutingUiContract = {
             "attachment_file",
             "k1_attachments",
             "form_8308_attachments",
-            "amended_documents"
+            "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -24735,6 +25297,9 @@ export const taxRoutingUiContract = {
             "k1_attachments",
             "form_8308_attachments",
             "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved",
             "version"
           ],
           "requiresAuth": true,
@@ -24769,6 +25334,9 @@ export const taxRoutingUiContract = {
             "k1_attachments",
             "form_8308_attachments",
             "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved",
             "version"
           ],
           "requiresAuth": true,
@@ -24812,7 +25380,10 @@ export const taxRoutingUiContract = {
             "attachment_file",
             "k1_attachments",
             "form_8308_attachments",
-            "amended_documents"
+            "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved"
           ],
           "states": [
             "loading",
@@ -24837,6 +25408,9 @@ export const taxRoutingUiContract = {
             "k1_attachments",
             "form_8308_attachments",
             "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved",
             "version"
           ],
           "states": [
@@ -24857,7 +25431,10 @@ export const taxRoutingUiContract = {
             "attachment_file",
             "k1_attachments",
             "form_8308_attachments",
-            "amended_documents"
+            "amended_documents",
+            "storage_file_id",
+            "file_size",
+            "is_file_moved"
           ],
           "states": [
             "loading",
@@ -26364,6 +26941,30 @@ export const taxRoutingUiContract = {
           }
         },
         {
+          "name": "client_key",
+          "label": "Client Key",
+          "kind": "scalar",
+          "dataType": "String",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "text"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
           "name": "first_name",
           "label": "First Name",
           "kind": "scalar",
@@ -26754,6 +27355,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -26787,6 +27389,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -26814,6 +27417,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -26902,6 +27506,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -26936,6 +27541,7 @@ export const taxRoutingUiContract = {
           "selectionPreset": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -26980,6 +27586,7 @@ export const taxRoutingUiContract = {
           "fields": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -27004,6 +27611,7 @@ export const taxRoutingUiContract = {
           "fields": [
             "full_name",
             "id",
+            "client_key",
             "first_name",
             "last_name",
             "personal_email",
@@ -27027,6 +27635,7 @@ export const taxRoutingUiContract = {
         "edit": {
           "route": "/data/tax_payer_ref_data/:recordLocator/edit",
           "fields": [
+            "client_key",
             "first_name",
             "last_name",
             "full_name",
@@ -28427,6 +29036,54 @@ export const taxRoutingUiContract = {
           }
         },
         {
+          "name": "case_number",
+          "label": "Case Number",
+          "kind": "scalar",
+          "dataType": "Int32",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "number"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
+          "name": "temp_folder_id",
+          "label": "Temporary Folder Id",
+          "kind": "scalar",
+          "dataType": "String",
+          "required": false,
+          "readOnly": false,
+          "isKey": false,
+          "isConcurrencyControl": false,
+          "ui": {
+            "list": true,
+            "detail": true,
+            "edit": true,
+            "sortable": true,
+            "filterable": true,
+            "formControl": "text"
+          },
+          "validation": {
+            "required": false,
+            "readOnly": false,
+            "concurrencyControl": false,
+            "clientHint": "Optional field."
+          }
+        },
+        {
           "name": "version",
           "label": "Version",
           "kind": "scalar",
@@ -28666,7 +29323,9 @@ export const taxRoutingUiContract = {
             "internal_folder",
             "folder_name",
             "read_write_password",
-            "progress_step"
+            "progress_step",
+            "case_number",
+            "temp_folder_id"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -28703,6 +29362,8 @@ export const taxRoutingUiContract = {
             "folder_name",
             "read_write_password",
             "progress_step",
+            "case_number",
+            "temp_folder_id",
             "version"
           ],
           "requiresAuth": true,
@@ -28732,7 +29393,9 @@ export const taxRoutingUiContract = {
             "internal_folder",
             "folder_name",
             "read_write_password",
-            "progress_step"
+            "progress_step",
+            "case_number",
+            "temp_folder_id"
           ],
           "requiresAuth": true,
           "requiresTenant": true,
@@ -28824,6 +29487,8 @@ export const taxRoutingUiContract = {
             "folder_name",
             "read_write_password",
             "progress_step",
+            "case_number",
+            "temp_folder_id",
             "version"
           ],
           "requiresAuth": true,
@@ -28861,6 +29526,8 @@ export const taxRoutingUiContract = {
             "folder_name",
             "read_write_password",
             "progress_step",
+            "case_number",
+            "temp_folder_id",
             "version"
           ],
           "requiresAuth": true,
@@ -28907,7 +29574,9 @@ export const taxRoutingUiContract = {
             "internal_folder",
             "folder_name",
             "read_write_password",
-            "progress_step"
+            "progress_step",
+            "case_number",
+            "temp_folder_id"
           ],
           "states": [
             "loading",
@@ -28935,6 +29604,8 @@ export const taxRoutingUiContract = {
             "folder_name",
             "read_write_password",
             "progress_step",
+            "case_number",
+            "temp_folder_id",
             "version"
           ],
           "states": [
@@ -28953,7 +29624,9 @@ export const taxRoutingUiContract = {
             "additional_email",
             "notification_flag",
             "read_write_password",
-            "progress_step"
+            "progress_step",
+            "case_number",
+            "temp_folder_id"
           ],
           "states": [
             "loading",
@@ -32456,6 +33129,40 @@ export const taxRoutingUiContract = {
       "supports": {
         "entityTypes": [
           "RolePermissionAudit"
+        ],
+        "shapes": [
+          "entity_ref",
+          "record_detail"
+        ],
+        "idKinds": [
+          "record_locator"
+        ]
+      }
+    },
+    {
+      "viewId": "entity:storage_tokens:list",
+      "route": "/data/storage_tokens",
+      "kind": "entity_list",
+      "supports": {
+        "entityTypes": [
+          "StorageToken"
+        ],
+        "shapes": [
+          "entity_ref",
+          "filtered_list"
+        ],
+        "idKinds": [
+          "record_locator"
+        ]
+      }
+    },
+    {
+      "viewId": "entity:storage_tokens:detail",
+      "route": "/data/storage_tokens/:recordLocator",
+      "kind": "entity_detail",
+      "supports": {
+        "entityTypes": [
+          "StorageToken"
         ],
         "shapes": [
           "entity_ref",

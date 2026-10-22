@@ -2614,6 +2614,76 @@ pub(crate) fn list_operations(include_disabled: bool) -> Vec<RuntimeOperation> {
             false,
         ),
         RuntimeOperation::query(
+            "find_storage_token",
+            "tax_routing",
+            "StorageToken",
+            "Option<StorageTokenProjection>",
+            vec![RuntimeOperationArg::required("id", "String")],
+            true,
+        ),
+        RuntimeOperation::query(
+            "get_storage_tokens",
+            "tax_routing",
+            "StorageToken",
+            "Vec<StorageTokenProjection>",
+            vec![],
+            true,
+        ),
+        RuntimeOperation::query(
+            "query_storage_tokens",
+            "tax_routing",
+            "StorageToken",
+            "StorageTokenQueryResult",
+            vec![
+                RuntimeOperationArg::optional("filter", "serde_json::Value"),
+                RuntimeOperationArg::optional("sort", "serde_json::Value"),
+                RuntimeOperationArg::optional("skip", "i32"),
+                RuntimeOperationArg::optional("limit", "i32"),
+                RuntimeOperationArg::optional("after", "String"),
+            ],
+            true,
+        ),
+        RuntimeOperation::query(
+            "aggregate_storage_tokens",
+            "tax_routing",
+            "StorageToken",
+            "AggregateResult",
+            vec![
+                RuntimeOperationArg::optional("filter", "serde_json::Value"),
+                RuntimeOperationArg::optional("group_by", "serde_json::Value"),
+                RuntimeOperationArg::optional("metrics", "serde_json::Value"),
+                RuntimeOperationArg::optional("having", "serde_json::Value"),
+                RuntimeOperationArg::optional("sort", "serde_json::Value"),
+                RuntimeOperationArg::optional("skip", "i32"),
+                RuntimeOperationArg::optional("limit", "i32"),
+            ],
+            false,
+        ),
+        RuntimeOperation::disabled_mutation(
+            "create_storage_token",
+            "tax_routing",
+            "StorageToken",
+            "StorageTokenProjection",
+            vec![RuntimeOperationArg::required("input", "InputStorageToken")],
+            true,
+        ),
+        RuntimeOperation::disabled_mutation(
+            "update_storage_token",
+            "tax_routing",
+            "StorageToken",
+            "StorageTokenProjection",
+            vec![RuntimeOperationArg::required("input", "InputStorageToken")],
+            true,
+        ),
+        RuntimeOperation::disabled_mutation(
+            "delete_storage_token",
+            "tax_routing",
+            "StorageToken",
+            "i64",
+            vec![RuntimeOperationArg::required("input", "InputStorageToken")],
+            false,
+        ),
+        RuntimeOperation::query(
             "find_tax_document",
             "tax_routing",
             "TaxDocument",
@@ -6340,6 +6410,91 @@ pub(crate) async fn call_operation(
                 &"tax_routing".to_string(),
                 &"RolePermissionAudit".to_string(),
             )?;
+            let filter: Option<Value> = operation::arg(&request.arguments, "filter")?;
+            let group_by: Option<Value> = operation::arg(&request.arguments, "group_by")?;
+            let metrics: Option<Value> = operation::arg(&request.arguments, "metrics")?;
+            let having: Option<Value> = operation::arg(&request.arguments, "having")?;
+            let sort: Option<Value> = operation::arg(&request.arguments, "sort")?;
+            let skip: Option<i32> = operation::arg(&request.arguments, "skip")?;
+            let limit: Option<i32> = operation::arg(&request.arguments, "limit")?;
+            let (skip, limit) = PaginationPolicy::from_env().normalize(skip, limit)?;
+            let res = data_access
+                .aggregate_items(
+                    entity_type.clone(),
+                    filter,
+                    group_by,
+                    metrics,
+                    having,
+                    sort,
+                    skip,
+                    limit,
+                    Some(user),
+                )
+                .await?;
+            to_redacted_entity_json(&entity_type, res)
+        }
+        ("tax_routing", "StorageToken", "find_storage_token") => {
+            let data_access = data_access_for_schema(data_access_by_schema, "tax_routing")?;
+            let entity_type = app_config
+                .get_entity_type(&"tax_routing".to_string(), &"StorageToken".to_string())?;
+            let selections = selection_json(&entity_type, request.fields.clone());
+            let id: String = operation::arg(&request.arguments, "id")?;
+            let res = tax_routing::storage_token::find_impl(
+                Some(user),
+                &data_access,
+                &entity_type,
+                selections,
+                id,
+            )
+            .await
+            .map_err(operation::handler_error)?;
+            to_redacted_entity_json(&entity_type, res)
+        }
+        ("tax_routing", "StorageToken", "get_storage_tokens") => {
+            let data_access = data_access_for_schema(data_access_by_schema, "tax_routing")?;
+            let entity_type = app_config
+                .get_entity_type(&"tax_routing".to_string(), &"StorageToken".to_string())?;
+            let selections = selection_json(&entity_type, request.fields.clone());
+            let res = tax_routing::storage_token::get_impl(
+                Some(user),
+                &data_access,
+                &entity_type,
+                selections,
+            )
+            .await
+            .map_err(operation::handler_error)?;
+            to_redacted_entity_json(&entity_type, res)
+        }
+        ("tax_routing", "StorageToken", "query_storage_tokens") => {
+            let data_access = data_access_for_schema(data_access_by_schema, "tax_routing")?;
+            let entity_type = app_config
+                .get_entity_type(&"tax_routing".to_string(), &"StorageToken".to_string())?;
+            let selections = selection_json(&entity_type, request.fields.clone());
+            let filter: Option<Value> = operation::arg(&request.arguments, "filter")?;
+            let sort: Option<Value> = operation::arg(&request.arguments, "sort")?;
+            let skip: Option<i32> = operation::arg(&request.arguments, "skip")?;
+            let limit: Option<i32> = operation::arg(&request.arguments, "limit")?;
+            let after: Option<String> = operation::arg(&request.arguments, "after")?;
+            let (skip, limit) = PaginationPolicy::from_env().normalize(skip, limit)?;
+            let res = tax_routing::storage_token::query_impl(
+                Some(user),
+                &data_access,
+                &entity_type,
+                selections,
+                filter,
+                sort,
+                skip,
+                limit,
+                after,
+            )
+            .await
+            .map_err(operation::handler_error)?;
+            to_redacted_entity_json(&entity_type, res)
+        }
+        ("tax_routing", "StorageToken", "aggregate_storage_tokens") => {
+            let data_access = data_access_for_schema(data_access_by_schema, "tax_routing")?;
+            let entity_type = app_config
+                .get_entity_type(&"tax_routing".to_string(), &"StorageToken".to_string())?;
             let filter: Option<Value> = operation::arg(&request.arguments, "filter")?;
             let group_by: Option<Value> = operation::arg(&request.arguments, "group_by")?;
             let metrics: Option<Value> = operation::arg(&request.arguments, "metrics")?;

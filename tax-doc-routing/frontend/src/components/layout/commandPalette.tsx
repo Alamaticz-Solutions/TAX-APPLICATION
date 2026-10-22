@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router';
-import { AlertTriangle, Briefcase, FilePlus2, FileText, LayoutDashboard, Search, Settings, Users } from 'lucide-react';
+import { AlertTriangle, Briefcase, FilePlus2, FileText, LayoutDashboard, Search } from 'lucide-react';
 import { CommandPalette, type CommandPaletteItem } from '@appfw/pds-health-components/layout';
 import { useTaxRouting } from '../../features/shared/state/TaxRoutingProvider';
+import { formatCaseNumber } from '../../features/shared/utils/caseNumber';
 
 /**
  * Workspace command access: the shared PDS `CommandPalette`. Product owns the command labels,
@@ -18,25 +19,19 @@ export function WorkspaceCommandPalette() {
     const icon = { size: 15, 'aria-hidden': true as const };
     const pages: CommandPaletteItem[] = [
       { id: 'page:dashboard', group: 'Pages', label: 'Dashboard', detail: 'Work I need to do', icon: <LayoutDashboard {...icon} />, onSelect: go('/dashboard') },
-      { id: 'page:cases', group: 'Pages', label: 'My Cases', icon: <Briefcase {...icon} />, onSelect: go('/cases') },
-      { id: 'page:exceptions', group: 'Pages', label: 'Exception Queue', detail: 'Records needing attention', icon: <AlertTriangle {...icon} />, onSelect: go('/exceptions') }
+      { id: 'page:cases', group: 'Pages', label: hasPermission('routing_record.view_assignee') ? 'Request Management' : 'My Cases', icon: <Briefcase {...icon} />, onSelect: go('/cases') },
+      { id: 'page:exceptions', group: 'Pages', label: 'Exception Task', detail: 'Records needing attention', icon: <AlertTriangle {...icon} />, onSelect: go('/exceptions') }
     ];
-    // Same permission gates as the sidebar (docs/architecture/rbac-design.md), not a role literal.
-    if (hasPermission('routing_record.view_assignee')) {
-      pages.push({ id: 'page:all-cases', group: 'Pages', label: 'All Cases', icon: <Users {...icon} />, onSelect: go('/admin/cases') });
-    }
-    if (hasPermission('rbac.manage')) {
-      pages.push({ id: 'page:admin', group: 'Pages', label: 'Administration', icon: <Settings {...icon} />, onSelect: go('/admin') });
-    }
     const actions: CommandPaletteItem[] = [
-      { id: 'action:new-record', group: 'Actions', label: 'Create new request', detail: 'Start a request and upload documents for a client', keywords: ['create', 'start'], icon: <FilePlus2 {...icon} />, onSelect: go('/new/client') }
+      { id: 'action:new-record', group: 'Actions', label: 'Create new request', detail: 'Start a request and upload documents for a client', keywords: ['create', 'start'], icon: <FilePlus2 {...icon} />, onSelect: go('/new/client') },
+      { id: 'action:bulk-request', group: 'Actions', label: 'Create bulk request', detail: 'Create requests for many clients from an Excel file and a ZIP', keywords: ['bulk', 'upload', 'excel', 'zip'], icon: <FilePlus2 {...icon} />, onSelect: go('/bulk') }
     ];
     const records: CommandPaletteItem[] = visibleCases.slice(0, 100).map((c) => ({
       id: `record:${c.id}`,
       group: 'Records',
-      label: c.id,
+      label: formatCaseNumber(c.caseNumber, c.id),
       detail: c.client.fullName,
-      keywords: [c.client.id, c.client.fullName],
+      keywords: [c.id, c.client.id, c.client.fullName],
       icon: <FileText {...icon} />,
       onSelect: go(`/records/${c.id}`)
     }));

@@ -842,6 +842,8 @@ pub struct ExceptionTask {
     pub resolved_at: Option<chrono::DateTime<chrono::Utc>>,
     #[graphql(name = "assigned_user_id")]
     pub assigned_user_id: Option<String>,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
     #[graphql(name = "version")]
     pub version: i64,
 }
@@ -865,6 +867,8 @@ pub struct ExceptionTaskProjection {
     pub resolved_at: Option<chrono::DateTime<chrono::Utc>>,
     #[graphql(name = "assigned_user_id")]
     pub assigned_user_id: Option<String>,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
     #[graphql(name = "version")]
     pub version: Option<i64>,
     #[graphql(name = "routing_record")]
@@ -888,6 +892,8 @@ pub struct InputExceptionTask {
     pub resolved_at: Option<chrono::DateTime<chrono::Utc>>,
     #[graphql(name = "assigned_user_id")]
     pub assigned_user_id: Option<String>,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
     #[graphql(name = "version")]
     pub version: Option<i64>,
 }
@@ -3887,6 +3893,70 @@ pub struct RolePermissionAuditQueryResult {
     pub items: Vec<RolePermissionAuditProjection>,
 }
 
+// StorageToken is_union: false ////////////////////////////////////////////////////////////
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct StorageToken {
+    #[graphql(name = "id")]
+    pub id: String,
+    #[graphql(name = "provider")]
+    pub provider: String,
+    #[graphql(name = "access_token")]
+    pub access_token: String,
+    #[graphql(name = "issued_at")]
+    pub issued_at: chrono::DateTime<chrono::Utc>,
+    #[graphql(name = "expires_at")]
+    pub expires_at: chrono::DateTime<chrono::Utc>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct StorageTokenProjection {
+    #[serde(default)]
+    pub record_locator: Option<String>,
+    #[graphql(name = "id")]
+    pub id: Option<String>,
+    #[graphql(name = "provider")]
+    pub provider: Option<String>,
+    #[graphql(name = "access_token")]
+    pub access_token: Option<String>,
+    #[graphql(name = "issued_at")]
+    pub issued_at: Option<chrono::DateTime<chrono::Utc>>,
+    #[graphql(name = "expires_at")]
+    pub expires_at: Option<chrono::DateTime<chrono::Utc>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, InputObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct InputStorageToken {
+    #[graphql(name = "id")]
+    pub id: Option<String>,
+    #[graphql(name = "provider")]
+    pub provider: String,
+    #[graphql(name = "access_token")]
+    pub access_token: String,
+    #[graphql(name = "issued_at")]
+    pub issued_at: chrono::DateTime<chrono::Utc>,
+    #[graphql(name = "expires_at")]
+    pub expires_at: chrono::DateTime<chrono::Utc>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
+#[graphql(rename_fields = "snake_case")]
+pub struct StorageTokenQueryResult {
+    pub date_time: String,
+    pub request_duration: f64,
+    pub skip: i32,
+    pub limit: i32,
+    pub page_count: i32,
+    pub page_index: i32,
+    pub query_count: i64,
+    pub next_cursor: Option<String>,
+    pub previous_cursor: Option<String>,
+    pub items: Vec<StorageTokenProjection>,
+}
+
 // TaxDocument is_union: false ////////////////////////////////////////////////////////////
 
 #[derive(Debug, Clone, Serialize, Deserialize, SimpleObject)]
@@ -3924,6 +3994,12 @@ pub struct TaxDocument {
     pub form_8308_attachments: Option<Vec<String>>,
     #[graphql(name = "amended_documents")]
     pub amended_documents: Option<Vec<String>>,
+    #[graphql(name = "storage_file_id")]
+    pub storage_file_id: Option<String>,
+    #[graphql(name = "file_size")]
+    pub file_size: Option<i32>,
+    #[graphql(name = "is_file_moved")]
+    pub is_file_moved: bool,
     #[graphql(name = "version")]
     pub version: i64,
 }
@@ -3965,6 +4041,12 @@ pub struct TaxDocumentProjection {
     pub form_8308_attachments: Option<Vec<String>>,
     #[graphql(name = "amended_documents")]
     pub amended_documents: Option<Vec<String>>,
+    #[graphql(name = "storage_file_id")]
+    pub storage_file_id: Option<String>,
+    #[graphql(name = "file_size")]
+    pub file_size: Option<i32>,
+    #[graphql(name = "is_file_moved")]
+    pub is_file_moved: Option<bool>,
     #[graphql(name = "version")]
     pub version: Option<i64>,
     #[graphql(name = "document_type_route")]
@@ -4008,6 +4090,12 @@ pub struct InputTaxDocument {
     pub form_8308_attachments: Option<Vec<String>>,
     #[graphql(name = "amended_documents")]
     pub amended_documents: Option<Vec<String>>,
+    #[graphql(name = "storage_file_id")]
+    pub storage_file_id: Option<String>,
+    #[graphql(name = "file_size")]
+    pub file_size: Option<i32>,
+    #[graphql(name = "is_file_moved")]
+    pub is_file_moved: bool,
     #[graphql(name = "version")]
     pub version: Option<i64>,
 }
@@ -4264,6 +4352,8 @@ pub struct TaxEntityListQueryResult {
 pub struct TaxPayerRefData {
     #[graphql(name = "id")]
     pub id: String,
+    #[graphql(name = "client_key")]
+    pub client_key: Option<String>,
     #[graphql(name = "first_name")]
     pub first_name: String,
     #[graphql(name = "last_name")]
@@ -4299,6 +4389,8 @@ pub struct TaxPayerRefDataProjection {
     pub record_locator: Option<String>,
     #[graphql(name = "id")]
     pub id: Option<String>,
+    #[graphql(name = "client_key")]
+    pub client_key: Option<String>,
     #[graphql(name = "first_name")]
     pub first_name: Option<String>,
     #[graphql(name = "last_name")]
@@ -4334,6 +4426,8 @@ pub struct TaxPayerRefDataProjection {
 pub struct InputTaxPayerRefData {
     #[graphql(name = "id")]
     pub id: Option<String>,
+    #[graphql(name = "client_key")]
+    pub client_key: Option<String>,
     #[graphql(name = "first_name")]
     pub first_name: String,
     #[graphql(name = "last_name")]
@@ -4578,6 +4672,10 @@ pub struct TaxRoutingRecord {
     pub client_reference_id: String,
     #[graphql(name = "progress_step")]
     pub progress_step: i32,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
+    #[graphql(name = "temp_folder_id")]
+    pub temp_folder_id: Option<String>,
     #[graphql(name = "version")]
     pub version: i64,
 }
@@ -4623,6 +4721,10 @@ pub struct TaxRoutingRecordProjection {
     pub client_reference_id: Option<String>,
     #[graphql(name = "progress_step")]
     pub progress_step: Option<i32>,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
+    #[graphql(name = "temp_folder_id")]
+    pub temp_folder_id: Option<String>,
     #[graphql(name = "version")]
     pub version: Option<i64>,
     #[graphql(name = "client_reference")]
@@ -4672,6 +4774,10 @@ pub struct InputTaxRoutingRecord {
     pub client_reference_id: String,
     #[graphql(name = "progress_step")]
     pub progress_step: i32,
+    #[graphql(name = "case_number")]
+    pub case_number: Option<i32>,
+    #[graphql(name = "temp_folder_id")]
+    pub temp_folder_id: Option<String>,
     #[graphql(name = "version")]
     pub version: Option<i64>,
 }

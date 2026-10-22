@@ -7,6 +7,8 @@
   facets:
   - audited
   - concurrency
+  constraints:
+  - uq_tax_routing_record_case_number UNIQUE (case_number)
 
   custom_methods:
   # Admin-only actions the row filter can't express (a filter restricts which rows a query
@@ -31,6 +33,186 @@
     - name: record_id
       arg_type: String
     - name: new_assigned_user_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  # Document upload and submission, run by services/document_routing. They are custom mutations
+  # (not plain creates) because each one also touches document storage, and every one checks the
+  # caller owns the record (or holds the admin grant) before it does anything.
+  - name: upload_document
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    # The PDF itself, base64 encoded (the upload limit is 2 MB; raise APP_REQUEST_BODY_LIMIT_BYTES
+    # to at least 4 MiB so a 2 MB file fits once encoded).
+    - name: content_base64
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: submit_request
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    # JSON array of the documents on screen 2: file id, type, year, entity, password flag.
+    - name: documents_json
+      arg_type: String
+    return_type: serde_json::Value
+
+  # Abandons a request that was started but never submitted (closes it and removes its temporary
+  # storage folder). Only the owner or an admin, and only while it is still collecting documents.
+  - name: discard_request
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  # Returns one stored document (name and base64 content) so the case page can preview or download
+  # it. Read-only: needs routing_record.read and the record must be visible to the caller.
+  - name: download_document
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: record_id
+      arg_type: String
+    - name: document_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  # Bulk request creation (services/bulk_requests). One Excel file of client details plus one ZIP
+  # with a folder per Client Key becomes one request per client. Nothing is created until
+  # bulk_confirm; bulk_preview only reads and checks. The file contents are base64 encoded.
+  - name: bulk_preview
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: file_name
+      arg_type: String
+    - name: excel_base64
+      arg_type: String
+    - name: zip_base64
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: bulk_update_document
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    - name: document_type
+      arg_type: String
+    - name: year
+      arg_type: i32
+    - name: entity_kind
+      arg_type: String
+    - name: entity_name
+      arg_type: String
+    - name: entity_number
+      arg_type: String
+    - name: password_protected
+      arg_type: bool
+    return_type: serde_json::Value
+
+  # Changes one client's details for this upload (a blank password keeps the current one).
+  - name: bulk_update_client
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: first_name
+      arg_type: String
+    - name: last_name
+      arg_type: String
+    - name: full_name
+      arg_type: String
+    - name: personal_email
+      arg_type: String
+    - name: pds_email
+      arg_type: String
+    - name: additional_email
+      arg_type: String
+    - name: office_location
+      arg_type: String
+    - name: internal_folder
+      arg_type: String
+    - name: client_folder
+      arg_type: String
+    - name: password
+      arg_type: String
+    - name: notify
+      arg_type: bool
+    return_type: serde_json::Value
+
+  # One staged file (name and base64 content), for the preview and download buttons.
+  - name: bulk_get_document
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: bulk_remove
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: bulk_confirm
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: bulk_status
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  # Runs the clients that failed to be created again, without creating anything twice.
+  - name: bulk_retry_failed
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+
+  - name: bulk_cancel
+    kind: Mutation
+    mcp_enabled: false
+    args:
+    - name: batch_id
       arg_type: String
     return_type: serde_json::Value
 
@@ -146,3 +328,23 @@
     caption: Progress Step
     is_required: true
     data_type: Int32
+
+  # The human-facing sequential number (shown as TD-1001), assigned by the backend at creation
+  # (handlers/tax_routing/tax_routing_record.rs: create_impl) and never changed afterwards —
+  # update_impl and the cancel/reassign/retry actions all carry the stored value forward. The
+  # UUID `id` stays the primary key behind routes, foreign keys and mutations; this is only the
+  # label people read and quote. Optional because rows that predate it are backfilled by
+  # database/backfill/001_case_number.sql, not because a new record may lack one.
+  - name: case_number
+    caption: Case Number
+    is_required: false
+    data_type: Int32
+
+  # The temporary storage folder for this request, named with the case number (TD-1001) and
+  # created inside the client's Internal folder when the request is created. Holds the uploaded
+  # PDFs until submission; deleted only after every document has been placed. Null for requests
+  # that predate document storage.
+  - name: temp_folder_id
+    caption: Temporary Folder Id
+    is_required: false
+    data_type: String

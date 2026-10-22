@@ -166,6 +166,8 @@ BEGIN
 
         ALTER TABLE tax_routing.exception_tasks ADD COLUMN IF NOT EXISTS "assigned_user_id" uuid;
 
+        ALTER TABLE tax_routing.exception_tasks ADD COLUMN IF NOT EXISTS "case_number" integer;
+
         ALTER TABLE tax_routing.exception_tasks ADD COLUMN IF NOT EXISTS "version" bigint NOT NULL DEFAULT 0;
 
         ALTER TABLE tax_routing.exception_tasks ADD COLUMN IF NOT EXISTS "record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''));
@@ -181,6 +183,7 @@ BEGIN
             ,"opened_at" timestamptz
             ,"resolved_at" timestamptz
             ,"assigned_user_id" uuid
+            ,"case_number" integer
             ,"version" bigint NOT NULL DEFAULT 0
             ,"record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''))
         );
@@ -576,6 +579,33 @@ BEGIN
         );
     END IF;
 
+    IF EXISTS(SELECT TRUE FROM pg_type where typnamespace = (select oid from pg_catalog.pg_namespace where nspname = 'tax_routing') AND typname = 'storage_tokens')
+    THEN
+        RAISE NOTICE 'ALTERING table storage_tokens';
+
+        ALTER TABLE tax_routing.storage_tokens ADD COLUMN IF NOT EXISTS "provider" varchar;
+
+        ALTER TABLE tax_routing.storage_tokens ADD COLUMN IF NOT EXISTS "access_token" varchar;
+
+        ALTER TABLE tax_routing.storage_tokens ADD COLUMN IF NOT EXISTS "issued_at" timestamptz;
+
+        ALTER TABLE tax_routing.storage_tokens ADD COLUMN IF NOT EXISTS "expires_at" timestamptz;
+
+        ALTER TABLE tax_routing.storage_tokens ADD COLUMN IF NOT EXISTS "record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''));
+
+    ELSE
+        RAISE NOTICE 'CREATING, table storage_tokens';
+        CREATE TABLE tax_routing.storage_tokens
+        (
+            "id" uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY
+            ,"provider" varchar
+            ,"access_token" varchar
+            ,"issued_at" timestamptz
+            ,"expires_at" timestamptz
+            ,"record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''))
+        );
+    END IF;
+
     IF EXISTS(SELECT TRUE FROM pg_type where typnamespace = (select oid from pg_catalog.pg_namespace where nspname = 'tax_routing') AND typname = 'tax_documents')
     THEN
         RAISE NOTICE 'ALTERING table tax_documents';
@@ -610,6 +640,12 @@ BEGIN
 
         ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "amended_documents" varchar[];
 
+        ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "storage_file_id" varchar;
+
+        ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "file_size" integer;
+
+        ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "is_file_moved" boolean;
+
         ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "version" bigint NOT NULL DEFAULT 0;
 
         ALTER TABLE tax_routing.tax_documents ADD COLUMN IF NOT EXISTS "record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''));
@@ -634,6 +670,9 @@ BEGIN
             ,"k1_attachments" varchar[]
             ,"form_8308_attachments" varchar[]
             ,"amended_documents" varchar[]
+            ,"storage_file_id" varchar
+            ,"file_size" integer
+            ,"is_file_moved" boolean
             ,"version" bigint NOT NULL DEFAULT 0
             ,"record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''))
         );
@@ -673,6 +712,8 @@ BEGIN
     THEN
         RAISE NOTICE 'ALTERING table tax_payer_ref_data';
 
+        ALTER TABLE tax_routing.tax_payer_ref_data ADD COLUMN IF NOT EXISTS "client_key" varchar;
+
         ALTER TABLE tax_routing.tax_payer_ref_data ADD COLUMN IF NOT EXISTS "first_name" varchar;
 
         ALTER TABLE tax_routing.tax_payer_ref_data ADD COLUMN IF NOT EXISTS "last_name" varchar;
@@ -706,6 +747,7 @@ BEGIN
         CREATE TABLE tax_routing.tax_payer_ref_data
         (
             "id" uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY
+            ,"client_key" varchar
             ,"first_name" varchar
             ,"last_name" varchar
             ,"full_name" varchar
@@ -761,6 +803,10 @@ BEGIN
 
         ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "progress_step" integer;
 
+        ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "case_number" integer;
+
+        ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "temp_folder_id" varchar;
+
         ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "version" bigint NOT NULL DEFAULT 0;
 
         ALTER TABLE tax_routing.tax_routing_records ADD COLUMN IF NOT EXISTS "record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''));
@@ -787,6 +833,8 @@ BEGIN
             ,"read_write_password" varchar
             ,"client_reference_id" uuid
             ,"progress_step" integer
+            ,"case_number" integer
+            ,"temp_folder_id" varchar
             ,"version" bigint NOT NULL DEFAULT 0
             ,"record_locator" varchar NOT NULL DEFAULT ('rl_' || replace(gen_random_uuid()::text, '-', ''))
         );
@@ -2489,6 +2537,20 @@ BEGIN
         SELECT 1
         FROM pg_indexes
         WHERE schemaname = 'tax_routing'
+        AND tablename = 'storage_tokens'
+        AND indexname = 'ux_storage_tokens_record_locator'
+    ) THEN
+        RAISE NOTICE 'Creating index ux_storage_tokens_record_locator';
+        CREATE UNIQUE INDEX ux_storage_tokens_record_locator
+        ON tax_routing.storage_tokens ("record_locator");
+    ELSE
+        RAISE NOTICE 'Index ux_storage_tokens_record_locator already exists';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_indexes
+        WHERE schemaname = 'tax_routing'
         AND tablename = 'tax_documents'
         AND indexname = 'ux_tax_documents_record_locator'
     ) THEN
@@ -3549,6 +3611,45 @@ BEGIN
         ADD CONSTRAINT uq_role_permission UNIQUE (role_id, permission_id);
     ELSE
         RAISE NOTICE 'Constraint uq_role_permission already exists';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'uq_storage_token_provider'
+        AND conrelid = 'tax_routing."storage_tokens"'::regclass
+    ) THEN
+        RAISE NOTICE 'Creating constraint uq_storage_token_provider on storage_tokens';
+        ALTER TABLE tax_routing."storage_tokens"
+        ADD CONSTRAINT uq_storage_token_provider UNIQUE (provider);
+    ELSE
+        RAISE NOTICE 'Constraint uq_storage_token_provider already exists';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'uq_tax_payer_ref_data_client_key'
+        AND conrelid = 'tax_routing."tax_payer_ref_data"'::regclass
+    ) THEN
+        RAISE NOTICE 'Creating constraint uq_tax_payer_ref_data_client_key on tax_payer_ref_data';
+        ALTER TABLE tax_routing."tax_payer_ref_data"
+        ADD CONSTRAINT uq_tax_payer_ref_data_client_key UNIQUE (client_key);
+    ELSE
+        RAISE NOTICE 'Constraint uq_tax_payer_ref_data_client_key already exists';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'uq_tax_routing_record_case_number'
+        AND conrelid = 'tax_routing."tax_routing_records"'::regclass
+    ) THEN
+        RAISE NOTICE 'Creating constraint uq_tax_routing_record_case_number on tax_routing_records';
+        ALTER TABLE tax_routing."tax_routing_records"
+        ADD CONSTRAINT uq_tax_routing_record_case_number UNIQUE (case_number);
+    ELSE
+        RAISE NOTICE 'Constraint uq_tax_routing_record_case_number already exists';
     END IF;
 
     IF NOT EXISTS (

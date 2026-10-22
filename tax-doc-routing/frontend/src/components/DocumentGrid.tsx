@@ -8,9 +8,10 @@ import { formatBytes } from '../features/shared/utils/format';
 type DocumentRow = {
   id: string;
   type: string;
-  year: number;
+  year: string;
   entity: string;
   file: string;
+  fileName: string;
   protection: boolean;
   status: DocumentFileStatus;
   duplicate: boolean;
@@ -29,9 +30,11 @@ function toRow(d: TaxDocument): DocumentRow {
   return {
     id: d.id,
     type: d.type,
-    year: d.year,
+    // A string so the grid does not format 2025 as "2,025".
+    year: String(d.year),
     entity: d.entity?.name ?? '—',
     file: size ? `${d.fileName} · ${size}` : d.fileName,
+    fileName: d.fileName,
     protection: d.passwordProtected,
     status: d.status,
     duplicate: Boolean(d.isDuplicate),
@@ -43,11 +46,14 @@ function toRow(d: TaxDocument): DocumentRow {
 export function DocumentGrid({
   documents,
   onRemove,
+  onOpen,
   emptyTitle = 'No documents',
   emptyDetail
 }: {
   documents: TaxDocument[];
   onRemove?: (id: string) => void;
+  /** When supplied, the file name opens the document (preview and download). */
+  onOpen?: (id: string) => void;
   emptyTitle?: string;
   emptyDetail?: string;
 }) {
@@ -55,7 +61,19 @@ export function DocumentGrid({
     { key: 'type', header: 'Document Type', width: 150 },
     { key: 'year', header: 'Year', width: 90 },
     { key: 'entity', header: 'Entity', width: 260 },
-    { key: 'file', header: 'File', width: 260 },
+    {
+      key: 'file',
+      header: 'File',
+      width: 300,
+      render: (row) =>
+        onOpen ? (
+          <Button size="sm" variant="quiet" aria-label={`Open ${row.fileName}`} onClick={() => onOpen(row.id)}>
+            {row.file}
+          </Button>
+        ) : (
+          row.file
+        )
+    },
     {
       key: 'protection',
       header: 'Protection',

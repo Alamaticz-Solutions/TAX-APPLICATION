@@ -27,9 +27,10 @@ export function CreateRoutingRecordScreen() {
 
   if (index < 0) return <Navigate to="/new/client" replace />;
   // Once submitted the record is processing: don't allow going back and submitting a duplicate.
-  if (draft.recordId && index < 2) return <Navigate to="/new/processing" replace />;
-  if (index >= 1 && !draft.client) return <Navigate to="/new/client" replace />;
-  if (index >= 2 && !draft.recordId) return <Navigate to="/new/documents" replace />;
+  if (draft.submitted && index < 2) return <Navigate to="/new/processing" replace />;
+  // The request is created when the user leaves screen 1, so screen 2 needs both a client and the request.
+  if (index >= 1 && (!draft.client || !draft.recordId)) return <Navigate to="/new/client" replace />;
+  if (index >= 2 && !draft.submitted) return <Navigate to="/new/documents" replace />;
   if (step === 'completed' && getCase(draft.recordId ?? '')?.status !== STATUS.COMPLETED) return <Navigate to="/new/processing" replace />;
 
   const steps: ProcessStepItem[] = FLOW_STEPS.map((s, i) => ({

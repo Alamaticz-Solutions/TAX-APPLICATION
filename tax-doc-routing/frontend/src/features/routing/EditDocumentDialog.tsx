@@ -3,7 +3,6 @@ import { CheckboxField, TextField } from '@appfw/pds-health-components/forms';
 import { Dialog } from '@appfw/pds-health-components/layout';
 import { Button, SegmentedControl } from '@appfw/pds-health-components/primitives';
 import { FieldGroup, FormLayout, InlineAlert } from '@appfw/pds-health-components/surfaces';
-import { FORM_8308_ATTACHMENT_OPTIONS, K1_ATTACHMENT_OPTIONS } from '../shared/config/documentTypes';
 import { SingleSelectField } from '../../components/ui';
 import { useDocumentTypeCatalogue } from '../shared/hooks/useDocumentTypeCatalogue';
 import { useEntityDirectory } from '../shared/hooks/useEntityDirectory';
@@ -54,7 +53,7 @@ export function EditDocumentDialog({
   onSave: (values: EditedDocument) => void;
   onClose: () => void;
 }) {
-  const { getDocumentType, documentTypes, entityTypes, documentYears } = useDocumentTypeCatalogue();
+  const { getDocumentType, documentTypes, entityTypes, documentYears, k1Attachments, k1AttachmentEntityTypes, form8308Attachments } = useDocumentTypeCatalogue();
   const { entitiesOfType, findEntity } = useEntityDirectory();
   const typeOptions = documentTypes.map((d) => ({ value: d.type, label: d.type }));
   const yearOptions = documentYears.map((y) => ({ value: String(y), label: String(y) }));
@@ -65,7 +64,7 @@ export function EditDocumentDialog({
   const set = (patch: Partial<FormState>) => setForm((f) => ({ ...f, ...patch }));
   const cfg = form.type ? getDocumentType(form.type) : undefined;
   const entity = findEntity(form.entityName);
-  const groups = attachmentGroups(form.type, form.belongsToEntity === 'yes' ? form.entityType : '');
+  const groups = attachmentGroups(form.type, form.belongsToEntity === 'yes' ? form.entityType : '', getDocumentType, k1AttachmentEntityTypes);
 
   const save = () => {
     // The file itself was already accepted at upload; only the metadata is validated here.
@@ -166,7 +165,7 @@ export function EditDocumentDialog({
         ) : null}
         {groups.map((g) => (
           <FieldGroup key={g} legend={g === 'k1' ? 'K-1 Attachments' : 'Form 8308 Attachments'}>
-            {(g === 'k1' ? K1_ATTACHMENT_OPTIONS : FORM_8308_ATTACHMENT_OPTIONS).map((o) => (
+            {(g === 'k1' ? k1Attachments : form8308Attachments).map((o) => (
               <CheckboxField
                 key={o.key}
                 label={o.label}

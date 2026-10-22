@@ -14,7 +14,7 @@ use crate::{
     schemas::system::{
         Computed, DataSource, DataSourceEnvironment, DataType, EntityType, PropertyType, Schema,
     },
-    services::authz::AuthzCache,
+    services::{authz::AuthzCache, case_numbers::CaseNumbers, document_store::{self, DocumentStore}},
 };
 
 #[derive(Clone)]
@@ -27,6 +27,11 @@ pub struct AppConfig {
     /// app_user/role/permission tables. `evaluate_user_access` below consumes its output to
     /// build the Rego input; nothing else in this struct knows a role name.
     authz: Arc<AuthzCache>,
+    /// Hands out the next human-facing case number (TD-1001, ...); see services::case_numbers.
+    case_numbers: Arc<CaseNumbers>,
+    /// Where uploaded documents live (services::document_store). In-memory unless
+    /// `STORAGE_PROVIDER=box`; nothing reads it yet, so selecting Box changes no behaviour.
+    document_store: Arc<dyn DocumentStore>,
 }
 
 impl AppConfig {
@@ -56,6 +61,14 @@ impl AppConfig {
             .collect();
 
         let authz = AuthzCache::init(&sources).await?;
+        let case_numbers = CaseNumbers::init(&sources)?;
+        // The API only ever shows "internal server error", so say why storage could not start here.
+        // The message names the problem (missing setting, key store would not open, Box refused the
+        // sign-in) and never contains a secret.
+        let document_store = document_store::build_store(&sources).map_err(|e| {
+            tracing::error!(reason = %e, "document storage could not start");
+            AppError::InternalServerError(anyhow::anyhow!(e))
+        })?;
 
         Ok(AppConfig {
             sources: Arc::new(sources),
@@ -63,11 +76,22 @@ impl AppConfig {
             types: Arc::new(types),
             access: Arc::new(access_policies),
             authz,
+            case_numbers,
+            document_store,
         })
     }
 
     pub fn authz(&self) -> &Arc<AuthzCache> {
         &self.authz
+    }
+
+    pub fn case_numbers(&self) -> &Arc<CaseNumbers> {
+        &self.case_numbers
+    }
+
+    #[allow(dead_code)]
+    pub fn document_store(&self) -> &Arc<dyn DocumentStore> {
+        &self.document_store
     }
 
     #[tracing::instrument(

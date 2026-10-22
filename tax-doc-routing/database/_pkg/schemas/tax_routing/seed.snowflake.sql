@@ -2974,6 +2974,42 @@ WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."field_option_lists" WHERE "id" = '90621ea4-fdf2-4a20-ae92-9c487fa58ceb'
 );
 
+INSERT INTO "tax_routing"."field_option_lists" (
+    "id", "name", "description"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001',
+    'k1_attachment',
+    'Attachment choices offered for K-1 documents (business spec BR-07). Code is the key stored on the document.'
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_lists" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001'
+);
+
+INSERT INTO "tax_routing"."field_option_lists" (
+    "id", "name", "description"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002',
+    'k1_attachment_entity_type',
+    'Entity types whose K-1 documents offer the k1_attachment choices (BR-07). Codes match entity_type.'
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_lists" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002'
+);
+
+INSERT INTO "tax_routing"."field_option_lists" (
+    "id", "name", "description"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003',
+    'form_8308_attachment',
+    'Attachment choices offered for Form 8308 documents (BR-09). Code is the key stored on the document.'
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_lists" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003'
+);
+
 
 
 
@@ -3251,6 +3287,66 @@ SELECT
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."field_option_values" WHERE "id" = '59950ed1-a366-493a-825a-c0bab4a1bd7a'
+);
+
+INSERT INTO "tax_routing"."field_option_values" (
+    "id", "option_list_id", "code", "label", "sort_order", "is_active"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40001',
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001',
+    'k1Statement',
+    'K-1 Statement',
+    10,
+    true
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_values" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40001'
+);
+
+INSERT INTO "tax_routing"."field_option_values" (
+    "id", "option_list_id", "code", "label", "sort_order", "is_active"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40002',
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001',
+    'k1Schedule',
+    'Supporting Schedule',
+    20,
+    true
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_values" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40002'
+);
+
+INSERT INTO "tax_routing"."field_option_values" (
+    "id", "option_list_id", "code", "label", "sort_order", "is_active"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40003',
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002',
+    'Partnership',
+    'Partnership',
+    10,
+    true
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_values" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40003'
+);
+
+INSERT INTO "tax_routing"."field_option_values" (
+    "id", "option_list_id", "code", "label", "sort_order", "is_active"
+)
+SELECT
+    '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40004',
+    '4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003',
+    'form8308Attachment',
+    'Form 8308 attachment',
+    10,
+    true
+
+WHERE NOT EXISTS (
+    SELECT 1 FROM "tax_routing"."field_option_values" WHERE "id" = '4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40004'
 );
 
 
@@ -5525,7 +5621,7 @@ WHERE NOT EXISTS (
 
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000001',
@@ -5545,14 +5641,15 @@ SELECT
     'Smith_John',
     'placeholder-pw-001234',
     '9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01',
-    2
+    2,
+    1023
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000001'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000002',
@@ -5572,14 +5669,15 @@ SELECT
     'Jones_Emily',
     'placeholder-pw-001235',
     '9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02',
-    3
+    3,
+    1019
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000002'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000003',
@@ -5599,14 +5697,15 @@ SELECT
     'Brown_Michael',
     'placeholder-pw-001236',
     '9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03',
-    5
+    5,
+    1018
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000003'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000004',
@@ -5626,14 +5725,15 @@ SELECT
     'Davis_Sarah',
     'placeholder-pw-001237',
     '9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04',
-    2
+    2,
+    1016
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000004'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000005',
@@ -5653,14 +5753,15 @@ SELECT
     'Garcia_Maria',
     'placeholder-pw-001239',
     '9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06',
-    6
+    6,
+    1015
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000005'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000006',
@@ -5680,14 +5781,15 @@ SELECT
     'Smith_John',
     'placeholder-pw-001234',
     '9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01',
-    5
+    5,
+    1014
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000006'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000007',
@@ -5707,14 +5809,15 @@ SELECT
     'Jones_Emily',
     'placeholder-pw-001235',
     '9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02',
-    3
+    3,
+    1012
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000007'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000008',
@@ -5734,14 +5837,15 @@ SELECT
     'Brown_Michael',
     'placeholder-pw-001236',
     '9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03',
-    4
+    4,
+    1011
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000008'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000009',
@@ -5761,14 +5865,15 @@ SELECT
     'Wilson_Robert',
     'placeholder-pw-001238',
     '9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05',
-    2
+    2,
+    1010
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000009'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000010',
@@ -5788,14 +5893,15 @@ SELECT
     'Kapoor_Anil',
     'placeholder-pw-001240',
     '9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07',
-    2
+    2,
+    1021
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000010'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000011',
@@ -5815,14 +5921,15 @@ SELECT
     'Chen_Linda',
     'placeholder-pw-001241',
     '9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08',
-    4
+    4,
+    1022
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000011'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000012',
@@ -5842,14 +5949,15 @@ SELECT
     'Garcia_Maria',
     'placeholder-pw-001239',
     '9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06',
-    3
+    3,
+    1020
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000012'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000013',
@@ -5869,14 +5977,15 @@ SELECT
     'Wilson_Robert',
     'placeholder-pw-001238',
     '9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05',
-    2
+    2,
+    1006
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000013'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000014',
@@ -5896,14 +6005,15 @@ SELECT
     'Smith_John',
     'placeholder-pw-001234',
     '9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01',
-    9
+    9,
+    1024
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000014'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000101',
@@ -5923,14 +6033,15 @@ SELECT
     'Smith_John',
     'placeholder-pw-001234',
     '9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01',
-    9
+    9,
+    1001
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000101'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000102',
@@ -5950,14 +6061,15 @@ SELECT
     'Jones_Emily',
     'placeholder-pw-001235',
     '9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02',
-    9
+    9,
+    1002
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000102'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000103',
@@ -5977,14 +6089,15 @@ SELECT
     'Brown_Michael',
     'placeholder-pw-001236',
     '9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03',
-    9
+    9,
+    1003
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000103'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000104',
@@ -6004,14 +6117,15 @@ SELECT
     'Davis_Sarah',
     'placeholder-pw-001237',
     '9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04',
-    9
+    9,
+    1004
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000104'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000105',
@@ -6031,14 +6145,15 @@ SELECT
     'Wilson_Robert',
     'placeholder-pw-001238',
     '9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05',
-    9
+    9,
+    1005
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000105'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000106',
@@ -6058,14 +6173,15 @@ SELECT
     'Garcia_Maria',
     'placeholder-pw-001239',
     '9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06',
-    9
+    9,
+    1007
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000106'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000107',
@@ -6085,14 +6201,15 @@ SELECT
     'Kapoor_Anil',
     'placeholder-pw-001240',
     '9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07',
-    9
+    9,
+    1008
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000107'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000108',
@@ -6112,14 +6229,15 @@ SELECT
     'Chen_Linda',
     'placeholder-pw-001241',
     '9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08',
-    9
+    9,
+    1009
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000108'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000109',
@@ -6139,14 +6257,15 @@ SELECT
     'Smith_John',
     'placeholder-pw-001234',
     '9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01',
-    9
+    9,
+    1013
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000109'
 );
 
 INSERT INTO "tax_routing"."tax_routing_records" (
-    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step"
+    "id", "status", "created_at", "updated_at", "assigned_user_id", "client_first_name", "client_last_name", "client_full_name", "office_location", "pds_email", "personal_email", "additional_email", "notification_flag", "internal_folder", "folder_name", "read_write_password", "client_reference_id", "progress_step", "case_number"
 )
 SELECT
     '6f0a0001-0000-4a00-9000-000000000110',
@@ -6166,7 +6285,8 @@ SELECT
     'Jones_Emily',
     'placeholder-pw-001235',
     '9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02',
-    9
+    9,
+    1017
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."tax_routing_records" WHERE "id" = '6f0a0001-0000-4a00-9000-000000000110'
@@ -6182,7 +6302,7 @@ WHERE NOT EXISTS (
 
 
 INSERT INTO "tax_routing"."exception_tasks" (
-    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id"
+    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id", "case_number"
 )
 SELECT
     '7a0b0001-0000-4b00-9000-000000000001',
@@ -6191,14 +6311,15 @@ SELECT
     'moving',
     '2026-05-09T11:20:00Z',
     NULL,
-    '7b181135-1625-46f9-a90c-e09b5ba9b0ad'
+    '7b181135-1625-46f9-a90c-e09b5ba9b0ad',
+    1014
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."exception_tasks" WHERE "id" = '7a0b0001-0000-4b00-9000-000000000001'
 );
 
 INSERT INTO "tax_routing"."exception_tasks" (
-    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id"
+    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id", "case_number"
 )
 SELECT
     '7a0b0001-0000-4b00-9000-000000000002',
@@ -6207,14 +6328,15 @@ SELECT
     'verify',
     '2026-05-09T09:50:00Z',
     NULL,
-    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01'
+    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01',
+    1012
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."exception_tasks" WHERE "id" = '7a0b0001-0000-4b00-9000-000000000002'
 );
 
 INSERT INTO "tax_routing"."exception_tasks" (
-    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id"
+    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id", "case_number"
 )
 SELECT
     '7a0b0001-0000-4b00-9000-000000000003',
@@ -6223,14 +6345,15 @@ SELECT
     'processing',
     '2026-05-08T15:40:00Z',
     NULL,
-    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02'
+    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02',
+    1011
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."exception_tasks" WHERE "id" = '7a0b0001-0000-4b00-9000-000000000003'
 );
 
 INSERT INTO "tax_routing"."exception_tasks" (
-    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id"
+    "id", "routing_record_id", "failure_reason", "failed_step", "opened_at", "resolved_at", "assigned_user_id", "case_number"
 )
 SELECT
     '7a0b0001-0000-4b00-9000-000000000004',
@@ -6239,7 +6362,8 @@ SELECT
     'uploaded',
     '2026-05-08T10:20:00Z',
     NULL,
-    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03'
+    '3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03',
+    1010
 
 WHERE NOT EXISTS (
     SELECT 1 FROM "tax_routing"."exception_tasks" WHERE "id" = '7a0b0001-0000-4b00-9000-000000000004'

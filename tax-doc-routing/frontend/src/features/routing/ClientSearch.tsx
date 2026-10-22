@@ -3,10 +3,8 @@ import { ComboboxField } from '@appfw/pds-health-components/forms';
 import type { PdsOption } from '@appfw/pds-health-components/types';
 import { searchClients } from '../../lib/clientDirectory';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
-import type { Client, Role } from '../shared/types';
+import type { Client } from '../shared/types';
 
-// Same role -> backend-user mapping as useDocumentTypeCatalogue.ts / useEntityDirectory.ts.
-const BACKEND_USER_NAME: Record<Role, string> = { standard: 'alex', admin: 'dana' };
 
 const optionLabel = (c: Client) => `${c.fullName} — ${c.officeLocation} (${c.id})`;
 
@@ -19,7 +17,7 @@ const optionLabel = (c: Client) => `${c.fullName} — ${c.officeLocation} (${c.i
  * would drop focus on every keystroke. The previous results stay visible while a search runs.
  */
 export function ClientSearch({ selected, onSelect }: { selected: Client | null; onSelect: (client: Client | null) => void }) {
-  const { role } = useTaxRouting();
+  const { userName } = useTaxRouting();
   const [input, setInput] = useState(selected ? optionLabel(selected) : '');
   const [found, setFound] = useState<Client[]>([]);
 
@@ -31,9 +29,10 @@ export function ClientSearch({ selected, onSelect }: { selected: Client | null; 
   }, [selectedId]);
 
   useEffect(() => {
+    if (!userName) return undefined;
     let active = true;
     const timer = setTimeout(async () => {
-      const results = await searchClients(BACKEND_USER_NAME[role], selected && input === optionLabel(selected) ? '' : input);
+      const results = await searchClients(userName, selected && input === optionLabel(selected) ? '' : input);
       if (active) {
         setFound(results);
       }
@@ -42,7 +41,7 @@ export function ClientSearch({ selected, onSelect }: { selected: Client | null; 
       active = false;
       clearTimeout(timer);
     };
-  }, [input, selected, role]);
+  }, [input, selected, userName]);
 
   // The selected client must stay in the option list or the combobox would drop the selection.
   const clientsById = useMemo(() => {

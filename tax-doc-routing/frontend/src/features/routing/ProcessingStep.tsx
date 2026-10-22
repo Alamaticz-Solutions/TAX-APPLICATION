@@ -7,6 +7,7 @@ import { ProcessingTimeline } from '../../components/ProcessingTimeline';
 import { ESTIMATED_MINUTES, PROCESSING_STEPS } from '../shared/config/processingSteps';
 import { STATUS } from '../shared/config/statuses';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { progressPercent } from '../shared/utils/timeline';
 
 /** Step 4: simulated processing. The state machine lives in the provider so it survives leaving this page. */
@@ -31,7 +32,7 @@ export function ProcessingStep({ recordId }: { recordId: string }) {
     <div className="tax-stack">
       <div>
         <h2 className="tax-section-title">Processing Tax Documents</h2>
-        <p className="tax-muted">{record.id} · You can leave this page; processing continues and the record stays on your dashboard.</p>
+        <p className="tax-muted">{formatCaseNumber(record.caseNumber, record.id)} · You can leave this page; processing continues and the record stays on your dashboard.</p>
       </div>
 
       {record.status === STATUS.EXCEPTION ? (

@@ -359,6 +359,13 @@ BEGIN
     IF NOT EXISTS (
         SELECT 1 FROM sys.columns
         WHERE object_id = OBJECT_ID(N'[tax_routing].[exception_tasks]')
+          AND name = N'case_number'
+    )
+        ALTER TABLE [tax_routing].[exception_tasks] ADD [case_number] int;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[exception_tasks]')
           AND name = N'version'
     )
         ALTER TABLE [tax_routing].[exception_tasks] ADD [version] bigint NOT NULL CONSTRAINT [df_exception_tasks_version] DEFAULT 0;
@@ -383,6 +390,7 @@ BEGIN
         ,[opened_at] datetimeoffset(7)
         ,[resolved_at] datetimeoffset(7)
         ,[assigned_user_id] uniqueidentifier
+        ,[case_number] int
         ,[version] bigint NOT NULL CONSTRAINT [df_exception_tasks_version] DEFAULT 0
         ,[record_locator] nvarchar(450) NOT NULL CONSTRAINT [df_exception_tasks_record_locator] DEFAULT CONCAT(N'rl_', REPLACE(CONVERT(nvarchar(36), NEWID()), N'-', N''))
     );
@@ -1225,6 +1233,61 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID(N'[tax_routing].[storage_tokens]', N'U') IS NOT NULL
+BEGIN
+    PRINT N'ALTERING table storage_tokens';
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+          AND name = N'provider'
+    )
+        ALTER TABLE [tax_routing].[storage_tokens] ADD [provider] nvarchar(450);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+          AND name = N'access_token'
+    )
+        ALTER TABLE [tax_routing].[storage_tokens] ADD [access_token] nvarchar(450);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+          AND name = N'issued_at'
+    )
+        ALTER TABLE [tax_routing].[storage_tokens] ADD [issued_at] datetimeoffset(7);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+          AND name = N'expires_at'
+    )
+        ALTER TABLE [tax_routing].[storage_tokens] ADD [expires_at] datetimeoffset(7);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+          AND name = N'record_locator'
+    )
+        ALTER TABLE [tax_routing].[storage_tokens] ADD [record_locator] nvarchar(450) NOT NULL CONSTRAINT [df_storage_tokens_record_locator] DEFAULT CONCAT(N'rl_', REPLACE(CONVERT(nvarchar(36), NEWID()), N'-', N''));
+
+END
+ELSE
+BEGIN
+    PRINT N'CREATING table storage_tokens';
+    CREATE TABLE [tax_routing].[storage_tokens]
+    (
+        [id] uniqueidentifier NOT NULL CONSTRAINT [df_storage_tokens_id] DEFAULT NEWID() CONSTRAINT [pk_storage_tokens] PRIMARY KEY
+        ,[provider] nvarchar(450)
+        ,[access_token] nvarchar(450)
+        ,[issued_at] datetimeoffset(7)
+        ,[expires_at] datetimeoffset(7)
+        ,[record_locator] nvarchar(450) NOT NULL CONSTRAINT [df_storage_tokens_record_locator] DEFAULT CONCAT(N'rl_', REPLACE(CONVERT(nvarchar(36), NEWID()), N'-', N''))
+    );
+END
+GO
+
 IF OBJECT_ID(N'[tax_routing].[tax_documents]', N'U') IS NOT NULL
 BEGIN
     PRINT N'ALTERING table tax_documents';
@@ -1337,6 +1400,27 @@ BEGIN
     IF NOT EXISTS (
         SELECT 1 FROM sys.columns
         WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_documents]')
+          AND name = N'storage_file_id'
+    )
+        ALTER TABLE [tax_routing].[tax_documents] ADD [storage_file_id] nvarchar(450);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_documents]')
+          AND name = N'file_size'
+    )
+        ALTER TABLE [tax_routing].[tax_documents] ADD [file_size] int;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_documents]')
+          AND name = N'is_file_moved'
+    )
+        ALTER TABLE [tax_routing].[tax_documents] ADD [is_file_moved] bit;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_documents]')
           AND name = N'version'
     )
         ALTER TABLE [tax_routing].[tax_documents] ADD [version] bigint NOT NULL CONSTRAINT [df_tax_documents_version] DEFAULT 0;
@@ -1370,6 +1454,9 @@ BEGIN
         ,[k1_attachments] nvarchar(max)
         ,[form_8308_attachments] nvarchar(max)
         ,[amended_documents] nvarchar(max)
+        ,[storage_file_id] nvarchar(450)
+        ,[file_size] int
+        ,[is_file_moved] bit
         ,[version] bigint NOT NULL CONSTRAINT [df_tax_documents_version] DEFAULT 0
         ,[record_locator] nvarchar(450) NOT NULL CONSTRAINT [df_tax_documents_record_locator] DEFAULT CONCAT(N'rl_', REPLACE(CONVERT(nvarchar(36), NEWID()), N'-', N''))
     );
@@ -1442,6 +1529,13 @@ GO
 IF OBJECT_ID(N'[tax_routing].[tax_payer_ref_data]', N'U') IS NOT NULL
 BEGIN
     PRINT N'ALTERING table tax_payer_ref_data';
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_payer_ref_data]')
+          AND name = N'client_key'
+    )
+        ALTER TABLE [tax_routing].[tax_payer_ref_data] ADD [client_key] nvarchar(450);
 
     IF NOT EXISTS (
         SELECT 1 FROM sys.columns
@@ -1548,6 +1642,7 @@ BEGIN
     CREATE TABLE [tax_routing].[tax_payer_ref_data]
     (
         [id] uniqueidentifier NOT NULL CONSTRAINT [df_tax_payer_ref_data_id] DEFAULT NEWID() CONSTRAINT [pk_tax_payer_ref_data] PRIMARY KEY
+        ,[client_key] nvarchar(450)
         ,[first_name] nvarchar(450)
         ,[last_name] nvarchar(450)
         ,[full_name] nvarchar(450)
@@ -1692,6 +1787,20 @@ BEGIN
     IF NOT EXISTS (
         SELECT 1 FROM sys.columns
         WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
+          AND name = N'case_number'
+    )
+        ALTER TABLE [tax_routing].[tax_routing_records] ADD [case_number] int;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
+          AND name = N'temp_folder_id'
+    )
+        ALTER TABLE [tax_routing].[tax_routing_records] ADD [temp_folder_id] nvarchar(450);
+
+    IF NOT EXISTS (
+        SELECT 1 FROM sys.columns
+        WHERE object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
           AND name = N'version'
     )
         ALTER TABLE [tax_routing].[tax_routing_records] ADD [version] bigint NOT NULL CONSTRAINT [df_tax_routing_records_version] DEFAULT 0;
@@ -1727,6 +1836,8 @@ BEGIN
         ,[read_write_password] nvarchar(450)
         ,[client_reference_id] uniqueidentifier
         ,[progress_step] int
+        ,[case_number] int
+        ,[temp_folder_id] nvarchar(450)
         ,[version] bigint NOT NULL CONSTRAINT [df_tax_routing_records_version] DEFAULT 0
         ,[record_locator] nvarchar(450) NOT NULL CONSTRAINT [df_tax_routing_records_record_locator] DEFAULT CONCAT(N'rl_', REPLACE(CONVERT(nvarchar(36), NEWID()), N'-', N''))
     );
@@ -3676,6 +3787,18 @@ GO
 
 IF NOT EXISTS (
     SELECT 1 FROM sys.indexes
+    WHERE name = N'ux_storage_tokens_record_locator'
+      AND object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+)
+BEGIN
+    PRINT N'Creating index ux_storage_tokens_record_locator';
+    CREATE UNIQUE INDEX [ux_storage_tokens_record_locator]
+        ON [tax_routing].[storage_tokens] ([record_locator]);
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1 FROM sys.indexes
     WHERE name = N'ux_tax_documents_record_locator'
       AND object_id = OBJECT_ID(N'[tax_routing].[tax_documents]')
 )
@@ -4592,6 +4715,42 @@ BEGIN
     PRINT N'Creating constraint uq_role_permission on role_permissions';
     ALTER TABLE [tax_routing].[role_permissions]
         ADD CONSTRAINT uq_role_permission UNIQUE (role_id, permission_id);
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1 FROM sys.objects
+    WHERE name = N'uq_storage_token_provider'
+      AND parent_object_id = OBJECT_ID(N'[tax_routing].[storage_tokens]')
+)
+BEGIN
+    PRINT N'Creating constraint uq_storage_token_provider on storage_tokens';
+    ALTER TABLE [tax_routing].[storage_tokens]
+        ADD CONSTRAINT uq_storage_token_provider UNIQUE (provider);
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1 FROM sys.objects
+    WHERE name = N'uq_tax_payer_ref_data_client_key'
+      AND parent_object_id = OBJECT_ID(N'[tax_routing].[tax_payer_ref_data]')
+)
+BEGIN
+    PRINT N'Creating constraint uq_tax_payer_ref_data_client_key on tax_payer_ref_data';
+    ALTER TABLE [tax_routing].[tax_payer_ref_data]
+        ADD CONSTRAINT uq_tax_payer_ref_data_client_key UNIQUE (client_key);
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1 FROM sys.objects
+    WHERE name = N'uq_tax_routing_record_case_number'
+      AND parent_object_id = OBJECT_ID(N'[tax_routing].[tax_routing_records]')
+)
+BEGIN
+    PRINT N'Creating constraint uq_tax_routing_record_case_number on tax_routing_records';
+    ALTER TABLE [tax_routing].[tax_routing_records]
+        ADD CONSTRAINT uq_tax_routing_record_case_number UNIQUE (case_number);
 END
 GO
 

@@ -5,7 +5,9 @@ import { Badge, Button } from '@appfw/pds-health-components/primitives';
 import { FeedbackState, KpiTile, Surface } from '@appfw/pds-health-components/surfaces';
 import type { PdsDataGridColumn } from '@appfw/pds-health-components/types';
 import { StatusBadge } from '../../components/StatusBadge';
+import { useDocumentTypeCatalogue } from '../shared/hooks/useDocumentTypeCatalogue';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { buildFileName } from '../shared/utils/filenameRules';
 import { destinationsFor } from '../shared/utils/routingRules';
 
@@ -14,6 +16,7 @@ type ResultRow = { id: string; type: string; year: string; entity: string; filed
 /** Final stage: success summary, the record's key facts, and what happened to each document. */
 export function CompletedStep({ recordId }: { recordId: string }) {
   const { getCase, draftApi } = useTaxRouting();
+  const { getDocumentType } = useDocumentTypeCatalogue();
   const navigate = useNavigate();
   const record = getCase(recordId);
   if (!record) return null;
@@ -25,7 +28,7 @@ export function CompletedStep({ recordId }: { recordId: string }) {
     year: String(d.year),
     entity: d.entity?.name ?? 'Personal',
     filedAs: buildFileName(client, d),
-    location: destinationsFor(d)
+    location: destinationsFor(d, getDocumentType)
       .map((dest) => dest.folder)
       .filter(Boolean)
       .join(', '),
@@ -68,7 +71,7 @@ export function CompletedStep({ recordId }: { recordId: string }) {
       </Surface>
 
       <div className="tax-kpi-grid" role="list" aria-label="Record summary">
-        <KpiTile as="div" role="listitem" label="Record ID" value={record.id} icon={<Hash size={20} aria-hidden="true" />} />
+        <KpiTile as="div" role="listitem" label="Case No." value={formatCaseNumber(record.caseNumber, record.id)} icon={<Hash size={20} aria-hidden="true" />} />
         <KpiTile as="div" role="listitem" label="Client" value={client.fullName ? `${client.lastName}, ${client.firstName}` : '—'} icon={<User size={20} aria-hidden="true" />} />
         <KpiTile as="div" role="listitem" label="Documents Filed" value={record.documents.length} icon={<FileText size={20} aria-hidden="true" />} tone="success" />
         <KpiTile

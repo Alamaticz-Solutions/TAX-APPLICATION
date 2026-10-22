@@ -1,19 +1,20 @@
 import { useNavigate } from 'react-router';
-import { Bell } from 'lucide-react';
+import { Bell, LogOut } from 'lucide-react';
 import { useAppearance, type AppearanceColorMode, type AppearanceVisualTheme } from '@appfw/pds-health-components/foundation';
 import { IconButton, SegmentedControl } from '@appfw/pds-health-components/primitives';
+import { useSession } from '../../app/SessionProvider';
 import { useTaxRouting } from '../../features/shared/state/TaxRoutingProvider';
-import type { Role } from '../../features/shared/types';
 import { WorkspaceCommandPalette } from './commandPalette';
 
 /**
  * Top bar content, rendered into the PDS `AppShell`'s `topBar` slot: command palette,
- * exception notifications, the prototype role switcher, and the two PDS appearance controls
- * (visual style and colour mode, persisted by the PDS `AppearanceProvider` mounted in main.tsx).
+ * exception notifications, log out, and the two PDS appearance controls (visual style and
+ * colour mode, persisted by the PDS `AppearanceProvider` mounted in main.tsx).
  */
 export function Header() {
   const navigate = useNavigate();
-  const { role, setRole, exceptionQueue } = useTaxRouting();
+  const { exceptionQueue, draftApi } = useTaxRouting();
+  const { signOut } = useSession();
   const { colorMode, setColorMode, visualTheme, setVisualTheme } = useAppearance();
   const count = exceptionQueue.length;
 
@@ -28,22 +29,6 @@ export function Header() {
         variant="quiet"
         onClick={() => navigate('/exceptions')}
       />
-
-      <div className="tax-topbar-controls" role="group" aria-label="Prototype role">
-        <SegmentedControl<Role>
-          ariaLabel="Prototype role"
-          size="sm"
-          value={role}
-          onValueChange={(next) => {
-            setRole(next);
-            navigate('/dashboard');
-          }}
-          options={[
-            { value: 'standard', label: 'Tax Staff' },
-            { value: 'admin', label: 'Tax Admin' }
-          ]}
-        />
-      </div>
 
       <div className="tax-topbar-controls" role="group" aria-label="Appearance">
         <SegmentedControl<AppearanceVisualTheme>
@@ -68,6 +53,19 @@ export function Header() {
           ]}
         />
       </div>
+
+      <IconButton
+        icon={<LogOut size={20} aria-hidden="true" />}
+        ariaLabel="Log out"
+        tooltip="Log out"
+        variant="quiet"
+        onClick={() => {
+          // A signed-out browser must not reopen the previous user's half-finished request.
+          draftApi.reset();
+          signOut();
+          navigate('/sign-in', { replace: true });
+        }}
+      />
     </>
   );
 }

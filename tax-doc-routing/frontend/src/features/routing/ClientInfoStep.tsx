@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
+import { WorkingSpinner } from '../../components/WorkingSpinner';
 import { TextField } from '@appfw/pds-health-components/forms';
 import { Button, SegmentedControl } from '@appfw/pds-health-components/primitives';
 import { FieldGroup, FormLayout, InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
@@ -17,13 +18,17 @@ import { ClientSearch } from './ClientSearch';
  */
 export function ClientInfoStep() {
   const navigate = useNavigate();
-  const { draft, setClient, setAdditionalEmail, setNotifyClient, reset } = useRoutingRecord();
+  const { draft, setClient, setAdditionalEmail, setNotifyClient, createRecord, discard } = useRoutingRecord();
   const { clients } = useClientDirectory();
   const [emailError, setEmailError] = useState('');
   const [missingClient, setMissingClient] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [createError, setCreateError] = useState('');
   const client = draft.client;
+  // Once the request exists (it gets its number and storage folder), its client can no longer change.
+  const locked = draft.recordId !== null;
 
-  const next = () => {
+  const next = async () => {
     if (!client) {
       setMissingClient(true);
       return;
@@ -32,7 +37,16 @@ export function ClientInfoStep() {
       setEmailError('Enter a valid email address.');
       return;
     }
-    navigate('/new/documents');
+    setCreateError('');
+    setCreating(true);
+    try {
+      // Creates the request: its TD number and its temporary storage folder, before any upload.
+      await createRecord();
+      navigate('/new/documents');
+    } catch (err) {
+      setCreateError(err instanceof Error && err.message ? err.message : 'The request could not be created.');
+      setCreating(false);
+    }
   };
 
   return (
@@ -43,9 +57,11 @@ export function ClientInfoStep() {
         density="compact"
         actions={
           client ? (
-            <Button size="sm" variant="quiet" onClick={() => setClient(null)}>
-              Change client
-            </Button>
+            locked ? undefined : (
+              <Button size="sm" variant="quiet" onClick={() => setClient(null)}>
+                Change client
+              </Button>
+            )
           ) : (
             <Button
               size="sm"
@@ -66,17 +82,29 @@ export function ClientInfoStep() {
         {missingClient && !client ? (
           <InlineAlert tone="warning" title="Select a client to continue" detail="Search by name or ID in Client Name." />
         ) : null}
+        {createError ? <InlineAlert tone="danger" title="The request could not be created" detail={createError} /> : null}
+        {locked ? (
+          <InlineAlert
+            tone="neutral"
+            title="This request has been created"
+            detail="Its client can no longer be changed. Cancel the request to start over with a different client."
+          />
+        ) : null}
         <FormLayout columns="auto" className="tax-form-sections">
           <FieldGroup legend="Client Profile">
             <FormLayout columns="one">
-            <ClientSearch
-              selected={client}
-              onSelect={(c) => {
-                setClient(c);
-                setEmailError('');
-                if (c) setMissingClient(false);
-              }}
-            />
+            {locked ? (
+              <TextField label="Client Name" value={client?.fullName ?? ''} readOnly />
+            ) : (
+              <ClientSearch
+                selected={client}
+                onSelect={(c) => {
+                  setClient(c);
+                  setEmailError('');
+                  if (c) setMissingClient(false);
+                }}
+              />
+            )}
             <TextField label="First Name" value={client?.firstName ?? ''} readOnly />
             <TextField label="Last Name" value={client?.lastName ?? ''} readOnly />
             </FormLayout>
@@ -90,6 +118,7 @@ export function ClientInfoStep() {
               label="Additional Email"
               type="email"
               value={draft.additionalEmail}
+              readOnly={locked}
               error={emailError}
               onChange={(e) => {
                 setAdditionalEmail(e.target.value);
@@ -101,18 +130,19 @@ export function ClientInfoStep() {
 
           <FieldGroup legend="Intelligence Routing">
             <FormLayout columns="one">
-            <TextField label="Internal Folder" value={client?.internalFolder ?? ''} readOnly />
-            <TextField label="Client Folder" value={client?.folderName ?? ''} readOnly />
+            <TextField label="Internal Folder ID" value={client?.internalFolder ?? ''} readOnly />
+            <TextField label="Client Folder ID" value={client?.folderName ?? ''} readOnly />
             <TextField
               label="Read Write Password"
               type="password"
-              value={client ? '••••••••••' : ''}
+              value={client ? 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢' : ''}
               readOnly
               hint={client ? 'Password on file. It is never displayed and only protects PDFs when required.' : undefined}
             />
             <FieldGroup legend="Send Notification?" description="Emails the client when routing completes.">
               <SegmentedControl<'yes' | 'no'>
                 ariaLabel="Send notification to client"
+                disabled={locked}
                 value={draft.notifyClient ? 'yes' : 'no'}
                 onValueChange={(v) => setNotifyClient(v === 'yes')}
                 options={[
@@ -129,15 +159,24 @@ export function ClientInfoStep() {
       <div className="tax-actions tax-spread">
         <Button
           variant="quiet"
+          disabled={creating}
           onClick={() => {
-            reset();
-            navigate('/dashboard');
+            // Cancelling after the request exists removes it and its temporary folder.
+            void discard().then(() => navigate('/dashboard'));
           }}
         >
           Cancel
         </Button>
-        <Button variant="primary" onClick={next}>
-          Create Request <ArrowRight size={16} aria-hidden="true" />
+        <Button variant="primary" disabled={creating} onClick={() => void next()}>
+          {creating ? (
+            <>
+              <WorkingSpinner /> Creating Request…
+            </>
+          ) : (
+            <>
+              {locked ? 'Continue' : 'Create Request'} <ArrowRight size={16} aria-hidden="true" />
+            </>
+          )}
         </Button>
       </div>
     </div>

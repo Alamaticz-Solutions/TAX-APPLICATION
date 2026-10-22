@@ -118,3 +118,33 @@
     label: Personal Corporation
     sort_order: 30
     is_active: true
+
+  # k1_attachment (4a1c7e10...0001)
+  - id: 4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40001
+    option_list_id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001
+    code: k1Statement
+    label: K-1 Statement
+    sort_order: 10
+    is_active: true
+  - id: 4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40002
+    option_list_id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001
+    code: k1Schedule
+    label: Supporting Schedule
+    sort_order: 20
+    is_active: true
+
+  # k1_attachment_entity_type (4a1c7e10...0002)
+  - id: 4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40003
+    option_list_id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002
+    code: Partnership
+    label: Partnership
+    sort_order: 10
+    is_active: true
+
+  # form_8308_attachment (4a1c7e10...0003)
+  - id: 4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40004
+    option_list_id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003
+    code: form8308Attachment
+    label: Form 8308 attachment
+    sort_order: 10
+    is_active: true

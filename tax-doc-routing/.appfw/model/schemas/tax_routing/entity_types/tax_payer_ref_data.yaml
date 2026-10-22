@@ -6,6 +6,8 @@
   facets:
   - audited
   - concurrency
+  constraints:
+  - uq_tax_payer_ref_data_client_key UNIQUE (client_key)
 
   custom_methods:
   - name: list_active_taxpayers
@@ -39,6 +41,14 @@
 
   - name: id
     fragment: property-primary-key-uuid
+
+  # The client's business key: the name of the client's folder in a bulk-upload ZIP and the
+  # Client Key column of the bulk Excel file. Unique when set; optional because clients created
+  # one by one do not need one.
+  - name: client_key
+    caption: Client Key
+    is_required: false
+    data_type: String
 
   - name: first_name
     caption: First Name

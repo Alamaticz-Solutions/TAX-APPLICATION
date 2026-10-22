@@ -12,6 +12,7 @@ import { StatusBadge } from '../../components/StatusBadge';
 import { ALL_STATUSES, STATUS, STATUS_META, TERMINAL_STATUSES } from '../shared/config/statuses';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { RecordStatus, RoutingCase } from '../shared/types';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { formatDate } from '../shared/utils/format';
 
 type Tile = {
@@ -62,15 +63,20 @@ export function DashboardScreen() {
         title="Dashboard"
         subtitle={`Welcome back, ${user.name.split(' ')[0]}! ${role === 'admin' ? "Here's the team's activity summary." : "Here's your activity summary."}`}
         actions={
-          <Button
-            variant="primary"
-            onClick={() => {
-              draftApi.reset();
-              navigate('/new/client');
-            }}
-          >
-            <Plus size={16} aria-hidden="true" /> Create New Request
-          </Button>
+          <>
+            <Button variant="secondary" onClick={() => navigate('/bulk')}>
+              Bulk Request
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                draftApi.reset();
+                navigate('/new/client');
+              }}
+            >
+              <Plus size={16} aria-hidden="true" /> Create New Request
+            </Button>
+          </>
         }
       />
 
@@ -78,10 +84,10 @@ export function DashboardScreen() {
         <InlineAlert
           tone="danger"
           title={`${exceptionCount} record${exceptionCount === 1 ? '' : 's'} require attention`}
-          detail="Open the exception queue to see what failed and retry the step."
+          detail="Open the exception tasks to see what failed and retry the step."
           action={
             <Button size="sm" variant="secondary" onClick={() => navigate('/exceptions')}>
-              View exception queue
+              View exception tasks
             </Button>
           }
         />
@@ -131,7 +137,7 @@ export function DashboardScreen() {
           subtitle="Last five updated"
           density="compact"
           actions={
-            <Button size="sm" variant="quiet" onClick={() => navigate(role === 'admin' ? '/admin/cases' : '/cases')}>
+            <Button size="sm" variant="quiet" onClick={() => navigate('/cases')}>
               View all
             </Button>
           }
@@ -146,7 +152,7 @@ export function DashboardScreen() {
                   as="li"
                   density="compact"
                   activation={{ kind: 'button', onActivate: () => navigate(`/records/${c.id}`) }}
-                  title={c.id}
+                  title={formatCaseNumber(c.caseNumber, c.id)}
                   description={c.client.fullName}
                   metadata={formatDate(c.updated)}
                   status={<StatusBadge status={c.status} />}

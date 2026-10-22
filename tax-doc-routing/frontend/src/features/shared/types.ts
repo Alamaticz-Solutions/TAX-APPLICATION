@@ -85,6 +85,8 @@ export type TaxDocument = {
   isDuplicate?: boolean;
   /** Set when the AI assistant prefilled this row; cleared conceptually once the user edits it. */
   aiConfidence?: number;
+  /** The uploaded file's id in document storage (the copy in the request's temporary folder). */
+  storageFileId?: string;
 };
 
 export type ExceptionInfo = { id: string; error: string; document: string; age: string; detail: string };
@@ -108,7 +110,10 @@ export type RoutingRecordClient = {
 };
 
 export type RoutingCase = {
+  /** The UUID primary key: used in routes and mutations, never shown to people. */
   id: string;
+  /** The sequential number people read and quote (see utils/caseNumber.ts); null until assigned. */
+  caseNumber: number | null;
   client: RoutingRecordClient;
   status: RecordStatus;
   task: string;
@@ -135,7 +140,10 @@ export type RoutingDraft = {
   additionalEmail: string;
   notifyClient: boolean;
   documents: TaxDocument[];
+  /** Set as soon as the request exists (created when the user leaves screen 1). */
   recordId: string | null;
+  /** True once Submit has been pressed and the server is filing the documents. */
+  submitted: boolean;
 };
 
 export type ProcessingStepState = 'done' | 'current' | 'failed' | 'pending' | 'skipped';

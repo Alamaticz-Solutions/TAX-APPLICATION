@@ -1,0 +1,47 @@
+# StorageToken — the current bearer token for the document-storage vendor (Box), one row per
+# provider. Mirrors Pega's token table: the key-store sign-in produces a token, it is saved here
+# with its expiry, every Box call reads it, and a new one replaces it once it has expired.
+#
+# This table is read and written ONLY by backend/src/services/document_store (raw SQL, like
+# services/case_numbers.rs). It is deliberately not reachable through the generated API: no
+# permission exists for resource "storage_token", so every role is denied (fail closed; see
+# rbac/storage_token.rego). It has no `audited` facet on purpose, so the token is never copied
+# into a shadow audit table, and the value is marked for redaction wherever properties are logged.
+
+- id: 9162e695-5bcf-4796-9623-cd2d19da7a63
+  name: StorageToken
+  is_table: true
+  constraints:
+  - uq_storage_token_provider UNIQUE (provider)
+
+  props:
+
+  - name: id
+    fragment: property-primary-key-uuid
+
+  # Which vendor the token is for, e.g. "box".
+  - name: provider
+    caption: Provider
+    is_caption: true
+    is_required: true
+    data_type: String
+
+  - name: access_token
+    caption: Access Token
+    is_required: true
+    data_type: String
+    meta:
+      audit:
+        redact: true
+
+  - name: issued_at
+    caption: Issued At
+    is_required: true
+    data_type: DateTime
+
+  # When the vendor says the token stops working (Box returns `expires_in`). The service renews
+  # shortly before this instant, and immediately if Box answers 401.
+  - name: expires_at
+    caption: Expires At
+    is_required: true
+    data_type: DateTime

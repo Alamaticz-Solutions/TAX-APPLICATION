@@ -61,3 +61,12 @@
     data_type: Uuid
     foreign_key:
       type_name: AppUser
+
+  # Copy of TaxRoutingRecord.case_number (TD-1001), taken when the task is opened and never
+  # changed. The Exception Queue is readable by every staff member (scope all) while routing
+  # records are not, so the queue needs the number on the task itself to label records the
+  # viewer cannot open. Backfilled by database/backfill/002_exception_task_case_number.sql.
+  - name: case_number
+    caption: Case Number
+    is_required: false
+    data_type: Int32

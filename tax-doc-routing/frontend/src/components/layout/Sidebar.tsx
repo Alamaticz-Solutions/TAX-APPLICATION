@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router';
-import { AlertTriangle, Briefcase, FilePlus2, LayoutDashboard, Settings, Users, type LucideIcon } from 'lucide-react';
+import { AlertTriangle, Briefcase, LayoutDashboard, type LucideIcon } from 'lucide-react';
 import { Avatar, NavigationItem, PdsHealthLogo } from '@appfw/pds-health-components/foundation';
 import { Badge } from '@appfw/pds-health-components/primitives';
 import { useTaxRouting } from '../../features/shared/state/TaxRoutingProvider';
@@ -54,71 +54,37 @@ function NavRow({ item }: { item: NavItem }) {
 }
 
 export function SidebarNav() {
-  const { exceptionQueue, draft, draftApi, hasPermission } = useTaxRouting();
-  const navigate = useNavigate();
-  const location = useLocation();
-  // Admin section visibility follows the real grants fetched from the backend, not the role
-  // switcher directly — see docs/architecture/rbac-design.md.
-  const canSeeAllCases = hasPermission('routing_record.view_assignee');
-  const canSeeAdministration = hasPermission('rbac.manage');
+  // "Create New Request" is deliberately not a nav item: it lives on the Dashboard and All Cases
+  // headers (and the command palette), so the rail only holds places to look at records.
+  const { exceptionQueue, hasPermission } = useTaxRouting();
+  // The label follows the real grant fetched from the backend (docs/architecture/rbac-design.md):
+  // staff see their own cases, a Tax Admin sees every case on the same screen.
+  const seesEveryone = hasPermission('routing_record.view_assignee');
 
-  const workspace: NavItem[] = [
+  const home: NavItem[] = [{ label: 'Dashboard', icon: LayoutDashboard, route: '/dashboard', end: true }];
+  const requests: NavItem[] = [
+    { label: seesEveryone ? 'Request Management' : 'My Cases', icon: Briefcase, route: '/cases' },
     {
-      label: 'Dashboard',
-      icon: LayoutDashboard,
-      route: '/dashboard',
-      end: true
-    },
-    { label: 'My Cases', icon: Briefcase, route: '/cases' },
-    {
-      label: 'Exception Queue',
+      label: 'Exception Task',
       icon: AlertTriangle,
       route: '/exceptions',
       badge: exceptionQueue.length
     }
   ];
-  const admin: NavItem[] = [
-    ...(canSeeAllCases ? [{ label: 'All Cases', icon: Users, route: '/admin/cases' }] : []),
-    ...(canSeeAdministration ? [{ label: 'Administration', icon: Settings, route: '/admin', end: true }] : [])
-  ];
-  const newRecord: NavItem = {
-    label: 'Create New Request',
-    icon: FilePlus2,
-    route: '/new'
-  };
 
   return (
     <div className="tax-sidebar-nav-sections">
       <ul className="tax-sidebar-nav-list">
-        <li>
-          <NavigationItem
-            href="/new/client"
-            onClick={(e) => {
-              if (isModifiedClick(e)) return;
-              e.preventDefault();
-              // A finished record must not reopen its old draft.
-              if (draft.recordId) draftApi.reset();
-              navigate('/new/client');
-            }}
-            icon={<newRecord.icon size={19} aria-hidden="true" />}
-            label={newRecord.label}
-            current={location.pathname.startsWith('/new')}
-          />
-        </li>
-        {workspace.map((item) => (
+        {home.map((item) => (
           <NavRow key={item.label} item={item} />
         ))}
       </ul>
-      {admin.length > 0 ? (
-        <div>
-          <div className="tax-sidebar-section-label">Admin</div>
-          <ul className="tax-sidebar-nav-list">
-            {admin.map((item) => (
-              <NavRow key={item.label} item={item} />
-            ))}
-          </ul>
-        </div>
-      ) : null}
+      {/* A small gap sets the request screens apart from the dashboard (the sections container's own spacing). */}
+      <ul className="tax-sidebar-nav-list">
+        {requests.map((item) => (
+          <NavRow key={item.label} item={item} />
+        ))}
+      </ul>
     </div>
   );
 }

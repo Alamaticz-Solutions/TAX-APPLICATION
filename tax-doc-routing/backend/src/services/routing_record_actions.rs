@@ -20,7 +20,7 @@ fn field(name: &str) -> serde_json::Value {
 /// Every scalar column on TaxRoutingRecord: `update_item` takes a fully-populated
 /// `InputTaxRoutingRecord`, so both actions read the current row first and carry every
 /// untouched field forward unchanged.
-fn full_record_selection() -> serde_json::Value {
+pub(crate) fn full_record_selection() -> serde_json::Value {
     json!({
         "name": "tax_routing_record",
         "selection_set": [
@@ -29,12 +29,13 @@ fn full_record_selection() -> serde_json::Value {
             field("client_full_name"), field("office_location"), field("pds_email"),
             field("personal_email"), field("additional_email"), field("notification_flag"),
             field("internal_folder"), field("folder_name"), field("read_write_password"),
-            field("client_reference_id"), field("progress_step"), field("version"),
+            field("client_reference_id"), field("progress_step"), field("case_number"),
+            field("temp_folder_id"), field("version"),
         ]
     })
 }
 
-async fn load_record(
+pub(crate) async fn load_record(
     data_access: &Arc<DataAccess>,
     entity_type: &Arc<EntityType>,
     record_id: &str,
@@ -57,7 +58,7 @@ fn require_field<T>(value: Option<T>, field_name: &str) -> HandlerResult<T> {
 
 /// Builds the full replacement input, carrying every current value forward except whatever the
 /// caller supplies as an override.
-fn to_input(
+pub(crate) fn to_input(
     current: &TaxRoutingRecordProjection,
     status_override: Option<RoutingRecordStatus>,
     assigned_user_id_override: Option<String>,
@@ -82,6 +83,8 @@ fn to_input(
         read_write_password: require_field(current.read_write_password.clone(), "read_write_password")?,
         client_reference_id: require_field(current.client_reference_id.clone(), "client_reference_id")?,
         progress_step: current.progress_step.unwrap_or(0),
+        case_number: current.case_number,
+        temp_folder_id: current.temp_folder_id.clone(),
         version: current.version,
     })
 }

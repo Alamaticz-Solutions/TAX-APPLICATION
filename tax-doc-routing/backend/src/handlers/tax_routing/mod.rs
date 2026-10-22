@@ -42,6 +42,7 @@ pub(crate) mod role;
 pub(crate) mod role_audit;
 pub(crate) mod role_permission;
 pub(crate) mod role_permission_audit;
+pub(crate) mod storage_token;
 pub(crate) mod tax_document;
 pub(crate) mod tax_document_audit;
 pub(crate) mod tax_entity_list;
@@ -88,28 +89,29 @@ use crate::{
         InputRequestScreenAudit, InputRequestScreenField, InputRequestScreenFieldAudit,
         InputRequestScreenSubmission, InputRequestScreenSubmissionAudit, InputRequestType,
         InputRequestTypeAudit, InputRequestTypeScreen, InputRequestTypeScreenAudit, InputRole,
-        InputRoleAudit, InputRolePermission, InputRolePermissionAudit, InputTaxDocument,
-        InputTaxDocumentAudit, InputTaxEntityList, InputTaxPayerRefData, InputTaxPayerRefDataAudit,
-        InputTaxRoutingRecord, InputTaxRoutingRecordAudit, InputUserRole, InputUserRoleAudit,
-        PermissionAuditProjection, PermissionAuditQueryResult, PermissionProjection,
-        PermissionQueryResult, RequestFieldAuditProjection, RequestFieldAuditQueryResult,
-        RequestFieldProjection, RequestFieldQueryResult, RequestFieldValueAuditProjection,
-        RequestFieldValueAuditQueryResult, RequestFieldValueProjection,
-        RequestFieldValueQueryResult, RequestScreenAuditProjection, RequestScreenAuditQueryResult,
-        RequestScreenFieldAuditProjection, RequestScreenFieldAuditQueryResult,
-        RequestScreenFieldProjection, RequestScreenFieldQueryResult, RequestScreenProjection,
-        RequestScreenQueryResult, RequestScreenSubmissionAuditProjection,
-        RequestScreenSubmissionAuditQueryResult, RequestScreenSubmissionProjection,
-        RequestScreenSubmissionQueryResult, RequestTypeAuditProjection,
-        RequestTypeAuditQueryResult, RequestTypeProjection, RequestTypeQueryResult,
-        RequestTypeScreenAuditProjection, RequestTypeScreenAuditQueryResult,
-        RequestTypeScreenProjection, RequestTypeScreenQueryResult, RoleAuditProjection,
-        RoleAuditQueryResult, RolePermissionAuditProjection, RolePermissionAuditQueryResult,
-        RolePermissionProjection, RolePermissionQueryResult, RoleProjection, RoleQueryResult,
-        TaxDocumentAuditProjection, TaxDocumentAuditQueryResult, TaxDocumentProjection,
-        TaxDocumentQueryResult, TaxEntityListProjection, TaxEntityListQueryResult,
-        TaxPayerRefDataAuditProjection, TaxPayerRefDataAuditQueryResult, TaxPayerRefDataProjection,
-        TaxPayerRefDataQueryResult, TaxRoutingRecordAuditProjection,
+        InputRoleAudit, InputRolePermission, InputRolePermissionAudit, InputStorageToken,
+        InputTaxDocument, InputTaxDocumentAudit, InputTaxEntityList, InputTaxPayerRefData,
+        InputTaxPayerRefDataAudit, InputTaxRoutingRecord, InputTaxRoutingRecordAudit,
+        InputUserRole, InputUserRoleAudit, PermissionAuditProjection, PermissionAuditQueryResult,
+        PermissionProjection, PermissionQueryResult, RequestFieldAuditProjection,
+        RequestFieldAuditQueryResult, RequestFieldProjection, RequestFieldQueryResult,
+        RequestFieldValueAuditProjection, RequestFieldValueAuditQueryResult,
+        RequestFieldValueProjection, RequestFieldValueQueryResult, RequestScreenAuditProjection,
+        RequestScreenAuditQueryResult, RequestScreenFieldAuditProjection,
+        RequestScreenFieldAuditQueryResult, RequestScreenFieldProjection,
+        RequestScreenFieldQueryResult, RequestScreenProjection, RequestScreenQueryResult,
+        RequestScreenSubmissionAuditProjection, RequestScreenSubmissionAuditQueryResult,
+        RequestScreenSubmissionProjection, RequestScreenSubmissionQueryResult,
+        RequestTypeAuditProjection, RequestTypeAuditQueryResult, RequestTypeProjection,
+        RequestTypeQueryResult, RequestTypeScreenAuditProjection,
+        RequestTypeScreenAuditQueryResult, RequestTypeScreenProjection,
+        RequestTypeScreenQueryResult, RoleAuditProjection, RoleAuditQueryResult,
+        RolePermissionAuditProjection, RolePermissionAuditQueryResult, RolePermissionProjection,
+        RolePermissionQueryResult, RoleProjection, RoleQueryResult, StorageTokenProjection,
+        StorageTokenQueryResult, TaxDocumentAuditProjection, TaxDocumentAuditQueryResult,
+        TaxDocumentProjection, TaxDocumentQueryResult, TaxEntityListProjection,
+        TaxEntityListQueryResult, TaxPayerRefDataAuditProjection, TaxPayerRefDataAuditQueryResult,
+        TaxPayerRefDataProjection, TaxPayerRefDataQueryResult, TaxRoutingRecordAuditProjection,
         TaxRoutingRecordAuditQueryResult, TaxRoutingRecordProjection, TaxRoutingRecordQueryResult,
         UserRoleAuditProjection, UserRoleAuditQueryResult, UserRoleProjection, UserRoleQueryResult,
     },
@@ -4521,6 +4523,137 @@ impl TaxRoutingQuery {
         }
     }
 
+    async fn find_storage_token(
+        &self,
+        ctx: &Context<'_>,
+        id: String,
+    ) -> FieldResult<Option<StorageTokenProjection>> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = storage_token::find_impl(user, &data_access, &entity_type, selections, id).await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn find_storage_token_by_locator(
+        &self,
+        ctx: &Context<'_>,
+        locator: String,
+    ) -> FieldResult<Option<StorageTokenProjection>> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = storage_token::find_by_locator_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            locator,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn get_storage_tokens(
+        &self,
+        ctx: &Context<'_>,
+    ) -> FieldResult<Vec<StorageTokenProjection>> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = storage_token::get_impl(user, &data_access, &entity_type, selections).await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn query_storage_tokens(
+        &self,
+        ctx: &Context<'_>,
+        filter: Option<JsonValue>,
+        sort: Option<JsonValue>,
+        skip: Option<i32>,
+        limit: Option<i32>,
+        after: Option<String>,
+    ) -> FieldResult<StorageTokenQueryResult> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+        let (skip, limit) = pagination_args(skip, limit)?;
+
+        let res = storage_token::query_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            filter,
+            sort,
+            skip,
+            limit,
+            after,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(StorageTokenQueryResult {
+                date_time: res.date_time,
+                request_duration: res.request_duration,
+                skip: res.skip,
+                limit: res.limit,
+                page_count: res.page_count,
+                page_index: res.page_index,
+                query_count: res.query_count,
+                next_cursor: res.next_cursor,
+                previous_cursor: res.previous_cursor,
+                items: res.items,
+            }),
+            Err(e) => Err(e.into()),
+        }
+    }
+    async fn aggregate_storage_tokens(
+        &self,
+        ctx: &Context<'_>,
+        filter: Option<JsonValue>,
+        group_by: Option<JsonValue>,
+        metrics: Option<JsonValue>,
+        having: Option<JsonValue>,
+        sort: Option<JsonValue>,
+        skip: Option<i32>,
+        limit: Option<i32>,
+    ) -> FieldResult<AggregateResult> {
+        let handler_context = from_context_without_selections(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, _) = handler_context.into_handler_parts();
+        let (skip, limit) = pagination_args(skip, limit)?;
+
+        let res = data_access
+            .aggregate_items(
+                entity_type,
+                filter,
+                group_by,
+                metrics,
+                having,
+                sort,
+                skip,
+                limit,
+                user,
+            )
+            .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
     async fn find_tax_document(
         &self,
         ctx: &Context<'_>,
@@ -7657,6 +7790,56 @@ impl TaxRoutingMutation {
         }
     }
 
+    async fn create_storage_token(
+        &self,
+        ctx: &Context<'_>,
+        input: InputStorageToken,
+    ) -> FieldResult<StorageTokenProjection> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res =
+            storage_token::create_impl(user, &data_access, &entity_type, selections, input).await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn update_storage_token(
+        &self,
+        ctx: &Context<'_>,
+        input: InputStorageToken,
+    ) -> FieldResult<StorageTokenProjection> {
+        let handler_context = from_context(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res =
+            storage_token::update_impl(user, &data_access, &entity_type, selections, input).await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    pub async fn delete_storage_token(
+        &self,
+        ctx: &Context<'_>,
+        input: InputStorageToken,
+    ) -> FieldResult<i64> {
+        let handler_context = from_context_without_selections(ctx, "tax_routing", "StorageToken")?;
+        let (user, data_access, entity_type, _) = handler_context.into_handler_parts();
+
+        let res = storage_token::delete_impl(user, &data_access, &entity_type, input).await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
     async fn create_tax_document(
         &self,
         ctx: &Context<'_>,
@@ -8064,6 +8247,417 @@ impl TaxRoutingMutation {
             selections,
             record_id,
             new_assigned_user_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn upload_document(
+        &self,
+        ctx: &Context<'_>,
+        record_id: String,
+        file_name: String,
+        content_base64: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::upload_document_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            record_id,
+            file_name,
+            content_base64,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn submit_request(
+        &self,
+        ctx: &Context<'_>,
+        record_id: String,
+        documents_json: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::submit_request_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            record_id,
+            documents_json,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn discard_request(
+        &self,
+        ctx: &Context<'_>,
+        record_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::discard_request_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            record_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn download_document(
+        &self,
+        ctx: &Context<'_>,
+        record_id: String,
+        document_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::download_document_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            record_id,
+            document_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_preview(
+        &self,
+        ctx: &Context<'_>,
+        file_name: String,
+        excel_base64: String,
+        zip_base64: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_preview_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            file_name,
+            excel_base64,
+            zip_base64,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_update_document(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+        document_type: String,
+        year: i32,
+        entity_kind: String,
+        entity_name: String,
+        entity_number: String,
+        password_protected: bool,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_update_document_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+            client_key,
+            file_name,
+            document_type,
+            year,
+            entity_kind,
+            entity_name,
+            entity_number,
+            password_protected,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_update_client(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+        client_key: String,
+        first_name: String,
+        last_name: String,
+        full_name: String,
+        personal_email: String,
+        pds_email: String,
+        additional_email: String,
+        office_location: String,
+        internal_folder: String,
+        client_folder: String,
+        password: String,
+        notify: bool,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_update_client_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+            client_key,
+            first_name,
+            last_name,
+            full_name,
+            personal_email,
+            pds_email,
+            additional_email,
+            office_location,
+            internal_folder,
+            client_folder,
+            password,
+            notify,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_get_document(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_get_document_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+            client_key,
+            file_name,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_remove(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_remove_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+            client_key,
+            file_name,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_confirm(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_confirm_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_status(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_status_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_retry_failed(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_retry_failed_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
+        )
+        .await;
+
+        match res {
+            Ok(res) => Ok(res),
+            Err(e) => Err(e.into()),
+        }
+    }
+
+    async fn bulk_cancel(
+        &self,
+        ctx: &Context<'_>,
+        batch_id: String,
+    ) -> FieldResult<serde_json::Value> {
+        // Custom-method context: do NOT parse selections against the calling entity's props,
+        // because the return type is `serde_json::Value` whose fields generally do not
+        // exist on `TaxRoutingRecord`. Resolver receives Null selections.
+        let handler_context =
+            from_context_without_selections(ctx, "tax_routing", "TaxRoutingRecord")?;
+        let (user, data_access, entity_type, selections) = handler_context.into_handler_parts();
+
+        let res = tax_routing_record::bulk_cancel_impl(
+            user,
+            &data_access,
+            &entity_type,
+            selections,
+            batch_id,
         )
         .await;
 

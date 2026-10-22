@@ -205,7 +205,7 @@ impl AuthzCache {
     }
 }
 
-fn resolve_data_source_env(
+pub(crate) fn resolve_data_source_env(
     sources: &HashMap<String, DataSource>,
     data_source_name: &str,
 ) -> Result<Arc<DataSourceEnvironment>, AppError> {

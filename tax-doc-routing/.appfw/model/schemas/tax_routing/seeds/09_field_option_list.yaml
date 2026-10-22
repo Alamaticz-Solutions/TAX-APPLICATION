@@ -13,3 +13,12 @@
   - id: 90621ea4-fdf2-4a20-ae92-9c487fa58ceb
     name: entity_type
     description: Entity types a document can belong to (business spec 3.3).
+  - id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001
+    name: k1_attachment
+    description: Attachment choices offered for K-1 documents (business spec BR-07). Code is the key stored on the document.
+  - id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002
+    name: k1_attachment_entity_type
+    description: Entity types whose K-1 documents offer the k1_attachment choices (BR-07). Codes match entity_type.
+  - id: 4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003
+    name: form_8308_attachment
+    description: Attachment choices offered for Form 8308 documents (BR-09). Code is the key stored on the document.

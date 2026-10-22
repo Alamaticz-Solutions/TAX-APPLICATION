@@ -3,7 +3,7 @@ import type { DocumentTypeConfig, DocumentTypeName } from '../features/shared/ty
 
 // Reads the document-type catalogue and managed option lists live from the backend
 // (docs/architecture/dynamic-form-engine-design.md) instead of the hardcoded arrays that used to
-// live in features/shared/config/documentTypes.ts. Same local-auth mechanism as lib/permissions.ts.
+// live in the database (document_type_routes / field_option_lists). Same local-auth mechanism as lib/permissions.ts.
 
 export type OptionValue = { code: string; label: string };
 

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchStaffDirectory } from '../../../lib/routingRecords';
 import { useTaxRouting } from '../state/TaxRoutingProvider';
-import type { Role } from '../types';
 
-const BACKEND_USER_NAME: Record<Role, string> = { standard: 'alex', admin: 'dana' };
 
 let cache: { id: string; name: string }[] | null = null;
 let inflight: Promise<{ id: string; name: string }[]> | null = null;
@@ -27,18 +25,19 @@ async function load(userName: string): Promise<{ id: string; name: string }[]> {
 /** The active operator directory (business spec 12.3), read live instead of the hardcoded
  * `staffDirectory` array `features/shared/data/users.ts` used to export. */
 export function useStaffDirectory() {
-  const { role } = useTaxRouting();
+  const { userName } = useTaxRouting();
   const [staff, setStaff] = useState<{ id: string; name: string }[]>(cache ?? []);
 
   useEffect(() => {
+    if (!userName) return undefined;
     let alive = true;
-    load(BACKEND_USER_NAME[role]).then((list) => {
+    load(userName).then((list) => {
       if (alive) setStaff(list);
     });
     return () => {
       alive = false;
     };
-  }, [role]);
+  }, [userName]);
 
   const staffName = (id: string): string => staff.find((s) => s.id === id)?.name ?? (id === 'system' ? 'System' : 'Unassigned');
 

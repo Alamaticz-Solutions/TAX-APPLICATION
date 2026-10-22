@@ -4,6 +4,8 @@ import { Ban, RotateCcw, UserCog } from 'lucide-react';
 import { PageHeader, Tabs } from '@appfw/pds-health-components/layout';
 import { Button } from '@appfw/pds-health-components/primitives';
 import { EmptyState, ForbiddenState, InlineAlert, Surface } from '@appfw/pds-health-components/surfaces';
+import { downloadDocumentFile } from '../../lib/routingRecords';
+import { PdfPreviewDialog } from '../routing/PdfPreviewDialog';
 import { DefinitionList } from '../../components/DefinitionList';
 import { DocumentGrid } from '../../components/DocumentGrid';
 import { FilingPlan } from '../../components/FilingPlan';
@@ -14,6 +16,7 @@ import { STATUS, TERMINAL_STATUSES } from '../shared/config/statuses';
 import { useStaffDirectory } from '../shared/hooks/useStaffDirectory';
 import { useTaxRouting } from '../shared/state/TaxRoutingProvider';
 import type { Client, RoutingCase } from '../shared/types';
+import { formatCaseNumber } from '../shared/utils/caseNumber';
 import { formatDate, formatDateTime } from '../shared/utils/format';
 import { progressPercent } from '../shared/utils/timeline';
 import { CancelRecordDialog } from './CancelRecordDialog';
@@ -31,12 +34,20 @@ function clientFolderState(c: RoutingCase): string {
 
 export function RecordDetailsScreen() {
   const { recordId = '' } = useParams();
-  const { role, user, getCase, canActOn, canCancel, cancelCase, retryException, reassignCase, hasPermission } = useTaxRouting();
+  const { role, user, userName, getCase, canActOn, canCancel, cancelCase, retryException, reassignCase, hasPermission } = useTaxRouting();
   const { staffName } = useStaffDirectory();
   const [tab, setTab] = useState('overview');
   const [cancelling, setCancelling] = useState(false);
   const [reassigning, setReassigning] = useState(false);
+  const [opened, setOpened] = useState<File | null>(null);
+  const [openError, setOpenError] = useState('');
   const record = getCase(recordId);
+  const openDocument = (documentId: string) => {
+    setOpenError('');
+    downloadDocumentFile(userName ?? '', recordId, documentId)
+      .then(setOpened)
+      .catch((err: unknown) => setOpenError(err instanceof Error && err.message ? err.message : 'The document could not be opened.'));
+  };
 
   if (!record) {
     return <EmptyState title="Record not found" detail={`No routing record has the ID ${recordId}.`} />;
@@ -48,12 +59,13 @@ export function RecordDetailsScreen() {
   }
 
   const client = record.client;
+  const caseLabel = formatCaseNumber(record.caseNumber, record.id);
   // The record's own denormalised snapshot doesn't carry every Client field (e.g. `active`); the
   // Filing Plan tab only ever reads firstName/lastName from it, so the rest are inert placeholders.
   const filingClient: Client = { ...client, refId: client.id, passwordOnFile: true, active: true, readWritePassword: '' };
   const canRetry = record.status === STATUS.EXCEPTION && canActOn(record);
   const canReassign = hasPermission('routing_record.reassign') && !TERMINAL_STATUSES.includes(record.status);
-  const back = role === 'admin' ? { to: '/admin/cases', label: 'Back to All Cases' } : { to: '/dashboard', label: 'Back to Dashboard' };
+  const back = role === 'admin' ? { to: '/cases', label: 'Back to Request Management' } : { to: '/dashboard', label: 'Back to Dashboard' };
 
   const overview = (
     <div className="tax-stack">
@@ -61,7 +73,7 @@ export function RecordDetailsScreen() {
         <DefinitionList
           columns={3}
           items={[
-            { label: 'Case No.', value: record.id },
+            { label: 'Case No.', value: caseLabel },
             { label: 'Status', value: <StatusBadge status={record.status} /> },
             { label: 'Client', value: client.fullName },
             { label: 'Created By', value: staffName(record.createdBy) },
@@ -105,8 +117,10 @@ export function RecordDetailsScreen() {
   const documents = (
     <div className="tax-stack">
       <Surface density="compact">
-        <DocumentGrid documents={record.documents} emptyTitle="No documents" emptyDetail="Documents added to this record will appear here." />
+        {openError ? <InlineAlert tone="danger" title="The document could not be opened" detail={openError} /> : null}
+        <DocumentGrid documents={record.documents} onOpen={openDocument} emptyTitle="No documents" emptyDetail="Documents added to this record will appear here." />
       </Surface>
+      {opened ? <PdfPreviewDialog file={opened} onClose={() => setOpened(null)} /> : null}
       {record.documents.length > 0 ? (
         <Surface title="Filing plan" density="compact">
           <FilingPlan client={filingClient} documents={record.documents} />
@@ -143,7 +157,7 @@ export function RecordDetailsScreen() {
         <Link to={back.to}>← {back.label}</Link>
       </p>
       <PageHeader
-        title={record.id}
+        title={caseLabel}
         subtitle={
           <span className="tax-inline">
             <StatusBadge status={record.status} />

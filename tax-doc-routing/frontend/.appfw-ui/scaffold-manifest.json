@@ -20,7 +20,7 @@
       "schemaName": "tax_routing",
       "provider": "PostgreSQL",
       "dataSourceName": "pg_primary",
-      "entityCount": 42,
+      "entityCount": 43,
       "relationshipCount": 4,
       "workflowCount": 0
     }

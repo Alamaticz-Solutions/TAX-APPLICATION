@@ -11,6 +11,7 @@
   - opened_at
   - resolved_at
   - assigned_user_id
+  - case_number
   records:
   - id: 7a0b0001-0000-4b00-9000-000000000001
     routing_record_id: 6f0a0001-0000-4a00-9000-000000000006
@@ -19,6 +20,7 @@
     opened_at: "2026-05-09T11:20:00Z"
     resolved_at: null
     assigned_user_id: 7b181135-1625-46f9-a90c-e09b5ba9b0ad
+    case_number: 1014
   - id: 7a0b0001-0000-4b00-9000-000000000002
     routing_record_id: 6f0a0001-0000-4a00-9000-000000000007
     failure_reason: "Storage Folder Error: the client folder could not be found. Re-enter the folder URL."
@@ -26,6 +28,7 @@
     opened_at: "2026-05-09T09:50:00Z"
     resolved_at: null
     assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01
+    case_number: 1012
   - id: 7a0b0001-0000-4b00-9000-000000000003
     routing_record_id: 6f0a0001-0000-4a00-9000-000000000008
     failure_reason: "Processing Error: password protection failed; the Tax Return file was not uploaded."
@@ -33,6 +36,7 @@
     opened_at: "2026-05-08T15:40:00Z"
     resolved_at: null
     assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02
+    case_number: 1011
   - id: 7a0b0001-0000-4b00-9000-000000000004
     routing_record_id: 6f0a0001-0000-4a00-9000-000000000009
     failure_reason: "Invalid File Format: the uploaded Form 8308 file is not a valid PDF."
@@ -40,3 +44,4 @@
     opened_at: "2026-05-08T10:20:00Z"
     resolved_at: null
     assigned_user_id: 3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03
+    case_number: 1010

@@ -1982,6 +1982,23 @@
     nested_entity_type: null
     enum_type_name: null
     meta: {}
+  - id: 80c1b1bd19f9b362
+    name: case_number
+    caption: Case Number
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
   - id: 983af4007af3ecab
     name: version
     caption: Version
@@ -8839,6 +8856,120 @@
     nested_entity_type: null
     enum_type_name: null
     meta: {}
+- id: 9162e695-5bcf-4796-9623-cd2d19da7a63
+  schema_name: tax_routing
+  schema_id: 92825ca5-4363-46c8-a072-f00625be9108
+  pascal_1: StorageToken
+  pascal_n: StorageTokens
+  snake_1: storage_token
+  snake_n: storage_tokens
+  caption_1: Storage Token
+  caption_n: Storage Tokens
+  is_union: false
+  base_type: null
+  is_table: true
+  facets: []
+  indexes: []
+  constraints:
+  - uq_storage_token_provider UNIQUE (provider)
+  meta: null
+  execution: null
+  standard_methods:
+  - FindById
+  - GetAll
+  - Query
+  - Create
+  - Update
+  - Delete
+  custom_methods: null
+  props:
+  - id: 458582bcf7782c79
+    name: id
+    caption: Id
+    is_key: true
+    is_caption: false
+    is_required: true
+    is_read_only: true
+    is_concurrency_control: false
+    data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 116032b970fb928
+    name: provider
+    caption: Provider
+    is_key: false
+    is_caption: true
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 35bb4e21eae414e2
+    name: access_token
+    caption: Access Token
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta:
+      audit:
+        redact: true
+  - id: 1cc190e10a1e3c26
+    name: issued_at
+    caption: Issued At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 904a596689bde83a
+    name: expires_at
+    caption: Expires At
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: DateTime
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
 - id: 5049dd1b-9e3d-4721-a4f0-262f0e3ff45b
   schema_name: tax_routing
   schema_id: 92825ca5-4363-46c8-a072-f00625be9108
@@ -9140,6 +9271,57 @@
     is_read_only: false
     is_concurrency_control: false
     data_type: StringArray
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: c70d90728445f988
+    name: storage_file_id
+    caption: Storage File Id
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 40d74dc64a23ef4f
+    name: file_size
+    caption: File Size (bytes)
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: db5b7fc236c0f13c
+    name: is_file_moved
+    caption: Is File Moved
+    is_key: false
+    is_caption: false
+    is_required: true
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Boolean
     computed: None
     default_value: {}
     foreign_key: null
@@ -9776,7 +9958,8 @@
   - concurrency
   indexes:
   - is_active
-  constraints: []
+  constraints:
+  - uq_tax_payer_ref_data_client_key UNIQUE (client_key)
   meta: null
   execution: null
   standard_methods:
@@ -9823,6 +10006,23 @@
     is_read_only: true
     is_concurrency_control: false
     data_type: Uuid
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: fb64fccdfafc72a
+    name: client_key
+    caption: Client Key
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
     computed: None
     default_value: {}
     foreign_key: null
@@ -10495,7 +10695,8 @@
   indexes:
   - status
   - client_reference_id
-  constraints: []
+  constraints:
+  - uq_tax_routing_record_case_number UNIQUE (case_number)
   meta: null
   execution: null
   standard_methods:
@@ -10524,6 +10725,170 @@
     - name: record_id
       arg_type: String
     - name: new_assigned_user_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: upload_document
+    kind: Mutation
+    args:
+    - name: record_id
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    - name: content_base64
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: submit_request
+    kind: Mutation
+    args:
+    - name: record_id
+      arg_type: String
+    - name: documents_json
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: discard_request
+    kind: Mutation
+    args:
+    - name: record_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: download_document
+    kind: Mutation
+    args:
+    - name: record_id
+      arg_type: String
+    - name: document_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_preview
+    kind: Mutation
+    args:
+    - name: file_name
+      arg_type: String
+    - name: excel_base64
+      arg_type: String
+    - name: zip_base64
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_update_document
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    - name: document_type
+      arg_type: String
+    - name: year
+      arg_type: i32
+    - name: entity_kind
+      arg_type: String
+    - name: entity_name
+      arg_type: String
+    - name: entity_number
+      arg_type: String
+    - name: password_protected
+      arg_type: bool
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_update_client
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: first_name
+      arg_type: String
+    - name: last_name
+      arg_type: String
+    - name: full_name
+      arg_type: String
+    - name: personal_email
+      arg_type: String
+    - name: pds_email
+      arg_type: String
+    - name: additional_email
+      arg_type: String
+    - name: office_location
+      arg_type: String
+    - name: internal_folder
+      arg_type: String
+    - name: client_folder
+      arg_type: String
+    - name: password
+      arg_type: String
+    - name: notify
+      arg_type: bool
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_get_document
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_remove
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    - name: client_key
+      arg_type: String
+    - name: file_name
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_confirm
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_status
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_retry_failed
+    kind: Mutation
+    args:
+    - name: batch_id
+      arg_type: String
+    return_type: serde_json::Value
+    mcp_enabled: false
+    provider_routine: null
+  - name: bulk_cancel
+    kind: Mutation
+    args:
+    - name: batch_id
       arg_type: String
     return_type: serde_json::Value
     mcp_enabled: false
@@ -10845,6 +11210,40 @@
     is_read_only: false
     is_concurrency_control: false
     data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 15db938e02f73f4f
+    name: case_number
+    caption: Case Number
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: Int32
+    computed: None
+    default_value: {}
+    foreign_key: null
+    nav_by_fk_property: null
+    many_to_many_property: null
+    nested_entity_type: null
+    enum_type_name: null
+    meta: {}
+  - id: 3c635c5011d03a4b
+    name: temp_folder_id
+    caption: Temporary Folder Id
+    is_key: false
+    is_caption: false
+    is_required: false
+    is_read_only: false
+    is_concurrency_control: false
+    data_type: String
     computed: None
     default_value: {}
     foreign_key: null

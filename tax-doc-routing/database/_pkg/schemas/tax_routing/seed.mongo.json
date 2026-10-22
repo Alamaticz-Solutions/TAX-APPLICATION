@@ -4432,6 +4432,48 @@
         "description": "Entity types a document can belong to (business spec 3.3)."
 
 
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001",
+
+
+        "name": "k1_attachment",
+
+
+        "description": "Attachment choices offered for K-1 documents (business spec BR-07). Code is the key stored on the document."
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002",
+
+
+        "name": "k1_attachment_entity_type",
+
+
+        "description": "Entity types whose K-1 documents offer the k1_attachment choices (BR-07). Codes match entity_type."
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003",
+
+
+        "name": "form_8308_attachment",
+
+
+        "description": "Attachment choices offered for Form 8308 documents (BR-09). Code is the key stored on the document."
+
+
       }
 
 
@@ -4850,6 +4892,98 @@
 
 
         "sort_order": 30,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40001",
+
+
+        "option_list_id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001",
+
+
+        "code": "k1Statement",
+
+
+        "label": "K-1 Statement",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40002",
+
+
+        "option_list_id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40001",
+
+
+        "code": "k1Schedule",
+
+
+        "label": "Supporting Schedule",
+
+
+        "sort_order": 20,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40003",
+
+
+        "option_list_id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40002",
+
+
+        "code": "Partnership",
+
+
+        "label": "Partnership",
+
+
+        "sort_order": 10,
+
+
+        "is_active": true
+
+
+      },
+
+
+      {
+
+        "id": "4a1c7e10-5b2d-4c3a-9e02-a1b2c3d40004",
+
+
+        "option_list_id": "4a1c7e10-5b2d-4c3a-9e01-a1b2c3d40003",
+
+
+        "code": "form8308Attachment",
+
+
+        "label": "Form 8308 attachment",
+
+
+        "sort_order": 10,
 
 
         "is_active": true
@@ -8438,7 +8572,10 @@
         "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
 
 
-        "progress_step": 2
+        "progress_step": 2,
+
+
+        "case_number": 1023
 
 
       },
@@ -8497,7 +8634,10 @@
         "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
 
 
-        "progress_step": 3
+        "progress_step": 3,
+
+
+        "case_number": 1019
 
 
       },
@@ -8556,7 +8696,10 @@
         "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
 
 
-        "progress_step": 5
+        "progress_step": 5,
+
+
+        "case_number": 1018
 
 
       },
@@ -8615,7 +8758,10 @@
         "client_reference_id": "9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04",
 
 
-        "progress_step": 2
+        "progress_step": 2,
+
+
+        "case_number": 1016
 
 
       },
@@ -8674,7 +8820,10 @@
         "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
 
 
-        "progress_step": 6
+        "progress_step": 6,
+
+
+        "case_number": 1015
 
 
       },
@@ -8733,7 +8882,10 @@
         "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
 
 
-        "progress_step": 5
+        "progress_step": 5,
+
+
+        "case_number": 1014
 
 
       },
@@ -8792,7 +8944,10 @@
         "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
 
 
-        "progress_step": 3
+        "progress_step": 3,
+
+
+        "case_number": 1012
 
 
       },
@@ -8851,7 +9006,10 @@
         "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
 
 
-        "progress_step": 4
+        "progress_step": 4,
+
+
+        "case_number": 1011
 
 
       },
@@ -8910,7 +9068,10 @@
         "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
 
 
-        "progress_step": 2
+        "progress_step": 2,
+
+
+        "case_number": 1010
 
 
       },
@@ -8969,7 +9130,10 @@
         "client_reference_id": "9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07",
 
 
-        "progress_step": 2
+        "progress_step": 2,
+
+
+        "case_number": 1021
 
 
       },
@@ -9028,7 +9192,10 @@
         "client_reference_id": "9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08",
 
 
-        "progress_step": 4
+        "progress_step": 4,
+
+
+        "case_number": 1022
 
 
       },
@@ -9087,7 +9254,10 @@
         "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
 
 
-        "progress_step": 3
+        "progress_step": 3,
+
+
+        "case_number": 1020
 
 
       },
@@ -9146,7 +9316,10 @@
         "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
 
 
-        "progress_step": 2
+        "progress_step": 2,
+
+
+        "case_number": 1006
 
 
       },
@@ -9205,7 +9378,10 @@
         "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1024
 
 
       },
@@ -9264,7 +9440,10 @@
         "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1001
 
 
       },
@@ -9323,7 +9502,10 @@
         "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1002
 
 
       },
@@ -9382,7 +9564,10 @@
         "client_reference_id": "9d1c1a10-0003-4e2e-8a1a-1f0a2b3c4d03",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1003
 
 
       },
@@ -9441,7 +9626,10 @@
         "client_reference_id": "9d1c1a10-0004-4e2e-8a1a-1f0a2b3c4d04",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1004
 
 
       },
@@ -9500,7 +9688,10 @@
         "client_reference_id": "9d1c1a10-0005-4e2e-8a1a-1f0a2b3c4d05",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1005
 
 
       },
@@ -9559,7 +9750,10 @@
         "client_reference_id": "9d1c1a10-0006-4e2e-8a1a-1f0a2b3c4d06",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1007
 
 
       },
@@ -9618,7 +9812,10 @@
         "client_reference_id": "9d1c1a10-0007-4e2e-8a1a-1f0a2b3c4d07",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1008
 
 
       },
@@ -9677,7 +9874,10 @@
         "client_reference_id": "9d1c1a10-0008-4e2e-8a1a-1f0a2b3c4d08",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1009
 
 
       },
@@ -9736,7 +9936,10 @@
         "client_reference_id": "9d1c1a10-0001-4e2e-8a1a-1f0a2b3c4d01",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1013
 
 
       },
@@ -9795,7 +9998,10 @@
         "client_reference_id": "9d1c1a10-0002-4e2e-8a1a-1f0a2b3c4d02",
 
 
-        "progress_step": 9
+        "progress_step": 9,
+
+
+        "case_number": 1017
 
 
       }
@@ -9830,7 +10036,10 @@
         "resolved_at": null,
 
 
-        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad"
+        "assigned_user_id": "7b181135-1625-46f9-a90c-e09b5ba9b0ad",
+
+
+        "case_number": 1014
 
 
       },
@@ -9856,7 +10065,10 @@
         "resolved_at": null,
 
 
-        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01"
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c01",
+
+
+        "case_number": 1012
 
 
       },
@@ -9882,7 +10094,10 @@
         "resolved_at": null,
 
 
-        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02"
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c02",
+
+
+        "case_number": 1011
 
 
       },
@@ -9908,7 +10123,10 @@
         "resolved_at": null,
 
 
-        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03"
+        "assigned_user_id": "3a15c2f0-6e1e-4c3f-9a6e-6f6b1a9d2c03",
+
+
+        "case_number": 1010
 
 
       }

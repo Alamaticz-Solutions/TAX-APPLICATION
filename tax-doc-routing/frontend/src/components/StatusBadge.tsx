@@ -1,4 +1,5 @@
 import { AlertTriangle, CheckCircle2, Circle, Clock, Loader2, XCircle, type LucideIcon } from 'lucide-react';
+import { WorkingSpinner } from './WorkingSpinner';
 import { Badge } from '@appfw/pds-health-components/primitives';
 import { STATUS_META, type StatusIcon } from '../features/shared/config/statuses';
 import type { RecordStatus } from '../features/shared/types';
@@ -21,7 +22,7 @@ export function StatusBadge({ status }: { status: RecordStatus }) {
   const Icon = ICONS[meta.icon];
   return (
     <Badge tone={meta.tone} className="tax-status-badge">
-      <Icon size={13} aria-hidden="true" className={meta.icon === 'loader' ? 'tax-spin' : undefined} />
+      {meta.icon === 'loader' ? <WorkingSpinner size={13} /> : <Icon size={13} aria-hidden="true" />}
       {status}
     </Badge>
   );

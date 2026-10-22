@@ -16,6 +16,11 @@
 //!                        see `docs/architecture/sharepoint-integration-plan.md`)
 
 pub mod authz;
+pub mod bulk_requests;
+pub mod case_numbers;
+pub mod document_routing;
+pub mod document_store;
+pub mod pdf_protection;
 pub mod exception_task_actions;
 pub mod form_engine;
 pub mod graph;

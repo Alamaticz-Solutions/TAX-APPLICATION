@@ -188,6 +188,7 @@ CREATE TABLE IF NOT EXISTS "tax_routing"."exception_tasks"
     ,"opened_at" TIMESTAMP_TZ
     ,"resolved_at" TIMESTAMP_TZ
     ,"assigned_user_id" VARCHAR
+    ,"case_number" NUMBER(10,0)
     ,"version" NUMBER(19,0) NOT NULL DEFAULT 0
     ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
 );
@@ -210,6 +211,9 @@ ALTER TABLE "tax_routing"."exception_tasks"
 
 ALTER TABLE "tax_routing"."exception_tasks"
     ADD COLUMN IF NOT EXISTS "assigned_user_id" VARCHAR;
+
+ALTER TABLE "tax_routing"."exception_tasks"
+    ADD COLUMN IF NOT EXISTS "case_number" NUMBER(10,0);
 
 ALTER TABLE "tax_routing"."exception_tasks"
     ADD COLUMN IF NOT EXISTS "version" NUMBER(19,0) NOT NULL DEFAULT 0;
@@ -708,6 +712,39 @@ ALTER TABLE "tax_routing"."role_permissions"
 
 
 
+CREATE TABLE IF NOT EXISTS "tax_routing"."storage_tokens"
+(
+    "id" VARCHAR NOT NULL DEFAULT UUID_STRING() PRIMARY KEY
+    ,"provider" VARCHAR
+    ,"access_token" VARCHAR
+    ,"issued_at" TIMESTAMP_TZ
+    ,"expires_at" TIMESTAMP_TZ
+    ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
+);
+
+
+ALTER TABLE "tax_routing"."storage_tokens"
+    ADD COLUMN IF NOT EXISTS "provider" VARCHAR;
+
+ALTER TABLE "tax_routing"."storage_tokens"
+    ADD COLUMN IF NOT EXISTS "access_token" VARCHAR;
+
+ALTER TABLE "tax_routing"."storage_tokens"
+    ADD COLUMN IF NOT EXISTS "issued_at" TIMESTAMP_TZ;
+
+ALTER TABLE "tax_routing"."storage_tokens"
+    ADD COLUMN IF NOT EXISTS "expires_at" TIMESTAMP_TZ;
+
+ALTER TABLE "tax_routing"."storage_tokens"
+    ADD COLUMN IF NOT EXISTS "record_locator" VARCHAR;
+UPDATE "tax_routing"."storage_tokens"
+    SET "record_locator" = ('rl_' || REPLACE(UUID_STRING(), '-', ''))
+    WHERE "record_locator" IS NULL;
+ALTER TABLE "tax_routing"."storage_tokens"
+    ALTER COLUMN "record_locator" SET NOT NULL;
+
+
+
 CREATE TABLE IF NOT EXISTS "tax_routing"."tax_documents"
 (
     "id" VARCHAR NOT NULL DEFAULT UUID_STRING() PRIMARY KEY
@@ -726,6 +763,9 @@ CREATE TABLE IF NOT EXISTS "tax_routing"."tax_documents"
     ,"k1_attachments" VARIANT
     ,"form_8308_attachments" VARIANT
     ,"amended_documents" VARIANT
+    ,"storage_file_id" VARCHAR
+    ,"file_size" NUMBER(10,0)
+    ,"is_file_moved" BOOLEAN
     ,"version" NUMBER(19,0) NOT NULL DEFAULT 0
     ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
 );
@@ -775,6 +815,15 @@ ALTER TABLE "tax_routing"."tax_documents"
 
 ALTER TABLE "tax_routing"."tax_documents"
     ADD COLUMN IF NOT EXISTS "amended_documents" VARIANT;
+
+ALTER TABLE "tax_routing"."tax_documents"
+    ADD COLUMN IF NOT EXISTS "storage_file_id" VARCHAR;
+
+ALTER TABLE "tax_routing"."tax_documents"
+    ADD COLUMN IF NOT EXISTS "file_size" NUMBER(10,0);
+
+ALTER TABLE "tax_routing"."tax_documents"
+    ADD COLUMN IF NOT EXISTS "is_file_moved" BOOLEAN;
 
 ALTER TABLE "tax_routing"."tax_documents"
     ADD COLUMN IF NOT EXISTS "version" NUMBER(19,0) NOT NULL DEFAULT 0;
@@ -829,6 +878,7 @@ ALTER TABLE "tax_routing"."tax_entity_lists"
 CREATE TABLE IF NOT EXISTS "tax_routing"."tax_payer_ref_data"
 (
     "id" VARCHAR NOT NULL DEFAULT UUID_STRING() PRIMARY KEY
+    ,"client_key" VARCHAR
     ,"first_name" VARCHAR
     ,"last_name" VARCHAR
     ,"full_name" VARCHAR
@@ -845,6 +895,9 @@ CREATE TABLE IF NOT EXISTS "tax_routing"."tax_payer_ref_data"
     ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
 );
 
+
+ALTER TABLE "tax_routing"."tax_payer_ref_data"
+    ADD COLUMN IF NOT EXISTS "client_key" VARCHAR;
 
 ALTER TABLE "tax_routing"."tax_payer_ref_data"
     ADD COLUMN IF NOT EXISTS "first_name" VARCHAR;
@@ -915,6 +968,8 @@ CREATE TABLE IF NOT EXISTS "tax_routing"."tax_routing_records"
     ,"read_write_password" VARCHAR
     ,"client_reference_id" VARCHAR
     ,"progress_step" NUMBER(10,0)
+    ,"case_number" NUMBER(10,0)
+    ,"temp_folder_id" VARCHAR
     ,"version" NUMBER(19,0) NOT NULL DEFAULT 0
     ,"record_locator" VARCHAR NOT NULL DEFAULT ('rl_' || REPLACE(UUID_STRING(), '-', ''))
 );
@@ -970,6 +1025,12 @@ ALTER TABLE "tax_routing"."tax_routing_records"
 
 ALTER TABLE "tax_routing"."tax_routing_records"
     ADD COLUMN IF NOT EXISTS "progress_step" NUMBER(10,0);
+
+ALTER TABLE "tax_routing"."tax_routing_records"
+    ADD COLUMN IF NOT EXISTS "case_number" NUMBER(10,0);
+
+ALTER TABLE "tax_routing"."tax_routing_records"
+    ADD COLUMN IF NOT EXISTS "temp_folder_id" VARCHAR;
 
 ALTER TABLE "tax_routing"."tax_routing_records"
     ADD COLUMN IF NOT EXISTS "version" NUMBER(19,0) NOT NULL DEFAULT 0;

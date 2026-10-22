@@ -67,11 +67,17 @@ postgres-types = { version = "0.2", features = ["derive", "with-chrono-0_4"] }
 
 regorus = "0.2"
 regex = "1"
-reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "multipart", "rustls-tls"] }
 
 serde = {version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 serde_yaml = "0.9"
+base64 = "0.22"
+jsonwebtoken = "9"
+lopdf = { version = "0.45", default-features = false }   # password-protects client PDF copies
+zip = { version = "=2.2.3", default-features = false, features = ["deflate"] }   # reads the bulk-upload ZIP
+calamine = "0.26"   # reads the bulk-upload Excel file
+p12-keystore = "0.4"   # reads the Box app PKCS#12 keystore (private key for the JWT login)
 sha2 = "0.10"
 slab = "0.4.7"
 

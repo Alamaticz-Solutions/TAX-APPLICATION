@@ -90,3 +90,8 @@ tax-doc-routing/docs/architecture/pds-design-review-2026-09-24/rules/digests/
 # Root only: app-framework/AGENTS.md is the framework's own, tracked file.
 /AGENTS.md
 /.agents/
+
+# Private keys and key stores (e.g. the Box app .p12): never commit these
+*.p12
+*.pfx
+*.jks

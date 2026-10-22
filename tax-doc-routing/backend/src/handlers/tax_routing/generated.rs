@@ -5599,6 +5599,173 @@ pub(crate) mod role_permission_audit {
         Ok(res)
     }
 }
+pub(crate) mod storage_token {
+    #[allow(unused_imports)]
+    use std::sync::Arc;
+
+    #[allow(unused_imports)]
+    use crate::schemas::tax_routing::*;
+
+    #[allow(unused_imports)]
+    use crate::{
+        product_api::{DataAccess, EntityType, HandlerResult, JsonValue, UserAuth},
+        schemas::common::AggregateResult,
+        schemas::tax_routing::{
+            InputStorageToken, StorageTokenProjection, StorageTokenQueryResult,
+        },
+    };
+    pub(crate) async fn find_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        id: String,
+    ) -> HandlerResult<Option<StorageTokenProjection>> {
+        let res = data_access
+            .find_item::<StorageTokenProjection>(entity_type.clone(), selections, id, user)
+            .await?;
+        Ok(res)
+    }
+
+    pub(crate) async fn find_by_locator_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        locator: String,
+    ) -> HandlerResult<Option<StorageTokenProjection>> {
+        let res = data_access
+            .find_item_by_locator::<StorageTokenProjection>(
+                entity_type.clone(),
+                selections,
+                locator,
+                user,
+            )
+            .await?;
+        Ok(res)
+    }
+    pub(crate) async fn get_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+    ) -> HandlerResult<Vec<StorageTokenProjection>> {
+        let res = data_access
+            .get_items::<StorageTokenProjection>(entity_type.clone(), selections, None, user)
+            .await?;
+        Ok(res)
+    }
+    pub(crate) async fn query_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        filter: Option<JsonValue>,
+        sort: Option<JsonValue>,
+        skip: i32,
+        limit: i32,
+        after: Option<String>,
+    ) -> HandlerResult<StorageTokenQueryResult> {
+        let res = data_access
+            .query_items::<StorageTokenProjection>(
+                entity_type.clone(),
+                selections,
+                filter,
+                sort,
+                skip,
+                limit,
+                after,
+                user,
+            )
+            .await?;
+        let query_res = StorageTokenQueryResult {
+            date_time: res.date_time,
+            request_duration: res.request_duration,
+            skip: res.skip,
+            limit: res.limit,
+            page_count: res.page_count,
+            page_index: res.page_index,
+            query_count: res.query_count,
+            next_cursor: res.next_cursor,
+            previous_cursor: res.previous_cursor,
+            items: res.items,
+        };
+        Ok(query_res)
+    }
+
+    pub(crate) async fn aggregate_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        filter: Option<JsonValue>,
+        group_by: Option<JsonValue>,
+        metrics: Option<JsonValue>,
+        having: Option<JsonValue>,
+        sort: Option<JsonValue>,
+        skip: i32,
+        limit: i32,
+    ) -> HandlerResult<AggregateResult> {
+        let res = data_access
+            .aggregate_items(
+                entity_type.clone(),
+                filter,
+                group_by,
+                metrics,
+                having,
+                sort,
+                skip,
+                limit,
+                user,
+            )
+            .await?;
+        Ok(res)
+    }
+    pub(crate) async fn create_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        input: InputStorageToken,
+    ) -> HandlerResult<StorageTokenProjection> {
+        let res = data_access
+            .create_item::<InputStorageToken, StorageTokenProjection>(
+                entity_type.clone(),
+                selections,
+                input,
+                user,
+            )
+            .await?;
+        Ok(res)
+    }
+    pub(crate) async fn update_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        input: InputStorageToken,
+    ) -> HandlerResult<StorageTokenProjection> {
+        let res = data_access
+            .update_item::<InputStorageToken, StorageTokenProjection>(
+                entity_type.clone(),
+                selections,
+                input,
+                user,
+            )
+            .await?;
+        Ok(res)
+    }
+    pub(crate) async fn delete_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        input: InputStorageToken,
+    ) -> HandlerResult<i64> {
+        let res = data_access
+            .delete_item::<InputStorageToken>(entity_type.clone(), input, user)
+            .await?;
+        Ok(res)
+    }
+}
 pub(crate) mod tax_document {
     #[allow(unused_imports)]
     use std::sync::Arc;
@@ -6683,6 +6850,192 @@ pub(crate) mod tax_routing_record {
     ) -> HandlerResult<serde_json::Value> {
         Err(anyhow::anyhow!(
             "custom method `reassign_record` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn upload_document_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        record_id: String,
+        file_name: String,
+        content_base64: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `upload_document` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn submit_request_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        record_id: String,
+        documents_json: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `submit_request` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn discard_request_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        record_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `discard_request` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn download_document_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        record_id: String,
+        document_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `download_document` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_preview_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        file_name: String,
+        excel_base64: String,
+        zip_base64: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_preview` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_update_document_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+        document_type: String,
+        year: i32,
+        entity_kind: String,
+        entity_name: String,
+        entity_number: String,
+        password_protected: bool,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_update_document` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_update_client_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+        client_key: String,
+        first_name: String,
+        last_name: String,
+        full_name: String,
+        personal_email: String,
+        pds_email: String,
+        additional_email: String,
+        office_location: String,
+        internal_folder: String,
+        client_folder: String,
+        password: String,
+        notify: bool,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_update_client` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_get_document_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_get_document` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_remove_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+        client_key: String,
+        file_name: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_remove` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_confirm_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_confirm` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_status_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_status` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_retry_failed_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_retry_failed` is not implemented yet"
+        ))
+    }
+    #[allow(unused)]
+    pub(crate) async fn bulk_cancel_impl(
+        user: Option<UserAuth>,
+        data_access: &Arc<DataAccess>,
+        entity_type: &Arc<EntityType>,
+        selections: JsonValue,
+        batch_id: String,
+    ) -> HandlerResult<serde_json::Value> {
+        Err(anyhow::anyhow!(
+            "custom method `bulk_cancel` is not implemented yet"
         ))
     }
 }

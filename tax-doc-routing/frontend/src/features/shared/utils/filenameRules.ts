@@ -1,15 +1,21 @@
 import type { Client, TaxDocument } from '../types';
 
-// Destination filename convention (business spec 14.11 and 6.4).
-//   Personal: "Last, First - {Year} {DocType}"
-//   Entity:   "Last, First - {EntityNumber} {EntityName} - {Year} {DocType}"
-// The filename is the only metadata stored with the file, so keep this in one place.
-export function buildFileName(
-  client: Pick<Client, 'firstName' | 'lastName'>,
-  doc: Pick<TaxDocument, 'year' | 'type' | 'entity' | 'passwordProtected'>
-): string {
-  const person = `${client.lastName}, ${client.firstName}`;
-  const tail = `${doc.year} ${doc.type}`;
-  const core = doc.entity ? `${person} - ${doc.entity.number} ${doc.entity.name} - ${tail}` : `${person} - ${tail}`;
-  return `${core} ${doc.passwordProtected ? '(SECURED)' : '(UNSECURED)'}.pdf`;
+// The name written at every destination folder: "Last, First - OriginalFileName.pdf" (the Pega
+// convention the client confirmed). The file keeps the name it was uploaded with in the temporary
+// folder; only the permanent copies are renamed. The backend applies the same rule
+// (services/document_routing.rs: target_file_name), so this preview matches what is filed.
+const FORBIDDEN = '/\\:*?"<>|';
+const clean = (value: string) =>
+  Array.from(value)
+    .map((c) => (c.charCodeAt(0) < 32 || FORBIDDEN.includes(c) ? '_' : c))
+    .join('')
+    .trim()
+    .replace(/\.+$/, '')
+    .trim();
+
+export function buildFileName(client: Pick<Client, 'firstName' | 'lastName'> & { fullName?: string }, doc: Pick<TaxDocument, 'fileName'>): string {
+  const last = clean(client.lastName ?? '');
+  const first = clean(client.firstName ?? '');
+  const who = last && first ? `${last}, ${first}` : clean(client.fullName ?? '') || 'Client';
+  return `${who} - ${clean(doc.fileName)}`;
 }

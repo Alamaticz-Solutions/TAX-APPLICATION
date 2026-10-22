@@ -1,36 +1,47 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useSession } from '../../../app/SessionProvider';
 import { fetchMyPermissions, hasPermission as grantsHavePermission, hasScope as grantsHaveScope, type Grant } from '../../../lib/permissions';
 import {
   cancelRoutingRecord,
   createRoutingRecord,
+  discardRequest,
   fetchAllRecords,
+  fetchAppUserName,
   fetchExceptionQueue,
   fetchMyRecords,
+  fetchRecordById,
   reassignRoutingRecord,
   retryFailedStep,
-  updateRoutingRecordProgress
+  submitRequest,
+  uploadDocumentFile,
+  type UploadedFile
 } from '../../../lib/routingRecords';
-import { PROCESSING_STEPS, STEP_DURATION_MS } from '../config/processingSteps';
 import { STATUS, TERMINAL_STATUSES } from '../config/statuses';
-import { users } from '../data/users';
 import type { AppUser, Client, RoutingCase, RoutingDraft, Role, TaxDocument } from '../types';
 import { delay } from '../services/delay';
 
-// Routing records and exceptions are read from and written to the real `TaxRoutingRecord` /
-// `ExceptionTask` tables (lib/routingRecords.ts) — see docs/architecture/rbac-design.md and the
-// dynamic-form-engine design doc. Documents stay session-only (never written to `TaxDocument`)
-// until the SharePoint integration replaces the in-memory `DocumentStore`; everything else about
-// a routing record now survives a reload. Permissions are likewise real, database-driven grants
-// (lib/permissions.ts), not prototype state.
+// Routing records, their documents and exceptions are read from and written to the real
+// `TaxRoutingRecord` / `TaxDocument` / `ExceptionTask` tables (lib/routingRecords.ts) — see
+// docs/architecture/rbac-design.md. A request is created as soon as the user leaves screen 1 (so it
+// has its TD number and its temporary storage folder before anything is uploaded); uploads go to
+// that folder; Submit hands the documents to the server, which files them and reports progress on
+// the record. The browser only follows that progress (`watchCase`), so processing continues
+// whether or not this tab stays open. Permissions are database-driven grants (lib/permissions.ts).
 
-const ROLE_KEY = 'tax-doc-routing.frontend.role';
+function initialsOf(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return '?';
+  return (parts.length === 1 ? parts[0].slice(0, 2) : parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
 
-// The role switcher (Tax Staff / Tax Admin) maps to the two bootstrap users seeded by
-// .appfw/model/schemas/tax_routing/seeds/04_app_user.yaml, so switching roles fetches a real,
-// different identity's grants and records from the backend rather than a canned constant.
-const BACKEND_USER_NAME: Record<Role, string> = { standard: 'alex', admin: 'dana' };
+const emptyDraft = (): RoutingDraft => ({ client: null, additionalEmail: '', notifyClient: true, documents: [], recordId: null, submitted: false });
 
-const emptyDraft = (): RoutingDraft => ({ client: null, additionalEmail: '', notifyClient: true, documents: [], recordId: null });
+// How often, and for how long, a request being filed is re-read.
+const POLL_MS = 1500;
+const POLL_LIMIT_MS = 10 * 60 * 1000;
+// A request still shown as Processing is followed after a reload only if it moved recently, so old
+// records that were never finished do not keep the browser polling.
+const RECENT_MS = 15 * 60 * 1000;
 
 export type DraftApi = {
   setClient: (client: Client | null) => void;
@@ -43,8 +54,10 @@ export type DraftApi = {
 };
 
 export type TaxRoutingContextValue = {
+  /** Derived from the signed-in user's real grants, never chosen in the UI. */
   role: Role;
-  setRole: (role: Role) => void;
+  /** The signed-in user name (null when signed out). */
+  userName: string | null;
   user: AppUser;
   cases: RoutingCase[];
   casesStatus: 'loading' | 'ready' | 'error';
@@ -55,7 +68,14 @@ export type TaxRoutingContextValue = {
   canCancel: (c: RoutingCase) => boolean;
   draft: RoutingDraft;
   draftApi: DraftApi;
+  /** Creates the request (number + temporary folder) when the user leaves screen 1; reuses it afterwards. */
+  createDraftRecord: () => Promise<RoutingCase>;
+  /** Stores one PDF in the request's temporary folder. */
+  uploadFile: (file: File) => Promise<UploadedFile>;
+  /** Saves the documents and starts filing on the server. */
   submitDraft: () => Promise<RoutingCase>;
+  /** Abandons a request that was never submitted, removing its temporary folder. */
+  discardDraft: () => Promise<void>;
   retryException: (id: string) => void;
   cancelCase: (id: string, resolution: string, comments: string) => void;
   reassignCase: (id: string, newAssignedUserId: string) => Promise<void>;
@@ -68,16 +88,10 @@ export type TaxRoutingContextValue = {
 
 const TaxRoutingContext = createContext<TaxRoutingContextValue | null>(null);
 
-function readRole(): Role {
-  try {
-    return window.sessionStorage.getItem(ROLE_KEY) === 'admin' ? 'admin' : 'standard';
-  } catch {
-    return 'standard';
-  }
-}
-
 export function TaxRoutingProvider({ children }: { children: ReactNode }) {
-  const [role, setRoleState] = useState<Role>(readRole);
+  const { userName } = useSession();
+  const [role, setRole] = useState<Role>('standard');
+  const [displayName, setDisplayName] = useState<string | null>(null);
   const [cases, setCases] = useState<RoutingCase[]>([]);
   const [casesStatus, setCasesStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [exceptionQueue, setExceptionQueue] = useState<RoutingCase[]>([]);
@@ -87,7 +101,7 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     casesRef.current = cases;
   }, [cases]);
-  const running = useRef(new Set<string>());
+  const watching = useRef(new Set<string>());
 
   const [grants, setGrants] = useState<Grant[]>([]);
   const [userId, setUserId] = useState<string | null>(null);
@@ -96,18 +110,41 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
   // The real AppUser.id for the role's backend identity — what `assigned_user_id` on a
   // TaxRoutingRecord actually stores, replacing the placeholder `u-alex` / `u-dana` ids that used
   // to live in features/shared/data/users.ts.
-  const user: AppUser = useMemo(() => ({ ...users[role], id: userId ?? '' }), [role, userId]);
+  const user: AppUser = useMemo(() => {
+    const name = displayName ?? userName ?? '';
+    return { id: userId ?? '', name, initials: initialsOf(name), role, roleLabel: role === 'admin' ? 'Tax Admin' : 'Tax Staff' };
+  }, [displayName, userName, userId, role]);
 
   useEffect(() => {
     let cancelled = false;
     setPermissionsStatus('loading');
     setUserId(null);
-    fetchMyPermissions(BACKEND_USER_NAME[role])
+    setGrants([]);
+    setDisplayName(null);
+    setRole('standard');
+    if (!userName) {
+      // Signed out: drop everything the previous user could see.
+      setCases([]);
+      setExceptionQueue([]);
+      setCasesStatus('loading');
+      setDraft(emptyDraft());
+      return undefined;
+    }
+    fetchMyPermissions(userName)
       .then((principal) => {
         if (cancelled) return;
         setGrants(principal.grants);
         setUserId(principal.user_id);
+        // Role is what the database says this user can do (All Cases is the admin-only grant).
+        setRole(grantsHavePermission(principal.grants, 'routing_record.view_assignee') ? 'admin' : 'standard');
         setPermissionsStatus(principal.user_id ? 'ready' : 'error');
+        if (principal.user_id) {
+          fetchAppUserName(userName, principal.user_id)
+            .then((name) => {
+              if (!cancelled) setDisplayName(name);
+            })
+            .catch(() => undefined);
+        }
       })
       .catch(() => {
         if (!cancelled) {
@@ -118,21 +155,21 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [role]);
+  }, [userName]);
 
   const refreshCases = useCallback(async () => {
-    if (!userId) return;
+    if (!userId || !userName) return;
     setCasesStatus('loading');
     try {
-      const loaded = role === 'admin' ? await fetchAllRecords(BACKEND_USER_NAME[role]) : await fetchMyRecords(BACKEND_USER_NAME[role], userId);
+      const loaded = role === 'admin' ? await fetchAllRecords(userName) : await fetchMyRecords(userName, userId);
       setCases(loaded);
       setCasesStatus('ready');
-      const queue = await fetchExceptionQueue(BACKEND_USER_NAME[role], loaded);
+      const queue = await fetchExceptionQueue(userName, loaded);
       setExceptionQueue(queue);
     } catch {
       setCasesStatus('error');
     }
-  }, [role, userId]);
+  }, [role, userId, userName]);
 
   useEffect(() => {
     void refreshCases();
@@ -140,15 +177,6 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
 
   const hasPermission = useCallback((code: string) => grantsHavePermission(grants, code), [grants]);
   const hasScope = useCallback((code: string, scope: string) => grantsHaveScope(grants, code, scope), [grants]);
-
-  const setRole = useCallback((next: Role) => {
-    setRoleState(next);
-    try {
-      window.sessionStorage.setItem(ROLE_KEY, next);
-    } catch {
-      /* the demo role just won't be remembered */
-    }
-  }, []);
 
   const updateCaseInPlace = useCallback((updated: RoutingCase) => {
     casesRef.current = casesRef.current.map((c) => (c.id === updated.id ? updated : c));
@@ -184,44 +212,53 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
     []
   );
 
-  // Animates the 9-step processing timeline (business spec 5-8) and persists each completed step
-  // to the database in turn — sequentially, never in parallel, since each write's optimistic
-  // `version` depends on the previous write having already landed.
-  const startProcessing = useCallback(
+  // Follows a request the server is filing: re-reads it until it stops processing (done, failed or
+  // cancelled). The work itself runs on the server, so closing the tab does not stop it.
+  const watchCase = useCallback(
     (id: string) => {
-      if (running.current.has(id)) return;
-      running.current.add(id);
+      if (!userName || watching.current.has(id)) return;
+      watching.current.add(id);
       void (async () => {
-        let current = casesRef.current.find((c) => c.id === id);
-        if (!current) {
-          running.current.delete(id);
-          return;
-        }
-        for (let step = current.progress; step < PROCESSING_STEPS.length; step += 1) {
-          await delay(STEP_DURATION_MS);
-          if (!running.current.has(id)) return; // cancelled or retried away mid-animation
-          const isLast = step + 1 === PROCESSING_STEPS.length;
-          try {
-            current = await updateRoutingRecordProgress(BACKEND_USER_NAME[role], current, {
-              progress: step + 1,
-              status: isLast ? STATUS.COMPLETED : STATUS.PROCESSING
-            });
-          } catch (err) {
-            console.error('Failed to persist processing step', err);
-            break;
+        const started = Date.now();
+        try {
+          while (watching.current.has(id) && Date.now() - started < POLL_LIMIT_MS) {
+            await delay(POLL_MS);
+            if (!watching.current.has(id)) return;
+            const fresh = await fetchRecordById(userName, id);
+            if (!fresh) return;
+            updateCaseInPlace(fresh);
+            if (fresh.status !== STATUS.PROCESSING) {
+              if (fresh.status === STATUS.EXCEPTION) setExceptionQueue(await fetchExceptionQueue(userName, casesRef.current));
+              return;
+            }
           }
-          updateCaseInPlace(current);
+        } catch (err) {
+          console.error('Could not follow the request', err);
+        } finally {
+          watching.current.delete(id);
         }
-        running.current.delete(id);
       })();
     },
-    [role, updateCaseInPlace]
+    [userName, updateCaseInPlace]
   );
 
-  const submitDraft = useCallback(async () => {
-    if (!draft.client) throw new Error('A client is required to create a routing record.');
+  // After a reload, pick up requests that are still being filed.
+  useEffect(() => {
+    for (const c of cases) {
+      if (c.status === STATUS.PROCESSING && c.updated && Date.now() - new Date(c.updated).getTime() < RECENT_MS) watchCase(c.id);
+    }
+  }, [cases, watchCase]);
+  useEffect(() => {
+    const active = watching.current;
+    return () => active.clear();
+  }, [userName]);
+
+  const createDraftRecord = useCallback(async () => {
+    if (!draft.client) throw new Error('A client is required to create a request.');
     if (!userId) throw new Error('Your identity has not resolved yet — try again in a moment.');
-    const created = await createRoutingRecord(BACKEND_USER_NAME[role], {
+    const existing = draft.recordId ? casesRef.current.find((c) => c.id === draft.recordId) : undefined;
+    if (existing) return existing;
+    const created = await createRoutingRecord(userName ?? '', {
       assignedUserId: userId,
       client: {
         refId: draft.client.refId,
@@ -238,57 +275,94 @@ export function TaxRoutingProvider({ children }: { children: ReactNode }) {
       additionalEmail: draft.additionalEmail || null,
       notifyClient: draft.notifyClient
     });
-    // Documents are session-only (deferred pending SharePoint — see module comment); attach the
-    // draft's uploads to the in-memory case so Completed/Record Details can still show them for
-    // the rest of this session, without ever writing a TaxDocument row.
-    const record: RoutingCase = { ...created, progress: 3, documents: draft.documents.map((d) => ({ ...d, status: 'Uploaded' as const })) };
-    casesRef.current = [record, ...casesRef.current];
-    setCases((list) => [record, ...list]);
-    setDraft((d) => ({ ...d, recordId: record.id }));
-    startProcessing(record.id);
+    casesRef.current = [created, ...casesRef.current];
+    setCases((list) => [created, ...list]);
+    setDraft((d) => ({ ...d, recordId: created.id }));
+    return created;
+  }, [draft.client, draft.recordId, draft.additionalEmail, draft.notifyClient, userName, userId]);
+
+  const uploadFile = useCallback(
+    async (file: File) => {
+      if (!draft.recordId) throw new Error('Create the request before uploading documents.');
+      return uploadDocumentFile(userName ?? '', draft.recordId, file);
+    },
+    [draft.recordId, userName]
+  );
+
+  const submitDraft = useCallback(async () => {
+    const recordId = draft.recordId;
+    if (!recordId) throw new Error('The request has not been created yet.');
+    await submitRequest(userName ?? '', recordId, draft.documents);
+    const current = casesRef.current.find((c) => c.id === recordId);
+    if (!current) throw new Error('The request could not be found.');
+    const record: RoutingCase = {
+      ...current,
+      status: STATUS.PROCESSING,
+      task: 'Processing',
+      progress: Math.max(current.progress, 3),
+      documents: draft.documents.map((d) => ({ ...d, status: 'Uploaded' as const }))
+    };
+    updateCaseInPlace(record);
+    setDraft((d) => ({ ...d, submitted: true }));
+    watchCase(recordId);
     return record;
-  }, [draft, role, userId, startProcessing]);
+  }, [draft.recordId, draft.documents, userName, updateCaseInPlace, watchCase]);
+
+  const discardDraft = useCallback(async () => {
+    const recordId = draft.recordId;
+    if (recordId && !draft.submitted) {
+      try {
+        await discardRequest(userName ?? '', recordId);
+        casesRef.current = casesRef.current.filter((c) => c.id !== recordId);
+        setCases((list) => list.filter((c) => c.id !== recordId));
+      } catch (err) {
+        // The request stays open in My Cases (and its folder in storage) if this fails.
+        console.error('Could not discard the request', err);
+      }
+    }
+    setDraft(emptyDraft());
+  }, [draft.recordId, draft.submitted, userName]);
 
   const retryException = useCallback(
     (id: string) => {
       const current = casesRef.current.find((c) => c.id === id) ?? exceptionQueue.find((c) => c.id === id);
       if (!current?.exception) return;
-      void retryFailedStep(BACKEND_USER_NAME[role], current.exception.id).then(() => {
+      void retryFailedStep(userName ?? '', current.exception.id).then(() => {
         const resumed: RoutingCase = { ...current, status: STATUS.PROCESSING, task: 'Processing', exception: null };
         updateCaseInPlace(resumed);
         setExceptionQueue((list) => list.filter((c) => c.id !== id));
-        startProcessing(id);
+        watchCase(id);
       });
     },
-    [role, exceptionQueue, updateCaseInPlace, startProcessing]
+    [userName, exceptionQueue, updateCaseInPlace, watchCase]
   );
 
   const cancelCase = useCallback(
     (id: string, resolution: string, comments: string) => {
-      void cancelRoutingRecord(BACKEND_USER_NAME[role], id, resolution, comments).then(() => {
+      void cancelRoutingRecord(userName ?? '', id, resolution, comments).then(() => {
         const current = casesRef.current.find((c) => c.id === id);
         if (!current) return;
         updateCaseInPlace({ ...current, status: STATUS.CANCELLED, task: 'Closed', exception: null, resolutionComment: comments });
       });
     },
-    [role, updateCaseInPlace]
+    [userName, updateCaseInPlace]
   );
 
   const reassignCase = useCallback(
     async (id: string, newAssignedUserId: string) => {
-      await reassignRoutingRecord(BACKEND_USER_NAME[role], id, newAssignedUserId);
+      await reassignRoutingRecord(userName ?? '', id, newAssignedUserId);
       const current = casesRef.current.find((c) => c.id === id);
       if (current) updateCaseInPlace({ ...current, assignedTo: newAssignedUserId });
     },
-    [role, updateCaseInPlace]
+    [userName, updateCaseInPlace]
   );
 
   const value: TaxRoutingContextValue = {
-    role, setRole, user,
+    role, userName, user,
     cases, casesStatus, visibleCases, exceptionQueue, getCase,
     canActOn, canCancel,
     draft, draftApi,
-    submitDraft, retryException, cancelCase, reassignCase,
+    createDraftRecord, uploadFile, submitDraft, discardDraft, retryException, cancelCase, reassignCase,
     grants, permissionsStatus, hasPermission, hasScope
   };
   return <TaxRoutingContext.Provider value={value}>{children}</TaxRoutingContext.Provider>;

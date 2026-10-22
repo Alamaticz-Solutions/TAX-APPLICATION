@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { TaxRoutingProvider } from '../features/shared/state/TaxRoutingProvider';
+import { SessionProvider } from './SessionProvider';
 
 /**
  * App-level providers. Data currently comes from the prototype state in `TaxRoutingProvider`;
@@ -7,5 +8,9 @@ import { TaxRoutingProvider } from '../features/shared/state/TaxRoutingProvider'
  * `lib/appfwClient.ts` client are provided.
  */
 export function AppProviders({ children }: { children: ReactNode }) {
-  return <TaxRoutingProvider>{children}</TaxRoutingProvider>;
+  return (
+    <SessionProvider>
+      <TaxRoutingProvider>{children}</TaxRoutingProvider>
+    </SessionProvider>
+  );
 }
